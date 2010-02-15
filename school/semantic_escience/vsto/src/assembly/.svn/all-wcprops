@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/15/trunk/ripple-demo/src/assembly
+END
+distro.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/15/trunk/ripple-demo/src/assembly/distro.xml
+END
+standalone.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/6/trunk/ripple-demo/src/assembly/standalone.xml
+END
+distro-src.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/15/trunk/ripple-demo/src/assembly/distro-src.xml
+END

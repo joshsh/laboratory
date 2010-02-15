@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:vsto="http://dataportal.ucar.edu/schemas/vsto.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns="http://dataportal.ucar.edu/schemas/csac.owl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xml:base="http://dataportal.ucar.edu/schemas/csac.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://dataportal.ucar.edu/schemas/vsto.owl"/>
+  </owl:Ontology>
+  <vsto:StokesParameterV rdf:ID="csac_parameter_DLSP_StokesV">
+    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >StokesV</vsto:hasIdentifier>
+    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DLSP Stokes V</vsto:hasName>
+    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Stokes v Polarization Parameter</vsto:hasDescription>
+    <vsto:isMeasuredBy>
+      <vsto:SpectroPolarimeter rdf:ID="csac_instrument_DLSP">
+        <vsto:hasMeasuredParameter>
+          <vsto:StokesParameterI rdf:ID="csac_parameter_DLSP_StokesI">
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >StokesI</vsto:hasIdentifier>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Stokes I</vsto:hasName>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Stokes I Polarization Parameter</vsto:hasDescription>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+          </vsto:StokesParameterI>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasMeasuredParameter>
+          <vsto:Polarization rdf:ID="csac_parameter_DLSP_SALPHA">
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SALPHA</vsto:hasIdentifier>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Polarization</vsto:hasName>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Net Polarization</vsto:hasDescription>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+          </vsto:Polarization>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diffraction-Limited Spectropolarimeter</vsto:hasDescription>
+        <vsto:hasMeasuredParameter>
+          <vsto:DampingParameter rdf:ID="csac_parameter_DLSP_SDMP">
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Damping Parameter</vsto:hasName>
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SDMP</vsto:hasIdentifier>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Line Damping Parameter</vsto:hasDescription>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+          </vsto:DampingParameter>
+        </vsto:hasMeasuredParameter>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Diffraction-Limited Spectropolarimeter (DLSP) is in operation at the  National Science Foundation's Dunn Solar Telescope at the Sacramento Peak  Observatory, Sunspot, NM, as a permanent, multi-user instrument for  studying the structure and life of sunspots.</rdfs:comment>
+        <vsto:hasMeasuredParameter>
+          <vsto:DopplerWidth rdf:ID="csac_parameter_DLSP_SDOP">
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Doppler Width</vsto:hasName>
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SDOP</vsto:hasIdentifier>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Doppler Velocity Line Width</vsto:hasDescription>
+          </vsto:DopplerWidth>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasMeasuredParameter>
+          <vsto:Inclination rdf:ID="csac_parameter_DLSP_SPSI">
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SPSI</vsto:hasIdentifier>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Magnetic Field Inclination Angle</vsto:hasDescription>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Field Inclination</vsto:hasName>
+          </vsto:Inclination>
+        </vsto:hasMeasuredParameter>
+        <vsto:isOperatedByObservatory>
+          <vsto:Observatory rdf:ID="csac_observatory_Sacramento_Peak">
+            <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >National Science Foundation's Dunn Solar Telescope at Sunspot, NM</rdfs:comment>
+            <vsto:hasOperatedInstrument rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Sacramento Peak Observatory</vsto:hasName>
+            <vsto:hasOperatingHours rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Daylight</vsto:hasOperatingHours>
+          </vsto:Observatory>
+        </vsto:isOperatedByObservatory>
+        <vsto:hasMeasuredParameter>
+          <vsto:StokesParameterU rdf:ID="csac_parameter_DLSP_StokesU">
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >StokesU</vsto:hasIdentifier>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Stokes U</vsto:hasName>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Stokes U Polarization Parameter</vsto:hasDescription>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+          </vsto:StokesParameterU>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasMeasuredParameter>
+          <vsto:ChiSquare rdf:ID="csac_parameter_DLSP_CHISQ">
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Chi-square goodness of fit</vsto:hasDescription>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CHISQ</vsto:hasIdentifier>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Chi Square</vsto:hasName>
+          </vsto:ChiSquare>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasMeasuredParameter>
+          <vsto:Azimuth rdf:ID="csac_parameter_DLSP_SAZM">
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Magnetic Field Azimuth Angle</vsto:hasDescription>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Field Azimuth</vsto:hasName>
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SAZM</vsto:hasIdentifier>
+          </vsto:Azimuth>
+        </vsto:hasMeasuredParameter>
+        <vsto:dataServedBy>
+          <vsto:DataArchive rdf:ID="csac_data_archive">
+            <vsto:servesDataFor>
+              <vsto:SpectroPolarimeter rdf:ID="csac_instrument_SP4D">
+                <vsto:hasMeasuredParameter>
+                  <vsto:MagneticField rdf:ID="csac_parameter_SP4D_SFLD">
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Field Strength</vsto:hasName>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SFLD</vsto:hasIdentifier>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Magnetic Field Strength</vsto:hasDescription>
+                  </vsto:MagneticField>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:StokesParameterI rdf:ID="csac_parameter_SP4D_StokesI">
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >StokesI</vsto:hasIdentifier>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Stokes I Polarization Parameter</vsto:hasDescription>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Stokes I</vsto:hasName>
+                  </vsto:StokesParameterI>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:SourceFunction rdf:ID="csac_parameter_SP4D_SBZERO">
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Radiative transfer source function</vsto:hasDescription>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SBZERO</vsto:hasIdentifier>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Source Function</vsto:hasName>
+                  </vsto:SourceFunction>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:SourceFunctionGradient rdf:ID="csac_parameter_SP4D_SB1MU">
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Source Function Gradient</vsto:hasName>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Radiative transfer source function gradient</vsto:hasDescription>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SB1MU</vsto:hasIdentifier>
+                  </vsto:SourceFunctionGradient>
+                </vsto:hasMeasuredParameter>
+                <vsto:dataServedBy rdf:resource="#csac_data_archive"/>
+                <vsto:hasMeasuredParameter>
+                  <vsto:ChiSquare rdf:ID="csac_parameter_SP4D_CHISQ">
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Chi-Square</vsto:hasName>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >CHISQ</vsto:hasIdentifier>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Chi-square goodness of fit</vsto:hasDescription>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                  </vsto:ChiSquare>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:DampingParameter rdf:ID="csac_parameter_SP4D_SDMP">
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Line Damping Parameter</vsto:hasDescription>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Damping Parameter</vsto:hasName>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SDMP</vsto:hasIdentifier>
+                  </vsto:DampingParameter>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SP4D</vsto:hasName>
+                <vsto:hasMeasuredParameter>
+                  <vsto:Azimuth rdf:ID="csac_parameter_SP4D_SAZM">
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Magnetic Field Azimuth Angle</vsto:hasDescription>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SAZM</vsto:hasIdentifier>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Field Azimuth</vsto:hasName>
+                  </vsto:Azimuth>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >4-D Stokes Polarimeter</vsto:hasDescription>
+                <vsto:hasMeasuredParameter>
+                  <vsto:Polarization rdf:ID="csac_parameter_SP4D_SALPHA">
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Polarization</vsto:hasName>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Net Polarization</vsto:hasDescription>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SALPHA</vsto:hasIdentifier>
+                  </vsto:Polarization>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:StokesParameterV rdf:ID="csac_parameter_SP4D_StokesV">
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Stokes v Polarization Parameter</vsto:hasDescription>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Stokes V</vsto:hasName>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >StokesV</vsto:hasIdentifier>
+                  </vsto:StokesParameterV>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:DopplerWidth rdf:ID="csac_parameter_SP4D_SDOP">
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SDOP</vsto:hasIdentifier>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Doppler Velocity Line Width</vsto:hasDescription>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Doppler Width</vsto:hasName>
+                  </vsto:DopplerWidth>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasMeasuredParameter>
+                  <vsto:Inclination rdf:ID="csac_parameter_SP4D_SPSI">
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Magnetic Field Inclination Angle</vsto:hasDescription>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SPSI</vsto:hasIdentifier>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Field Inclination</vsto:hasName>
+                  </vsto:Inclination>
+                </vsto:hasMeasuredParameter>
+                <vsto:isOperatedByObservatory>
+                  <vsto:Observatory rdf:ID="csac_observatory_Hinode">
+                    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >HINODE(SOLAR-B) is the third solar physics satellite of ISAS which was 
+    approved as a successor of the highly successful Japan/US/UK YOHKOH 
+    (SOLAR-A) collaboration. HINODE(SOLAR-B) satellite aboard the M-V Launch 
+    Vehicle No. 7 (M-V-7) has been launched at 6:36 a.m. on September 23, 2006 
+    (Japan Standard Time, JST) from the Uchinoura Space Center (USC). The 
+    SOLAR-B was given a nickname of &amp;quot;HINODE&amp;quot; (meaning a &amp;quot;sunrize.&amp;quot;).</rdfs:comment>
+                    <vsto:hasOperatingHours rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Continuous</vsto:hasOperatingHours>
+                    <vsto:hasOperatedInstrument rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >HINODE Satellite</vsto:hasName>
+                    <vsto:reference xml:lang="en">
+							http://www.isas.ac.jp/e/enterp/missions/solar-b/
+						</vsto:reference>
+                  </vsto:Observatory>
+                </vsto:isOperatedByObservatory>
+                <vsto:hasMeasuredParameter>
+                  <vsto:StokesParameterQ rdf:ID="csac_parameter_SP4D_StokesQ">
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >StokesQ</vsto:hasIdentifier>
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Stokes Q</vsto:hasName>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Stokes Q Polarization Parameter</vsto:hasDescription>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                  </vsto:StokesParameterQ>
+                </vsto:hasMeasuredParameter>
+                <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >HINODE</vsto:hasIdentifier>
+                <vsto:hasMeasuredParameter>
+                  <vsto:StokesParameterU rdf:ID="csac_parameter_SP4D_StokesU">
+                    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >SP4D Stokes U</vsto:hasName>
+                    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Stokes U Polarization Parameter</vsto:hasDescription>
+                    <vsto:isMeasuredBy rdf:resource="#csac_instrument_SP4D"/>
+                    <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >StokesU</vsto:hasIdentifier>
+                  </vsto:StokesParameterU>
+                </vsto:hasMeasuredParameter>
+              </vsto:SpectroPolarimeter>
+            </vsto:servesDataFor>
+            <vsto:servesDataFor rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CSAC</vsto:hasName>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Community Spectro-Polarimetric Analysis Center</vsto:hasDescription>
+          </vsto:DataArchive>
+        </vsto:dataServedBy>
+        <vsto:hasMeasuredParameter>
+          <vsto:SourceFunction rdf:ID="csac_parameter_DLSP_SBZERO">
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SBZERO</vsto:hasIdentifier>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Source Function</vsto:hasName>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Radiative transfer source function</vsto:hasDescription>
+          </vsto:SourceFunction>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasMeasuredParameter>
+          <vsto:MagneticField rdf:ID="csac_parameter_DLSP_SFLD">
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SFLD</vsto:hasIdentifier>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Field Strength</vsto:hasName>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Magnetic Field Strength</vsto:hasDescription>
+          </vsto:MagneticField>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >DLSP</vsto:hasIdentifier>
+        <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >DLSP</vsto:hasName>
+        <vsto:hasMeasuredParameter rdf:resource="#csac_parameter_DLSP_StokesV"/>
+        <vsto:hasMeasuredParameter>
+          <vsto:StokesParameterQ rdf:ID="csac_parameter_DLSP_StokesQ">
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Stokes Q</vsto:hasName>
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >StokesQ</vsto:hasIdentifier>
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Stokes Q Polarization Parameter</vsto:hasDescription>
+          </vsto:StokesParameterQ>
+        </vsto:hasMeasuredParameter>
+        <vsto:hasMeasuredParameter>
+          <vsto:SourceFunctionGradient rdf:ID="csac_parameter_DLSP_SB1MU">
+            <vsto:isMeasuredBy rdf:resource="#csac_instrument_DLSP"/>
+            <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Radiative transfer source function gradient</vsto:hasDescription>
+            <vsto:hasIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SB1MU</vsto:hasIdentifier>
+            <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DLSP Source Function Gradient</vsto:hasName>
+          </vsto:SourceFunctionGradient>
+        </vsto:hasMeasuredParameter>
+      </vsto:SpectroPolarimeter>
+    </vsto:isMeasuredBy>
+  </vsto:StokesParameterV>
+  <vsto:JpgDataImage rdf:ID="csac_data_image">
+    <vsto:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CSAC Jpg Data Image</vsto:hasDescription>
+    <vsto:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >CSAC Jpg Data Image</vsto:hasName>
+  </vsto:JpgDataImage>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.2, Build 324)  http://protege.stanford.edu -->

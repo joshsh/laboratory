@@ -1,0 +1,894 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY wgs84 "http://fortytwo.net/2008/08/wgs84.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY vsto "http://dataportal.ucar.edu/schemas/vsto.owl#" >
+    <!ENTITY cedar "http://dataportal.ucar.edu/schemas/cedar.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://fortytwo.net/2008/08/VSTO_ext.owl#"
+     xml:base="http://fortytwo.net/2008/08/VSTO_ext.owl"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:cedar="http://dataportal.ucar.edu/schemas/cedar.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:vsto="http://dataportal.ucar.edu/schemas/vsto.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:wgs84="http://fortytwo.net/2008/08/wgs84.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <owl:imports rdf:resource="http://dataportal.ucar.edu/schemas/vsto_all.owl"/>
+        <owl:imports rdf:resource="http://fortytwo.net/2008/08/wgs84.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://fortytwo.net/2008/08/wgs84.owl#alt -->
+
+    <owl:DatatypeProperty rdf:about="&wgs84;alt"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/08/wgs84.owl#lat -->
+
+    <owl:DatatypeProperty rdf:about="&wgs84;lat"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/08/wgs84.owl#long -->
+
+    <owl:DatatypeProperty rdf:about="&wgs84;long"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/vsto.owl#Instrument -->
+
+    <owl:Class rdf:about="&vsto;Instrument">
+        <rdfs:subClassOf rdf:resource="&wgs84;SpatialThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://fortytwo.net/2008/08/wgs84.owl#SpatialThing -->
+
+    <owl:Class rdf:about="&wgs84;SpatialThing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_10 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_10">
+        <wgs84:alt>520</wgs84:alt>
+        <wgs84:long>-76.87</wgs84:long>
+        <wgs84:lat>-11.95</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1040 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1040">
+        <wgs84:long>-66.75</wgs84:long>
+        <wgs84:lat>18.3</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1140 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1140">
+        <wgs84:long>-145.46</wgs84:long>
+        <wgs84:lat>65.13</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1210 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1210">
+        <wgs84:lat>-78</wgs84:lat>
+        <wgs84:long>167</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1215 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1215">
+        <wgs84:alt>1</wgs84:alt>
+        <wgs84:long>77.97</wgs84:long>
+        <wgs84:lat>-68.60</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1220 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1220">
+        <wgs84:lat>-67.62</wgs84:lat>
+        <wgs84:long>62.89</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1221 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1221">
+        <wgs84:lat>-67.57</wgs84:lat>
+        <wgs84:alt>5</wgs84:alt>
+        <wgs84:long>-68.12</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1230 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1230">
+        <wgs84:lat>-43.83</wgs84:lat>
+        <wgs84:long>172.68</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1240 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1240">
+        <wgs84:alt>19</wgs84:alt>
+        <wgs84:long>138.48</wgs84:long>
+        <wgs84:lat>-34.56</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1245 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1245">
+        <wgs84:long>-159.77</wgs84:long>
+        <wgs84:alt>2</wgs84:alt>
+        <wgs84:lat>-21.21</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1254 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1254">
+        <wgs84:lat>8.67</wgs84:lat>
+        <wgs84:alt>30</wgs84:alt>
+        <wgs84:long>77.82</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1270 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1270">
+        <wgs84:long>-159.3</wgs84:long>
+        <wgs84:alt>2</wgs84:alt>
+        <wgs84:lat>22.0</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1275 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1275">
+        <wgs84:long>130.62</wgs84:long>
+        <wgs84:alt>70</wgs84:alt>
+        <wgs84:lat>31.20</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1285 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1285">
+        <wgs84:alt>1505</wgs84:alt>
+        <wgs84:lat>40.18</wgs84:lat>
+        <wgs84:long>-104.7</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1310 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1310">
+        <wgs84:long>141.81</wgs84:long>
+        <wgs84:alt>10</wgs84:alt>
+        <wgs84:lat>45.36</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1320 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1320">
+        <wgs84:lat>51.31</wgs84:lat>
+        <wgs84:long>13.003</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1340 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1340">
+        <wgs84:long>-107</wgs84:long>
+        <wgs84:lat>52</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1375 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1375">
+        <wgs84:alt>208</wgs84:alt>
+        <wgs84:long>-147.495</wgs84:long>
+        <wgs84:lat>65.126</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1390 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1390">
+        <wgs84:lat>70</wgs84:lat>
+        <wgs84:long>19</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1539 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1539">
+        <wgs84:alt>170</wgs84:alt>
+        <wgs84:lat>-7.96</wgs84:lat>
+        <wgs84:long>-14.38</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1560 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1560">
+        <wgs84:lat>34</wgs84:lat>
+        <wgs84:long>-84</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1620 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1620">
+        <wgs84:long>-70.94</wgs84:long>
+        <wgs84:lat>43.12</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1750 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1750">
+        <wgs84:long>36.51</wgs84:long>
+        <wgs84:lat>55.11</wgs84:lat>
+        <wgs84:alt>172</wgs84:alt>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_1775 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_1775">
+        <wgs84:long>21.08</wgs84:long>
+        <wgs84:lat>67.89</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_2090 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_2090">
+        <wgs84:lat>1.95</wgs84:lat>
+        <wgs84:long>-157.30</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_220 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_220">
+        <wgs84:long>106.826</wgs84:long>
+        <wgs84:lat>-78.463</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_2200 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_2200">
+        <wgs84:long>-105</wgs84:long>
+        <wgs84:lat>40</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_25 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_25">
+        <wgs84:lat>34.8</wgs84:lat>
+        <wgs84:long>136.1</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_2890 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_2890">
+        <wgs84:lat>67.0</wgs84:lat>
+        <wgs84:long>-50.95</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_2930 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_2930">
+        <wgs84:lat>77.5</wgs84:lat>
+        <wgs84:long>-69.4</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_30 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_30">
+        <wgs84:long>-71.5</wgs84:long>
+        <wgs84:lat>42.6</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_3010 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_3010">
+        <wgs84:long>77.97</wgs84:long>
+        <wgs84:alt>25</wgs84:alt>
+        <wgs84:lat>-68.48</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_31 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_31">
+        <wgs84:long>-71.5</wgs84:long>
+        <wgs84:lat>42.6</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_32 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_32">
+        <wgs84:lat>42.6</wgs84:lat>
+        <wgs84:long>-71.5</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_3320 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_3320">
+        <wgs84:lat>51.3</wgs84:lat>
+        <wgs84:long>7.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_40 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_40">
+        <wgs84:lat>44.6</wgs84:lat>
+        <wgs84:long>2.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_41 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_41">
+        <wgs84:lat>44.6</wgs84:lat>
+        <wgs84:long>2.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_42 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_42">
+        <wgs84:long>2.2</wgs84:long>
+        <wgs84:lat>44.6</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_43 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_43">
+        <wgs84:lat>44.6</wgs84:lat>
+        <wgs84:long>2.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_4470 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_4470">
+        <wgs84:lat>56.12</wgs84:lat>
+        <wgs84:long>-147.43</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_4473 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_4473">
+        <wgs84:lat>66.57</wgs84:lat>
+        <wgs84:long>-145.27</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_45 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_45">
+        <wgs84:alt>97</wgs84:alt>
+        <wgs84:lat>49.7</wgs84:lat>
+        <wgs84:long>36.3</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_50 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_50">
+        <wgs84:lat>65.1</wgs84:lat>
+        <wgs84:long>-147.4</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5000 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5000">
+        <wgs84:long>0</wgs84:long>
+        <wgs84:lat>-90</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5015 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5015">
+        <wgs84:lat>-77.8296</wgs84:lat>
+        <wgs84:long>166.6627</wgs84:long>
+        <wgs84:alt>190.3</wgs84:alt>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5020 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5020">
+        <wgs84:long>-26.6</wgs84:long>
+        <wgs84:lat>-75.5</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5060 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5060">
+        <wgs84:lat>-43.98</wgs84:lat>
+        <wgs84:long>170.42</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5140 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5140">
+        <wgs84:lat>-16.47</wgs84:lat>
+        <wgs84:alt>2489</wgs84:alt>
+        <wgs84:long>-71.49</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5160 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5160">
+        <wgs84:lat>18.35</wgs84:lat>
+        <wgs84:long>-66.75</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_53 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_53">
+        <wgs84:lat>52.9</wgs84:lat>
+        <wgs84:alt>502</wgs84:alt>
+        <wgs84:long>103.3</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5300 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5300">
+        <wgs84:lat>42.40</wgs84:lat>
+        <wgs84:long>-86.93</wgs84:long>
+        <wgs84:alt>291</wgs84:alt>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5340 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5340">
+        <wgs84:long>-71.45</wgs84:long>
+        <wgs84:lat>42.62</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5430 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5430">
+        <wgs84:lat>60.055</wgs84:lat>
+        <wgs84:alt>899</wgs84:alt>
+        <wgs84:long>-128.58</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5460 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5460">
+        <wgs84:long>-148.1</wgs84:long>
+        <wgs84:lat>64.7</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5465 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5465">
+        <wgs84:long>-147.43</wgs84:long>
+        <wgs84:lat>65.12</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5480 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5480">
+        <wgs84:lat>66.99</wgs84:lat>
+        <wgs84:long>-50.95</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5510 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5510">
+        <wgs84:alt>103.2</wgs84:alt>
+        <wgs84:lat>68.33</wgs84:lat>
+        <wgs84:long>-133.50</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5535 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5535">
+        <wgs84:long>-94.89</wgs84:long>
+        <wgs84:alt>87</wgs84:alt>
+        <wgs84:lat>74.73</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5540 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5540">
+        <wgs84:lat>76.53</wgs84:lat>
+        <wgs84:long>-68.44</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5700 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5700">
+        <wgs84:alt>2835</wgs84:alt>
+        <wgs84:long>0</wgs84:long>
+        <wgs84:lat>-90.00</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5720 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5720">
+        <wgs84:long>-81.05</wgs84:long>
+        <wgs84:alt>0</wgs84:alt>
+        <wgs84:lat>29.19</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5860 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5860">
+        <wgs84:long>18.2</wgs84:long>
+        <wgs84:lat>59.5</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5900 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5900">
+        <wgs84:alt>180</wgs84:alt>
+        <wgs84:lat>66.99</wgs84:lat>
+        <wgs84:long>-50.95</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5950 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5950">
+        <wgs84:alt>1</wgs84:alt>
+        <wgs84:long>-94.90</wgs84:long>
+        <wgs84:lat>74.68</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_5980 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_5980">
+        <wgs84:alt>139</wgs84:alt>
+        <wgs84:lat>80.22</wgs84:lat>
+        <wgs84:long>-86.18</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_6320 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_6320">
+        <wgs84:lat>40.59</wgs84:lat>
+        <wgs84:alt>1570</wgs84:alt>
+        <wgs84:long>-105.14</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_6330 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_6330">
+        <wgs84:long>-111.81</wgs84:long>
+        <wgs84:lat>41.74</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_70 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_70">
+        <wgs84:lat>69.6</wgs84:lat>
+        <wgs84:long>19.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_71 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_71">
+        <wgs84:lat>69.6</wgs84:lat>
+        <wgs84:long>19.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_72 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_72">
+        <wgs84:long>19.2</wgs84:long>
+        <wgs84:lat>69.6</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_73 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_73">
+        <wgs84:lat>69.6</wgs84:lat>
+        <wgs84:long>19.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_74 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_74">
+        <wgs84:lat>69.6</wgs84:lat>
+        <wgs84:long>19.2</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_80 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_80">
+        <wgs84:lat>66.9</wgs84:lat>
+        <wgs84:long>-50.95</wgs84:long>
+        <wgs84:alt>185</wgs84:alt>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_820 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_820">
+        <wgs84:long>-26</wgs84:long>
+        <wgs84:lat>-76</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_825 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_825">
+        <wgs84:long>-2.85</wgs84:long>
+        <wgs84:lat>-71.68</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_830 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_830">
+        <wgs84:lat>-69.00</wgs84:lat>
+        <wgs84:long>39.58</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_831 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_831">
+        <wgs84:lat>-69</wgs84:lat>
+        <wgs84:long>39.58</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_835 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_835">
+        <wgs84:lat>-49.35</wgs84:lat>
+        <wgs84:long>70.28</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_845 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_845">
+        <wgs84:lat>49.39</wgs84:lat>
+        <wgs84:long>-82.32</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_861 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_861">
+        <wgs84:long>-106.53</wgs84:long>
+        <wgs84:lat>52.16</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_870 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_870">
+        <wgs84:lat>53.3</wgs84:lat>
+        <wgs84:long>-60.44</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_900 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_900">
+        <wgs84:lat>62.32</wgs84:lat>
+        <wgs84:long>26.61</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_910 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_910">
+        <wgs84:lat>63.86</wgs84:lat>
+        <wgs84:long>-22.02</wgs84:long>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_911 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_911">
+        <wgs84:long>-20.54</wgs84:long>
+        <wgs84:lat>63.77</wgs84:lat>
+    </rdf:Description>
+    
+
+
+    <!-- http://dataportal.ucar.edu/schemas/cedar.owl#cedar_instrument_95 -->
+
+    <rdf:Description rdf:about="&cedar;cedar_instrument_95">
+        <wgs84:long>16.04</wgs84:long>
+        <wgs84:lat>78.15</wgs84:lat>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.842) http://owlapi.sourceforge.net -->
+

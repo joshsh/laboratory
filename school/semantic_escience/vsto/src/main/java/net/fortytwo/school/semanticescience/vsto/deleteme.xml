@@ -1,0 +1,1990 @@
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Placemark>
+        <name>Adelaide Australia MF Radar</name>
+        <description>type: MFRadar
+
+            The Adelaide, Australia (34.56S, 138.48E; ~19 m alt) 1.98 MHz MF radar has been in operation since 1983 at
+            the location of Buckingham Park, just outside of Adelaide. On day 359 of 2001 at 89 km altitude, the apex
+            magnetic coordinates were (28.2,-149.8) degrees. The magnetic inclination and declination angles were 48.0
+            deg and -6.4 deg. The magnetic local time at 0 Universal Time (UT) is about 0856 MLT. The solar local time
+            (SLT) is UT plus 9 hours and 14 minutes (138.48/15.=9.232). Code 42 (LST-UT) was corrected from 1.E-03 hr to
+            hhmm in Sep 2004.
+
+            The original data files are hourly averages of the zonal and meridional velocity in Australian Central
+            Standard Time (ACST), which is 9 hr 30 min later than UT. Samples are taken every 2 min, so a possible 30
+            samples can be had between ACST 9:00:00 and ACST 9:59:00, which is labelled as hour 9:00:00 ACST. The
+            midpoint is 9:30:00 ACST or 0:00:00 UT, or 9:14:00 SLT. Local times have been converted to the mid-point
+            SLT, or 14 min (0.232 hr) are added to the begin LT.
+
+            The MF operating frequency is 1.98 MHz, with a peak transmitter power of 25 kW, 50 kW starting in 1995. The
+            radar operates as a spaced-antenna system (Vincent, 1986), relying on coherent echo signals from middle
+            atmosphere ionization. The inter-pulse period is 12.5 and 25 millisec, respectively during the day and
+            night. There are usually 32 coherent integrations during the day and 16 at night, using 256 samples in the
+            full correlation analysis (FCA) of Briggs [1984] with built-in rejection criteria. [ie, want about 2 min or
+            102.4 sec integration day or night, or 12.5x10-3sec * 32 integ * 256 samples = 102.4 sec and 25x10-3sec * 16
+            integ * 256 samples = 102.4 sec.]
+
+            The height coverage is 50-98 km during the day and 70-98 km during the night, at Adelaide. The pulse width
+            is 30 microsec, giving a height resolution of 4.5 km assuming a simple rectangular wave pulse [range of
+            heights illuminated by the wave pulse = velocity of light * pulse-width / 2 = 3x10**8 m/s * 30x10-6s / 2 =
+            4.5 km]. However, the height range provided is every 2 km between 60 and 98 km.
+        </description>
+        <Point>
+            <coordinates>-34.56,138.48,19.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>College Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The College, Alaska Fabry-Perot interferometer was located on the roof of the Geophysical Institute in the
+            years reported here (1981-1983). This is at 64.7N and 148.1W in geographic coordinates, where the corrected
+            geomagnetic coordinates are 64.9N and 100.3W. This is relatively close to the Chatanika incoherent scatter
+            radar site at 65.1N and 147.4W, which operated between 1971 and 1982. The IGRF model gives a magnetic
+            declination angle of about 25 degrees and inclination angle of 76 degrees for the measurement period.
+            However, the measurements were made relative to the magnetic field direction where the declination was
+            assumed to be 30 degrees. This is not significantly different from the true declination, so the derived
+            horizontal results are reported as being in the magnetic directions. The measurements are all at 630.0 nm.
+            All nights included are clear, or had cloudy periods removed.
+
+            The zenith measurements are assumed to be on average zero throughout the night. All other measurements were
+            taken in directions relative to the magnetic E, N, W and S directions at elevations angles between 20 and 45
+            degrees, and were converted to horizontal directions assuming an emission layer centered at 225 km.
+
+            The intensities are relative, (Code 2505) but are approximately within 25% of the true intensities in
+            Rayleighs.
+        </description>
+        <Point>
+            <coordinates>64.7,-148.1</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>EISCAT: Tromso VHF Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The EISCAT (European Incoherent SCATter) facility in Scandinavia consists of a transimitter/receiver station
+            at Tromso, Norway (69.6N, 19.2E), and receiver stations at Kiruna, Sweden (67.9N, 20.4E) and Sodankyla,
+            Finland (67.4N, 26.6E). The facility has been in operation since 1981, and recently expanded to include a
+            facility at Svalbard, which will have its own web page when data are included in the CEDAR Data Base.
+        </description>
+        <Point>
+            <coordinates>69.9,19.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Christchurch New Zealand MF Radar</name>
+        <description>type: MFRadar
+
+            The Christchurch MF radar (43.83 S, 172.68 E) in New Zealand is operated by the Physics Department of the
+            University of Canterbury, Christchurch, New Zealand. It uses the partial-reflection, spaced antenna method
+            (Fraser, 1984) and has contributed to mean wind and tidal studies (Fraser, 1968; Fraser 1989; Fraser et al
+            1989; Manson et al., 1989, 1990, 1991). The mean solar local time (SLT) is about 11 hours and 31 minutes
+            ahead of Universal Time (UT) (i.e., 172.68 E / 15 deg/hr = 11.51 hours = 11 hrs 31 min). The phases are in
+            SLT.
+        </description>
+        <Point>
+            <coordinates>-43.83,172.68</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Halley Antarctica HF Radar</name>
+        <description>type: HFRadar
+
+            The Halley HF radar is located in Antarctica (76 degs S, 26 deg W) and overlooks a section of ionosphere
+            poleward of 78 deg that covers much of eastern Antarctica and includes South Pole station. The field
+            -of-view is conjugate to the west coast of Greenland and the Goose Bay HF radar. It has operated since 1988.
+            The facility is part of the SuperDARN network of HF radars that extends from western North America to
+            Scandinavia in the Northern hemisphere and covers much of Antarctica in the Southern hemisphere. The
+            SuperDARN radar for the most direct 2-D merging of Halley velocity data is located at Syowa, Antarctica.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provide the capability to measure elevation angle. The basic radar operation
+            consists of the following steps: i) selection of a beam position (0-15) ii) search for the quietest 5-kHz
+            channel about the assigned transmitting frequency (8-20 MHz) iii) repeated transmission of a multi-pulse
+            sequence over the selected integration period and reception of backscattered signal with gating in range
+            (1-70) iv) calculation of the auto-correlation functions (ACFs). These operations are usually carried out in
+            sequence for the 16 beam positions, which collectively constitute 1 scan. The beam integration period is
+            typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan, beam 0 corresponds to
+            the most westward beam position and beam 15 to the most eastward. The azimuth sector scanned is
+            approximately 50 deg wide and is centered on 165 deg E of N.
+        </description>
+        <Point>
+            <coordinates>-76.0,-26.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>SANAE Antarctica HF Radar</name>
+        <description>type: HFRadar
+
+            The SANAE (South African National Antarctic Expedition) HF radar is located in Antarctica (71.68 deg S,
+            -2.85 deg E) and looks over a section of ionosphere poleward of 65 deg S that covers much of East
+            Antarctica. It has operated since 1997. The facility is part of the SuperDARN network of HF radars that
+            extends from Alaska to Scandinavia in the Northern hemisphere and covers much of Antarctica in the Southern
+            hemisphere. The SuperDARN radar for the most direct 2-D merging of SANAE velocity data is located at Halley
+            Station.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. It has no second array for deriving elevation angle information. The basic radar operation consists
+            of the following steps: i) selection of a beam position (0-15) ii) search for the quietest 5-kHz channel
+            about the assigned transmitting frequency (8-20 MHz) iii) repeated transmission of a multi-pulse sequence
+            over the selected integration period and reception of backscattered signal with gating in range (1-70) iv)
+            calculation of the auto-correlation functions (ACFs). These operations are usually carried out in sequence
+            for the 16 beam positions, which collectively constitute 1 scan. The beam integration period is usually 7
+            sec, and the scan repeat time is then 120 sec (2 min). Within a scan, beam 0 corresponds to the most
+            westward beam position and beam 15 to the most eastward. The azimuth sector scanned is approximately 50 deg
+            wide and is centered on 107.0 deg E of N.
+        </description>
+        <Point>
+            <coordinates>-71.68,-2.85</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Poker Flat Alaska MF Radar</name>
+        <description>type: MFRadar
+
+            The Poker Flat, Alaska (65.126 N, 147.495 W; alt 208 m) 2.43 MHz MF radar has been in operation since 1998.
+            On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (65.4, -95.5) degrees. The magnetic
+            inclination and declination angles were 77.4 deg and 24.1 deg. The magnetic local time at 0 Universal Time
+            (UT) is about 1233 MLT. The solar local time (SLT) is UT minus 9 hours and 50 minutes (-147.495/15.=-9.833).
+
+            The original data files are 30 min averages of the zonal, meridional and 'vertical' velocity in UT. The UT
+            time is the midpoint UT, and is also listed as the midpoint SLT. Samples are taken every 3, 4 or 5 min, so 6
+            to 10 samples can be had between UT 23:45:00 and UT 00:15:00. To improve data quality, 'median screening' is
+            applied inside a 1-h bin. If data points lie outside a threshold standard deviation (code 4152) of usually
+            1.5 inside a 1-hr bin, they are discarded. So the low qulity (jamped) data are rejected and then the
+            remaining data are averaged over 30-min bins with a threshold of usually 30% (code 4151). The number of
+            points used in each direction are in codes 422, 423 and 424.
+
+            The 'vertical' velocities (code 1432, 'contaminated neutral vertical geographic wind (+up)') are from the
+            beam in the vertical direction. The antenna array in a triangle has a different beam width for different
+            azimuth direction, resulting in beam widths about 20-30 deg wide. Hence, the 'vertical' velocity will be
+            contaminated by horizontal wind times the sine of 10 to 15 degrees (.17 to .26). Since the horizontal winds
+            are stronger than the vertical winds, even the sign could be incorrect. The standard deviations of the
+            'vertical' winds are also larger than the average values.
+
+            The MF operating frequency is 1.95550 MHz, with a peak transmitter power of 50 kW. The radar operates as a
+            spaced-antenna system (Vincent, 1986), relying on coherent echo signals from middle atmosphere ionization.
+            The inter-pulse period is 12.5 millisec during the day and 25 millisec during the night. There are 80
+            coherent integrations during the day and 40 at night, using 240 samples in the full correlation analysis
+            (FCA) of Briggs [1984] with built-in rejection criteria. [ie, if want 240 sec or 4 min integration during
+            day and night, then 12.5x10-3sec * 80 integ * 240 samples = 240 sec and 25x10-3sec * 40 integ * 240 samples
+            = 240 sec.]
+
+            Data sampling is done every 2 km usually between 60-98 km for Yamagawa (60-108 km for Wakkanai, 44-108 km
+            for Poker Flat). The height range of wind velocity data is variable accoding to atmospheric and radio
+            conditions and is usually about 70-90 km at Yamagawa and Wakkanai during the day and 80-90 km at night
+            (60-90 km/70-90 km for Poker Flat for day/night conditions).
+
+            The pulse width is 48 microsec (27 microsec before September 1996), giving a height resolution of approx.
+            7.2 km (4.1 km) assuming a simple rectangular wave pulse. For the 48-microsec case, the range of heights
+            illuminated by the wave pulse = velocity of light * pulse-width / 2 = 3x10**8 m/s * 48x10-6s / 2 = 7.2 km.
+            However, neutral velocities are given every 2 km.
+        </description>
+        <Point>
+            <coordinates>65.126,-147.495,208.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Kauai, Hawaii MF RADAR</name>
+        <description>type: MFRadar
+
+            The Kauai, Hawaii (22.0N, 159.3W; 2 m alt) 1.98 MHz MF radar has been in operation since 1990. On day 359 of
+            2001 at 89 km altitude, the apex magnetic coordinates were (22.6, -91.5) degrees. The magnetic inclination
+            and declination angles were 38.6 deg and 10.1 deg. The magnetic local time at 0 Universal Time (UT) is about
+            1249 MLT. The solar local time (SLT) is UT minus 10 hours and 37 minutes (-159.3/15.=-10.620).
+        </description>
+        <Point>
+            <coordinates>22.0,-159.3,2.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Svalbard I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The EISCAT (European Incoherent SCATter) Svalbard Radar (ESR) consists of a transmitter and receiver in
+            Longyearbyen, Norway (78.15N, 16.04E; 75.0 magnetic N). Observations were begun in 1996. The system was
+            added to the EISCAT KST (Kiruna/Sodankyla/Tromso) tri-static facility in Scandinavia, which has its own web
+            page.
+
+            There are several common programs used for the World Days, which are a part of the CEDAR Database from the
+            KST site, but not yet on a regular basis from the ESR site. There are many other experimental times which
+            should be accessed with the aid of an EISCAT colleague.
+
+            The power profiles are calibrated with an on-site ionosonde, and are then corrected for Te and Ti effects
+            which are deduced from the auto-correlation functions (ACFs). The collision frequency model used is the CIRA
+            1972 model atmosphere in Banks and Kockarts (1973), in Aeronmy Part A. The NO+ composition is assumed zero
+            above 300 km.
+        </description>
+        <Point>
+            <coordinates>78.15,16.04</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>MU I.S. Radar, Shigaraki Japan</name>
+        <description>type: IncoherentScatterRadar
+
+            The Incoherent Scatter routine measurement with the MU (Middle and Upper atmosphere) radar (34.8N, 136.1E)
+            uses 4 beam directions simultaneously, with the first 15 minutes of each hour devoted to single-pulse
+            measurements (for electron density), and the last 45 minutes devoted to two-pulse (for ion drift velocity)
+            or four-pulse (for ion/electron temperature) measurements. The radar operates at a frequency of 46.5 MHz and
+            uses a beam width of 3.7 degrees. Measurements have been taken about 2 days per month starting on September
+            17, 1986.
+
+            The 4 beams are at an elevation angle of 70 degrees pointing towards magnetic north, east, south and west,
+            assuming a declination angle of -5 degrees. The inclination angle is about 48 degrees, and the corrected
+            magneitc latitude of the MU radar is about 25 degrees.
+
+            The initial range resolution of the velocities is 38 km. Velocities are averaged between 220 and 455 km,
+            where the altitude of the measurement is defined to be 338, the midpoint of the 235 km range. A running
+            3-hour average of the ACF is computed as well as the height average before the line of sight (los) ion drift
+            velocity is computed, so there are no error bars. The UT time is the midpoint of the 45 minutes of the
+            middle hour.
+        </description>
+        <Point>
+            <coordinates>34.8,136.1</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Sondrestrom Fjord Michelson Interfer.</name>
+        <description>type: MichelsonInterferometer
+
+            A near infrared (NIR) BOMEM MB160 Michelson interferometer (MI) has operated at Sondrestrom Fjord (66.99 N,
+            50.95 W), Greenland, 180 m above mean sea level since September, 1990.
+
+            The MI scans the dark sky NIR airglow emissions between ~5000-10000 cm-1. A periscope directs the airglow
+            into the MI sequentially from three locations at an elevation angle of 25 deg at azimuth angles of 0 (geog
+            N), 120, and 240 deg. The periscope dwells at each position for about 15 min. Airglow hydroxyl Meinel (OH-M)
+            band emissions peak at 87 km and are located between about 83 and 89 km. For an elevation angle of 25 deg,
+            the 87 km peak is at a latitude spacing of 1.61 degrees, or about 179 km away.
+        </description>
+        <Point>
+            <coordinates>66.99,-50.95,180.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Arequipa, Peru Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Fabry-Perot interferometer of the Arequipa Automatic Airglow Observatory (A3O) is operated jointly by
+            the University of Pittsburgh and Clemson University under grants from the NSF Atmospheric Sciences Aeronomy
+            division, with space and on-site technical support provided by the NASA Laser Satellite Tracking Station
+            near Arequipa, Peru. The station is located at latitude 16.47 S and longitude 71.49 W at an elevation of
+            2489 m. The apex magnetic latitude is about -12, with a magnetic dip latitude of about 3, an inclination
+            angle of -6 to -7, and a declination between +1 and -2 between 1983 and 1999. The mean local solar time is
+            behind UT by 4 hours and 46 minutes (-71.49/15 = -4.766 = -4h 46m). The FPI uses the atomic oxygen filter at
+            630.0 nm, where the approximate emission height is assumed to be about 250 km.
+        </description>
+        <Point>
+            <coordinates>-16.47,-71.49,2489.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>South Pole, Antarctica Michelson Inter.</name>
+        <description>type: MichelsonInterferometer
+
+            A near infrared (NIR) BOMEM MB160 Michelson interferometer (MI) has operated at South Pole Station (90.00S,
+            2835 m) in Antarctica since January 1992.
+
+            The MI scans the dark sky NIR airglow emissions between ~5000-10000 cm-1. A periscope directs the airglow
+            into the MI sequentially from three locations at an elevation angle of 25 deg at azimuth angles of 0 (0 E),
+            120 (120 E), and 240 (240 E) deg. The periscope dwells at each position for about 4-15 min. Airglow hydroxyl
+            Meinel (OH-M) band emissions peak at 87 km and are located between about 83 and 89 km for an elevation angle
+            of 25 deg, the 87 km peak is located at a latitude spacing of 1.6 degrees, or at 88.4 S.
+        </description>
+        <Point>
+            <coordinates>-90.0,0.0,2835.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Kerguelen Is. HF radar</name>
+        <description>type: HFRadar
+
+            The Kerguelen Island HF radar is located in the southern Indian Ocean (49.35 deg S, 70.28 deg E; 58.9 mag S)
+            and looks poleward. It has operated since 2000. The facility is part of the SuperDARN network of HF radars
+            that extends from Alaska to Scandinavia in the Northern hemisphere and covers much of Antarctica in the
+            Southern hemisphere. The SuperDARN radar for the most direct 2-D merging of SANAE velocity data is located
+            at Syowa-East station.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. It has no second array for deriving elevation angle information. The basic radar operation consists
+            of the following steps: i) selection of a beam position (0-15) ii) search for the quietest 5-kHz channel
+            about the assigned transmitting frequency (8-20 MHz) iii) repeated transmission of a multi-pulse sequence
+            over the selected integration period and reception of backscattered signal with gating in range (1-70) iv)
+            calculation of the auto-correlation functions (ACFs). These operations are usually carried out in sequence
+            for the 16 beam positions, which collectively constitute 1 scan. The beam integration period is usually 7
+            sec, and the scan repeat time is then 120 sec (2 min). Within a scan, beam 0 corresponds to the most
+            westward beam position and beam 15 to the most eastward. The azimuth sector scanned is approximately 50 deg
+            wide and is centered on 107.0 deg E of N.
+        </description>
+        <Point>
+            <coordinates>-49.35,70.28</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Wuppertal Germany OH Spectrometer</name>
+        <description>type: Spectrometer
+
+            The Wuppertal, Germany (51.3N, 7.2E) Czerny-Turner grating spectrometer scans in the near infrared between
+            1.05 - 1.74 um with a spectral resolution of about 450. It has been operated by the University of Wuppertal
+            since 1980. The instrument measures the nightglow hydroxyl [OH*]. The [OH*] emission layer is centered near
+            87 km (+/-2 km) with a thickness of about 9 km.
+
+            Measured parameters are the hydroxyl Meinel band rotational temperature (Code 812) in tenths of Kelvin. To
+            reduce NLTE effects as much as possible, the (3,1) transition lines P1(2), P1(3) and P1(4) near 1.5 um are
+            chosen for the measurements. More than 3100 average nightly mean temperatures are available continously from
+            July 1980 until now with a gap in 1985/86. The instrument field-of-view in the zenith has a horizontal
+            resolution of 20x20 km^2 (with respect to 86 km altitude). One spectrum is measured in 90 s.
+
+            Rotational temperatures are derived from the relative intensities of the three lines. Hence, if there should
+            be changes of spectrometer sensitivity, atmospheric transmission, or other factors the derived temperatures
+            would not be affected unless such changes are wavelength dependent. Even in that case, influences would be
+            small because the three line are close together (1.524 um, 1.533 um, 1.543 um).
+
+            The relative error of nightly mean temperature values is estimated to be 1-2 K. This is derived from
+            measurements during the whole night, and therefore, it still contains some atmospheric variability. Thus,
+            the value must be considered as an upper limit for the relative error. The absolute temperature error is of
+            the same magnitude. Spectral and absolute intensity calibrations are performed about once per year.
+        </description>
+        <Point>
+            <coordinates>51.3,7.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Yamagawa Japan MF radar</name>
+        <description>type: MFRadar
+
+            The Yamagawa, Japan (31.20N, 130.62E; alt ~70 m) 1.9550 MHz MF radar has been in operation since 1994. On
+            day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (25.1,-157.3) degrees. The magnetic
+            inclination and declination angles were 44.7 deg and -5.6 deg. The magnetic local time at 0 Universal Time
+            (UT) is about 0826 MLT. The solar local time (SLT) is UT plus 8 hours and 42 minutes (130.62/15.=8.708).
+
+            The original data files are 30 min averages of the zonal, meridional and 'vertical' velocity in UT. The UT
+            time is the midpoint UT, and is also listed as the midpoint SLT. Samples are taken every 3, 4 or 5 min, so 6
+            to 10 samples can be had between UT 23:45:00 and UT 00:15:00. To improve data quality, 'median screening' is
+            applied inside a 1-h bin. If data points lie outside a threshold standard deviation (code 4152) of usually
+            1.5 inside a 1-hr bin, they are discarded. So the low qulity (jamped) data are rejected and then the
+            remaining data are averaged over 30-min bins with a threshold of usually 30% (code 4151). The number of
+            points used in each direction are in codes 422, 423 and 424.
+
+            The 'vertical' velocities (code 1432, 'contaminated neutral vertical geographic wind (+up)') are from the
+            beam in the vertical direction. The antenna array in a triangle has a different beam width for different
+            azimuth direction, resulting in beam widths about 20-30 deg wide. Hence, the 'vertical' velocity will be
+            contaminated by horizontal wind times the sine of 10 to 15 degrees (.17 to .26). Since the horizontal winds
+            are stronger than the vertical winds, even the sign could be incorrect. The standard deviations of the
+            'vertical' winds are also larger than the average values.
+
+            The MF operating frequency is 1.95550 MHz, with a peak transmitter power of 50 kW. The radar operates as a
+            spaced-antenna system (Vincent, 1986), relying on coherent echo signals from middle atmosphere ionization.
+            The inter-pulse period is 12.5 millisec during the day and 25 millisec during the night. There are 80
+            coherent integrations during the day and 40 at night, using 240 samples in the full correlation analysis
+            (FCA) of Briggs [1984] with built-in rejection criteria. [ie, if want 240 sec or 4 min integration during
+            day and night, then 12.5x10-3sec * 80 integ * 240 samples = 240 sec and 25x10-3sec * 40 integ * 240 samples
+            = 240 sec.]
+
+            Data sampling is done every 2 km usually between 60-98 km for Yamagawa (60-108 km for Wakkanai, 44-108 km
+            for Poker Flat). The height range of wind velocity data is variable accoding to atmospheric and radio
+            conditions and is usually about 70-90 km at Yamagawa and Wakkanai during the day and 80-90 km at night
+            (60-90 km/70-90 km for Poker Flat for day/night conditions).
+
+            The pulse width is 48 microsec (27 microsec before September 1996), giving a height resolution of approx.
+            7.2 km (4.1 km) assuming a simple rectangular wave pulse. For the 48-microsec case, the range of heights
+            illuminated by the wave pulse = velocity of light * pulse-width / 2 = 3x10**8 m/s * 48x10-6s / 2 = 7.2 km.
+            However, neutral velocities are given every 2 km.
+        </description>
+        <Point>
+            <coordinates>31.2,130.62,70.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Tirunveli India MF radar</name>
+        <description>type: MFRadar
+
+            The Tirunelveli, India (8.67N, 77.82E; 30 m alt) 1.98 MHz MF radar has been in continuous operation since
+            December 1992. On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (6.8, 149.8)
+            degrees. The magnetic inclination and declination angles were 1.4 deg and -2.6 deg. The magnetic local time
+            at 0 Universal Time (UT) is about 0554 MLT. The solar local time (SLT) is UT plus 5 hours and 11 minutes
+            (77.82/15.=5.188).
+
+            The original data files are hourly averages of the zonal and meridional velocity in Indian Standard Time
+            (IST), which is 5 hours and 30 minutes later than UT. Samples are taken every 2 min, so a possible 30
+            samples can be had between IST 0:00:00 and IST 0:59:00, which is labelled as hour 1:00:00 IST. These times
+            have been converted to the mid-point solar local time (or 0:11 SLT or 0.188 SLT for this example).
+
+            The MF radar system is identical to the one operating at Christmas island (2E,158W) and designed by Robert
+            Vincent (robert.vincent@adelaide.edu.au) of the University of Adelaide in Australia (Vincent, 1991). The
+            operating frequency is 1.98 MHz, with a peak transmitter power of 25 kW. The radar operates as a
+            spaced-antenna system (Vincent, 1986), relying on coherent echo signals from middle atmosphere ionization.
+            The inter-pulse period is 12.5 millisec during the day and 25 millisec during the night. There are 32
+            coherent integrations during the day and 16 at night, using 256 samples in the full correlation analysis
+            (FCA) of Briggs [1984] with built-in rejection criteria. [ie, want about 2 min or 102.4 sec integration
+            during day and night, or 12.5x10-3sec * 32 integ * 256 samples = 102.4 sec and 25x10-3sec * 16 integ * 256
+            samples = 102.4 sec.]
+
+            The height coverage is 68-98 km during the day and 70-98 km during the night. The pulse width is 30
+            microsec, giving a height resolution of 4.5 km assuming a simple rectangular wave pulse [range of heights
+            illuminated by the wave pulse = velocity of light * pulse-width / 2 = 3x10**8 m/s * 30x10-6s / 2 = 4.5 km].
+            However, neutral velocities are given every 2 km between 80 and 98 km since the ionization is less below 80
+            km.
+        </description>
+        <Point>
+            <coordinates>8.67,77.82,30.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Stokkseyri (Iceland West) HF Radar</name>
+        <description>type: HFRadar
+
+            The Stokkseyri HF radar is located in western Iceland (63.86 deg N, -22.02 deg E) and looks to the west over
+            a section of ionosphere that includes southern Greenland and northeastern Canada. It has operated since
+            1994. The facility is part of the SuperDARN network of HF radars that extends from western North America to
+            Scandinavia in the Northern hemisphere and covers much of Antarctica in the Southern hemisphere. The
+            SuperDARN radar for the most direct 2-D merging of Stokkseyri velocity data is located at Goose Bay in
+            Canada.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provides the capability to measure elevation angle. The basic radar
+            operation consists of the following steps: i) selection of a beam position (0-15), ii) search for the
+            quietest 5-kHz channel about the assigned transmitting frequency (8-20 MHz), iii) repeated transmission of a
+            multi-pulse sequence over the selected integration period and reception of backscattered signal with gating
+            in range (1-70), and iv) calculation of the auto-correlation functions (ACFs). These operations are usually
+            carried out in sequence for the 16 beam positions, which collectively constitute 1 scan. The beam
+            integration period is typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan,
+            beam 0 corresponds to the most westward beam position and beam 15 to the most eastward. The azimuth sector
+            scanned is westward approximately 50 deg wide and is centered on -59 deg E of N.
+        </description>
+        <Point>
+            <coordinates>63.86,-22.02</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Hankasalmi Finland HF Radar</name>
+        <description>type: HFRadar
+
+            The Hankasalmi HF radar is located in southern Finland (62.32 deg N, 26.61 deg E) and looks to the west over
+            a section of ionosphere that includes the Greenland sea and Svaalbard. It has operated since 1995. The
+            facility is part of the SuperDARN network of HF radars that extends from western North America to
+            Scandinavia in the Northern hemisphere and covers much of Antarctica in the Southern hemisphere. The
+            SuperDARN radar for the most direct 2-D merging of Hankasalmi velocity data is located at Pykkvibaer,
+            Iceland.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provides the capability to measure elevation angle. The basic radar
+            operation consists of the following steps: i) selection of a beam position (0-15), ii) search for the
+            quietest 5-kHz channel about the assigned transmitting frequency (8-20 MHz), iii) repeated transmission of a
+            multi-pulse sequence over the selected integration period and reception of backscattered signal with gating
+            in range (1-70), and iv) calculation of the auto-correlation functions (ACFs). These operations are usually
+            carried out in sequence for the 16 beam positions, which collectively constitute 1 scan. The beam
+            integration period is typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan,
+            beam 0 corresponds to the most westward beam position and beam 15 to the most eastward. The azimuth sector
+            scanned is westward approximately 50 deg wide and is centered on -12 deg E of N.
+        </description>
+        <Point>
+            <coordinates>62.32,26.61</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Arrival Heights Fabry-Perot Interf Sp</name>
+        <description>type: FabryPerot
+
+            The Fabry-Perot Spectrometer at Arrival Heights, Antarctica (77.8296 S, 166.6627 E, 190.3 m ASL) has been
+            operated since 2002 by the Department of Earth and Space Sciences, University of Washington. The apex
+            magnetic coordinates of Arrival Heights at 250 km height in 2002 were (-80.1, -34.3) with a magnetic
+            declination of 142.6 deg, an inclination of -81.3 deg, and 0 UT at 17.15 MLT.
+
+            The dispersing element of the spectrometer is an air-spaced, 14 cm diameter effective clear-aperture
+            Fabry-Perot etalon, which is both self-aligning and self-stabilizing. It is operated near the optimum
+            operational point (2.0 cm spacer) for kinetic temperature determinations (Hernandez, 1988).
+
+            The spectrometer operates simultaneously at two wavelengths, which are arbitrarily selected by the use of
+            dichroic mirrors and narrow (0.3 nm wide) interference filters. The inherent stability of the spectrometer
+            is about 0.5 m/s (632.8 nm) for periods of months, because of its self-stabilizing properties. The
+            instrumental internal stability calibration is updated every 9 s.
+        </description>
+        <Point>
+            <coordinates>-77.8296,166.6627,190.3</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Arecibo P.R. Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Arecibo Observatory Fabry-Perot interferometer (18.35N, 66.75W) has been in operation since 1972. The
+            data reported here (1980-1988), are atomic oxygen measurements at 630.0 nm. According to the IGRF model, the
+            magnetic declination angle at Arecibo varied between -9.4 and -10.4 degrees between February 1980 and July
+            1988, while the inclination angle varied between 48.8 and 47.9 degrees. All nights are clear, or had cloudy
+            periods removed. The approximate emission height is assumed to be 300 km. Scans in azimuth were done at a 30
+            degree elevation height, with usually one zenith measurment per scan.
+
+            The intensities are relative, (Code 2505) but are approximately correct to within a factor of two of the
+            true emission intensities in Rayleighs. The Doppler half-width is related to the square root of the neutral
+            temperature assuming a Gaussian emission shape. The instrument was not optimized to measure Doppler widths,
+            but was broadened to increase the signal throughput in order to make better measurements of the Doppler
+            shift, which is related to the neutral velocity. Because of uncertainties in the half-width, the conversion
+            to temperature was not made.
+
+            In some of the data files the zenith observations were used as a zero reference in the analysis (Code
+            4050=1), while for others, all of the measurements for a given night were used (Code 4050=0) by assuming
+            that each component of the horizontal neutral wind velocity can be represented by a second order Taylor
+            expansion (constant horizontal velocity gradients) about a point directly above the station. A harmonic
+            analysis gives the zonal (Ue) and meridional (Un) velocities, and two parameters related to the deformation
+            of the flow, d(Ue)/dx and d(Un)/dy, where x and y are the eastward and northward directions, respectively.
+            The vertical wind velocity (Uz) is thus not measured directly, but is derived from the DC term of the
+            expansion. Values of Uz are inferred as the product of the horizontal divergence of the horizontal wind
+            velocity, Uh, and the neutral scale height H: i.e., Uz = H del(Uh) where H = 50 km.
+        </description>
+        <Point>
+            <coordinates>18.35,-66.75</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Daytona Beach FL, USA Michelson Inter.</name>
+        <description>type: MichelsonInterferometer
+
+            A near infrared (NIR) BOMEM DA-8 Michelson interferometer (MI) has operated at Daytona Beach (29.19 N, 81.05
+            W), Florida, USA, 0 m above mean sea level since September, 1996.
+
+            The MI scans the dark sky NIR airglow emissions between ~5000-10000 cm-1. A periscope directs the airglow
+            into the MI sequentially from three locations at an elevation angle of 25 deg at azimuth angles of 0 (geog
+            N), 120, and 240 deg. The periscope dwells at each position for about 5 min. Airglow hydroxyl Meinel (OH-M)
+            band emissions peak at 87 km and are located between about 83 and 89 km. For an elevation angle of 25 deg,
+            the 87 km peak is at a latitude spacing of 1.61 degrees, or about 179 km away.
+        </description>
+        <Point>
+            <coordinates>29.19,-81.05,0.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Platteville Colorado ST (MEDAC) Radar</name>
+        <description>type: MeteorWindRadar
+
+            The Platteville, CO ST (MEDAC) radar is located at (40 N, 105 W). The MEDAC (Meteor Echo Detection And
+            Collection) sytem added to the ST (STratospheric) radar makes observations of winds measured from the
+            backscatter off meteor trails. The system is described in Avery et al. (1990). The original observations are
+            described in local time, which is 7 hours later than UT. (Mountain Standard Time = UT - 7 hours.) The mean
+            solar local time (SLT) is about 7 hours after UT. (i.e., -105 E/15 deg/hr = -7.00 hours). Therefore, no
+            adjustment was made to the phase, since the local time is very close to the solar local time.
+
+            These are the analyzed data on the neutral winds in the mesosphere and lower thermosphere during or
+            including the LTCS-2 period, 5-10 December 1988. This condensed format is consistent with the analyzed data
+            from other sites as well, and is prepared in order to facilitate research work. However, users need to
+            inform the data suppliers that they are using the data in case of updates or changes, and to insure that the
+            data are being used and interpreted properly.
+        </description>
+        <Point>
+            <coordinates>40.0,-105.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Mount John New Zealand Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Fabry-Perot Interferometric Spectrometer at Mount John Observatory, New Zealand (43.98S, 170.42E) has
+            been operated since 1991 by the Graduate Program in Geophysics, University of Washington, in cooperation
+            with the Physics and Astronomy Department of the University of Canterbury, NZ, and the Geophysical Institute
+            of the University of Alaska.
+        </description>
+        <Point>
+            <coordinates>-43.98,170.42</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Resolute Bay Fabry-Perot Interf Sp</name>
+        <description>type: FabryPerot
+
+            The Fabry-Perot Interferometer at Resolute Bay, Canada (74.73N, -94.89E, 87 m ASL) has been operated since
+            2003 by the High Altitude Observatory of the National Center For Atmospheric Research. The apex magnetic
+            coordinates of Resolute Bay at 250 km height in 2004 were (83.1, -39.0) with a magnetic declination of -24.4
+            deg, an inclination of 88.0 deg, and 0 UT at 16.31 MLT.
+
+            The dispersing element of the interferometer is an air-spaced, 10 cm diameter effective clear-aperture
+            Fabry-Perot etalon. It has a fixed gap of 2.0 cm. The etalon is housed in a temperature controlled chamber
+            (Wu et al. 2004). The instrument detector is a back illuminated CCD camera with 1024x1024 pixels and 1x1
+            inch size. The CCD temperature is set at -55 C. The readout noise of the CCD is 4 electrons.
+
+            The interferometer has an 8-position filter wheel. The wavelengths used at Resolute Bay are:
+
+            1. The red line (630.0 nm, kindat=17001) of atomic oxygen (OI) with a typical emission height peak in the
+            range 210 to 300 km.
+            2. The green line (557.7 nm, kindat=17002) of atomic oxygen (OI), with a typical emission height peak range
+            near 94-98 km.
+            3. The [OH] line (892.0 nm, kindat=17003) of the nightglow excited hydroxyl [OH*] with an emission peak
+            between about 87 and 91 km.
+        </description>
+        <Point>
+            <coordinates>74.73,-94.89,87.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Syowa East (Antarctica) HF Radar</name>
+        <description>type: HFRadar
+
+            The Syowa East HF radar is located in Antarctica (69.00 deg S, 39.58 deg E) and looks over a section of
+            ionosphere poleward of 70 deg S that includes the east Antarctica ice cap and the southern ocean. It has
+            operated since 1997. The facility is part of the SuperDARN network of HF radars that extends from Alaska to
+            Scandinavia in the Northern hemisphere and covers much of Antarctica in the Southern hemisphere. The
+            SuperDARN radar for the most direct 2-D merging of Syowa velocity data is located at Kerguelen.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provide the capability to measure elevation angle. The basic radar operation
+            consists of the following steps: i) selection of a beam position (0-15) ii) search for the quietest 5-kHz
+            channel about the assigned transmitting frequency (8-20 MHz) iii) repeated transmission of a multi-pulse
+            sequence over the selected integration period and reception of backscattered signal with gating in range
+            (1-70) iv) calculation of the auto-correlation functions (ACFs). These operations are usually carried out in
+            sequence for the 16 beam positions, which collectively constitute 1 scan. The beam integration period is
+            usually 7 sec, and the scan repeat time is then 120 sec (2 min). Within a scan, beam 0 corresponds to the
+            most westward beam position and beam 15 to the most eastward. The azimuth sector scanned is approximately 50
+            deg wide and is centered on 107.0 deg E of N, or about 52 degrees east of the look direction for Syowa
+            South.
+        </description>
+        <Point>
+            <coordinates>-69.0,39.58</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Millstone Hill I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at Millstone Hill, Massachusetts (42.6N, 71.5W) has been in
+            operation since 1960. The facility is part of and operated by the Massachusetts Institute of Technology.
+
+            ISR data comes from the fixed zenith antenna, the steerable antenna, or both.
+
+            The electron densities from the power profile were calibrated with an on-site ionosonde, where recently,
+            this ionosonde has been the University of Massachusetts at Lowell digisonde. Since the Coast Guard uses some
+            of the frequencies needed to properly scan the ionosphere, calibration can sometimes be difficult. The
+            calibrated electron density is then corrected for Te and Ti effects, where Te and Ti come from
+            auto-correlation fits. The calibration and auto-correlation fits now have the same height resolution,
+            although in the past, the auto-correlation fits had lower height resolution.
+
+            The ion composition changes from mostly O2+ and NO+ at lower altitudes, to mostly O+, and then to H+ and
+            some He+ at higher altitudes. Above 400 km, the percent H+ is computed along with the major ion O+. At lower
+            altitudes, the ratio of molecular ions to the total number of ions is modeled as specified by the FORTRAN
+            code segment below.
+
+            REAL FUNCTION PMF(Z)
+            Z1=AMIN1(-(Z-120.)/40.,50.)
+            H=10.-6.*EXP(Z1)
+            Z2=AMIN1(-(Z-180.)/H, 50.)
+        </description>
+        <Point>
+            <coordinates>42.6,-71.5</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Poker Flat 4 Channel Photometer</name>
+        <description>type: MultiChannelPhotometer
+
+            The Aerospace 4 channel filter photometer at Poker Flat, Alaska (65.12N, 212.57E) was developed to estimate
+            the energy flux of auroral electrons, their average energy Eo (usually from 0.1 to 30 keV using a modified
+            Gaussian or Maxwellian shape), and a scale factor fo for the atomic oxygen densities [O] from an MSIS model
+            atmosphere. The [O] densities using the scaling factor fo can be compared to GUVI/TIMED estimates. The
+            technique is only valid for clear night conditions where the solar zenith angle (sza) is greater than 102
+            deg (code 4102=1), and there is enough auroral emission (427.8 nm brightness, code 2421). Poker Flat apex
+            magnetic coordinates are (65.44, -95.56) at 110 km in 2001, with 0 UT corresponding to 12.93 MLT. The
+            magnetic inclination and declination angles are 77.41 deg and 24.89 deg. The photometer looks up the
+            magnetic field line with a field of view (fov) of about 1 deg. The data rate can be programmed, but
+            typically each channel is integrated for 1 sec, where the whole cycle including filter moves takes about 8
+            sec.
+
+            The 4 channels correspond to:
+
+            1. N2+ (427.8 nm, blue) first negative group (1NG) 0,1 molecular band
+            2. OI (630.0 nm, red) forbidden
+            3. OI (844.6 nm, eight) permitted
+            4. N2 (871.0 nm or 871.4 nm) first positive group (1PG) 2,1 molecular band
+        </description>
+        <Point>
+            <coordinates>56.12,-147.43</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Peach Mountain Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Peach Mountain (also known as Stinchfield Woods) Fabry-Perot interferometer, operated by the Space
+            Physics Research Laboratory, Department of Atmospheric, Oceanic and Space Sciences of the University of
+            Michigan is located at latitude 42.40N and longitude 86.93W, and at an altitude of 955 ft.
+
+            Currently, the interferometer observes the line profile of the forbidden emission OI (5577 A) and OH (8920
+            A). The geophysical parameters obtained from the data reduction are the gas kinetic temperature of the
+            emitting region from the natural width of the sky profile, the line of sight wind from the Doppler shift of
+            the sky profile, and the surface brightness of the emission line. OI (5577 A) nightglow emission is
+            generally believed to issue from the altitude range 85 to 300 km, with the major contribution originating
+            from a narrow height interval roughly 10 to 15 km broad centered at 97 km. Similarly, the Meinel OH emission
+            also issues from a broad altitudinal range though centered at a lower altitude. Thus, it is difficult to
+            assign a unique altitude to each ground based OI (5577 A) and OH (8920 A) interferometer measurement. If no
+            other information is available, we generally ascribe 97 km as the altitude of OI (5577 A) emission and 86 km
+            for the OH emission.
+
+            Line of sight winds derived from the observed shift of the emission line from a zero reference position
+            requires the determination of a zero wind. The reference zero wind is taken to be the average of an entire
+            nights vertical wind data. Generally, the four cardinal directions are also sampled as well as the vertical.
+            There is no exclusion of any data in the CEDAR Data Base, so cloudy night fits are also included. The cloud
+            cover (code 440) measured by the Detroit Metro airport meteorological station is given in octas of the sky
+            covered. Values range from 0 (clear) to 9 (overcast). In the summary plots, wind measurements were not
+            plotted unless the cloud cover was 0-3. Temperatures and relative emission measurements were not plotted
+            unless the cloud cover was 0-6.
+        </description>
+        <Point>
+            <coordinates>42.4,-86.93,291.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Obninsk Russia Meteor Wind Radar</name>
+        <description>type: MeteorWindRadar
+
+            The Obninsk, Russia (55.11N, 36.51E; ~172 m above msl) 33.3 MHz meteor radar has been in operation since
+            1964. On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (51.2, 111.0) degrees. The
+            magnetic inclination and declination angles were 70.5 deg and 8.3 deg. The magnetic local time at 0
+            Universal Time (UT) is about 0219 MLT. The solar local time (SLT) is UT plus 2 hours and 26 minutes
+            (36.51/15=2.434). With no height ranging, the observations come approximately from 95 km.
+        </description>
+        <Point>
+            <coordinates>55.11,36.51,172.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Millstone Hill: zenith UHF antenna</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at Millstone Hill, Massachusetts (42.6N, 71.5W) has been in
+            operation since 1960. The facility is part of and operated by the Massachusetts Institute of Technology.
+
+            ISR data comes from the fixed zenith antenna, the steerable antenna, or both.
+
+            The electron densities from the power profile were calibrated with an on-site ionosonde, where recently,
+            this ionosonde has been the University of Massachusetts at Lowell digisonde. Since the Coast Guard uses some
+            of the frequencies needed to properly scan the ionosphere, calibration can sometimes be difficult. The
+            calibrated electron density is then corrected for Te and Ti effects, where Te and Ti come from
+            auto-correlation fits. The calibration and auto-correlation fits now have the same height resolution,
+            although in the past, the auto-correlation fits had lower height resolution.
+
+            The ion composition changes from mostly O2+ and NO+ at lower altitudes, to mostly O+, and then to H+ and
+            some He+ at higher altitudes. Above 400 km, the percent H+ is computed along with the major ion O+. At lower
+            altitudes, the ratio of molecular ions to the total number of ions is modeled as specified by the FORTRAN
+            code segment below.
+
+            REAL FUNCTION PMF(Z)
+            Z1=AMIN1(-(Z-120.)/40.,50.)
+            H=10.-6.*EXP(Z1)
+            Z2=AMIN1(-(Z-180.)/H, 50.)
+        </description>
+        <Point>
+            <coordinates>42.6,-71.5</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Davis, Antarctica MF radar</name>
+        <description>type: MFRadar
+
+            The Davis, Antarctica (68.60S, 77.97E; ~1 m alt) 1.94 MHz MF radar has been in operation since April 1994.
+            On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (64.1, 152.4) degrees. The magnetic
+            inclination and declination angles were 81.7 deg and 21.7 deg. The magnetic local time at 0 Universal Time
+            (UT) is about 0505 MLT. The solar local time (SLT) is UT plus 5 hours and 12 minutes (77.97/15.=5.198). Code
+            42 (LST-UT) was corrected from 1.E-03 hr to hhmm in Sep 2004.
+
+            The original data files are hourly averages of the zonal and meridional velocity in Local Time (LT), which
+            is 5 hours later than UT. Smaples are taken every 2 min, so a possible 30 samples can be had between
+            05:00:00 LT and 06:00:00 LT. The midpoint is 05:30:00 LT or 0:30:00 UT, or 5:42:00 SLT. Local times have
+            been converted to the mid-point SLT, or 42 min (0.618 hr) are added to the beginning LT hour.
+
+            The MF operating frequency is 1.94 MHz, with a peak transmitter power of 25 kW, 40 kW starting in 2004. The
+            radar operates as a spaced-antenna system (Vincent, 1986), relying on coherent echo signals from middle
+            atmosphere ionization. The inter-pulse period is 12.5 and 25 millisec, respectively during the day and
+            night. There are usually 32 coherent integrations during the day and 16 at night, using 256 samples in the
+            full correlation analysis (FCA) of Briggs [1984] with built-in rejection criteria. [ie, want about 2 min or
+            102.4 sec integration day or night, or 12.5x10-3sec * 32 integ * 256 samples = 102.4 sec and 25x10-3sec * 16
+            integ * 256 samples = 102.4 sec.]
+
+            The height coverage is 50-100 km during the day or night at Davis. The pulse width is 30 microsec, giving a
+            height resolution of 4.5 km assuming a simple rectangular wave pulse [range of heights illuminated by the
+            wave pulse = velocity of light * pulse-width / 2 = 3x10**8 m/s * 30x10-6s / 2 = 4.5 km]. However, the height
+            range provided is every 2 km between 50 and 100 km starting in 2003, and 50 and 98 km earlier.
+        </description>
+        <Point>
+            <coordinates>-68.6,77.97,1.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Resolute Bay, Canada Michelson Interf.</name>
+        <description>type: MichelsonInterferometer
+
+            A near infrared (NIR) BOMEM MB160 Michelson interferometer (MI) has operated at Resolute Bay (74.68 N, 94.90
+            W), 1 m above mean sea level in Canada since September, 1996.
+
+            The MI scans the dark sky NIR airglow emissions between ~5000-10000 cm-1. The airglow is observed at an
+            elevation angle of 25 deg towards the north (0 deg azimuth) and is averaged over about 6 min. Airglow
+            hydroxyl Meinel (OH-M) band emissions peak at 87 km and are located between about 83 and 89 km. For an
+            elevation angle of 25 deg, the 87 km peak is located at a latitude spacing of 1.61 degrees, or at 76.29 N,
+            or 179 km away.
+        </description>
+        <Point>
+            <coordinates>74.68,-94.9,1.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>EISCAT: Tromso antenna</name>
+        <description>type: IncoherentScatterRadar
+
+            The EISCAT (European Incoherent SCATter) facility in Scandinavia consists of a transimitter/receiver station
+            at Tromso, Norway (69.6N, 19.2E), and receiver stations at Kiruna, Sweden (67.9N, 20.4E) and Sodankyla,
+            Finland (67.4N, 26.6E). The facility has been in operation since 1981, and recently expanded to include a
+            facility at Svalbard, which will have its own web page when data are included in the CEDAR Data Base.
+        </description>
+        <Point>
+            <coordinates>69.9,19.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Kapuskasing HF Radar</name>
+        <description>type: HFRadar
+
+            The Kapuskasing HF radar is located in northern Ontario (49.39 deg N, -82.32 deg E) and looks over a section
+            of ionosphere poleward of 50 deg N that covers north-central Canada including Hudson Bay and the Canadian
+            arctic archipelago. It has operated since 1993. The facility is part of the SuperDARN network of HF radars
+            that extends from western North America to Scandinavia in the Northern hemisphere and covers much of
+            Antarctica in the Southern hemisphere. The SuperDARN radar for the most direct 2-D merging of Kapuskasing
+            velocity data is located at Saskatoon, Saskatchewan.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provides the capability to measure elevation angle. The basic radar
+            operation consists of the following steps: i) selection of a beam position (0-15), ii) search for the
+            quietest 5-kHz channel about the assigned transmitting frequency (8-20 MHz), iii) repeated transmission of a
+            multi-pulse sequence over the selected integration period and reception of backscattered signal with gating
+            in range (1-70), and iv) calculation of the auto-correlation functions (ACFs). These operations are usually
+            carried out in sequence for the 16 beam positions, which collectively constitute 1 scan. The beam
+            integration period is typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan,
+            beam 0 corresponds to the most westward beam position and beam 15 to the most eastward. The azimuth sector
+            scanned is westward approximately 50 deg wide and is centered on -12 deg E of N.
+        </description>
+        <Point>
+            <coordinates>49.39,-82.32</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Durham N Hampshire Meteor Wind Radar</name>
+        <description>type: MeteorWindRadar
+
+            These are monthly climatology neutral tidal winds in the mesosphere and lower thermosphere for data taken
+            between 1978 and 1982 by the meteor wind radar at Durham, New Hampshire.
+
+            The meteor wind radar at Durham, New Hampshire (43.12 Deg.N, 70.94 Deg.W) has operated routinely during most
+            years since 1974. The radar looks at 45 deg. elevation in the Northeast and Northwest directions with
+            beamwidths of +-20 degrees. The system is a computer controlled coherent pulsed radar at 36.8 Mhz.
+            Measurements are made of the direction cosines, slant range, and slant range doppler. Since a horizontal
+            wind is assumed, only measurements with zenith angles less than 60 degrees are used in the tidal analysis.
+            The height of the meteor trail reflection points have a Gaussian distribution centered at approximately 95
+            km with a standard deviation of approximately 9 km.
+
+            Significant results are achieved by averaging over 4 days. These are the 12 monthly climatologies created by
+            binning 4-day averages over 5 years in the appropriate month. The tidal analysis is based on the method
+            developed by Groves (1959) using 30 coefficients. The results are least mean square fits to the data. The
+            error bars are about 8 m/s at 80 and 107 km, and are about 5 m/s at 95 km. The phases are given only to the
+            nearest hour, which refers to Eastern Standard Time (EST = UT - 5 hrs). The local mean solar time for Durham
+            is the Universal Time minus 4 hours and 44 minutes.
+        </description>
+        <Point>
+            <coordinates>43.12,-70.94</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Millstone Hill: steerable UHF antenna</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at Millstone Hill, Massachusetts (42.6N, 71.5W) has been in
+            operation since 1960. The facility is part of and operated by the Massachusetts Institute of Technology.
+
+            ISR data comes from the fixed zenith antenna, the steerable antenna, or both.
+
+            The electron densities from the power profile were calibrated with an on-site ionosonde, where recently,
+            this ionosonde has been the University of Massachusetts at Lowell digisonde. Since the Coast Guard uses some
+            of the frequencies needed to properly scan the ionosphere, calibration can sometimes be difficult. The
+            calibrated electron density is then corrected for Te and Ti effects, where Te and Ti come from
+            auto-correlation fits. The calibration and auto-correlation fits now have the same height resolution,
+            although in the past, the auto-correlation fits had lower height resolution.
+
+            The ion composition changes from mostly O2+ and NO+ at lower altitudes, to mostly O+, and then to H+ and
+            some He+ at higher altitudes. Above 400 km, the percent H+ is computed along with the major ion O+. At lower
+            altitudes, the ratio of molecular ions to the total number of ions is modeled as specified by the FORTRAN
+            code segment below.
+
+            REAL FUNCTION PMF(Z)
+            Z1=AMIN1(-(Z-120.)/40.,50.)
+            H=10.-6.*EXP(Z1)
+            Z2=AMIN1(-(Z-180.)/H, 50.)
+        </description>
+        <Point>
+            <coordinates>42.6,-71.5</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Polar Cap Geomagnetic Index: Vostok</name>
+        <description>type: Magnetometer
+
+            The Vostok ground magnetometer station is located in Antarctica (-78.463 S, 106.826 E) and has been operated
+            by the Arctic and Antarctic Research Institute of St. Petersburg since 1958. The analog data have been
+            digitized for 1978 and 1979, and for 1983-1995. A 1-sec digital magnetometer was installed in 1996. The
+            station is part of the former Soviet Union's scientific exploration of Antarctica, which started in 1957
+            during the International Geophysical Year (IGY). It is located near the center of the Antarctic ice sheet,
+            about 3488 m above mean sea level, and about 1250 km from McMurdo and about 1500 km from Mirny on the coast.
+
+            Vostok is located in the polar cap at a high magnetic latitude. In 1978, the magnetic field at the surface
+            was about 60950 nT, with an inclination angle of -77.682 degrees, a declination angle of -11.835 degrees,
+            and an apex magnetic location of (-83.30, 53.56). In 2001, the magnetic field at the surface was about 59470
+            nT, with an inclination angle of -76.807 degrees, a declination angle of -12.019 degrees, and an apex
+            magnetic location of (-83.31, 55.11). The apex magetic location of -83.3 is very close to the corrected
+            geomagnetic (cgm) location of -83.4 cgmlat used for Vostok.
+        </description>
+        <Point>
+            <coordinates>-78.463,106.826</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Saint Santin: Montpazier receiver</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at St. Santin, France (44.6N, 2.2E) operated between 1963 and
+            1987. The CEDAR Data Base holds all the data taken from 1966 until the end. Up until June 1973 and after
+            July of 1986, the only receiver station operating was located at Nancay (47.4N, 2.2E). Between 1973 and
+            1986, 2 other receivers also operated at Montpazier (44.7N, 0.8E) and at Mende (44.5N, 3.45E).
+
+            In general, the daytime height range is 105 to 350 km, while the nighttime height range is 200 to 500 km.
+            Before January 1, 1969, the faraday correction is not taken into account in the computation. The spectrum
+            are analysed following the scheme described in Waldteufel (1970). The ion drift component is quasi parallel
+            to the magnetic field as measured by the Nancay receiving station. Because the transmitter is not located at
+            the receiving location, the bisector velocity is plotted for the period when only Nancay data were received.
+            When all 3 receivers were on, then the data are 30 minute averages and the ion drifts in the geomagnetic
+            coordinate system are calculated.
+
+            There are 4 areas in the summary plots. There are image plots as a function of height and time of the
+            electron density, electron temperature, and ion temperature. Bin sizes are 40 minutes in time and 40 km in
+            height. For the Nancay period alone there is also an image plot of the bisector velocity, while this is
+            replaced by line plots of the ion drift in the perpendicular east, north and parallel directions at the
+            altitude closest to 300 km. when there are 3 receivers.
+        </description>
+        <Point>
+            <coordinates>44.6,2.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Watson Lake, Canada Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Watson Lake Fabry-Perot interferometer, operated by the Space Physics Research Laboratory, Department of
+            Atmospheric, Oceanic and Space Sciences of the University of Michigan is located at latitude 60.055N and
+            longitude 128.58W, and at an altitude of 2950 feet. The FPI operated from 11/91-4/92 and 11/92-5/93.
+
+            Currently, the interferometer observes the line profile of the forbidden emission OI (6300 A). The
+            geophysical parameters obtained from the data reduction are the gas kinetic temperature of the emitting
+            region from the natural width of the sky profile, the line of sight wind from the Doppler shift of the sky
+            profile, and the surface brightness of the emission line. OI (6300 A) nightglow emission is generally
+            believed to issue from the altitude range 175 to 500 km, with the major contribution originating from a
+            narrow height interval (a few scale heights thick) centered roughly one neutral scale height below the
+            altitude of maximum electron density. Thus, the peak altitude of emission and the parameters of the F region
+            are interdependent and it is difficult to assign a unique altitude to each ground based OI (6300 A)
+            interferometer measurement. If no other information is available, we generally ascribe 250 km as the
+            altitude of emission.
+
+            Line of sight winds derived from the observed shift of the emission line from a zero reference position
+            requires the determination of a zero wind. The reference zero wind is taken to be the average of an entire
+            nights vertical wind data. Generally, the four cardinal directions are also sampled as well as the vertical.
+            There is no exclusion of any data in the CEDAR Data Base, so cloudy night fits are also included. The cloud
+            cover (code 440) measured by the Watson Lake meteorological station is given in octas of the sky covered.
+            Values range from 0 (clear) to 9 (overcast).
+
+            Summary plots of the relative emission, neutral temeprature and vertical wind are plotted with error bars
+            for the vertical look direction. For look directions in opposite cardinal directions, horizontal winds are
+            plotted without error bars. For periods where there are plots of the vertical wind, but not of the
+            horizontal wind, then the look directions are not cardinal. In the summary plots, wind measurements were not
+            plotted unless the cloud cover was 0-3. Temperatures and relative emission measurements were not plotted
+            unless the cloud cover was 0-6. For the period of data in the CEDAR Data Base, the cloud cover was 0-3 38%
+            of the time, and 0-6 48% of the time.
+        </description>
+        <Point>
+            <coordinates>60.055,-128.58,899.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Saskatoon Canada MF Radar</name>
+        <description>type: MFRadar
+
+            The Saskatoon MF radar is located in the province of Saskatchewan in Canada (52N, 107W). The solar local
+            time (SLT) is Universal Time (UT) minus 7 hours and 10 minutes. (SLT = UT - 7:10). The phases are in SLT and
+            the measurement days start at 0 UT. The Saskatoon MF radar has provided considerable mean winds (Manson et
+            al., 1990a and 1991a) and tidal data (Manson et al, 1989) since 1979. LTCS-1 and LTCS-2 are described for
+            all middle atmosphere radars in Manson et al (1990b,1991b). MF radars use the "spaced antenna" method.
+            Harmonic analysis is applied to hourly mean winds (weighted by data yield per hour) at individual heights to
+            obtain tides for the prime LTCS or stated intervals. Typical standard deviations for means, 12-hour and
+            24-hour tides are in the above LTCS papers. Tides of the month for Saskatoon are means of 4-day fits (the
+            amplitudes are arithmetic means). Data up to 99 km are real heights --- above, they are from the E-region, a
+            layer about 5 km centered near 102 km.
+
+            These are the analyzed data on the neutral winds in the mesosphere and lower thermosphere during or
+            including the LTCS-1 period, 21-25 September 1987. This condensed format is consistent with the analyzed
+            data from other sites as well, and is prepared in order to facilitate research work. However, users need to
+            inform the data suppliers that they are using the data in case of updates or changes, and to insure that the
+            data are being used and interpreted properly.
+        </description>
+        <Point>
+            <coordinates>52.0,-107.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Saint Santin: Nancay receiver</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at St. Santin, France (44.6N, 2.2E) operated between 1963 and
+            1987. The CEDAR Data Base holds all the data taken from 1966 until the end. Up until June 1973 and after
+            July of 1986, the only receiver station operating was located at Nancay (47.4N, 2.2E). Between 1973 and
+            1986, 2 other receivers also operated at Montpazier (44.7N, 0.8E) and at Mende (44.5N, 3.45E).
+
+            In general, the daytime height range is 105 to 350 km, while the nighttime height range is 200 to 500 km.
+            Before January 1, 1969, the faraday correction is not taken into account in the computation. The spectrum
+            are analysed following the scheme described in Waldteufel (1970). The ion drift component is quasi parallel
+            to the magnetic field as measured by the Nancay receiving station. Because the transmitter is not located at
+            the receiving location, the bisector velocity is plotted for the period when only Nancay data were received.
+            When all 3 receivers were on, then the data are 30 minute averages and the ion drifts in the geomagnetic
+            coordinate system are calculated.
+
+            There are 4 areas in the summary plots. There are image plots as a function of height and time of the
+            electron density, electron temperature, and ion temperature. Bin sizes are 40 minutes in time and 40 km in
+            height. For the Nancay period alone there is also an image plot of the bisector velocity, while this is
+            replaced by line plots of the ion drift in the perpendicular east, north and parallel directions at the
+            altitude closest to 300 km. when there are 3 receivers.
+        </description>
+        <Point>
+            <coordinates>44.6,2.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Inuvik NWT Fabry-Perot Interferometer</name>
+        <description>type: FabryPerot
+
+            The fixed-gap imaging Fabry-Perot Spectrometer (FPS) or Interferometer (FPI) at Inuvik in the North West
+            Territories (NWT) of Canada (68.33N, 133.50W) is located on a hill above the Mackenzie River close to the
+            Arctic Ocean. It is 103.2 m above mean sea level and has been operating since late 1998, with reliable data
+            after about February 2000. It is operated by the Geophysical Institute of the University of Alaska, in
+            cooperation with Environment Canada. Chris Strube, and previously Jeff Allen, helps to keep things running.
+        </description>
+        <Point>
+            <coordinates>68.33,-133.5,103.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Davis Antarctica Spectrometer</name>
+        <description>type: SpectroPhotometer
+
+            The Davis, Antarctica (68.48S, 77.97E; 25 m alt) Czerny-Turner (CZT) scanning spectrophotometer obtains
+            mesosphere temperatures from ratios of the hydroxyl (OH) (6-2) band during nighttime hours. The
+            spectrophotometer was in campaign operation March to October 1990 and April to August 1994, and has had
+            continuous winter operations since March 1995. (See Greet et al., 1998; French et al., 2000; Burns et al.,
+            2002.)
+
+            Hydroxyl (6-2) band rotational temperatures are derived using Langhoff et al. (1986) transition
+            probabilities, which are approximately 2 K higher than the temperatures derived by French et al. (2000)
+            using experimentally derived P1 branch ratios with a slit width of 100 microns. The hydroxyl layer is
+            centered at a mean height of 87+/-4 km with a mean thickness of 8 km. WINDII data showed that the hydroxyl
+            layer often (up to 25% of the the time) has 2 peaks between 83 and 93 km (She and Lowe, 1998). The
+            brightness of this layer usually decreases during the night.
+
+            The spectrophotometer has a 6 degree field-of-view (fov) that was aligned 30-degrees above the horizon in a
+            direction +130 E from Davis away from auroral precipitation in 1990 (Greet et al., 1998). An order
+            separating filter was not used in 1990. Starting in 1994, the optical axis was aligned in the zenith, with a
+            resultant area of about 8 km x 8 km at 87 km. In practice the field of view is defined by the diffraction
+            grating. The diffraction grating rotates about the vertical axis as it scans, so that the area of the
+            grating directly viewing the sky decreases with wavelength (when the grating is at vertical the fov is
+            zero). Thus the fov corresponding to the grating vertical axis varies with grating rotation angle and
+            consequently with wavelength. The instrument is aligned towards the SE (+130 E), but rotates about the
+            vertical as the spectrum is sampled, so these observations are considered to be in the vertical.
+        </description>
+        <Point>
+            <coordinates>-68.48,77.97,25.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Collm LF Radar</name>
+        <description>type: LFradar
+
+            The Collm Geophysical Observatory (51.31 N 13.003 E) uses the closely spaced receiver method at 177, 225,
+            and 270 kHz. Two receivers are used to the geographic north and east of the radar so the center of the
+            reflection point triangle is near (52 N, 15 E). The measurements of the nighttime neutral winds and virtual
+            heights are averaged over half-hour intervals from measurements of about 3/minute for winds and about
+            300/minute for virtual heights.
+
+            The virtual height of the half-hour means is converted to true height using an empirical relation with
+            linear height reduction (Kurschner et al, 1987). Then the half-hour means of the zonal and meridional winds
+            are put through a multiple regression analysis to determine the altitude dependance of the prevailing and
+            semi-diurnal tidal winds. To improve the spectral sensitivity, it proved useful to assume a circularly
+            polarized tidal wind, which is acceptable for mid-latitudes. Therefor, the amplitude of the zonal and
+            meridional semi-diurnal tidal wind is equal, and the phase of the meridional wind is 3 hours earlier than
+            that of the zonal wind. Similarly, the amplitude of the zonal and meridional diurnal tidal wind is equal,
+            and the phase of the meridional wind is 6 hours earlier than that of the zonal wind. However, the 24 hour
+            component is normally only computed for the height of 95 km where the signal is a maximum. The result should
+            be treated with some caution considering the fact that the observations are nighttime only.
+
+            The phases are in mean local solar time (SLT). There is 1 hour between SLT and UT since the measurements are
+            near 15E. Most of the calculations are for the period of a month. Extra information of interest such as
+            seasonal transitions and the quasi two-day wave are in catalogue records. The data in the CEDAR Data Base
+            are from January 1993 to January 1997, with selected Lower Thermosphere Coupling Study (LTCS) periods
+            earlier.
+        </description>
+        <Point>
+            <coordinates>51.31,13.003</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Eureka, Canada Michelson Interferometer</name>
+        <description>type: MichelsonInterferometer
+
+            A near infrared (NIR) BOMEM MB160 Michelson interferometer (MI) has operated at Eureka (80.22 N, 86.18 W),
+            Canada, at 139 m above mean sea level since October, 1992.
+
+            The MI scans the dark sky NIR airglow emissions between ~5000-10000 cm-1. A periscope directs the airglow
+            into the MI sequentially from four locations: overhead, and at an elevation angle of 25 deg at azimuth
+            angles of 0 (geog N), 120, and 240 deg. The periscope dwells at each of the positions for about 8 min,
+            averaging several scans. Airglow hydroxyl Meinel (OH-M) band emissions peak at 87 km and are located between
+            about 83 and 89 km. For an elevation angle of 25 deg, the 87 km peak is located at a latitude spacing of
+            1.61 degrees, or about 179 km away.
+        </description>
+        <Point>
+            <coordinates>80.22,-86.18,139.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Atlanta Georgia Meteor Wind Radar</name>
+        <description>type: MeteorWindRadar
+
+            Between August 1974 and April 1987, the Georgia Tech Radio Meteor Wind Facility was in routine operation,
+            measuring winds between 80 and 100 km over Atlanta, Georgia, USA. A series of technical reports has been
+            published on the measurements (Roper, 1978; 1982; 1984; 1987).
+
+            At meteor heights, the viewing area was a slab 400 km in diameter across. Significant results were achieved
+            by averaging from 5 days to 2 weeks of data. The local mean solar time for Atlanta is the Universal Time
+            minus 5 hours and 37 minutes. The tabulations are the result of matching the data against the model
+            developed by Groves (1959). The model assumes cubic variations with height H for prevailing, diurnal and
+            semidiurnal components of the horizontal wind.
+        </description>
+        <Point>
+            <coordinates>34.0,-84.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>South Pole Fabry-Perot Interfer Spectr</name>
+        <description>type: FabryPerot
+
+            The Fabry-Perot Interferometric Spectrometer at Amundsen-Scott South Pole Station (90.00S) has been operated
+            since 1989 by the Department of Earth and Space Sciences, University of Washington, in cooperation with the
+            Geophysical Institute of the University of Alaska. The instrument is located within 150 feet of the South
+            Pole at 2835 m above mean sea level. The geographic longitude is used to reckon the azimuthal direction of
+            observation, with 0 E corresponding to 0 deg azimuth. The apex magnetic coordinates of South Pole at 250 km
+            height in 1992 were (-74.4, 17.7), with a magnetic declination of -21.37 deg (or 158.63 E toward the compass
+            south pole), an inclination of -74.78 deg, and 0 UT at 2039 MLT. The invariant (apex) South Pole at 250 km
+            height was at (74.2S, 126.0E), and the perpendicular to the magnetic latitude circle pointed to 125.6E.
+            Hernandez et al (1991) used magnetic south towards 120 E, with 0 UT at 2023 MLT. The magnetic grid is useful
+            for ordering the red line observations at about 250 km height, but not for other observations from emissions
+            below 100 km height.
+        </description>
+        <Point>
+            <coordinates>-90.0,0.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Kharkov Ukraine I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The Kharkov incoherent scatter radar is located at (49.7N, 36.3E; 97 m above mean sea level) in Ukraine.
+            Operations started around 1981. There are 2 antennas, a zenith antenna and a steerable antenna, but both are
+            assigned the same kinst of 45, and the elevation angle will determine which is being used.
+        </description>
+        <Point>
+            <coordinates>49.7,36.3,97.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Saskatoon HF Radar</name>
+        <description>type: HFRadar
+
+            The Saskatoon HF radar is located in central Saskatchewan (52.16 deg N, -106.53 deg E) and looks over a
+            section of ionosphere poleward of 53 deg N that covers north-central Canada including Hudson Bay and the
+            Canadian arctic archipelago. It has operated since 1993. The facility is part of the SuperDARN network of HF
+            radars that extends from western North America to Scandinavia in the Northern hemisphere and covers much of
+            Antarctica in the Southern hemisphere. The SuperDARN radar for the most direct 2-D merging of Saskatoon
+            velocity data is located at Kapuskasing, Canada.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provide the capability to measure elevation angle. The basic radar operation
+            consists of the following steps: i) selection of a beam position (0-15), ii) search for the quietest 5-kHz
+            channel about the assigned transmitting frequency (8-20 MHz), iii) repeated transmission of a multi-pulse
+            sequence over the selected integration period and reception of backscattered signal with gating in range
+            (1-70), and iv) calculation of the auto-correlation functions (ACFs). These operations are usually carried
+            out in sequence for the 16 beam positions, which collectively constitute 1 scan. The beam integration period
+            is typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan, beam 0 corresponds to
+            the most westward beam position and beam 15 to the most eastward. The azimuth sector scanned is
+            approximately 50 deg wide and is centered on 23.1 deg E of N.
+        </description>
+        <Point>
+            <coordinates>52.16,-106.53</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Rarotonga Cook Islands MF RADAR</name>
+        <description>type: MFRadar
+
+            The Rarotonga, Cook Islands (21.21S, 159.77W; 2 m alt) 1.98 MHz MF radar has been in operation since 2000.
+            On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (-22.9, -84.9) degrees. The
+            magnetic inclination and declination angles were -39.5 deg and 13.5 deg. The magnetic local time at 0
+            Universal Time (UT) is about 1316 MLT. The solar local time (SLT) is UT minus 10 hours and 39 minutes
+            (-159.77/15.=-10.651).
+        </description>
+        <Point>
+            <coordinates>-21.21,-159.77,2.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Ascension Island Meteor RADAR</name>
+        <description>type: MeteorWindRadar
+
+            The Ascension Island (7.96 S, 14.38 W; alt 170 m) 43.50 MHz meteor radar has been in operation since August
+            1999. On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (-19.6, 55.0) degrees. The
+            magnetic inclination and declination angles were -39.3 deg and -16.8 deg. The magnetic local time at 0
+            Universal Time (UT) is about 2235 MLT. The solar local time (SLT) is UT minus 58 minutes (14.38/15=0.959).
+        </description>
+        <Point>
+            <coordinates>-7.96,-14.38,170.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Sondre Stromfjord Digisonde</name>
+        <description>type: IonSonde
+
+            The Digisonde (DISS) located at Sondre Stromfjord, Greenland (67.0N,309.05E) and operated by the University
+            of Massachusettes Lowell Center for Atmospheric Research, for Air Force Research Laboratory Hanscom AFB, has
+            produced ion velocity measurements and electron density profiles since 1986. The data are originally
+            collected in local magnetic coordinates, and then converted to geographic coordinates using the declination
+            angle of -41.2 for an altitude of 0 km.
+
+            The Digisonde generally operates in a 15 minute cycle mode, where the first 2-3 minutes an ionogram is
+            recorded followed generally by 1-2 minutes of drift measurements, with the remaining 10-12 minutes idle.
+            Sometimes the cycle time is 5 minutes. The range of altitudes is about 200-450 km, where the mean for the
+            1993 data was set to 250 km.
+
+            Digisondes transmit HF radio waves illuminating a large ionospheric area of several hundred kilomaters
+            diameter over the sounder. Radio waves are sent up and reflected off orthogonal surfaces. Each reflection
+            point is considered to be a separate source and has associated with it a line- of-sight (los) Doppler
+            velocity measurement. Making the assumption that the main contribution to the measured Doppler shifts
+            results from the uniform horizontal bulk motion of the plasma, the los velocity and source location are used
+            to calculate the velocity vector by least squares fit.
+
+            The drift mode resulted in up to a maximum of 64 sources in a single integration period of 5 seconds. One
+            minute data is obtained where the error bar is the average of the standard deviations from 12 5-second
+            integrations, while the value of each velocity component is the median from a further velocity distribution
+            found using all the data points in the entire one minute period. The 1 minute results were taken and
+            reported every 15 minutes.
+        </description>
+        <Point>
+            <coordinates>67.0,-50.95</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>USU ALO Rayleigh LIDAR</name>
+        <description>type: RayleighLidar
+
+            The Utah State University (USU) Rayleigh lidar at the Atmospheric Lidar Observatory (ALO) is run by the
+            Center for Atmospheric and Space Sciences (CASS). It is located at Logan, Utah at (41.74N, 111.81W) on the
+            roof of the Science and Engineering Research (SER) building on campus. The height is 1466 m using the WGS84
+            geoid to represent the earth. The lidar is operated in the vertical direction and can obtain data on all
+            non-heavy cloud nights. (Thin cirrus clouds are OK.) An operator is present to operate the system and for
+            aircraft safety. The lidar started operations in August 1993, with relatively regular operations up to the
+            present except between April 1997 and May 1998 when the lidar was not operating.
+
+            The lidar operates at a wavelength of 532 nm up to about 500 km, but collects meaningful data only between
+            about 45 and 100 km. The height resolution of the data is originally 37.5 m using 3600 shots (30 per sec)
+            over 2 minutes. However, averaging is done over 81 range gates (81*37.5m = 3.0375 km) with a sliding average
+            reported every 112.5 m (3 range gates). The number of 2-min integrations is reported as Code 415. Hourly
+            averages of 29 or less 2 minute intervals are calculated, where cloudy or otherwise unusable periods have
+            been eliminated in the hourly average (kindat=17002). Nightly average profiles are also computed.
+        </description>
+        <Point>
+            <coordinates>41.74,-111.81</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Fort Yukon Alaska 4 Channel Photometer</name>
+        <description>type: MultiChannelPhotometer
+
+            The Aerospace 4 channel filter photometer at Fort Yukon, Alaska (66.57N, 214.73E) was developed to estimate
+            the energy flux of auroral electrons, their average energy Eo (usually from 0.1 to 30 keV using a modified
+            Gaussian or Maxwellian shape), and a scale factor fo for the atomic oxygen densities [O] from an MSIS model
+            atmosphere. The [O] densities using the scaling factor fo can be compared to GUVI/TIMED estimates. The
+            technique is only valid for clear night conditions where the solar zenith angle (sza) is greater than 102
+            deg (code 4102=1), and there is enough auroral emission (427.8 nm brightness, code 2421). Fort Yukon apex
+            magnetic coordinates are (67.3, -94.7) at 110 km in 2001, with 0 UT corresponding to 12:36 MLT. The magnetic
+            inclination and declination angles are 78.7 deg and 25.6 deg. The photometer looks up the magnetic field
+            line with a field of view (fov) of about 1 deg. The data rate can be programmed, but typically each channel
+            is integrated for 1 sec, where the whole cycle including filter moves takes about 8 sec.
+
+            The 4 channels correspond to:
+
+            1. N2+ (427.8 nm, blue) first negative group (1NG) 0,1 molecular band
+            2. OI (630.0 nm, red) forbidden
+            3. OI (844.6 nm, eight) permitted
+            4. N2 (871.0 nm or 871.4 nm) first positive group (1PG) 2,1 molecular band
+        </description>
+        <Point>
+            <coordinates>66.57,-145.27</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Saint Santin: Mende receiver</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at St. Santin, France (44.6N, 2.2E) operated between 1963 and
+            1987. The CEDAR Data Base holds all the data taken from 1966 until the end. Up until June 1973 and after
+            July of 1986, the only receiver station operating was located at Nancay (47.4N, 2.2E). Between 1973 and
+            1986, 2 other receivers also operated at Montpazier (44.7N, 0.8E) and at Mende (44.5N, 3.45E).
+
+            In general, the daytime height range is 105 to 350 km, while the nighttime height range is 200 to 500 km.
+            Before January 1, 1969, the faraday correction is not taken into account in the computation. The spectrum
+            are analysed following the scheme described in Waldteufel (1970). The ion drift component is quasi parallel
+            to the magnetic field as measured by the Nancay receiving station. Because the transmitter is not located at
+            the receiving location, the bisector velocity is plotted for the period when only Nancay data were received.
+            When all 3 receivers were on, then the data are 30 minute averages and the ion drifts in the geomagnetic
+            coordinate system are calculated.
+
+            There are 4 areas in the summary plots. There are image plots as a function of height and time of the
+            electron density, electron temperature, and ion temperature. Bin sizes are 40 minutes in time and 40 km in
+            height. For the Nancay period alone there is also an image plot of the bisector velocity, while this is
+            replaced by line plots of the ion drift in the perpendicular east, north and parallel directions at the
+            altitude closest to 300 km. when there are 3 receivers.
+        </description>
+        <Point>
+            <coordinates>44.6,2.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Chatanika AK I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at Chatanika, Alaska (65.1N, 147.4W) operated between 1971 and
+            1982. It was moved to Sondrestrom in 1982-1983, where it has been in operation since 1983. There are
+            generally 7 record types (KINDAT) for each Chatanika experiment that are usually inputs or outputs to a
+            program called VAST, which calculates electric fields, vector velocities and conductivities. VAST assumes
+            the velocity field varies linearly with time. Data from five positions are used to find the three
+            line-of-sight velocities at the time of the middle observation. Full error propagation, including covariance
+            terms, is included. The density and temperature data are combined to obtain a spatial average for the time
+            of the middle observation.
+
+            In addition, several criterea involving the least squares fit, as well as relative absolute uncertainties,
+            have been examined to determine whether the derived F-region vector velocities are converted to electric
+            fields, and the good values are height integrated to find the best possible estimate of the electric field.
+            Starting in the D-region, the averaged electron densities are used to calculate the conductivities. The
+            calculation has been improved to explicitly include the ion-neutral collision frequencies and to include a
+            model atmosphere.
+        </description>
+        <Point>
+            <coordinates>65.1,-147.4</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>EISCAT: Sodankyla antenna</name>
+        <description>type: IncoherentScatterRadar
+
+            The EISCAT (European Incoherent SCATter) facility in Scandinavia consists of a transimitter/receiver station
+            at Tromso, Norway (69.6N, 19.2E), and receiver stations at Kiruna, Sweden (67.9N, 20.4E) and Sodankyla,
+            Finland (67.4N, 26.6E). The facility has been in operation since 1981, and recently expanded to include a
+            facility at Svalbard, which will have its own web page when data are included in the CEDAR Data Base.
+        </description>
+        <Point>
+            <coordinates>69.9,19.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Syowa Antarctica HF Radar</name>
+        <description>type: HFRadar
+
+            The Syowa South HF radar is located in Antarctica (69.00 S, 39.58 E) and looks over a section of ionosphere
+            poleward (southward) of 70 deg S that includes central Antarctica. It has operated since 1995. The facility
+            is part of the SuperDARN network of HF radars that extends from western North America to Scandinavia in the
+            Northern hemisphere and covers much of Antarctica in the Southern hemisphere. The SuperDARN radar for the
+            most direct 2-D merging of Syowa velocity data is located at SANAE (South African National Antarctic
+            Expedition), Antarctica.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provide the capability to measure elevation angle. The basic radar operation
+            consists of the following steps: i) selection of a beam position (0-15) ii) search for the quietest 5-kHz
+            channel about the assigned transmitting frequency (8-20 MHz) iii) repeated transmission of a multi-pulse
+            sequence over the selected integration period and reception of backscattered signal with gating in range
+            (1-70) iv) calculation of the auto-correlation functions (ACFs). These operations are usually carried out in
+            sequence for the 16 beam positions, which collectively constitute 1 scan. The beam integration period is
+            typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan, beam 0 corresponds to
+            the most westward beam position and beam 15 to the most eastward. The azimuth sector scanned is
+            approximately 50 deg wide and is centered on 159 deg E of N, or about 52 degrees west of the general scan
+            position of Syowa East.
+        </description>
+        <Point>
+            <coordinates>-69.0,39.58</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Sondrestrom I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at Kangerlussuaq (Sondrestrom), Greenland (66.99N, 50.95W, 185m
+            ASL) has been in operation since February, 1983. It was moved from Chatanika, Alaska in 1982-1983, where it
+            operated from July 1971 to March 1982. On day 359 of 2001 at 110 km altitude, the apex magnetic coordinates
+            were (73.0, 40.5) degrees. The magnetic inclination and declination angles were 80.1 deg and -35.2 deg. The
+            magnetic local time at 0000 Universal Time (UT) is about 2137 MLT. The solar local time (SLT) is UT minus 3
+            hours and 24 minutes (-50.95/15.=-3.397).
+        </description>
+        <Point>
+            <coordinates>66.9,-50.95,185.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Millstone Hill Fabry-Perot</name>
+        <description>type: GroundBasedInstrument, FabryPerot
+
+            The Millstone Hill Fabry Perot interferometer is operated by MIT in cooperation with the University of
+            Pittsburgh. The interferometer is located near the Millstone Hill incoherent scatter radar at latitude 42
+            degrees 37 minutes North (42.62) and longitude 71 degrees 27 minutes West (-71.45). Mean local solar time
+            differs from UT by -(4 hour 46 minutes). The local magnetic field has a 15 degree variation to the West and
+            an inclination of 72 degrees.
+        </description>
+        <Point>
+            <coordinates>42.62,-71.45</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Poker Flat Alaska MST Radar</name>
+        <description>type: MSTRadar
+
+            The Poker Flat MST radar was located at the Poker Flat Rocket range about 200 m above mean sea level in
+            Alaska at (65.13N, 145.46W), and operated between 1979 and 1987. The last 2 years are not in the CEDAR Data
+            Base. The inclination angle is about 77 degrees, and the declination is about 29 degrees to the east of
+            north.
+
+            The Poker Flat radar was a high power radar, with three narrow beams. One beam looked vertically
+            (kindat=20003) and the other two were inclined at 15 degrees to vertical, or at an elevation angle of 75
+            degrees. The 'east' beam had an azimuth 26 degrees north of east (kindat=20001) while the 'north' beam had
+            an azimuth 26 degrees west of north (kindat=20002). Most of the data were taken using all three beams but
+            some, especially in the early days, were taken with only the vertical beam or with only the oblique beams.
+            During an experiment one or more beams were sometimes inactivated. The cycle time for a complete set of
+            vertical and oblique records seldom exceeded 10 min and was typically 1 min. When available, velocity
+            measurements from the two oblique beams were combined to give eastward and northward components of the
+            neutral wind (kindat=20004). The velocity spread is twice the square root of the second moment of the power
+            spectrum and is a measure of shear or turbulence in the measurement volume.
+
+            Data quality below 5 km is definitely dubious and below 8 km should be treated with suspicion due to
+            recovery problems. The more obviously false data have been removed from this data set but consistently false
+            data are hard to distinguish from the real thing and may be included.
+
+            The original Poker Flat data set has been subjected to an extensive set of checks to remove various
+            interference modes, outliers and otherwise non-atmoshperic data. The parameters for the remaining data have
+            been averaged for all appropriate records that commenced within a one hour interval. Note that these are
+            averages of the derived parameters and not parameters derived from an average velocity spectrum.
+
+            In the absence of any signal echo the main contribution to noise is the radio noise from our galaxy. Hence
+            there is a siderial variation (of about 4 db) in the noise level. Atmospheric absorption events reduce the
+            level of noise. Receiver gain and cable attenuation fluctuations may have a small influence. Operator
+            modification of gain controls are rare. Strong signals can corrupt the computation through their sidelobes.
+            The errors given are the root mean square values of the deviation from the mean for that hour.
+        </description>
+        <Point>
+            <coordinates>65.13,-145.46</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Rothera, Antarctica MF RADAR</name>
+        <description>type: MFRadar
+
+            The Rothera, Antarctica (67.57S, 68.12W; ~5 m alt) 1.98 MHz MF radar was in operation 1997-1998, and was
+            reinstalled in 2002. The data are noisy. On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates
+            were (-52.6, 7.6) degrees. The magnetic inclination and declination angles were -59.9 deg and 20.5. deg. The
+            magnetic local time at 0000 Universal Time (UT) is about 1925 MLT. The solar local time (SLT) is UT minus 4
+            hours and 32 minutes (-68.12/15.=-4.5413).
+        </description>
+        <Point>
+            <coordinates>-67.57,-68.12,5.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Esrange, Sweden Meteor RADAR</name>
+        <description>type: MeteorWindRadar
+
+            The Esrange, Sweden (67.89N, 21.08E; alt ??? m) 32.5 MHz meteor radar has been in operation since August
+            1999. On day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (64.8, 103.2) degrees. The
+            magnetic inclination and declination angles were 77.2 deg and 5.8 deg. The magnetic local time at 0
+            Universal Time (UT) is about 0148 MLT. The solar local time (SLT) is UT plus 1 hour and 24 minutes
+            (21.08/15=1.405).
+        </description>
+        <Point>
+            <coordinates>67.89,21.08</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>EISCAT: Kiruna antenna</name>
+        <description>type: IncoherentScatterRadar
+
+            The EISCAT (European Incoherent SCATter) facility in Scandinavia consists of a transimitter/receiver station
+            at Tromso, Norway (69.6N, 19.2E), and receiver stations at Kiruna, Sweden (67.9N, 20.4E) and Sodankyla,
+            Finland (67.4N, 26.6E). The facility has been in operation since 1981, and recently expanded to include a
+            facility at Svalbard, which will have its own web page when data are included in the CEDAR Data Base.
+        </description>
+        <Point>
+            <coordinates>69.6,19.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Poker Flat AK Scanning Imaging F-P Spec</name>
+        <description>type: FabryPerot
+
+            The all-sky scanning imaging Fabry-Perot Spectrometer (ASIFPS) at Poker Flat, Alaska (65.12N, 147.43W) is
+            also known as a Scanning Doppler Instrument (SDI). It is an extremely high resolution optical imaging
+            spectrometer. It measures the angular distribution of Doppler shifts and of Doppler broadening of optical
+            airglow and auroral light emitted from the Earth's upper atmosphere, across the entire sky scene that is
+            visible to the gorund-based instrument, down to a zenith angle of ~75 deg. The distributions of Doppler
+            shifts and of Doppler broadening across the sky are used to infer geographic maps of the wind and
+            temperature distributions prevailing within the emission layer.
+
+            The instrument is located on a ridge-top, 50 km ENE from Fairbanks and at 440 m above mean sea level. It has
+            been operated since November 1994 by the Geophysical Institute of the University of Alaska as part of the
+            optical diagnostic instruments at the Poker Flat Research Range. The building is aligned in the magnetic
+            north direction at 28.5 degrees azimuth to NE. The apex magnetic coordinates of Poker Flat in December 2001
+            at 240 km were (65.25, -95.41), with a magnetic declination of 23.56 deg to NE, an inclination of 77.36 deg
+            to SW, and 0 UT at 1231 MLT. At 96 km, apex coordinates are (65.23, -95.45), with a magnetic declination of
+            24.28 deg, an inclination of 77.37 deg, and 0 UT at 1231 MLT. The observations are reported in approximate
+            local magnetic coordinates, rotated 28.5 degrees clockwise from geographic, and also in geographic
+            coordinates. The magnetic skew angle (code 1020) is about 4.6 deg, which is negligible.
+
+            The instrument is based on a 100-mm aperture capacitance-stabilized Fabry-Perot etalon, the plates of which
+            are piezoelectrically scannable in spacing over approximately 1.5 orders of interference (at 630-nm) about a
+            nominal 20-mm gap. Skylight is coupled into the etalon through an all-sky lens and optical relay system
+            which maps an approximately 75-degree half-angle field-of-view onto 6 orders of interference at the etalon.
+            Interference fringes formed by the etalon are conjugate with the sky. The sky, modulated by this fringe
+            pattern, is re-imaged onto an intensified CCD detector, after first passing through a narrow-band
+            interference filter.
+        </description>
+        <Point>
+            <coordinates>65.12,-147.43</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>EISCAT I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The EISCAT (European Incoherent SCATter) facility in Scandinavia consists of a transimitter/receiver station
+            at Tromso, Norway (69.6N, 19.2E), and receiver stations at Kiruna, Sweden (67.9N, 20.4E) and Sodankyla,
+            Finland (67.4N, 26.6E). The facility has been in operation since 1981.
+
+            The power profiles are calibrated with an on-site ionosonde, and are then corrected for Te and Ti effects
+            which are deduced from the auto-correlation functions (ACFs). The collision frequency model used is the CIRA
+            1972 model atmosphere in Banks and Kockarts (1973), in Aeronmy Part A. The NO+ composition is assumed zero
+            above 300 km. Perpendicular and parallel ion velocities were calculated routinely beginning in March, 1990.
+        </description>
+        <Point>
+            <coordinates>69.6,19.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Thule Greenland Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Thule Fabry Perot interferometer, operated by the Space Physics Research Laboratory, Department of
+            Atmospheric, Oceanic and Space Sciences of the University of Michigan is located at latitude 76.53N and
+            longitude 68.44W.
+        </description>
+        <Point>
+            <coordinates>76.53,-68.44</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Tromso Norway MF Radar</name>
+        <description>type: MFRadar
+
+            The Tromso MF radar is located in Norway (70 N, 19 E). The mean solar local time (SLT) is Universal Time
+            (UT) plus 1 hour and 18 minutes. (SLT = UT + 1:18). The phases are in SLT and the measurement days start at
+            0 UT. The Tromso MF radar data is obtained and analyzed by the Saskatoon MF radar scientists, and has
+            provided considerable mean winds (Manson et al., 1990a and 1991a) and tidal data (Manson et al, 1989).
+            LTCS-1 and LTCS-2 are described for all middle atmosphere radars in Manson et al. (1990b, 1991b). MF radars
+            use the spaced antenna method. Harmonic analysis is applied to hourly mean winds (weighted by data yield per
+            hour) at individual heights to obtain tides for the prime LTCS or stated intervals. Typical standard
+            deviations for means, 12-hour and 24-hour tides are in the above LTCS papers. Tides of the month for Tromso
+            are means of 4-day fits (the amplitudes are arithmetic means). Data up to 99 km are real heights --- above,
+            they are from the E-region, a layer about 5 km centered near 102 km.
+        </description>
+        <Point>
+            <coordinates>70.0,19.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Saint Santin I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The incoherent scatter transmitter station at St. Santin, France (44.6N, 2.2E) operated between 1963 and
+            1987. The CEDAR Data Base holds all the data taken from 1966 until the end. Up until June 1973 and after
+            July of 1986, the only receiver station operating was located at Nancay (47.4N, 2.2E). Between 1973 and
+            1986, 2 other receivers also operated at Montpazier (44.7N, 0.8E) and at Mende (44.5N, 3.45E).
+
+            In general, the daytime height range is 105 to 350 km, while the nighttime height range is 200 to 500 km.
+            Before January 1, 1969, the faraday correction is not taken into account in the computation. The spectrum
+            are analysed following the scheme described in Waldteufel (1970). The ion drift component is quasi parallel
+            to the magnetic field as measured by the Nancay receiving station. Because the transmitter is not located at
+            the receiving location, the bisector velocity is plotted for the period when only Nancay data were received.
+            When all 3 receivers were on, then the data are 30 minute averages and the ion drifts in the geomagnetic
+            coordinate system are calculated.
+        </description>
+        <Point>
+            <coordinates>44.6,2.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Platteville, Colorado MF RADAR</name>
+        <description>type: MFRadar
+
+            The Platteville 2 MHz MF radar is located in Colorado, USA (40.18N, 104.7W; 1505 m alt), and has been in
+            operation since December 1999, with a data gap from March to July 2000 because of system problems. On day
+            359 of 2001 at 89 km altitude, the apex magnetic coordinates were (49.3, -39.6) degrees. The magnetic
+            inclination and declination angles were 67.2 deg and 10.0 deg. The magnetic local time at 0000 Universal
+            Time (UT) is about 1617 MLT. The solar local time (SLT) is UT minus 6 hours and 59 minutes
+            (-104.7/15=-6.98).
+        </description>
+        <Point>
+            <coordinates>40.18,-104.7,1505.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Scott Base Antarctica MF Radar</name>
+        <description>type: MFRadar
+
+            The Scott Base MF radar (78 S, 167 E) in Antarctica is operated by the Physics Department of the University
+            of Canterbury, Christchurch, New Zealand. It uses the partial-reflection, spaced antenna method (Fraser,
+            1984b) and has contributed to mean wind and tidal studies (Avery et al, 1989; Fraser 1984a, 1989; Fraser et
+            al 1989; Manson et al., 1989, 1990, 1991). The mean solar local time (SLT) is about 11 hours and 8 minutes
+            ahead of Universal Time (UT) (i.e., 167 E / 15 deg/hr = 11.13 hours = 11 hrs 8 min). The phases are in SLT.
+        </description>
+        <Point>
+            <coordinates>-78.0,167.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Mawson Antarctica MF Radar</name>
+        <description>type: MFRadar
+
+            These are tidal analyses of the mean neutral winds between 78 and 108 km over consecutive periods of 12 days
+            between June 1984 and November 1990 from the MF radar located at Mawson, Antarctica (67.62 S, 62.89 E). The
+            radar employs the "spaced antenna" method. The tidal analysis is a least squares fit at each altitude for
+            the mean, diurnal and semi-diurnal components. The error is the standard deviation. Observations are made
+            relative to mean solar time (SLT), which is about 4 hours and 12 minutes ahead of UT. (69.89 / 15 deg/hr =
+            4.19 hrs = 4 hrs 12 min). The diurnal and semi-diurnal tidal components are available for this data set, and
+            can be obtained from R. Vincent. They will be submitted to the CEDAR Data Base in the future. Plots of the
+            mean winds are available in Vincent (1993).
+
+            The integration time for these data is 12 days, which means that there is an overlap of days at the end of
+            each year, and sometimes also just before the year's end. Echoes on the 12 days were binned into 24 1-hour
+            bins of SLT. If only 15 hours or less of the full 24 hours were filled, then the tidal analysis was not
+            performed. With 16-24 hours available, a least squares fit was made, where the values were weighted by the
+            number of points and variance in each SLT bin. One should be wary of the results of analyses that are based
+            on less than 20 hours of an SLT day.
+        </description>
+        <Point>
+            <coordinates>-67.62,62.89</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Irkutsk Russia I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            These experiments are a compilation of Irkutsk ISR data available in October 2002 from
+            http://62.76.21.18/cgi-bin/madrigal/madInvent.cgi This is the first contribution from the Irkutsk IS radar,
+            Geographic: 52.9N 103.3E 502m-msl
+            Magnetic: 41.06N 104.75E
+            which started full operation in 1996, although there are some single measurements from 1988.
+
+            These data (for 1999 to 2002) have 50km spatial resolution, typically starting at 250-300 km height and with
+            time resolution 20 minutes. The data are in the vertical direction.
+
+            Higher resolution is available on request with as little as 10 km height intervals, starting at 170-200 km,
+            and 2 minutes time resolution.
+
+            The data can be used under the 'Rules of the Road' - ie, informing us at an early stage of the work and
+            offering us a cooperation request at the publication stage.
+        </description>
+        <Point>
+            <coordinates>52.9,103.3,502.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Jicamarca Peru I.S. Radar</name>
+        <description>type: IncoherentScatterRadar
+
+            The 50 MHz incoherent scatter radar at Jicamarca, Peru (11.95 S, 76.87 W; 520 m alt) has been operating
+            since 1963. On day 359 of 2001 at the ground, the apex magnetic lat,lon were (0.58, -5.12) deg. The magnetic
+            inclination and declination angles were 1.145 deg and 0.367 deg. The magnetic local time at 0 UT is ~1835
+            MLT.
+
+            There are three basic types of operating modes for the incoherent scatter radar:
+
+            1. Faraday rotation to obtain electron densities (Ne) and electron (Te) and ion temperatures (Ti)
+            2. the drift mode
+            3. the bistatic coherent radar mode (E-region Ne above Paracas)
+
+            The drift mode, which finds perpendicular east and north (near vertical) ion drifts, has data from 1984 to
+            the present. The analysis scheme to derive the drifts was changed starting in September of 1994 with a
+            resulting increase in the data quality. Hard copies of time series plots of the older ion drifts are
+            available upon request from NCAR.
+
+            The bistatic coherent radar experiment involves the 50 MHz transmitter at Jicamarca and a reciever at
+            Paracas (13.85 S, 76.25 W), which is about 200 km south of Jicamarca. E region (~95-110 km) electron density
+            data are available using a 4 microsecond (~0.6 km) pulse length from Mar 2004. This experiment can run
+            concurrently with either the Faraday rotation or the drift mode.
+        </description>
+        <Point>
+            <coordinates>-11.95,-76.87,520.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Arecibo P.R. MST Radar</name>
+        <description>type: MSTRadar
+
+            The ST (strato/troposphere) radar at the National Astronomy and Ionosphere Center (NAIC) at Arecibo, Puerto
+            Rico (18.3N, 66.75W), made measurements during the AIDA (Arecibo Initiative in Dynamics of the Atmosphere)
+            campaign of March-May, 1989, an international multi-instrument campaign which was conducted to compare wind
+            measurements in the mesosphere taken by various radar and optical devices. The tropo- and stratosphere data
+            taken by the Arecibo ST radar during this period were largely decoupled from the main objectives and the
+            observations of the other instruments. Data are available for both day and night times. Integration time per
+            profile varies and is on the order of 30 sec to 1 min. However, because the mesosphere observations were
+            interleaved with this data set, there are many gaps between profiles on the order of a few minutes. During
+            AIDA, the altitude range sampled was from about 5 to 20 km, and the resolution was about 0.3 km. For this
+            data set, the antenna azimuth scan pattern was very roughly as follows: 1.5 hrs at 14 or 32 deg, 10 min at
+            -76 or -58 deg, 10 min at 194 or 212 deg, 30 min at 104 or 122 deg, 10 min at 194 or 212 deg, and 10 min at
+            -76 or -58 deg, then repeat. Beware that the times do appear to vary. Elevation angle was fixed at about 79
+            degrees. Results from AIDA have been published in J. Atmos. Terr. Phys., 55, 1993, a special issue dedicated
+            to the campaign. H. Mario Ierkic was responsible for the operation of the Arecibo ST radar during AIDA, and
+            John Cho put this data set into the CEDAR Data Base.
+
+            This program extracts the following data from the Doppler spectra of the Arecibo ST radar: (1) Line-of-sight
+            velocity of the clear air, (2) signal spectral width, and (3) SNR. Item (1) is self-explanatory. Items (2)
+            and (3) yield information about the actual radar scattering mechanism. If the mechanism is turbulence, then
+            (1) and (3) yield the turbulence intensity. For further information see Gage and Balsley [1980].
+        </description>
+        <Point>
+            <coordinates>18.3,-66.75</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Halley Antarctica Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            A Fabry Perot Interferometer is operated by the British Antarctic Survey at Halley, Antarctica. The station
+            is sited on a floating ice shelf that drifts westward at around 800 m per year, requiring a new station to
+            be built further to the east about every 10 years or so. The geographic coordinates are 75.5 deg S, 26.6 deg
+            W, and the invariant geomagnetic coordinates are 61.5 deg S, 28.9 deg E. The magnetic inclination is 64 deg
+            and magnetic north is 2 deg west of geographic north. The mean local time is 1 hour and 46 minutes
+            (-26.6/15.) before Universal Time. The station was closed in 1998.
+        </description>
+        <Point>
+            <coordinates>-75.5,-26.6</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Colorado State Sodium LIDAR</name>
+        <description>type: SodiumLidar
+
+            The Colorado State University (CSU) narrow-band sodium (Na) lidar is located at Fort Collins, Colorado at
+            (40.59N, 105.14W), 1570 m above sea level. It was developed with CEDAR support and has been in operation
+            since 1990. The sodium layer is located between about 70 and 120 km, with a peak near 92 km. At the end of
+            2001 at 92 km, the apex magnetic lat,lon coordinates were (49.61, -40.17), where the magnetic inclination
+            and declination angles were 67.58 deg and 10.33 deg. The magnetic local time at 0 UT is 1612 MLT.
+        </description>
+        <Point>
+            <coordinates>40.59,-105.14,1570.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Wakkanai Japan MF radar</name>
+        <description>type: MFRadar
+
+            The Wakkanai, Japan (45.36N, 141.81E; alt ~10 m) 1.9585 MHz MF radar has been in operation since 1996. On
+            day 359 of 2001 at 89 km altitude, the apex magnetic coordinates were (38.9,-146.6) degrees. The magnetic
+            inclination and declination angles were 59.8 deg and -9.6 deg. The magnetic local time at 0 Universal Time
+            (UT) is about 0909 MLT. The solar local time (SLT) is UT plus 9 hours and 27 minutes (141.81/15.=9.454).
+
+            The original data files are 30 min averages of the zonal, meridional and 'vertical' velocity in UT. The UT
+            time is the midpoint UT, and is also listed as the midpoint SLT. Samples are taken every 3, 4 or 5 min, so 6
+            to 10 samples can be had between UT 23:45:00 and UT 00:15:00. To improve data quality, 'median screening' is
+            applied inside a 1-h bin. If data points lie outside a threshold standard deviation (code 4152) of usually
+            1.5 inside a 1-hr bin, they are discarded. So the low qulity (jamped) data are rejected and then the
+            remaining data are averaged over 30-min bins with a threshold of usually 30% (code 4151). The number of
+            points used in each direction are in codes 422, 423 and 424.
+
+            The 'vertical' velocities (code 1432, 'contaminated neutral vertical geographic wind (+up)') are from the
+            beam in the vertical direction. The antenna array in a triangle has a different beam width for different
+            azimuth direction, resulting in beam widths about 20-30 deg wide. Hence, the 'vertical' velocity will be
+            contaminated by horizontal wind times the sine of 10 to 15 degrees (.17 to .26). Since the horizontal winds
+            are stronger than the vertical winds, even the sign could be incorrect. The standard deviations of the
+            'vertical' winds are also larger than the average values.
+
+            The MF operating frequency is 1.95550 MHz, with a peak transmitter power of 50 kW. The radar operates as a
+            spaced-antenna system (Vincent, 1986), relying on coherent echo signals from middle atmosphere ionization.
+            The inter-pulse period is 12.5 millisec during the day and 25 millisec during the night. There are 80
+            coherent integrations during the day and 40 at night, using 240 samples in the full correlation analysis
+            (FCA) of Briggs [1984] with built-in rejection criteria. [ie, if want 240 sec or 4 min integration during
+            day and night, then 12.5x10-3sec * 80 integ * 240 samples = 240 sec and 25x10-3sec * 40 integ * 240 samples
+            = 240 sec.]
+
+            Data sampling is done every 2 km usually between 60-98 km for Yamagawa (60-108 km for Wakkanai, 44-108 km
+            for Poker Flat). The height range of wind velocity data is variable accoding to atmospheric and radio
+            conditions and is usually about 70-90 km at Yamagawa and Wakkanai during the day and 80-90 km at night
+            (60-90 km/70-90 km for Poker Flat for day/night conditions).
+
+            The pulse width is 48 microsec (27 microsec before September 1996), giving a height resolution of approx.
+            7.2 km (4.1 km) assuming a simple rectangular wave pulse. For the 48-microsec case, the range of heights
+            illuminated by the wave pulse = velocity of light * pulse-width / 2 = 3x10**8 m/s * 48x10-6s / 2 = 7.2 km.
+            However, neutral velocities are given every 2 km.
+        </description>
+        <Point>
+            <coordinates>45.36,141.81,10.0</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Sondre Stromfjord Fabry-Perot</name>
+        <description>type: FabryPerot
+
+            The Sondre Stromfjord Fabry Perot interferometer, operated by the Space Physics Research Laboratory,
+            Department of Atmospheric, Oceanic and Space Sciences of the University of Michigan is located at latitude
+            66.99N and longitude 50.95W. The invariant latitude is 74 degrees, the inclination of the magnetic field is
+            80 degrees and the declination of the field is -39 degrees (39 degrees to the west). Midnight local solar
+            time at the site occurs at 03:24 UT, while midnight magnetic local time is 01:57 UT at the equinoxes.
+            Magnetic midnight varies with season, being 15 minutes earlier at the winter solstice and 15 minutes later
+            at the summer solstice compared to the equinox value.
+
+            Currently, the interferometer observes the line profiles of the forbidden emissions OI (557.7nm) and OI
+            (630.0nm). Most of the data in the CEDAR Database are 630.0nm (code 7001), with additional 557.7nm (code
+            7002) data starting in 2002. The filter wheel was changed in 2002, resulting in brighter relative emissions.
+        </description>
+        <Point>
+            <coordinates>66.99,-50.95</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Goose Bay HF Radar</name>
+        <description>type: HFRadar
+
+            The Goose Bay HF radar is located in central Labrador (53.3 deg N, 299.56 deg E) and overlooks a section of
+            ionosphere poleward of 55 deg N that covers northeastern Canada (Labrador, Baffin Island), the Davis Strait
+            and Baffin Bay, and southern and central Greenland. It has operated since 1983. The facility is part of the
+            SuperDARN network of HF radars that extends from western North America to Scandinavia in the Northern
+            hemisphere and covers much of Antarctica in the Southern hemisphere. The SuperDARN radar for the most direct
+            2-D merging of Goose Bay velocity data is located at Stokkseyri in western Iceland.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second array was added in 1985 to provide the capability to measure elevation angle. The basic
+            radar operation consists of the following steps: i) selection of a beam position (0-15), ii) search for the
+            quietest 5-kHz channel about the assigned transmitting frequency (8-20 MHz), iii) repeated transmission of a
+            multi-pulse sequence over the selected integration period and reception of backscattered signal with gating
+            in range (1-50), and iv) calculation of the auto-correlation functions (ACFs). These operations are usually
+            carried out in sequence for the 16 beam positions, which collectively constitute 1 scan. Typical beam
+            integration times are 5 and 6 sec, corresponding to scan repeat times of 80 and 96 sec, respectively. Within
+            a scan, beam 0 corresponds to the most westward beam position and beam 15 to the most eastward. The azimuth
+            sector scanned is eastward approximately 50 deg wide and is centered on 5 deg E of N.
+        </description>
+        <Point>
+            <coordinates>53.3,-60.44</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Stockholm Sweden IR Michelson Interfer.</name>
+        <description>type: MichelsonInterferometer
+
+            The Stockholm, Sweden (59.5N, 18.2E) IR Michelson Interferometer (IRMI) scans in the near infrared between
+            wavenumbers 6000 to 10,000 cm-1 (or in the range of 1000-1667 nm in wavelength), with a 4 cm-1 resolution
+            (or 0.1% resolution, about 0.3 nm). The instrument is operated by Utah State University with support from
+            Stockholm University.
+
+            The instrument measures the nightglow hydroxyl [OH]. The [OH] emission layer is centered near 87 km with a
+            thickness of about 8 km. The center of the layer can vary between about 86 and 89 km, giving an error bar in
+            the altitude of about +/6 km considering the thickness also. The rotational temperatures reflect the neutral
+            temperatures in this altitude region. The measured parameters are the hydroxyl Meinel band rotational
+            temperature in Kelvin and the hydroxyl Meinel integrated band radiance in kR and in log10(R).
+        </description>
+        <Point>
+            <coordinates>59.5,18.2</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Qaanaaq Greenland Digisonde</name>
+        <description>type: IonSonde
+
+            The Digisonde (DGS-256) located at Qaanaaq, Greenland (77.5N, 290.6E) and operated by the University of
+            Massachusettes Lowell Center for Atmospheric Research, for Phillips Laboratory Hanscom AFB, has produced ion
+            velocity measurements and electron density profiles since 1983. The data are originally collected in local
+            magnetic coordinates, and then converted to geographic coordinates using the declination angle of -71.0 for
+            an altitude of 0 km.
+
+            The Digisonde generally operates in a 15 minute cycle mode, where the first 2-3 minutes an ionogram is
+            recorded followed generally by 1-2 minutes of drift measurements, with the remaining 10-12 minutes idle.
+            Sometimes the cycle time is 5 minutes. The range of altitudes is about 200-450 km, where the mean is about
+            300 km.
+
+            Digisondes transmit HF radio waves illuminating a large ionospheric area of several hundred kilomaters
+            diameter over the sounder. Radio waves are sent up and reflected off orthogonal surfaces. Each reflection
+            point is considered to be a separate source and has associated with it a line- of-sight (los) Doppler
+            velocity measurement. Making the assumption that the main contribution to the measured Doppler shifts
+            results from the uniform horizontal bulk motion of the plasma, the los velocity and source location are used
+            to calculate the velocity vector by least squares fit.
+
+            The drift mode operated at Qaanaaq during 1989 resulted in up to a maximum of 64 sources in a single
+            integration period of 5 seconds. One minute data is obtained where the error bar is the average of the
+            standard deviations from 12 5-second integrations, while the value of each velocity component is the median
+            from a further velocity distribution found using all the data points in the entire one minute period. The 1
+            minute results were taken and reported every 15 minutes.
+        </description>
+        <Point>
+            <coordinates>77.5,-69.4</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Christmas Island ST (MEDAC) Radar</name>
+        <description>type: MeteorWindRadar
+
+            The Christmas Island ST (MEDAC) radar is located at (1.95N, 157.30W). The MEDAC (Meteor Echo Detection And
+            Collection) sytem added to the ST (STratospheric) radar makes observations of winds measured from the
+            backscatter off meteor trails. The system is described in Avery et al. (1990). The observations are
+            described in solar local time, which is defined to be 10 hours and 32 minutes after UT (-158/15 = -10.53 or
+            10 hours and 32 minutes, where the longitude used was 158 W instead of 157.30 W). These are monthly means
+            corresponding to the day numbers given. The days are counted from Hawaiian Standard Time (= UT-10h). Hence,
+            data starting on the first of the month actually starts at 10 UT on the first of the month, and data ending
+            at the end of the month ends on the first day of the next month at 0959 UT. This data set is two years of
+            data from September 1988 to August 1989, and for all of 1991. The analysis will be revised in the future.
+        </description>
+        <Point>
+            <coordinates>1.95,-157.3</coordinates>
+        </Point>
+    </Placemark>
+    <Placemark>
+        <name>Pykkvibaer (Iceland East) HF Radar</name>
+        <description>type: HFRadar
+
+            The Pykkvibaer HF radar is located in western Iceland (63.77 deg N, -20.54 deg E) and looks to the east over
+            a section of ionosphere that includes the Greenland sea and Svaalbard. It has operated since 1995. The
+            facility is part of the SuperDARN network of HF radars that extends from western North America to
+            Scandinavia in the Northern hemisphere and covers much of Antarctica in the Southern hemisphere. The
+            SuperDARN radar for the most direct 2-D merging of Pykkvibaer velocity data is located at Hankasalmi,
+            Finland.
+
+            The radar forms and steers its beam by the phasing of transmissions from 16 elements in a linear antenna
+            array. A second 4-element array provides the capability to measure elevation angle. The basic radar
+            operation consists of the following steps: i) selection of a beam position (0-15), ii) search for the
+            quietest 5-kHz channel about the assigned transmitting frequency (8-20 MHz), iii) repeated transmission of a
+            multi-pulse sequence over the selected integration period and reception of backscattered signal with gating
+            in range (1-70), and iv) calculation of the auto-correlation functions (ACFs). These operations are usually
+            carried out in sequence for the 16 beam positions, which collectively constitute 1 scan. The beam
+            integration period is typically 6 or 7 sec, and the scan repeat time is 96 sec or 120 sec. Within a scan,
+            beam 0 corresponds to the most westward beam position and beam 15 to the most eastward. The azimuth sector
+            scanned is eastward approximately 50 deg wide and is centered on 30 deg E of N.
+        </description>
+        <Point>
+            <coordinates>63.77,-20.54</coordinates>
+        </Point>
+    </Placemark>
+</kml>
