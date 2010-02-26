@@ -4,38 +4,38 @@
 
 #include <stdlib.h>
 
-int pin0 = 0;
-int pin1 = 1;
-int pin2 = 2;
-int pin3 = 3;
-int pin4 = 4;
-int pin5 = 5;
-int pin6 = 6;
-int pin7 = 7;
-int pin8 = 8;
-int pin9 = 9;
-int pin10= 10;
-int pin11 = 11;
-int pin12 = 12;
-int pin13 = 13;
-int pin14 = 14;
-int pin15 = 15;
-int pin16 = 16;
-int pin17 = 17;
-int pin18 = 18;
-int pin19 = 19;
+int pin0 = 0;    // RX
+int pin1 = 1;    // TX
+int pin2 = 2;    // digital 
+int pin3 = 3;    // digital (PWM)
+int pin4 = 4;    // digital
+int pin5 = 5;    // digital (PWM)
+int pin6 = 6;    // digital (PWM)
+int pin7 = 7;    // digital
+int pin8 = 8;    // digital (PWM)
+int pin9 = 9;    // digital (PWM)
+int pin10= 10;   // digital (PWM)
+int pin11 = 11;  // digital
+int pin12 = 12;  // digital
+int pin13 = 13;  // digital
+int pin14 = 14;  // analog in 0
+int pin15 = 15;  // analog in 1
+int pin16 = 16;  // analog in 2
+int pin17 = 17;  // analog in 3
+int pin18 = 18;  // analog in 4
+int pin19 = 19;  // analog in 5
 
-int amuxInputPin = pin14;
-int bmuxInputPin = pin15;
+int amuxInputPin = pin15;
+int bmuxInputPin = pin6;
 
-int lineno = 0;
+int amuxSelectPins[] = {pin16, pin17, pin18, pin19};
+int bmuxSelectPins[] = {pin2, pin3, pin4, pin5};
 
 const unsigned int INVERT_BMUX_SELECT = true;
 
-////////////////////////////////////////
+int lineno = 0;
 
-int amuxSelectPins[] = {pin4, pin5, pin6, pin7};
-int bmuxSelectPins[] = {pin8, pin9, pin10, pin11};
+////////////////////////////////////////
 
 #define MUX_LEVELS 1
 #if MUX_LEVELS == 1
