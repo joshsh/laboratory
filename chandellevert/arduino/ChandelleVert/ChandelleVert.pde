@@ -1,5 +1,5 @@
 /*
- * Switch test program
+ * ChandelleVert test program
  */
 
 #include <stdlib.h>
@@ -19,27 +19,26 @@ int pin11 = 11;
 int pin12 = 12;
 int pin13 = 13;
 
-int sensorPin = pin3;
+int pin14 = 14;
+int pin15 = 15;
+int pin16 = 16;
+int pin17 = 17;
+int pin18 = 18;
+int pin19 = 19;
+
+//int sensorPin = pin3;
+//int sensorPin = pin14;
+int sensorPin = pin15;
 int outPin =  pin13;
-
-int redPin = pin11;
-int greenPin = pin9;
-int bluePin = pin10;
-
-int BLACK = 0;
-int BLUE = 1;
-int GREEN = 2;
-int CYAN = 3;
-int RED = 4;
-int PURPLE = 5;
-int YELLOW = 6;
-int WHITE = 7;
 
 int lineno = 0;
 
+const unsigned int REVERSE = false;
+
 ////////////////////////////////////////
 
-int muxSelectPins[] = {pin4, pin5, pin6, pin7};
+//int muxSelectPins1[] = {pin4, pin5, pin6, pin7};
+int muxSelectPins1[] = {pin8, pin9, pin10, pin11};
 
 #define MUX_LEVELS 1
 #if MUX_LEVELS == 1
@@ -67,146 +66,9 @@ unsigned char prevSampleData[BITS_PER_SAMPLE / 8];
 
 #define PRETTY_MODE
 
-
 ////////////////////////////////////////
 
-void writeColor(unsigned long color)
-{
-  unsigned int red = (color & 0xff0000) >> 16;
-  unsigned int green = (color & 0x00ff00) >> 8;
-  unsigned int blue = (color & 0x0000ff);
-  
-  analogWrite(redPin, 255 - red);
-  analogWrite(greenPin, 255 - green);
-  analogWrite(bluePin, 255 - blue);
-}
-
-double SPEED_LIMIT = 0.1;
-double ACCELERATION = 0.0125;
-//#define INSTABILITY 0.01
-
-double x = 0.0, y = 0.0, z = 0.0;
-double xspeed = 0.0, yspeed = 0.0, zspeed = 0.0;
-//float theta = 0.0, phi = 0.0;
-
-unsigned long m_w = 42;    /* must not be zero */
-unsigned long m_z = 1331;    /* must not be zero */
- 
-unsigned long get_random()
-{
-    m_z = 36969 * (m_z & 65535) + (m_z >> 16);
-    m_w = 18000 * (m_w & 65535) + (m_w >> 16);
-    return (m_z << 16) + m_w;  /* 32-bit result */
-}
-
-double floatRand(double mn, double sup)
-{
-  return mn + (get_random() % RAND_MAX) * (sup - mn) / ((double) RAND_MAX + 1);
-}
-
-void nextColor() {
-  double xacc = floatRand(-ACCELERATION, ACCELERATION);
-  double yacc = floatRand(-ACCELERATION, ACCELERATION);
-  double zacc = floatRand(-ACCELERATION, ACCELERATION);
-
-  xspeed += xacc;
-  yspeed += yacc;
-  zspeed += zacc;
-  
-  if (xspeed > SPEED_LIMIT)
-  {
-    xspeed = SPEED_LIMIT;
-  }
-  
-  else if (xspeed < -SPEED_LIMIT)
-  {
-    xspeed = -SPEED_LIMIT;
-  }
-  
-  if (yspeed > SPEED_LIMIT)
-  {
-    yspeed = SPEED_LIMIT;
-  }
-  
-  else if (yspeed < -SPEED_LIMIT)
-  {
-    yspeed = -SPEED_LIMIT;
-  }
-    
-  if (zspeed > SPEED_LIMIT)
-  {
-    zspeed = SPEED_LIMIT;
-  }
-  
-  else if (zspeed < -SPEED_LIMIT)
-  {
-    zspeed = -SPEED_LIMIT;
-  }
-  
-  x += xspeed;
-  y += yspeed;
-  z += zspeed;
-  
-  if (x > 1.0)
-  {
-    x = 2.0 - x;
-    xspeed = -xspeed;
-  }
-  
-  else if (x < 0.0)
-  {
-    x = -x;
-    xspeed = -xspeed;
-  }
-  
-  if (y > 1.0)
-  {
-    y = 2.0 - y;
-    yspeed = -yspeed;
-  }
-  
-  else if (y < 0.0)
-  {
-    y = -y;
-    yspeed = -yspeed;
-  }
-  
-  if (z > 1.0)
-  {
-    z = 2.0 - z;
-    zspeed = -zspeed;
-  }
-  
-  else if (z < 0.0)
-  {
-    z = -z;
-    zspeed = -zspeed;
-  }
-
-  unsigned int red = x * 255;
-  unsigned int green = y * 255;
-  unsigned int blue = z * 255;
-  
-  unsigned long color = red * (unsigned long) 0x10000
-    + green * 0x100
-    + blue;
-    
-  writeColor(color); 
-}
-
-//#define EYE_CANDY
-
-unsigned long colors[]
-  = {0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff8000, 0x000000};
-#define COLORS 6
-
-unsigned int muxSelectPinsState[SELECT_PINS];
-
-inline void setMuxSelectPin(unsigned int j, unsigned int val)
-{
-  digitalWrite(muxSelectPins[j], val); 
-  muxSelectPinsState[j] = val;
-}
+unsigned int muxSelectPins1State[SELECT_PINS];
 
 inline void sampleSensor(unsigned int i)
 {
@@ -241,11 +103,17 @@ void advanceSampleData()
   }
 }
 
-void sample_new()
+inline void setMuxSelectPin(unsigned int j, unsigned int val)
+{
+  digitalWrite(muxSelectPins1[j], REVERSE ? !val : val); 
+  muxSelectPins1State[j] = val;
+}
+
+void sampleSensors()
 {
   for (int k = 0; k < SELECT_PINS; k++)
   {
-    setMuxSelectPin(k, 0);
+    setMuxSelectPin(k, false);
   }
 
   int i = 0;
@@ -256,24 +124,24 @@ void sample_new()
     Serial.print("\t\t");
     for (int k = 0; k < SELECT_PINS; k++)
     {
-      Serial.print(muxSelectPinsState[k]);
+      Serial.print(muxSelectPins1State[k]);
     }
     Serial.println("");*/
     
     if (i > 0)
     {
       int j = 0;
-      while (muxSelectPinsState[j])
+      while (muxSelectPins1State[j])
       {
-        setMuxSelectPin(j, 0);
+        setMuxSelectPin(j, false);
         j++;
       } 
-      setMuxSelectPin(j, 1);
+      setMuxSelectPin(j, true);
     }
     
     sampleSensor(i);
     i++;
-    setMuxSelectPin(0, 1);
+    setMuxSelectPin(0, true);
     sampleSensor(i);
     i++;
   }
@@ -301,69 +169,20 @@ void outputSampleData()
   Serial.println("");
 }
 
-/*
-unsigned int sample()
-{
-  unsigned int activeSensors = 0;
-  
-  for (int s = 0; s < SAMPLES_PER_CYCLE; s++)
-  {
-    for (unsigned int i = 0; i < 16; i++)
-    {
-      for (unsigned int j = 0; j < 4; j++)
-      {
-        //Serial.print("\t\t");
-        //Serial.print("i: ");
-        //Serial.print(i);
-        //Serial.print(" --> ");
-        //Serial.println((i >> j) & 1);
-        digitalWrite(muxSelectPins[j], i >> j & 1 ? HIGH : LOW);  
-      }
-      
-
-      if (SAMPLING_DELAY)
-      {
-        delay(SAMPLING_DELAY);
-      }
-      
-      int x = !digitalRead(sensorPin);
- #ifdef SIMULATE_RESPONSIVENESS
-      if (0 == s)
- #endif
-      activeSensors += (x << i);
-      
-      
-      if (SAMPLING_DELAY)
-      {
-        delay(SAMPLING_DELAY);
-      }
-    }
-  }
-  
-  return activeSensors;
-}
-*/
-
 void setup()
 {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   pinMode(sensorPin, INPUT);
   pinMode(outPin, OUTPUT);
   
-  pinMode(redPin, OUTPUT);
-  pinMode(greenPin, OUTPUT);
-  pinMode(bluePin, OUTPUT);
-  
   for (int i = 0; i < SELECT_PINS; i++)
   {
-    pinMode(muxSelectPins[i], OUTPUT);
+    pinMode(muxSelectPins1[i], OUTPUT);
   }
   
   // Trick to force outputting of an artificial blank sensor map.
   prevSampleData[0] = 1;
 }
-
-//unsigned int last_activeSensors = 0;
 
 void loop()
 {    
@@ -371,35 +190,11 @@ void loop()
   
   if (hasChanged)
   {
-      //digitalWrite(outPin, activeSensors ? HIGH : LOW);
-
     outputSampleData();
-/*
-      lineno++;
-      
-      Serial.print(lineno);
-      Serial.print(") ");
-      Serial.println(activeSensors);    // Read the pin and display the value
-*/
   }
-
-//  unsigned int activeSensors = sample();
 
   for (int s = 0; s < SAMPLES_PER_CYCLE; s++)
   {
-    sample_new();
+    sampleSensors();
   }
-
-  // Reporting a sample only when the sample changes makes the device much more
-  // responsive.
-//  if (activeSensors != last_activeSensors)
-
-  
-  //last_activeSensors = activeSensors; 
-  
-#ifdef EYE_CANDY
-  // Mere eye candy
-  //writeColor(colors[(lineno / 3) % COLORS]);
-  nextColor();
-#endif
 }
