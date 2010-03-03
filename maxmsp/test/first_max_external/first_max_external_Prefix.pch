@@ -1,0 +1,5 @@
+//
+// Prefix header for all source files of the 'first_max_external' target in the 'first_max_external' project.
+//
+
+#include <Carbon/Carbon.h>
