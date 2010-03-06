@@ -1,5 +1,5 @@
 /*
- * Arduino sketch for DIY actigraph
+ * Arduino sketch for DIY actigraph and NovaDreamer-like sleep interface
  *
  * 1 bit per second for 12 hours: 5.3 kB (5,400 bytes). Uncompressed, this
  * exceeds the Arduino's RAM.
