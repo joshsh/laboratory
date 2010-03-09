@@ -64,8 +64,6 @@ unsigned char prevSampleData[BITS_PER_SAMPLE / 8];
 
 ////////////////////////////////////////
 
-unsigned char muxSelectPins1State[SELECT_PINS];
-
 inline void sampleSensor(unsigned int i)
 {
   // Oddly enough, when I took this unnecessaqry assigment out, the sampling
@@ -104,7 +102,6 @@ void advanceSampleData()
 inline void setMuxSelectPin(unsigned int j, unsigned int val)
 {
   digitalWrite(firstMuxSelectPin + j, REVERSE ? !val : val); 
-  muxSelectPins1State[j] = val;
 }
 
 void sampleSensors()
@@ -116,33 +113,32 @@ void sampleSensors()
       setMuxSelectPin(k, false);
     }
   
-    unsigned int i = 0;
-    //Serial.println("Sampling...");
-    while (i < BITS_PER_SAMPLE)
+  /*
+    for (unsigned int m = 0; m < BITS_PER_SAMPLE / 8)
     {
-      /*
-      Serial.print("\t\t");
-      for (int k = 0; k < SELECT_PINS; k++)
-      {
-        Serial.print(muxSelectPins1State[k]);
-      }
-      Serial.println("");*/
       
-      if (i > 0)
-      {
-        unsigned int j = 0;
-        while (muxSelectPins1State[j])
-        {
-          setMuxSelectPin(j, false);
-          j++;
-        } 
-        setMuxSelectPin(j, true);
-      }
-      
+    }
+  */
+  
+    register unsigned int i = 0;
+    while (i < BITS_PER_SAMPLE)
+    {          
       sampleSensor(i);
       i++;
       setMuxSelectPin(0, true);
       sampleSensor(i);
+      
+      if (i < BITS_PER_SAMPLE - 1)
+      {
+        unsigned int j = 0;
+        while ((i >> j) & 1)
+        {
+          setMuxSelectPin(j, false);
+          j++;
+        }
+        setMuxSelectPin(j, true);
+      }
+      
       i++;
     }
   }
@@ -234,7 +230,7 @@ void setup()
   prevSampleData[0] = 1;
 }
 
-//#define TIMING_TEST
+#define TIMING_TEST
 
 void loop()
 {  
