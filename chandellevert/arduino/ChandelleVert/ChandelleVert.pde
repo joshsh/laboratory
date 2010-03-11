@@ -64,17 +64,76 @@ unsigned char prevSampleData[BITS_PER_SAMPLE / 8];
 
 ////////////////////////////////////////
 
-unsigned char muxSelectPins1State[SELECT_PINS];
-
-inline void sampleSensor(unsigned int i)
+inline void setMuxSelectPin(unsigned int j, unsigned int val)
 {
-  // Oddly enough, when I took this unnecessaqry assigment out, the sampling
-  // rate dropped slightly.
-  unsigned int x = !digitalRead(sensorPin);
-  // TODO
-  sampleData[i / 8] |= (x << (i % 8));
-  //if (x) Serial.println("\tGot one!");
-  //if (x) { Serial.println((unsigned int) sampleData[i/8]); }
+  digitalWrite(firstMuxSelectPin + j, REVERSE ? !val : val); 
+}
+
+inline unsigned int sampleSensor()
+{
+  return !digitalRead(sensorPin);
+}
+
+void sampleSensors()
+{
+  for (unsigned int s = 0; s < SAMPLES_PER_CYCLE * SENSOR_MULTIPLIER; s++)
+  {
+    for (unsigned int k = 0; k < SELECT_PINS; k++)
+    {
+      setMuxSelectPin(k, false);
+    }
+    
+    for (unsigned int m = 0; m < BITS_PER_SAMPLE / 8; m++)
+    {
+      unsigned char c = 0;
+
+      // 0
+      if (m > 0)
+      {
+        setMuxSelectPin(0, false);
+        setMuxSelectPin(1, false);
+        setMuxSelectPin(2, false);
+        unsigned int j = 3;
+        unsigned int i = (m - 1) * 8;
+        while ((i >> j) & 1)
+        {
+          setMuxSelectPin(j, false);
+          j++;
+        }
+        setMuxSelectPin(j, true);        
+      }
+      c |= sampleSensor();
+      
+      // 1
+      setMuxSelectPin(0, true);
+      c |= sampleSensor() << 1;
+      
+      // 2      
+      setMuxSelectPin(0, false);
+      setMuxSelectPin(1, true);
+      c |= sampleSensor() << 2;
+      
+      setMuxSelectPin(0, true);
+      c |= sampleSensor() << 3;
+      
+      setMuxSelectPin(0, false);
+      setMuxSelectPin(1, false);
+      setMuxSelectPin(2, true);
+      c |= sampleSensor() << 4;
+      
+      setMuxSelectPin(0, true);
+      c |= sampleSensor() << 5;
+      
+      setMuxSelectPin(0, false);
+      setMuxSelectPin(1, true);
+      c |= sampleSensor() << 6;
+      
+      setMuxSelectPin(0, true);
+      c |= sampleSensor() << 7;
+      
+      sampleData[m] = c;
+    }  
+  }
 }
 
 int hasChanged;
@@ -100,102 +159,6 @@ void advanceSampleData()
     prev++;
   }
 }
-
-inline void setMuxSelectPin(unsigned int j, unsigned int val)
-{
-  digitalWrite(firstMuxSelectPin + j, REVERSE ? !val : val); 
-  muxSelectPins1State[j] = val;
-}
-
-void sampleSensors()
-{
-  for (unsigned int s = 0; s < SAMPLES_PER_CYCLE * SENSOR_MULTIPLIER; s++)
-  {
-    for (unsigned int k = 0; k < SELECT_PINS; k++)
-    {
-      setMuxSelectPin(k, false);
-    }
-  
-    unsigned int i = 0;
-    //Serial.println("Sampling...");
-    while (i < BITS_PER_SAMPLE)
-    {
-      /*
-      Serial.print("\t\t");
-      for (int k = 0; k < SELECT_PINS; k++)
-      {
-        Serial.print(muxSelectPins1State[k]);
-      }
-      Serial.println("");*/
-      
-      if (i > 0)
-      {
-        unsigned int j = 0;
-        while (muxSelectPins1State[j])
-        {
-          setMuxSelectPin(j, false);
-          j++;
-        } 
-        setMuxSelectPin(j, true);
-      }
-      
-      sampleSensor(i);
-      i++;
-      setMuxSelectPin(0, true);
-      sampleSensor(i);
-      i++;
-    }
-  }
-}
-
-/*
-unsigned int muxSelectPins1StateNew;
-
-inline void setMuxSelectPinNew(unsigned int j)
-{
-  digitalWrite(muxSelectPins1[j], !REVERSE); 
-  muxSelectPins1StateNew |= 1 << j;
-}
-
-inline void unsetMuxSelectPinNew(unsigned int j)
-{
-  digitalWrite(muxSelectPins1[j], REVERSE);
-  muxSelectPins1StateNew &= ~(1 << j);
-}
-
-void sampleSensorsNew()
-{
-  for (unsigned int s = 0; s < SAMPLES_PER_CYCLE * SENSOR_MULTIPLIER; s++)
-  {
-    for (unsigned int k = 0; k < SELECT_PINS; k++)
-    {
-      unsetMuxSelectPinNew(k);
-    }
-  
-    unsigned int i = 0;
-    //Serial.println("Sampling...");
-    while (i < BITS_PER_SAMPLE)
-    {      
-      if (i > 0)
-      {
-        unsigned int j = 0;
-        while ((muxSelectPins1StateNew >> j) & 1)
-        {
-          unsetMuxSelectPinNew(j);
-          j++;
-        } 
-        setMuxSelectPinNew(j);
-      }
-      
-      sampleSensor(i);
-      i++;
-      setMuxSelectPinNew(0);
-      sampleSensor(i);
-      i++;
-    }
-  }
-}
-*/
 
 void outputSampleData()
 {
