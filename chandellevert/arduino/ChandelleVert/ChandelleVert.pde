@@ -37,8 +37,6 @@ const int firstMuxSelectPin = pin16;
 const unsigned int REVERSE = false;
 //const unsigned int REVERSE = true;
 
-int lineno = 0;
-
 ////////////////////////////////////////
 
 #define MUX_LEVELS 1
@@ -136,7 +134,11 @@ void sampleSensors()
   }
 }
 
-int hasChanged;
+////////////////////////////////////////
+
+int lineno = 0;
+
+boolean hasChanged;
 
 void advanceSampleData()
 {
@@ -182,6 +184,10 @@ void outputSampleData()
   Serial.println("");
 }
 
+////////////////////////////////////////
+
+//#define TIMING_TEST
+
 void setup()
 {
   Serial.begin(9600);           // set up Serial library at 9600 bps
@@ -196,8 +202,6 @@ void setup()
   // Trick to force outputting of an artificial blank sensor map.
   prevSampleData[0] = 1;
 }
-
-//#define TIMING_TEST
 
 void loop()
 {  
