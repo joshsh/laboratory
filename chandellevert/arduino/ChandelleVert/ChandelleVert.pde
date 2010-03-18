@@ -25,13 +25,11 @@ const int pin17 = 17;  // analog in 3
 const int pin18 = 18;  // analog in 4
 const int pin19 = 19;  // analog in 5
 
-const int outPin =  pin13;
-
-const int sensorPin = pin15;
+const int sensorPin = pin2;
 //const int sensorPin = 6;
 
 //const int muxSelectPins1[] = {pin16, pin17, pin18, pin19};
-const int firstMuxSelectPin = pin16;
+const int firstMuxSelectPin = pin3;
 //const int muxSelectPins1[] = {pin2, pin3, pin4, pin5};
 
 const unsigned int REVERSE = false;
@@ -190,9 +188,8 @@ void outputSampleData()
 
 void setup()
 {
-  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.begin(9600);
   pinMode(sensorPin, INPUT);
-  pinMode(outPin, OUTPUT);
   
   for (unsigned int j = 0; j < SELECT_PINS; j++)
   {
