@@ -159,7 +159,7 @@ void advanceSampleData()
   }
 }
 
-void outputSampleData()
+void outputSampleData(unsigned long count)
 {
 #ifdef PRETTY_MODE
 /*
@@ -181,7 +181,9 @@ void outputSampleData()
   }
 #endif
 
-  Serial.println("");
+  Serial.print(" ");
+  Serial.println(count);
+  //Serial.println("");
 }
 
 ////////////////////////////////////////
@@ -201,6 +203,8 @@ void setup()
   // Trick to force outputting of an artificial blank sensor map.
   prevSampleData[0] = 1;
 }
+
+unsigned long count = 0;
 
 void loop()
 {  
@@ -222,9 +226,11 @@ void loop()
   
   if (hasChanged)
   {
-    outputSampleData();
+    outputSampleData(count);
   }
 
   sampleSensors();
 #endif
+
+  count++;
 }

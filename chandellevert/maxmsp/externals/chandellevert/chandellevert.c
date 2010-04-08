@@ -204,7 +204,7 @@ void chandellevert_handle_sample_new(t_chandellevert *x, t_symbol *s, long argc,
 	t_atom *ap;
 	char *data;
 	
-	if (1 == argc) {
+	if (2 == argc) {
 		ap = argv;
 		if (A_SYM == atom_gettype(ap)) {
 			data = atom_getsym(ap)->s_name;

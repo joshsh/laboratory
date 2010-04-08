@@ -216,10 +216,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>03900375115D33AE004C9EF2</string>
+						<string>035888B7116E4723006E4A82</string>
 						<key>history</key>
 						<array>
-							<string>039002E4115BC758004C9EF2</string>
+							<string>035888B6116E4723006E4A82</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -235,7 +235,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>149 166 1044 652 0 0 1440 878 </string>
+				<string>153 153 1044 652 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -344,8 +344,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -363,10 +361,10 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>03900374115D33AE004C9EF2</string>
+										<string>035888B3116E4723006E4A82</string>
 										<key>history</key>
 										<array>
-											<string>0390030F115BD358004C9EF2</string>
+											<string>03900374115D33AE004C9EF2</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -378,16 +376,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {798, 323}}</string>
+								<string>{{0, 0}, {798, 313}}</string>
 								<key>RubberWindowFrame</key>
 								<string>274 208 1006 670 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>323pt</string>
+							<string>313pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -398,14 +398,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 328}, {798, 301}}</string>
+								<string>{{0, 318}, {798, 311}}</string>
 								<key>RubberWindowFrame</key>
 								<string>274 208 1006 670 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>301pt</string>
+							<string>311pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -424,9 +424,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>03900311115BD358004C9EF2</string>
+				<string>035888B4116E4723006E4A82</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>03900312115BD358004C9EF2</string>
+				<string>035888B5116E4723006E4A82</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -564,8 +564,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>03900313115BD358004C9EF2</string>
 		<string>03C37D0211519F3600815753</string>
+		<string>03900313115BD358004C9EF2</string>
 		<string>/Users/josh/projects/fortytwo/laboratory/chandellevert/maxmsp/externals/chand_freq/chand_freq.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -590,7 +590,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>chand_freq.c</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -607,8 +607,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -648,7 +646,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>03C37D0211519F3600815753</string>
-				<string>039002EA115BCAEE004C9EF2</string>
+				<string>035888B8116E4723006E4A82</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
