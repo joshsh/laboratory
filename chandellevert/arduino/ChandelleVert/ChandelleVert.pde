@@ -25,15 +25,16 @@ const int pin17 = 17;  // analog in 3
 const int pin18 = 18;  // analog in 4
 const int pin19 = 19;  // analog in 5
 
-const int sensorPin = pin2;
-//const int sensorPin = 6;
+const int sensorPin = pin18;
 
 //const int muxSelectPins1[] = {pin16, pin17, pin18, pin19};
-const int firstMuxSelectPin = pin3;
+const int firstMuxSelectPin = pin14;
 //const int muxSelectPins1[] = {pin2, pin3, pin4, pin5};
 
 const unsigned int REVERSE = false;
 //const unsigned int REVERSE = true;
+
+#define PRETTY_MODE
 
 ////////////////////////////////////////
 
@@ -55,8 +56,6 @@ const unsigned int REVERSE = false;
 
 unsigned char sampleData[BITS_PER_SAMPLE / 8]; 
 unsigned char prevSampleData[BITS_PER_SAMPLE / 8];
-
-#define PRETTY_MODE
 
 ////////////////////////////////////////
 
@@ -163,14 +162,17 @@ void advanceSampleData()
 void outputSampleData()
 {
 #ifdef PRETTY_MODE
+/*
   lineno++;
 
   Serial.print(lineno);
-  Serial.print(") ");
+  Serial.print(") ");*/
+  Serial.print("data ");
+  
   for (unsigned int i = 0; i < BITS_PER_SAMPLE; i++)
   {
     unsigned int b = prevSampleData[i / 8] & (1 << (i % 8));
-    Serial.print(b ? 'o' : ' ');
+    Serial.print(b ? 'o' : '.');
   }
 #else
   for (int l = 0; l < BITS_PER_SAMPLE / 8; l++)
