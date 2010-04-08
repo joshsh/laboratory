@@ -1,10 +1,7 @@
 /**
 	@file
-	chand_freq - a max object shell
-	jeremy bernstein - jeremy@bootsquad.com	
-
-	@ingroup	examples	
-*/
+	chand_freq
+ */
 
 #include <math.h>
 #include <string.h>
@@ -239,8 +236,9 @@ void chand_freq_handle_sample_new(t_chand_freq *x, t_symbol *s, long argc, t_ato
 	char *data;
 	double f;
 	unsigned long t;
+	int len;
 	
-	if (1 == argc) {
+	if (2 == argc) {
 		ap = argv;
 		if (A_SYM == atom_gettype(ap)) {
 			data = atom_getsym(ap)->s_name;
@@ -257,6 +255,8 @@ void chand_freq_handle_sample_new(t_chand_freq *x, t_symbol *s, long argc, t_ato
 					}						
 				}
 				strcpy(last_sample_data, data);
+			} else {
+				post("bad data: %s", data);
 			}
 		}
 	}
