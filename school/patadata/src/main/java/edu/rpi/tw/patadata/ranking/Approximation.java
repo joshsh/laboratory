@@ -5,7 +5,7 @@ package edu.rpi.tw.patadata.ranking;
  * Date: Apr 19, 2010
  * Time: 1:33:07 PM
  */
-public interface Approximation<E extends Exception> {
+public interface Approximation<T, E extends Exception> {
     /**
      * 
      * @param cycles the number of cycles available
@@ -13,4 +13,6 @@ public interface Approximation<E extends Exception> {
      * @throws E an implementation-specific exception
      */
     int compute(int cycles) throws E;
+    
+    T currentResult();
 }
