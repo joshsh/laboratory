@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>03B86A44116E4754004C8ED3</string>
+						<string>03B86A48116E47F3004C8ED3</string>
 						<key>history</key>
 						<array>
 							<string>03B86A3C116E4742004C8ED3</string>
@@ -361,7 +361,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>03B86A3F116E4754004C8ED3</string>
+										<string>03B86A47116E47F3004C8ED3</string>
 										<key>history</key>
 										<array>
 											<string>039002D8115BC73E004C9EF2</string>
@@ -564,9 +564,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>03B86A42116E4754004C8ED3</string>
 		<string>03C37D0211519F3600815753</string>
 		<string>/Users/josh/projects/fortytwo/laboratory/chandellevert/maxmsp/externals/chandellevert/chandellevert.xcodeproj</string>
-		<string>03B86A42116E4754004C8ED3</string>
 	</array>
 	<key>WindowString</key>
 	<string>274 208 1006 670 0 0 1440 878 </string>
