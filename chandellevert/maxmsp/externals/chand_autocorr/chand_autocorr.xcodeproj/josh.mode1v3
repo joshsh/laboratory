@@ -216,10 +216,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>03A1909C116D7EBF00F76F10</string>
+						<string>03BE4CC51172287F000FAC5A</string>
 						<key>history</key>
 						<array>
-							<string>03900375115D33AE004C9EF2</string>
+							<string>03BE4CBA116E4811000FAC5A</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -235,7 +235,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>149 199 1044 652 0 0 1440 878 </string>
+				<string>298 161 1044 652 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -344,8 +344,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -363,10 +361,10 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>03A1909B116D7EBF00F76F10</string>
+										<string>03BE4CC41172287F000FAC5A</string>
 										<key>history</key>
 										<array>
-											<string>03A1907B116D2D4B00F76F10</string>
+											<string>03A1909B116D7EBF00F76F10</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -378,16 +376,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {798, 309}}</string>
+								<string>{{0, 0}, {798, 299}}</string>
 								<key>RubberWindowFrame</key>
 								<string>274 216 1006 662 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>309pt</string>
+							<string>299pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -398,14 +398,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 314}, {798, 307}}</string>
+								<string>{{0, 304}, {798, 317}}</string>
 								<key>RubberWindowFrame</key>
 								<string>274 216 1006 662 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>307pt</string>
+							<string>317pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -424,9 +424,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>03A1907D116D2D4B00F76F10</string>
+				<string>03BE4CB8116E4811000FAC5A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>03A1907E116D2D4B00F76F10</string>
+				<string>03BE4CB9116E4811000FAC5A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -565,8 +565,8 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>03C37D0211519F3600815753</string>
-		<string>03900313115BD358004C9EF2</string>
 		<string>/Users/josh/projects/fortytwo/laboratory/chandellevert/maxmsp/externals/chand_autocorr/chand_autocorr.xcodeproj</string>
+		<string>03900313115BD358004C9EF2</string>
 	</array>
 	<key>WindowString</key>
 	<string>274 216 1006 662 0 0 1440 878 </string>
@@ -590,7 +590,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>chand_autocorr.c</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -607,8 +607,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -648,7 +646,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>03C37D0211519F3600815753</string>
-				<string>03A1907A116D2D3400F76F10</string>
+				<string>03BE4CBC116E4811000FAC5A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

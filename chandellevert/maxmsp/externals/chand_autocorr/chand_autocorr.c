@@ -305,7 +305,7 @@ void chand_autocorr_handle_sample_new(t_chand_autocorr *x, t_symbol *s, long arg
 	double f;
 	unsigned long t;
 	
-	if (1 == argc) {
+	if (2 == argc) {
 		ap = argv;
 		if (A_SYM == atom_gettype(ap)) {
 			data = atom_getsym(ap)->s_name;
@@ -324,32 +324,8 @@ void chand_autocorr_handle_sample_new(t_chand_autocorr *x, t_symbol *s, long arg
 				strcpy(last_sample_data, data);
 			}
 		}
-	}
-	/*
-	
-	post("message selector is %s",s->s_name);
-	post("there are %ld arguments",argc);
-	for (i = 0, ap = argv; i < argc; i++, ap++) {       // increment ap each time to get to the next atom
-		switch (atom_gettype(ap)) {
-			case A_LONG:
-				post("%ld: %ld",i+1,atom_getlong(ap));
-				break;
-			case A_FLOAT:
-				post("%ld: %.2f",i+1,atom_getfloat(ap));
-				break;
-			case A_SYM:
-				post("%ld: %s",i+1, atom_getsym(ap)->s_name);
-				break;
-			default:
-				post("%ld: unknown atom type (%ld)", i+1, atom_gettype(ap));
-				break;
-		}
-	}*/	
+	}	
 }
-
-//void chand_autocorr_handle_sample_newerstill(t_chand_autocorr *x, t_symbol *data) {
-//	post("got data: %s", atom_getsym(data)
-//}
 
 ////////////////////////////////////////////////////////////////////////////////
 
