@@ -1,0 +1,331 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf290
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 x = \{\
+	LocalOut.ar(a=CombN.ar(BPF.ar(LocalIn.ar(2)*7.5+Saw.ar([32,33],0.2),2**LFNoise0.kr(4/3,4)*300,0.1).distort,2,2,40));a\
+\}.play\
+\
+\
+05\
+Batuhan Bozkurt\
+x = play \{\
+	f = LocalIn.ar(2).tanh;\
+	k = Latch.kr(f[0].abs,Impulse.kr(1/4));\
+	LocalOut.ar(f + CombC.ar(Blip.ar([4,6],100*k+50,0.9),1,k*0.3,50*f));\
+	f\
+\}//44.1kHz\
+++  cool "twang", sonar, and helicopter sounds\
+\
+\
+//////////////////\
+\
+\
+x = \{Saw.ar(440,0.2)\}.play\
+x = \{LFSaw.ar(440,0.2)\}.play\
+x = \{SinOsc.ar(440,0.2)\}.play\
+x = \{PinkNoise.ar(0.2)\}.play\
+\
+x = \{Saw.ar(MouseX.kr(13, 440),0.2)\}.play\
+\
+x = \{Saw.ar(MouseY.kr(23, 440), SinOsc.kr(MouseX.kr(0.0, 10), 0, 1.0))\}.play\
+x = \{SinOsc.ar(MouseY.kr(23, 440), 0, SinOsc.kr(MouseX.kr(0.0, 10), 0, 1.0))\}.play\
+\
+\
+x = \{\
+	var i = Saw;\
+	// var i = SinOsc;\
+	var a = MouseY.kr(23, 440);\
+	var purr = MouseX.kr(0.0, 10);\
+	var c = SinOsc.kr(purr, 0, 0.3);\
+	var d = i.ar(a, c)\
+		+ i.ar(a * 2, c / 1)\
+		+ i.ar(a * 4, c / 1);\
+	d;\
+\}.scope()\
+\
+\
+x = SynthDef.new("zapsaw", \{\
+	var i = Saw;\
+	// var i = SinOsc;\
+	var a = MouseY.kr(23, 440);\
+	var purr = MouseX.kr(0.0, 10);\
+	var c = SinOsc.kr\cf2 (\cf0 purr, 0, 0.3);\
+	var d = i.ar(a, c)\
+		+ i.ar(a * 2, c / 1)\
+		+ i.ar(a * 4, c / 1);\
+	Out.ar(0, d)\
+	//d.scope\
+\}).play\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\f1 \cf0 Server.internal.scope; // you could also use 's' if the internal is the default\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0 \cf0 \
+\
+\
+\
+x = \{SinOsc.ar(BrownNoise.ar(30!2, 200), Ndef(\\x).ar * LFNoise1.kr(1!2,1,1))\}.play\
+\
+x = \{SinOsc.ar(40,0.2)\}.play\
+\
+//////////////////\
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 "Hello World!".postln;\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 (\
+"Call me,".postln;\
+"Ishmael.".postln;\
+)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 f = \{ "Function evaluated".postln; \}\
+f;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 f.value;\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 f = \{ 3.0.rand; \}; // Here it's a Function. \
+f.value;\
+f = \{ arg a; a.value + 3 \}; // call 'value' on the arg; polymorphism awaits!\
+f.value(42);\
+\
+f = \{ arg a, b; a / b; \}; // '/' means divide\
+f.value(10, 2); // regular style\
+f.value(b: 2, a: 10); // keyword style\
+\
+(\
+f = \{ arg a, b;\
+var firstResult, finalResult;\
+firstResult = a + b;\
+finalResult = firstResult * 2;\
+finalResult;\
+\};\
+f.value(2, 3); // this will return (2 + 3) * 2 = 10\
+)\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 x = \{\
+	LFNoise0.ar(8)\
+	+ SinOsc.ar(440,0.2);\
+\}.play\
+\
+\
+x = \{LFNoise0.ar(8)\}.play\
+x = \{LFNoise0.ar(440)\}.play\
+\
+x = \{Pulse.ar(1)\}.play\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \
+\{ var freq;\
+freq = [[660, 880], [440, 660], 1320, 880].choose;\
+SinOsc.ar(freq, 0, 0.2); \
+\}.play;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \{ PinkNoise.ar(0.2) + SinOsc.ar(440, 0, 0.2) + Saw.ar(660, 0.2) \}.plot;\
+
+\f1 \{ [SinOsc.ar(440, 0, 0.2), SinOsc.ar(442, 0, 0.2)] \}.scope;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0 \cf0 \
+//////////////////\
+x.free\
+x.free\
+x.free\
+x.free\
+x.free\
+x.free\
+x.free\
+x.free\
+//////////////////\
+\
+\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\f1 \cf0 // read a soundfile\
+b = Buffer.read(s, "sounds/a11wlk01.wav");\
+\
+// now play it\
+(\
+x = SynthDef("tutorial-PlayBuf",\
+    \{ arg out = 0, bufnum;\
+    Out.ar( out, PlayBuf.ar(1, bufnum, BufRateScale.kr(bufnum))\
+)\
+\}).play(s,[\\bufnum, b.bufnum ]);\
+)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0 \cf0 \
+\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\f1 \cf0 (\
+SynthDef.new("tutorial-SinOsc-stereo", \{ var outArray;\
+outArray = [SinOsc.ar(440, 0, 0.2), SinOsc.ar(220, 0, 0.2)];\
+Out.ar(0, outArray) \
+\}).play;\
+)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0 \cf0 \
+\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\f1 \cf0 \{ PinkNoise.ar(0.2) + SinOsc.ar(440, 0, 0.2) + Saw.ar(660, 0.2) \}.plot(1);\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0 \cf0 \
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 (\
+var n = 8;\
+\{ \
+Mix.fill(n, \{ arg index; \
+var freq;\
+index.postln;\
+freq = 440 + index;\
+freq.postln;\
+SinOsc.ar(freq , 0, 1 / n) \
+\})\
+\}.play;\
+)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 (\
+var n = 8;\
+\{ Mix.fill(n, \{ SinOsc.ar(500 + 500.0.rand, 0, 1 / n) \})  \}.play;\
+)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \{ Mix.new([SinOsc.ar(440, 0, 0.2), Saw.ar(660, 0.2)]).postln \}.play;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \{ Pan2.ar(PinkNoise.ar(0.2), SinOsc.kr(0.5)) \}.play;\
+\{ Pan2.ar(PinkNoise.ar(0.2), -0.3) \}.play; // slightly to the left\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \{ SinOsc.ar([100, 1000], 0, 0.5) \}.play;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+x = \{1 + SinOsc.ar(440,0.2)\}.play\
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\{Pulse.ar(1)\}.value\
+\
+\pard\pardeftab720\sa240\ql\qnatural
+\cf0 \{ [SinOsc.ar(440, 0, 0.2), SinOsc.ar(442, 0, 0.2)] \}.play;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+x = \{LFSaw.ar(200)\}.play\
+x = \{RHPF.ar(200)\}.play\
+\
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 x = \{RHPF.ar(GbmanN.ar([2300,1150]),LFSaw.ar(Pulse.ar(4,[1,2]/8,1,LFPulse.ar(1/8)/5+1))+2)\}.play\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+x = \{\
+	i = Saw;\
+	// i = SinOsc;\
+	a = i.ar(200, 0.2);\
+	b = i.ar(20, 0.2);\
+	a - b\
+\}.play\
+\
+\
+\
+x = \{MoogFF.ar(Saw.ar(440, 0.2))\}.play\
+x = \{Pulse.ar(440)\}.play\
+\
+\
+x = \{LFNoise0.ar(8)\}.play\
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 \{\
+	x = SinOsc;\
+	y = LFNoise0;\
+	a = y.ar(8);\
+	(x.ar(Pulse.ar(1)*24)+x.ar(90+(a*90))+MoogFF.ar(Saw.ar(y.ar(4,333,666)),a*XLine.ar(1,39,99,99,0,2)))!2\}.play\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 Ptpar((\{|i|[i*8,Pbind(\\scale,[0,2,4,7,9],\\degree,Pseq(32.fib.fold(0,10),4)+(2*i+i)-10,\\dur,1+2**i%2/6)]\}!4).flat).play\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 play\{LFGauss.ar(105,0.3,0,0,2)*BPF.ar(LFSaw.ar([250,251]),XLine.ar(50,20000,100),XLine.ar(0.01,10,100))\}\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 \{SinOsc.ar(65.41,0,(SinOsc.kr(0.5, 0,0.5)))+SinOsc.ar(130.81,0,(SinOsc.kr(10,0,0.5)))+SinOsc.ar(523.25,0,(SinOsc.kr(0.05,0,0.05)))\}.play;//b\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+\
+\
+\{\
+	LocalOut.ar(\
+		a = DynKlank.ar(`[LocalIn.ar.clip2(LFPulse.kr([1,2,1/8]).sum/2)**100*100],Impulse.ar(10)));\
+		HPF.ar(a).clip2\
+\}.play\
+\
+\
+\
+\
+x = \{SinOsc.ar(220, 0, SinOsc.kr(0.5, 0, 0.5))\}.play\
+\
+x = \{SinOsc.ar(220, 0, SinOsc.kr(0.5, 0, 1.0))\}.play\
+\
+x = \{Saw.ar(220, SinOsc.kr(MouseX.kr(0.0, 10), 0, 1.0))\}.play\
+\
+\
+\
+\
+x = \{SinOsc.ar(40,0.2)\}.play\
+\
+\
+\
+x = \{LFNoise0.kr(4/3,4)\}.play\
+\
+\
+\
+\
+x = \{BPF.ar(LocalIn.ar(2))\}\
+\
+\pard\pardeftab720\ql\qnatural
+\cf0 (\
+t = Wavetable.sineFill(512, 1.0/[1,2,3,4,5,6]);\
+Synth.play(\
+\{\
+a = Osc.ar(t, [38,76], LFTri.kr(0.1),1);\
+Limiter.ar(a,0.8,0.1)\
+\});\
+)\
+\
+\{SinOsc.ar(65.41,0,(SinOsc.kr(0.5, 0,0.5)))+SinOsc.ar(130.81,0,(SinOsc.kr(10,0,0.5)))+SinOsc.ar(523.25,0,(SinOsc.kr(0.05,0,0.05)))\}.play;//b\
+}
