@@ -1,0 +1,10 @@
+string>
+def updateATexture():
+	opencv.read()
+	data.rewind()
+	data.put(opencv.image().pixels)
+	data.rewind()
+	texture.dirty()
+
+_r = updateATexture
+

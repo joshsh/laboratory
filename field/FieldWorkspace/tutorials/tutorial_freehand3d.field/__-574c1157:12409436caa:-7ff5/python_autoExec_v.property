@@ -1,0 +1,14 @@
+string>
+def clear():
+	_self.rawSplineData.clear()
+	_self.tweak_v=""
+
+def resetCamera():
+	_self.camera.position[:]=(0,0,-100)
+	_self.camera.target[:]=(0,0,0)
+	_self.camera.up[:]=(0,1,0)
+
+clear()
+resetCamera()
+
+_self()

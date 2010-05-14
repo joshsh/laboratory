@@ -1,0 +1,18 @@
+string>
+# Field has three ways of putting text on the canvas, all use the PLine system
+
+someLine = PLine()
+someLine.containsText = 1
+
+someLine.moveTo(800,50)
+someLine.text_v = "Hello World"
+
+# you can put a text label on every vertex of a line (since text_v is a per vertex property)
+someLine.moveTo(900,25)
+someLine.text_v = "I'm over"
+
+someLine.moveTo(920,46)
+someLine.text_v = "<html><b>here</b>"
+
+_self.lines.clear()
+_self.lines.add(someLine)

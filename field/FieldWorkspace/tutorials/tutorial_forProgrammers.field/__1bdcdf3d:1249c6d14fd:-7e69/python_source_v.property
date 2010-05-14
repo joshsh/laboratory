@@ -1,0 +1,27 @@
+string>
+# Field comes with "the worlds smallest unit testing framework" Ñ select unittesting, right click and seach openendedgroup.com to get the docs. But here's an example
+
+def sum1toN(n):
+	 return sum(range(1, n+1))
+ 
+def sumMultiples(limit, a):
+	 return sum1toN((limit - 1) / a) * a
+
+# to make a unit test we first run everything that we want to run Ñ the code above (to define sum1toN) and this code here:
+print sum1toN(1)
+#->1
+
+# by command-return'ing that line we get a little marker in the margin (go on, try it)...
+# we can now right click that and say "make new unit test"
+
+# we could also use 'ctrl u' to do the same thing
+
+# this runs the selected code and watches what it prints. It then embedds the output of the code in a comment (to make the test 'self documenting'
+
+# now in the future you can run a test using 'ctrl u' or the right click menu on the test or the right-click menu on the box itself. There's a badge that turns red if any test fails
+
+# if we change the definition of sum1toN to something bad, we'll find that it fails the test
+
+def sum1toN_bad(n): # remove _bad
+	return 10
+

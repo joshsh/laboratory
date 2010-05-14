@@ -1,0 +1,49 @@
+string>
+# two ways of drawing a dashed line
+
+line = PLine()
+
+line.moveTo(50,50)
+line.cubicTo(100,50, 70,130, 100, 100)
+line.lineTo(100, 50).cubicTo(75, 75, 75, 50, 50, 50)
+
+a = line.copy()
+
+# first we can just tell Field that we want to stroke it a particular way when it ends up on the screen
+
+a.strokeType = BasicStroke(1,1,1,1,(4,4),0)
+# that's a lot of parameters, to get help put the cursor just after BasicStroke and press command-period
+
+a += Vector2(0,150)
+_self.lines.clear() 
+_self.lines.add(a) 
+
+# the second way is to actually stroke the line, and get hold of the new line that's got all of the geometry
+
+b = line.copy()
+
+b.strokeWith(thickness=2, dash=(8,4))
+
+# we'll color this one red
+b(derived=1, color=Color4(0.5, 0, 0, 1))
+b += Vector2(0, 200)
+_self.lines.add(b)
+
+# with this line we can split it into it's individual segments, and transform them further:
+
+segments = b.segment()
+for s in segments:
+	s += Vector2(0, 50).noise(10)
+	s(color=Color4(0,0.5, 0, 1))
+	_self.lines.add(s)
+
+# by overlapping lots of transparent lines get get something textured
+for n in range(0, 20):
+	c = b.copy()
+	c.strokeWith(thickness=1, dash=(8,4))
+	segments = c.segment()
+	for s in segments:
+		s += Vector2(0, 100).noise(n*2)
+		s(strokeColor=Color4(0,0, 0, 0.1), derived=1)
+		_self.lines.add(s)
+	

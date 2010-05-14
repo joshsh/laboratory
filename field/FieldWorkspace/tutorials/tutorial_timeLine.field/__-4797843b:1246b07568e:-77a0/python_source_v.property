@@ -1,0 +1,15 @@
+string>
+# we can make a new slider Ñ one that only execute certainy elements
+def pred():
+	return _self.subelements.values()
+
+if (not _self.subSlider_):
+	_self.subSlider_, _self.runner_ = TemporalSliderOverrides.newLocalTemporalSlider("sub1", _self, _self.frame.x, pred)
+
+
+# we can wave that slider around all we like with the mouse, but it doesn't actually do anything unless we call 'update'. So, option click or command-pageup on this box to call update every frame
+
+def update():
+	_self.runner_.update(_self.subSlider_.frame.x)
+
+_r = update

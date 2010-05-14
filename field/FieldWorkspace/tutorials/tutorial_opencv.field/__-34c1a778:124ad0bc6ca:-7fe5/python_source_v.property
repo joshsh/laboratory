@@ -1,0 +1,12 @@
+string>mesh = dynamicMesh()
+shader << mesh
+
+with mesh:
+	mesh ** Vector3(0,0,0)
+	mesh ** Vector3(1,0,0)
+	mesh ** Vector3(1,1,0)
+	mesh ** Vector3(0,1,0)
+	mesh ** [0,1,2, 0,2,3] 
+
+aux = mesh.aux(5, 2)
+aux.put([0,0,  width,0, width,height, 0,height])

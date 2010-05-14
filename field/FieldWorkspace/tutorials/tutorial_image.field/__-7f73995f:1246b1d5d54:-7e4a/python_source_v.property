@@ -1,0 +1,26 @@
+string>
+# the other way to originate image data is to rasterize PLine sets
+
+_self.lines.clear()
+
+ll = PLine().moveTo(0,0).polarCubicTo(1,1,-1,-1,200,100).polarCubicTo(-1,-1,1,1,100,200)
+ll+= Vector2(1000, 500)
+for n in range(0, 10):
+	ll = ll.copy()
+	ll += rotation(0.4*Math.random())
+	ll(color=Color4(0,0,0,0.7/(n+1)), derived=1)
+	_self.lines.add(ll)
+
+
+# here's a drop shadow
+rasterImage = rasterizeLines()
+
+# after the call to rasterizeLines we have an image object that we can filter
+rasterImage <<= blur(5)
+rasterImage.defaultPosition.x+=3
+rasterImage.defaultPosition.y+=5
+rasterImage.show(decor=0)
+rasterImage <<= blur(5)
+rasterImage.defaultPosition.x+=3
+rasterImage.defaultPosition.y+=5
+rasterImage.show(decor=0)

@@ -1,0 +1,68 @@
+string>from com.sun.opengl.util import BufferUtil
+def setup():
+	_self.a=0.0
+	_self.c=color(244,200,0,30)
+
+	#background(40)
+	cursor()
+
+def draw():
+	stroke(255)
+	
+	smooth()
+	#strokeWeight(dist(p.mouseX,p.mouseY,p.pmouseX,p.pmouseY)*0.1)
+	rnd =0.6166008*dist(p.mouseX,p.mouseY,p.pmouseX,p.pmouseY)
+	
+	rndr = rnd
+	rnda = random(360.)
+	#print _self.c
+	strokeWeight(0.1)
+	color(255)
+	stroke(255)
+	if _self.a:
+		for i in range(0.28336117*100):
+			stroke(255)
+			line(p.pmouseX +rndr*cos(random(360)),p.pmouseY +rndr*sin(random(360)),
+			p.mouseX +rndr*cos(random(360)) ,p.mouseY +rndr*sin(random(360)))
+	#print "rp: %i %f %s" % (readPixel(p.mouseX, p.mouseY), _self.a, _self.c)
+
+#######################
+_r = (setup,draw,None)
+
+def readPixel(x,y):
+#	gl= p.g.gl
+#	out = BufferUtil.newIntBuffer(1)
+	#gl.glReadPixels(50,50,1,1, gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, out)
+	xx = p.get(x,y)
+	return xx
+
+
+@p.onMousePress 
+def myMousePress():
+	_self.a=1.0
+	
+	#print "getting color at %f %f " % (p.mouseX, p.mouseY)
+	#print p.g.gl.glGetString(p.g.gl.GL_VERSION)	
+	#_self.c=color(p.get(p.mouseX,p.mouseY)) #if brightness(get(p.mouseX,p.mouseY)) > 0 else color(0,100,200, 20)
+
+	#cc = color(p.get(p.mouseX, p.mouseY))
+	#print "color is %s, %s, %s " % (red(cc), green(cc), blue(cc))
+	
+	_self.c = color(255)
+
+	noCursor()
+
+
+@p.onMouseRelease
+def myMouseRelease():
+	_self.a=0
+	cursor()
+
+#p.g.gl.glEnable(p.g.gl.GL_LINE_SMOOTH)
+#readPixel(155,155)
+#gl.glReadBuffer(gl.GL_FRONT)
+
+
+stroke(255)
+box(10)
+

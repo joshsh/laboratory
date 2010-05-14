@@ -34,8 +34,8 @@ x = \{SinOsc.ar(MouseY.kr(23, 440), 0, SinOsc.kr(MouseX.kr(0.0, 10), 0, 1.0))\}.
 \
 \
 x = \{\
-	var i = Saw;\
-	// var i = SinOsc;\
+	//var i = Saw;\
+	 var i = SinOsc;\
 	var a = MouseY.kr(23, 440);\
 	var purr = MouseX.kr(0.0, 10);\
 	var c = SinOsc.kr(purr, 0, 0.3);\
@@ -44,7 +44,7 @@ x = \{\
 		+ i.ar(a * 4, c / 1);\
 	d;\
 \}.scope()\
-\
+x.free\
 \
 x = SynthDef.new("zapsaw", \{\
 	var i = Saw;\
@@ -61,6 +61,23 @@ x = SynthDef.new("zapsaw", \{\
 \
 \
 \
+Club\
+\pard\pardeftab720\ql\qnatural
+\cf0 x = \{RHPF.ar(GbmanN.ar([2300,1150]),LFSaw.ar(Pulse.ar(4,[1,2]/8,1,LFPulse.ar(1/8)/5+1))+2)\}.play\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\
+\
+\
+x = \{SinOsc.ar(BrownNoise.ar(30!2, 200), Ndef(\\x).ar * LFNoise1.kr(1!2,1,1))\}.play\
+\
+\
+x = \{LFNoise0.ar(8)\}.play\
+x = \{LFNoise0.ar(440)\}.play\
+\
+x = \{Pulse.ar(1)\}.play\
+\
+\
 \
 \
 \pard\pardeftab720\sa240\ql\qnatural
@@ -69,10 +86,6 @@ x = SynthDef.new("zapsaw", \{\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
 
 \f0 \cf0 \
-\
-\
-\
-x = \{SinOsc.ar(BrownNoise.ar(30!2, 200), Ndef(\\x).ar * LFNoise1.kr(1!2,1,1))\}.play\
 \
 x = \{SinOsc.ar(40,0.2)\}.play\
 \
@@ -120,12 +133,6 @@ f.value(2, 3); // this will return (2 + 3) * 2 = 10\
 	+ SinOsc.ar(440,0.2);\
 \}.play\
 \
-\
-x = \{LFNoise0.ar(8)\}.play\
-x = \{LFNoise0.ar(440)\}.play\
-\
-x = \{Pulse.ar(1)\}.play\
-\
 \pard\pardeftab720\sa240\ql\qnatural
 \cf0 \
 \{ var freq;\
@@ -136,8 +143,9 @@ SinOsc.ar(freq, 0, 0.2); \
 \cf0 \
 \pard\pardeftab720\sa240\ql\qnatural
 \cf0 \{ PinkNoise.ar(0.2) + SinOsc.ar(440, 0, 0.2) + Saw.ar(660, 0.2) \}.plot;\
+\pard\pardeftab720\sa240\ql\qnatural
 
-\f1 \{ [SinOsc.ar(440, 0, 0.2), SinOsc.ar(442, 0, 0.2)] \}.scope;\
+\f1 \cf0 \{ [SinOsc.ar(440, 0, 0.2), SinOsc.ar(442, 0, 0.2)] \}.scope;\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
 
 \f0 \cf0 \
@@ -240,11 +248,6 @@ x = \{1 + SinOsc.ar(440,0.2)\}.play\
 x = \{LFSaw.ar(200)\}.play\
 x = \{RHPF.ar(200)\}.play\
 \
-\
-\pard\pardeftab720\ql\qnatural
-\cf0 x = \{RHPF.ar(GbmanN.ar([2300,1150]),LFSaw.ar(Pulse.ar(4,[1,2]/8,1,LFPulse.ar(1/8)/5+1))+2)\}.play\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
-\cf0 \
 \
 x = \{\
 	i = Saw;\

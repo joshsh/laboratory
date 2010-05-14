@@ -1,0 +1,2987 @@
+<object-stream>
+  <string>version_2</string>
+  <field.core.StandardFluidSheet_-RootSheetElement id="1">
+    <uid>//rootSheetElement</uid>
+    <parents id="2">
+      <field.core.dispatch.VisualElement id="3">
+        <uid>__-162c0258:12434105a98:-7fff</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="4">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="5">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.execution.TemporalSliderOverrides id="6">
+              <class>field.core.execution.TemporalSliderOverrides</class>
+              <element reference="3"/>
+            </field.core.execution.TemporalSliderOverrides>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="7">
+              <name>creationToken</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>time</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="8">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="9">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="3"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="10">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="11">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>timeSlider</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="12">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="13">
+          <x>-1.0</x>
+          <y>0.0</y>
+          <w>0.0</w>
+          <h>0.0</h>
+        </rect>
+        <parents id="14"/>
+        <children id="15">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="16">
+        <uid>__-162c0258:12434105a98:-7ff5</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="17">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="18">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="16"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="19">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="16"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>basicmath</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="20">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string># here is some very simple math
+
+print &quot;some basic numbers:&quot;
+print 12  # this is an integer number
+print 12.5  # this is a floating point
+
+print &quot;results of adding:&quot;
+print 12. + 13.0  # results in an integer
+print 12 + 0.5  # results in a float
+print 0.5 + 12  
+
+print &quot;results of subtracting:&quot;
+print 12 - 8.0
+print 12 - 25
+
+print &quot;results of multiplication:&quot;
+print 12 * 8
+print 12 * (-25)
+
+print &quot;results of dividing:&quot;
+print 12 / 2
+print 11 / 2
+print 1./2
+print &quot;11. // 2 = &quot;, 11. // 2  # integer division
+#integer division always rounds off to a whole number
+print &quot;11. / 2 = &quot;, 11. / 2  # integer division
+
+print (11 % 2)   # modulo
+
+print &quot;results of &apos;the power of&apos;:&quot;
+print 2 ** 8
+print 10 ** 2
+print 2 ** 0.5
+
+print &quot;let&apos;s cause an error:&quot;
+print 1 / 0
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="21">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="22">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="23"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="24">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="25">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="26">
+                  <areas id="27">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="28">
+                      <allocation>1</allocation>
+                      <lastSeenAt>1</lastSeenAt>
+                      <lineStart>3</lineStart>
+                      <lineEnd>3</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="29">
+                        <dictionary id="30"/>
+                      </extend>
+                      <exec id="31">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="32">
+                          <when id="33">2009-10-08 08:15:28.287 EDT</when>
+                          <stringAtExecution>
+print 12  # this is an integer number</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="34">
+                      <allocation>1</allocation>
+                      <lastSeenAt>2</lastSeenAt>
+                      <lineStart>4</lineStart>
+                      <lineEnd>4</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="35">
+                        <dictionary id="36"/>
+                      </extend>
+                      <exec id="37">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="38">
+                          <when id="39">2009-10-08 08:15:30.530 EDT</when>
+                          <stringAtExecution>
+print 12.5  # this is a floating point</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="40">
+                      <allocation>0</allocation>
+                      <lastSeenAt>7</lastSeenAt>
+                      <lineStart>2</lineStart>
+                      <lineEnd>4</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="41">
+                        <dictionary id="42"/>
+                      </extend>
+                      <exec id="43">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="44">
+                          <when id="45">2009-10-08 08:22:26.109 EDT</when>
+                          <stringAtExecution>print &quot;some basic numbers:&quot;
+print 12  # this is an integer number
+print 12.5  # this is a floating point
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="46">
+                      <allocation>0</allocation>
+                      <lastSeenAt>8</lastSeenAt>
+                      <lineStart>6</lineStart>
+                      <lineEnd>9</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="47">
+                        <dictionary id="48"/>
+                      </extend>
+                      <exec id="49">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="50">
+                          <when id="51">2009-10-08 08:22:35.635 EDT</when>
+                          <stringAtExecution>print &quot;results of adding:&quot;
+print 12. + 13.0  # results in an integer
+print 12 + 0.5  # results in a float
+print 0.5 + 12  </stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="52">
+                      <allocation>0</allocation>
+                      <lastSeenAt>9</lastSeenAt>
+                      <lineStart>11</lineStart>
+                      <lineEnd>13</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="53">
+                        <dictionary id="54"/>
+                      </extend>
+                      <exec id="55">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="56">
+                          <when id="57">2009-10-08 08:22:52.202 EDT</when>
+                          <stringAtExecution>print &quot;results of subtracting:&quot;
+print 12 - 8.0
+print 12 - 25
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="58">
+                      <allocation>0</allocation>
+                      <lastSeenAt>10</lastSeenAt>
+                      <lineStart>15</lineStart>
+                      <lineEnd>17</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="59">
+                        <dictionary id="60"/>
+                      </extend>
+                      <exec id="61">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="62">
+                          <when id="63">2009-10-08 08:22:56.290 EDT</when>
+                          <stringAtExecution>print &quot;results of multiplication:&quot;
+print 12 * 8
+print 12 * (-25)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="64">
+                      <allocation>0</allocation>
+                      <lastSeenAt>11</lastSeenAt>
+                      <lineStart>19</lineStart>
+                      <lineEnd>25</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="65">
+                        <dictionary id="66"/>
+                      </extend>
+                      <exec id="67">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="68">
+                          <when id="69">2009-10-08 08:23:08.218 EDT</when>
+                          <stringAtExecution>print &quot;results of dividing:&quot;
+print 12 / 2
+print 11 / 2
+print 1./2
+print &quot;11. // 2 = &quot;, 11. // 2  # integer division
+#integer division always rounds off to a whole number
+print &quot;11. / 2 = &quot;, 11. / 2  # integer division</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="70">
+                      <allocation>1</allocation>
+                      <lastSeenAt>12</lastSeenAt>
+                      <lineStart>26</lineStart>
+                      <lineEnd>27</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="71">
+                        <dictionary id="72"/>
+                      </extend>
+                      <exec id="73">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="74">
+                          <when id="75">2009-10-08 08:23:16.393 EDT</when>
+                          <stringAtExecution>
+print 11 % 2   # modulo</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="76">
+                      <allocation>0</allocation>
+                      <lastSeenAt>13</lastSeenAt>
+                      <lineStart>27</lineStart>
+                      <lineEnd>27</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="77">
+                        <dictionary id="78"/>
+                      </extend>
+                      <exec id="79">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="80">
+                          <when id="81">2009-10-08 08:23:22.153 EDT</when>
+                          <stringAtExecution>
+print (11 % 2)   # modulo</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="82">
+                      <allocation>0</allocation>
+                      <lastSeenAt>14</lastSeenAt>
+                      <lineStart>29</lineStart>
+                      <lineEnd>32</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="83">
+                        <dictionary id="84"/>
+                      </extend>
+                      <exec id="85">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="86">
+                          <when id="87">2009-10-08 08:23:29.329 EDT</when>
+                          <stringAtExecution>print &quot;results of &apos;the power of&apos;:&quot;
+print 2 ** 8
+print 10 ** 2
+print 2 ** 0.5</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="88">
+                      <allocation>0</allocation>
+                      <lastSeenAt>15</lastSeenAt>
+                      <lineStart>34</lineStart>
+                      <lineEnd>35</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="89">
+                        <dictionary id="90"/>
+                      </extend>
+                      <exec id="91">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="92">
+                          <when id="93">2009-10-08 08:23:32.753 EDT</when>
+                          <stringAtExecution>print &quot;let&apos;s cause an error:&quot;
+print 1 / 0</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="94">
+                    <counts id="95"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="96">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="97">
+          <x>100.0</x>
+          <y>126.0</y>
+          <w>81.0</w>
+          <h>49.0</h>
+        </rect>
+        <parents id="98"/>
+        <children id="99">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="100">
+        <uid>__-162c0258:12434105a98:-7fa8</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="101">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="102">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="100"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="103">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="100"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>strings</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="20"/>
+            <string># Strings come in various guises (there are some tricks needed to use &apos; or &quot; inside a string)
+print &apos;this is a so called &quot;string&quot;&apos;
+print &quot;this is a so called &apos;string&apos;&quot;
+print &quot;this is a so called \&quot;string\&quot;&quot;
+print
+
+# you can concatenate them
+print &quot;one string &quot; + &quot;another string&quot;
+
+# and you can assign them to variables 
+a = &quot;one string&quot;
+b = &quot;another string&quot;
+
+print a + &quot; &quot; + b
+
+print &quot;many &quot; * 10, &quot;\n&quot;
+
+#print &quot;non-ascii should generally work:&quot;
+#print &quot;Åbenrå © ? ? \n&quot;
+
+#fancy formatting
+print &quot;adding two numbers: %d + %d = %d\n&quot; % (4,5,4+5)
+
+print &quot;and now an error:&quot;
+print &quot;many &quot; * 10.0
+
+# string multiplication really wants an
+# integer number; a float that happens to
+# be a whole number is not good enough
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="21"/>
+            <string>
+_self.python_globals_.declare(_self, &quot;a&quot;)
+_self.python_globals_.declare(_self, &quot;b&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <list id="104"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="24"/>
+            <map id="105">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="106">
+                  <areas id="107">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="108">
+                      <allocation>1</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>1</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="109">
+                        <dictionary id="110"/>
+                      </extend>
+                      <exec id="111">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="112">
+                          <when id="113">2009-10-08 08:15:39.385 EDT</when>
+                          <stringAtExecution>print &apos;this is a so called &quot;string&quot;&apos;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="114">
+                      <allocation>1</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>2</lineStart>
+                      <lineEnd>2</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="115">
+                        <dictionary id="116"/>
+                      </extend>
+                      <exec id="117">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="118">
+                          <when id="119">2009-10-08 08:15:41.81 EDT</when>
+                          <stringAtExecution>
+print &quot;this is a so called &apos;string&apos;&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="120">
+                      <allocation>1</allocation>
+                      <lastSeenAt>5</lastSeenAt>
+                      <lineStart>3</lineStart>
+                      <lineEnd>3</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="121">
+                        <dictionary id="122"/>
+                      </extend>
+                      <exec id="123">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="124">
+                          <when id="125">2009-10-08 08:15:42.505 EDT</when>
+                          <stringAtExecution>
+print &quot;this is a so called \&quot;string\&quot;&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="126">
+                      <allocation>0</allocation>
+                      <lastSeenAt>16</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>4</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="127">
+                        <dictionary id="128"/>
+                      </extend>
+                      <exec id="129">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="130">
+                          <when id="131">2009-10-08 08:23:43.449 EDT</when>
+                          <stringAtExecution>print &apos;this is a so called &quot;string&quot;&apos;
+print &quot;this is a so called &apos;string&apos;&quot;
+print &quot;this is a so called \&quot;string\&quot;&quot;
+print</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="132">
+                      <allocation>0</allocation>
+                      <lastSeenAt>17</lastSeenAt>
+                      <lineStart>6</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="133">
+                        <dictionary id="134"/>
+                      </extend>
+                      <exec id="135">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="136">
+                          <when id="137">2009-10-08 08:23:48.448 EDT</when>
+                          <stringAtExecution>
+print &quot;one string &quot; + &quot;another string&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="138">
+                      <allocation>0</allocation>
+                      <lastSeenAt>18</lastSeenAt>
+                      <lineStart>10</lineStart>
+                      <lineEnd>11</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="139">
+                        <dictionary id="140"/>
+                      </extend>
+                      <exec id="141">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="142">
+                          <when id="143">2009-10-08 08:23:52.432 EDT</when>
+                          <stringAtExecution>a = &quot;one string&quot;
+b = &quot;another string&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="144">
+                      <allocation>0</allocation>
+                      <lastSeenAt>19</lastSeenAt>
+                      <lineStart>13</lineStart>
+                      <lineEnd>13</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="145">
+                        <dictionary id="146"/>
+                      </extend>
+                      <exec id="147">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="148">
+                          <when id="149">2009-10-08 08:23:55.976 EDT</when>
+                          <stringAtExecution>print a + &quot; &quot; + b + chr(13) + chr(10) </stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="150">
+                      <allocation>0</allocation>
+                      <lastSeenAt>20</lastSeenAt>
+                      <lineStart>15</lineStart>
+                      <lineEnd>15</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="151">
+                        <dictionary id="152"/>
+                      </extend>
+                      <exec id="153">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="154">
+                          <when id="155">2009-10-08 08:24:00.72 EDT</when>
+                          <stringAtExecution>print &quot;many &quot; * 10, &quot;\n&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="156">
+                      <allocation>0</allocation>
+                      <lastSeenAt>21</lastSeenAt>
+                      <lineStart>17</lineStart>
+                      <lineEnd>18</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="157">
+                        <dictionary id="158"/>
+                      </extend>
+                      <exec id="159">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="160">
+                          <when id="161">2009-10-08 08:24:04.144 EDT</when>
+                          <stringAtExecution>print &quot;non-ascii should generally work:&quot;
+print &quot;Åbenrå © ? ? \n&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="162">
+                      <allocation>0</allocation>
+                      <lastSeenAt>22</lastSeenAt>
+                      <lineStart>21</lineStart>
+                      <lineEnd>21</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="163">
+                        <dictionary id="164"/>
+                      </extend>
+                      <exec id="165">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="166">
+                          <when id="167">2009-10-08 08:24:30.951 EDT</when>
+                          <stringAtExecution>
+print &quot;adding two numbers: %d + %d = %d\n&quot; % (4,5,4+5)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="168">
+                      <allocation>0</allocation>
+                      <lastSeenAt>23</lastSeenAt>
+                      <lineStart>23</lineStart>
+                      <lineEnd>24</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="169">
+                        <dictionary id="170"/>
+                      </extend>
+                      <exec id="171">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="172">
+                          <when id="173">2009-10-08 08:24:36.471 EDT</when>
+                          <stringAtExecution>print &quot;and now an error:&quot;
+print &quot;many &quot; * 10.0</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="174">
+                    <counts id="175"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="96"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="176">
+          <x>100.0</x>
+          <y>187.0</y>
+          <w>50.0</w>
+          <h>49.0</h>
+        </rect>
+        <parents id="177"/>
+        <children id="178">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="179">
+        <uid>__-162c0258:12434105a98:-7f6b</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="180">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="181">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="179"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="182">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="179"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>variables</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="20"/>
+            <string># variables are made on demand 
+# if you execute this line, &apos;a&apos; now means &apos;7&apos;
+a = 7
+print a
+
+# until you set it to be something else.
+a = &quot;hi&quot;
+print a
+
+b = 13
+c = &quot; there&quot;
+
+print a + c
+print b + 5
+
+a = 4.5
+print a + b
+
+print a ** b	/ 7
+
+a = 12
+b = 15
+a = &quot;this text&quot;
+c = a * b
+CAP = &quot;a string&quot;
+
+print c
+
+print CAP
+
+# variable names cannot start with a number:
+1a = 12
+
+# but variable names can contain numbers, just not at the start:
+a1 = 12
+
+# underscores are allowed:
+_a = 12
+a_ = 13
+
+# everything is an object
+# this &quot;rebinds&quot; the name &apos;a&apos; to a new
+# object:
+a = a + 12
+
+# variable names are case sensitive meaning that:
+x = 12
+# is a different variable from
+X = 13
+print x, X
+
+y = 102
+# so this is an error:
+print Y
+
+a, b, c = &quot;hello&quot;, 17, 3.5
+
+print b + c
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="21"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <list id="183"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="24"/>
+            <map id="184">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="185">
+                  <areas id="186">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="187">
+                      <allocation>0</allocation>
+                      <lastSeenAt>24</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="188">
+                        <dictionary id="189"/>
+                      </extend>
+                      <exec id="190">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="191">
+                          <when id="192">2009-10-08 08:25:02.438 EDT</when>
+                          <stringAtExecution>a = 7
+print a
+a = &quot;hi&quot;
+print a</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="193">
+                      <allocation>0</allocation>
+                      <lastSeenAt>25</lastSeenAt>
+                      <lineStart>9</lineStart>
+                      <lineEnd>10</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="194">
+                        <dictionary id="195"/>
+                      </extend>
+                      <exec id="196">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="197">
+                          <when id="198">2009-10-08 08:25:05.709 EDT</when>
+                          <stringAtExecution>b = 13
+c = &quot; there&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="199">
+                      <allocation>0</allocation>
+                      <lastSeenAt>26</lastSeenAt>
+                      <lineStart>12</lineStart>
+                      <lineEnd>13</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="200">
+                        <dictionary id="201"/>
+                      </extend>
+                      <exec id="202">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="203">
+                          <when id="204">2009-10-08 08:25:09.829 EDT</when>
+                          <stringAtExecution>print a + c
+print b + 5</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="205">
+                      <allocation>0</allocation>
+                      <lastSeenAt>27</lastSeenAt>
+                      <lineStart>15</lineStart>
+                      <lineEnd>16</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="206">
+                        <dictionary id="207"/>
+                      </extend>
+                      <exec id="208">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="209">
+                          <when id="210">2009-10-08 08:25:13.293 EDT</when>
+                          <stringAtExecution>a = 4.5
+print a + b</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="211">
+                      <allocation>0</allocation>
+                      <lastSeenAt>28</lastSeenAt>
+                      <lineStart>18</lineStart>
+                      <lineEnd>18</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="212">
+                        <dictionary id="213"/>
+                      </extend>
+                      <exec id="214">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="215">
+                          <when id="216">2009-10-08 08:25:17.893 EDT</when>
+                          <stringAtExecution>
+print a ** b	/ 7</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="217">
+                      <allocation>0</allocation>
+                      <lastSeenAt>29</lastSeenAt>
+                      <lineStart>20</lineStart>
+                      <lineEnd>24</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="218">
+                        <dictionary id="219"/>
+                      </extend>
+                      <exec id="220">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="221">
+                          <when id="222">2009-10-08 08:25:22.637 EDT</when>
+                          <stringAtExecution>a = 12
+b = 15
+a = &quot;this text&quot;
+c = a * b
+CAP = &quot;a string&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="223">
+                      <allocation>0</allocation>
+                      <lastSeenAt>30</lastSeenAt>
+                      <lineStart>25</lineStart>
+                      <lineEnd>28</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="224">
+                        <dictionary id="225"/>
+                      </extend>
+                      <exec id="226">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="227">
+                          <when id="228">2009-10-08 08:25:27.909 EDT</when>
+                          <stringAtExecution>
+print c
+
+print CAP</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="229">
+                    <counts id="230"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="96"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="231">
+          <x>100.0</x>
+          <y>251.0</y>
+          <w>86.0</w>
+          <h>49.0</h>
+        </rect>
+        <parents id="232"/>
+        <children id="233">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="234">
+        <uid>__-162c0258:12434105a98:-7f45</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="235">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="236">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="234"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="237">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="234"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>listloops</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="20"/>
+            <string>## let&apos;s introduce &apos;lists&apos; (or &apos;arrays&apos; as
+## they are called in some other languages)
+alist = [1, -2, &quot;asdsd&quot;, 4, 50]
+print alist
+alist.append(1234)
+print alist
+
+## fetching an item from the list:
+print alist[0]  # the first item
+print alist[1]  # the second
+
+## negative numbers start from the end:
+print alist[-1]  # the last item
+print alist[-2]  # the one before last
+
+# you can have lists of lists:
+print [1, 2, 3, [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]]
+print [1, 2, 3, [&quot;a&quot;, [&quot;deeper&quot;]]]
+
+# assigning a list to another name does
+# not make a copy: you just create another
+# reference to the same object
+alist = [1,2,&quot;hello&quot;,23.4]
+
+anotherlist = alist
+
+anotherlist.append(-9999)
+
+print &quot;anotherlist=&quot;,anotherlist
+print &quot;alist=&quot;,alist
+
+## strings are also a lot like lists:
+astring = &quot;abcdefg&quot;
+print astring[2]
+print astring[-1]  # from the end
+
+# you can slice lists into sublists
+alist = [&apos;zero&apos;,1,2,&quot;three&quot;, &quot;four&quot;,5,&quot;SIX&quot;]
+print alist
+
+# how long is a list? use &apos;len&apos;
+print len(alist)
+
+# this prints the elements from 2 up to (but not including) 5
+print alist[2:5]
+# from three to the end
+print alist[3:]
+# from the start up to (but not including) the second element
+print alist[:2]
+
+
+# because it&apos;s very usefull there&apos;s a quick way of making a list that has squential numbers in it:
+print range(10)  # from 0 to 10 (not incl. 10!)
+print range(5, 10)  # from 5 to 10 (not incl. 10!)
+print range(1, 19, 3) # from 1 to 19 in steps of 3
+
+
+alist = [&apos;zero&apos;,1,2,&quot;three&quot;, &quot;four&quot;,5,&quot;SIX&quot;]
+
+# and here&apos;s how you do something to everything in a list (here we just print out the elements)
+for element in alist:
+	print element
+	
+
+
+# take a close look at this &quot;for loop&quot; — you&apos;ll be seeing it a lot
+for item in alist:
+	# this is the body of the &quot;for&quot; loop, because it&apos;s indented
+	print item
+	# also: use the tab key to manually indent
+
+# we can loop over numbers
+for item in range(len(alist)):
+	print item, alist[item]
+
+# we can do math while we loop
+for i in range(10):
+	print i, i * 0.5
+
+# we can change variables while we loop
+f = 0.0
+for i in range(10):
+	f = f + 0.5
+	print i,f
+
+# we can loop loops
+for x in range(1, 5):  # outer loop
+	print &quot;--------&quot;
+	for y in range(x, x + 5):  # inner loop
+		print x, &quot;*&quot;, y, &quot;=&quot;, x * y
+
+# and we can loop looping loops
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z
+
+# and we can keep going...
+count = 1
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z, &quot;count =&quot;, count
+			count = count + 1
+			# alternate spelling:
+			#count += 1
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="21"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <list id="238"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="24"/>
+            <map id="239">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="240">
+                  <areas id="241">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="242">
+                      <allocation>0</allocation>
+                      <lastSeenAt>31</lastSeenAt>
+                      <lineStart>2</lineStart>
+                      <lineEnd>2</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="243">
+                        <dictionary id="244"/>
+                      </extend>
+                      <exec id="245">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="246">
+                          <when id="247">2009-10-08 08:26:46.90 EDT</when>
+                          <stringAtExecution>
+alist = [1, -2, &quot;asdsd&quot;, 4, 50]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="248">
+                      <allocation>0</allocation>
+                      <lastSeenAt>32</lastSeenAt>
+                      <lineStart>4</lineStart>
+                      <lineEnd>4</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="249">
+                        <dictionary id="250"/>
+                      </extend>
+                      <exec id="251">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="252">
+                          <when id="253">2009-10-08 08:26:52.754 EDT</when>
+                          <stringAtExecution>
+alist.append(1234)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="254">
+                      <allocation>0</allocation>
+                      <lastSeenAt>33</lastSeenAt>
+                      <lineStart>5</lineStart>
+                      <lineEnd>5</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="255">
+                        <dictionary id="256"/>
+                      </extend>
+                      <exec id="257">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="258">
+                          <when id="259">2009-10-08 08:27:10.106 EDT</when>
+                          <stringAtExecution>
+print alist</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="260">
+                      <allocation>0</allocation>
+                      <lastSeenAt>34</lastSeenAt>
+                      <lineStart>8</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="261">
+                        <dictionary id="262"/>
+                      </extend>
+                      <exec id="263">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="264">
+                          <when id="265">2009-10-08 08:27:22.857 EDT</when>
+                          <stringAtExecution>
+print alist[0]  # the first item</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="266">
+                      <allocation>0</allocation>
+                      <lastSeenAt>35</lastSeenAt>
+                      <lineStart>9</lineStart>
+                      <lineEnd>9</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="267">
+                        <dictionary id="268"/>
+                      </extend>
+                      <exec id="269">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="270">
+                          <when id="271">2009-10-08 08:27:24.97 EDT</when>
+                          <stringAtExecution>
+print alist[1]  # the second</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="272">
+                      <allocation>0</allocation>
+                      <lastSeenAt>36</lastSeenAt>
+                      <lineStart>12</lineStart>
+                      <lineEnd>12</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="273">
+                        <dictionary id="274"/>
+                      </extend>
+                      <exec id="275">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="276">
+                          <when id="277">2009-10-08 08:27:25.905 EDT</when>
+                          <stringAtExecution>
+print alist[-1]  # the last item</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="278">
+                      <allocation>0</allocation>
+                      <lastSeenAt>37</lastSeenAt>
+                      <lineStart>13</lineStart>
+                      <lineEnd>13</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="279">
+                        <dictionary id="280"/>
+                      </extend>
+                      <exec id="281">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="282">
+                          <when id="283">2009-10-08 08:27:26.913 EDT</when>
+                          <stringAtExecution>
+print alist[-2]  # the one before last</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="284">
+                      <allocation>0</allocation>
+                      <lastSeenAt>38</lastSeenAt>
+                      <lineStart>17</lineStart>
+                      <lineEnd>17</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="285">
+                        <dictionary id="286"/>
+                      </extend>
+                      <exec id="287">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="288">
+                          <when id="289">2009-10-08 08:27:32.801 EDT</when>
+                          <stringAtExecution>
+print [1, 2, 3, [&quot;a&quot;, [&quot;deeper&quot;]]]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="290">
+                      <allocation>0</allocation>
+                      <lastSeenAt>50</lastSeenAt>
+                      <lineStart>22</lineStart>
+                      <lineEnd>22</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="291">
+                        <dictionary id="292">
+                          <entry>
+                            <field.util.Dict_-Prop id="293">
+                              <name>forwardTransitions</name>
+                            </field.util.Dict_-Prop>
+                            <field.math.util.Histogram id="294">
+                              <counts id="295">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area id="296">
+                                    <allocation>0</allocation>
+                                    <lastSeenAt>51</lastSeenAt>
+                                    <lineStart>24</lineStart>
+                                    <lineEnd>24</lineEnd>
+                                    <invalid>false</invalid>
+                                    <extend id="297">
+                                      <dictionary id="298">
+                                        <entry>
+                                          <field.util.Dict_-Prop reference="293"/>
+                                          <field.math.util.Histogram id="299">
+                                            <counts id="300">
+                                              <entry>
+                                                <field.core.ui.text.rulers.ExecutedAreas_-Area id="301">
+                                                  <allocation>0</allocation>
+                                                  <lastSeenAt>52</lastSeenAt>
+                                                  <lineStart>31</lineStart>
+                                                  <lineEnd>31</lineEnd>
+                                                  <invalid>false</invalid>
+                                                  <extend id="302">
+                                                    <dictionary id="303">
+                                                      <entry>
+                                                        <field.util.Dict_-Prop reference="293"/>
+                                                        <field.math.util.Histogram id="304">
+                                                          <counts id="305">
+                                                            <entry>
+                                                              <field.core.ui.text.rulers.ExecutedAreas_-Area id="306">
+                                                                <allocation>0</allocation>
+                                                                <lastSeenAt>53</lastSeenAt>
+                                                                <lineStart>31</lineStart>
+                                                                <lineEnd>31</lineEnd>
+                                                                <invalid>false</invalid>
+                                                                <extend id="307">
+                                                                  <dictionary id="308">
+                                                                    <entry>
+                                                                      <field.util.Dict_-Prop reference="293"/>
+                                                                      <field.math.util.Histogram id="309">
+                                                                        <counts id="310"/>
+                                                                        <normalization>0.0</normalization>
+                                                                      </field.math.util.Histogram>
+                                                                    </entry>
+                                                                  </dictionary>
+                                                                </extend>
+                                                                <exec id="311">
+                                                                  <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="312">
+                                                                    <when id="313">2009-10-08 08:28:20.537 EDT</when>
+                                                                    <stringAtExecution>
+acopy.append(8274234)</stringAtExecution>
+                                                                  </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                  <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="314">
+                                                                    <when id="315">2009-10-08 08:28:59.882 EDT</when>
+                                                                    <stringAtExecution>
+acopy.append(8274234)</stringAtExecution>
+                                                                  </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                </exec>
+                                                              </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                                              <field.math.BaseMath_-MutableFloat id="316">
+                                                                <d>1.0</d>
+                                                              </field.math.BaseMath_-MutableFloat>
+                                                            </entry>
+                                                            <entry>
+                                                              <field.core.ui.text.rulers.ExecutedAreas_-Area reference="290"/>
+                                                              <field.math.BaseMath_-MutableFloat id="317">
+                                                                <d>1.0</d>
+                                                              </field.math.BaseMath_-MutableFloat>
+                                                            </entry>
+                                                          </counts>
+                                                          <normalization>2.0</normalization>
+                                                        </field.math.util.Histogram>
+                                                      </entry>
+                                                    </dictionary>
+                                                  </extend>
+                                                  <exec id="318">
+                                                    <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="319">
+                                                      <when id="320">2009-10-08 08:27:59.2 EDT</when>
+                                                      <stringAtExecution>
+acopy = list(alist)</stringAtExecution>
+                                                    </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                    <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="321">
+                                                      <when id="322">2009-10-08 08:28:11.833 EDT</when>
+                                                      <stringAtExecution>
+acopy = list(alist)</stringAtExecution>
+                                                    </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                    <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="323">
+                                                      <when id="324">2009-10-08 08:28:31.544 EDT</when>
+                                                      <stringAtExecution>
+acopy = list(alist)</stringAtExecution>
+                                                    </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                    <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="325">
+                                                      <when id="326">2009-10-08 08:28:56.594 EDT</when>
+                                                      <stringAtExecution>
+acopy = list(alist)</stringAtExecution>
+                                                    </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                  </exec>
+                                                </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                                <field.math.BaseMath_-MutableFloat id="327">
+                                                  <d>1.0</d>
+                                                </field.math.BaseMath_-MutableFloat>
+                                              </entry>
+                                            </counts>
+                                            <normalization>1.0</normalization>
+                                          </field.math.util.Histogram>
+                                        </entry>
+                                      </dictionary>
+                                    </extend>
+                                    <exec id="328">
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="329">
+                                        <when id="330">2009-10-08 08:27:41.793 EDT</when>
+                                        <stringAtExecution>
+anotherlist = alist</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="331">
+                                        <when id="332">2009-10-08 08:28:04.609 EDT</when>
+                                        <stringAtExecution>
+anotherlist = alist</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="333">
+                                        <when id="334">2009-10-08 08:28:51.274 EDT</when>
+                                        <stringAtExecution>
+anotherlist = alist</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                    </exec>
+                                  </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                  <field.math.BaseMath_-MutableFloat id="335">
+                                    <d>1.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area reference="301"/>
+                                  <field.math.BaseMath_-MutableFloat id="336">
+                                    <d>1.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>2.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="337">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="338">
+                          <when id="339">2009-10-08 08:27:38.338 EDT</when>
+                          <stringAtExecution>
+alist = [1,2,&quot;hello&quot;,23.4]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="340">
+                          <when id="341">2009-10-08 08:28:29.481 EDT</when>
+                          <stringAtExecution>
+alist = [1,2,&quot;hello&quot;,23.4]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="342">
+                          <when id="343">2009-10-08 08:28:48.818 EDT</when>
+                          <stringAtExecution>
+alist = [1,2,&quot;hello&quot;,23.4]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="296"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="344">
+                      <allocation>0</allocation>
+                      <lastSeenAt>41</lastSeenAt>
+                      <lineStart>26</lineStart>
+                      <lineEnd>26</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="345">
+                        <dictionary id="346"/>
+                      </extend>
+                      <exec id="347">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="348">
+                          <when id="349">2009-10-08 08:27:44.649 EDT</when>
+                          <stringAtExecution>
+anotherlist.append(-9999)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="350">
+                      <allocation>1</allocation>
+                      <lastSeenAt>42</lastSeenAt>
+                      <lineStart>29</lineStart>
+                      <lineEnd>29</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="351">
+                        <dictionary id="352"/>
+                      </extend>
+                      <exec id="353">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="354">
+                          <when id="355">2009-10-08 08:27:53.385 EDT</when>
+                          <stringAtExecution>
+print &quot;alist=&quot;,alist</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="356">
+                      <allocation>0</allocation>
+                      <lastSeenAt>45</lastSeenAt>
+                      <lineStart>28</lineStart>
+                      <lineEnd>29</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="357">
+                        <dictionary id="358"/>
+                      </extend>
+                      <exec id="359">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="360">
+                          <when id="361">2009-10-08 08:28:08.217 EDT</when>
+                          <stringAtExecution>print &quot;anotherlist=&quot;,anotherlist
+print &quot;alist=&quot;,alist</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="306"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="362">
+                      <allocation>0</allocation>
+                      <lastSeenAt>54</lastSeenAt>
+                      <lineStart>32</lineStart>
+                      <lineEnd>32</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="363">
+                        <dictionary id="364"/>
+                      </extend>
+                      <exec id="365">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="366">
+                          <when id="367">2009-10-08 08:29:14.513 EDT</when>
+                          <stringAtExecution>
+astring = &quot;abcdefg&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="368">
+                      <allocation>0</allocation>
+                      <lastSeenAt>55</lastSeenAt>
+                      <lineStart>34</lineStart>
+                      <lineEnd>34</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="369">
+                        <dictionary id="370"/>
+                      </extend>
+                      <exec id="371">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="372">
+                          <when id="373">2009-10-08 08:29:18.601 EDT</when>
+                          <stringAtExecution>
+print astring[-1]  # from the end</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="374">
+                      <allocation>0</allocation>
+                      <lastSeenAt>89</lastSeenAt>
+                      <lineStart>91</lineStart>
+                      <lineEnd>95</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="375">
+                        <dictionary id="376">
+                          <entry>
+                            <field.util.Dict_-Prop id="377">
+                              <name>forwardTransitions</name>
+                            </field.util.Dict_-Prop>
+                            <field.math.util.Histogram id="378">
+                              <counts id="379"/>
+                              <normalization>0.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="380">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="381">
+                          <when id="382">2009-10-08 08:31:03.854 EDT</when>
+                          <stringAtExecution>print &quot;three loops:&quot;
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="383">
+                          <when id="384">2009-10-08 10:33:40.876 EDT</when>
+                          <stringAtExecution>print &quot;three loops:&quot;
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="385">
+                      <allocation>0</allocation>
+                      <lastSeenAt>85</lastSeenAt>
+                      <lineStart>57</lineStart>
+                      <lineEnd>57</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="386">
+                        <dictionary id="387">
+                          <entry>
+                            <field.util.Dict_-Prop reference="377"/>
+                            <field.math.util.Histogram id="388">
+                              <counts id="389"/>
+                              <normalization>0.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="390">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="391">
+                          <when id="392">2009-10-08 10:28:46.393 EDT</when>
+                          <stringAtExecution>
+alist = [&apos;zero&apos;,1,2,&quot;three&quot;, &quot;four&quot;,5,&quot;SIX&quot;]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="393">
+                          <when id="394">2009-10-08 10:31:30.264 EDT</when>
+                          <stringAtExecution>
+alist = [&apos;zero&apos;,1,2,&quot;three&quot;, &quot;four&quot;,5,&quot;SIX&quot;]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="395">
+                      <allocation>0</allocation>
+                      <lastSeenAt>84</lastSeenAt>
+                      <lineStart>63</lineStart>
+                      <lineEnd>63</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="396">
+                        <dictionary id="397">
+                          <entry>
+                            <field.util.Dict_-Prop reference="377"/>
+                            <field.math.util.Histogram id="398">
+                              <counts id="399">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area reference="385"/>
+                                  <field.math.BaseMath_-MutableFloat id="400">
+                                    <d>1.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>1.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="401">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="402">
+                          <when id="403">2009-10-08 10:30:54.313 EDT</when>
+                          <stringAtExecution>
+print range(1,10, 2)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="404">
+                          <when id="405">2009-10-08 10:31:03.673 EDT</when>
+                          <stringAtExecution>
+print range(1,10, 3)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="406">
+                      <allocation>1</allocation>
+                      <lastSeenAt>86</lastSeenAt>
+                      <lineStart>61</lineStart>
+                      <lineEnd>61</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="407">
+                        <dictionary id="408"/>
+                      </extend>
+                      <exec id="409">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="410">
+                          <when id="411">2009-10-08 10:31:41.120 EDT</when>
+                          <stringAtExecution>
+	print element</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="412">
+                      <allocation>0</allocation>
+                      <lastSeenAt>87</lastSeenAt>
+                      <lineStart>60</lineStart>
+                      <lineEnd>61</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="413">
+                        <dictionary id="414"/>
+                      </extend>
+                      <exec id="415">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="416">
+                          <when id="417">2009-10-08 10:31:49.96 EDT</when>
+                          <stringAtExecution>for element in alist:
+	print element</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="418">
+                      <allocation>0</allocation>
+                      <lastSeenAt>88</lastSeenAt>
+                      <lineStart>80</lineStart>
+                      <lineEnd>83</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="419">
+                        <dictionary id="420"/>
+                      </extend>
+                      <exec id="421">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="422">
+                          <when id="423">2009-10-08 10:33:05.853 EDT</when>
+                          <stringAtExecution>f = 0.
+for i in range(10):
+	f = f + 0.5
+	print i,f</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="424">
+                      <allocation>0</allocation>
+                      <lastSeenAt>90</lastSeenAt>
+                      <lineStart>98</lineStart>
+                      <lineEnd>103</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="425">
+                        <dictionary id="426"/>
+                      </extend>
+                      <exec id="427">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="428">
+                          <when id="429">2009-10-08 10:34:12.876 EDT</when>
+                          <stringAtExecution>count = 1
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z, &quot;count =&quot;, count
+			count = count + 1</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="430">
+                    <counts id="431">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="290"/>
+                        <field.math.BaseMath_-MutableFloat id="432">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="301"/>
+                        <field.math.BaseMath_-MutableFloat id="433">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="374"/>
+                        <field.math.BaseMath_-MutableFloat id="434">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="395"/>
+                        <field.math.BaseMath_-MutableFloat id="435">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>4.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="96"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="436">
+          <x>100.0</x>
+          <y>327.0</y>
+          <w>98.0</w>
+          <h>49.0</h>
+        </rect>
+        <parents id="437"/>
+        <children id="438">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="439">
+        <uid>__-162c0258:12434105a98:-7f29</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="440">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="441">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="439"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="442">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="439"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>functions</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="20"/>
+            <string># defining a function:
+def myfunction():
+	print &quot;hello!&quot;
+
+# of course, it&apos;s not enough to just write the code above, you actually have to execute it before Field knows anything about it
+
+# calling the function:
+myfunction()
+
+# a common error
+# not calling the function:
+myfunction   # note missing ()
+
+# &quot;myfunction&quot; refers to the function you made, but only by putting () at the end of it do you actually cause myfunction to be executed
+
+# defining a function that takes an parameters
+def mysecondfunction(x, y):
+	print &quot;hello!&quot;, x, y
+
+# calling the function with 2 arguments
+mysecondfunction(123, 456)
+
+# this is an error
+myseconcfunction(123)
+# because it doesn&apos;t have enough parameters
+
+def add2numbers(x, y):
+	# you can see &apos;global&apos; vars
+	print aglobalvariable
+	result = x + y
+	return result
+
+aglobalvariable = &quot;hi!&quot;
+thereturnedvalue = add2numbers(1, 2)
+print thereturnedvalue
+
+# &apos;result&apos; was a &quot;local&quot;name inside
+# add2number. It&apos;s gone. You can&apos;t see it from outside the function.
+# this line will print an error:
+print result
+
+
+# obviously functions can call other functions
+def anotherfunc(x, y):
+	# calling add2numbers function:
+	return add2numbers(x, y)
+
+print anotherfunc(1, 2)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="21"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <list id="443"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="24"/>
+            <map id="444">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="445">
+                  <areas id="446">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="447">
+                      <allocation>0</allocation>
+                      <lastSeenAt>59</lastSeenAt>
+                      <lineStart>11</lineStart>
+                      <lineEnd>11</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="448">
+                        <dictionary id="449">
+                          <entry>
+                            <field.util.Dict_-Prop reference="293"/>
+                            <field.math.util.Histogram id="450">
+                              <counts id="451"/>
+                              <normalization>0.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="452">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="453">
+                          <when id="454">2009-10-08 08:31:49.130 EDT</when>
+                          <stringAtExecution>
+myfunction   # note missing ()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="455">
+                          <when id="456">2009-10-08 08:32:03.521 EDT</when>
+                          <stringAtExecution>
+myfunction   # note missing ()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="457">
+                      <allocation>0</allocation>
+                      <lastSeenAt>58</lastSeenAt>
+                      <lineStart>1</lineStart>
+                      <lineEnd>2</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="458">
+                        <dictionary id="459"/>
+                      </extend>
+                      <exec id="460">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="461">
+                          <when id="462">2009-10-08 08:31:53.601 EDT</when>
+                          <stringAtExecution>def myfunction():
+	print &quot;hello!&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="463">
+                      <allocation>0</allocation>
+                      <lastSeenAt>60</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="464">
+                        <dictionary id="465"/>
+                      </extend>
+                      <exec id="466">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="467">
+                          <when id="468">2009-10-08 08:32:06.593 EDT</when>
+                          <stringAtExecution>
+myfunction()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="469">
+                      <allocation>0</allocation>
+                      <lastSeenAt>61</lastSeenAt>
+                      <lineStart>16</lineStart>
+                      <lineEnd>17</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="470">
+                        <dictionary id="471"/>
+                      </extend>
+                      <exec id="472">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="473">
+                          <when id="474">2009-10-08 08:32:10.921 EDT</when>
+                          <stringAtExecution>def mysecondfunction(x, y):
+	print &quot;hello!&quot;, x, y</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="475">
+                      <allocation>0</allocation>
+                      <lastSeenAt>62</lastSeenAt>
+                      <lineStart>20</lineStart>
+                      <lineEnd>20</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="476">
+                        <dictionary id="477"/>
+                      </extend>
+                      <exec id="478">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="479">
+                          <when id="480">2009-10-08 08:32:17.545 EDT</when>
+                          <stringAtExecution>
+mysecondfunction(123, 456)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="481">
+                      <allocation>0</allocation>
+                      <lastSeenAt>63</lastSeenAt>
+                      <lineStart>26</lineStart>
+                      <lineEnd>30</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="482">
+                        <dictionary id="483"/>
+                      </extend>
+                      <exec id="484">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="485">
+                          <when id="486">2009-10-08 08:32:23.97 EDT</when>
+                          <stringAtExecution>def add2numbers(x, y):
+	# you can see &apos;global&apos; vars
+	print aglobalvariable
+	result = x + y
+	return result</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="487">
+                      <allocation>0</allocation>
+                      <lastSeenAt>64</lastSeenAt>
+                      <lineStart>32</lineStart>
+                      <lineEnd>34</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="488">
+                        <dictionary id="489"/>
+                      </extend>
+                      <exec id="490">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="491">
+                          <when id="492">2009-10-08 08:32:30.129 EDT</when>
+                          <stringAtExecution>aglobalvariable = &quot;hi!&quot;
+thereturnedvalue = add2numbers(1, 2)
+print thereturnedvalue</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="493">
+                      <allocation>0</allocation>
+                      <lastSeenAt>65</lastSeenAt>
+                      <lineStart>42</lineStart>
+                      <lineEnd>45</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="494">
+                        <dictionary id="495"/>
+                      </extend>
+                      <exec id="496">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="497">
+                          <when id="498">2009-10-08 08:32:33.81 EDT</when>
+                          <stringAtExecution>
+def anotherfunc(x, y):
+	# calling add2numbers function:
+	return add2numbers(x, y)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="499">
+                      <allocation>0</allocation>
+                      <lastSeenAt>66</lastSeenAt>
+                      <lineStart>47</lineStart>
+                      <lineEnd>47</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="500">
+                        <dictionary id="501"/>
+                      </extend>
+                      <exec id="502">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="503">
+                          <when id="504">2009-10-08 08:32:34.889 EDT</when>
+                          <stringAtExecution>
+print anotherfunc(1, 2)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="505">
+                    <counts id="506">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="447"/>
+                        <field.math.BaseMath_-MutableFloat id="507">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>1.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="96"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="508">
+          <x>100.0</x>
+          <y>387.0</y>
+          <w>91.0</w>
+          <h>49.0</h>
+        </rect>
+        <parents id="509"/>
+        <children id="510">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="511">
+        <uid>__-162c0258:12434105a98:-7f05</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="512">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="513">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="511"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="514">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="511"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>conditions</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="20"/>
+            <string>## comparisons
+
+# let&apos;s define some variables
+a = 12
+b = 20
+print &quot;a =&quot;, a, &quot;and b =&quot;, b
+
+# now we can answer some questions
+print &quot;are a and b equal?&quot;
+print a == b
+
+print &quot;are a and b not equal?&quot;
+print a != b
+
+print &quot;is a greater than b?&quot;
+print a &gt; b
+
+print &quot;is a less than b?&quot;
+print a &lt; b
+
+print &quot;is a greater than or equal to b?&quot;
+print a &gt;= b
+
+print &quot;is a less than or equal to b?&quot;
+print a &lt;= b
+
+result = a &lt; b
+print &quot;result is:&quot;, result
+
+# we can chose to run pieces of code if certain conditions are true or not
+if a &lt; b:
+	print &quot;a is less than b&quot;
+
+if a &gt; b:
+	print &quot;a is greater than b&quot;
+
+# we can do one thing if a is less than b and another thing otherwise
+if a &lt; b:
+	print &quot;A&quot;
+else:
+	print &quot;B&quot;
+
+# we can do one thing if a is greater than b and another thing if a is 12 and another thing otherwise.
+if a &gt; b:
+	print &quot;A&quot;
+elif a == 12:
+	print &quot;B&quot;
+else:
+	print &quot;C&quot;
+
+# and so on
+a,b = 2, 12
+
+print &quot;if/elif/elif/.../else&quot;
+if a &gt; b:
+	print &quot;A&quot;
+elif a == 10:
+	print &quot;B 10&quot;
+elif a == 11:
+	print &quot;B 11&quot;
+elif a == 12:
+	print &quot;B 12&quot;
+elif a == 13:
+	print &quot;B 13&quot;
+else:
+	print &quot;C&quot;
+
+a,b = 17, 14
+# boolean logic
+if a &gt; 15 and b &gt; 15:
+	print &quot;both a and b are greater than 15&quot;
+else:
+	print &quot;either one of a and b is NOT greater than 15&quot;
+
+if a &gt; 15 or b &gt; 15:
+	print &quot;a OR b are greater than 15&quot;
+else:
+	print &quot;neither a or b ate greater than 15&quot;
+
+print &quot;a result:&quot;, a &gt; 15 or b &gt; 15
+
+# inversing a truth value:
+print &quot;not True:&quot;, not True
+print &quot;not False:&quot;, not False
+print &quot;not not False:&quot;, not not False
+print &quot;not not not False:&quot;, not not not False
+
+# grouping subexpressions by using parentheses:
+if (a &gt; b and b == 13) or b == 25:  
+	print &quot;...&quot;
+if a &gt; b and (b == 13 or b == 25):
+	print &quot;...&quot;
+# parentheses nest:
+#if a &gt; b and (b == 13 or (b == 25 and a == 12)):
+#   ...
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="21"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <list id="515"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="24"/>
+            <map id="516">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="517">
+                  <areas id="518"/>
+                  <rootHistogram id="519">
+                    <counts id="520"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="96"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="521">
+          <x>100.0</x>
+          <y>450.0</y>
+          <w>103.0</w>
+          <h>52.0</h>
+        </rect>
+        <parents id="522"/>
+        <children id="523">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="524">
+        <uid>__6046a99:1243418f149:-7e93</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="525">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="526">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="527">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="524"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="528">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="529">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="524"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="530">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>hello</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="531">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string># this line is a comment. It&apos;s completely ignored because it starts with a # sign 
+
+# in Field you run code by pressing command-return (on a line) or selecting something and then pressing command-return.
+
+# this line prints hello world to the output portion of this window
+print &quot;hello world&quot;
+
+# this line prints &apos;4&apos;
+print 2+2
+
+# this line prints hello world! four times in a row
+print (2+2) * &quot;hello world! &quot;
+
+# and this one says hi a lot
+print 10 * ( &quot;hi&quot; + &apos; &apos;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="532">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="533">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="534">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="535"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="536">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="537">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="538">
+                  <areas id="539">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="540">
+                      <allocation>0</allocation>
+                      <lastSeenAt>97</lastSeenAt>
+                      <lineStart>11</lineStart>
+                      <lineEnd>11</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="541">
+                        <dictionary id="542">
+                          <entry>
+                            <field.util.Dict_-Prop reference="293"/>
+                            <field.math.util.Histogram id="543">
+                              <counts id="544">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area reference="540"/>
+                                  <field.math.BaseMath_-MutableFloat id="545">
+                                    <d>2.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area id="546">
+                                    <allocation>0</allocation>
+                                    <lastSeenAt>98</lastSeenAt>
+                                    <lineStart>14</lineStart>
+                                    <lineEnd>14</lineEnd>
+                                    <invalid>false</invalid>
+                                    <extend id="547">
+                                      <dictionary id="548"/>
+                                    </extend>
+                                    <exec id="549">
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="550">
+                                        <when id="551">2009-10-08 10:35:29.22 EDT</when>
+                                        <stringAtExecution>
+print 10* &quot;hi&quot;</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="552">
+                                        <when id="553">2009-10-08 10:36:06.381 EDT</when>
+                                        <stringAtExecution>
+print 10 * ( &quot;hi&quot; + &apos; &apos;)</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="554">
+                                        <when id="555">2009-11-05 17:42:59.967 EST</when>
+                                        <stringAtExecution>
+print 10 * ( &quot;hi&quot; + &apos; &apos;)</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                    </exec>
+                                  </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                  <field.math.BaseMath_-MutableFloat id="556">
+                                    <d>1.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>3.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="557">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="558">
+                          <when id="559">2009-10-08 08:36:31.537 EDT</when>
+                          <stringAtExecution>
+asdfasdf&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="560">
+                          <when id="561">2009-10-08 08:36:56.889 EDT</when>
+                          <stringAtExecution>
+asdfasdf&quot;&quot;&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="562">
+                          <when id="563">2009-10-08 08:37:04.16 EDT</when>
+                          <stringAtExecution>
+print (2+2)*&quot;hello world! &quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="564">
+                          <when id="565">2009-10-08 08:41:12.936 EDT</when>
+                          <stringAtExecution>
+print (2+2) * &quot;hello world! &quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="566">
+                          <when id="567">2009-10-08 10:35:08.766 EDT</when>
+                          <stringAtExecution>
+print (2+2) * &quot;hello world! &quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="568">
+                          <when id="569">2009-11-05 17:42:50.360 EST</when>
+                          <stringAtExecution>
+print (2+2) * &quot;hello world! &quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="570">
+                      <allocation>0</allocation>
+                      <lastSeenAt>91</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>5</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="571">
+                        <dictionary id="572"/>
+                      </extend>
+                      <exec id="573">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="574">
+                          <when id="575">2009-10-08 10:34:56.473 EDT</when>
+                          <stringAtExecution>print &quot;hello world&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="576">
+                      <allocation>0</allocation>
+                      <lastSeenAt>92</lastSeenAt>
+                      <lineStart>8</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="577">
+                        <dictionary id="578"/>
+                      </extend>
+                      <exec id="579">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="580">
+                          <when id="581">2009-10-08 10:35:00.519 EDT</when>
+                          <stringAtExecution>
+print 2+2</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="546"/>
+                  </areas>
+                  <rootHistogram id="582">
+                    <counts id="583">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="546"/>
+                        <field.math.BaseMath_-MutableFloat id="584">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="540"/>
+                        <field.math.BaseMath_-MutableFloat id="585">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="540"/>
+                        <field.math.BaseMath_-MutableFloat id="586">
+                          <d>2.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>1.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="96"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="587">
+          <x>100.0</x>
+          <y>67.0</y>
+          <w>50.0</w>
+          <h>49.0</h>
+        </rect>
+        <parents id="588"/>
+        <children id="589">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="590">
+        <uid>__677e2499:124c6814ba0:-7d44</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="591">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="592">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="593">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="594">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="590"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="595">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="596"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="597">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="598">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="599">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="600">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="590"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="601">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="602">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+
+
+label= &quot;&quot;&quot;These boxes contain snippets of Python code. Click on them to select them and then work through the examples.&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="603">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="604">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="605">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="606" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="607">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAbVRoZXNlIGJveGVzIGNvbnRhaW4gc25pcHBldHMgb2Yg
+UHl0aG9uIGNvZGUuIENsaWNrIG9uIHRoZW0gdG8gc2VsZWN0IHRoZW0gYW5kIHRoZW4gd29yayB0
+aHJvdWdoIHRoZSBleGFtcGxlcy54eHNyABdqYXZhLnV0aWwuTGlua2VkSGFzaE1hcDTATlwQbMD7
+AgABWgALYWNjZXNzT3JkZXJ4cQB+ABE/QAAAAAAADHcIAAAAEAAAAARzcQB+ABN0ABBvZmZzZXRG
+cm9tU291cmNlc3IAGWZpZWxkLm1hdGgubGluYWxnLlZlY3RvcjJ9DiTSDG7ixAIAAkYAAXhGAAF5
+eHAAAAAAAAAAAHNxAH4AE3QAFWNvbnRhaW5zTXVsdGlsaW5lVGV4dHNxAH4AHQAAAAFzcQB+ABN0
+AA9zaG91bGRIaWdobGlnaHRzcgARamF2YS5sYW5nLkJvb2xlYW7NIHKA1Zz67gIAAVoABXZhbHVl
+eHAAc3EAfgATdAAMdG90YWxPcGFjaXR5c3IAEGphdmEubGFuZy5Eb3VibGWAs8JKKWv7BAIAAUQA
+BXZhbHVleHEAfgAJP+AAAAAAAAB4AA==
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="594"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="608">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string></string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="609">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="610">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="611">
+                  <areas id="612">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="613">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>9</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="614">
+                        <dictionary id="615"/>
+                      </extend>
+                      <exec id="616">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="617">
+                          <when id="618">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="619">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>10</lineStart>
+                      <lineEnd>10</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="620">
+                        <dictionary id="621"/>
+                      </extend>
+                      <exec id="622">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="623">
+                          <when id="624">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="625">
+                    <counts id="626"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="627">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="628">
+          <x>303.0</x>
+          <y>218.5</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="629"/>
+        <children id="630">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+    </parents>
+    <children id="631">
+      <field.core.plugins.python.PythonPlugin_-LocalVisualElement id="632">
+        <uid>//plugin_python</uid>
+        <parents id="633">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="634">
+          <field.core.plugins.history.HistoryPlugin_-LocalVisualElement id="635">
+            <uid>//HistoryPlugin</uid>
+            <parents id="636">
+              <field.core.plugins.python.PythonPlugin_-LocalVisualElement reference="632"/>
+            </parents>
+            <children id="637"/>
+          </field.core.plugins.history.HistoryPlugin_-LocalVisualElement>
+        </children>
+      </field.core.plugins.python.PythonPlugin_-LocalVisualElement>
+      <field.core.plugins.InspectorPlugin_-LocalVisualElement id="638">
+        <uid>//inspector_python</uid>
+        <parents id="639">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="640"/>
+      </field.core.plugins.InspectorPlugin_-LocalVisualElement>
+      <field.core.plugins.connection.Connections_-LocalVisualElement id="641">
+        <uid>//plugin_connections</uid>
+        <parents id="642">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="643"/>
+      </field.core.plugins.connection.Connections_-LocalVisualElement>
+      <field.core.plugins.SimpleConstraints_-LocalVisualElement id="644">
+        <uid>//plugin_simpleConstraints</uid>
+        <parents id="645">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="646"/>
+      </field.core.plugins.SimpleConstraints_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="647">
+        <uid>//plugin_pseudoproperties</uid>
+        <parents id="648">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="649"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement id="650">
+        <uid>//AudoExecutePython</uid>
+        <parents id="651">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="652"/>
+      </field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement>
+      <field.core.plugins.log.LoggingPlugin_-LocalVisualElement id="653">
+        <uid>//LoggingPlugin</uid>
+        <parents id="654">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="655"/>
+      </field.core.plugins.log.LoggingPlugin_-LocalVisualElement>
+      <field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement id="656">
+        <uid>//plugin_complexConstraints</uid>
+        <parents id="657">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="658"/>
+      </field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement>
+      <field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement id="659">
+        <uid>//plugin_basicDrawingPlugin</uid>
+        <parents id="660">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="661"/>
+      </field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="662">
+        <uid>//plugin_snip</uid>
+        <parents id="663">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="664"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="665">
+        <uid>//plugin_referencePlugin2</uid>
+        <parents id="666">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="667"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="668">
+        <uid>//plugin_advancedgeometry</uid>
+        <parents id="669">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="670"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="671">
+        <uid>//plugin_fieldgraphics</uid>
+        <parents id="672">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="673"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="674">
+        <uid>//plugin_hierarchy</uid>
+        <parents id="675">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="676"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="677">
+        <uid>//plugin_freehand</uid>
+        <parents id="678">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="679"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="680">
+        <uid>//plugin_freehand</uid>
+        <parents id="681">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="682"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="683">
+        <uid>//plugin_jsrscripting</uid>
+        <parents id="684">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="685"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="686">
+        <uid>//plugin_max</uid>
+        <parents id="687">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="688"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="689">
+        <uid>//plugin_osc</uid>
+        <parents id="690">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="691"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="692">
+        <uid>//plugin_processingplugin</uid>
+        <parents id="693">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="694"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="695">
+        <uid>//plugin_scrubber</uid>
+        <parents id="696">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="697"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <marc.plugins.topology.TopologyPlugin_-LocalVisualElement id="698">
+        <uid>//topology_plugin</uid>
+        <parents id="699">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="700"/>
+      </marc.plugins.topology.TopologyPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="701">
+        <uid>//plugin_typing</uid>
+        <parents id="702">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="703"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="704">
+        <uid>//plugin_unroll</uid>
+        <parents id="705">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="706"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="707">
+        <uid>//plugin_variant</uid>
+        <parents id="708">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="709"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+    </children>
+  </field.core.StandardFluidSheet_-RootSheetElement>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_pythonversion_1</left>
+    <right class="map" id="2">
+      <entry>
+        <string>__-162c0258:12434105a98:-7ee7</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="3">
+          <uid>__-162c0258:12434105a98:-7ee7</uid>
+          <persistantVariables id="4"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7f45</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="5">
+          <uid>__-162c0258:12434105a98:-7f45</uid>
+          <persistantVariables id="6"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__6046a99:1243418f149:-7e93</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="7">
+          <uid>__6046a99:1243418f149:-7e93</uid>
+          <persistantVariables id="8"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7f05</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="9">
+          <uid>__-162c0258:12434105a98:-7f05</uid>
+          <persistantVariables id="10"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__677e2499:124c6814ba0:-7d44</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="11">
+          <uid>__677e2499:124c6814ba0:-7d44</uid>
+          <persistantVariables id="12"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7fa8</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="13">
+          <uid>__-162c0258:12434105a98:-7fa8</uid>
+          <persistantVariables id="14"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7fff</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="15">
+          <uid>__-162c0258:12434105a98:-7fff</uid>
+          <persistantVariables id="16"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7f29</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="17">
+          <uid>__-162c0258:12434105a98:-7f29</uid>
+          <persistantVariables id="18"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7f6b</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="19">
+          <uid>__-162c0258:12434105a98:-7f6b</uid>
+          <persistantVariables id="20"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-162c0258:12434105a98:-7ff5</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="21">
+          <uid>__-162c0258:12434105a98:-7ff5</uid>
+          <persistantVariables id="22"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+    </right>
+  </field.namespace.generic.Generics_-Pair>
+  <null/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_connectionsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_simpleConstraintsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//AudoExecutePythonversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//LoggingPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//HistoryPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_complexConstraintsversion_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Triple id="1">
+    <left class="string">//plugin_basicDrawingPluginversion_2</left>
+    <middle class="set" id="2"/>
+    <right class="set" id="3"/>
+  </field.namespace.generic.Generics_-Triple>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <list id="1"/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+</object-stream>

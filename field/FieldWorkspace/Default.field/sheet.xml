@@ -1,0 +1,288 @@
+<object-stream>
+  <string>version_2</string>
+  <field.core.StandardFluidSheet_-RootSheetElement id="1">
+    <uid>//rootSheetElement</uid>
+    <parents id="2">
+      <field.core.dispatch.VisualElement id="3">
+        <uid>__1b03f764:124cf7c659f:-7fff</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="4">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="5">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.execution.TemporalSliderOverrides id="6">
+              <class>field.core.execution.TemporalSliderOverrides</class>
+              <element reference="3"/>
+            </field.core.execution.TemporalSliderOverrides>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="7">
+              <name>creationToken</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>time</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="8">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="9">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="3"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="10">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="11">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>timeSlider</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="12">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="13">
+          <x>-1.0</x>
+          <y>0.0</y>
+          <w>0.0</w>
+          <h>0.0</h>
+        </rect>
+        <parents id="14"/>
+        <children id="15">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+    </parents>
+    <children id="16">
+      <field.core.plugins.python.PythonPlugin_-LocalVisualElement id="17">
+        <uid>//plugin_python</uid>
+        <parents id="18">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="19">
+          <field.core.plugins.history.HistoryPlugin_-LocalVisualElement id="20">
+            <uid>//HistoryPlugin</uid>
+            <parents id="21">
+              <field.core.plugins.python.PythonPlugin_-LocalVisualElement reference="17"/>
+            </parents>
+            <children id="22"/>
+          </field.core.plugins.history.HistoryPlugin_-LocalVisualElement>
+        </children>
+      </field.core.plugins.python.PythonPlugin_-LocalVisualElement>
+      <field.core.plugins.InspectorPlugin_-LocalVisualElement id="23">
+        <uid>//inspector_python</uid>
+        <parents id="24">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="25"/>
+      </field.core.plugins.InspectorPlugin_-LocalVisualElement>
+      <field.core.plugins.connection.Connections_-LocalVisualElement id="26">
+        <uid>//plugin_connections</uid>
+        <parents id="27">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="28"/>
+      </field.core.plugins.connection.Connections_-LocalVisualElement>
+      <field.core.plugins.SimpleConstraints_-LocalVisualElement id="29">
+        <uid>//plugin_simpleConstraints</uid>
+        <parents id="30">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="31"/>
+      </field.core.plugins.SimpleConstraints_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="32">
+        <uid>//plugin_pseudoproperties</uid>
+        <parents id="33">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="34"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement id="35">
+        <uid>//AudoExecutePython</uid>
+        <parents id="36">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="37"/>
+      </field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement>
+      <field.core.plugins.log.LoggingPlugin_-LocalVisualElement id="38">
+        <uid>//LoggingPlugin</uid>
+        <parents id="39">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="40"/>
+      </field.core.plugins.log.LoggingPlugin_-LocalVisualElement>
+      <field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement id="41">
+        <uid>//plugin_complexConstraints</uid>
+        <parents id="42">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="43"/>
+      </field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement>
+      <field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement id="44">
+        <uid>//plugin_basicDrawingPlugin</uid>
+        <parents id="45">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="46"/>
+      </field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="47">
+        <uid>//plugin_snip</uid>
+        <parents id="48">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="49"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="50">
+        <uid>//plugin_referencePlugin2</uid>
+        <parents id="51">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="52"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="53">
+        <uid>//plugin_fieldgraphics</uid>
+        <parents id="54">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="55"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="56">
+        <uid>//plugin_jsrscripting</uid>
+        <parents id="57">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="58"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="59">
+        <uid>//plugin_hierarchy</uid>
+        <parents id="60">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="61"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="62">
+        <uid>//plugin_freehand</uid>
+        <parents id="63">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="64"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="65">
+        <uid>//plugin_freehand</uid>
+        <parents id="66">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="67"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="68">
+        <uid>//plugin_processingplugin</uid>
+        <parents id="69">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="70"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="71">
+        <uid>//plugin_scrubber</uid>
+        <parents id="72">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="73"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <marc.plugins.topology.TopologyPlugin_-LocalVisualElement id="74">
+        <uid>//topology_plugin</uid>
+        <parents id="75">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="76"/>
+      </marc.plugins.topology.TopologyPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="77">
+        <uid>//plugin_typing</uid>
+        <parents id="78">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="79"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+    </children>
+  </field.core.StandardFluidSheet_-RootSheetElement>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_pythonversion_1</left>
+    <right class="map" id="2">
+      <entry>
+        <string>__1b03f764:124cf7c659f:-7fff</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="3">
+          <uid>__1b03f764:124cf7c659f:-7fff</uid>
+          <persistantVariables id="4"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+    </right>
+  </field.namespace.generic.Generics_-Pair>
+  <null/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_connectionsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_simpleConstraintsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//AudoExecutePythonversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//LoggingPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//HistoryPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_complexConstraintsversion_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Triple id="1">
+    <left class="string">//plugin_basicDrawingPluginversion_2</left>
+    <middle class="set" id="2"/>
+    <right class="set" id="3"/>
+  </field.namespace.generic.Generics_-Triple>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <list id="1"/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+</object-stream>

@@ -1,0 +1,20 @@
+string>
+# some properties are picked up by the canvas (.name is one example)
+
+# this sets a tint on the box
+_self.color1=Color4(0.25, 0.0, 0, 0.25)
+_self.color2=Color4(0, 0, 0.0, 0.25)
+
+# if you've gone through the drawing documentation, you'll understand this code
+
+decoration = PLine().moveTo(0,0).lineTo(-20,0).circle(5,-20,0)(filled=1, color=Color4(0,0,0,0.25), offsetFromSource=Vector2(0,0.5))
+
+# any property that starts with decoration_ provides PLine's that decorate this box
+_self.decoration_circle = decoration
+
+# by using the PLine proprety 'offsetFromSource' we tell Field that we are drawing relative to some position inside this box (here, half way down the left side). This means that we can drag the box around and our drawing moves with it
+
+# perhaps unexpectedly, this source code is also contained inside a property:
+print _self.python_source_v
+
+# and you can, of course, edit this property from within the code itself (probably tying yourself completely in a knot)

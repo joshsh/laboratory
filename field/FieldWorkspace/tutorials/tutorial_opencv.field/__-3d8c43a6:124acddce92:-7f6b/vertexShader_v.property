@@ -1,0 +1,8 @@
+string>attribute vec2 s_Five;
+varying vec2 textureCoordinates;
+
+void main()
+{
+	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+	textureCoordinates = s_Five;
+}

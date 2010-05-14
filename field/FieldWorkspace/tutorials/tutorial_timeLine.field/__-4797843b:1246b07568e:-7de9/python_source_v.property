@@ -1,0 +1,8 @@
+string>
+# this is another box you can run by option clicking on it, here's the code
+
+def keepGoing():
+	print "...second box is ongoing at time %f... " % _t
+
+_r = keepGoing
+

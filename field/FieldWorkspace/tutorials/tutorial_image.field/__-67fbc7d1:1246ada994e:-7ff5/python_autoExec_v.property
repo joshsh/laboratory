@@ -1,0 +1,10 @@
+string>
+_self.python_globals_.declare(_self, "anImage")
+_self.python_globals_.declare(_self, "blur")
+_self.python_globals_.declare(_self, "filter")
+_self.python_globals_.declare(_self, "customFilter")
+
+_self()
+_self.python_globals_.declare(_self, "makeFloatImageData")
+_self.python_globals_.declare(_self, "image")
+_self.python_globals_.declare(_self, "rasterizeLines")

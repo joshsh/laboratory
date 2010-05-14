@@ -1,0 +1,4 @@
+string>
+# this line of code is automatically written by Field (and automatically executed when Field opens this document)
+# it establishes that this box declares the variable 'myGlobalVariable'.
+_self.python_globals_.declare(_self, "myGlobalVariable")

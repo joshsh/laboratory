@@ -1,0 +1,14 @@
+string>
+# here we make a new GLSLang shader "from" this element
+# a GLSLang shader is a program that transforms, creates and draws geometry
+# such programs run on your graphics hardware rather than your CPU
+
+# all 'makeShaderFromElement' this does is add three new properties to this element containing some default GLSLang program, which means that we can edit the code using this text editor (look at the drop down box at the top of the editor)
+shader = makeShaderFromElement(_self)
+
+# having made a shader, it won't do anything unless we attach it to the canvas
+# again ÑÊwe only have to do this once.
+canvas << shader
+
+# obviously, as you are writing your GLSLang program you'll want to update the shader Ñ use the button that appears at the top of this editor
+

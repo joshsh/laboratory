@@ -1,0 +1,3589 @@
+<object-stream>
+  <string>version_2</string>
+  <field.core.StandardFluidSheet_-RootSheetElement id="1">
+    <uid>//rootSheetElement</uid>
+    <parents id="2">
+      <field.core.dispatch.VisualElement id="3">
+        <uid>__1bdcdf3d:1249c6d14fd:-7fff</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="4">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="5">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.execution.TemporalSliderOverrides id="6">
+              <class>field.core.execution.TemporalSliderOverrides</class>
+              <element reference="3"/>
+            </field.core.execution.TemporalSliderOverrides>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="7">
+              <name>creationToken</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>time</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="8">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="9">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="3"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="10">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="11">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>timeSlider</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="12">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="13">
+          <x>-1.0</x>
+          <y>0.0</y>
+          <w>0.0</w>
+          <h>0.0</h>
+        </rect>
+        <parents id="14"/>
+        <children id="15">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="16">
+        <uid>__1bdcdf3d:1249c6d14fd:-7ff4</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="17">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="18">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="19">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="20">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="16"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="21">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="22"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="23">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="24">
+              <annotations id="25" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="26">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="27"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="28">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="29">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="16"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="30">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="26"/>
+            <string>label= &quot;&quot;&quot;There&apos;s a progression here from things that you should know about (linear algebra and auto completion are very useful) to things that you might think are crazy (and can safely ignore)&quot;&quot;&quot;
+
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="31">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="32">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="33">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="34">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;text&quot;)
+_self.python_globals_.declare(_self, &quot;width&quot;)
+_self.python_globals_.declare(_self, &quot;label&quot;)
+_self.python_globals_.declare(_self, &quot;Font&quot;)
+_self.python_globals_.declare(_self, &quot;opacity&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="35">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="36" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="37">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAt1RoZXJlJ3MgYSBwcm9ncmVzc2lvbiBoZXJlIGZyb20g
+dGhpbmdzIHRoYXQgeW91IHNob3VsZCBrbm93IGFib3V0IChsaW5lYXIgYWxnZWJyYSBhbmQgYXV0
+byBjb21wbGV0aW9uIGFyZSB2ZXJ5IHVzZWZ1bCkgdG8gdGhpbmdzIHRoYXQgeW91IG1pZ2h0IHRo
+aW5rIGFyZSBjcmF6eSAoYW5kIGNhbiBzYWZlbHkgaWdub3JlKXh4c3IAF2phdmEudXRpbC5MaW5r
+ZWRIYXNoTWFwNMBOXBBswPsCAAFaAAthY2Nlc3NPcmRlcnhxAH4AET9AAAAAAAAMdwgAAAAQAAAA
+BHNxAH4AE3QAEG9mZnNldEZyb21Tb3VyY2VzcgAZZmllbGQubWF0aC5saW5hbGcuVmVjdG9yMn0O
+JNIMbuLEAgACRgABeEYAAXl4cAAAAAAAAAAAc3EAfgATdAAVY29udGFpbnNNdWx0aWxpbmVUZXh0
+c3EAfgAdAAAAAXNxAH4AE3QAD3Nob3VsZEhpZ2hsaWdodHNyABFqYXZhLmxhbmcuQm9vbGVhbs0g
+coDVnPruAgABWgAFdmFsdWV4cABzcQB+ABN0AAx0b3RhbE9wYWNpdHlzcgAQamF2YS5sYW5nLkRv
+dWJsZYCzwkopa/sEAgABRAAFdmFsdWV4cQB+AAk/4AAAAAAAAHgA
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="20"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="38">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="39">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="40">
+                  <areas id="41">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="42">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="43">
+                        <dictionary id="44"/>
+                      </extend>
+                      <exec id="45">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="46">
+                          <when id="47">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="48">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>8</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="49">
+                        <dictionary id="50"/>
+                      </extend>
+                      <exec id="51">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="52">
+                          <when id="53">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="54">
+                    <counts id="55"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="56">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="57">
+          <x>164.0</x>
+          <y>423.0</y>
+          <w>364.0</w>
+          <h>81.0</h>
+        </rect>
+        <parents id="58"/>
+        <children id="59">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="60">
+        <uid>__1bdcdf3d:1249c6d14fd:-7f68</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="61">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="62">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="60"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="63">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="60"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>linear algebra / auto complete</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="64">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# linear algebra happens in visual art Ñ you might try to avoid it, but you can&apos;t. Positions on screen, in space, directions and rotations. You just need to confront it. Better, then, to confront it in a language where you can write things like this:
+
+v1 = Vector2() # a vector at 0,0
+v2 = Vector2(1, -2.5) # a vector at 1, -2.5
+
+#they act a lot like Python tuples
+print v2[0], v2.x # prints 1, 1
+print v2[1], v2.y # prints -2.5, -2.5
+
+#which mean you can pass them to PLine methods using * notation
+PLine().moveTo( *v2 ) # is the same as .moveTo(1, -2.5)
+
+v3 = v1+v2 # vectors can be added
+v4 = v2*2.0 # vectors can be scaled
+v5 = v2*v1 # vectors can be element-wise multipled
+v1 += Vector2(5,5) #vectors can be mutated in place
+
+v1.normalize() # makes the length 1
+v1.rotateBy(1) # angle in radians
+dot = v1.dot(v2) # dot product
+angle = v1.angle(v2) # the angle between v1 and v2
+v6 = v1.orthogonal() # a vector2 that&apos;s at right angles to this one
+v1.projectOut(v2) # remove part of the vector that&apos;s pointing in the direction v2
+
+v1.interpolate(v2, 0.25) # move 25% of the way towards v2
+
+# in addition to Vector2 there&apos;s also Vector3, Vector4 (a.k.a Color4) and Quaternion
+
+# as always, you can get autocomplete by typing something and pressing command-period. Try it here
+
+#v1.
+
+#my that was a lot of methods! (the first time you do this it might take a while)
+
+# try it here as well
+v1.add
+
+# you&apos;ll note that you can keep on typing while the menu is up to refine your seach
+
+# also here
+Quaternion
+
+# that got you construction help for Quaternion. Here we use the &apos;to&apos;, &apos;from&apos; constructor
+q = Quaternion(Vector3(0,1,0), Vector3(0,0,1)) 
+print q.rotateVector(Vector3(0,0,1)) # this will print (0.0, 1.0, 0.0)
+
+# you can rotate vectors by multiplication
+rotatedVector3 = q * Vector3(0,0,1)
+print rotatedVector3
+
+# finally, things can get &quot;sliced&quot; using Python&apos;s slice notation
+v = Vector4(1,2,3,4)
+print v[:] # prints [1,2,3,4]
+
+v[:] = (4,3,2,1) # sets this vector to a new value (mutates it in place)
+print v # prints [4,3,2,1]
+
+print v[0:2] # prints [4,3]
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="65">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;v3&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="66">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="67"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="68">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="69">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="70">
+                  <areas id="71"/>
+                  <rootHistogram id="72">
+                    <counts id="73"/>
+                    <normalization>-1.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="74">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="75">
+          <x>63.0</x>
+          <y>179.0</y>
+          <w>196.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="76"/>
+        <children id="77">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="78">
+        <uid>__1bdcdf3d:1249c6d14fd:-7e69</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="79">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="80">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="81">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="78"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="82">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="83">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="78"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="84">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>unit testing</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="85">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# Field comes with &quot;the worlds smallest unit testing framework&quot; Ñ select unittesting, right click and seach openendedgroup.com to get the docs. But here&apos;s an example
+
+def sum1toN(n):
+	 return sum(range(1, n+1))
+ 
+def sumMultiples(limit, a):
+	 return sum1toN((limit - 1) / a) * a
+
+# to make a unit test we first run everything that we want to run Ñ the code above (to define sum1toN) and this code here:
+print sum1toN(1)
+#-&gt;1
+
+# by command-return&apos;ing that line we get a little marker in the margin (go on, try it)...
+# we can now right click that and say &quot;make new unit test&quot;
+
+# we could also use &apos;ctrl u&apos; to do the same thing
+
+# this runs the selected code and watches what it prints. It then embedds the output of the code in a comment (to make the test &apos;self documenting&apos;
+
+# now in the future you can run a test using &apos;ctrl u&apos; or the right click menu on the test or the right-click menu on the box itself. There&apos;s a badge that turns red if any test fails
+
+# if we change the definition of sum1toN to something bad, we&apos;ll find that it fails the test
+
+def sum1toN_bad(n): # remove _bad
+	return 10
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="86">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="87">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="88">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="89"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="90">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="91">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="92">
+                  <areas id="93">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="94">
+                      <allocation>0</allocation>
+                      <lastSeenAt>10</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>0</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="95">
+                        <dictionary id="96"/>
+                      </extend>
+                      <exec id="97">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="98">
+                          <when id="99">2009-10-28 14:49:21.326 EDT</when>
+                          <stringAtExecution>rotatedVector3 = q * Vector3(0,0,1)
+print rotatedVector3
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="100">
+                    <counts id="101"/>
+                    <normalization>-1.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="102">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="103">
+          <x>235.0</x>
+          <y>252.0</y>
+          <w>196.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="104"/>
+        <children id="105">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="106">
+        <uid>__1bdcdf3d:1249c6d14fd:-7d77</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="107">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="108">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="109">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="106"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="110">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="111">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="106"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="112">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>lazy things</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="113">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+
+# Field comes with some &quot;heavy magic&quot; based Python things, oriented towards the kinds of problems that we keep running into as digital artists
+
+# let&apos;s take this example here (you can follow along by option-clicking on the areas in the margin)
+a = 3
+x = trans(lambda : a)
+y = x+3
+print y    # prints 6
+
+# so far so good
+a = 2
+print y    # prints 5
+
+# what happened? Ñ trans introduces a &apos;trans&apos;parant lazy numerial object into your mathematical world. It looks like a number, it acts like a number, but it doesn&apos;t compute anything until you really ask it to. Adding numbers to it gets you back another &apos;trans&apos; object, not a number, so this &apos;laziness&apos; is infectious.
+
+# vector3&apos;s and the like work as well:
+
+v3 = Vector3(1,1,1)
+v_trans = trans(lambda : v3)
+vAnother_trans = (v + Vector3(-1, 1, -1))*2
+
+print vAnother_trans # prints (0, 4, 0)
+
+# if you think about a variable as just a function with zero parameters (here, quite explicitly, with the lambda : v3) you can then think about doing the same thing with functions of one variable
+
+timesTwo = transFilter(lambda a : a*2)
+print timesTwo(2) # prints 4
+
+squared = transFilter(lambda a : a*a)
+print squared(3) # prints 9
+
+print (timesTwo+squared)(2) # prints 8
+print (timesTwo*2+squared)(2) # prints 12
+print (timesTwo*squared)(2) # prints 16
+
+# if you are a code-writing animator and understand the above then you probably think it&apos;s pretty special. Otherwise, don&apos;t worry about it.
+
+# A function of one variable has an extra degree of freedom. Not only can we add them together (like above f(x)+g(x)), we can embed them inside each other f(g(x)). For this we overload the &lt;&lt; operator:
+
+print timesTwo(3) # 6
+print (timesTwo&lt;&lt;2)(3) # 10
+print (timesTwo&lt;&lt;squared)(3) # 18
+
+#One last thing, with this use-case in mind, it&apos;s sometimes handy to be able to ask for a function that just evaluates this remapping of the inputs. For example, if all of your primative window objects have support over 0-&gt;1, and you&apos;d like to know where you are in this original &quot;timebase&quot;
+
+timesTwo = transpFilter(lambda a : a*2)
+timesTwoShifted = timesTwo&lt;&lt;2
+timesTwoShiftedAndScaled = timesTwoShifted&lt;&lt;(lambda x : x*2)
+print timesTwoShiftedAndScaled(0) # 4
+print timesTwoShiftedAndScaled.input(0)  # 2
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="114">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="115">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;v&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="116">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="117"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="118">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="119">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="120">
+                  <areas id="121">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="122">
+                      <allocation>0</allocation>
+                      <lastSeenAt>40</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>0</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="123">
+                        <dictionary id="124">
+                          <entry>
+                            <field.util.Dict_-Prop id="125">
+                              <name>forwardTransitions</name>
+                            </field.util.Dict_-Prop>
+                            <field.math.util.Histogram id="126">
+                              <counts id="127">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area id="128">
+                                    <allocation>0</allocation>
+                                    <lastSeenAt>41</lastSeenAt>
+                                    <lineStart>5</lineStart>
+                                    <lineEnd>8</lineEnd>
+                                    <invalid>false</invalid>
+                                    <extend id="129">
+                                      <dictionary id="130">
+                                        <entry>
+                                          <field.util.Dict_-Prop reference="125"/>
+                                          <field.math.util.Histogram id="131">
+                                            <counts id="132">
+                                              <entry>
+                                                <field.core.ui.text.rulers.ExecutedAreas_-Area reference="122"/>
+                                                <field.math.BaseMath_-MutableFloat id="133">
+                                                  <d>1.0</d>
+                                                </field.math.BaseMath_-MutableFloat>
+                                              </entry>
+                                              <entry>
+                                                <field.core.ui.text.rulers.ExecutedAreas_-Area id="134">
+                                                  <allocation>0</allocation>
+                                                  <lastSeenAt>42</lastSeenAt>
+                                                  <lineStart>11</lineStart>
+                                                  <lineEnd>12</lineEnd>
+                                                  <invalid>false</invalid>
+                                                  <extend id="135">
+                                                    <dictionary id="136">
+                                                      <entry>
+                                                        <field.util.Dict_-Prop reference="125"/>
+                                                        <field.math.util.Histogram id="137">
+                                                          <counts id="138">
+                                                            <entry>
+                                                              <field.core.ui.text.rulers.ExecutedAreas_-Area id="139">
+                                                                <allocation>0</allocation>
+                                                                <lastSeenAt>43</lastSeenAt>
+                                                                <lineStart>18</lineStart>
+                                                                <lineEnd>19</lineEnd>
+                                                                <invalid>false</invalid>
+                                                                <extend id="140">
+                                                                  <dictionary id="141">
+                                                                    <entry>
+                                                                      <field.util.Dict_-Prop reference="125"/>
+                                                                      <field.math.util.Histogram id="142">
+                                                                        <counts id="143">
+                                                                          <entry>
+                                                                            <field.core.ui.text.rulers.ExecutedAreas_-Area id="144">
+                                                                              <allocation>0</allocation>
+                                                                              <lastSeenAt>44</lastSeenAt>
+                                                                              <lineStart>20</lineStart>
+                                                                              <lineEnd>20</lineEnd>
+                                                                              <invalid>false</invalid>
+                                                                              <extend id="145">
+                                                                                <dictionary id="146">
+                                                                                  <entry>
+                                                                                    <field.util.Dict_-Prop id="147">
+                                                                                      <name>forwardTransitions</name>
+                                                                                    </field.util.Dict_-Prop>
+                                                                                    <field.math.util.Histogram id="148">
+                                                                                      <counts id="149">
+                                                                                        <entry>
+                                                                                          <field.core.ui.text.rulers.ExecutedAreas_-Area id="150">
+                                                                                            <allocation>0</allocation>
+                                                                                            <lastSeenAt>45</lastSeenAt>
+                                                                                            <lineStart>22</lineStart>
+                                                                                            <lineEnd>22</lineEnd>
+                                                                                            <invalid>false</invalid>
+                                                                                            <extend id="151">
+                                                                                              <dictionary id="152">
+                                                                                                <entry>
+                                                                                                  <field.util.Dict_-Prop reference="147"/>
+                                                                                                  <field.math.util.Histogram id="153">
+                                                                                                    <counts id="154"/>
+                                                                                                    <normalization>0.0</normalization>
+                                                                                                  </field.math.util.Histogram>
+                                                                                                </entry>
+                                                                                              </dictionary>
+                                                                                            </extend>
+                                                                                            <exec id="155">
+                                                                                              <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="156">
+                                                                                                <when id="157">2009-10-28 15:10:08.634 EDT</when>
+                                                                                                <stringAtExecution>
+print vAnother_trans</stringAtExecution>
+                                                                                              </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                                              <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="158">
+                                                                                                <when id="159">2009-10-28 15:10:18.666 EDT</when>
+                                                                                                <stringAtExecution>
+print vAnother_trans # prints (0, 2, 0)</stringAtExecution>
+                                                                                              </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                                              <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="160">
+                                                                                                <when id="161">2009-11-08 15:06:27.682 EST</when>
+                                                                                                <stringAtExecution>print vAnother_trans # prints (0, 4, 0)</stringAtExecution>
+                                                                                              </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                                            </exec>
+                                                                                          </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                                                                          <field.math.BaseMath_-MutableFloat id="162">
+                                                                                            <d>2.0</d>
+                                                                                          </field.math.BaseMath_-MutableFloat>
+                                                                                        </entry>
+                                                                                      </counts>
+                                                                                      <normalization>2.0</normalization>
+                                                                                    </field.math.util.Histogram>
+                                                                                  </entry>
+                                                                                </dictionary>
+                                                                              </extend>
+                                                                              <exec id="163">
+                                                                                <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="164">
+                                                                                  <when id="165">2009-10-28 15:10:03.602 EDT</when>
+                                                                                  <stringAtExecution>
+vAnother_trans = v + Vector3(-1, 1, -1)</stringAtExecution>
+                                                                                </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                                <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="166">
+                                                                                  <when id="167">2009-10-28 15:10:17.435 EDT</when>
+                                                                                  <stringAtExecution>
+vAnother_trans = (v + Vector3(-1, 1, -1))*2</stringAtExecution>
+                                                                                </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                                <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="168">
+                                                                                  <when id="169">2009-11-08 15:06:16.584 EST</when>
+                                                                                  <stringAtExecution>vAnother_trans = (v + Vector3(-1, 1, -1))*2</stringAtExecution>
+                                                                                </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                              </exec>
+                                                                            </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                                                            <field.math.BaseMath_-MutableFloat id="170">
+                                                                              <d>1.0</d>
+                                                                            </field.math.BaseMath_-MutableFloat>
+                                                                          </entry>
+                                                                        </counts>
+                                                                        <normalization>1.0</normalization>
+                                                                      </field.math.util.Histogram>
+                                                                    </entry>
+                                                                  </dictionary>
+                                                                </extend>
+                                                                <exec id="171">
+                                                                  <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="172">
+                                                                    <when id="173">2009-10-28 15:09:43.185 EDT</when>
+                                                                    <stringAtExecution>v3 = Vector3(1,1,1)
+v = trans(lambda : v3)
+</stringAtExecution>
+                                                                  </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                  <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="174">
+                                                                    <when id="175">2009-11-08 15:05:50.21 EST</when>
+                                                                    <stringAtExecution>v3 = Vector3(1,1,1)
+v_trans = trans(lambda : v3)</stringAtExecution>
+                                                                  </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                                </exec>
+                                                              </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                                              <field.math.BaseMath_-MutableFloat id="176">
+                                                                <d>1.0</d>
+                                                              </field.math.BaseMath_-MutableFloat>
+                                                            </entry>
+                                                          </counts>
+                                                          <normalization>1.0</normalization>
+                                                        </field.math.util.Histogram>
+                                                      </entry>
+                                                    </dictionary>
+                                                  </extend>
+                                                  <exec id="177">
+                                                    <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="178">
+                                                      <when id="179">2009-10-28 15:07:45.982 EDT</when>
+                                                      <stringAtExecution>a = 2
+print y    # prints 5
+</stringAtExecution>
+                                                    </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                    <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="180">
+                                                      <when id="181">2009-11-08 15:05:05.551 EST</when>
+                                                      <stringAtExecution>a = 2
+print y    # prints 5</stringAtExecution>
+                                                    </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                                  </exec>
+                                                </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                                <field.math.BaseMath_-MutableFloat id="182">
+                                                  <d>1.0</d>
+                                                </field.math.BaseMath_-MutableFloat>
+                                              </entry>
+                                            </counts>
+                                            <normalization>2.0</normalization>
+                                          </field.math.util.Histogram>
+                                        </entry>
+                                      </dictionary>
+                                    </extend>
+                                    <exec id="183">
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="184">
+                                        <when id="185">2009-10-28 15:07:28.389 EDT</when>
+                                        <stringAtExecution>a = 3
+x = trans(lambda : a)
+y = x+3
+print y    # prints 6
+</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="186">
+                                        <when id="187">2009-11-08 15:04:41.739 EST</when>
+                                        <stringAtExecution>a = 3
+x = trans(lambda : a)
+y = x+3
+print y    # prints 6</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="188">
+                                        <when id="189">2009-11-08 15:04:45.36 EST</when>
+                                        <stringAtExecution>a = 3
+x = trans(lambda : a)
+y = x+3
+print y    # prints 6</stringAtExecution>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                    </exec>
+                                  </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                  <field.math.BaseMath_-MutableFloat id="190">
+                                    <d>1.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>1.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="191">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="192">
+                          <when id="193">2009-10-28 14:49:21.326 EDT</when>
+                          <stringAtExecution>rotatedVector3 = q * Vector3(0,0,1)
+print rotatedVector3
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="194">
+                          <when id="195">2009-11-08 15:04:43.856 EST</when>
+                          <stringAtExecution></stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="128"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="134"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="139"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="144"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area reference="150"/>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="196">
+                      <allocation>0</allocation>
+                      <lastSeenAt>22</lastSeenAt>
+                      <lineStart>26</lineStart>
+                      <lineEnd>26</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="197">
+                        <dictionary id="198"/>
+                      </extend>
+                      <exec id="199">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="200">
+                          <when id="201">2009-10-28 15:12:00.454 EDT</when>
+                          <stringAtExecution>
+timesTwo = transFilter(lambda a : a*2)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="202">
+                      <allocation>0</allocation>
+                      <lastSeenAt>23</lastSeenAt>
+                      <lineStart>27</lineStart>
+                      <lineEnd>27</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="203">
+                        <dictionary id="204"/>
+                      </extend>
+                      <exec id="205">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="206">
+                          <when id="207">2009-10-28 15:12:01.510 EDT</when>
+                          <stringAtExecution>
+print timesTwo(2) # prints 4</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="208">
+                      <allocation>0</allocation>
+                      <lastSeenAt>24</lastSeenAt>
+                      <lineStart>29</lineStart>
+                      <lineEnd>29</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="209">
+                        <dictionary id="210"/>
+                      </extend>
+                      <exec id="211">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="212">
+                          <when id="213">2009-10-28 15:12:03.102 EDT</when>
+                          <stringAtExecution>
+squared = transFilter(lambda a : a*a)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="214">
+                      <allocation>0</allocation>
+                      <lastSeenAt>25</lastSeenAt>
+                      <lineStart>30</lineStart>
+                      <lineEnd>30</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="215">
+                        <dictionary id="216"/>
+                      </extend>
+                      <exec id="217">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="218">
+                          <when id="219">2009-10-28 15:12:03.566 EDT</when>
+                          <stringAtExecution>
+print squared(3) # prints 9</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="220">
+                      <allocation>0</allocation>
+                      <lastSeenAt>26</lastSeenAt>
+                      <lineStart>32</lineStart>
+                      <lineEnd>32</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="221">
+                        <dictionary id="222"/>
+                      </extend>
+                      <exec id="223">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="224">
+                          <when id="225">2009-10-28 15:12:05.182 EDT</when>
+                          <stringAtExecution>
+print (timesTwo+squared)(2) # prints 8</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="226">
+                      <allocation>0</allocation>
+                      <lastSeenAt>27</lastSeenAt>
+                      <lineStart>33</lineStart>
+                      <lineEnd>33</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="227">
+                        <dictionary id="228"/>
+                      </extend>
+                      <exec id="229">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="230">
+                          <when id="231">2009-10-28 15:12:05.630 EDT</when>
+                          <stringAtExecution>
+print (timesTwo*2+squared)(2) # prints 12</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="232">
+                      <allocation>0</allocation>
+                      <lastSeenAt>29</lastSeenAt>
+                      <lineStart>34</lineStart>
+                      <lineEnd>34</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="233">
+                        <dictionary id="234"/>
+                      </extend>
+                      <exec id="235">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="236">
+                          <when id="237">2009-10-28 15:12:10.774 EDT</when>
+                          <stringAtExecution>
+print (timesTwo*squared)(2) # prints 16</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="238">
+                      <allocation>0</allocation>
+                      <lastSeenAt>30</lastSeenAt>
+                      <lineStart>40</lineStart>
+                      <lineEnd>40</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="239">
+                        <dictionary id="240"/>
+                      </extend>
+                      <exec id="241">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="242">
+                          <when id="243">2009-10-28 15:13:43.25 EDT</when>
+                          <stringAtExecution>
+print timesTwo(3) # 6</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="244">
+                      <allocation>0</allocation>
+                      <lastSeenAt>31</lastSeenAt>
+                      <lineStart>41</lineStart>
+                      <lineEnd>41</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="245">
+                        <dictionary id="246"/>
+                      </extend>
+                      <exec id="247">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="248">
+                          <when id="249">2009-10-28 15:13:43.465 EDT</when>
+                          <stringAtExecution>
+print (timesTwo&lt;&lt;2)(3) # 10</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="250">
+                      <allocation>0</allocation>
+                      <lastSeenAt>32</lastSeenAt>
+                      <lineStart>42</lineStart>
+                      <lineEnd>42</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="251">
+                        <dictionary id="252"/>
+                      </extend>
+                      <exec id="253">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="254">
+                          <when id="255">2009-10-28 15:13:43.857 EDT</when>
+                          <stringAtExecution>
+print (timesTwo&lt;&lt;squared)(3) # 18</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="256">
+                      <allocation>0</allocation>
+                      <lastSeenAt>33</lastSeenAt>
+                      <lineStart>46</lineStart>
+                      <lineEnd>46</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="257">
+                        <dictionary id="258"/>
+                      </extend>
+                      <exec id="259">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="260">
+                          <when id="261">2009-10-28 15:14:33.731 EDT</when>
+                          <stringAtExecution>
+timesTwo = transpFilter(lambda a : a*2)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="262">
+                      <allocation>0</allocation>
+                      <lastSeenAt>34</lastSeenAt>
+                      <lineStart>47</lineStart>
+                      <lineEnd>47</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="263">
+                        <dictionary id="264"/>
+                      </extend>
+                      <exec id="265">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="266">
+                          <when id="267">2009-10-28 15:14:34.139 EDT</when>
+                          <stringAtExecution>
+timesTwoShifted = timesTwo&lt;&lt;2</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="268">
+                      <allocation>0</allocation>
+                      <lastSeenAt>35</lastSeenAt>
+                      <lineStart>48</lineStart>
+                      <lineEnd>48</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="269">
+                        <dictionary id="270"/>
+                      </extend>
+                      <exec id="271">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="272">
+                          <when id="273">2009-10-28 15:14:34.571 EDT</when>
+                          <stringAtExecution>
+timesTwoShiftedAndScaled = timesTwoShifted&lt;&lt;(lambda x : x*2)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="274">
+                      <allocation>0</allocation>
+                      <lastSeenAt>36</lastSeenAt>
+                      <lineStart>49</lineStart>
+                      <lineEnd>49</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="275">
+                        <dictionary id="276"/>
+                      </extend>
+                      <exec id="277">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="278">
+                          <when id="279">2009-10-28 15:14:34.987 EDT</when>
+                          <stringAtExecution>
+print timesTwoShiftedAndScaled(0) # 4</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="280">
+                      <allocation>0</allocation>
+                      <lastSeenAt>37</lastSeenAt>
+                      <lineStart>50</lineStart>
+                      <lineEnd>50</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="281">
+                        <dictionary id="282"/>
+                      </extend>
+                      <exec id="283">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="284">
+                          <when id="285">2009-10-28 15:14:35.403 EDT</when>
+                          <stringAtExecution>
+print timesTwoShiftedAndScaled.input(0)  # 2</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="286">
+                    <counts id="287">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="144"/>
+                        <field.math.BaseMath_-MutableFloat id="288">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="128"/>
+                        <field.math.BaseMath_-MutableFloat id="289">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>1.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="290">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="291">
+          <x>438.0</x>
+          <y>319.0</y>
+          <w>196.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="292"/>
+        <children id="293">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="294">
+        <uid>__1bdcdf3d:1249c6d14fd:-7c9b</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="295">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="296">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="297">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="294"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="298">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="299">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="294"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="300">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>the auto lifting list</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="301">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# one final piece of Python magic, &apos;wl&apos; the wrapped list or the automagic lifting list
+
+# this class thinks it&apos;s a list only when forced to, otherwise, anything you do to it gets done to it&apos;s contents
+print wl([1,2,3])+2 # wl([3,4,5])
+print wl( [Vector3(1,2,3), Vector3(-1, -2, -3), Vector4(0,1,0,1)]).x # wl([1, -1, 0])
+print wl( [Vector3(0.5, 0, 0), Vector3(-0.5, 0, 0)] ).clone().normalize() # wl([Vector3(1, 0, 0), Vector3(-1, 0, 0)])
+
+# you get these lists back from things like 
+_self.find[&quot;.*&quot;]
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="302">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="303">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="304">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="305"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="306">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="307">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="308">
+                  <areas id="309">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="310">
+                      <allocation>0</allocation>
+                      <lastSeenAt>37</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>0</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="311">
+                        <dictionary id="312"/>
+                      </extend>
+                      <exec id="313">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="314">
+                          <when id="315">2009-10-28 15:14:35.403 EDT</when>
+                          <stringAtExecution>
+print timesTwoShiftedAndScaled.input(0)  # 2</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="316">
+                    <counts id="317">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area id="318">
+                          <allocation>0</allocation>
+                          <lastSeenAt>20</lastSeenAt>
+                          <lineStart>0</lineStart>
+                          <lineEnd>0</lineEnd>
+                          <invalid>false</invalid>
+                          <extend id="319">
+                            <dictionary id="320">
+                              <entry>
+                                <field.util.Dict_-Prop id="321">
+                                  <name>forwardTransitions</name>
+                                </field.util.Dict_-Prop>
+                                <field.math.util.Histogram id="322">
+                                  <counts id="323">
+                                    <entry>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-Area id="324">
+                                        <allocation>0</allocation>
+                                        <lastSeenAt>21</lastSeenAt>
+                                        <lineStart>0</lineStart>
+                                        <lineEnd>0</lineEnd>
+                                        <invalid>false</invalid>
+                                        <extend id="325">
+                                          <dictionary id="326">
+                                            <entry>
+                                              <field.util.Dict_-Prop reference="321"/>
+                                              <field.math.util.Histogram id="327">
+                                                <counts id="328"/>
+                                                <normalization>0.0</normalization>
+                                              </field.math.util.Histogram>
+                                            </entry>
+                                          </dictionary>
+                                        </extend>
+                                        <exec id="329">
+                                          <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="330">
+                                            <when id="331">2009-10-28 15:10:08.634 EDT</when>
+                                            <stringAtExecution>
+print vAnother_trans</stringAtExecution>
+                                          </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                          <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="332">
+                                            <when id="333">2009-10-28 15:10:18.666 EDT</when>
+                                            <stringAtExecution>
+print vAnother_trans # prints (0, 2, 0)</stringAtExecution>
+                                          </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                        </exec>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                      <field.math.BaseMath_-MutableFloat id="334">
+                                        <d>1.0</d>
+                                      </field.math.BaseMath_-MutableFloat>
+                                    </entry>
+                                  </counts>
+                                  <normalization>1.0</normalization>
+                                </field.math.util.Histogram>
+                              </entry>
+                            </dictionary>
+                          </extend>
+                          <exec id="335">
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="336">
+                              <when id="337">2009-10-28 15:10:03.602 EDT</when>
+                              <stringAtExecution>
+vAnother_trans = v + Vector3(-1, 1, -1)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="338">
+                              <when id="339">2009-10-28 15:10:17.435 EDT</when>
+                              <stringAtExecution>
+vAnother_trans = (v + Vector3(-1, 1, -1))*2</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                          </exec>
+                        </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                        <field.math.BaseMath_-MutableFloat id="340">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="341">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="342">
+          <x>562.0</x>
+          <y>384.0</y>
+          <w>122.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="343"/>
+        <children id="344">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="345">
+        <uid>__1bdcdf3d:1249c6d14fd:-7c43</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="346">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="347">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="348">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="345"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="349">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="350">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="345"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="351">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>the code keyframe</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="352">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# Field comes with a &quot;keyframecreator&quot; which wraps mutations to global variables inside special logic, enabling these side effects to be undone, reapplied and blended together
+
+theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x = 3
+print theVector # prints (3, 0, 0)
+# so far, no surprises. We&apos;ve set _k.theVector.x=3 and gotten exactly what we&apos;d get if we said theVector.x = 3
+
+keyframe1 = k.end(_k)
+print theVector    # prints (3, 0, 0)
+# still no change there.
+
+# but let&apos;s try this
+theVector.x = 5
+print theVector # prints (5, 0, 0)
+keyframe1.apply()
+print theVector # prints (3, 0, 0)
+
+# the things we get back from &apos;end&apos; can be _reapplied_
+
+# let&apos;s make another one
+_k = k.begin()
+_k.theVector.x = 2
+keyframe2 = k.end(_k)
+print theVector    # prints (2, 0, 0)
+
+# and now for the punchline:
+
+(keyframe2*0.6666+keyframe1*0.3333).apply()
+print theVector  # prints (2.33333, 0, 0)
+
+# perhaps the real punchline is that this machinary works not because it has intimate knowledge of Vector3, it works because it has intimate knowledge of how Jython talks to Java Ñ that is, it works with your own Java classes.
+
+# here&apos;s a more complex example
+theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x = 3
+_k.theVector.add(Vector3(1,1,0))
+keyframe1 = k.end(_k)
+
+_k = k.begin()
+_k.theVector.x = 2
+_k.theVector.add(Vector3(1,1,0))
+keyframe2 = k.end(_k)
+
+(keyframe2*0.6666+keyframe1*0.3333).apply()
+print theVector # prints (3.333333, 1.666667, 0.0)
+
+# look at it closely Ñ here we&apos;ve introduced two method calls to &apos;add&apos;. While Field can&apos;t monitor all side effects (this is Python + Java, not Haskell) what it can do is blend the parameters for these methods, since it knows how to blend Vector3&apos;s 
+
+# again, just like &apos;lazy things&apos; you either think that this is a) really cool, b) terrifying, or c) incomphrensible. Any or all of these reactions are fine and you shouldn&apos;t worry.
+
+# to print the &apos;contents&apos; of a keyframe:
+print keyframe2.changeSet
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="353">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="354">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;k&quot;)
+_self.python_globals_.declare(_self, &quot;theVector&quot;)
+_self.python_globals_.declare(_self, &quot;keyframe2&quot;)
+_self.python_globals_.declare(_self, &quot;keyframe1&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="355">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="356"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="357">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="358">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="359">
+                  <areas id="360">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="361">
+                      <allocation>0</allocation>
+                      <lastSeenAt>37</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>0</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="362">
+                        <dictionary id="363"/>
+                      </extend>
+                      <exec id="364">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="365">
+                          <when id="366">2009-10-28 15:14:35.403 EDT</when>
+                          <stringAtExecution>
+print timesTwoShiftedAndScaled.input(0)  # 2</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="367">
+                      <allocation>0</allocation>
+                      <lastSeenAt>43</lastSeenAt>
+                      <lineStart>3</lineStart>
+                      <lineEnd>9</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="368">
+                        <dictionary id="369"/>
+                      </extend>
+                      <exec id="370">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="371">
+                          <when id="372">2009-10-28 15:25:45.581 EDT</when>
+                          <stringAtExecution>theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x = 3
+print theVector # prints (3, 0, 0)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="373">
+                      <allocation>0</allocation>
+                      <lastSeenAt>44</lastSeenAt>
+                      <lineStart>12</lineStart>
+                      <lineEnd>13</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="374">
+                        <dictionary id="375"/>
+                      </extend>
+                      <exec id="376">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="377">
+                          <when id="378">2009-10-28 15:25:51.645 EDT</when>
+                          <stringAtExecution>keyframe1 = k.end(_k)
+print theVector    # prints (3, 0, 0)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="379">
+                      <allocation>0</allocation>
+                      <lastSeenAt>52</lastSeenAt>
+                      <lineStart>16</lineStart>
+                      <lineEnd>20</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="380">
+                        <dictionary id="381"/>
+                      </extend>
+                      <exec id="382">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="383">
+                          <when id="384">2009-10-28 15:27:12.600 EDT</when>
+                          <stringAtExecution># but let&apos;s try this
+theVector.x = 5
+print theVector # prints (5, 0, 0)
+keyframe1.apply()
+print theVector # prints (3, 0, 0)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="385">
+                      <allocation>0</allocation>
+                      <lastSeenAt>53</lastSeenAt>
+                      <lineStart>25</lineStart>
+                      <lineEnd>28</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="386">
+                        <dictionary id="387"/>
+                      </extend>
+                      <exec id="388">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="389">
+                          <when id="390">2009-10-28 15:27:16.272 EDT</when>
+                          <stringAtExecution>_k = k.begin()
+_k.theVector.x = 2
+keyframe2 = k.end(_k)
+print theVector    # prints (2, 0, 0)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="391">
+                      <allocation>0</allocation>
+                      <lastSeenAt>54</lastSeenAt>
+                      <lineStart>32</lineStart>
+                      <lineEnd>32</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="392">
+                        <dictionary id="393"/>
+                      </extend>
+                      <exec id="394">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="395">
+                          <when id="396">2009-10-28 15:27:44.105 EDT</when>
+                          <stringAtExecution>
+(keyframe2*0.6666+keyframe1*0.3333).apply()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="397">
+                      <allocation>0</allocation>
+                      <lastSeenAt>55</lastSeenAt>
+                      <lineStart>33</lineStart>
+                      <lineEnd>33</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="398">
+                        <dictionary id="399"/>
+                      </extend>
+                      <exec id="400">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="401">
+                          <when id="402">2009-10-28 15:27:44.441 EDT</when>
+                          <stringAtExecution>
+print theVector  # prints (2.33333, 0, 0)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="403">
+                      <allocation>0</allocation>
+                      <lastSeenAt>56</lastSeenAt>
+                      <lineStart>38</lineStart>
+                      <lineEnd>53</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="404">
+                        <dictionary id="405"/>
+                      </extend>
+                      <exec id="406">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="407">
+                          <when id="408">2009-10-28 15:29:22.436 EDT</when>
+                          <stringAtExecution>theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x = 3
+_k.theVector.add(Vector3(1,1,0))
+keyframe1 = k.end(_k)
+
+_k = k.begin()
+_k.theVector.x = 2
+_k.theVector.add(Vector3(1,1,0))
+keyframe2 = k.end(_k)
+
+(keyframe2*0.6666+keyframe1*0.3333).apply()
+print theVector # prints (3.333333, 1.666667, 0.0)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="409">
+                      <allocation>0</allocation>
+                      <lastSeenAt>58</lastSeenAt>
+                      <lineStart>60</lineStart>
+                      <lineEnd>60</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="410">
+                        <dictionary id="411"/>
+                      </extend>
+                      <exec id="412">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="413">
+                          <when id="414">2009-10-28 15:36:31.617 EDT</when>
+                          <stringAtExecution>
+print keyframe2.changeSet</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="415">
+                          <when id="416">2009-10-28 15:36:39.33 EDT</when>
+                          <stringAtExecution>
+print keyframe2.changeSet</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="417">
+                    <counts id="418">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="409"/>
+                        <field.math.BaseMath_-MutableFloat id="419">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area id="420">
+                          <allocation>0</allocation>
+                          <lastSeenAt>20</lastSeenAt>
+                          <lineStart>0</lineStart>
+                          <lineEnd>0</lineEnd>
+                          <invalid>false</invalid>
+                          <extend id="421">
+                            <dictionary id="422">
+                              <entry>
+                                <field.util.Dict_-Prop id="423">
+                                  <name>forwardTransitions</name>
+                                </field.util.Dict_-Prop>
+                                <field.math.util.Histogram id="424">
+                                  <counts id="425">
+                                    <entry>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-Area id="426">
+                                        <allocation>0</allocation>
+                                        <lastSeenAt>21</lastSeenAt>
+                                        <lineStart>0</lineStart>
+                                        <lineEnd>0</lineEnd>
+                                        <invalid>false</invalid>
+                                        <extend id="427">
+                                          <dictionary id="428">
+                                            <entry>
+                                              <field.util.Dict_-Prop reference="423"/>
+                                              <field.math.util.Histogram id="429">
+                                                <counts id="430"/>
+                                                <normalization>0.0</normalization>
+                                              </field.math.util.Histogram>
+                                            </entry>
+                                          </dictionary>
+                                        </extend>
+                                        <exec id="431">
+                                          <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="432">
+                                            <when id="433">2009-10-28 15:10:08.634 EDT</when>
+                                            <stringAtExecution>
+print vAnother_trans</stringAtExecution>
+                                          </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                          <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="434">
+                                            <when id="435">2009-10-28 15:10:18.666 EDT</when>
+                                            <stringAtExecution>
+print vAnother_trans # prints (0, 2, 0)</stringAtExecution>
+                                          </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                        </exec>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                      <field.math.BaseMath_-MutableFloat id="436">
+                                        <d>1.0</d>
+                                      </field.math.BaseMath_-MutableFloat>
+                                    </entry>
+                                  </counts>
+                                  <normalization>1.0</normalization>
+                                </field.math.util.Histogram>
+                              </entry>
+                            </dictionary>
+                          </extend>
+                          <exec id="437">
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="438">
+                              <when id="439">2009-10-28 15:10:03.602 EDT</when>
+                              <stringAtExecution>
+vAnother_trans = v + Vector3(-1, 1, -1)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="440">
+                              <when id="441">2009-10-28 15:10:17.435 EDT</when>
+                              <stringAtExecution>
+vAnother_trans = (v + Vector3(-1, 1, -1))*2</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                          </exec>
+                        </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                        <field.math.BaseMath_-MutableFloat id="442">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>-14.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="443">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="444">
+          <x>675.0</x>
+          <y>513.0</y>
+          <w>196.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="445"/>
+        <children id="446">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="447">
+        <uid>__1bdcdf3d:1249c6d14fd:-7c0a</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="448">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="449">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="450">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="451">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="447"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="452">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="453"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="454">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="455">
+              <annotations id="456" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="457">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="458"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="459">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="460">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="461">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="447"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="462">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="457"/>
+            <string>label= &quot;&quot;&quot;Field tries to keep its standard library small --- it&apos;s more about using your code than our code. &lt;p&gt;&lt;p&gt;But here are a few things that we couldn&apos;t resist shipping with that are of interest to programmers as much as (if not more than) artists:  &quot;&quot;&quot;
+
+width=700
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="463">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="464">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="465">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="466" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="467">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAACvHNxAH4AE3QABnRleHRfdnQA9EZpZWxkIHRyaWVzIHRvIGtlZXAgaXRzIHN0YW5kYXJk
+IGxpYnJhcnkgc21hbGwgLS0tIGl0J3MgbW9yZSBhYm91dCB1c2luZyB5b3VyIGNvZGUgdGhhbiBv
+dXIgY29kZS4gPHA+PHA+QnV0IGhlcmUgYXJlIGEgZmV3IHRoaW5ncyB0aGF0IHdlIGNvdWxkbid0
+IHJlc2lzdCBzaGlwcGluZyB3aXRoIHRoYXQgYXJlIG9mIGludGVyZXN0IHRvIHByb2dyYW1tZXJz
+IGFzIG11Y2ggYXMgKGlmIG5vdCBtb3JlIHRoYW4pIGFydGlzdHM6ICB4eHNyABdqYXZhLnV0aWwu
+TGlua2VkSGFzaE1hcDTATlwQbMD7AgABWgALYWNjZXNzT3JkZXJ4cQB+ABE/QAAAAAAADHcIAAAA
+EAAAAARzcQB+ABN0ABBvZmZzZXRGcm9tU291cmNlc3IAGWZpZWxkLm1hdGgubGluYWxnLlZlY3Rv
+cjJ9DiTSDG7ixAIAAkYAAXhGAAF5eHAAAAAAAAAAAHNxAH4AE3QAFWNvbnRhaW5zTXVsdGlsaW5l
+VGV4dHNxAH4AHQAAAAFzcQB+ABN0AA9zaG91bGRIaWdobGlnaHRzcgARamF2YS5sYW5nLkJvb2xl
+YW7NIHKA1Zz67gIAAVoABXZhbHVleHAAc3EAfgATdAAMdG90YWxPcGFjaXR5c3IAEGphdmEubGFu
+Zy5Eb3VibGWAs8JKKWv7BAIAAUQABXZhbHVleHEAfgAJP+AAAAAAAAB4AA==
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="451"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="468">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="469">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="470">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="471">
+                  <areas id="472">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="473">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="474">
+                        <dictionary id="475"/>
+                      </extend>
+                      <exec id="476">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="477">
+                          <when id="478">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="479">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>8</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="480">
+                        <dictionary id="481"/>
+                      </extend>
+                      <exec id="482">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="483">
+                          <when id="484">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="485">
+                    <counts id="486"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="487">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="488">
+          <x>64.0</x>
+          <y>72.0</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="489"/>
+        <children id="490">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="491">
+        <uid>__1bdcdf3d:1249c6d14fd:-7af0</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="492">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="493">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="494">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="491"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="495">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="496">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="491"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="497">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>pt. 2</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="498">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# a couple more examples from the documentation, put here so that you can get them under your fingers
+
+# here we assign a function to a floating point number. This is normally nonsensical (and a clear error), but the KeyFrameHelper understands our intention:
+
+def randomNumber():
+	return float(Math.random())
+
+theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x=3
+keyframe1 = k.end(_k)
+
+_k = k.begin()
+# here&apos;s the strange assignment
+_k.theVector.x = randomNumber
+keyframe2 = k.end(_k)
+
+
+((keyframe2*2+keyframe1)/3.0).apply(1)
+print theVector # prints, say, (1.0271876, 0.0, 0.0)
+((keyframe2*2+keyframe1)/3.0).apply(1)
+print theVector # prints, say, (1.43536, 0.0, 0.0)
+((keyframe2*2+keyframe1)/3.0).apply(1)
+print theVector # prints, say, (1.513276, 0.0, 0.0)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="499">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="500">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="501">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="502"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="503">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="504">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="505">
+                  <areas id="506">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="507">
+                      <allocation>0</allocation>
+                      <lastSeenAt>56</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>0</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="508">
+                        <dictionary id="509"/>
+                      </extend>
+                      <exec id="510">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="511">
+                          <when id="512">2009-10-28 15:29:22.436 EDT</when>
+                          <stringAtExecution>theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x = 3
+_k.theVector.add(Vector3(1,1,0))
+keyframe1 = k.end(_k)
+
+_k = k.begin()
+_k.theVector.x = 2
+_k.theVector.add(Vector3(1,1,0))
+keyframe2 = k.end(_k)
+
+(keyframe2*0.6666+keyframe1*0.3333).apply()
+print theVector # prints (3.333333, 1.666667, 0.0)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="513">
+                    <counts id="514"/>
+                    <normalization>-12.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="515">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="516">
+              <annotations id="517" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="498"/>
+                  <list id="518"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+        </properties>
+        <rect id="519">
+          <x>880.0</x>
+          <y>514.0</y>
+          <w>52.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="520"/>
+        <children id="521">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="522">
+        <uid>__1bdcdf3d:1249c6d14fd:-7a01</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="523">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="524">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="522"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="525">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="522"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>extended assignment</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="64"/>
+            <string>
+# first of all, for this to work you need to have enabled the Processing Plugin (and you need to be able to see the window)
+
+# running this code will start the processing control box and turn the processing window yellow
+
+control = _self.find[&quot;processing control&quot;]
+control.begin()
+
+# (the box will turn green to show you that it&apos;s running)
+
+# now, jamming values into our global varible gives us as programmers &quot;real time&quot; control over the color of the window
+
+color.x = 128
+color.y = 20
+color.z = 255
+
+# the above code gives us a purple / blue color
+
+# clearly we can get a lot of animation power using this technique. But &quot;live-codeing&quot; is exciting, &quot;live-typing&quot; isn&apos;t 
+
+# one approach:
+def animator():
+	for n in range(0, 100):
+		color.x = 255*Math.random()
+		yield
+
+animate = animator()
+u.start(animate)
+
+# and to stop it again (or just let it finish)
+u.stop(animate)
+
+# but that&apos;s pretty tedious. Enter _ex Ñ a special variable that wraps up variable assignment to offer extended options.
+
+# in particular it lets us assign generators to variables
+_ex.color.x = (Math.random()*255 for n in range(0,100))
+
+# or smoothly interpolate from wherever that variable is to some value
+_ex.color.x = dict(value=255.0, over=100)
+_ex.color.x = dict(value=0.0, over=100)
+
+# now, just so that we&apos;re in the same spot moving on, let&apos;s stop the &quot;processing control&quot;
+control.end()
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="65"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="66"/>
+            <list id="526"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="68"/>
+            <map id="527">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="528">
+                  <areas id="529">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="530">
+                      <allocation>0</allocation>
+                      <lastSeenAt>68</lastSeenAt>
+                      <lineStart>5</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="531">
+                        <dictionary id="532"/>
+                      </extend>
+                      <exec id="533">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="534">
+                          <when id="535">2009-10-28 15:41:03.184 EDT</when>
+                          <stringAtExecution>control = _self.find[&quot;processing control&quot;]
+control.begin()
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="536">
+                      <allocation>0</allocation>
+                      <lastSeenAt>72</lastSeenAt>
+                      <lineStart>12</lineStart>
+                      <lineEnd>14</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="537">
+                        <dictionary id="538"/>
+                      </extend>
+                      <exec id="539">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="540">
+                          <when id="541">2009-10-28 15:41:48.305 EDT</when>
+                          <stringAtExecution>color.x = 128
+color.y = 20
+color.z = 255
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="542">
+                      <allocation>0</allocation>
+                      <lastSeenAt>77</lastSeenAt>
+                      <lineStart>21</lineStart>
+                      <lineEnd>27</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="543">
+                        <dictionary id="544">
+                          <entry>
+                            <field.util.Dict_-Prop reference="147"/>
+                            <field.math.util.Histogram id="545">
+                              <counts id="546"/>
+                              <normalization>0.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="547">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="548">
+                          <when id="549">2009-10-28 15:43:51.141 EDT</when>
+                          <stringAtExecution>def animator():
+	color.x = 255*Math.random()
+	yield
+
+animate = animator()
+u.start(animate)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="550">
+                          <when id="551">2009-10-28 15:43:59.527 EDT</when>
+                          <stringAtExecution>def animator():
+	while 1:
+		color.x = 255*Math.random()
+		yield
+
+animate = animator()
+u.start(animate)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="552">
+                          <when id="553">2009-10-28 15:44:55.177 EDT</when>
+                          <stringAtExecution>def animator():
+	for n in range(0, 100):
+		color.x = 255*Math.random()
+		yield
+
+animate = animator()
+u.start(animate)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="554">
+                      <allocation>0</allocation>
+                      <lastSeenAt>76</lastSeenAt>
+                      <lineStart>30</lineStart>
+                      <lineEnd>30</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="555">
+                        <dictionary id="556"/>
+                      </extend>
+                      <exec id="557">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="558">
+                          <when id="559">2009-10-28 15:44:13.278 EDT</when>
+                          <stringAtExecution>
+u.stop(animate)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="560">
+                      <allocation>0</allocation>
+                      <lastSeenAt>78</lastSeenAt>
+                      <lineStart>35</lineStart>
+                      <lineEnd>35</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="561">
+                        <dictionary id="562"/>
+                      </extend>
+                      <exec id="563">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="564">
+                          <when id="565">2009-10-28 15:45:16.448 EDT</when>
+                          <stringAtExecution>
+_ex.color.x = (Math.random()*255 for n in range(0,100))</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="566">
+                      <allocation>0</allocation>
+                      <lastSeenAt>82</lastSeenAt>
+                      <lineStart>38</lineStart>
+                      <lineEnd>38</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="567">
+                        <dictionary id="568"/>
+                      </extend>
+                      <exec id="569">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="570">
+                          <when id="571">2009-10-28 15:46:38.450 EDT</when>
+                          <stringAtExecution>
+_ex.color.x = dict(value=255.0, over=100)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="572">
+                      <allocation>0</allocation>
+                      <lastSeenAt>84</lastSeenAt>
+                      <lineStart>42</lineStart>
+                      <lineEnd>42</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="573">
+                        <dictionary id="574"/>
+                      </extend>
+                      <exec id="575">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="576">
+                          <when id="577">2009-10-28 15:47:12.563 EDT</when>
+                          <stringAtExecution>
+control.end()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="578">
+                    <counts id="579">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="542"/>
+                        <field.math.BaseMath_-MutableFloat id="580">
+                          <d>2.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>2.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="74"/>
+            <null/>
+          </entry>
+        </properties>
+        <rect id="581">
+          <x>607.0</x>
+          <y>446.0</y>
+          <w>175.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="582"/>
+        <children id="583">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="584">
+        <uid>__1bdcdf3d:1249c6d14fd:-78e9</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="585">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="586">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="584"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="587">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="584"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="64"/>
+            <string>
+
+#lets start with yellow
+color = Vector3(255,255, 0)
+
+def draw():
+	p.background(color.x, color.y, color.z)
+
+_r = draw
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>processing control</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="588">
+              <name>needsProcessing</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="66"/>
+            <list id="589"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="65"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="74"/>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="590">
+              <annotations id="591" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="64"/>
+                  <list id="592"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="68"/>
+            <map id="593">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="594">
+                  <areas id="595">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="596">
+                      <allocation>0</allocation>
+                      <lastSeenAt>60</lastSeenAt>
+                      <lineStart>4</lineStart>
+                      <lineEnd>4</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="597">
+                        <dictionary id="598">
+                          <entry>
+                            <field.util.Dict_-Prop reference="147"/>
+                            <field.math.util.Histogram id="599">
+                              <counts id="600"/>
+                              <normalization>0.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="601">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="602">
+                          <when id="603">2009-10-28 15:39:24.813 EDT</when>
+                          <stringAtExecution>
+level = 1.0</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="604">
+                          <when id="605">2009-10-28 15:39:25.565 EDT</when>
+                          <stringAtExecution>
+level = 0.0</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="606">
+                      <allocation>0</allocation>
+                      <lastSeenAt>66</lastSeenAt>
+                      <lineStart>6</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="607">
+                        <dictionary id="608">
+                          <entry>
+                            <field.util.Dict_-Prop reference="147"/>
+                            <field.math.util.Histogram id="609">
+                              <counts id="610">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area reference="606"/>
+                                  <field.math.BaseMath_-MutableFloat id="611">
+                                    <d>4.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>4.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="612">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="613">
+                          <when id="614">2009-10-28 15:39:36.37 EDT</when>
+                          <stringAtExecution>
+	background(1,2,3)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="615">
+                          <when id="616">2009-10-28 15:39:40.437 EDT</when>
+                          <stringAtExecution>
+	background(0.3, 0.2, 0.5)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="617">
+                          <when id="618">2009-10-28 15:39:41.494 EDT</when>
+                          <stringAtExecution>
+	background(0.3, 0.2, 0.5)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="619">
+                          <when id="620">2009-10-28 15:39:41.689 EDT</when>
+                          <stringAtExecution>
+	background(0.3, 0.2, 0.5)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="621">
+                          <when id="622">2009-10-28 15:39:50.454 EDT</when>
+                          <stringAtExecution>
+	background(255, 0, 12.3)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="623">
+                          <when id="624">2009-10-28 15:39:58.566 EDT</when>
+                          <stringAtExecution>
+	background(color.x, color.y, color.z)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="625">
+                    <counts id="626">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="606"/>
+                        <field.math.BaseMath_-MutableFloat id="627">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="596"/>
+                        <field.math.BaseMath_-MutableFloat id="628">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>2.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="629">
+          <x>820.0</x>
+          <y>445.0</y>
+          <w>50.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="630"/>
+        <children id="631">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="632">
+        <uid>__1bdcdf3d:1249c6d14fd:-780b</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="633">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="634">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="635">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="632"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="636">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="637">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="632"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="638">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>pt. 3 (processing demo)</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="639">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# using Processing as our debug window
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.p.background(255, 255,255)
+_k.p.stroke(255,20,255)
+_k.p.triangle(10,20,30,200,300,400)
+keyframe1 = k.end(_k)
+# this draws a purple triangle on a white background
+
+_k = k.begin()
+_k.p.background(0, 255,255)
+_k.p.stroke(255, 0, 0)
+_k.p.triangle(100,20,200,100,100,100)
+keyframe2 = k.end(_k)
+# this draws a red triangle on a cyan background
+
+# and, as you might expect, this lets you &quot;interpolate&quot; between code fragments
+(keyframe1*0.5+keyframe2*0.5).apply()
+
+
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="640">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="641">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="642"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="588"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="643">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="644">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="645">
+              <annotations id="646" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="639"/>
+                  <list id="647"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="648">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="649">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="650">
+                  <areas id="651">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="652">
+                      <allocation>0</allocation>
+                      <lastSeenAt>56</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>0</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="653">
+                        <dictionary id="654"/>
+                      </extend>
+                      <exec id="655">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="656">
+                          <when id="657">2009-10-28 15:29:22.436 EDT</when>
+                          <stringAtExecution>theVector = Vector3()
+
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.theVector.x = 3
+_k.theVector.add(Vector3(1,1,0))
+keyframe1 = k.end(_k)
+
+_k = k.begin()
+_k.theVector.x = 2
+_k.theVector.add(Vector3(1,1,0))
+keyframe2 = k.end(_k)
+
+(keyframe2*0.6666+keyframe1*0.3333).apply()
+print theVector # prints (3.333333, 1.666667, 0.0)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="658">
+                      <allocation>0</allocation>
+                      <lastSeenAt>108</lastSeenAt>
+                      <lineStart>2</lineStart>
+                      <lineEnd>10</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="659">
+                        <dictionary id="660"/>
+                      </extend>
+                      <exec id="661">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="662">
+                          <when id="663">2009-10-28 15:51:46.635 EDT</when>
+                          <stringAtExecution>
+k = KeyFrameCreator()
+
+_k = k.begin()
+_k.p.background(255, 255,255)
+_k.p.stroke(255,20,255)
+_k.p.triangle(10,20,30,200,300,400)
+keyframe1 = k.end(_k)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="664">
+                      <allocation>0</allocation>
+                      <lastSeenAt>110</lastSeenAt>
+                      <lineStart>11</lineStart>
+                      <lineEnd>17</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="665">
+                        <dictionary id="666"/>
+                      </extend>
+                      <exec id="667">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="668">
+                          <when id="669">2009-10-28 15:52:16.516 EDT</when>
+                          <stringAtExecution>
+_k = k.begin()
+_k.p.background(0, 255,255)
+_k.p.stroke(0,255,255)
+_k.p.triangle(100,20,200,100,100,100)
+keyframe2 = k.end(_k)
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="670">
+                      <allocation>0</allocation>
+                      <lastSeenAt>113</lastSeenAt>
+                      <lineStart>20</lineStart>
+                      <lineEnd>20</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="671">
+                        <dictionary id="672">
+                          <entry>
+                            <field.util.Dict_-Prop reference="147"/>
+                            <field.math.util.Histogram id="673">
+                              <counts id="674">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area reference="670"/>
+                                  <field.math.BaseMath_-MutableFloat id="675">
+                                    <d>1.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>1.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="676">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="677">
+                          <when id="678">2009-10-28 15:52:52.725 EDT</when>
+                          <stringAtExecution>
+(keyframe1*0.5+keyframe2*0.5).apply()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="679">
+                          <when id="680">2009-10-28 15:53:48.638 EDT</when>
+                          <stringAtExecution>
+(keyframe1*1+keyframe2*0.0).apply()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="681">
+                          <when id="682">2009-10-28 15:53:53.214 EDT</when>
+                          <stringAtExecution>
+(keyframe1*0.5+keyframe2*0.5).apply()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="683">
+                    <counts id="684">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area id="685">
+                          <allocation>1</allocation>
+                          <lastSeenAt>107</lastSeenAt>
+                          <lineStart>15</lineStart>
+                          <lineEnd>15</lineEnd>
+                          <invalid>false</invalid>
+                          <extend id="686">
+                            <dictionary id="687">
+                              <entry>
+                                <field.util.Dict_-Prop reference="147"/>
+                                <field.math.util.Histogram id="688">
+                                  <counts id="689">
+                                    <entry>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-Area reference="685"/>
+                                      <field.math.BaseMath_-MutableFloat id="690">
+                                        <d>4.0</d>
+                                      </field.math.BaseMath_-MutableFloat>
+                                    </entry>
+                                  </counts>
+                                  <normalization>4.0</normalization>
+                                </field.math.util.Histogram>
+                              </entry>
+                            </dictionary>
+                          </extend>
+                          <exec id="691">
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="692">
+                              <when id="693">2009-10-28 15:51:04.402 EDT</when>
+                              <stringAtExecution>
+_k.p.triangle(0,0,0,0,600,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="694">
+                              <when id="695">2009-10-28 15:51:07.786 EDT</when>
+                              <stringAtExecution>
+_k.p.triangle(0,200,0,0,600,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="696">
+                              <when id="697">2009-10-28 15:51:10.381 EDT</when>
+                              <stringAtExecution>
+_k.p.triangle(0,20,0,0,600,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="698">
+                              <when id="699">2009-10-28 15:51:14.762 EDT</when>
+                              <stringAtExecution>
+_k.p.triangle(0,20,0,0,100,100)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="700">
+                              <when id="701">2009-10-28 15:51:17.994 EDT</when>
+                              <stringAtExecution>
+_k.p.triangle(0,20,0,100,100,100)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="702">
+                              <when id="703">2009-10-28 15:51:21.570 EDT</when>
+                              <stringAtExecution>
+_k.p.triangle(100,20,0,100,100,100)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                          </exec>
+                        </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                        <field.math.BaseMath_-MutableFloat id="704">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area id="705">
+                          <allocation>0</allocation>
+                          <lastSeenAt>98</lastSeenAt>
+                          <lineStart>11</lineStart>
+                          <lineEnd>11</lineEnd>
+                          <invalid>true</invalid>
+                          <extend id="706">
+                            <dictionary id="707">
+                              <entry>
+                                <field.util.Dict_-Prop reference="147"/>
+                                <field.math.util.Histogram id="708">
+                                  <counts id="709">
+                                    <entry>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-Area reference="705"/>
+                                      <field.math.BaseMath_-MutableFloat id="710">
+                                        <d>1.0</d>
+                                      </field.math.BaseMath_-MutableFloat>
+                                    </entry>
+                                    <entry>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-Area id="711">
+                                        <allocation>0</allocation>
+                                        <lastSeenAt>99</lastSeenAt>
+                                        <lineStart>10</lineStart>
+                                        <lineEnd>10</lineEnd>
+                                        <invalid>true</invalid>
+                                        <extend id="712">
+                                          <dictionary id="713">
+                                            <entry>
+                                              <field.util.Dict_-Prop reference="147"/>
+                                              <field.math.util.Histogram id="714">
+                                                <counts id="715"/>
+                                                <normalization>0.0</normalization>
+                                              </field.math.util.Histogram>
+                                            </entry>
+                                          </dictionary>
+                                        </extend>
+                                        <exec id="716">
+                                          <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="717">
+                                            <when id="718">2009-10-28 15:50:07.456 EDT</when>
+                                            <stringAtExecution>
+_k.p.triangle(10,20,30,200,300,400)</stringAtExecution>
+                                          </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                          <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="719">
+                                            <when id="720">2009-10-28 15:50:31.585 EDT</when>
+                                            <stringAtExecution>
+_k.p.triangle(10,20,30,200,300,400)</stringAtExecution>
+                                          </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                                        </exec>
+                                      </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                                      <field.math.BaseMath_-MutableFloat id="721">
+                                        <d>1.0</d>
+                                      </field.math.BaseMath_-MutableFloat>
+                                    </entry>
+                                  </counts>
+                                  <normalization>2.0</normalization>
+                                </field.math.util.Histogram>
+                              </entry>
+                            </dictionary>
+                          </extend>
+                          <exec id="722">
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="723">
+                              <when id="724">2009-10-28 15:50:05.920 EDT</when>
+                              <stringAtExecution>
+_k.p.color(255,0,255)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="725">
+                              <when id="726">2009-10-28 15:50:11.432 EDT</when>
+                              <stringAtExecution>
+_k.p.color(255,0,255)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="727">
+                              <when id="728">2009-10-28 15:50:30.16 EDT</when>
+                              <stringAtExecution>
+_k.p.stroke(255,20,255)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                          </exec>
+                        </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                        <field.math.BaseMath_-MutableFloat id="729">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="670"/>
+                        <field.math.BaseMath_-MutableFloat id="730">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area id="731">
+                          <allocation>1</allocation>
+                          <lastSeenAt>93</lastSeenAt>
+                          <lineStart>12</lineStart>
+                          <lineEnd>12</lineEnd>
+                          <invalid>true</invalid>
+                          <extend id="732">
+                            <dictionary id="733">
+                              <entry>
+                                <field.util.Dict_-Prop reference="147"/>
+                                <field.math.util.Histogram id="734">
+                                  <counts id="735">
+                                    <entry>
+                                      <field.core.ui.text.rulers.ExecutedAreas_-Area reference="731"/>
+                                      <field.math.BaseMath_-MutableFloat id="736">
+                                        <d>5.0</d>
+                                      </field.math.BaseMath_-MutableFloat>
+                                    </entry>
+                                  </counts>
+                                  <normalization>0.0</normalization>
+                                </field.math.util.Histogram>
+                              </entry>
+                            </dictionary>
+                          </extend>
+                          <exec id="737">
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="738">
+                              <when id="739">2009-10-28 15:49:17.14 EDT</when>
+                              <stringAtExecution>
+p.triangle(2,3,4)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="740">
+                              <when id="741">2009-10-28 15:49:24.526 EDT</when>
+                              <stringAtExecution>
+p.triangle(1,2,3,2,3,4)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="742">
+                              <when id="743">2009-10-28 15:49:28.263 EDT</when>
+                              <stringAtExecution>
+p.triangle(1,2,3,20,30,40)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="744">
+                              <when id="745">2009-10-28 15:49:32.15 EDT</when>
+                              <stringAtExecution>
+p.triangle(10,20,30,20,30,40)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="746">
+                              <when id="747">2009-10-28 15:49:33.591 EDT</when>
+                              <stringAtExecution>
+p.triangle(10,20,30,20,30,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="748">
+                              <when id="749">2009-10-28 15:49:35.239 EDT</when>
+                              <stringAtExecution>
+p.triangle(10,20,30,20,300,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="750">
+                              <when id="751">2009-10-28 15:49:36.799 EDT</when>
+                              <stringAtExecution>
+p.triangle(10,20,30,200,300,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                            <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="752">
+                              <when id="753">2009-10-28 15:49:40.695 EDT</when>
+                              <stringAtExecution>
+p.triangle(10,20,30,200,300,400)</stringAtExecution>
+                            </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                          </exec>
+                        </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                        <field.math.BaseMath_-MutableFloat id="754">
+                          <d>2.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>-34.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="755">
+          <x>948.0</x>
+          <y>516.0</y>
+          <w>193.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="756"/>
+        <children id="757">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+    </parents>
+    <children id="758">
+      <field.core.plugins.python.PythonPlugin_-LocalVisualElement id="759">
+        <uid>//plugin_python</uid>
+        <parents id="760">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="761">
+          <field.core.plugins.history.HistoryPlugin_-LocalVisualElement id="762">
+            <uid>//HistoryPlugin</uid>
+            <parents id="763">
+              <field.core.plugins.python.PythonPlugin_-LocalVisualElement reference="759"/>
+            </parents>
+            <children id="764"/>
+          </field.core.plugins.history.HistoryPlugin_-LocalVisualElement>
+        </children>
+      </field.core.plugins.python.PythonPlugin_-LocalVisualElement>
+      <field.core.plugins.InspectorPlugin_-LocalVisualElement id="765">
+        <uid>//inspector_python</uid>
+        <parents id="766">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="767"/>
+      </field.core.plugins.InspectorPlugin_-LocalVisualElement>
+      <field.core.plugins.connection.Connections_-LocalVisualElement id="768">
+        <uid>//plugin_connections</uid>
+        <parents id="769">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="770"/>
+      </field.core.plugins.connection.Connections_-LocalVisualElement>
+      <field.core.plugins.SimpleConstraints_-LocalVisualElement id="771">
+        <uid>//plugin_simpleConstraints</uid>
+        <parents id="772">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="773"/>
+      </field.core.plugins.SimpleConstraints_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="774">
+        <uid>//plugin_pseudoproperties</uid>
+        <parents id="775">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="776"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement id="777">
+        <uid>//AudoExecutePython</uid>
+        <parents id="778">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="779"/>
+      </field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement>
+      <field.core.plugins.log.LoggingPlugin_-LocalVisualElement id="780">
+        <uid>//LoggingPlugin</uid>
+        <parents id="781">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="782"/>
+      </field.core.plugins.log.LoggingPlugin_-LocalVisualElement>
+      <field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement id="783">
+        <uid>//plugin_complexConstraints</uid>
+        <parents id="784">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="785"/>
+      </field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement>
+      <field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement id="786">
+        <uid>//plugin_basicDrawingPlugin</uid>
+        <parents id="787">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="788"/>
+      </field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="789">
+        <uid>//plugin_snip</uid>
+        <parents id="790">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="791"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="792">
+        <uid>//plugin_referencePlugin2</uid>
+        <parents id="793">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="794"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="795">
+        <uid>//plugin_fieldgraphics</uid>
+        <parents id="796">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="797"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="798">
+        <uid>//plugin_jsrscripting</uid>
+        <parents id="799">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="800"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="801">
+        <uid>//plugin_max</uid>
+        <parents id="802">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="803"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="804">
+        <uid>//plugin_hierarchy</uid>
+        <parents id="805">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="806"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="807">
+        <uid>//plugin_freehand</uid>
+        <parents id="808">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="809"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="810">
+        <uid>//plugin_freehand</uid>
+        <parents id="811">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="812"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="813">
+        <uid>//plugin_osc</uid>
+        <parents id="814">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="815"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="816">
+        <uid>//plugin_processingplugin</uid>
+        <parents id="817">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="818"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="819">
+        <uid>//plugin_scrubber</uid>
+        <parents id="820">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="821"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <marc.plugins.topology.TopologyPlugin_-LocalVisualElement id="822">
+        <uid>//topology_plugin</uid>
+        <parents id="823">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="824"/>
+      </marc.plugins.topology.TopologyPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="825">
+        <uid>//plugin_typing</uid>
+        <parents id="826">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="827"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+    </children>
+  </field.core.StandardFluidSheet_-RootSheetElement>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_pythonversion_1</left>
+    <right class="map" id="2">
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7e69</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="3">
+          <uid>__1bdcdf3d:1249c6d14fd:-7e69</uid>
+          <persistantVariables id="4"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7c9b</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="5">
+          <uid>__1bdcdf3d:1249c6d14fd:-7c9b</uid>
+          <persistantVariables id="6"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7af0</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="7">
+          <uid>__1bdcdf3d:1249c6d14fd:-7af0</uid>
+          <persistantVariables id="8"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-78e9</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="9">
+          <uid>__1bdcdf3d:1249c6d14fd:-78e9</uid>
+          <persistantVariables id="10"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7a01</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="11">
+          <uid>__1bdcdf3d:1249c6d14fd:-7a01</uid>
+          <persistantVariables id="12"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7c43</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="13">
+          <uid>__1bdcdf3d:1249c6d14fd:-7c43</uid>
+          <persistantVariables id="14"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7ff4</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="15">
+          <uid>__1bdcdf3d:1249c6d14fd:-7ff4</uid>
+          <persistantVariables id="16"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7fff</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="17">
+          <uid>__1bdcdf3d:1249c6d14fd:-7fff</uid>
+          <persistantVariables id="18"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7d77</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="19">
+          <uid>__1bdcdf3d:1249c6d14fd:-7d77</uid>
+          <persistantVariables id="20"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-780b</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="21">
+          <uid>__1bdcdf3d:1249c6d14fd:-780b</uid>
+          <persistantVariables id="22"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7f68</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="23">
+          <uid>__1bdcdf3d:1249c6d14fd:-7f68</uid>
+          <persistantVariables id="24"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__1bdcdf3d:1249c6d14fd:-7c0a</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="25">
+          <uid>__1bdcdf3d:1249c6d14fd:-7c0a</uid>
+          <persistantVariables id="26"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+    </right>
+  </field.namespace.generic.Generics_-Pair>
+  <null/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_connectionsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_simpleConstraintsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//AudoExecutePythonversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//LoggingPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//HistoryPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_complexConstraintsversion_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Triple id="1">
+    <left class="string">//plugin_basicDrawingPluginversion_2</left>
+    <middle class="set" id="2"/>
+    <right class="set" id="3"/>
+  </field.namespace.generic.Generics_-Triple>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <list id="1"/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+</object-stream>

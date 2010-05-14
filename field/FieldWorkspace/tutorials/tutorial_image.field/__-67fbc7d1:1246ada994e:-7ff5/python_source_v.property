@@ -1,0 +1,17 @@
+string>from CoreGraphics import *
+# how to load and display and image in Field
+
+# here we load something out of the sheet data folder (which is just a folder inside the .field 'package' that this document is saves in
+
+anImage = image(_self.sheetDataFolder+"bricks.jpg")
+
+# to put it on screen we'd just write
+#anImage.show()
+
+# but it's a bit big, so we'll scale it down first:
+
+anImage *= Vector2(0.2, 0.2)
+
+# before 'showing' this image we clear all the lines that this box is drawing, otherwise every time we run the code in this box we end up adding an additional image on top of all the previous ones
+_self.lines.clear()
+anImage.show( (50, 50) )

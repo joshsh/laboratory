@@ -1,0 +1,12 @@
+string>attribute vec2 s_Five;
+varying vec2 textureCoordinates;
+uniform vec4 myOffset;
+
+void main()
+{
+	// this is the usual transform
+	// gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+	// but this pulls out a square from 0->1 to fill the screen
+	gl_Position = (gl_Vertex-vec4(0.5+myOffset.z/4.0, 0.5+myOffset.w/4.0,0,0))*vec4(2.0+myOffset.x-0.5,-2.0+myOffset.y-0.5,2,1);
+	textureCoordinates = s_Five;
+}

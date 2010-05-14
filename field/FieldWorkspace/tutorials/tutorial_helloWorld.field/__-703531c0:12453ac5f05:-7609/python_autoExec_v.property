@@ -1,0 +1,8 @@
+string>from CoreGraphics import *
+_self.lines.clear()
+
+ii = image(_self.sheetDataFolder+"inspectorWindow.tiff")
+(ii <<blur(15)).show((600, 200), decor=0)
+ii.show((600,200), decor=0)
+
+_self.noFrame=1

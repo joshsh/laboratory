@@ -1,0 +1,18 @@
+string>
+# "thanks" to Field's auto execution globals trick I can just run this code here:
+
+print myGlobalVariable
+
+# rather than getting me an error ("name 'myGlobalVariable' is not defined") it prints "10" Ñ why?
+
+# well, Field noticed that the box 'I define something' defined 'myGlobalVariable' so it goes and executes that box to see if it still defines an 'myGlobalVariable' 
+
+# the linkage is done only if you define a global variable in one box and then use it someplace else; you can actually see the place where the link is established if you look at the code which is autoexecuted on launch by Field (you can use the dropdown box at the top of the editor to look at the other kinds of code 'inside boxes').
+
+# we think that this is, while surprising, a useful feature. If you get confused two things:
+
+#    firstly, you can see the execution traces in the output window (you'll see things like 'auto executing 'x' for 'y'')
+#    secondly, you can right click on a name and find out where it was defined, where it might be defined and where it is used.
+#    finally, you can explore these global variabls by using the "offers global variables" view in the selection pallette
+
+

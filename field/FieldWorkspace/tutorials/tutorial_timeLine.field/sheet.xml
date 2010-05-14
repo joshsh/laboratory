@@ -1,0 +1,3970 @@
+<object-stream>
+  <string>version_2</string>
+  <field.core.StandardFluidSheet_-RootSheetElement id="1">
+    <uid>//rootSheetElement</uid>
+    <parents id="2">
+      <field.core.dispatch.VisualElement id="3">
+        <uid>__-4797843b:1246b07568e:-7fff</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="4">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="5">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.execution.TemporalSliderOverrides id="6">
+              <class>field.core.execution.TemporalSliderOverrides</class>
+              <element reference="3"/>
+            </field.core.execution.TemporalSliderOverrides>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="7">
+              <name>creationToken</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>time</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="8">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="9">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="3"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="10">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="11">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>timeSlider</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="12">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="13">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="14">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="15">
+                  <areas id="16"/>
+                  <rootHistogram id="17">
+                    <counts id="18"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="19">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="20">
+              <annotations id="21" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="22">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="23"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="24">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="25">
+          <x>-1.0</x>
+          <y>0.0</y>
+          <w>0.0</w>
+          <h>0.0</h>
+        </rect>
+        <parents id="26"/>
+        <children id="27">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="28">
+        <uid>__-4797843b:1246b07568e:-7fbf</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="29">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="30">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="28"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="31">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="28"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>a box</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <string>
+# this box you can run by option clicking on it, here&apos;s the code
+
+def start():
+	print &quot;Starting...&quot;
+
+def keepGoing():
+	# _t is a magic variable that goes from 0 to 1 (and beyond) to get you the position of the mouse or the time slider over this element. 0 means at the left of this box, 1 means at the very right, 0.5 means in the middle
+	print &quot;...ongoing at time %f... &quot; % _t
+
+def stop():
+	print &quot;... Stopping&quot;
+
+# start is called once, keepGoing is called while the box continues to run and finally stop is called just before the box isn&apos;t run any more
+_r = start, keepGoing, stop
+
+# final note: you can make one of these boxes using the templating system (assuming you have the templates installed)
+# on the sheet hit &apos;t&apos; and select (or start typing) &quot;tutorial.runningbox&quot;
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="32">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="33"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="34">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;keepGoing&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="35">
+              <annotations id="36" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                  <list id="37"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+            <map id="38">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="39">
+                  <areas id="40"/>
+                  <rootHistogram id="41">
+                    <counts id="42"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="43">
+          <x>121.0</x>
+          <y>82.0</y>
+          <w>103.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="44"/>
+        <children id="45">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="46">
+        <uid>__-4797843b:1246b07568e:-7f93</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="47">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="48">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="49">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="50">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="46"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="51">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="52"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="53">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="54">
+              <annotations id="55" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="56">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="57"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="58">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="59">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="60">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="46"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="61">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="56"/>
+            <string>label= &quot;&quot;&quot;this is a box with code in it, click to select it&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="62">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="63">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="64">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="65" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="66">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAMXRoaXMgaXMgYSBib3ggd2l0aCBjb2RlIGluIGl0LCBj
+bGljayB0byBzZWxlY3QgaXR4eHNyABdqYXZhLnV0aWwuTGlua2VkSGFzaE1hcDTATlwQbMD7AgAB
+WgALYWNjZXNzT3JkZXJ4cQB+ABE/QAAAAAAADHcIAAAAEAAAAARzcQB+ABN0ABBvZmZzZXRGcm9t
+U291cmNlc3IAGWZpZWxkLm1hdGgubGluYWxnLlZlY3RvcjJ9DiTSDG7ixAIAAkYAAXhGAAF5eHAA
+AAAAAAAAAHNxAH4AE3QAFWNvbnRhaW5zTXVsdGlsaW5lVGV4dHNxAH4AHQAAAAFzcQB+ABN0AA9z
+aG91bGRIaWdobGlnaHRzcgARamF2YS5sYW5nLkJvb2xlYW7NIHKA1Zz67gIAAVoABXZhbHVleHAA
+c3EAfgATdAAMdG90YWxPcGFjaXR5c3IAEGphdmEubGFuZy5Eb3VibGWAs8JKKWv7BAIAAUQABXZh
+bHVleHEAfgAJP+AAAAAAAAB4AA==
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="50"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="67">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="68">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="69">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="70">
+                  <areas id="71">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="72">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="73">
+                        <dictionary id="74"/>
+                      </extend>
+                      <exec id="75">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="76">
+                          <when id="77">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="78">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="79">
+                        <dictionary id="80"/>
+                      </extend>
+                      <exec id="81">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="82">
+                          <when id="83">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="84">
+                    <counts id="85"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="86">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="87">
+          <x>122.0</x>
+          <y>53.0</y>
+          <w>50.0</w>
+          <h>34.0</h>
+        </rect>
+        <parents id="88"/>
+        <children id="89">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="90">
+        <uid>__-4797843b:1246b07568e:-7f6d</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="91">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="92">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="93">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="94">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="90"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="95">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="96"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="97">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="98">
+              <annotations id="99" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="100">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="101"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="102">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="103">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="104">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="90"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="105">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="100"/>
+            <string>label= &quot;&quot;&quot;Just to the left of this text there&apos;s a red line that can be used to execute boxes by dragging it.
+&lt;p&gt;&lt;p&gt;
+You might be able to grab the line from here, or you can pan over a bit using the middle mouse button (or a drag gesture on a laptop).&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="106">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="107">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="108">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="109" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="110">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQA8Ep1c3QgdG8gdGhlIGxlZnQgb2YgdGhpcyB0ZXh0IHRo
+ZXJlJ3MgYSByZWQgbGluZSB0aGF0IGNhbiBiZSB1c2VkIHRvIGV4ZWN1dGUgYm94ZXMgYnkgZHJh
+Z2dpbmcgaXQuCjxwPjxwPgpZb3UgbWlnaHQgYmUgYWJsZSB0byBncmFiIHRoZSBsaW5lIGZyb20g
+aGVyZSwgb3IgeW91IGNhbiBwYW4gb3ZlciBhIGJpdCB1c2luZyB0aGUgbWlkZGxlIG1vdXNlIGJ1
+dHRvbiAob3IgYSBkcmFnIGdlc3R1cmUgb24gYSBsYXB0b3ApLnh4c3IAF2phdmEudXRpbC5MaW5r
+ZWRIYXNoTWFwNMBOXBBswPsCAAFaAAthY2Nlc3NPcmRlcnhxAH4AET9AAAAAAAAMdwgAAAAQAAAA
+BHNxAH4AE3QAEG9mZnNldEZyb21Tb3VyY2VzcgAZZmllbGQubWF0aC5saW5hbGcuVmVjdG9yMn0O
+JNIMbuLEAgACRgABeEYAAXl4cAAAAAAAAAAAc3EAfgATdAAVY29udGFpbnNNdWx0aWxpbmVUZXh0
+c3EAfgAdAAAAAXNxAH4AE3QAD3Nob3VsZEhpZ2hsaWdodHNyABFqYXZhLmxhbmcuQm9vbGVhbs0g
+coDVnPruAgABWgAFdmFsdWV4cABzcQB+ABN0AAx0b3RhbE9wYWNpdHlzcgAQamF2YS5sYW5nLkRv
+dWJsZYCzwkopa/sEAgABRAAFdmFsdWV4cQB+AAk/4AAAAAAAAHgA
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="94"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="111">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;text&quot;)
+_self.python_globals_.declare(_self, &quot;width&quot;)
+_self.python_globals_.declare(_self, &quot;label&quot;)
+_self.python_globals_.declare(_self, &quot;opacity&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="112">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="113">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="114">
+                  <areas id="115">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="116">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="117">
+                        <dictionary id="118"/>
+                      </extend>
+                      <exec id="119">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="120">
+                          <when id="121">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="122">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>9</lineStart>
+                      <lineEnd>9</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="123">
+                        <dictionary id="124"/>
+                      </extend>
+                      <exec id="125">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="126">
+                          <when id="127">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="128">
+                    <counts id="129"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="130">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="131">
+          <x>4.0</x>
+          <y>247.0</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="132"/>
+        <children id="133">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="134">
+        <uid>__-4797843b:1246b07568e:-7de9</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="135">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="136">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="137">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="134"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="138">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="139">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="134"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="140">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>another box</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="141">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# this is another box you can run by option clicking on it, here&apos;s the code
+
+def keepGoing():
+	print &quot;...second box is ongoing at time %f... &quot; % _t
+
+_r = keepGoing
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="142">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="143">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="144"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="145">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="146">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="147">
+              <annotations id="148" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="141"/>
+                  <list id="149"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="150">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="151">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="152">
+                  <areas id="153"/>
+                  <rootHistogram id="154">
+                    <counts id="155"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="156">
+          <x>150.0</x>
+          <y>136.0</y>
+          <w>103.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="157"/>
+        <children id="158">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="159">
+        <uid>__-4797843b:1246b07568e:-7c9f</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="160">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="161">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="162">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="163">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="159"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="164">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="165"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="166">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="167">
+              <annotations id="168" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="169">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="170"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="171">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="172">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="159"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="173">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="169"/>
+            <string>label= &quot;&quot;&quot;if this begins to look like a time-line then that&apos;s because it is. Only it&apos;s a timeline with code in it.&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="174">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="175">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="176">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="177">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="178">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="179" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="180">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAaGlmIHRoaXMgYmVnaW5zIHRvIGxvb2sgbGlrZSBhIHRp
+bWUtbGluZSB0aGVuIHRoYXQncyBiZWNhdXNlIGl0IGlzLiBPbmx5IGl0J3MgYSB0aW1lbGluZSB3
+aXRoIGNvZGUgaW4gaXQueHhzcgAXamF2YS51dGlsLkxpbmtlZEhhc2hNYXA0wE5cEGzA+wIAAVoA
+C2FjY2Vzc09yZGVyeHEAfgARP0AAAAAAAAx3CAAAABAAAAAEc3EAfgATdAAQb2Zmc2V0RnJvbVNv
+dXJjZXNyABlmaWVsZC5tYXRoLmxpbmFsZy5WZWN0b3IyfQ4k0gxu4sQCAAJGAAF4RgABeXhwAAAA
+AAAAAABzcQB+ABN0ABVjb250YWluc011bHRpbGluZVRleHRzcQB+AB0AAAABc3EAfgATdAAPc2hv
+dWxkSGlnaGxpZ2h0c3IAEWphdmEubGFuZy5Cb29sZWFuzSBygNWc+u4CAAFaAAV2YWx1ZXhwAHNx
+AH4AE3QADHRvdGFsT3BhY2l0eXNyABBqYXZhLmxhbmcuRG91YmxlgLPCSilr+wQCAAFEAAV2YWx1
+ZXhxAH4ACT/gAAAAAAAAeAA=
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="163"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="181">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="182">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="183">
+                  <areas id="184">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="185">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="186">
+                        <dictionary id="187"/>
+                      </extend>
+                      <exec id="188">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="189">
+                          <when id="190">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="191">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="192">
+                        <dictionary id="193"/>
+                      </extend>
+                      <exec id="194">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="195">
+                          <when id="196">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="197">
+                    <counts id="198"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="199">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="200">
+          <x>265.0</x>
+          <y>178.0</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="201"/>
+        <children id="202">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="203">
+        <uid>__-4797843b:1246b07568e:-7b70</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="204">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="205">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="206">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="203"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="207">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="208">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="203"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="209">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>one more box</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="210">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# you can just have any old code in here as well
+
+print &quot;any old print thing&quot;
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="211">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="212">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="213"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="214">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="215">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="216">
+              <annotations id="217" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="210"/>
+                  <list id="218"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="219">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="220">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="221">
+                  <areas id="222"/>
+                  <rootHistogram id="223">
+                    <counts id="224"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="225">
+          <x>165.0</x>
+          <y>175.0</y>
+          <w>38.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="226"/>
+        <children id="227">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="228">
+        <uid>__-4797843b:1246b07568e:-7ad4</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="229">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="230">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="231">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="228"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="232">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="233">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="228"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="234">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>a box with a generator</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="235">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+
+
+# _r can be set to other things. Of particular interest: a python generator Ñ very, very useful for animation
+
+def aGenerator():
+	print &quot;hello&quot;
+	yield 1
+	print &quot;there&quot;
+	yield 1
+	print &quot;everyone&quot;
+	yield 1
+	for n in range(0, 10):
+		print &quot;counting up %i &quot; % n
+		yield 1
+	for n in floatRange(0, 10, 20):
+		print &quot;counting down %f &quot; % n
+		yield 1
+	print &quot;all done&quot;
+	
+# watch that () 
+_r = aGenerator()
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="236">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="237">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="238"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="239">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="240">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="241">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="242">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="243">
+                  <areas id="244"/>
+                  <rootHistogram id="245">
+                    <counts id="246"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="247">
+          <x>221.0</x>
+          <y>390.0</y>
+          <w>202.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="248"/>
+        <children id="249">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="250">
+        <uid>__-4797843b:1246b07568e:-7a13</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="251">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="252">
+              <name>keyboardShortcut_i</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>a</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.execution.TimeMarker id="253">
+              <class>field.core.execution.TimeMarker</class>
+              <element reference="250"/>
+            </field.core.execution.TimeMarker>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.PlainDraggableComponent id="254">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="250"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="255">
+              <name>transitionDuration_i</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>10</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="10"/>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>a marker</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="256">
+              <name>isRealtime_i</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="257">
+              <annotations id="258" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                  <list id="259"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+            <map id="260">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="261">
+                  <areas id="262"/>
+                  <rootHistogram id="263">
+                    <counts id="264"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="265">
+          <x>648.0</x>
+          <y>1.9999945163726807</y>
+          <w>25.0</w>
+          <h>786.0</h>
+        </rect>
+        <parents id="266"/>
+        <children id="267">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="268">
+        <uid>__-4797843b:1246b07568e:-7926</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="269">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="270">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="271">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="272">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="268"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="273">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="274"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="275">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="276">
+              <annotations id="277" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="278">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="279"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="280">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="281">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="282">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="268"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="283">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="278"/>
+            <string>label= &quot;&quot;&quot;This is a time marker (you make them from the right click menu. The inspector palette can give these markers keyboard shortcuts and transition durations. This means that you can drive the red line around with the keyboard&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="284">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="285">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="286">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="287" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="288">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQA3VRoaXMgaXMgYSB0aW1lIG1hcmtlciAoeW91IG1ha2Ug
+dGhlbSBmcm9tIHRoZSByaWdodCBjbGljayBtZW51LiBUaGUgaW5zcGVjdG9yIHBhbGV0dGUgY2Fu
+IGdpdmUgdGhlc2UgbWFya2VycyBrZXlib2FyZCBzaG9ydGN1dHMgYW5kIHRyYW5zaXRpb24gZHVy
+YXRpb25zLiBUaGlzIG1lYW5zIHRoYXQgeW91IGNhbiBkcml2ZSB0aGUgcmVkIGxpbmUgYXJvdW5k
+IHdpdGggdGhlIGtleWJvYXJkeHhzcgAXamF2YS51dGlsLkxpbmtlZEhhc2hNYXA0wE5cEGzA+wIA
+AVoAC2FjY2Vzc09yZGVyeHEAfgARP0AAAAAAAAx3CAAAABAAAAAEc3EAfgATdAAQb2Zmc2V0RnJv
+bVNvdXJjZXNyABlmaWVsZC5tYXRoLmxpbmFsZy5WZWN0b3IyfQ4k0gxu4sQCAAJGAAF4RgABeXhw
+AAAAAAAAAABzcQB+ABN0ABVjb250YWluc011bHRpbGluZVRleHRzcQB+AB0AAAABc3EAfgATdAAP
+c2hvdWxkSGlnaGxpZ2h0c3IAEWphdmEubGFuZy5Cb29sZWFuzSBygNWc+u4CAAFaAAV2YWx1ZXhw
+AHNxAH4AE3QADHRvdGFsT3BhY2l0eXNyABBqYXZhLmxhbmcuRG91YmxlgLPCSilr+wQCAAFEAAV2
+YWx1ZXhxAH4ACT/gAAAAAAAAeAA=
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="272"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="289">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="290">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="291">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="292">
+                  <areas id="293">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="294">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="295">
+                        <dictionary id="296"/>
+                      </extend>
+                      <exec id="297">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="298">
+                          <when id="299">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="300">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="301">
+                        <dictionary id="302"/>
+                      </extend>
+                      <exec id="303">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="304">
+                          <when id="305">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="306">
+                    <counts id="307"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="308">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="309">
+          <x>695.0</x>
+          <y>72.0</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="310"/>
+        <children id="311">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="312">
+        <uid>__-4797843b:1246b07568e:-786f</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="313">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="314">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="312"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="315">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="312"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>extra time manipulation</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <string>
+# while you can drag the red line around with the mouse, Field wouldn&apos;t be Field if you couldn&apos;t do it from code
+
+# try executing this line by itself
+_self.timeSlider.frame.x=200
+
+# then this one
+_self.timeSlider.frame.x=0
+
+
+# if you right click on the red line and select &quot;make time system drive ...&quot; then you get more control over the line with code. Try these lines:
+
+# just like the above
+_now.value=200
+
+# animates a transition to position &apos;0&apos; over 200 frames
+_now.line=[200, 0]
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="34"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="32"/>
+            <list id="316"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+            <map id="317">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="318">
+                  <areas id="319">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="320">
+                      <allocation>0</allocation>
+                      <lastSeenAt>13</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="321">
+                        <dictionary id="322">
+                          <entry>
+                            <field.util.Dict_-Prop id="323">
+                              <name>forwardTransitions</name>
+                            </field.util.Dict_-Prop>
+                            <field.math.util.Histogram id="324">
+                              <counts id="325"/>
+                              <normalization>0.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="326">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="327">
+                          <when id="328">2009-10-19 00:38:17.193 EDT</when>
+                          <stringAtExecution>
+_self.timeSlider.frame.x=0</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="329">
+                          <when id="330">2009-10-19 00:38:19.749 EDT</when>
+                          <stringAtExecution>
+_self.timeSlider.frame.x=0</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="331">
+                      <allocation>0</allocation>
+                      <lastSeenAt>12</lastSeenAt>
+                      <lineStart>4</lineStart>
+                      <lineEnd>4</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="332">
+                        <dictionary id="333"/>
+                      </extend>
+                      <exec id="334">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="335">
+                          <when id="336">2009-10-19 00:38:18.564 EDT</when>
+                          <stringAtExecution>
+_self.timeSlider.frame.x=200</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="337">
+                      <allocation>0</allocation>
+                      <lastSeenAt>15</lastSeenAt>
+                      <lineStart>13</lineStart>
+                      <lineEnd>15</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="338">
+                        <dictionary id="339"/>
+                      </extend>
+                      <exec id="340">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="341">
+                          <when id="342">2009-10-19 00:39:17.326 EDT</when>
+                          <stringAtExecution>
+_now.value=200</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="343">
+                      <allocation>0</allocation>
+                      <lastSeenAt>23</lastSeenAt>
+                      <lineStart>16</lineStart>
+                      <lineEnd>16</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="344">
+                        <dictionary id="345">
+                          <entry>
+                            <field.util.Dict_-Prop reference="323"/>
+                            <field.math.util.Histogram id="346">
+                              <counts id="347">
+                                <entry>
+                                  <field.core.ui.text.rulers.ExecutedAreas_-Area reference="343"/>
+                                  <field.math.BaseMath_-MutableFloat id="348">
+                                    <d>6.0</d>
+                                  </field.math.BaseMath_-MutableFloat>
+                                </entry>
+                              </counts>
+                              <normalization>6.0</normalization>
+                            </field.math.util.Histogram>
+                          </entry>
+                        </dictionary>
+                      </extend>
+                      <exec id="349">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="350">
+                          <when id="351">2009-10-19 00:39:28.409 EDT</when>
+                          <stringAtExecution>
+_now.value=[0, 200]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="352">
+                          <when id="353">2009-10-19 00:39:31.666 EDT</when>
+                          <stringAtExecution>
+_now.value=[200, 0]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="354">
+                          <when id="355">2009-10-19 00:39:34.162 EDT</when>
+                          <stringAtExecution>
+_now.value=[200, 0]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="356">
+                          <when id="357">2009-10-19 00:39:35.232 EDT</when>
+                          <stringAtExecution>
+_now.value=[200, 200]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="358">
+                          <when id="359">2009-10-19 00:39:36.953 EDT</when>
+                          <stringAtExecution>
+_now.value=[0, 200]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="360">
+                          <when id="361">2009-10-19 00:39:41.35 EDT</when>
+                          <stringAtExecution>
+_now.line=[0, 200]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="362">
+                          <when id="363">2009-10-19 00:39:43.608 EDT</when>
+                          <stringAtExecution>
+_now.line=[200, 200]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="364">
+                          <when id="365">2009-10-19 00:39:45.820 EDT</when>
+                          <stringAtExecution>
+_now.line=[200, 0]</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="366">
+                    <counts id="367">
+                      <entry>
+                        <field.core.ui.text.rulers.ExecutedAreas_-Area reference="343"/>
+                        <field.math.BaseMath_-MutableFloat id="368">
+                          <d>1.0</d>
+                        </field.math.BaseMath_-MutableFloat>
+                      </entry>
+                    </counts>
+                    <normalization>-5.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="369">
+              <annotations id="370" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                  <list id="371"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+        </properties>
+        <rect id="372">
+          <x>-336.0</x>
+          <y>449.0</y>
+          <w>173.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="373"/>
+        <children id="374">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="375">
+        <uid>__-4797843b:1246b07568e:-780e</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="376">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="377">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="378">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="379">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="375"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="380">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="381"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="382">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="383">
+              <annotations id="384" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="385">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="386"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="387">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="388">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="375"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="389">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="385"/>
+            <string>label= &quot;&quot;&quot;Pan over to the left to see one more box&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="390">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="391">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="392">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="393">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;text&quot;)
+_self.python_globals_.declare(_self, &quot;width&quot;)
+_self.python_globals_.declare(_self, &quot;label&quot;)
+_self.python_globals_.declare(_self, &quot;opacity&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="394">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="395" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="396">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAKFBhbiBvdmVyIHRvIHRoZSBsZWZ0IHRvIHNlZSBvbmUg
+bW9yZSBib3h4eHNyABdqYXZhLnV0aWwuTGlua2VkSGFzaE1hcDTATlwQbMD7AgABWgALYWNjZXNz
+T3JkZXJ4cQB+ABE/QAAAAAAADHcIAAAAEAAAAARzcQB+ABN0ABBvZmZzZXRGcm9tU291cmNlc3IA
+GWZpZWxkLm1hdGgubGluYWxnLlZlY3RvcjJ9DiTSDG7ixAIAAkYAAXhGAAF5eHAAAAAAAAAAAHNx
+AH4AE3QAFWNvbnRhaW5zTXVsdGlsaW5lVGV4dHNxAH4AHQAAAAFzcQB+ABN0AA9zaG91bGRIaWdo
+bGlnaHRzcgARamF2YS5sYW5nLkJvb2xlYW7NIHKA1Zz67gIAAVoABXZhbHVleHAAc3EAfgATdAAM
+dG90YWxPcGFjaXR5c3IAEGphdmEubGFuZy5Eb3VibGWAs8JKKWv7BAIAAUQABXZhbHVleHEAfgAJ
+P+AAAAAAAAB4AA==
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="379"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="397">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="398">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="399">
+                  <areas id="400">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="401">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="402">
+                        <dictionary id="403"/>
+                      </extend>
+                      <exec id="404">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="405">
+                          <when id="406">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="407">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="408">
+                        <dictionary id="409"/>
+                      </extend>
+                      <exec id="410">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="411">
+                          <when id="412">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="413">
+                    <counts id="414"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="415">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="416">
+          <x>9.0</x>
+          <y>531.0</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="417"/>
+        <children id="418">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="419">
+        <uid>__-4797843b:1246b07568e:-777a</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="420">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="421">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="419"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.DraggableComponent id="422">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="419"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <string>B</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+            <string>
+print &quot;B&quot;
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="34"/>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="32"/>
+            <list id="423"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+            <map id="424">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="425">
+                  <areas id="426"/>
+                  <rootHistogram id="427">
+                    <counts id="428"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="429">
+              <annotations id="430" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                  <list id="431"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+        </properties>
+        <rect id="432">
+          <x>919.0</x>
+          <y>534.0</y>
+          <w>50.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="433"/>
+        <children id="434">
+          <field.core.dispatch.VisualElement id="435">
+            <uid>__-4797843b:1246b07568e:-77a0</uid>
+            <class>field.core.dispatch.VisualElement</class>
+            <properties id="436">
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+                <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="437">
+                  <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+                  <element reference="435"/>
+                </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+                <field.core.windowing.components.DraggableComponent id="438">
+                  <class>field.core.windowing.components.DraggableComponent</class>
+                  <visualElement reference="435"/>
+                </field.core.windowing.components.DraggableComponent>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                <string>
+# we can make a new slider Ñ one that only execute certainy elements
+def pred():
+	return _self.subelements.values()
+
+if (not _self.subSlider_):
+	_self.subSlider_, _self.runner_ = TemporalSliderOverrides.newLocalTemporalSlider(&quot;sub1&quot;, _self, _self.frame.x, pred)
+
+
+# we can wave that slider around all we like with the mouse, but it doesn&apos;t actually do anything unless we call &apos;update&apos;. So, option click or command-pageup on this box to call update every frame
+
+def update():
+	_self.runner_.update(_self.subSlider_.frame.x)
+
+_r = update
+</string>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+                <string>box with sub elements</string>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+                <boolean>false</boolean>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="32"/>
+                <list id="439"/>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="34"/>
+                <string>
+</string>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+                <null/>
+              </entry>
+              <entry>
+                <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+                <map id="440">
+                  <entry>
+                    <string>python_source_v</string>
+                    <field.core.ui.text.rulers.ExecutedAreas_-State id="441">
+                      <areas id="442"/>
+                      <rootHistogram id="443">
+                        <counts id="444"/>
+                        <normalization>0.0</normalization>
+                      </rootHistogram>
+                    </field.core.ui.text.rulers.ExecutedAreas_-State>
+                  </entry>
+                </map>
+              </entry>
+            </properties>
+            <rect id="445">
+              <x>781.0</x>
+              <y>375.0</y>
+              <w>287.0</w>
+              <h>50.0</h>
+            </rect>
+            <parents id="446">
+              <field.core.dispatch.VisualElement id="447">
+                <uid>__-4797843b:1246b07568e:-774a</uid>
+                <class>field.core.dispatch.VisualElement</class>
+                <properties id="448">
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+                    <field.core.execution.TemporalSliderOverrides id="449">
+                      <class>field.core.execution.TemporalSliderOverrides</class>
+                      <element reference="447"/>
+                    </field.core.execution.TemporalSliderOverrides>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="7"/>
+                    <string>sub1</string>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+                    <field.core.windowing.components.PlainDraggableComponent id="450">
+                      <class>field.core.windowing.components.PlainDraggableComponent</class>
+                      <visualElement reference="447"/>
+                    </field.core.windowing.components.PlainDraggableComponent>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="10"/>
+                    <boolean>false</boolean>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                    <string>
+</string>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+                    <string>sub1</string>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+                    <boolean>true</boolean>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+                    <field.core.ui.text.embedded.TextAnnotations_-Package id="451">
+                      <annotations id="452" serialization="custom">
+                        <unserializable-parents/>
+                        <map>
+                          <default>
+                            <loadFactor>0.75</loadFactor>
+                            <threshold>12</threshold>
+                          </default>
+                          <int>16</int>
+                          <int>1</int>
+                          <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                          <list id="453"/>
+                        </map>
+                      </annotations>
+                    </field.core.ui.text.embedded.TextAnnotations_-Package>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+                    <map reference="440"/>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty id="454">
+                      <name>alignment_doNotParticipate</name>
+                      <freezable>false</freezable>
+                    </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                    <boolean>true</boolean>
+                  </entry>
+                </properties>
+                <rect id="455">
+                  <x>834.0</x>
+                  <y>11.0</y>
+                  <w>2.0</w>
+                  <h>2.0</h>
+                </rect>
+                <parents id="456"/>
+                <children id="457">
+                  <field.core.dispatch.VisualElement reference="435"/>
+                </children>
+              </field.core.dispatch.VisualElement>
+              <field.core.dispatch.VisualElement reference="419"/>
+              <field.core.dispatch.VisualElement id="458">
+                <uid>__-4797843b:1246b07568e:-7788</uid>
+                <class>field.core.dispatch.VisualElement</class>
+                <properties id="459">
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+                    <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="460">
+                      <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+                      <element reference="458"/>
+                    </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+                    <field.core.windowing.components.DraggableComponent id="461">
+                      <class>field.core.windowing.components.DraggableComponent</class>
+                      <visualElement reference="458"/>
+                    </field.core.windowing.components.DraggableComponent>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+                    <string>A</string>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                    <string>
+print &quot;A&quot;
+</string>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="12"/>
+                    <boolean>true</boolean>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="34"/>
+                    <string>
+</string>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="32"/>
+                    <list id="462"/>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="13"/>
+                    <map id="463">
+                      <entry>
+                        <string>python_source_v</string>
+                        <field.core.ui.text.rulers.ExecutedAreas_-State id="464">
+                          <areas id="465"/>
+                          <rootHistogram id="466">
+                            <counts id="467"/>
+                            <normalization>0.0</normalization>
+                          </rootHistogram>
+                        </field.core.ui.text.rulers.ExecutedAreas_-State>
+                      </entry>
+                    </map>
+                  </entry>
+                  <entry>
+                    <field.core.dispatch.iVisualElement_-VisualElementProperty reference="19"/>
+                    <field.core.ui.text.embedded.TextAnnotations_-Package id="468">
+                      <annotations id="469" serialization="custom">
+                        <unserializable-parents/>
+                        <map>
+                          <default>
+                            <loadFactor>0.75</loadFactor>
+                            <threshold>12</threshold>
+                          </default>
+                          <int>16</int>
+                          <int>1</int>
+                          <field.core.dispatch.iVisualElement_-VisualElementProperty reference="22"/>
+                          <list id="470"/>
+                        </map>
+                      </annotations>
+                    </field.core.ui.text.embedded.TextAnnotations_-Package>
+                  </entry>
+                </properties>
+                <rect id="471">
+                  <x>791.0</x>
+                  <y>497.0</y>
+                  <w>50.0</w>
+                  <h>50.0</h>
+                </rect>
+                <parents id="472"/>
+                <children id="473">
+                  <field.core.dispatch.VisualElement reference="435"/>
+                  <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+                </children>
+              </field.core.dispatch.VisualElement>
+            </parents>
+            <children id="474">
+              <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+            </children>
+          </field.core.dispatch.VisualElement>
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement reference="435"/>
+      <field.core.dispatch.VisualElement reference="458"/>
+      <field.core.dispatch.VisualElement id="475">
+        <uid>__5facadda:12497979bf4:-7e8b</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="476">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="477">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="478">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="479">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="475"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="480">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="481"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="482">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="483">
+              <annotations id="484" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="485">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="486"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="487">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="488">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="475"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="489">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="485"/>
+            <string>label= &quot;&quot;&quot;This is just a plain old box of code that you can option-click. But you can also try a few more things. &lt;p&gt;&lt;p&gt;You can over above it and (with this window selected) use page-up and page-down to start and stop it.&lt;p&gt;&lt;p&gt;You can select it and press the &lt;i&gt;l&lt;/i&gt; (that&apos;s &apos;ell&apos;) key to get a &apos;local&apos; slider.&lt;p&gt;&lt;p&gt;You can click while holding down &apos;s&apos; to jump the red line to this point (or &apos;k&apos; to drag the red line around a bit from wherever your mouse is).&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="490">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="491">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="492">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="493">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="494">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="495" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="496">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQBwlRoaXMgaXMganVzdCBhIHBsYWluIG9sZCBib3ggb2Yg
+Y29kZSB0aGF0IHlvdSBjYW4gb3B0aW9uLWNsaWNrLiBCdXQgeW91IGNhbiBhbHNvIHRyeSBhIGZl
+dyBtb3JlIHRoaW5ncy4gPHA+PHA+WW91IGNhbiBvdmVyIGFib3ZlIGl0IGFuZCAod2l0aCB0aGlz
+IHdpbmRvdyBzZWxlY3RlZCkgdXNlIHBhZ2UtdXAgYW5kIHBhZ2UtZG93biB0byBzdGFydCBhbmQg
+c3RvcCBpdC48cD48cD5Zb3UgY2FuIHNlbGVjdCBpdCBhbmQgcHJlc3MgdGhlIDxpPmw8L2k+ICh0
+aGF0J3MgJ2VsbCcpIGtleSB0byBnZXQgYSAnbG9jYWwnIHNsaWRlci48cD48cD5Zb3UgY2FuIGNs
+aWNrIHdoaWxlIGhvbGRpbmcgZG93biAncycgdG8ganVtcCB0aGUgcmVkIGxpbmUgdG8gdGhpcyBw
+b2ludCAob3IgJ2snIHRvIGRyYWcgdGhlIHJlZCBsaW5lIGFyb3VuZCBhIGJpdCBmcm9tIHdoZXJl
+dmVyIHlvdXIgbW91c2UgaXMpLnh4c3IAF2phdmEudXRpbC5MaW5rZWRIYXNoTWFwNMBOXBBswPsC
+AAFaAAthY2Nlc3NPcmRlcnhxAH4AET9AAAAAAAAMdwgAAAAQAAAABHNxAH4AE3QAEG9mZnNldEZy
+b21Tb3VyY2VzcgAZZmllbGQubWF0aC5saW5hbGcuVmVjdG9yMn0OJNIMbuLEAgACRgABeEYAAXl4
+cAAAAAAAAAAAc3EAfgATdAAVY29udGFpbnNNdWx0aWxpbmVUZXh0c3EAfgAdAAAAAXNxAH4AE3QA
+D3Nob3VsZEhpZ2hsaWdodHNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4
+cABzcQB+ABN0AAx0b3RhbE9wYWNpdHlzcgAQamF2YS5sYW5nLkRvdWJsZYCzwkopa/sEAgABRAAF
+dmFsdWV4cQB+AAk/4AAAAAAAAHgA
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="479"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="497">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="498">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="499">
+                  <areas id="500">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="501">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="502">
+                        <dictionary id="503"/>
+                      </extend>
+                      <exec id="504">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="505">
+                          <when id="506">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="507">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="508">
+                        <dictionary id="509"/>
+                      </extend>
+                      <exec id="510">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="511">
+                          <when id="512">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="513">
+                    <counts id="514"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="515">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="516">
+          <x>1273.0</x>
+          <y>169.0</y>
+          <w>69.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="517"/>
+        <children id="518">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="519">
+        <uid>__5facadda:12497979bf4:-7df5</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="520">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="521">
+              <name>keyboardShortcut_i</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>b</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="522">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.execution.TimeMarker id="523">
+              <class>field.core.execution.TimeMarker</class>
+              <element reference="519"/>
+            </field.core.execution.TimeMarker>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="524">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="525">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="519"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="526">
+              <name>transitionDuration_i</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>100</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="527">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="528">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>b marker</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="529">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="530">
+              <name>isRealtime_i</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>0</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="531">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="532">
+              <annotations id="533" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="534">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="535"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="536">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="537">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="538">
+                  <areas id="539"/>
+                  <rootHistogram id="540">
+                    <counts id="541"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="542">
+          <x>1139.0</x>
+          <y>1.9999945163726807</y>
+          <w>25.0</w>
+          <h>786.0</h>
+        </rect>
+        <parents id="543"/>
+        <children id="544">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="545">
+        <uid>__5facadda:12497979bf4:-7d19</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="546">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="547">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="548">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="545"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="549">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="550">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="545"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="551">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>a box</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="552">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# this box you can run by option clicking on it, here&apos;s the code
+
+def start():
+	print &quot;Starting...&quot;
+
+def keepGoing():
+	print &quot;...ongoing at time %f... &quot; % _t
+
+def stop():
+	print &quot;... Stopping&quot;
+
+# start is called once, keepGoing is called while the box continues to run and finally stop is called just before the box isn&apos;t run any more
+_r = start, keepGoing, stop
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="553">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="554">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="555"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="556">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;keepGoing&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="557">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="558">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="559">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="560">
+                  <areas id="561"/>
+                  <rootHistogram id="562">
+                    <counts id="563"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="564">
+          <x>1270.0</x>
+          <y>108.0</y>
+          <w>423.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="565"/>
+        <children id="566">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="567">
+        <uid>__5facadda:12497979bf4:-7c4e</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="568">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="569">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="570">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="571">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="567"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="572">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="573"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="574">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="575">
+              <annotations id="576" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty id="577">
+                    <name>python_source_v</name>
+                    <freezable>false</freezable>
+                  </field.core.dispatch.iVisualElement_-VisualElementProperty>
+                  <list id="578"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="579">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="580">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="581">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="567"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="582">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="577"/>
+            <string>label= &quot;&quot;&quot;Keep panning right for more tutorial&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="583">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="584">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="585">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="586" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="587">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAJEtlZXAgcGFubmluZyByaWdodCBmb3IgbW9yZSB0dXRv
+cmlhbHh4c3IAF2phdmEudXRpbC5MaW5rZWRIYXNoTWFwNMBOXBBswPsCAAFaAAthY2Nlc3NPcmRl
+cnhxAH4AET9AAAAAAAAMdwgAAAAQAAAABHNxAH4AE3QAEG9mZnNldEZyb21Tb3VyY2VzcgAZZmll
+bGQubWF0aC5saW5hbGcuVmVjdG9yMn0OJNIMbuLEAgACRgABeEYAAXl4cAAAAAAAAAAAc3EAfgAT
+dAAVY29udGFpbnNNdWx0aWxpbmVUZXh0c3EAfgAdAAAAAXNxAH4AE3QAD3Nob3VsZEhpZ2hsaWdo
+dHNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cABzcQB+ABN0AAx0b3Rh
+bE9wYWNpdHlzcgAQamF2YS5sYW5nLkRvdWJsZYCzwkopa/sEAgABRAAFdmFsdWV4cQB+AAk/4AAA
+AAAAAHgA
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="571"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="588">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="589">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="590">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="591">
+                  <areas id="592">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="593">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="594">
+                        <dictionary id="595"/>
+                      </extend>
+                      <exec id="596">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="597">
+                          <when id="598">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="599">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="600">
+                        <dictionary id="601"/>
+                      </extend>
+                      <exec id="602">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="603">
+                          <when id="604">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="605">
+                    <counts id="606"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="607">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="608">
+          <x>903.0</x>
+          <y>197.0</y>
+          <w>59.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="609"/>
+        <children id="610">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="611">
+        <uid>__-4918368:1249cbde4ad:-7fc5</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="612">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="613">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="614">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="611"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="615">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="616">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="611"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="617">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# this box needs the Processing plugin to be activated to function
+if (not _self.plugin_processingplugin_): print &quot;this box needs the Processing plugin to be activated to function&quot;
+
+# here&apos;s a generator that goes from &apos;start&apos; to &apos;stop&apos; over a particular number of frames
+def bounce(start, stop, over):
+	for n in range(0, over):
+		value = start+(stop-start)*n/float(over)
+		yield value
+
+# to evaluate this generator press ctrl-command-/
+bounce(1,2,100)
+# this will print the first 50 frames of any generator, just so you can see what it does
+
+def applyToBackground(gen):
+	for n in gen:
+		p.background(255*n)
+		yield 1
+
+# if we run this box with _t set to this then we get an animated transition
+_r = applyToBackground(bounce(0, 1, 100))
+
+
+
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="618">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>generator example</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="619">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="620">
+              <name>needsProcessing</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="621">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="622"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="623">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+_self.python_globals_.declare(_self, &quot;bounce&quot;)
+_self.python_globals_.declare(_self, &quot;applyToBackground&quot;)
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="624">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.ui.text.embedded.TextAnnotations_-Package id="625">
+              <annotations id="626" serialization="custom">
+                <unserializable-parents/>
+                <map>
+                  <default>
+                    <loadFactor>0.75</loadFactor>
+                    <threshold>12</threshold>
+                  </default>
+                  <int>16</int>
+                  <int>1</int>
+                  <field.core.dispatch.iVisualElement_-VisualElementProperty reference="617"/>
+                  <list id="627"/>
+                </map>
+              </annotations>
+            </field.core.ui.text.embedded.TextAnnotations_-Package>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="628">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="629">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="630">
+                  <areas id="631">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="632">
+                      <allocation>0</allocation>
+                      <lastSeenAt>1</lastSeenAt>
+                      <lineStart>2</lineStart>
+                      <lineEnd>2</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="633">
+                        <dictionary id="634"/>
+                      </extend>
+                      <exec id="635">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="636">
+                          <when id="637">2009-10-28 16:03:34.750 EDT</when>
+                          <stringAtExecution>
+if (not _self.plugin_processingplugin_): print &quot;this box needs the Processing plugin to be activated to function&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="638">
+                      <allocation>0</allocation>
+                      <lastSeenAt>2</lastSeenAt>
+                      <lineStart>5</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="639">
+                        <dictionary id="640"/>
+                      </extend>
+                      <exec id="641">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="642">
+                          <when id="643">2009-10-28 16:04:33.273 EDT</when>
+                          <stringAtExecution>def bounce(start, stop, over):
+	for n in range(0, over):
+		value = start+(stop-start)*n/float(over)
+		yield value
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="644">
+                    <counts id="645"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="646">
+          <x>358.0</x>
+          <y>448.0</y>
+          <w>68.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="647"/>
+        <children id="648">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="649">
+        <uid>__-4918368:1249cbde4ad:-7f66</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="650">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="651">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.dispatch.iVisualElementOverrides_-DefaultOverride id="652">
+              <class>field.core.dispatch.iVisualElementOverrides$DefaultOverride</class>
+              <element reference="649"/>
+            </field.core.dispatch.iVisualElementOverrides_-DefaultOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="653">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="654"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="655">
+              <name>needsProcessing</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="656">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="657">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.DraggableComponent id="658">
+              <class>field.core.windowing.components.DraggableComponent</class>
+              <visualElement reference="649"/>
+            </field.core.windowing.components.DraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="659">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>generator example 2</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="660">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+# this box needs the Processing plugin to be activated to function
+if (not _self.plugin_processingplugin_): print &quot;this box needs the Processing plugin to be activated to function&quot;
+
+# here&apos;s a generator that goes from &apos;start&apos; to &apos;stop&apos; over a particular number of frames
+def bounce(start, stop, over):
+	for n in range(0, over):
+		value = start+(stop-start)*n/float(over)
+		yield value
+
+# to evaluate this generator press ctrl-command-/
+bounce(1,2,100)
+# this will print the first 50 frames of any generator, just so you can see what it does
+
+def applyToBackground(gen):
+	for n in gen:
+		p.background(255*n)
+		yield 1
+
+def randomBounce():
+	for n in range(0, 5):
+		# in Field yielding a generator means &quot;now go away and do this generator until it&apos;s done then come back&quot;
+		yield applyToBackground(bounce(Math.random(), Math.random(), 100))
+
+# if we run this box with _t set to this then we get 5 random &quot;bounces&quot;
+_r = randomBounce()
+
+
+
+
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="661">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="662">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="663">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="664">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="665">
+                  <areas id="666">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="667">
+                      <allocation>0</allocation>
+                      <lastSeenAt>1</lastSeenAt>
+                      <lineStart>2</lineStart>
+                      <lineEnd>2</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="668">
+                        <dictionary id="669"/>
+                      </extend>
+                      <exec id="670">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="671">
+                          <when id="672">2009-10-28 16:03:34.750 EDT</when>
+                          <stringAtExecution>
+if (not _self.plugin_processingplugin_): print &quot;this box needs the Processing plugin to be activated to function&quot;</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="673">
+                      <allocation>0</allocation>
+                      <lastSeenAt>2</lastSeenAt>
+                      <lineStart>5</lineStart>
+                      <lineEnd>8</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="674">
+                        <dictionary id="675"/>
+                      </extend>
+                      <exec id="676">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="677">
+                          <when id="678">2009-10-28 16:04:33.273 EDT</when>
+                          <stringAtExecution>def bounce(start, stop, over):
+	for n in range(0, over):
+		value = start+(stop-start)*n/float(over)
+		yield value
+</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="679">
+                    <counts id="680"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+        </properties>
+        <rect id="681">
+          <x>439.0</x>
+          <y>503.0</y>
+          <w>68.0</w>
+          <h>50.0</h>
+        </rect>
+        <parents id="682"/>
+        <children id="683">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+    </parents>
+    <children id="684">
+      <field.core.plugins.python.PythonPlugin_-LocalVisualElement id="685">
+        <uid>//plugin_python</uid>
+        <parents id="686">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="687">
+          <field.core.plugins.history.HistoryPlugin_-LocalVisualElement id="688">
+            <uid>//HistoryPlugin</uid>
+            <parents id="689">
+              <field.core.plugins.python.PythonPlugin_-LocalVisualElement reference="685"/>
+            </parents>
+            <children id="690"/>
+          </field.core.plugins.history.HistoryPlugin_-LocalVisualElement>
+        </children>
+      </field.core.plugins.python.PythonPlugin_-LocalVisualElement>
+      <field.core.plugins.InspectorPlugin_-LocalVisualElement id="691">
+        <uid>//inspector_python</uid>
+        <parents id="692">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="693"/>
+      </field.core.plugins.InspectorPlugin_-LocalVisualElement>
+      <field.core.plugins.connection.Connections_-LocalVisualElement id="694">
+        <uid>//plugin_connections</uid>
+        <parents id="695">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="696"/>
+      </field.core.plugins.connection.Connections_-LocalVisualElement>
+      <field.core.plugins.SimpleConstraints_-LocalVisualElement id="697">
+        <uid>//plugin_simpleConstraints</uid>
+        <parents id="698">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="699"/>
+      </field.core.plugins.SimpleConstraints_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="700">
+        <uid>//plugin_pseudoproperties</uid>
+        <parents id="701">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="702"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement id="703">
+        <uid>//AudoExecutePython</uid>
+        <parents id="704">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="705"/>
+      </field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement>
+      <field.core.plugins.log.LoggingPlugin_-LocalVisualElement id="706">
+        <uid>//LoggingPlugin</uid>
+        <parents id="707">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="708"/>
+      </field.core.plugins.log.LoggingPlugin_-LocalVisualElement>
+      <field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement id="709">
+        <uid>//plugin_complexConstraints</uid>
+        <parents id="710">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="711"/>
+      </field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement>
+      <field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement id="712">
+        <uid>//plugin_basicDrawingPlugin</uid>
+        <parents id="713">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="714"/>
+      </field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="715">
+        <uid>//plugin_snip</uid>
+        <parents id="716">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="717"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="718">
+        <uid>//plugin_referencePlugin2</uid>
+        <parents id="719">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="720"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="721">
+        <uid>//plugin_advancedgeometry</uid>
+        <parents id="722">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="723"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="724">
+        <uid>//plugin_fieldgraphics</uid>
+        <parents id="725">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="726"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="727">
+        <uid>//plugin_hierarchy</uid>
+        <parents id="728">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="729"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="730">
+        <uid>//plugin_freehand</uid>
+        <parents id="731">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="732"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="733">
+        <uid>//plugin_freehand</uid>
+        <parents id="734">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="735"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="736">
+        <uid>//plugin_jsrscripting</uid>
+        <parents id="737">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="738"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="739">
+        <uid>//plugin_max</uid>
+        <parents id="740">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="741"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="742">
+        <uid>//plugin_osc</uid>
+        <parents id="743">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="744"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="745">
+        <uid>//plugin_processingplugin</uid>
+        <parents id="746">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="747"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="748">
+        <uid>//plugin_scrubber</uid>
+        <parents id="749">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="750"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <marc.plugins.topology.TopologyPlugin_-LocalVisualElement id="751">
+        <uid>//topology_plugin</uid>
+        <parents id="752">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="753"/>
+      </marc.plugins.topology.TopologyPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="754">
+        <uid>//plugin_typing</uid>
+        <parents id="755">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="756"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="757">
+        <uid>//plugin_unroll</uid>
+        <parents id="758">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="759"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="760">
+        <uid>//plugin_variant</uid>
+        <parents id="761">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="762"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+    </children>
+  </field.core.StandardFluidSheet_-RootSheetElement>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_pythonversion_1</left>
+    <right class="map" id="2">
+      <entry>
+        <string>__5facadda:12497979bf4:-7d19</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="3">
+          <uid>__5facadda:12497979bf4:-7d19</uid>
+          <persistantVariables id="4"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__5facadda:12497979bf4:-7df5</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="5">
+          <uid>__5facadda:12497979bf4:-7df5</uid>
+          <persistantVariables id="6"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7f93</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="7">
+          <uid>__-4797843b:1246b07568e:-7f93</uid>
+          <persistantVariables id="8"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-77a0</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="9">
+          <uid>__-4797843b:1246b07568e:-77a0</uid>
+          <persistantVariables id="10"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4918368:1249cbde4ad:-7fc5</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="11">
+          <uid>__-4918368:1249cbde4ad:-7fc5</uid>
+          <persistantVariables id="12"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__5facadda:12497979bf4:-7e8b</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="13">
+          <uid>__5facadda:12497979bf4:-7e8b</uid>
+          <persistantVariables id="14"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7926</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="15">
+          <uid>__-4797843b:1246b07568e:-7926</uid>
+          <persistantVariables id="16"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7f6d</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="17">
+          <uid>__-4797843b:1246b07568e:-7f6d</uid>
+          <persistantVariables id="18"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7de9</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="19">
+          <uid>__-4797843b:1246b07568e:-7de9</uid>
+          <persistantVariables id="20"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7ad4</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="21">
+          <uid>__-4797843b:1246b07568e:-7ad4</uid>
+          <persistantVariables id="22"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7788</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="23">
+          <uid>__-4797843b:1246b07568e:-7788</uid>
+          <persistantVariables id="24"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-780e</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="25">
+          <uid>__-4797843b:1246b07568e:-780e</uid>
+          <persistantVariables id="26"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7a13</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="27">
+          <uid>__-4797843b:1246b07568e:-7a13</uid>
+          <persistantVariables id="28"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7c9f</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="29">
+          <uid>__-4797843b:1246b07568e:-7c9f</uid>
+          <persistantVariables id="30"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-774a</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="31">
+          <uid>__-4797843b:1246b07568e:-774a</uid>
+          <persistantVariables id="32"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__5facadda:12497979bf4:-7c4e</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="33">
+          <uid>__5facadda:12497979bf4:-7c4e</uid>
+          <persistantVariables id="34"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7fbf</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="35">
+          <uid>__-4797843b:1246b07568e:-7fbf</uid>
+          <persistantVariables id="36"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4918368:1249cbde4ad:-7f66</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="37">
+          <uid>__-4918368:1249cbde4ad:-7f66</uid>
+          <persistantVariables id="38"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7fff</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="39">
+          <uid>__-4797843b:1246b07568e:-7fff</uid>
+          <persistantVariables id="40"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-7b70</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="41">
+          <uid>__-4797843b:1246b07568e:-7b70</uid>
+          <persistantVariables id="42"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-777a</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="43">
+          <uid>__-4797843b:1246b07568e:-777a</uid>
+          <persistantVariables id="44"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-4797843b:1246b07568e:-786f</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="45">
+          <uid>__-4797843b:1246b07568e:-786f</uid>
+          <persistantVariables id="46"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+    </right>
+  </field.namespace.generic.Generics_-Pair>
+  <null/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_connectionsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_simpleConstraintsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//AudoExecutePythonversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//LoggingPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//HistoryPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_complexConstraintsversion_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Triple id="1">
+    <left class="string">//plugin_basicDrawingPluginversion_2</left>
+    <middle class="set" id="2"/>
+    <right class="set" id="3"/>
+  </field.namespace.generic.Generics_-Triple>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <list id="1"/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+</object-stream>

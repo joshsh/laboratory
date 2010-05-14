@@ -1,0 +1,17 @@
+string>
+# while you can drag the red line around with the mouse, Field wouldn't be Field if you couldn't do it from code
+
+# try executing this line by itself
+_self.timeSlider.frame.x=200
+
+# then this one
+_self.timeSlider.frame.x=0
+
+
+# if you right click on the red line and select "make time system drive ..." then you get more control over the line with code. Try these lines:
+
+# just like the above
+_now.value=200
+
+# animates a transition to position '0' over 200 frames
+_now.line=[200, 0]

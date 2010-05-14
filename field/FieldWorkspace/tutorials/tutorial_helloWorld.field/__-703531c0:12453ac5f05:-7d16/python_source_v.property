@@ -1,0 +1,11 @@
+string>
+
+# In the Field environment, variables are global. In the box marked "variables" we made an 'a' and a 'b'. We can still print them here:
+
+print a,b
+
+# Field remembers that "variables" was the box that made 'a' and 'b'. If you try to access 'a' or 'b' and they are undefined, the "variables" box will be automatically executed.
+
+# Python is a complete programming langauge, and there are lots of good tutorials available for learning it, and Field is probably a good tool to use if you want to experiment with the language. 
+
+# If you are completely new to programming, you'll probably want to find one of those tutorials now. For people who need a little refresher on Python Syntax, see the "syntax box" below

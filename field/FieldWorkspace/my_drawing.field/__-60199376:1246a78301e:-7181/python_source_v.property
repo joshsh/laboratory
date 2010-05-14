@@ -1,0 +1,15 @@
+string>
+# Drawing lines with code is fun, but sometimes it's tedious to edit them by continually redrafting code over and over again
+
+# Field lets you edit lines with the mouse
+
+line = PLine().moveTo(50, 500).lineTo(100, 575)
+_self.lines.clear()
+_self.lines.add(line)
+
+# you click on nodes to select them, and then you can drag them around. Shift clicking lets you change tool, or add nodes. 
+
+# this line executes all of the edits that you make with the mouse
+_self.tweaks()
+
+# what it's actually doing is writing code. It's writing code inside this box, but in a different place. You can what property you are looking at (and editing) in the editor using the drop down box at the top of this window. 

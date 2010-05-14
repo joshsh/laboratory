@@ -1,0 +1,17 @@
+string># lines that start with the # sign are ignored 
+
+# but the next line is a line of code:
+print "hello world"
+
+# you can execute this line by pressing command-return when you have your cursor on it.
+
+# (you can also select multiple lines that you'd like to execute and then press command-return to execute them all together).
+
+print "hello"
+print "world"
+
+
+# once you've executed some lines, you'll get your greeting in the pane below this one.  (that's where all "output" gets "printed" to). 
+
+# select the next box, "variables", for more tutorial.
+

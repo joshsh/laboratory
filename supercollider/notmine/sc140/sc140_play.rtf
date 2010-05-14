@@ -76,6 +76,15 @@ MCLD\
 \
 \
 \
+Thunderstorm\
+18\
+Nathaniel Virgo\
+play\{p=PinkNoise.ar(1!2);BRF.ar(p+Blip.ar(p+2,400),150,2,0.1)+LPF.ar(FreeVerb2.ar(*LPF.ar(p+0.2*Dust.ar(0.1),60)++[1,1,0.2,1e4]).tanh,2000)\}\
+\
+\
+\
+\
+\
 03\
 Tim Walters\
 play\{(\{|k|(\{|i|y=SinOsc;y.ar(i*k*k,y.ar(i*k**i/[4,5])*Decay.kr(Dust.kr(1/4**i),y.ar(0.1)+1*k+i,k*999))\}!8).product\}!16).sum\}//#supercollider\
@@ -120,10 +129,6 @@ Jason Dixon\
 17\
 redFrik\
 \{RHPF.ar(GbmanN.ar([2300,1150]),LFSaw.ar(Pulse.ar(4,[1,2]/8,1,LFPulse.ar(1/8)/5+1))+2)\}.play //punk (loud!)\
-\
-18\
-Nathaniel Virgo\
-play\{p=PinkNoise.ar(1!2);BRF.ar(p+Blip.ar(p+2,400),150,2,0.1)+LPF.ar(FreeVerb2.ar(*LPF.ar(p+0.2*Dust.ar(0.1),60)++[1,1,0.2,1e4]).tanh,2000)\}\
 \
 20\
 Sciss\

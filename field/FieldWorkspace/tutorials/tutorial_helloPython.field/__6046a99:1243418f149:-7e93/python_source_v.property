@@ -1,0 +1,15 @@
+string># this line is a comment. It's completely ignored because it starts with a # sign 
+
+# in Field you run code by pressing command-return (on a line) or selecting something and then pressing command-return.
+
+# this line prints hello world to the output portion of this window
+print "hello world"
+
+# this line prints '4'
+print 2+2
+
+# this line prints hello world! four times in a row
+print (2+2) * "hello world! "
+
+# and this one says hi a lot
+print 10 * ( "hi" + ' ')

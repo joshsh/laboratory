@@ -1,0 +1,58 @@
+string># variables are made on demand 
+# if you execute this line, 'a' now means '7'
+a = 7
+print a
+
+# until you set it to be something else.
+a = "hi"
+print a
+
+b = 13
+c = " there"
+
+print a + c
+print b + 5
+
+a = 4.5
+print a + b
+
+print a ** b	/ 7
+
+a = 12
+b = 15
+a = "this text"
+c = a * b
+CAP = "a string"
+
+print c
+
+print CAP
+
+# variable names cannot start with a number:
+1a = 12
+
+# but variable names can contain numbers, just not at the start:
+a1 = 12
+
+# underscores are allowed:
+_a = 12
+a_ = 13
+
+# everything is an object
+# this "rebinds" the name 'a' to a new
+# object:
+a = a + 12
+
+# variable names are case sensitive meaning that:
+x = 12
+# is a different variable from
+X = 13
+print x, X
+
+y = 102
+# so this is an error:
+print Y
+
+a, b, c = "hello", 17, 3.5
+
+print b + c

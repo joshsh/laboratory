@@ -1,0 +1,25 @@
+string>from field.extras.graphics import FieldJFBXExtensions
+from field.extras.graphics.FieldJFBXExtensions import *
+from AdvancedGraphics import *
+
+canvas = getFullscreenCanvas()
+
+# this box contains the GLSLang shader that we are going to use to draw our model. After you execute this code, you'll get additional options in the drop down box at the top of this editor. That's where you can edit the shader for our model
+shader = makeShaderFromElement(_self)
+canvas << shader
+
+
+loader = loadFBX(_self.sheetDataFolder+"/humanoid.fbx")
+
+
+for mesh in loader.getMeshes().values():
+	shader << mesh
+
+
+# let's just move the camera back a bit, this model is quite large
+camera = canvas.camera.getState()
+camera.position *= 120
+canvas.camera.setState(camera)
+
+
+#once you've run this box once, you don't need to run it again. Everything that it does you only need to do once. You only need to open one canvas, you only need to make one shader, you only need to load the file once and you only need to attach the meshes from the file to the shader once. After you've set everything up, Field will just keep on drawing it.

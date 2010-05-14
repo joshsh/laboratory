@@ -1,0 +1,11 @@
+string>varying vec4 vertexColor;
+
+attribute vec4 s_Color;
+
+uniform vec4 extraColor;
+
+void main()
+{
+        gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+        vertexColor = extraColor;
+}

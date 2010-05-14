@@ -1,0 +1,19 @@
+string>
+# Field ports the @event syntax over to Max in order to do dynamic event handling on messages. The other part of Field that gets moved over is it's handing of generators (see the timeline tutorial for more on this)
+
+# these functions make two generators that both emit messages to the first outlet and pause. Think of these things as rhythm generators in code.
+
+def up():
+	for n in range(0, 10):
+		_.outlet(0, n)
+		# wait 100 milliseconds between messages
+		yield 100
+
+def gg():
+	for n in range(0, 10):
+		_.outlet(0, (0.0, 0, 0.2, 5, 0, 200))
+		# send this to the outlest and then do everything inside up()
+		yield up()
+
+# this actually starts the generator going. You can have multiple generators running simultanously
+runGenerator(_, gg())

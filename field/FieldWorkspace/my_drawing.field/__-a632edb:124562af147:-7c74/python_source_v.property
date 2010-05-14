@@ -1,0 +1,19 @@
+string>
+# not just lines, also filled shapes
+line = PLine()
+
+line.moveTo(50,50)
+line.cubicTo(100,50, 70,130, 100, 100)
+
+# we can chain drawing instructions together
+line.lineTo(100, 50).cubicTo(75, 75, 75, 50, 50, 50)
+
+# now we translate this line out of the way of the example we have to the left
+line += Vector2(300,0)
+
+# we tell Field that we want this filled using properties on the line:
+line.filled = 1
+
+# and then we add it same as before
+_self.lines.clear() 
+_self.lines.add(line) 

@@ -1,0 +1,26 @@
+string>
+
+# Properties inside boxes do two other things that are very interesting
+
+# First of all, they are saved along with the Field document -------------------------------------------------------
+
+# if we were to execute this line of code we set someRandomProperty to be 10
+#_self.someRandomProperty=10
+
+# but when we load the sheet, even without executing that code we'll find that it's 'still' 10
+print _self.someRandomProperty
+
+# now we need to be very careful about what we stick in properties, because they need to be the kinds of things that you can safely save to disk. 
+
+# so, sometimes you prefer a property that will not try to get saved:
+print _self.someOtherProperty_
+
+# un-persisted properties end with an underscore
+
+# Secondly, properties are inherited by sub-elements ("sub-boxes") -----------------------------------------------
+
+# here we set a property in this box
+_self.aSuperProperty = 10
+
+# now go look at the "sub boxes" in turn (these boxes have been made "sub boxes" of this box using a tool you can get on the  "modal mouse tools" palette)
+

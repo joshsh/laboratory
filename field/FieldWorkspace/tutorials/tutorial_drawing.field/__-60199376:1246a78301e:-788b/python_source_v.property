@@ -1,0 +1,12 @@
+string>
+_self.lines.clear()
+
+horizontal = PLine().moveTo(0,0).lineTo(0,1000)
+horizontal(offsetFromSource=Vector2())
+horizontal(color=Vector4(0,0,0,0.3))
+
+_self.lines.add(horizontal)
+
+_self.noFrame=1
+_self.frame.w=10
+_self.frame.h=10

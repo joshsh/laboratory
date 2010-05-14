@@ -1,0 +1,18 @@
+string>
+# this box you can run by option clicking on it, here's the code
+
+def start():
+	print "Starting..."
+
+def keepGoing():
+	# _t is a magic variable that goes from 0 to 1 (and beyond) to get you the position of the mouse or the time slider over this element. 0 means at the left of this box, 1 means at the very right, 0.5 means in the middle
+	print "...ongoing at time %f... " % _t
+
+def stop():
+	print "... Stopping"
+
+# start is called once, keepGoing is called while the box continues to run and finally stop is called just before the box isn't run any more
+_r = start, keepGoing, stop
+
+# final note: you can make one of these boxes using the templating system (assuming you have the templates installed)
+# on the sheet hit 't' and select (or start typing) "tutorial.runningbox"

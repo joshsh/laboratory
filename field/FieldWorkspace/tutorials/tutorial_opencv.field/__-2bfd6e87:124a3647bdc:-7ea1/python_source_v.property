@@ -1,0 +1,75 @@
+string>w = 320
+h = 240
+threshold = 80
+
+find=1
+
+def setup():
+	size( w*2+30, h*2+30, p.P3D);
+	opencv.capture(w,h);	
+
+def draw():
+	background(0);
+	opencv.read();
+
+	image( opencv.image(), 10, 10 );
+	image( opencv.image(OpenCV.GRAY), 20+w, 10 ); 
+	image( opencv.image(OpenCV.MEMORY), 10, 20+h );
+
+	opencv.absDiff();
+	opencv.threshold(threshold);
+	image( opencv.image(OpenCV.GRAY), 20+w, 20+h ); 
+
+
+	# working with blobs
+	blobs = opencv.blobs( 100, w*h/3, 20, 1 );
+
+	noFill()
+
+	pushMatrix();
+	translate(20+w,20+h)
+	
+	for i in range(0, len(blobs)):
+		bounding_rect = blobs[i].rectangle
+		area = blobs[i].area
+		circumference = blobs[i].length
+		centroid = blobs[i].centroid
+		points = blobs[i].points
+
+		# rectangle
+		noFill();
+		stroke( 128 )
+		rect( bounding_rect.x, bounding_rect.y, bounding_rect.width, bounding_rect.height )
+
+
+		# centroid
+		stroke(0,0,255);
+		line( centroid.x-5, centroid.y, centroid.x+5, centroid.y );
+		line( centroid.x, centroid.y-5, centroid.x, centroid.y+5 );
+		noStroke();
+		fill(0,0,255);
+		
+		fill(255,0,255,64);
+		stroke(255,0,255);
+		if ( len(points)>0 ):
+			beginShape();
+			for j in range(0, len(points)):
+				vertex( points[j].x, points[j].y );
+			endShape(p.CLOSE);
+
+		noStroke();
+		fill(255,0,255);
+
+	popMatrix();
+
+
+@p.onKeyPressed
+def keyPressed():
+	if ( p.key==' ' ): opencv.remember()
+
+@p.onMouseDrag
+def mouseDragged():
+	global threshold
+	threshold = int( map(mouseX,0,width,0,255) )
+
+_r = setup, draw, draw

@@ -1,0 +1,3 @@
+string>
+_self()
+_self.python_globals_.declare(_self, "n")

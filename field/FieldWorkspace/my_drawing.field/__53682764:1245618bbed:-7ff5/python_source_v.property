@@ -1,0 +1,17 @@
+string># how to draw a line on the canvas
+
+# first we make a line object 
+line = PLine()
+
+# now we can draw into it
+
+# first lets move to 50,100 Ñ note that 0,0 is in the top left hand corner of the window
+line.moveTo(50,100)
+
+# and then let's go to (200,150)
+line.lineTo(200, 150)
+
+# lets add that to the list of things that this box draws
+
+_self.lines.clear() # first we clear the drawing list
+_self.lines.add(line)

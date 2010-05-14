@@ -1,0 +1,59 @@
+string>
+# linear algebra happens in visual art Ñ you might try to avoid it, but you can't. Positions on screen, in space, directions and rotations. You just need to confront it. Better, then, to confront it in a language where you can write things like this:
+
+v1 = Vector2() # a vector at 0,0
+v2 = Vector2(1, -2.5) # a vector at 1, -2.5
+
+#they act a lot like Python tuples
+print v2[0], v2.x # prints 1, 1
+print v2[1], v2.y # prints -2.5, -2.5
+
+#which mean you can pass them to PLine methods using * notation
+PLine().moveTo( *v2 ) # is the same as .moveTo(1, -2.5)
+
+v3 = v1+v2 # vectors can be added
+v4 = v2*2.0 # vectors can be scaled
+v5 = v2*v1 # vectors can be element-wise multipled
+v1 += Vector2(5,5) #vectors can be mutated in place
+
+v1.normalize() # makes the length 1
+v1.rotateBy(1) # angle in radians
+dot = v1.dot(v2) # dot product
+angle = v1.angle(v2) # the angle between v1 and v2
+v6 = v1.orthogonal() # a vector2 that's at right angles to this one
+v1.projectOut(v2) # remove part of the vector that's pointing in the direction v2
+
+v1.interpolate(v2, 0.25) # move 25% of the way towards v2
+
+# in addition to Vector2 there's also Vector3, Vector4 (a.k.a Color4) and Quaternion
+
+# as always, you can get autocomplete by typing something and pressing command-period. Try it here
+
+#v1.
+
+#my that was a lot of methods! (the first time you do this it might take a while)
+
+# try it here as well
+v1.add
+
+# you'll note that you can keep on typing while the menu is up to refine your seach
+
+# also here
+Quaternion
+
+# that got you construction help for Quaternion. Here we use the 'to', 'from' constructor
+q = Quaternion(Vector3(0,1,0), Vector3(0,0,1)) 
+print q.rotateVector(Vector3(0,0,1)) # this will print (0.0, 1.0, 0.0)
+
+# you can rotate vectors by multiplication
+rotatedVector3 = q * Vector3(0,0,1)
+print rotatedVector3
+
+# finally, things can get "sliced" using Python's slice notation
+v = Vector4(1,2,3,4)
+print v[:] # prints [1,2,3,4]
+
+v[:] = (4,3,2,1) # sets this vector to a new value (mutates it in place)
+print v # prints [4,3,2,1]
+
+print v[0:2] # prints [4,3]

@@ -1,0 +1,21 @@
+string># how to draw a filled shape on the canvas
+
+line = PLine()
+
+# start at this position
+line.moveTo(50,100)
+
+# curve towards (100,150) then towards (200,100) and then end up at (200,150)
+line.cubicTo(100, 150, 200, 100, 200, 150)
+
+# and then back again
+line.cubicTo(100, 150, 200, 100, 50, 100)
+
+# make this line filled
+line.filled = 1
+
+# translate this whole curve
+line += Vector2(400,0)
+
+_self.lines.clear() # first we clear the drawing list
+_self.lines.add(line) # then we add the line

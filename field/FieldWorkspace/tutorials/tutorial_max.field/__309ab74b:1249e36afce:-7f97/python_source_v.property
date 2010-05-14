@@ -1,0 +1,36 @@
+string>
+# Field's Max Bridge is also compatible with Jitter
+
+# first we need to import Jitter
+from com.cycling74.jitter import *
+
+# now an example translated from Max's example code
+
+# makes a new matrix
+jm = JitterMatrix()
+
+# makes a new matrix processor
+brcosa = JitterObject("jit.brcosa")
+
+# embedded slider's work as well ÑÊyou can drag this slider around while the patch is running
+brcosa.setAttr("brightness", 5*0.9429223)
+sobel = JitterObject("jit.sobel")
+sobel.setAttr("thresh", 0.3)
+
+temp = JitterMatrix()
+
+# this tells Field/Max that you want to run this function in response to a matrix arriving 
+@_._matrix
+def matrix(mname):
+	jm.frommatrix(mname)
+	temp.setinfo(jm)
+	brcosa.matrixcalc(jm, temp)
+	sobel.matrixcalc(temp, jm)
+	
+	# and this is how you send a matrix out of the first (that is zero-th) outlet.
+	_.outlet(0, "jit_matrix", jm.getName())
+
+
+# remember, once you've run all of this code, you can start redefining pieces of it and rexecuting it (that's actually how that slider is working Ñ when you drag it around, the whole line of code that you are on gets reexecuted).
+
+print "Hello"
