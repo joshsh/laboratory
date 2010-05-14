@@ -1,0 +1,2947 @@
+<object-stream>
+  <string>version_2</string>
+  <field.core.StandardFluidSheet_-RootSheetElement id="1">
+    <uid>//rootSheetElement</uid>
+    <parents id="2">
+      <field.core.dispatch.VisualElement id="3">
+        <uid>__-574c1157:12409436caa:-7fff</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="4">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="5">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.execution.TemporalSliderOverrides id="6">
+              <class>field.core.execution.TemporalSliderOverrides</class>
+              <element reference="3"/>
+            </field.core.execution.TemporalSliderOverrides>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="7">
+              <name>creationToken</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>time</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="8">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="9">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="3"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="10">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>timeSlider</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="11">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="12">
+          <x>-1.0</x>
+          <y>0.0</y>
+          <w>0.0</w>
+          <h>0.0</h>
+        </rect>
+        <parents id="13"/>
+        <children id="14">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="15">
+        <uid>__-574c1157:12409436caa:-7ff5</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="16">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="17">
+              <name>_tweakProperty62</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="18">
+              <position id="19">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="20">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="21">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="22">
+              <name>_tweakProperty63</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="23">
+              <position id="24">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="25">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="26">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="27">
+              <name>_tweakProperty0</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="28">
+              <position id="29">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="30">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="31">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="32">
+              <name>_tweakProperty60</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="33">
+              <position id="34">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="35">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="36">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="37">
+              <name>_tweakProperty1</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="38">
+              <position id="39">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="40">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="41">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="42">
+              <name>_tweakProperty61</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="43">
+              <position id="44">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="45">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="46">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="47">
+              <name>_tweakProperty44</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="48">
+              <position id="49">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="50">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="51">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="52">
+              <name>_tweakProperty45</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="53">
+              <position id="54">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="55">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="56">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="57">
+              <name>_tweakProperty42</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="58">
+              <position id="59">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="60">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="61">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="62">
+              <name>_tweakProperty43</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="63">
+              <position id="64">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="65">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="66">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="67">
+              <name>_tweakProperty48</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="68">
+              <position id="69">
+                <x>501.82376</x>
+                <y>60.310913</y>
+                <z>-871.308</z>
+              </position>
+              <target id="70">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="71">
+                <x>0.7832246</x>
+                <y>-0.53692997</y>
+                <z>0.31347424</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="72">
+              <name>_tweakProperty49</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="73">
+              <position id="74">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="75">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="76">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="77">
+              <name>_tweakProperty46</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="78">
+              <position id="79">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="80">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="81">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="82">
+              <name>_tweakProperty47</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="83">
+              <position id="84">
+                <x>501.82376</x>
+                <y>60.310913</y>
+                <z>-871.308</z>
+              </position>
+              <target id="85">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="86">
+                <x>0.7832246</x>
+                <y>-0.53692997</y>
+                <z>0.31347424</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="87">
+              <name>_tweakProperty52</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="88">
+              <position id="89">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="90">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="91">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="92">
+              <name>_tweakProperty51</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="93">
+              <position id="94">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="95">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="96">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="97">
+              <name>_tweakProperty50</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="98">
+              <position id="99">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="100">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="101">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="102">
+              <name>_tweakProperty3</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="103">
+              <position id="104">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="105">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="106">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="107">
+              <name>_tweakProperty56</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="108">
+              <position id="109">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="110">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="111">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="112">
+              <name>_tweakProperty2</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="113">
+              <position id="114">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="115">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="116">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="117">
+              <name>_tweakProperty55</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="118">
+              <position id="119">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="120">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="121">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="122">
+              <name>_tweakProperty5</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="123">
+              <position id="124">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="125">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="126">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="127">
+              <name>_tweakProperty54</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="128">
+              <position id="129">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="130">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="131">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="132">
+              <name>_tweakProperty4</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="133">
+              <position id="134">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="135">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="136">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="137">
+              <name>_tweakProperty53</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="138">
+              <position id="139">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="140">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="141">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="142">
+              <name>_tweakProperty7</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="143">
+              <position id="144">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="145">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="146">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="147">
+              <name>_tweakProperty6</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="148">
+              <position id="149">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="150">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="151">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="152">
+              <name>_tweakProperty59</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="153">
+              <position id="154">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="155">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="156">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="157">
+              <name>_tweakProperty9</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="158">
+              <position id="159">
+                <x>382.93835</x>
+                <y>-86.48096</y>
+                <z>-379.33026</z>
+              </position>
+              <target id="160">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="161">
+                <x>0.70913166</x>
+                <y>-0.6166665</y>
+                <z>0.34184217</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="162">
+              <name>_tweakProperty58</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="163">
+              <position id="164">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="165">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="166">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="167">
+              <name>_tweakProperty8</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="168">
+              <position id="169">
+                <x>384.20197</x>
+                <y>-154.15771</y>
+                <z>-212.716</z>
+              </position>
+              <target id="170">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="171">
+                <x>0.7827255</x>
+                <y>-0.5310024</y>
+                <z>0.32462072</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="172">
+              <name>_tweakProperty57</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="173">
+              <position id="174">
+                <x>254.94464</x>
+                <y>-195.01501</y>
+                <z>-544.4056</z>
+              </position>
+              <target id="175">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="176">
+                <x>0.82281965</x>
+                <y>-0.4821353</y>
+                <z>0.3008563</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="177">
+              <name>_tweakProperty39</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="178">
+              <position id="179">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="180">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="181">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="182">
+              <name>_tweakProperty70</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="183">
+              <position id="184">
+                <x>153.53845</x>
+                <y>-20.357666</y>
+                <z>-242.9057</z>
+              </position>
+              <target id="185">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="186">
+                <x>0.70188576</x>
+                <y>-0.585525</y>
+                <z>0.40560895</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="187">
+              <name>_tweakProperty71</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="188">
+              <position id="189">
+                <x>153.53845</x>
+                <y>-20.357666</y>
+                <z>-242.9057</z>
+              </position>
+              <target id="190">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="191">
+                <x>0.70188576</x>
+                <y>-0.585525</y>
+                <z>0.40560895</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="192">
+              <name>_tweakProperty72</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="193">
+              <position id="194">
+                <x>204.41571</x>
+                <y>123.59039</y>
+                <z>-531.4778</z>
+              </position>
+              <target id="195">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="196">
+                <x>0.68361324</x>
+                <y>-0.70677334</y>
+                <z>0.1820609</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="197">
+              <name>rawSplineData</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="198"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="199">
+              <name>_tweakProperty31</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="200">
+              <position id="201">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="202">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="203">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="204">
+              <name>_tweakProperty32</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="205">
+              <position id="206">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="207">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="208">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="209">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="210"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="211">
+              <name>_tweakProperty33</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="212">
+              <position id="213">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="214">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="215">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="216">
+              <name>_tweakProperty34</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="217">
+              <position id="218">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="219">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="220">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="221">
+              <name>_tweakProperty35</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="222">
+              <position id="223">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="224">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="225">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="226">
+              <name>_tweakProperty36</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="227">
+              <position id="228">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="229">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="230">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="231">
+              <name>_tweakProperty37</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="232">
+              <position id="233">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="234">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="235">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="236">
+              <name>_tweakProperty38</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="237">
+              <position id="238">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="239">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="240">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="241">
+              <name>_tweakProperty41</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="242">
+              <position id="243">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="244">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="245">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="246">
+              <name>_tweakProperty40</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="247">
+              <position id="248">
+                <x>1384.2958</x>
+                <y>661.4698</y>
+                <z>165.02133</z>
+              </position>
+              <target id="249">
+                <x>531.90045</x>
+                <y>547.8071</y>
+                <z>-111.4537</z>
+              </target>
+              <up id="250">
+                <x>0.23856644</x>
+                <y>-0.89965504</y>
+                <z>-0.36566013</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="251">
+              <name>_tweakProperty65</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="252">
+              <position id="253">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="254">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="255">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="256">
+              <name>_tweakProperty64</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="257">
+              <position id="258">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="259">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="260">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="261">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="262" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>0</size>
+                </default>
+                <int>200</int>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class class="field.core.plugins.drawing.ThreedComputingOverride" id="263">
+                    <class>field.core.plugins.drawing.ThreedComputingOverride</class>
+                    <element reference="15"/>
+                  </outer-class>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="264">
+              <name>_tweakProperty67</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="265">
+              <position id="266">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="267">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="268">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="269">
+              <name>_tweakProperty66</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="270">
+              <position id="271">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="272">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="273">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="274">
+              <name>_tweakProperty69</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="275">
+              <position id="276">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="277">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="278">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="279">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="280">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="281">
+                  <areas id="282">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="283">
+                      <allocation>0</allocation>
+                      <lastSeenAt>14</lastSeenAt>
+                      <lineStart>18</lineStart>
+                      <lineEnd>18</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="284">
+                        <dictionary id="285"/>
+                      </extend>
+                      <exec id="286">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="287">
+                          <when id="288">2009-11-05 12:23:26.73 EST</when>
+                          <stringAtExecution>
+	_self.camera.up[:]=(0,1,0)</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="289">
+                    <counts id="290"/>
+                    <normalization>-3.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+              <entry>
+                <string>python_autoExec_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="291">
+                  <areas id="292"/>
+                  <rootHistogram id="293">
+                    <counts id="294"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+              <entry>
+                <string>tweak_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="295">
+                  <areas id="296"/>
+                  <rootHistogram id="297">
+                    <counts id="298"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="299">
+              <name>_tweakProperty68</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="300">
+              <position id="301">
+                <x>380.3786</x>
+                <y>241.97656</y>
+                <z>-695.88525</z>
+              </position>
+              <target id="302">
+                <x>544.6154</x>
+                <y>573.47095</y>
+                <z>-62.411076</z>
+              </target>
+              <up id="303">
+                <x>0.7867503</x>
+                <y>-0.6067422</y>
+                <z>0.113530144</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="304">
+              <name>_tweakProperty28</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="305">
+              <position id="306">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="307">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="308">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="309">
+              <name>_tweakProperty29</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="310">
+              <position id="311">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="312">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="313">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="314">
+              <name>_tweakProperty26</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="315">
+              <position id="316">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="317">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="318">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="319">
+              <name>_tweakProperty27</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="320">
+              <position id="321">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="322">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="323">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="324">
+              <name>_tweakProperty24</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="325">
+              <position id="326">
+                <x>748.9673</x>
+                <y>1172.7349</y>
+                <z>322.54022</z>
+              </position>
+              <target id="327">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="328">
+                <x>0.92918354</x>
+                <y>-0.36038432</y>
+                <z>0.08210955</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="329">
+              <name>_tweakProperty25</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="330">
+              <position id="331">
+                <x>748.9673</x>
+                <y>1172.7349</y>
+                <z>322.54022</z>
+              </position>
+              <target id="332">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="333">
+                <x>0.92918354</x>
+                <y>-0.36038432</y>
+                <z>0.08210955</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="334">
+              <name>_tweakProperty22</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="335">
+              <position id="336">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="337">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="338">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="339">
+              <name>_tweakProperty23</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="340">
+              <position id="341">
+                <x>846.2125</x>
+                <y>609.4216</y>
+                <z>614.1706</z>
+              </position>
+              <target id="342">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="343">
+                <x>0.67501956</x>
+                <y>-0.70318997</y>
+                <z>-0.22332358</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="344">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="345">
+              <name>_tweakProperty20</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="346">
+              <position id="347">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="348">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="349">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="350">
+              <name>tweak_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string></string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="351">
+              <name>_tweakProperty21</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="352">
+              <position id="353">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="354">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="355">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="356">
+              <name>_tweakProperty30</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="357">
+              <position id="358">
+                <x>769.8678</x>
+                <y>1202.3142</y>
+                <z>264.25085</z>
+              </position>
+              <target id="359">
+                <x>545.24744</x>
+                <y>549.5869</y>
+                <z>-107.12459</z>
+              </target>
+              <up id="360">
+                <x>0.9298772</x>
+                <y>-0.36080912</y>
+                <z>0.07173477</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="8"/>
+            <field.core.windowing.components.PlainDraggableComponent id="361">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="15"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="362">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="10"/>
+            <string>rhonda</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="11"/>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="363">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="364">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="365">
+              <name>_tweakProperty17</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="366">
+              <position id="367">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="368">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="369">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty reference="5"/>
+            <field.core.plugins.drawing.ThreedComputingOverride reference="263"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="370">
+              <name>_tweakProperty18</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="371">
+              <position id="372">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="373">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="374">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="375">
+              <name>_tweakProperty19</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="376">
+              <position id="377">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="378">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="379">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="380">
+              <name>camera</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="381">
+              <position id="382">
+                <x>0.0</x>
+                <y>0.0</y>
+                <z>-100.0</z>
+              </position>
+              <target id="383">
+                <x>0.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+              </target>
+              <up id="384">
+                <x>0.0</x>
+                <y>1.0</y>
+                <z>0.0</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="385">
+              <name>_tweakProperty13</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="386">
+              <position id="387">
+                <x>382.93835</x>
+                <y>-86.48096</y>
+                <z>-379.33026</z>
+              </position>
+              <target id="388">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="389">
+                <x>0.70913166</x>
+                <y>-0.6166665</y>
+                <z>0.34184217</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="390">
+              <name>_tweakProperty14</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="391">
+              <position id="392">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="393">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="394">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="395">
+              <name>_tweakProperty15</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="396">
+              <position id="397">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="398">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="399">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="400">
+              <name>_tweakProperty16</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="401">
+              <position id="402">
+                <x>927.6649</x>
+                <y>805.3722</y>
+                <z>723.2035</z>
+              </position>
+              <target id="403">
+                <x>834.87103</x>
+                <y>649.8424</y>
+                <z>-39.441246</z>
+              </target>
+              <up id="404">
+                <x>0.9596583</x>
+                <y>-0.27452272</y>
+                <z>-0.060780607</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="405">
+              <name>_tweakProperty10</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="406">
+              <position id="407">
+                <x>382.93835</x>
+                <y>-86.48096</y>
+                <z>-379.33026</z>
+              </position>
+              <target id="408">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="409">
+                <x>0.70913166</x>
+                <y>-0.6166665</y>
+                <z>0.34184217</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="410">
+              <name>_tweakProperty11</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="411">
+              <position id="412">
+                <x>382.93835</x>
+                <y>-86.48096</y>
+                <z>-379.33026</z>
+              </position>
+              <target id="413">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="414">
+                <x>0.70913166</x>
+                <y>-0.6166665</y>
+                <z>0.34184217</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="415">
+              <name>_tweakProperty12</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.graphics.core.BasicCamera_-State id="416">
+              <position id="417">
+                <x>382.93835</x>
+                <y>-86.48096</y>
+                <z>-379.33026</z>
+              </position>
+              <target id="418">
+                <x>841.8721</x>
+                <y>661.57666</y>
+                <z>18.098095</z>
+              </target>
+              <up id="419">
+                <x>0.70913166</x>
+                <y>-0.6166665</y>
+                <z>0.34184217</z>
+              </up>
+              <fov>53.0</fov>
+              <near>1.0</near>
+              <far>10000.0</far>
+              <sx>0.0</sx>
+              <sy>0.0</sy>
+              <rx>1.0</rx>
+              <aspect>1.019403</aspect>
+            </field.graphics.core.BasicCamera_-State>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="420">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>from field.core.plugins.drawing.tweak import Freehand3dUtils
+
+utils = Freehand3dUtils(_self)
+
+_self.lines.clear()
+
+# you can edit this code to manipulate the lines that you have drawn
+for r in _self.rawSplineData:
+	ll = PLine(utils.projectAtZeroPoint(r))(hiddenControls=1)	
+	ll(color=Vector4(0,0,0,0.7),thickness=1)
+	_self.lines.add(ll)
+ 
+_self.tweaks()
+
+# to clear the drawing we reset the _self.rawSplineData property &amp; and any edits that you&apos;ve made
+
+#clear()
+
+
+#resetCamera()
+
+
+
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="421">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+def clear():
+	_self.rawSplineData.clear()
+	_self.tweak_v=&quot;&quot;
+
+def resetCamera():
+	_self.camera.position[:]=(0,0,-100)
+	_self.camera.target[:]=(0,0,0)
+	_self.camera.up[:]=(0,1,0)
+
+clear()
+resetCamera()
+
+_self()
+</string>
+          </entry>
+        </properties>
+        <rect id="422">
+          <x>206.0</x>
+          <y>-90.0</y>
+          <w>683.0</w>
+          <h>670.0</h>
+        </rect>
+        <parents id="423"/>
+        <children id="424">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+      <field.core.dispatch.VisualElement id="425">
+        <uid>__-1da9205d:124c54c410c:-6592</uid>
+        <class>field.core.dispatch.VisualElement</class>
+        <properties id="426">
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="427">
+              <name>shouldAutoComputeRect</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="428">
+              <name>overrides</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride id="429">
+              <class>field.core.plugins.drawing.SplineComputingOverride</class>
+              <element reference="425"/>
+            </field.core.plugins.drawing.SplineComputingOverride>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="430">
+              <name>python_customInsertPersistanceInfo</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <list id="431"/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="432">
+              <name>__textEditorAnnotationPackage</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <null/>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="433">
+              <name>localView</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.windowing.components.PlainDraggableComponent id="434">
+              <class>field.core.windowing.components.PlainDraggableComponent</class>
+              <visualElement reference="425"/>
+            </field.core.windowing.components.PlainDraggableComponent>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="435">
+              <name>hasMouseFocus</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>false</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="436">
+              <name>python_source_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>label= &quot;&quot;&quot;&lt;b&gt;Instructions for use:&lt;/b&gt; 1. select the box above. 2. hold down space and drag with the left-mouse button to draw. 3. hold down space and the option key to rotate the camera&quot;&quot;&quot;
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font(&quot;Gill Sans&quot;, 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="437">
+              <name>name</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>multi line text</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="438">
+              <name>dirty</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="439">
+              <name>noFrame</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <int>1</int>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="440">
+              <name>python_autoExec_v</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <string>
+</string>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="441">
+              <name>lines</name>
+              <freezable>true</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <field.core.plugins.drawing.SplineComputingOverride_-PLineList id="442" serialization="custom">
+              <unserializable-parents/>
+              <list>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>10</int>
+                <field.core.plugins.drawing.opengl.CachedLine id="443">
+                  <compressedCachedLine>rO0ABXNyAExmaWVsZC5jb3JlLnBsdWdpbnMuZHJhd2luZy5vcGVuZ2wuQ2FjaGVkTGluZUNvbXBy
+ZXNzaW9uJENvbXByZXNzZWRDYWNoZWRMaW5l67xx3tXTo6UCAARMAAdhbGxBcmdzdAAQTGphdmEv
+dXRpbC9MaXN0O0wACmFsbE1ldGhvZHNxAH4AAUwADWFsbFByb3BlcnRpZXNxAH4AAUwACnByb3Bl
+cnRpZXN0AA9MamF2YS91dGlsL01hcDt4cHNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0D
+AAFJAARzaXpleHAAAAABdwQAAAAKdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhw
+AAAAAnNyAA9qYXZhLmxhbmcuRmxvYXTa7cmi2zzw7AIAAUYABXZhbHVleHIAEGphdmEubGFuZy5O
+dW1iZXKGrJUdC5TgiwIAAHhwAAAAAHNxAH4ACAAAAAB4c3EAfgAEAAAAAXcEAAAACnQAAW14c3EA
+fgAEAAAAAXcEAAAACnNyAA9maWVsZC51dGlsLkRpY3Q+iMAnAo/d3gIAAUwACmRpY3Rpb25hcnlx
+AH4AAnhwc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhy
+ZXNob2xkeHA/QAAAAAAADHcIAAAAEAAAAANzcgAUZmllbGQudXRpbC5EaWN0JFByb3ABF/MFaGxK
+BAIAAUwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABmZvbnRfdnNyAA1qYXZhLmF3dC5G
+b250xaE15szeVnMDAAZJABlmb250U2VyaWFsaXplZERhdGFWZXJzaW9uRgAJcG9pbnRTaXplSQAE
+c2l6ZUkABXN0eWxlTAAUZlJlcXVlc3RlZEF0dHJpYnV0ZXN0ABVMamF2YS91dGlsL0hhc2h0YWJs
+ZTtMAARuYW1lcQB+ABR4cAAAAAFBcAAAAAAADwAAAABwdAAJR2lsbCBTYW5zeHNxAH4AE3QAEG11
+bHRpbGluZVdpZHRoX3ZzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHEA
+fgAJAAABLHNxAH4AE3QABnRleHRfdnQAsDxiPkluc3RydWN0aW9ucyBmb3IgdXNlOjwvYj4gMS4g
+c2VsZWN0IHRoZSBib3ggYWJvdmUuIDIuIGhvbGQgZG93biBzcGFjZSBhbmQgZHJhZyB3aXRoIHRo
+ZSBsZWZ0LW1vdXNlIGJ1dHRvbiB0byBkcmF3LiAzLiBob2xkIGRvd24gc3BhY2UgYW5kIHRoZSBv
+cHRpb24ga2V5IHRvIHJvdGF0ZSB0aGUgY2FtZXJheHhzcgAXamF2YS51dGlsLkxpbmtlZEhhc2hN
+YXA0wE5cEGzA+wIAAVoAC2FjY2Vzc09yZGVyeHEAfgARP0AAAAAAAAx3CAAAABAAAAAEc3EAfgAT
+dAAQb2Zmc2V0RnJvbVNvdXJjZXNyABlmaWVsZC5tYXRoLmxpbmFsZy5WZWN0b3IyfQ4k0gxu4sQC
+AAJGAAF4RgABeXhwAAAAAAAAAABzcQB+ABN0ABVjb250YWluc011bHRpbGluZVRleHRzcQB+AB0A
+AAABc3EAfgATdAAPc2hvdWxkSGlnaGxpZ2h0c3IAEWphdmEubGFuZy5Cb29sZWFuzSBygNWc+u4C
+AAFaAAV2YWx1ZXhwAHNxAH4AE3QADHRvdGFsT3BhY2l0eXNyABBqYXZhLmxhbmcuRG91YmxlgLPC
+Silr+wQCAAFEAAV2YWx1ZXhxAH4ACT/gAAAAAAAAeAA=
+</compressedCachedLine>
+                </field.core.plugins.drawing.opengl.CachedLine>
+              </list>
+              <field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+                <default>
+                  <outer-class reference="429"/>
+                </default>
+              </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+            </field.core.plugins.drawing.SplineComputingOverride_-PLineList>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="444">
+              <name>python_areas</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <map id="445">
+              <entry>
+                <string>python_source_v</string>
+                <field.core.ui.text.rulers.ExecutedAreas_-State id="446">
+                  <areas id="447">
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="448">
+                      <allocation>0</allocation>
+                      <lastSeenAt>3</lastSeenAt>
+                      <lineStart>0</lineStart>
+                      <lineEnd>6</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="449">
+                        <dictionary id="450"/>
+                      </extend>
+                      <exec id="451">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="452">
+                          <when id="453">2009-10-14 09:47:38.83 EDT</when>
+                          <stringAtExecution>from java.awt import Font</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                    <field.core.ui.text.rulers.ExecutedAreas_-Area id="454">
+                      <allocation>0</allocation>
+                      <lastSeenAt>4</lastSeenAt>
+                      <lineStart>7</lineStart>
+                      <lineEnd>7</lineEnd>
+                      <invalid>false</invalid>
+                      <extend id="455">
+                        <dictionary id="456"/>
+                      </extend>
+                      <exec id="457">
+                        <field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord id="458">
+                          <when id="459">2009-10-14 09:48:49.833 EDT</when>
+                          <stringAtExecution>
+_self.lines.clear()</stringAtExecution>
+                        </field.core.ui.text.rulers.ExecutedAreas_-ExecutionRecord>
+                      </exec>
+                    </field.core.ui.text.rulers.ExecutedAreas_-Area>
+                  </areas>
+                  <rootHistogram id="460">
+                    <counts id="461"/>
+                    <normalization>0.0</normalization>
+                  </rootHistogram>
+                </field.core.ui.text.rulers.ExecutedAreas_-State>
+              </entry>
+            </map>
+          </entry>
+          <entry>
+            <field.core.dispatch.iVisualElement_-VisualElementProperty id="462">
+              <name>alignment_doNotParticipate</name>
+              <freezable>false</freezable>
+            </field.core.dispatch.iVisualElement_-VisualElementProperty>
+            <boolean>true</boolean>
+          </entry>
+        </properties>
+        <rect id="463">
+          <x>165.0</x>
+          <y>749.5</y>
+          <w>50.0</w>
+          <h>33.0</h>
+        </rect>
+        <parents id="464"/>
+        <children id="465">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </children>
+      </field.core.dispatch.VisualElement>
+    </parents>
+    <children id="466">
+      <field.core.plugins.python.PythonPlugin_-LocalVisualElement id="467">
+        <uid>//plugin_python</uid>
+        <parents id="468">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="469">
+          <field.core.plugins.history.HistoryPlugin_-LocalVisualElement id="470">
+            <uid>//HistoryPlugin</uid>
+            <parents id="471">
+              <field.core.plugins.python.PythonPlugin_-LocalVisualElement reference="467"/>
+            </parents>
+            <children id="472"/>
+          </field.core.plugins.history.HistoryPlugin_-LocalVisualElement>
+        </children>
+      </field.core.plugins.python.PythonPlugin_-LocalVisualElement>
+      <field.core.plugins.InspectorPlugin_-LocalVisualElement id="473">
+        <uid>//inspector_python</uid>
+        <parents id="474">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="475"/>
+      </field.core.plugins.InspectorPlugin_-LocalVisualElement>
+      <field.core.plugins.connection.Connections_-LocalVisualElement id="476">
+        <uid>//plugin_connections</uid>
+        <parents id="477">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="478"/>
+      </field.core.plugins.connection.Connections_-LocalVisualElement>
+      <field.core.plugins.SimpleConstraints_-LocalVisualElement id="479">
+        <uid>//plugin_simpleConstraints</uid>
+        <parents id="480">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="481"/>
+      </field.core.plugins.SimpleConstraints_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="482">
+        <uid>//plugin_pseudoproperties</uid>
+        <parents id="483">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="484"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement id="485">
+        <uid>//AudoExecutePython</uid>
+        <parents id="486">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="487"/>
+      </field.core.plugins.autoexecute.AutoExecutePythonPlugin_-LocalVisualElement>
+      <field.core.plugins.log.LoggingPlugin_-LocalVisualElement id="488">
+        <uid>//LoggingPlugin</uid>
+        <parents id="489">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="490"/>
+      </field.core.plugins.log.LoggingPlugin_-LocalVisualElement>
+      <field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement id="491">
+        <uid>//plugin_complexConstraints</uid>
+        <parents id="492">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="493"/>
+      </field.core.plugins.constrain.ComplexConstraints_-LocalVisualElement>
+      <field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement id="494">
+        <uid>//plugin_basicDrawingPlugin</uid>
+        <parents id="495">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="496"/>
+      </field.core.plugins.drawing.BasicDrawingPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="497">
+        <uid>//plugin_snip</uid>
+        <parents id="498">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="499"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="500">
+        <uid>//plugin_referencePlugin2</uid>
+        <parents id="501">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="502"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="503">
+        <uid>//plugin_fieldgraphics</uid>
+        <parents id="504">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="505"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="506">
+        <uid>//plugin_jsrscripting</uid>
+        <parents id="507">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="508"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="509">
+        <uid>//plugin_hierarchy</uid>
+        <parents id="510">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="511"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="512">
+        <uid>//plugin_freehand</uid>
+        <parents id="513">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="514"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="515">
+        <uid>//plugin_freehand</uid>
+        <parents id="516">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="517"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="518">
+        <uid>//plugin_scrubber</uid>
+        <parents id="519">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="520"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+      <marc.plugins.topology.TopologyPlugin_-LocalVisualElement id="521">
+        <uid>//topology_plugin</uid>
+        <parents id="522">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="523"/>
+      </marc.plugins.topology.TopologyPlugin_-LocalVisualElement>
+      <field.core.plugins.BaseSimplePlugin_-LocalVisualElement id="524">
+        <uid>//plugin_typing</uid>
+        <parents id="525">
+          <field.core.StandardFluidSheet_-RootSheetElement reference="1"/>
+        </parents>
+        <children id="526"/>
+      </field.core.plugins.BaseSimplePlugin_-LocalVisualElement>
+    </children>
+  </field.core.StandardFluidSheet_-RootSheetElement>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_pythonversion_1</left>
+    <right class="map" id="2">
+      <entry>
+        <string>__-574c1157:12409436caa:-7fff</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="3">
+          <uid>__-574c1157:12409436caa:-7fff</uid>
+          <persistantVariables id="4"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-574c1157:12409436caa:-7ff5</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="5">
+          <uid>__-574c1157:12409436caa:-7ff5</uid>
+          <persistantVariables id="6"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+      <entry>
+        <string>__-1da9205d:124c54c410c:-6592</string>
+        <field.core.plugins.python.PythonPlugin_-PythonTextualInformation id="7">
+          <uid>__-1da9205d:124c54c410c:-6592</uid>
+          <persistantVariables id="8"/>
+        </field.core.plugins.python.PythonPlugin_-PythonTextualInformation>
+      </entry>
+    </right>
+  </field.namespace.generic.Generics_-Pair>
+  <null/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_connectionsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_simpleConstraintsversion_1</left>
+    <right class="list" id="2"/>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//AudoExecutePythonversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//LoggingPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//HistoryPluginversion_0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">//plugin_complexConstraintsversion_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Triple id="1">
+    <left class="string">//plugin_basicDrawingPluginversion_2</left>
+    <middle class="set" id="2"/>
+    <right class="set" id="3"/>
+  </field.namespace.generic.Generics_-Triple>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+  <list id="1"/>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version_1</left>
+  </field.namespace.generic.Generics_-Pair>
+  <field.namespace.generic.Generics_-Pair id="1">
+    <left class="string">version0</left>
+  </field.namespace.generic.Generics_-Pair>
+</object-stream>

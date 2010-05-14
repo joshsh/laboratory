@@ -1,0 +1,107 @@
+string>## let's introduce 'lists' (or 'arrays' as
+## they are called in some other languages)
+alist = [1, -2, "asdsd", 4, 50]
+print alist
+alist.append(1234)
+print alist
+
+## fetching an item from the list:
+print alist[0]  # the first item
+print alist[1]  # the second
+
+## negative numbers start from the end:
+print alist[-1]  # the last item
+print alist[-2]  # the one before last
+
+# you can have lists of lists:
+print [1, 2, 3, ["a", "b", "c"]]
+print [1, 2, 3, ["a", ["deeper"]]]
+
+# assigning a list to another name does
+# not make a copy: you just create another
+# reference to the same object
+alist = [1,2,"hello",23.4]
+
+anotherlist = alist
+
+anotherlist.append(-9999)
+
+print "anotherlist=",anotherlist
+print "alist=",alist
+
+## strings are also a lot like lists:
+astring = "abcdefg"
+print astring[2]
+print astring[-1]  # from the end
+
+# you can slice lists into sublists
+alist = ['zero',1,2,"three", "four",5,"SIX"]
+print alist
+
+# how long is a list? use 'len'
+print len(alist)
+
+# this prints the elements from 2 up to (but not including) 5
+print alist[2:5]
+# from three to the end
+print alist[3:]
+# from the start up to (but not including) the second element
+print alist[:2]
+
+
+# because it's very usefull there's a quick way of making a list that has squential numbers in it:
+print range(10)  # from 0 to 10 (not incl. 10!)
+print range(5, 10)  # from 5 to 10 (not incl. 10!)
+print range(1, 19, 3) # from 1 to 19 in steps of 3
+
+
+alist = ['zero',1,2,"three", "four",5,"SIX"]
+
+# and here's how you do something to everything in a list (here we just print out the elements)
+for element in alist:
+	print element
+	
+
+
+# take a close look at this "for loop" Ñ you'll be seeing it a lot
+for item in alist:
+	# this is the body of the "for" loop, because it's indented
+	print item
+	# also: use the tab key to manually indent
+
+# we can loop over numbers
+for item in range(len(alist)):
+	print item, alist[item]
+
+# we can do math while we loop
+for i in range(10):
+	print i, i * 0.5
+
+# we can change variables while we loop
+f = 0.0
+for i in range(10):
+	f = f + 0.5
+	print i,f
+
+# we can loop loops
+for x in range(1, 5):  # outer loop
+	print "--------"
+	for y in range(x, x + 5):  # inner loop
+		print x, "*", y, "=", x * y
+
+# and we can loop looping loops
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z
+
+# and we can keep going...
+count = 1
+for x in range(2):
+	for y in range(2):
+		for z in range(2):
+			print x, y, z, "count =", count
+			count = count + 1
+			# alternate spelling:
+			#count += 1
+

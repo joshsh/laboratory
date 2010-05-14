@@ -1,0 +1,51 @@
+string># blur value
+value = 17
+
+# image dimensions
+IMG_WIDTH = 200;
+IMG_HEIGHT = 150;
+
+# work with which color space
+COLOR_SPACE = OpenCV.RGB
+
+def setup():
+	size( IMG_WIDTH*5, IMG_HEIGHT, p.P3D);
+	opencv.capture(IMG_WIDTH, IMG_HEIGHT);
+
+def draw():
+	opencv.read()
+	
+	if ( COLOR_SPACE!=OpenCV.RGB ):
+		 opencv.convert( COLOR_SPACE )
+
+	# SIMLE BLUR
+	opencv.blur( OpenCV.BLUR, value )
+	image( opencv.image(), IMG_WIDTH, 0 )
+
+	# GAUSSIAN
+	opencv.restore( COLOR_SPACE )
+	opencv.blur( OpenCV.GAUSSIAN, value )
+	image( opencv.image(), IMG_WIDTH*2, 0 )
+
+	# MEDIAN
+	opencv.restore( COLOR_SPACE )
+	opencv.blur( OpenCV.MEDIAN, value )
+	image( opencv.image(), IMG_WIDTH*3, 0 )
+
+	# BILATERAL
+	opencv.restore( COLOR_SPACE )
+	opencv.blur( OpenCV.BILATERAL, value, value, value/2, value/3 )
+	image( opencv.image(), IMG_WIDTH*4, 0 )
+
+	# draw original images after modification
+	# to verify 
+	image( opencv.image(OpenCV.SOURCE), 0, 0 )
+	opencv.restore( COLOR_SPACE )
+
+@p.onMouseDrag
+def mouseDragged():
+	value = int(map(mouseX,0,width,0,255))
+	print ( "smoothness value -> "+value )
+
+
+_r = setup, draw, stop

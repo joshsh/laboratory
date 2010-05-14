@@ -1,0 +1,33 @@
+string>
+# here's a problem that sometimes arises
+
+def myComplexFunction():
+	myNumber = 10
+	print "myNumber = ", myNumber
+
+myComplexFunction()
+
+# simply editing the myNumber =10 line is often not enough Ñ because you have to reexecute and redefine "myComplexFunction" for your edit to take effect.
+
+# one solution is to interpose a global variable:
+
+myGlobalNumber = 10
+
+def myComplexFunction():
+	myNumber = myGlobalNumber
+	print "myNumber = ", myNumber
+
+myComplexFunction()
+
+# now you can change myGlobalNumber without reevaluating the definition of myComplexFunction
+
+# but another solution is to use a lazy box (you get these from the right click menu)
+
+def myComplexFunction():
+	myNumber = eval(OKeyByName("Component:-2648184b:124c6d7a507:-7f05.transient", '120').get())
+	print "myNumber = ", myNumber
+
+myComplexFunction()
+
+# now you can edit and redit myNumber over and over again.
+

@@ -1,0 +1,52 @@
+string>_self.lines.clear()
+
+# if you run the box above us first, that will load an image called 'anImage' we'll modify in here 
+
+# first, a very simple blur
+
+blurredImage = anImage << blur(10)
+
+# and let's shrink it down again
+blurredImage *= Vector2(0.5, 0.5)
+blurredImage.show( decor= 0 )
+
+# blured is just a shorthand for this
+
+blurredImage2 = anImage << filter("CIGaussianBlur", inputRadius=10)
+#blurredImage2 = anImage << filter("CIColorPosterize", inputRadius=10)
+blurredImage2 *= Vector2(0.5, 0.5)
+# since this is the exact same thing, there's no point putting on the screen
+#blurredImage2.show( decor= 0 )
+
+# Apple ships a lot of default filters with their OS (google Core Image Reference for a list)
+filteredImage = anImage << filter("CIMotionBlur", inputRadius=20, inputAngle=50)  << filter("CISharpenLuminance", inputSharpness=20.0)
+filteredImage *= Vector2(0.5, 0.5)
+filteredImage.show( decor=0 )
+
+# you'll note that Field / Core Image does the "right thing" when images grow outside their bounds
+filteredImage = anImage 
+for n in range(0, 4):
+	filteredImage <<= filter("CIBumpDistortion", inputCenter=Vector2(200,200).noise(300), inputScale=1)
+
+filteredImage *= Vector2(0.25, 0.25)
+filteredImage.show( decor=0 )
+
+# but you are not limited to the built in functions
+myFilter = customFilter("""
+
+kernel vec4 redScaler(sampler inputImage, float redScale)
+{
+	return sample(inputImage, samplerCoord(inputImage)*vec2(2,1))*vec4(redScale,1,1,1);
+}
+
+""", [ "inputImage", "redScale" ])
+
+# Apple uses a language which is a lot like GLSLang (and Adobe Pixel Blender and so on...) to write these super fast, GPU accelerated image transforms. The one we wrote above scales the red channel by a parameter and compressed the image along the x axis
+
+redImage = anImage << myFilter(redScale=3.2)
+redImage *= Vector2(0.5, 0.5)
+redImage.show (decor =0 )
+
+
+# (note: instead of positioning the images in code, I'm just using mouse-basde editing to drag them around)
+_self.tweaks()

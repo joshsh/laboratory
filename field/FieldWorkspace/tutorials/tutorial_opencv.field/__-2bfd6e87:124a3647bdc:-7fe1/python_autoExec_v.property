@@ -1,0 +1,3 @@
+string>
+_self.python_globals_.declare(_self, "OpenCV")
+_self.python_globals_.declare(_self, "opencv")

@@ -1,0 +1,35 @@
+string>
+# there are many properties that we can set on lines to change their appearance
+line = PLine()
+
+line.moveTo(50,50)
+line.cubicTo(100,50, 70,130, 100, 100)
+line.lineTo(100, 50).cubicTo(75, 75, 75, 50, 50, 50)
+
+line += Vector2(450,0)
+
+line.filled = 1
+
+# set the color of the line (both the line and the fill)
+line.color=Color4(0.25, 0, 0, 0.5)
+#that's a dark red (0.25) that is 50% (0.5) transparent
+line.thickness=4
+
+# and then we add it same as before
+_self.lines.clear() 
+_self.lines.add(line) 
+
+# but if we copy the line, we can change its appearance
+line = line.copy()
+line.strokeColor=Color4(0, 0, 0.25, 0.25)
+line.fillColor=Color4(0.25, 0, 0, 0.1)
+line += Vector2(0,30)
+line += rotation(0.2)
+_self.lines.add(line)
+
+line = line.copy()
+#an alternative, compact syntax for setting properties:
+line(stroked=0, pointed=1, fillColor=Color4(0.25, 0.25, 0, 0.5))
+line += Vector2(0,30)
+line += rotation(0.2)
+_self.lines.add(line)

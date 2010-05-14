@@ -1,0 +1,8 @@
+string>
+# it turns out that while this library is billed as a Processing library it's dependancies on Processing are pretty slight. Let's start it up without any mention of Processing
+from hypermedia.video import *
+opencv = OpenCV(None)
+
+width, height = 500, 500
+opencv.capture(width, height)
+

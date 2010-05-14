@@ -1,0 +1,64 @@
+string>
+
+_self.lines.clear()
+line = PLine().moveTo(50, 50).lineTo(100,60).polarCubicTo(-1,1,1,-1, 200,150)
+
+# the code so far has already demonstrated a few ways of transforming a PLine (try commenting out all of these transformations and then putting them back in one by one)
+
+# translating it
+
+line += Vector2(850, 550)
+
+# scaling it (around its middle)
+line *= Vector2(1.5, 1.5)
+
+# scaling it around some other point
+line *= scale(0.5, around=Vector2(-760, -490))
+
+# copying it
+anotherLine = line.copy()
+
+# transforming each vertex of it (this reflects it around its middle)
+line.visitPositions(lambda x,y : Vector2(line.bounds().midpoint2().x*2-x, y))
+
+# transforming each 'node' (which is a vertex and any control vertices near it)
+def filter(before, now, after, beforeIsCurve, afterIsCurve):
+	if (not before): return	
+	if (not after): return	
+	middle = (before+after)/2.0
+	now[:] = (now-middle)*3.4+middle
+
+# this "sharpens" the line
+line.visitNodes(filter)
+
+# querying the line for information
+lineCursor = line.cursor()
+
+# line length
+print lineCursor.length()
+
+# move the cursor to the middle of the line 
+lineCursor.forwardD(lineCursor.length()/2)
+
+def drawPoint(at):
+	_self.lines.add(PLine().moveTo(*at)(pointed=1, color=Color4(1,0,0,0.2), pointSize=10))
+
+# draw this point
+drawPoint(lineCursor.position())
+
+# split the line at this position into two lines
+left, right = lineCursor.split()
+
+# scale them both
+left *= Vector2(1.5, 1.5)
+right *= Vector2(1.5, 1.5)
+
+# make them red
+left(color=Color4(1,0,0,0.5), derived=1)
+right(color=Color4(1,0,0,0.5), derived=1)
+
+# and draw them all
+_self.lines.add(left)
+_self.lines.add(right)
+_self.lines.add(line)
+

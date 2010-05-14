@@ -1,0 +1,21 @@
+string>
+
+# What about animation? To animate something you often need to run code over and over again. You certainly cant sit there and hit command-return over and over to make an animation.
+
+# Field differenciates between running code (command-return and its friends) and "animating" a box
+
+# say we want to call this function over and over again:
+
+def doItOverAndOverAgain():
+	print "I'm running"
+
+# Field uses a special variable called '_r' to determine what functions to call
+_r = doItOverAndOverAgain
+
+# to "start" this box we can option-click on the box itself using the mouse. This executes all of the code in this box and then looks to see if _r has been set to anything. If it has, Field knows what to do.
+
+# This makes it turn green to tell us that it's running. It will run as long as we are holding down the mouse button. An option will pop up above the mouse the lets you keep it running forever 
+
+# To stop it, option click on it again Ñ this will give you an option to stop this box running.
+
+# As many boxes can be running as you like.

@@ -1,0 +1,9 @@
+string>
+
+# to draw a triangle we need to make a 'DynamicMesh' ÑÊwhich is a container for geometry that can grow and shrink dynamically
+
+mesh = dynamicMesh()
+
+# we haven't drawn anything into it, but when we do, we want it to appear in the canvas, and we want it to be "shaded" by our shader. So we attach it to the shader
+
+shader << mesh

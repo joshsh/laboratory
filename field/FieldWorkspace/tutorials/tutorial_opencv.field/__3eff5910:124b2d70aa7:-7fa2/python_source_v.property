@@ -1,0 +1,28 @@
+string>from java.nio import ByteBuffer
+from field.graphics.core import AdvancedTextures
+from field.graphics.core.AdvancedTextures import BaseFastRawTexture
+from AdvancedGraphics import *
+
+# now here's where we initialize Field's graphics system
+
+# note, the additional 'clearBackground=0' option
+canvas = getFullscreenCanvas(clearBackground=0)
+
+# if we arn't going to clear the background, we need to clear the depth buffer
+canvas << ClearDepth()
+
+# and we make a GLSLang shader (the source code for this shader is available in the drop down box above)
+shader = makeShaderFromElement(_self)
+
+# this is how we send a variable to the shdaer (you'll see it appear as a 'uniform')
+shader.myOffset=Vector4(0,0,0,0)
+
+# we can also set this variable on geometry and geometry gets drawn with it (see the update box)
+
+# we connect the shader to the canvas
+canvas << shader
+
+# and we make a texture map backed by an IntBuffer
+data = ByteBuffer.allocateDirect(width*height*4).asIntBuffer()
+texture = BaseFastRawTexture("", data, width, height, None)
+shader << texture

@@ -1,0 +1,24 @@
+string>label= """Field can execute code automatically on load"""
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(10,10)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font("Gill Sans", 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+f = Rect(_self.frame.x, _self.frame.y, _self.frame.w, _self.frame.h)
+_self.lines.add(PLine().rect(f)(color=Vector4(0,0,0,0.1), derived=1))
+
+_self.noFrame=1

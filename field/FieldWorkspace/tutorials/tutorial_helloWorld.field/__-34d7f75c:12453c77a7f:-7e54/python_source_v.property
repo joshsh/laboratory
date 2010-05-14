@@ -1,0 +1,66 @@
+string>
+
+# Python has a dynamic type system, so you just make variables up without declaring what kind of things they refer to:
+
+foo = 10
+bar = "banana"
+
+x = 10 + foo
+
+# If you are used to Java or Processing that's one of the big differences (In either Procesing or Java you'd have to say "int foo = 10;" rather than "foo = 10".
+
+# You can even change what kind of thing a variable refers to:
+foo = "more bananas"
+
+# that used to be a number, 10 and now it's a String, "more bananas".
+
+# if you make a mistake, Field gives you an error in the output window:
+y = 10 + bar # (you can't add 10 to "banana", it doesn't make any sense)
+
+# Of course in Python you can make your own functions:
+def addTwoNumbers(a,b):
+	return a+b
+
+# this will print 9
+print addTwoNumbers(5, 4)
+
+# if the line above gives you an error instead of printing 9, make sure you have actually executed the definition of addTwoNumbers before calling "print addTwoNumbers". It's not enough to have written the code, you need to actually execute it before Field really knows about it. This gives you a lot of control over what happens, when.
+
+# White-space is important Ñ when we wrote "def addTwoNumbers(a,b):" the next line was indented with a tab. Python pays attention to these indents to work out where the definition of addTwoNumbers ends. Python can uses spaces or tabs, but Field would really prefer if you used tabs. That's another big difference between Python and other languages you might know.
+
+# Other Python things ---
+
+# lists
+myList = [1,2,3, "banana"]
+print myList 
+
+myList[0] = 5
+print myList 
+
+# tuples (like lists, but once created they can't change)
+myTuple = (1,2,3, "banana")
+
+# dictionaries (forms relationship between keys (like the words in the dictionary) and values (their definitions))
+myDictionary = { "hello" : "there", 3: "everybody"}
+print myDictionary["hello"] # prints "there"
+print myDictionary[3] # prints "everybody"
+
+# and you can delete things from lists and dictionaries (but not tuples):
+del myList[1]
+del myDictionary["hello"]
+
+# iterating over a list looks like this:
+for n in myList:
+	print "an item", n
+
+# or you can do this:
+for n in range(0, len(myList)):
+	print "an item", myList[n]
+
+# or even this (kind of):
+print [("an item", n) for n in myList]
+
+# if none of this is making any sense at all, it's time to go google yourself a Python tutorial ÑÊthere are lots of nice ones out there. You can work through your tutorial inside Field itself, just make some more boxes to put the code you type into.
+
+
+

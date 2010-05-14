@@ -1,0 +1,7 @@
+string>
+def applyAnimation():
+	time = loader.getAnimationStart()+(loader.getAnimationEnd()-loader.getAnimationStart())*_t
+	loader.applyAnimation(time)
+	loader.updateSkinning()
+
+_r = applyAnimation

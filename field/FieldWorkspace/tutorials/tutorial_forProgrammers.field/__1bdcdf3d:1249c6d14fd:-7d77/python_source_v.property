@@ -1,0 +1,52 @@
+string>
+
+# Field comes with some "heavy magic" based Python things, oriented towards the kinds of problems that we keep running into as digital artists
+
+# let's take this example here (you can follow along by option-clicking on the areas in the margin)
+a = 3
+x = trans(lambda : a)
+y = x+3
+print y    # prints 6
+
+# so far so good
+a = 2
+print y    # prints 5
+
+# what happened? Ñ trans introduces a 'trans'parant lazy numerial object into your mathematical world. It looks like a number, it acts like a number, but it doesn't compute anything until you really ask it to. Adding numbers to it gets you back another 'trans' object, not a number, so this 'laziness' is infectious.
+
+# vector3's and the like work as well:
+
+v3 = Vector3(1,1,1)
+v_trans = trans(lambda : v3)
+vAnother_trans = (v + Vector3(-1, 1, -1))*2
+
+print vAnother_trans # prints (0, 4, 0)
+
+# if you think about a variable as just a function with zero parameters (here, quite explicitly, with the lambda : v3) you can then think about doing the same thing with functions of one variable
+
+timesTwo = transFilter(lambda a : a*2)
+print timesTwo(2) # prints 4
+
+squared = transFilter(lambda a : a*a)
+print squared(3) # prints 9
+
+print (timesTwo+squared)(2) # prints 8
+print (timesTwo*2+squared)(2) # prints 12
+print (timesTwo*squared)(2) # prints 16
+
+# if you are a code-writing animator and understand the above then you probably think it's pretty special. Otherwise, don't worry about it.
+
+# A function of one variable has an extra degree of freedom. Not only can we add them together (like above f(x)+g(x)), we can embed them inside each other f(g(x)). For this we overload the << operator:
+
+print timesTwo(3) # 6
+print (timesTwo<<2)(3) # 10
+print (timesTwo<<squared)(3) # 18
+
+#One last thing, with this use-case in mind, it's sometimes handy to be able to ask for a function that just evaluates this remapping of the inputs. For example, if all of your primative window objects have support over 0->1, and you'd like to know where you are in this original "timebase"
+
+timesTwo = transpFilter(lambda a : a*2)
+timesTwoShifted = timesTwo<<2
+timesTwoShiftedAndScaled = timesTwoShifted<<(lambda x : x*2)
+print timesTwoShiftedAndScaled(0) # 4
+print timesTwoShiftedAndScaled.input(0)  # 2
+

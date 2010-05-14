@@ -1,0 +1,24 @@
+string>
+# boxes can refer to themselves using the variable _self
+
+print _self.name
+
+# try autocomplete on _self. to get a list of some of the things you can interact with "in" _self
+
+# here are some important ones
+
+_self.frame.x=70
+_self.frame.w=280
+_self.name="a box with properties"
+
+# if you've gone through the drawing tutorial you'll now see _self.lines for what it is Ñ a property that just happens to contain a list of things to draw
+
+# new properties are created "on demand"
+print _self.anyOldThing_ # print's None
+_self.anyOldThing_ = "anyOldThing"
+print _self.anyOldThing_ # print's "anyOldThing"
+
+# because properties are created on demand you sometimes see this ideom
+
+_self.myThing_ = _self.myThing_ or 10.3
+

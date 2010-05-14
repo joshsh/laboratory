@@ -1,0 +1,15 @@
+string>
+# this box you can run by option clicking on it, here's the code
+
+def start():
+	print "Starting..."
+
+def keepGoing():
+	print "...ongoing at time %f... " % _t
+
+def stop():
+	print "... Stopping"
+
+# start is called once, keepGoing is called while the box continues to run and finally stop is called just before the box isn't run any more
+_r = start, keepGoing, stop
+

@@ -1,0 +1,11 @@
+string>
+// # the fragment shader tells OpenGL what to draw in a pixel. OpenGL has turned the geometry that comes out of the vertex shader (or geometry shader) into a list of pixels that it has to draw.
+
+void main()
+{	
+	// # this is the simplest fragment shader possible ÑÊit just says draw this pixel (this 'fragment') with a dark, opaque, grey
+	gl_FragColor = vec4(0.1, 0.1, 0.1, 1);
+	
+	// # if you wanted red:
+	//gl_FragColor = vec4(1,0,0,1);
+}

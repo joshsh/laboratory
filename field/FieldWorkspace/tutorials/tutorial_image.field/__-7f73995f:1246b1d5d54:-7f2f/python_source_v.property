@@ -1,0 +1,17 @@
+string>
+# you are not limited to loading images off of disk, you can originate them yourself
+
+imageData = makeFloatImageData(256, 256)
+for y in range(0, 256):
+	for x in range(0, 256):
+		imageData.put(x/256.0) #red
+		imageData.put(y/256.0) #green
+		imageData.put(0.0) #blue
+		imageData.put(1.0) #alpha
+
+ii = image(imageData, 256, 256)
+
+_self.lines.clear()
+ii.show(decor=0)
+
+_self.tweaks()

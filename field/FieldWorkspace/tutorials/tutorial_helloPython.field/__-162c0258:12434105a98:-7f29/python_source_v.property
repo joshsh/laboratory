@@ -1,0 +1,48 @@
+string># defining a function:
+def myfunction():
+	print "hello!"
+
+# of course, it's not enough to just write the code above, you actually have to execute it before Field knows anything about it
+
+# calling the function:
+myfunction()
+
+# a common error
+# not calling the function:
+myfunction   # note missing ()
+
+# "myfunction" refers to the function you made, but only by putting () at the end of it do you actually cause myfunction to be executed
+
+# defining a function that takes an parameters
+def mysecondfunction(x, y):
+	print "hello!", x, y
+
+# calling the function with 2 arguments
+mysecondfunction(123, 456)
+
+# this is an error
+myseconcfunction(123)
+# because it doesn't have enough parameters
+
+def add2numbers(x, y):
+	# you can see 'global' vars
+	print aglobalvariable
+	result = x + y
+	return result
+
+aglobalvariable = "hi!"
+thereturnedvalue = add2numbers(1, 2)
+print thereturnedvalue
+
+# 'result' was a "local"name inside
+# add2number. It's gone. You can't see it from outside the function.
+# this line will print an error:
+print result
+
+
+# obviously functions can call other functions
+def anotherfunc(x, y):
+	# calling add2numbers function:
+	return add2numbers(x, y)
+
+print anotherfunc(1, 2)

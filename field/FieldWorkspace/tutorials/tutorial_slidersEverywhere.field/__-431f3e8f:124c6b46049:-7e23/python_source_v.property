@@ -1,0 +1,17 @@
+string>
+# Advanced! ----------------
+
+# here's how to make a slider (or any other swing component) be a Field Visual Element
+
+# right now mouse events are passed through to the underlying component:
+
+from javax.swing import *
+from field.core.plugins.python import OnSheetSwing
+
+OnSheetSwing.upgrade(_self)
+slider = JSlider()
+
+_self.localView.setComponent(slider, 0)
+
+# since you can't actually save components to disk, you have to execute this code once when the sheet loads. 
+# you can add the line '_self()' to the auto execution property (available from the drop down box at the top of the text editor)

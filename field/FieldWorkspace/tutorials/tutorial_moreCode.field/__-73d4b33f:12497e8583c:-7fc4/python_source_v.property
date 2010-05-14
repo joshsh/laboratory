@@ -1,0 +1,6 @@
+string>
+# this box of code defines a global variable
+myGlobalVariable = 10
+
+# I've run this once (a long, long time ago) and Field notices that the box above me uses 'myGlobalVariable'
+

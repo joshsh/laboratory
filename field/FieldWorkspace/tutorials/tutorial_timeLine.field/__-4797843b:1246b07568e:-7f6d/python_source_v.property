@@ -1,0 +1,23 @@
+string>label= """Just to the left of this text there's a red line that can be used to execute boxes by dragging it.
+<p><p>
+You might be able to grab the line from here, or you can pan over a bit using the middle mouse button (or a drag gesture on a laptop)."""
+width=300
+opacity=0.5
+
+#---------------------------------------------
+
+from java.awt import Font
+_self.lines.clear()
+
+text = PLine().moveTo(0,0)(offsetFromSource=Vector2())
+
+text(containsMultilineText=1)
+text(multilineWidth_v=width)
+text(text_v=label)
+
+text(font_v=Font("Gill Sans", 0, 15))
+text(totalOpacity=opacity)
+
+_self.lines.add(text)
+
+_self.noFrame=1

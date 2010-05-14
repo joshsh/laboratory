@@ -1,0 +1,3 @@
+string>
+# here we set the property that the painter is looking for 
+_self.height_=[30, 4, -20, -10]

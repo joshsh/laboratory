@@ -1,0 +1,9 @@
+string>
+
+# this is much faster than doing it in Python and yet we retain a lot of the dynamism 
+def doRandom():
+	randomize()
+
+_r = doRandom
+
+# now, for extra credit Ñ increase the number of particles to 1,000,000. You'll probably find that you can't update them live at a great framerate, but you can still move the camera around (or set shader uniforms) when you are not updating them. This is because moving things to the graphics card (and computing that Rand) is expensive, but drawing them isn't. Ultimately you want to do things like 'randomize' on the graphics card itself Ñ with some serious GLSLang shaders.

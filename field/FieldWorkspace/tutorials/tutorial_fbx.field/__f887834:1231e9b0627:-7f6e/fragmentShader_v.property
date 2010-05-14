@@ -1,0 +1,6 @@
+string>varying vec4 vertexColor;
+
+void main()
+{
+        gl_FragColor = vertexColor+vec4(0.1, 0.1, 0.1, 0.1);
+}

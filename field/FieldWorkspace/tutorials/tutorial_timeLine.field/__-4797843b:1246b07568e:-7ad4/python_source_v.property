@@ -1,0 +1,23 @@
+string>
+
+
+# _r can be set to other things. Of particular interest: a python generator Ñ very, very useful for animation
+
+def aGenerator():
+	print "hello"
+	yield 1
+	print "there"
+	yield 1
+	print "everyone"
+	yield 1
+	for n in range(0, 10):
+		print "counting up %i " % n
+		yield 1
+	for n in floatRange(0, 10, 20):
+		print "counting down %f " % n
+		yield 1
+	print "all done"
+	
+# watch that () 
+_r = aGenerator()
+

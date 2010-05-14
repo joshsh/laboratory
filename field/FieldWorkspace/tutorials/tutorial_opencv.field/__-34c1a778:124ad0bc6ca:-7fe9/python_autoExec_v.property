@@ -1,0 +1,4 @@
+string>
+_self.python_globals_.declare(_self, "width")
+_self.python_globals_.declare(_self, "height")
+_self.python_globals_.declare(_self, "opencv")

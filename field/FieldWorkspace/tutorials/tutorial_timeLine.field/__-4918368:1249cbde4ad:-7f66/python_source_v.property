@@ -1,0 +1,31 @@
+string>
+# this box needs the Processing plugin to be activated to function
+if (not _self.plugin_processingplugin_): print "this box needs the Processing plugin to be activated to function"
+
+# here's a generator that goes from 'start' to 'stop' over a particular number of frames
+def bounce(start, stop, over):
+	for n in range(0, over):
+		value = start+(stop-start)*n/float(over)
+		yield value
+
+# to evaluate this generator press ctrl-command-/
+bounce(1,2,100)
+# this will print the first 50 frames of any generator, just so you can see what it does
+
+def applyToBackground(gen):
+	for n in gen:
+		p.background(255*n)
+		yield 1
+
+def randomBounce():
+	for n in range(0, 5):
+		# in Field yielding a generator means "now go away and do this generator until it's done then come back"
+		yield applyToBackground(bounce(Math.random(), Math.random(), 100))
+
+# if we run this box with _t set to this then we get 5 random "bounces"
+_r = randomBounce()
+
+
+
+
+

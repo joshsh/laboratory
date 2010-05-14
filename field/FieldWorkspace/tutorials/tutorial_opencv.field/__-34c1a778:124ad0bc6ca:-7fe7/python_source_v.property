@@ -1,0 +1,12 @@
+string>from java.nio import ByteBuffer
+from field.graphics.core import AdvancedTextures
+from field.graphics.core.AdvancedTextures import BaseFastRawTexture
+from AdvancedGraphics import *
+
+canvas = getFullscreenCanvas()
+shader = makeShaderFromElement(_self)
+canvas << shader
+
+data = ByteBuffer.allocateDirect(width*height*4).asIntBuffer()
+texture = BaseFastRawTexture("", data, width, height, None)
+shader << texture

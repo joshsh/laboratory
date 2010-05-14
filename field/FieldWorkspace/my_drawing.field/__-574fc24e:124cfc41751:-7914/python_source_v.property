@@ -1,0 +1,15 @@
+string>
+# we can draw lots of different things in similar ways
+line = PLine()
+
+line.moveTo(50,50)
+
+# curve towards 100,50; curve back towards 70, 130, and then end up at 100,100
+line.cubicTo(100,50, 70,130, 100, 100)
+
+# now we translate this line out of the way of the example we have to the left
+line += Vector2(150,0)
+
+# and then we add it, same as before
+_self.lines.clear() 
+_self.lines.add(line) 

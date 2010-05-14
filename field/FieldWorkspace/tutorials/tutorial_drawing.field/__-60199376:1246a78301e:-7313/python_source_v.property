@@ -1,0 +1,25 @@
+string>_self.lines.clear()
+
+# The last way of making text actually turns it into geometry (rather than just having text label a vertex)
+
+at = AdvancedTextToCachedLine("Gill Sans", 20)
+
+theText = PLine(at.getLine("Hello World", 800, 250))
+_self.lines.add(theText)
+
+# or, more realistically:
+theText = PLine(at.getLine("Hello World", 800, 300))
+theText(filled=1, stroked=1, fillColor=Color4(0.25, 0, 0, 1), strokeColor=Color4(0.25,0,0,0.1), derived=1)
+_self.lines.add(theText)
+
+# but it's just geometry, so we can transform it
+theText = PLine(at.getLine("Hello World", 800, 350))
+theText(derived=1, filled=1, color=Color4(0,0,0,0.1))
+
+for n in range(0, 10):
+	segments = theText.segment()
+	for s in segments:
+		s += Vector2().noise(n*2)
+		s.visitPositions(lambda x, y : Vector2(x,y).noise(2))
+		_self.lines.add(s)
+	

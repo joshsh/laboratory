@@ -1,0 +1,23 @@
+string>
+# there are a few things that _r can be set to. We've already seen one ÑÊa function. Here's another:
+
+def start():
+	print "I'm starting"
+
+def goOn():
+	print "I'm still going"
+
+def stop():
+	print "That's it, I'm done"
+
+_r = start, goOn, stop
+
+#Now Field will call 'start' once, then 'goOn' while this box is running, and 'stop' when you elect to stop this box. Try it.
+
+#If you want to know more about what _r can do, select this text here:
+
+# VisualElementLifecycles
+
+# and right-click and select "search over OpenEndedGroup.com". That's how you search the online Field documentation site.
+
+
