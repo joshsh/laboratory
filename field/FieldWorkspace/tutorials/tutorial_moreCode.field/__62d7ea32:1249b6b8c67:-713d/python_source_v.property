@@ -1,4 +1,0 @@
-string>
-# but we can locally override this to be something else
-_self.aSuperProperty = 20
-print _self.aSuperProperty

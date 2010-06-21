@@ -1,5 +1,0 @@
-string>
-# if we just print this property out, we'll see that it's already set to be 10
-print _self.aSuperProperty
-
-# this is because we're picking the property up from our super-box

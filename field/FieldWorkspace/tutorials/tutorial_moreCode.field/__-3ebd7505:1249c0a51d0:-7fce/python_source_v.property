@@ -1,3 +1,0 @@
-string>
-# this property here is both persisted to disk and made available in the properties inspector, where you can edit it
-_self.someProperty_i = "inspect me"

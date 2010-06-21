@@ -1,5 +1,0 @@
-string>
-@canvas.onMouseDrag
-def dragMe(event):
-	pointShader.extraColor=Vector4(1,1,1,event.getX()/2000.0)
-

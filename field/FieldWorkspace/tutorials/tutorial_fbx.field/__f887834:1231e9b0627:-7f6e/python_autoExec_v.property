@@ -1,3 +1,0 @@
-string>
-_self.python_globals_.declare(_self, "mesh")
-_self.python_globals_.declare(_self, "loader")

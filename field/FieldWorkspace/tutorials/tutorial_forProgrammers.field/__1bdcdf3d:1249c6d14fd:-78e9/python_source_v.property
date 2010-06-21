@@ -1,9 +1,0 @@
-string>
-
-#lets start with yellow
-color = Vector3(255,255, 0)
-
-def draw():
-	p.background(color.x, color.y, color.z)
-
-_r = draw

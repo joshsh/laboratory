@@ -1,7 +1,0 @@
-string>
-_self.python_globals_.declare(_self, "text")
-_self.python_globals_.declare(_self, "width")
-_self.python_globals_.declare(_self, "label")
-_self.python_globals_.declare(_self, "Font")
-_self.python_globals_.declare(_self, "opacity")
-_self.python_globals_.declare(_self, "f")

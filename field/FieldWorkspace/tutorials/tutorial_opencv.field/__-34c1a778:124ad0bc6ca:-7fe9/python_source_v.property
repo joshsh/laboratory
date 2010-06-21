@@ -1,6 +1,0 @@
-string>from hypermedia.video import *
-opencv = OpenCV(None)
-
-width, height = 500, 500
-opencv.capture(width, height)
-
