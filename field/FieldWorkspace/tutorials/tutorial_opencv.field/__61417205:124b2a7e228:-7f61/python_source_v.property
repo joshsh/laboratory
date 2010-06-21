@@ -1,8 +1,0 @@
-string>from field.launch import SystemProperties
-
-if (not _self.plugin_processingplugin_):
-	print "No Processing Plugin Ñ enable it in the plugin manager"
-elif (not System.getProperty("os.arch")=="i386"):
-	print "Wrong architecture ÑÊchoose 'run the 32 bit mode' from the Finder"
-else:
-	print "You are good to go"

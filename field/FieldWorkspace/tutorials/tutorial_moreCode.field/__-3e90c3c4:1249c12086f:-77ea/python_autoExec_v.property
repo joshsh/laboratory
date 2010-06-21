@@ -1,8 +1,0 @@
-string>
-# code here is run automatically at start up 
-# pay close attention to the label at the top of the editor (right now it says "Automatically Executed"). There can be many pieces of code attached to a box. Normally you are using the "Default Execution" property. The box flashes red if it changes automatically, and you can flip between tabs using command-=
-
-print "I'm running automatically"
-
-# to run everything inside "Default Execution" you can just do this:
-_self()

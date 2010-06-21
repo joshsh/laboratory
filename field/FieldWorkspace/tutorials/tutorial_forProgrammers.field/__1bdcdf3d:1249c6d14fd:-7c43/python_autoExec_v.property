@@ -1,5 +1,0 @@
-string>
-_self.python_globals_.declare(_self, "k")
-_self.python_globals_.declare(_self, "theVector")
-_self.python_globals_.declare(_self, "keyframe2")
-_self.python_globals_.declare(_self, "keyframe1")

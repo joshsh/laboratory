@@ -1,7 +1,0 @@
-string>def spin():
-	transform = mesh.localTransform
-	# rotate around 'z' one complete turn
-	transform.rotation = Quaternion().set(Vector3(0,0,1), _t*Math.PI*2)
-	mesh.localTransform = transform
-
-_r = spin

@@ -1,4 +1,0 @@
-string>
-# here's how to open a file in Field
-
-openFile(_self.sheetDataFolder+"demoMaxPatch.maxpat")

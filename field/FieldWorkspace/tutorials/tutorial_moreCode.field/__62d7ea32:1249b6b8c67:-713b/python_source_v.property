@@ -1,6 +1,0 @@
-string>
-
-print _self.aSuperProperty
-
-# sometimes we want to know where the property is actually coming from 
-print _self.where.aSuperProperty
