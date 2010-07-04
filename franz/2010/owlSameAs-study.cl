@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (defun hashplusone (h k)
   (let ((count (gethash k h)))
     (setf (gethash k h)
@@ -19,6 +20,8 @@
       dist)))
 
 
+=======
+>>>>>>> a8a2951701977b44674d2c9bef009e73a277f99e
 ;;;; concept graph ;;;;;;;;;;;;;;;;;;;;;
 
 (in-package :db.agraph.user)  
@@ -46,6 +49,7 @@
         (format t "~&~a ~a ~a" count (part->string (first key)) (part->string (second key))))))
 
 
+<<<<<<< HEAD
 ;;;; "weak" concept graph ;;;;;;;;;;;;;;
 
 (defun find-weak-concept-graph (b)
@@ -92,6 +96,8 @@
     overlap))
 
 
+=======
+>>>>>>> a8a2951701977b44674d2c9bef009e73a277f99e
 ;;;; domain graph ;;;;;;;;;;;;;;;;;;;;;;
 
 (defun domain-of-uristring (s)
@@ -135,6 +141,7 @@
     (loop for key being the hash-key using (hash-value count) of h do
         (format t "~&~a ~a ~a" count (first key) (second key)))))
 
+<<<<<<< HEAD
 
 ;;;; in-degree distribution ;;;;;;;;;;;;;;;;;;;;;;
 
@@ -232,3 +239,5 @@
 
 
 
+=======
+>>>>>>> a8a2951701977b44674d2c9bef009e73a277f99e
