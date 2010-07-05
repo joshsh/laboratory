@@ -1,5 +1,8 @@
 package net.fortytwo.sesamize;
 
+import org.openrdf.rio.RDFFormat;
+
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -40,6 +43,31 @@ class Args {
                 }
             }
         }
+    }
+
+    public String getOption(final String defaultValue,
+                            final String... alternatives) {
+        for (String s : alternatives) {
+            String o = pairs.get(s);
+            if (null != o) {
+                return o;
+            }
+        }
+
+        return defaultValue;
+    }
+
+    public RDFFormat getRDFFormat(final RDFFormat defaultValue,
+                                  final String... alternatives) {
+        String s = getOption(null, alternatives);
+        return null == s ? defaultValue : Sesamize.findRDFFormat(s);
+    }
+
+    public RDFFormat getRDFFormat(final File file,
+                                  final RDFFormat defaultValue,
+                                  final String... alternatives) {
+        String s = getOption(null, alternatives);
+        return null == s ? RDFFormat.forFileName(file.getName(), defaultValue) : Sesamize.findRDFFormat(s);
     }
 
     private String getOptionName(final String option) {

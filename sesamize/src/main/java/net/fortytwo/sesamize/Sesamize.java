@@ -10,12 +10,16 @@ import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandler;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.RDFParseException;
+import org.openrdf.rio.RDFParser;
+import org.openrdf.rio.RDFWriter;
 import org.openrdf.rio.Rio;
 import org.openrdf.sail.Sail;
 import org.openrdf.sail.SailException;
+import org.openrdf.sail.memory.MemoryStore;
 import org.openrdf.sail.nativerdf.NativeStore;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,12 +38,15 @@ public class Sesamize {
     private static final String
             NAME = "Sesamize",
             VERSION = "0.1";
+    private static final String
+            DEFAULT_BASEURI = "http://example.org/baseURI#";
 
     private static boolean quiet;
 
     private enum Command {
         DUMP("dump"),
-        IMPORT("import");
+        IMPORT("import"),
+        TRANSLATE("translate");
 
         private final String name;
 
@@ -73,7 +80,7 @@ public class Sesamize {
         rdfFormatByName.put("ntriple", RDFFormat.NTRIPLES);
     }
 
-    private static RDFFormat findRDFFormat(final String name) {
+    public static RDFFormat findRDFFormat(final String name) {
         return rdfFormatByName.get(name);
     }
 
@@ -113,6 +120,9 @@ public class Sesamize {
                     break;
                 case IMPORT:
                     doImport(a);
+                    break;
+                case TRANSLATE:
+                    doTranslate(a);
                     break;
             }
         } catch (Throwable t) {
@@ -216,31 +226,67 @@ public class Sesamize {
 
     }
 
+    private static String getBaseURI(final Args args) {
+        return args.getOption(DEFAULT_BASEURI, "b", "baseuri");
+    }
+
+    private static void doTranslate(final Args args) throws Exception {
+        File inputFile = new File(args.nonOptions.get(0));
+
+        RDFFormat inputFormat = args.getRDFFormat(inputFile, RDFFormat.RDFXML, "i", "inputFormat");
+        RDFFormat outputFormat = args.getRDFFormat(RDFFormat.RDFXML, "o", "outputFormat");
+
+        translateRDFDocument(inputFile, System.out, inputFormat, outputFormat, getBaseURI(args));
+    }
+
     private static void doImport(final Args args) throws Exception {
-        String dir = args.nonOptions.get(0);
-        String file = args.nonOptions.get(1);
+        File dir = new File(args.nonOptions.get(0));
+        File file = new File(args.nonOptions.get(1));
 
-        String f = args.pairs.get("f");
-        RDFFormat format = (null == f) ? RDFFormat.forFileName(file, RDFFormat.RDFXML) : findRDFFormat(f);
+        RDFFormat inputFormat = args.getRDFFormat(file, RDFFormat.RDFXML, "i", "inputFormat");
 
-        importRDFDocumentIntoNativeStore(new File(dir), new File(file), format);
+        importRDFDocumentIntoNativeStore(dir, file, inputFormat);
     }
 
     private static void doDump(final Args args) throws Exception {
-        String dir = args.nonOptions.get(0);
-        String file = args.nonOptions.get(1);
+        File dir = new File(args.nonOptions.get(0));
+        File file = new File(args.nonOptions.get(1));
 
-        String f = args.pairs.get("f");
-        RDFFormat format = (null == f) ? RDFFormat.forFileName(file, RDFFormat.RDFXML) : findRDFFormat(f);
+        RDFFormat outputFormat = args.getRDFFormat(RDFFormat.RDFXML, "o", "outputFormat");
 
-        dumpNativeStoreToRDFDocument(new File(dir), new File(file), format);
+        dumpNativeStoreToRDFDocument(dir, file, outputFormat);
+    }
+
+    public static void translateRDFDocument(final File inputFile,
+                                            final OutputStream out,
+                                            final RDFFormat inFormat,
+                                            final RDFFormat outFormat,
+                                            final String baseURI) throws SailException, IOException, RDFHandlerException, RDFParseException {
+        Sail sail = new MemoryStore();
+        sail.initialize();
+
+        try {
+            RDFParser p = Rio.createParser(inFormat);
+            RDFWriter w = Rio.createWriter(outFormat, out);
+
+            p.setRDFHandler(w);
+
+            InputStream in = new FileInputStream(inputFile);
+            try {
+                p.parse(in, baseURI);
+            } finally {
+                in.close();
+            }
+        } finally {
+            sail.shutDown();
+        }
     }
 
     public static void dumpNativeStoreToRDFDocument(final File nativeStoreDirectory,
                                                     final File dumpFile,
                                                     final RDFFormat format) throws SailException, RepositoryException, IOException, RDFHandlerException {
         System.out.println("dumping store at " + nativeStoreDirectory + " to file " + dumpFile);
-        
+
         Sail sail = new NativeStore(nativeStoreDirectory);
         sail.initialize();
 
@@ -276,7 +322,7 @@ public class Sesamize {
 
             RepositoryConnection rc = repo.getConnection();
             try {
-                rc.add(dumpFile, "nobaseuri", format);
+                rc.add(dumpFile, DEFAULT_BASEURI, format);
                 rc.commit();
             } finally {
                 rc.close();
