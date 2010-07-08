@@ -57,6 +57,12 @@ class Args {
         return defaultValue;
     }
 
+    public SparqlResultFormat getSparqlResultFormat(final SparqlResultFormat defaultValue,
+                                                    final String... alternatives) {
+        String s = getOption(null, alternatives);
+        return null == s ? defaultValue : SparqlResultFormat.lookupByNickname(s);
+    }
+
     public RDFFormat getRDFFormat(final RDFFormat defaultValue,
                                   final String... alternatives) {
         String s = getOption(null, alternatives);
