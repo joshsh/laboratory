@@ -1,5 +1,6 @@
 package net.fortytwo.sesamize;
 
+import net.fortytwo.sesamize.nquads.NQuadsFormat;
 import org.openrdf.rio.RDFFormat;
 
 import java.io.File;
@@ -73,7 +74,17 @@ class Args {
                                   final RDFFormat defaultValue,
                                   final String... alternatives) {
         String s = getOption(null, alternatives);
-        return null == s ? RDFFormat.forFileName(file.getName(), defaultValue) : Sesamize.findRDFFormat(s);
+        RDFFormat f = null == s ? RDFFormat.forFileName(file.getName(), defaultValue) : Sesamize.findRDFFormat(s);
+        if (null == f) {
+            String n = file.getName();
+            if (n.endsWith(".nq")
+                    || (n.endsWith(".nquad"))
+                    || (n.endsWith(".nquads"))) {
+                f = NQuadsFormat.NQUADS;
+            }
+        }
+
+        return f;
     }
 
     private String getOptionName(final String option) {

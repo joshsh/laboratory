@@ -2,6 +2,9 @@ package net.fortytwo.sesamize;
 
 import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;
+import net.fortytwo.sesamize.nquads.NQuadsFormat;
+import net.fortytwo.sesamize.nquads.NQuadsParser;
+import net.fortytwo.sesamize.nquads.NQuadsWriter;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.MalformedQueryException;
 import org.openrdf.query.QueryEvaluationException;
@@ -93,6 +96,8 @@ public class Sesamize {
         rdfFormatByName.put("trix", RDFFormat.TRIX);
         rdfFormatByName.put("ntriples", RDFFormat.NTRIPLES);
         rdfFormatByName.put("ntriple", RDFFormat.NTRIPLES);
+        rdfFormatByName.put("nquad", NQuadsFormat.NQUADS);
+        rdfFormatByName.put("nquads", NQuadsFormat.NQUADS);
     }
 
     public static RDFFormat findRDFFormat(final String name) {
@@ -457,6 +462,19 @@ public class Sesamize {
     }
     //*/
 
+    private static RDFWriter createWriter(final RDFFormat format,
+                                             final OutputStream out) {
+        return NQuadsFormat.NQUADS == format
+                ? new NQuadsWriter(out)
+                : Rio.createWriter(format, out);
+    }
+
+    private static RDFParser createParser(final RDFFormat format) {
+        return NQuadsFormat.NQUADS == format
+                ? new NQuadsParser()
+                : Rio.createParser(format);
+    }
+
     public static void translateRDFDocumentUseingConstructQuery(final String query,
                                                                 final File inputFile,
                                                                 final OutputStream out,
@@ -473,7 +491,7 @@ public class Sesamize {
                 rc.add(inputFile, baseURI, inFormat);
                 rc.commit();
 
-                RDFWriter w = Rio.createWriter(outFormat, out);
+                RDFWriter w = createWriter(outFormat, out);
 
                 rc.prepareGraphQuery(QueryLanguage.SPARQL, query).evaluate(w);
             } finally {
@@ -489,8 +507,8 @@ public class Sesamize {
                                             final RDFFormat inFormat,
                                             final RDFFormat outFormat,
                                             final String baseURI) throws SailException, IOException, RDFHandlerException, RDFParseException {
-        RDFParser p = Rio.createParser(inFormat);
-        RDFWriter w = Rio.createWriter(outFormat, out);
+        RDFParser p = createParser(inFormat);
+        RDFWriter w = createWriter(outFormat, out);
 
         p.setRDFHandler(w);
 
@@ -517,7 +535,7 @@ public class Sesamize {
             try {
                 OutputStream out = new FileOutputStream(dumpFile);
                 try {
-                    RDFHandler h = Rio.createWriter(format, out);
+                    RDFHandler h = createWriter(format, out);
                     rc.export(h);
                 } finally {
                     out.close();
