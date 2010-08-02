@@ -21,6 +21,7 @@ public abstract class SparqlOscService {
             NULL_ARGUMENT = "[null]";
 
     public abstract void subscribe(final SparqlOscSubscriber subscriber);
+    public abstract void unsubscribe(final SparqlOscSubscriber subscriber);
 
     protected void handleSparqlResult(final BindingSet result,
                                       final SparqlOscSubscriber subscriber) throws SparqlOscMappingException, IOException {
@@ -96,5 +97,4 @@ public abstract class SparqlOscService {
             throw new SparqlOscMappingException("value has unfamiliar type: " + v.getClass());
         }
     }
-
 }
