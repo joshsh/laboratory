@@ -22,7 +22,6 @@
             <name>Aduna repository</name>
             <url>http://repo.aduna-software.org/maven2/releases</url>
         </repository>
-
     </repositories>
 
     <dependencies>
@@ -33,12 +32,12 @@
         </dependency>
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
-            <artifactId>sesame-sail-memory</artifactId>
+            <artifactId>sesame-queryparser-sparql</artifactId>
             <version>2.2.4</version>
         </dependency>
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
-            <artifactId>sesame-queryparser-sparql</artifactId>
+            <artifactId>sesame-sail-api</artifactId>
             <version>2.2.4</version>
         </dependency>
         <dependency>
