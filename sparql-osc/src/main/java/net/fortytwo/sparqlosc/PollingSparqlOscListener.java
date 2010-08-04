@@ -22,20 +22,26 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ * A simple SPARQL-OSC listener which polls a triple store periodically for new results for the SPARQL queries which have been registered.
+ *
  * User: josh
  * Date: Jul 31, 2010
  * Time: 3:14:29 PM
  */
-public class PollingSparqlOscService extends SparqlOscService {
+public class PollingSparqlOscListener extends SparqlOscListener {
     private static final String BASE_URI = "http://example.org/bogusBaseURI";
 
-    private final Set<SubscriberWrapper> subscribers;
+    private final Set<SubscriberWrapper> mappings;
     private final Sail sail;
 
-    public PollingSparqlOscService(final Sail sail,
-                                   final long interval) {
+    /**
+     * @param sail a Sesame storage and inference layer (Sail) against which to evaluate SPARQL queries
+     * @param interval how often the listener should poll the triple store for new results
+     */
+    public PollingSparqlOscListener(final Sail sail,
+                                    final long interval) {
         this.sail = sail;
-        subscribers = new HashSet<SubscriberWrapper>();
+        mappings = new HashSet<SubscriberWrapper>();
 
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -43,7 +49,7 @@ public class PollingSparqlOscService extends SparqlOscService {
                 try {
                     runQueries();
                 } catch (Throwable t) {
-                    System.err.println("error intercepted:");
+                    LOGGER.severe("error intercepted:");
                     t.printStackTrace(System.err);
                 }
             }
@@ -51,23 +57,23 @@ public class PollingSparqlOscService extends SparqlOscService {
         timer.schedule(task, interval, interval);
     }
 
-    public synchronized void subscribe(final SparqlOscSubscriber subscriber) {
-        subscribers.add(new SubscriberWrapper(subscriber));
+    public synchronized void register(final SparqlOscMapping mapping) {
+        mappings.add(new SubscriberWrapper(mapping));
     }
 
-    public synchronized void unsubscribe(final SparqlOscSubscriber subscriber) {
+    public synchronized void unregister(final SparqlOscMapping mapping) {
         // FIXME: this is odd
-        subscribers.remove(new SubscriberWrapper(subscriber));
+        mappings.remove(new SubscriberWrapper(mapping));
     }
 
-    private synchronized Collection<SubscriberWrapper> getSubscribers() {
+    private synchronized Collection<SubscriberWrapper> getMappingsBuffer() {
         Collection<SubscriberWrapper> buffer = new LinkedList<SubscriberWrapper>();
-        buffer.addAll(subscribers);
+        buffer.addAll(mappings);
         return buffer;
     }
 
     private void runQueries() throws SailException, MalformedQueryException, QueryEvaluationException, IOException {
-        Collection<SubscriberWrapper> buffer = getSubscribers();
+        Collection<SubscriberWrapper> buffer = getMappingsBuffer();
 
         SailConnection c = sail.getConnection();
         try {
@@ -86,7 +92,7 @@ public class PollingSparqlOscService extends SparqlOscService {
                                 this.handleSparqlResult(bs, w.getSubscriber());
                             }
                         } catch (SparqlOscMappingException e) {
-                            System.err.println("mapping error ignored:");
+                            LOGGER.warning("mapping error ignored");
                             e.printStackTrace(System.err);
                         }
                     }
@@ -105,22 +111,23 @@ public class PollingSparqlOscService extends SparqlOscService {
     }
 
     private class SubscriberWrapper {
-        private final SparqlOscSubscriber subscriber;
+        private final SparqlOscMapping mapping;
         private final Set<BindingSetWrapper> previousResults;
         private ParsedQuery query;
 
-        public SubscriberWrapper(SparqlOscSubscriber subscriber) {
-            this.subscriber = subscriber;
+        public SubscriberWrapper(SparqlOscMapping mapping) {
+            this.mapping = mapping;
             this.previousResults = new HashSet<BindingSetWrapper>();
         }
 
-        public SparqlOscSubscriber getSubscriber() {
-            return subscriber;
+        public SparqlOscMapping getSubscriber() {
+            return mapping;
         }
 
         public ParsedQuery getQuery() throws MalformedQueryException {
             if (null == query) {
-                query = parseQuery(subscriber.getSparqlQuery());
+                //System.out.println("query: " + mapping.getSparqlQuery());
+                query = parseQuery(mapping.getSparqlQuery());
             }
 
             return query;
@@ -128,11 +135,11 @@ public class PollingSparqlOscService extends SparqlOscService {
 
         public boolean equals(final Object other) {
             return (other instanceof SubscriberWrapper
-                    && ((SubscriberWrapper) other).subscriber.equals(subscriber));
+                    && ((SubscriberWrapper) other).mapping.equals(mapping));
         }
 
         public int hashCode() {
-            return subscriber.hashCode();
+            return mapping.hashCode();
         }
 
         public boolean addResult(final BindingSet bs) {
