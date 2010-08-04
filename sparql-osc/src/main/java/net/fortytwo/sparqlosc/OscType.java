@@ -7,14 +7,16 @@ import org.openrdf.model.BNode;
 import org.openrdf.model.vocabulary.XMLSchema;
 
 /**
+ * A data type for SPARQL-to-OSC mappings which constrains the translation of RDF values to OSC values.
+ *
  * User: josh
  * Date: Aug 3, 2010
  * Time: 2:43:33 PM
  */
 public enum OscType {
-    INT32,
-    FLOAT32,
-    STRING;
+    INT32,  // OSC's Int32 types, which is compatible with xsd:integer and xsd:int
+    FLOAT32,  // OSC's Float32 type, whcih is compatible with xsd:float and xsd:double
+    STRING;  // OSC's String type, which is used here as a catch-all for many non-numeric types
     // TODO: blob, timetag
 
     private static final String
