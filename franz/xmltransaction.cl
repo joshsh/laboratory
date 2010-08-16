@@ -63,8 +63,10 @@
                  (if default-p default (error "Missing attribute '~a' in <~a> tag." name localname)))))
       (scase localname
         ("add" (action :add (get-parts)))
-        ("remove" (action :remove (append (get-parts) '(nil))))
-        ("removeFromNamedContext" (action :remove (get-parts)))
+;; JJS was here 2010-08-16
+        ("remove" (action :remove (get-parts)))
+;;        ("remove" (action :remove (append (get-parts) '(nil))))
+;;        ("removeFromNamedContext" (action :remove (get-parts)))
         ("clear" (action :remove (list nil nil nil (car (@parts parser)))))
         ("setNamespace" (action :add-namespace (list (attribute "prefix") (attribute "name"))))
         ("removeNamespace" (action :remove-namespace (list (attribute "prefix"))))
