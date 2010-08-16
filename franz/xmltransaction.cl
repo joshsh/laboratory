@@ -25,8 +25,10 @@
     (scase localname
       ("transaction" (enter-context nil :top))
       ("add" (enter-context :top :action :part :part :part :maybe))
-      ("remove" (enter-context :top :action :maybe :maybe :maybe))
-      ("removeFromNamedContext" (enter-context :top :action :maybe :maybe :maybe :maybe-null))
+;; JSS was here 2010-08-16
+     ("remove" (enter-context :top :action :maybe :maybe :maybe :maybe-null)) 
+;;      ("remove" (enter-context :top :action :maybe :maybe :maybe))
+;;      ("removeFromNamedContext" (enter-context :top :action :maybe :maybe :maybe :maybe-null))
       ("clear" (enter-context :top :action :maybe-null))
       (("setNamespace" "removeNamespace" "clearNamespaces") (enter-context :top :leaf))
       (("uri" "bnode" "literal") (enter-context :action :text))
