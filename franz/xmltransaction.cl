@@ -30,18 +30,11 @@
       ("clear" (enter-context :top :action :contexts))
       (("setNamespace" "removeNamespace" "clearNamespaces") (enter-context :top :leaf))
       (("uri" "bnode" "literal") (enter-context :action :text))
-      ("null" (enter-context :action :leaf))
-      (t (enter-context :any :ignore)))))
+      ("null" (enter-context :action :leaf)))))
 
 (defmethod net.xml.sax:end-element ((parser rdf-transaction-parser) iri localname qname)
   (declare (ignore iri qname))
-  (when (eq (caar (@context parser)) :ignore)
-    (if (zerop (@ignore-depth parser))
-        (pop (@context parser))
-        (decf (@ignore-depth parser)))
-    (return-from net.xml.sax:end-element nil))
-
-  (let ((attrs (cdr (pop (@context parser)))))
+  (let ((context (pop (@context parser))))
     (flet ((get-parts ()
              (loop :for exp :in (@expect parser)
                    :when (eq exp :part) :do (error "Not enough elements in <~a> tag." localname)
@@ -56,7 +49,7 @@
                (unless (eq exp :contexts) (pop (@expect parser)))
                exp))
            (attribute (name &optional (default nil default-p))
-             (or (cdr (assoc name attrs :test #'string=))
+             (or (cdr (assoc name (cdr context) :test #'string=))
                  (if default-p default (error "Missing attribute '~a' in <~a> tag." name localname)))))
       (scase localname
         ("add" (action :add (get-parts)))
@@ -75,7 +68,9 @@
                          (@parts parser)))
         ("null" (let ((exp (check-expect)))
                   (when (eq exp :part) (error "Unexpected <~a> tag." localname))
-                  (push (if (member exp '(:maybe-null :contexts)) :null nil) (@parts parser))))))))
+                  (push (if (member exp '(:maybe-null :contexts)) :null nil) (@parts parser))))
+        ;; Unknown tag, no context was pushed, so don't pop
+        (t (push context (@context parser)))))))
 
 (defun add-chars (parser chars)
   (case (caar (@context parser))
