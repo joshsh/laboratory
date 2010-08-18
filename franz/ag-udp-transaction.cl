@@ -41,16 +41,14 @@
 
 ;; UDP networking ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require :sock)
-
-(setq ta-socket (socket:make-socket :type :datagram :format :text :local-port 9999))
+(setq *ta-socket* (socket:make-socket :type :datagram :format :text :local-port 9999))
 
 ;; This is the maximum payload of a UDP message.
 (defparameter *ta-buflen* 65507)
 (defparameter *ta-buffer* (make-array *ta-buflen* :element-type 'character))
 
 (defun process-next-transaction ()
-  (multiple-value-bind (b l) (socket:receive-from ta-socket *ta-buflen* :extract t :buffer *ta-buffer*)
+  (multiple-value-bind (b l) (socket:receive-from *ta-socket* *ta-buflen* :extract t :buffer *ta-buffer*)
     ;;(print b)
     (apply-rdf-transaction-standalone
       (parse-rdf-transaction-string b))))
