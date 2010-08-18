@@ -49,5 +49,6 @@
   (multiple-value-bind (b l) (socket:receive-from *ta-socket* *ta-buflen* :extract t :buffer *ta-buffer*)
     ;;(print b)
     (apply-rdf-transaction-standalone
-      (parse-rdf-transaction-string b))))
+      (parse-rdf-transaction-string b))
+    (commit-triple-store)))
 
