@@ -10,8 +10,7 @@
                (keyword (default-graph-upi *db*)) ;; :null
                (null nil)
                (cons (or (gethash (second part) bnodes) ;; (:bnode "id")
-                         (setf (gethash (second part) bnodes)
-(new-blank-node))))
+                         (setf (gethash (second part) bnodes) (new-blank-node))))
                (triple-part part))))
       (dolist (action actions)
 	;;(print action)
@@ -37,7 +36,6 @@
           (:clear-namespaces
 	   ;;(print "clear-namespaces...")
            (clear-namespaces)))))))
-	   
 
 ;; UDP networking ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
