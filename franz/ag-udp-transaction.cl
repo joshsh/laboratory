@@ -36,6 +36,7 @@
 	   ;;(print "clear-namespaces...")
            (clear-namespaces)))))))
 
+
 ;; UDP networking ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq *ta-socket* (socket:make-socket :type :datagram :format :text :local-port 9999))
@@ -49,5 +50,6 @@
     ;;(print b)
     (apply-rdf-transaction-standalone
       (parse-rdf-transaction-string b))
-    (commit-triple-store)))
+    ;;(commit-triple-store)
+    ))
 
