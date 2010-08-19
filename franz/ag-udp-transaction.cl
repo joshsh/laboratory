@@ -1,6 +1,5 @@
 (in-package :ags.backend)
 
-
 ;; RDF transactions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun apply-rdf-transaction-standalone (actions)
