@@ -50,6 +50,6 @@
     ;;(print b)
     (apply-rdf-transaction-standalone
       (parse-rdf-transaction-string b))
-    ;;(commit-triple-store)
+    (commit-triple-store)
     ))
 
