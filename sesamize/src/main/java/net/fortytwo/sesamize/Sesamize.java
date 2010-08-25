@@ -110,6 +110,8 @@ public class Sesamize {
                 + "  -h           Print this help and exit\n"
                 + "  -q           Suppress normal output\n"
                 + "  -v           Print version information and exit");
+        System.out.println("E.g.");
+        System.out.println("  sesamize translate -i trig -o nquads mydata.trig > mydata.nquads");
         System.out.println("For more information, please see:\n"
                 + "  <URL:http://github.com/joshsh/laboratory/tree/master/sesamize>.");
     }

@@ -76,7 +76,7 @@
         (handler-case
 	  (process-next-transaction socket buffer)
 	    (net.xml.sax:sax-error (e)
-	      (format t "~&operation discarded due to error: ~a" e)
+	      (format t "~&transaction discarded due to error: ~a" e)
 	      (setf d (+ d 1))))
 	)
       (commit-triple-store))
