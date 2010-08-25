@@ -55,7 +55,7 @@
     
 (defun process-next-transaction (socket buffer)
   (multiple-value-bind (b l)
-    (socket:receive-from socket *ta-buflen* :extract t :buffer buffer)
+    (socket:receive-from socket *receiver-buflen* :extract t :buffer buffer)
     ;;(print b)
     (apply-rdf-transaction-standalone
       ;;(handler-case
