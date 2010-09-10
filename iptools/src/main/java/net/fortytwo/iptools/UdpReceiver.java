@@ -11,6 +11,7 @@ import java.net.DatagramSocket;
  */
 public class UdpReceiver {
     /*
+     # Note: also open this port in the EC2 security group
      sudo iptables -I INPUT -p udp -m udp --dport 9990 -j ACCEPT
      java -cp target/iptools-0.1.jar net.fortytwo.iptools.UdpReceiver 9990
       */
@@ -34,6 +35,7 @@ public class UdpReceiver {
         while (!stopped) {
             dsocket.receive(packet);
 
+            String payload = new String(buffer, 0, packet.getLength());
             System.out.println("received:");
             System.out.println("\taddress: " + packet.getAddress());
             System.out.println("\tsocket address: " + packet.getSocketAddress());
@@ -41,8 +43,8 @@ public class UdpReceiver {
             System.out.println("\tlength: " + packet.getLength());
             System.out.println("\toffset: " + packet.getOffset());
             System.out.println("\tdata: " + new String(packet.getData()));
+            System.out.println("payload: " + payload);
 
-            //String payload = new String(buffer, 0, packet.getLength());
             //System.out.println(packet.getAddress().getHostName() + ": "
             //        + payload);
 
@@ -78,5 +80,5 @@ public class UdpReceiver {
 
     private static void printUsage() {
         System.out.println("Usage:  UdpReceiver [port]");
-    }
+    }    
 }
