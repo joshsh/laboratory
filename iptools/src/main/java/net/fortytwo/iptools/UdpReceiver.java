@@ -10,6 +10,11 @@ import java.net.DatagramSocket;
  * Time: 10:34:15 AM
  */
 public class UdpReceiver {
+    /*
+     sudo iptables -I INPUT -p udp -m udp --dport 9990 -j ACCEPT
+     java -cp target/iptools-0.1.jar net.fortytwo.iptools.UdpReceiver 9990
+      */
+
     private static final int RECEIVER_BUFFER_SIZE = 65507;
 
     private final int port;
