@@ -26,13 +26,18 @@ class UdpExperiments {
         this.socket = new DatagramSocket();
     }
 
-    public void start() throws IOException {
+    public void simpleSend() throws IOException {
         send("Hello world!".getBytes());
-        send("What's up, hot stuff?".getBytes());
+    }
+
+    public void testMesssageSize() throws IOException {
+        for (int i = 4000; i < 10000; i += 1000) {
+            String msg = randomString(i);
+            send(msg.getBytes());
+        }
     }
 
     private void send(final byte[] data) throws IOException {
-
         DatagramPacket packet = new DatagramPacket(data, data.length, receiverAddress, receiverPort);
         socket.send(packet);
     }
@@ -41,7 +46,7 @@ class UdpExperiments {
 
         try {
             //testLocalReceiver();
-            testRemoveReceiver();
+            testRemoteReceiver();
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
@@ -63,16 +68,17 @@ class UdpExperiments {
         }).start();
 
         UdpExperiments t = new UdpExperiments(InetAddress.getLocalHost(), receiverPort);
-        t.start();
+        t.simpleSend();
         b.stop();
     }
 
-    private static void testRemoveReceiver() throws Exception {
+    private static void testRemoteReceiver() throws Exception {
         InetAddress address = InetAddress.getByName("fortytwo.net");
         int port = 9990;
 
         UdpExperiments t = new UdpExperiments(address, port);
-        t.start();
+        //t.simpleSend();
+        t.testMesssageSize();
     }
 
     ////////////////////////////////////
