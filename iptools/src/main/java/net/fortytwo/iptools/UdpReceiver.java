@@ -63,7 +63,7 @@ public class UdpReceiver {
     public static void main(final String[] args) {
         try {
             if (1 == args.length) {
-                int port = Integer.getInteger(args[0]);
+                int port = Integer.valueOf(args[0]);
                 UdpReceiver r = new UdpReceiver(port);
                 r.start();
             } else {
