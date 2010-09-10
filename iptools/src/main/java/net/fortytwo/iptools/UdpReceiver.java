@@ -42,8 +42,9 @@ public class UdpReceiver {
             System.out.println("\tport: " + packet.getPort());
             System.out.println("\tlength: " + packet.getLength());
             System.out.println("\toffset: " + packet.getOffset());
-            System.out.println("\tdata: " + new String(packet.getData()));
-            System.out.println("payload: " + payload);
+            //System.out.println("\tdata: " + new String(packet.getData()));
+            //System.out.println("\tpayload: " + payload);
+
 
             //System.out.println(packet.getAddress().getHostName() + ": "
             //        + payload);
