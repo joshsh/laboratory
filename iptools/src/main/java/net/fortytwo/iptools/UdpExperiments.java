@@ -32,14 +32,47 @@ class UdpExperiments {
 
     // Beijing --> EC2: <= 23000 or so
     // Beijing --> Flux: <= 23000 or so
-    public void testMesssageSize() throws IOException {
+    // EC2 --> Flux: < 17000
+    // Flux --> EC2: >= 64000 (no limit)
+    public static void testMesssageSize() throws IOException {
+                //InetAddress address = InetAddress.getByName("fortytwo.net");
+        InetAddress address = InetAddress.getByName("flux.franz.com");
+        //int port = 9990;
+        int port = 9995;
+
+        UdpExperiments t = new UdpExperiments(address, port);
+
         for (int i = 22000; i < 65000; i += 1000) {
             String msg = randomString(i);
-            send(msg.getBytes());
+            t.send(msg.getBytes());
             try {
                 Thread.currentThread().sleep(1000);
             } catch (InterruptedException e) {
                 throw new IOException(e);
+            }
+        }
+    }
+
+    public static void testRateByMessageSize(final int size,
+                                      final long delay) throws IOException {
+        //InetAddress address = InetAddress.getByName("fortytwo.net");
+        InetAddress address = InetAddress.getByName("flux.franz.com");
+        //int port = 9990;
+        int port = 9992;
+        UdpExperiments t = new UdpExperiments(address, port);
+
+        while (true) {
+            long before = System.currentTimeMillis();
+            String msg = randomString(size);
+            t.send(msg.getBytes());
+            long after = System.currentTimeMillis();
+            long d = after - before;
+            if (after - before < delay) {
+                try {
+                    Thread.sleep(delay - d);
+                } catch (InterruptedException e) {
+                    throw new IOException(e);
+                }
             }
         }
     }
@@ -50,10 +83,13 @@ class UdpExperiments {
     }
 
     public static void main(final String[] args) {
+        int size = Integer.valueOf(args[0]);
+        long delay = Long.valueOf(args[1]);
 
         try {
             //testLocalReceiver();
-            testRemoteReceiver();
+            //testRemoteReceiver();
+            testRateByMessageSize(size, delay);
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
@@ -77,17 +113,6 @@ class UdpExperiments {
         UdpExperiments t = new UdpExperiments(InetAddress.getLocalHost(), receiverPort);
         t.simpleSend();
         b.stop();
-    }
-
-    private static void testRemoteReceiver() throws Exception {
-        //InetAddress address = InetAddress.getByName("fortytwo.net");
-        InetAddress address = InetAddress.getByName("flux.franz.com");
-        //int port = 9990;
-        int port = 9995;
-
-        UdpExperiments t = new UdpExperiments(address, port);
-        //t.simpleSend();
-        t.testMesssageSize();
     }
 
     ////////////////////////////////////
