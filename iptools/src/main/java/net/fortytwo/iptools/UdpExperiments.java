@@ -30,10 +30,17 @@ class UdpExperiments {
         send("Hello world!".getBytes());
     }
 
+    // Beijing --> EC2: <= 23000 or so
+    // Beijing --> Flux: <= 23000 or so
     public void testMesssageSize() throws IOException {
-        for (int i = 4000; i < 10000; i += 1000) {
+        for (int i = 22000; i < 65000; i += 1000) {
             String msg = randomString(i);
             send(msg.getBytes());
+            try {
+                Thread.currentThread().sleep(1000);
+            } catch (InterruptedException e) {
+                throw new IOException(e);
+            }
         }
     }
 
@@ -73,8 +80,10 @@ class UdpExperiments {
     }
 
     private static void testRemoteReceiver() throws Exception {
-        InetAddress address = InetAddress.getByName("fortytwo.net");
-        int port = 9990;
+        //InetAddress address = InetAddress.getByName("fortytwo.net");
+        InetAddress address = InetAddress.getByName("flux.franz.com");
+        //int port = 9990;
+        int port = 9995;
 
         UdpExperiments t = new UdpExperiments(address, port);
         //t.simpleSend();
