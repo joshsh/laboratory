@@ -97,3 +97,30 @@
     (lambda ()
       (receive-transactions name socket trans-per-commit commits-per-batch))))
 
+      
+;; UDP benchmarking ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun receive-next-message (socket buffer)
+  (multiple-value-bind (b l)
+    (socket:receive-from socket *receiver-buflen* :extract t :buffer buffer)
+    ;;(print b)
+    ))
+
+(defun receive-udp-messages (name socket messages-per-print)
+  (let ((buffer (make-udp-buffer)))
+  (loop (let ((start (get-internal-real-time)))
+    (loop for i from 1 to messages-per-print do
+	  (receive-next-message socket buffer))
+    (let ((elapsed (- (get-internal-real-time) start)))
+      (format t "~&~a: ~a messages in ~ams (real time) --> ~a/s"
+        name
+        messages-per-print
+	elapsed
+	(* 1000.0 (/ messages-per-print elapsed))))
+    ))))
+    
+(defun run-benchmarking-receiver-thread (name socket messages-per-print)
+  (mp:process-run-function name
+    (lambda ()
+      (receive-udp-messages name socket messages-per-print))))
+
