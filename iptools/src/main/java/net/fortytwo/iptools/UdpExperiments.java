@@ -78,7 +78,7 @@ class UdpExperiments {
                 }
             }
             long a = System.currentTimeMillis();
-            System.out.println("1000 messages of length " + size + " in " + (a - b) + "ms (" + (1.0 / (a - b)) + "/s)");
+            System.out.println("1000 messages of length " + size + " in " + (a - b) + "ms (" + (1000000 / (a - b)) + "/s)");
         }
     }
 
