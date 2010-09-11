@@ -33,7 +33,7 @@ class UdpExperiments {
     // Beijing --> EC2: <= 23000 or so
     // Beijing --> Flux: <= 23000 or so
     public void testMesssageSize() throws IOException {
-        for (int i = 22000; i < 65000; i += 1000) {
+        for (int i = 0; i < 65000; i += 1000) {
             String msg = randomString(i);
             send(msg.getBytes());
             try {
