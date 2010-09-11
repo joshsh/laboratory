@@ -35,7 +35,7 @@ class UdpExperiments {
     // EC2 --> Flux: < 17000
     // Flux --> EC2: >= 64000 (no limit)
     public static void testMesssageSize() throws IOException {
-                //InetAddress address = InetAddress.getByName("fortytwo.net");
+        //InetAddress address = InetAddress.getByName("fortytwo.net");
         InetAddress address = InetAddress.getByName("flux.franz.com");
         //int port = 9990;
         int port = 9995;
@@ -54,7 +54,7 @@ class UdpExperiments {
     }
 
     public static void testRateByMessageSize(final int size,
-                                      final long delay) throws IOException {
+                                             final long delay) throws IOException {
         //InetAddress address = InetAddress.getByName("fortytwo.net");
         InetAddress address = InetAddress.getByName("flux.franz.com");
         //int port = 9990;
@@ -62,18 +62,23 @@ class UdpExperiments {
         UdpExperiments t = new UdpExperiments(address, port);
 
         while (true) {
-            long before = System.currentTimeMillis();
-            String msg = randomString(size);
-            t.send(msg.getBytes());
-            long after = System.currentTimeMillis();
-            long d = after - before;
-            if (after - before < delay) {
-                try {
-                    Thread.sleep(delay - d);
-                } catch (InterruptedException e) {
-                    throw new IOException(e);
+            long b = System.currentTimeMillis();
+            for (int i = 0; i < 1000; i++) {
+                long before = System.currentTimeMillis();
+                String msg = randomString(size);
+                t.send(msg.getBytes());
+                long after = System.currentTimeMillis();
+                long d = after - before;
+                if (after - before < delay) {
+                    try {
+                        Thread.sleep(delay - d);
+                    } catch (InterruptedException e) {
+                        throw new IOException(e);
+                    }
                 }
             }
+            long a = System.currentTimeMillis();
+            System.out.println("1000 messages of length " + size + " in " + (a - b) + "ms (" + (1 / (b - a)) + "/s)");
         }
     }
 
