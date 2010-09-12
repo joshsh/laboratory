@@ -18,13 +18,13 @@ public class HttpExperiment {
             for (int i = 100; i < 1000; i += 100) {
                 doTest(i, 30);
             }
-            for (int i = 1000; i < 10000; i += 1000) {
+            for (int i = 1000; i < 10000; i += 500) {
                 doTest(i, 30);
             }
-            for (int i = 10000; i < 100000; i += 10000) {
+            for (int i = 10000; i < 100000; i += 5000) {
                 doTest(i, 30);
             }
-            for (int i = 100000; i < 1000000; i += 100000) {
+            for (int i = 100000; i < 1000000; i += 50000) {
                 doTest(i, 30);
             }
         } catch (Throwable e) {
