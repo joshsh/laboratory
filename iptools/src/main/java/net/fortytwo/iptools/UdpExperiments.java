@@ -122,7 +122,7 @@ class UdpExperiments {
 
     ////////////////////////////////////
 
-    private static String randomString(final int length) {
+    public static String randomString(final int length) {
         byte[] b = new byte[length];
         for (int i = 0; i < length; i++) {
             b[i] = (byte) (35 + RANDOM.nextInt(56));
