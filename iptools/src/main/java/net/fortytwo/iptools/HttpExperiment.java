@@ -16,16 +16,16 @@ public class HttpExperiment {
         try {
             System.out.println("iterations\tsize\tms\tmessages_per_second\tbytes_per_second");
             for (int i = 100; i < 1000; i += 100) {
-                doTest(i, 30);
+                doTest(i, 100);
             }
-            for (int i = 1000; i < 10000; i += 500) {
-                doTest(i, 30);
+            for (int i = 1000; i < 10000; i += 250) {
+                doTest(i, 100);
             }
-            for (int i = 10000; i < 100000; i += 5000) {
-                doTest(i, 30);
+            for (int i = 10000; i < 100000; i += 2500) {
+                doTest(i, 100);
             }
-            for (int i = 100000; i < 1000000; i += 50000) {
-                doTest(i, 30);
+            for (int i = 100000; i < 1000000; i += 25000) {
+                doTest(i, 100);
             }
         } catch (Throwable e) {
             e.printStackTrace(System.err);
