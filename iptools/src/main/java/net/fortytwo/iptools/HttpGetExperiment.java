@@ -16,6 +16,15 @@ public class HttpGetExperiment {
             for (int i = 100; i < 1000; i += 100) {
                 doTest(i, 100);
             }
+            for (int i = 1000; i < 10000; i += 250) {
+                doTest(i, 100);
+            }
+            for (int i = 10000; i < 100000; i += 2500) {
+                doTest(i, 100);
+            }
+            for (int i = 100000; i < 1000000; i += 25000) {
+                doTest(i, 100);
+            }
         } catch (Throwable e) {
             e.printStackTrace(System.err);
             System.exit(1);
