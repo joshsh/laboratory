@@ -104,19 +104,23 @@
   (multiple-value-bind (b l)
     (socket:receive-from socket *receiver-buflen* :extract t :buffer buffer)
     ;;(print b)
+      l
     ))
 
 (defun receive-udp-messages (name socket messages-per-print)
   (let ((buffer (make-udp-buffer)))
   (loop (let ((start (get-internal-real-time)))
+    (setf sum 0)
     (loop for i from 1 to messages-per-print do
-	  (receive-next-message socket buffer))
+      (setf sum (+ sum
+        (receive-next-message socket buffer))))
     (let ((elapsed (- (get-internal-real-time) start)))
-      (format t "~&~a: ~a messages in ~ams (real time) --> ~a/s"
+      (format t "~&~a: ~a messages in ~ams --> ~a/s, av.length = ~a"
         name
         messages-per-print
 	elapsed
-	(* 1000.0 (/ messages-per-print elapsed))))
+	(* 1000.0 (/ messages-per-print elapsed))
+	(/ sum messages-per-print)))
     ))))
     
 (defun run-benchmarking-receiver-thread (name socket messages-per-print)

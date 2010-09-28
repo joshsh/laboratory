@@ -1,0 +1,262 @@
+receiver1: 1000 transactions (0 discarded) with 10 commits in 5118ms (real time\
+) --> 195.38882/s at 7933958 triples
+[...]
+receiver1: 1000 transactions (0 discarded) with 10 commits in 9482ms (real time) --> 105.46298/s at 23340529 triples
+
+
+8  :file vs. :internet sockets
+.  format
+    8  :text, :binary
+
+
+
+
+########################################
+
+(setq x (socket:make-socket :type :datagram))
+(let ((message "<?xml version='1.0' encoding='UTF-8'?>
+ <transaction>
+  <add>
+		<uri>http://twitlogic.fortytwo.net/person/twitter/683953182</uri>
+		<uri>http://www.w3.org/2000/01/rdf-schema#comment</uri>
+		<literal>U'M1%&gt;?89C5J$RX578UV18AS:B$F%JR.+P,;TY&amp;&gt;Y*A+-T(DZ(0KGOI3'GY#M.H</literal>
+		<contexts>
+			<uri>http://example.org/foo</uri>
+		</contexts>
+	</add>
+</transaction>"))
+  (socket:send-to x message (length message) :remote-host "localhost" :remote-port 9999))
+
+(process-next-transaction)
+
+
+
+(require :process) 
+
+sys:*current-thread*
+
+sys:*all-processes*
+
+;;(mp:profile-process-p sys:*current-thread*)
+
+
+(defparameter *ppp*
+  (mp:process-run-function "myproc" (lambda ()
+    (print "SPAM"))))
+
+
+(mp:process-initial-bindings sys:*current-thread*)
+
+(defparameter *p1* (make-instance 'mp:process
+    :foo "bar"))
+
+;;(slot-value *receiver4* 'mp:arrest-reasons)
+
+
+########################################
+
+(in-package :db.agraph.user)  
+(enable-!-reader)  
+(enable-print-decoded t)
+;;(create-triple-store "throughput-testing" :catalog "demos" :port 10042)
+(open-triple-store "throughput-testing" :catalog "demos" :port 10042)
+(register-namespace "rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+
+
+(load (compile-file "~/projects/fortytwo/laboratory/franz/ags-backend-minimal.cl"))
+(load (compile-file "~/projects/fortytwo/laboratory/franz/xmltransaction.cl"))
+(require :sock)
+(load (compile-file "~/projects/fortytwo/laboratory/franz/ag-udp-transaction.cl"))
+
+(in-package :ags.backend)
+
+(defparameter *receiver-socket1* (create-receiver-socket 9990))
+(defparameter *receiver-socket2* (create-receiver-socket 9991))
+(defparameter *receiver-socket3* (create-receiver-socket 9992))
+(defparameter *receiver-socket4* (create-receiver-socket 9993))
+(defparameter *receiver-socket5* (create-receiver-socket 9994))
+(defparameter *receiver-socket6* (create-receiver-socket 9995))
+(defparameter *receiver-socket7* (create-receiver-socket 9996))
+(defparameter *receiver-socket8* (create-receiver-socket 9997))
+
+(defparameter *receiver1* (run-receiver-thread "receiver1" *receiver-socket1* 100 10))
+(defparameter *receiver2* (run-receiver-thread "receiver2" *receiver-socket2* 100 10))
+(defparameter *receiver3* (run-receiver-thread "receiver3" *receiver-socket3* 100 10))
+(defparameter *receiver4* (run-receiver-thread "receiver4" *receiver-socket4* 100 10))
+(defparameter *receiver5* (run-receiver-thread "receiver5" *receiver-socket5* 100 10))
+(defparameter *receiver6* (run-receiver-thread "receiver6" *receiver-socket6* 100 10))
+(defparameter *receiver7* (run-receiver-thread "receiver7" *receiver-socket7* 100 10))
+(defparameter *receiver8* (run-receiver-thread "receiver8" *receiver-socket8* 100 10))
+
+(mp:process-kill *receiver1*)
+(mp:process-kill *receiver2*)
+(mp:process-kill *receiver3*)
+(mp:process-kill *receiver4*)
+(mp:process-kill *receiver5*)
+(mp:process-kill *receiver6*)
+(mp:process-kill *receiver7*)
+(mp:process-kill *receiver8*)
+
+(close *receiver-socket1*)
+(close *receiver-socket2*)
+(close *receiver-socket3*)
+(close *receiver-socket4*)
+(close *receiver-socket5*)
+(close *receiver-socket6*)
+(close *receiver-socket7*)
+(close *receiver-socket8*)
+
+
+(receive-transactions "receiver" *receiver-socket* 100 10)
+
+
+########################################
+# simple UDP receiving (no transaction processing)
+
+;; receives > 1000 m/s from localhost
+;; receives > 500 m/s from foray
+;; receives only around 50 m/s from EC2
+
+(defparameter *receiver3* (run-benchmarking-receiver-thread "receiver3" *receiver-socket3* 1000))
+
+(mp:process-kill *receiver3*)
+
+
+########################################
+# commit time
+#
+# around 4ms per (empty) commit
+
+(time (loop for i from 1 to 10000 do (commit-triple-store)))
+
+time    <- c(0.004425, 0.040116, 0.392824, 3.891082, 39.162072)
+commits <- c(1, 10, 100, 1000, 10000)
+plot(time/commits)
+
+
+
+
+(in-package :ags.backend)
+(process-next-transaction)
+(time (loop for i from 1 to 10000 do (process-next-transaction)))
+
+(delete-triples)
+(commit-triple-store)
+(time
+    (loop for j from 1 to 100 do
+        (loop for i from 1 to 100 do (process-next-transaction))
+	(commit-triple-store)))
+
+# This shows that for a high proportion of commits, overhead grows linearly with number of commits (i.e. commits cost more than the rest of the transaction)
+times <- c(48.644801, 50.191194, 51.779304, 61.290197, 178.228063)
+commits <- c(1,10,100,1000,10000)
+plot(times, commits)
+
+
+
+
+
+
+(multiple-value-bind (b l) (time (print "SPAM"))
+  (print b)
+  (print l))
+
+(get-internal-real-time (print "SPAM"))
+
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+<transaction>
+ 	<add>
+		<uri>http://twitlogic.fortytwo.net/person/twitter/683953182</uri>
+		<uri>http://www.w3.org/2000/01/rdf-schema#comment</uri>
+		<literal>U'M1%&gt;?89C5J$RX578UV18AS:B$F%JR.+P,;TY&amp;&gt;Y*A+-T(DZ(0KGOI3'GY#M.H</literal>
+		<contexts/>
+	</add>
+</transaction>"))
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+ <transaction>
+ 	<add>
+		<uri>http://twitlogic.fortytwo.net/person/twitter/683953182</uri>
+		<uri>http://www.w3.org/2000/01/rdf-schema#comment</uri>
+		<literal>U'M1%&gt;?89C5J$RX578UV18AS:B$F%JR.+P,;TY&amp;&gt;Y*A+-T(DZ(0KGOI3'GY#M.H</literal>
+		<contexts>
+			<uri>http://example.org/foo</uri>
+		</contexts>
+	</add>
+</transaction>"))
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+ <transaction>
+ 	<add>
+		<uri>http://twitlogic.fortytwo.net/person/twitter/683953182</uri>
+		<uri>http://www.w3.org/2000/01/rdf-schema#comment</uri>
+		<literal>U'M1%&gt;?89C5J$RX578UV18AS:B$F%JR.+P,;TY&amp;&gt;Y*A+-T(DZ(0KGOI3'GY#M.H</literal>
+		<contexts>
+			<null/>
+		</contexts>
+	</add>
+</transaction>"))
+
+(add-triple !rdf:bar !rdf:bar !rdf:bar :g !rdf:bar)
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+<transaction>
+	<remove>
+		<null/>
+		<null/>
+		<null/>
+		<contexts>
+			<uri>http://twitlogic.fortytwo.net/graph/core</uri>
+		</contexts>
+      </remove>
+</transaction>"))
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+<transaction>
+	<remove>
+		<null/>
+		<null/>
+		<null/>
+		<contexts>
+			<uri>http://example.org/foo</uri>
+		</contexts>
+	</remove>
+</transaction>"))
+
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+<transaction>
+	<remove>
+		<null/>
+		<null/>
+		<null/>
+		<contexts>
+			<null/>
+		</contexts>
+	</remove>
+</transaction>"))
+
+(apply-rdf-transaction-standalone
+(parse-rdf-transaction-string "<?xml version='1.0' encoding='UTF-8'?>
+<transaction>
+	<remove>
+		<null/>
+		<null/>
+		<null/>
+		<contexts/>
+	</remove>
+</transaction>"))
+
+
+(iterate-cursor (tr (get-triples)) (print (graph tr)))
+
+(iterate-cursor (tr (get-triples)) (print tr))
+
+(iterate-cursor (tr (get-triples)) (format t "~&~a" tr))
