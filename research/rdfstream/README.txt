@@ -2,7 +2,7 @@ This directory contains source code and programming notes for the experiments pr
 
 The Common Lisp libraries for receiving and applying RDF transactions over UDP are contained in the three *.cl files.  Additional Lisp code used in the experiment is in ag_udp_transaction_throughput.txt.
 
-The Java thoughtput-benchmarking code used on the Amazon EC2 sending machine is in the iptools Maven 2 project.
+The Java throughput-benchmarking code used on the Amazon EC2 sending machine is in the iptools Maven 2 project.
 
 The Java code used for generating randomized "tweets" in JSON, parsing them to create RDF transaction XML, and sending them to the remote server in UDP datagrams is currently part of the TwitLogic code base:
     http://github.com/joshsh/twitlogic
