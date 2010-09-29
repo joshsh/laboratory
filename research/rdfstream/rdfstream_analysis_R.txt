@@ -179,13 +179,12 @@ scp ubuntu@fortytwo.net:/tmp/tweet_metrics.txt .
 pdf("/tmp/http_get_throughput.pdf")
 h <- read.table(file("/Users/josh/data/rdf-udp/http_get_stats.txt"), header=TRUE)
 plot(h$size, h$size * h$messages_per_second,
-    #xlim=c(0, 200000),
-    xlab="Size of HTTP GET response entity (bytes)",
-    ylab="Throughput (bytes/second)")
+    ann=FALSE)
+title(xlab="Size of HTTP GET response entity (bytes)",
+   ylab="Throughput (bytes/second)", cex.lab=1.25)
 fit <- smooth.spline(h$size, h$size * h$messages_per_second, spar=1.0)
 lines(fit)
 #abline(v=50000)
-abline(v=100000, lty="dashed")
 #abline(v=200000)
 dev.off()
 
@@ -199,12 +198,13 @@ h_old <- read.table(file("/Users/josh/data/rdf-udp/old/http_throughput.txt"), he
 #par(mfcol=2, mfrow=2)
 plot(h$size, h$size * h$messages_per_second,
     #xlim=c(0,100000),
+    ann=FALSE)
+title(cex.lab=1.25,
     xlab="Size of HTTP POST entity (bytes)",
     ylab="Throughput (bytes/second)")
 #plot(h_old$size, h_old$size * h_old$messages_per_second)
 fit <- smooth.spline(h$size, h$size * h$messages_per_second, spar=1.0)
 lines(fit)
-abline(v=100000, lty="dashed")
 dev.off()
 
 f <- data.frame(h$size, h$size * h$messages_per_second)
@@ -222,6 +222,8 @@ pdf("/tmp/udp_throughput.pdf")
 plot(r[,1], r[,2]*r[,1],
   log="",
   xlim=c(0, 4000),
+  ann=FALSE)
+title(cex.lab=1.25,
   xlab="Size of UDP payload (bytes)",
   ylab="Throughput (bytes/second)")
 fit <- smooth.spline(r[,1], r[,2]*r[,1], spar=0.2)
@@ -234,6 +236,8 @@ pdf("/tmp/udp_packet_retention.pdf")
 plot(r,
     log="",
     xlim=c(0,4000),
+    ann=FALSE)
+title(cex.lab=1.25,
     xlab="Size of UDP payload (bytes)",
     ylab="Transfer rate (messages/second)")
 fit <- smooth.spline(r, spar=0.5)
@@ -248,6 +252,9 @@ m <- read.table(file("/Users/josh/data/rdf-udp/tweet_metrics.txt"))
 mean(m[,2:5])
 sd(m[,2:5])
 
+m[,6] <- NULL
+m[,3] <- NULL
+
 # See: http://monkeysuncle.stanford.edu/?p=485
 error.bar <- function(x, y, upper, lower=upper, length=0.1,...) {
   if(length(x) != length(y) | length(y) !=length(lower) | length(lower) != length(upper))
@@ -256,12 +263,14 @@ error.bar <- function(x, y, upper, lower=upper, length=0.1,...) {
 }
 
 pdf("/tmp/compression.pdf")
-y <- m[,2:6]
+y <- m[,2:5]
 y.means <- apply(y,2,mean)
 y.sd <- apply(y,2,sd)
 barx <- barplot(y.means,
-  name=c("none", "GZIP", "LZMA", "mini-LZO", "ZIP"),
+  name=c("none", "LZMA", "mini-LZO", "DEFLATE"),
   ylim=c(0,7000),
+  ann=FALSE)
+title(cex.lab=1.25,
   ylab="Message size (bytes)",
   xlab="Compression algorithm")
 error.bar(barx,y.means, y.sd)
@@ -328,6 +337,8 @@ pdf("/tmp/ag_multithreading.pdf")
 m <- read.table(file("/Users/josh/data/rdf-udp/multithreading.txt"), header=TRUE)
 plot(m$threads, m$threads * m$min,
   xlim=c(1,8), ylim=c(0,1000),
+  ann=FALSE)
+title(cex.lab=1.25,
   xlab="Number of receiving processes",
   ylab="Min/max throughput (transactions / second)")
 fit <- smooth.spline(m$threads, m$threads * m$min, spar=0.5)
