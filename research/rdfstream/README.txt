@@ -6,7 +6,7 @@ The Java throughput-benchmarking code used on the Amazon EC2 sending machine is 
 
 The Java code used for generating randomized "tweets" in JSON, parsing them to create RDF transaction XML, and sending them to the remote server in UDP datagrams is currently part of the TwitLogic code base:
     http://github.com/joshsh/twitlogic
-See ThroughputTesting.java
+See ThroughputTesting.java and TweetMetrics.java
 
 The R code used for analysis of results and generation of the figures in the paper is in rdfstream_analysis_R.txt.
 
