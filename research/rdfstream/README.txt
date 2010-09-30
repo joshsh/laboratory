@@ -9,3 +9,5 @@ The Java code used for generating randomized "tweets" in JSON, parsing them to c
 See ThroughputTesting.java
 
 The R code used for analysis of results and generation of the figures in the paper is in rdfstream_analysis_R.txt.
+
+Please feel free to contact Joshua Shinavier (josh@fortytwo.net) with any questions.
