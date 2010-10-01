@@ -4,9 +4,9 @@ The Common Lisp libraries for receiving and applying RDF transactions over UDP a
 
 The Java throughput-benchmarking code used on the Amazon EC2 sending machine is in the iptools Maven 2 project.
 
-The Java code used for generating randomized "tweets" in JSON, parsing them to create RDF transaction XML, and sending them to the remote server in UDP datagrams is currently part of the TwitLogic code base:
+The Java code used for generating randomized "tweets" in JSON, parsing them to create RDF transaction XML, and sending them to the remote server in UDP datagrams (as well as gathering statistics on and studying lossless compression of tweets) is currently part of the TwitLogic code base:
     http://github.com/joshsh/twitlogic
-See ThroughputTesting.java and TweetMetrics.java
+See ThroughputTesting.java, TweetMetrics.java, and Compression.java
 
 The R code used for analysis of results and generation of the figures in the paper is in rdfstream_analysis_R.txt.
 
