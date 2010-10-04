@@ -138,11 +138,11 @@ public class NQuadsParser extends ModifiedNTriplesParser {
 
         c = skipWhitespace(c);
 
-        // FIXME: context is not required
-        c = parseContext(c);
-
-        c = skipWhitespace(c);
-
+        // Context is not required
+        if (c != '.') {
+            c = parseContext(c);
+            c = skipWhitespace(c);
+        }
         if (c == -1) {
             throwEOFException();
         } else if (c != '.') {
