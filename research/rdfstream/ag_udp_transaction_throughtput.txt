@@ -63,10 +63,10 @@ sys:*all-processes*
 (register-namespace "rdf" "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 
 
-(load (compile-file "~/projects/fortytwo/laboratory/franz/ags-backend-minimal.cl"))
-(load (compile-file "~/projects/fortytwo/laboratory/franz/xmltransaction.cl"))
+(load (compile-file "~/projects/fortytwo/laboratory/research/rdfstream/ags-backend-minimal.cl"))
+(load (compile-file "~/projects/fortytwo/laboratory/research/rdfstream/xmltransaction.cl"))
 (require :sock)
-(load (compile-file "~/projects/fortytwo/laboratory/franz/ag-udp-transaction.cl"))
+(load (compile-file "~/projects/fortytwo/laboratory/research/rdfstream/ag-udp-transaction.cl"))
 
 (in-package :ags.backend)
 
