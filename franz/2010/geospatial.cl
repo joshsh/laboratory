@@ -25,7 +25,7 @@
         (iterate-cursor (tr (get-triples :s r :p !pos:lat))
             (handler-case
 	        (return-from get-latitude
-	            (+ 0.0 (read-from-string (upi->value (object tr)))))
+	            (+ 0.0 (upi->value (object tr))))
 	        (type-error (e) ())
 		(reader-error (e) ())))
     default))
@@ -34,7 +34,7 @@
         (iterate-cursor (tr (get-triples :s r :p !pos:long))
             (handler-case
 	        (return-from get-longitude
-	            (+ 0.0 (read-from-string (upi->value (object tr)))))
+	            (+ 0.0 (upi->value (object tr))))
 	        (type-error (e) ())
 		(reader-error (e) ())))
     default))
@@ -73,15 +73,18 @@
                     (longitude-latitude->upi *lat-lon-100* lon lat upi)
 		    :g !geo:graph)))))
 
-(defun count-all-geopoints ()
-    (defparameter *count* 0)
+(defun for-all-geopoints (visitor)
     (iterate-cursor (tr (get-triples :p !pos:lat))
         (let ((geopoint (subject tr)))
             (let (
 	        (lat (normalize-latitude (get-latitude geopoint)))
 	        (lon (normalize-longitude (get-longitude geopoint))))
 	        (when (and (not (eq nil lat)) (not (eq nil lon)))
-	            (setf *count* (+ 1 *count*))))))
+	            (funcall visitor geopoint))))))
+
+(defun count-all-geopoints ()
+    (defparameter *count* 0)
+    (for-all-geopoints (lambda (s) (setf *count* (+ 1 *count*))))
     *count*)
 	    
 (defun index-all-geopoints ()
