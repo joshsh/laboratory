@@ -1,8 +1,10 @@
-;; geo indexing ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(in-package :db.agraph.user)  
 (enable-!-reader)
 (register-namespace "pos" "http://www.w3.org/2003/01/geo/wgs84_pos#")
 (register-namespace "geo" "http://franz.com/ns/allegrograph/3.0/geospatial/fn/")
+
+
+;; geo indexing ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun geo-setup ()
     ;; -> http://franz.com/ns/allegrograph/3.0/geospatial/spherical/miles/-180.0/180.0/-90.0/90.0/1.0
@@ -87,7 +89,7 @@
     ;; Anything with a pos:lat is considered a geopoint
     (iterate-cursor (tr (get-triples :p !pos:lat))
         (index-geopoint (subject tr)))
-    (index-new-triples)
+    ;;(index-new-triples)
     (defparameter *geoindexing-in-progress* nil))
     
 (defun delete-all-geo-triples ()
