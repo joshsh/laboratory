@@ -1,4 +1,4 @@
-package net.fortytwo.myotherbrain.web.jsonrpc;
+package net.fortytwo.jsonrpc;
 
 /**
  * User: josh
