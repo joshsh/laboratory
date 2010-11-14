@@ -23,9 +23,9 @@ public class JSONRPCError extends Exception {
         /**
          * Implementation-specific error codes
          */
-        NON_JSON_RESULT(32001),
-        NAMED_PARAMETERS_NOT_SUPPORTED(32002),
-        ORDERED_PARAMETERS_NOT_SUPPORTED(32003);
+        NON_JSON_RESULT(-32001),
+        NAMED_PARAMETERS_NOT_SUPPORTED(-32002),
+        ORDERED_PARAMETERS_NOT_SUPPORTED(-32003);
 
         private final int code;
 

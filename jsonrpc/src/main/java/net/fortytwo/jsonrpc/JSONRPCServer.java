@@ -18,16 +18,16 @@ import java.util.Map;
  * Time: 8:48:37 PM
  */
 public class JSONRPCServer {
-    private final Map<String, Method> methodsByName;
+    private final Map<String, JSONRPCMethod> methodsByName;
 
     public JSONRPCServer() {
-        methodsByName = new HashMap<String, Method>();
+        methodsByName = new HashMap<String, JSONRPCMethod>();
     }
 
     /**
      * @param method a new method for executing requests
      */
-    public synchronized void registerMethod(final Method method) {
+    public synchronized void registerMethod(final JSONRPCMethod method) {
         if (null == method) {
             throw new IllegalArgumentException("null method");
         }
@@ -64,12 +64,14 @@ public class JSONRPCServer {
      * @throws JSONRPCError
      */
     public JSONRPCResponse handle(final JSONRPCRequest request) throws JSONRPCError {
-        Method m = methodsByName.get(request.getMethod());
+        JSONRPCMethod m = methodsByName.get(request.getMethod());
         if (null == m) {
             throw new MethodNotFoundError(request.getMethod());
         }
 
-        Object result = m.execute(request.getParams());
+        JSONObject params = request.getParams();
+        // For now, default to ordered params when none are specified
+        Object result = m.execute(null == params ? new JSONObject() : request.getParams());
         JSONRPCResponse response = new JSONRPCResponse(request.getId(), result);
         return request.isNotification() ? null : response;
     }
@@ -129,7 +131,7 @@ public class JSONRPCServer {
                 throw new InternalError(e);
             }
         } else {
-            throw new ParseError("request is neither a valid JSON object or a JSON array");
+            throw new ParseError("request is neither a valid JSON object nor JSON array");
         }
     }
 }
