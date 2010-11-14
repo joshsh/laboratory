@@ -1,12 +1,14 @@
-package net.fortytwo.myotherbrain.web.jsonrpc;
+package net.fortytwo.jsonrpc;
 
-import net.fortytwo.myotherbrain.web.jsonrpc.error.InvalidParamsException;
-import net.fortytwo.myotherbrain.web.jsonrpc.error.MethodNotFoundException;
-import net.fortytwo.myotherbrain.web.jsonrpc.error.ServerError;
+import net.fortytwo.jsonrpc.error.InternalError;
+import net.fortytwo.jsonrpc.error.MethodNotFoundError;
+import net.fortytwo.jsonrpc.error.ParseError;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,34 +24,9 @@ public class JSONRPCServer {
         methodsByName = new HashMap<String, Method>();
     }
 
-    protected abstract Object handleRequest(SimpleRequest request);
-
-    protected abstract List<Object> handleBatchRequest(List<SimpleRequest> requests);
-
-    public String handle(final String requestOrBatch) {
-
-    }
-
-    private JSONRPCResponse handle(final JSONRPCRequest request) throws MethodNotFoundException, ServerError, InvalidParamsException {
-        Method m = methodsByName.get(request.getMethod());
-        if (null == m) {
-            throw new MethodNotFoundException(request.getMethod());
-        }
-
-        Object result = m.execute(request.getParams());
-        validateResult(result);
-    }
-
-    private void validateResult(final Object result) throws ServerError {
-        if (!(result instanceof JSONObject)
-                && !(result instanceof JSONArray)
-                && !(result instanceof String)
-                && !(result instanceof Number)
-                && !(result instanceof Boolean)) {
-            throw new ServerError(JSONRPC.NON_JSON_RESULT, "result object is not compatible with the JSON data model: " + result);
-        }
-    }
-
+    /**
+     * @param method a new method for executing requests
+     */
     public synchronized void registerMethod(final Method method) {
         if (null == method) {
             throw new IllegalArgumentException("null method");
@@ -67,23 +44,92 @@ public class JSONRPCServer {
         methodsByName.put(name, method);
     }
 
-    public class SimpleRequest {
-        private final String method;
-        private final JSONObject params;
-
-        public SimpleRequest(final String method,
-                             final JSONObject params) {
-            this.method = method;
-            this.params = params;
-        }
-
-        public String getMethod() {
-            return method;
-        }
-
-        public JSONObject getParams() {
-            return params;
+    public String handle(final String request) {
+        try {
+            return handleInternal(request.trim());
+        } catch (JSONRPCError e) {
+            try {
+                return e.toJSON().toString();
+            } catch (JSONException e1) {
+                throw new IllegalStateException(e1);
+            }
         }
     }
 
+    /**
+     * Performs a procedure call.
+     *
+     * @param request RPC request
+     * @return the RPC response. If the request is a notification, this will be null.
+     * @throws JSONRPCError
+     */
+    public JSONRPCResponse handle(final JSONRPCRequest request) throws JSONRPCError {
+        Method m = methodsByName.get(request.getMethod());
+        if (null == m) {
+            throw new MethodNotFoundError(request.getMethod());
+        }
+
+        Object result = m.execute(request.getParams());
+        JSONRPCResponse response = new JSONRPCResponse(request.getId(), result);
+        return request.isNotification() ? null : response;
+    }
+
+    // TODO: give the application developer control over the order of execution of requests
+    public JSONRPCBatchResponse handle(final JSONRPCBatchRequest request) throws JSONRPCError {
+        List<JSONRPCResponse> responses = new LinkedList<JSONRPCResponse>();
+
+        for (JSONRPCRequest r : request.getRequests()) {
+            JSONRPCResponse response = handle(r);
+            if (!r.isNotification()) {
+                responses.add(response);
+            }
+        }
+
+        return new JSONRPCBatchResponse(responses);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    private String handleInternal(final String request) throws JSONRPCError {
+        String r = request.trim();
+        if (r.startsWith("[")) {
+            JSONArray json;
+            try {
+                json = new JSONArray(r);
+            } catch (JSONException e) {
+                throw new ParseError(e.getMessage());
+            }
+            try {
+                JSONRPCBatchResponse response = handle(new JSONRPCBatchRequest(json));
+
+                // "If there are no Response objects contained within the
+                // Response array as it is to be sent to the client, the
+                // server MUST NOT return an empty Array and should return
+                // nothing at all."
+                if (0 == response.getResponses().size()) {
+                    return "";
+                } else {
+                    return response.toJSON().toString();
+                }
+            } catch (JSONException e) {
+                throw new InternalError(e);
+            }
+        } else if (r.startsWith("{")) {
+            JSONObject json;
+            try {
+                json = new JSONObject(r);
+            } catch (JSONException e) {
+                throw new ParseError(e.getMessage());
+            }
+            try {
+                JSONRPCRequest req = new JSONRPCRequest(json);
+                JSONRPCResponse response = handle(req);
+                return req.isNotification() ? "" : response.toJSON().toString();
+            } catch (JSONException e) {
+                throw new InternalError(e);
+            }
+        } else {
+            throw new ParseError("request is neither a valid JSON object or a JSON array");
+        }
+    }
 }
