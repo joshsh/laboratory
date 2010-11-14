@@ -1,7 +1,6 @@
 package net.fortytwo.jsonrpc.error;
 
 import net.fortytwo.jsonrpc.JSONRPCError;
-import org.json.JSONObject;
 
 /**
  * User: josh
@@ -9,7 +8,7 @@ import org.json.JSONObject;
  * Time: 8:31:18 PM
  */
 public class InvalidParamsError extends JSONRPCError {
-    public InvalidParamsError(final JSONObject params) {
-        super(Type.INVALID_PARAMS.getCode(), "invalid parameters", params);
+    public InvalidParamsError(final String message) {
+        super(Type.INVALID_PARAMS.getCode(), "invalid parameters", message);
     }
 }
