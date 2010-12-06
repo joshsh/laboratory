@@ -1,0 +1,1412 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY fragrance "http://fortytwo.net/2008/12/fragrance#" >
+    <!ENTITY fragrance2 "http://fortytwo.net/2008/12/fragrance#1," >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://fortytwo.net/2008/12/fragrance#"
+     xml:base="http://fortytwo.net/2008/12/fragrance"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:fragrance="http://fortytwo.net/2008/12/fragrance#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:fragrance2="&fragrance;1,"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <rdfs:comment
+            >Note: this ontology defines its own class for chemical compounds, as a suitable, existing ontology was not found.  But a more exhaustive search might reveal some alternatives.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#baseChord -->
+
+    <owl:ObjectProperty rdf:about="#baseChord">
+        <rdfs:range rdf:resource="#Chord"/>
+        <rdfs:domain rdf:resource="#Perfume"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#commonMethodOfExtraction -->
+
+    <owl:ObjectProperty rdf:about="#commonMethodOfExtraction">
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+        <rdfs:range rdf:resource="#MethodOfExtraction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#containedInOil -->
+
+    <owl:ObjectProperty rdf:about="#containedInOil">
+        <rdfs:domain rdf:resource="#ChemicalCompound"/>
+        <rdfs:range rdf:resource="#EssentialOil"/>
+        <owl:inverseOf rdf:resource="#containsCompound"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#containsCompound -->
+
+    <owl:ObjectProperty rdf:about="#containsCompound">
+        <rdfs:range rdf:resource="#ChemicalCompound"/>
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#containsOil -->
+
+    <owl:ObjectProperty rdf:about="#containsOil">
+        <rdfs:range rdf:resource="#EssentialOil"/>
+        <rdfs:domain rdf:resource="#OilCollection"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#hasAroma -->
+
+    <owl:ObjectProperty rdf:about="#hasAroma">
+        <rdfs:range rdf:resource="#AromaDescriptor"/>
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#hasConsistency -->
+
+    <owl:ObjectProperty rdf:about="#hasConsistency">
+        <rdfs:range rdf:resource="#Consistency"/>
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#hasOffering -->
+
+    <owl:ObjectProperty rdf:about="#hasOffering">
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+        <rdfs:range rdf:resource="#ProductOffering"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#hasPerfumeryNote -->
+
+    <owl:ObjectProperty rdf:about="#hasPerfumeryNote">
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+        <rdfs:range rdf:resource="#PerfumeryNote"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#middleChord -->
+
+    <owl:ObjectProperty rdf:about="#middleChord">
+        <rdfs:range rdf:resource="#Chord"/>
+        <rdfs:domain rdf:resource="#Perfume"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#oilierThan -->
+
+    <owl:ObjectProperty rdf:about="#oilierThan">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="#Consistency"/>
+        <rdfs:domain rdf:resource="#Consistency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#strengthOfInitialAroma -->
+
+    <owl:ObjectProperty rdf:about="#strengthOfInitialAroma">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="#AromaStrength"/>
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#strongerThan -->
+
+    <owl:ObjectProperty rdf:about="#strongerThan">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="#AromaStrength"/>
+        <rdfs:range rdf:resource="#AromaStrength"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#thickerThan -->
+
+    <owl:ObjectProperty rdf:about="#thickerThan">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="#Consistency"/>
+        <rdfs:domain rdf:resource="#Consistency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#topChord -->
+
+    <owl:ObjectProperty rdf:about="#topChord">
+        <rdfs:range rdf:resource="#Chord"/>
+        <rdfs:domain rdf:resource="#Perfume"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#botanicalName -->
+
+    <owl:DatatypeProperty rdf:about="#botanicalName">
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#commonName -->
+
+    <owl:DatatypeProperty rdf:about="#commonName">
+        <rdfs:domain rdf:resource="#EssentialOil"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#priceInDollars -->
+
+    <owl:DatatypeProperty rdf:about="#priceInDollars">
+        <rdfs:domain rdf:resource="#ProductOffering"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#volumeInMillileters -->
+
+    <owl:DatatypeProperty rdf:about="#volumeInMillileters">
+        <rdfs:domain rdf:resource="#ProductOffering"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#AromaDescriptor -->
+
+    <owl:Class rdf:about="#AromaDescriptor">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#AromaStrength -->
+
+    <owl:Class rdf:about="#AromaStrength"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ChemicalCompound -->
+
+    <owl:Class rdf:about="#ChemicalCompound">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Chord -->
+
+    <owl:Class rdf:about="#Chord">
+        <rdfs:subClassOf rdf:resource="#OilCollection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Consistency -->
+
+    <owl:Class rdf:about="#Consistency"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#EssentialOil -->
+
+    <owl:Class rdf:about="#EssentialOil"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MethodOfExtraction -->
+
+    <owl:Class rdf:about="#MethodOfExtraction"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#OilCollection -->
+
+    <owl:Class rdf:about="#OilCollection"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Perfume -->
+
+    <owl:Class rdf:about="#Perfume"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PerfumeryNote -->
+
+    <owl:Class rdf:about="#PerfumeryNote"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ProductOffering -->
+
+    <owl:Class rdf:about="#ProductOffering"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#1,b-cineole -->
+
+    <ChemicalCompound rdf:about="#1,b-cineole"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Balsamic -->
+
+    <AromaDescriptor rdf:about="#Balsamic"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#BaseNote -->
+
+    <PerfumeryNote rdf:about="#BaseNote"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#BasilOil -->
+
+    <EssentialOil rdf:about="#BasilOil">
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasOffering rdf:resource="#PEOBasilSweet"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Bitter -->
+
+    <AromaDescriptor rdf:about="#Bitter"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Bright -->
+
+    <AromaDescriptor rdf:about="#Bright"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#CO2Extraction -->
+
+    <MethodOfExtraction rdf:about="#CO2Extraction"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#CardamomOil -->
+
+    <EssentialOil rdf:about="#CardamomOil">
+        <rdfs:comment
+            >spicy, woody, rich, sweet</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasAroma rdf:resource="#Rich"/>
+        <hasAroma rdf:resource="#Spicy"/>
+        <hasAroma rdf:resource="#Sweet"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasAroma rdf:resource="#Woody"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ChristmasExperiment -->
+
+    <Perfume rdf:about="#ChristmasExperiment">
+        <baseChord rdf:resource="#ChristmasExperimentBaseChord"/>
+        <middleChord rdf:resource="#ChristmasExperimentMiddleChord"/>
+        <topChord rdf:resource="#ChristmasExperimentTopChord"/>
+    </Perfume>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ChristmasExperimentBaseChord -->
+
+    <Chord rdf:about="#ChristmasExperimentBaseChord">
+        <containsOil rdf:resource="#GingerOil"/>
+        <containsOil rdf:resource="#PatchouliOil"/>
+        <containsOil rdf:resource="#VirginianCedarWoodOil"/>
+    </Chord>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ChristmasExperimentMiddleChord -->
+
+    <Chord rdf:about="#ChristmasExperimentMiddleChord">
+        <containsOil rdf:resource="#CardamomOil"/>
+        <containsOil rdf:resource="#CinnamonOil"/>
+        <containsOil rdf:resource="#FirNeedleOil"/>
+        <containsOil rdf:resource="#NutmegOil"/>
+    </Chord>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ChristmasExperimentTopChord -->
+
+    <Chord rdf:about="#ChristmasExperimentTopChord">
+        <containsOil rdf:resource="#LemongrassOil"/>
+        <hasOffering rdf:resource="#PeppermintOil"/>
+        <containsOil rdf:resource="#TangerineOil"/>
+    </Chord>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#CinnamonOil -->
+
+    <EssentialOil rdf:about="#CinnamonOil">
+        <rdfs:comment
+            >much richer in aroma than ground cinnamon. Peppery, earthy, spicy, bright yet slightly woodsy.</rdfs:comment>
+        <hasAroma rdf:resource="#Bright"/>
+        <hasAroma rdf:resource="#Earthy"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasOffering rdf:resource="#PEOCinnamonLeaf"/>
+        <hasAroma rdf:resource="#Peppery"/>
+        <hasAroma rdf:resource="#Spicy"/>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasAroma rdf:resource="#Woodsy"/>
+        <containsCompound rdf:resource="#benzylBenzoate"/>
+        <containsCompound rdf:resource="#cinnamicAldehyde"/>
+        <containsCompound rdf:resource="#eugenol"/>
+        <containsCompound rdf:resource="#eugenylAcetate"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#CloveBudOil -->
+
+    <EssentialOil rdf:about="#CloveBudOil">
+        <rdfs:comment
+            >spicy, warming yet slightly bitter, woody, reminiscent of true clove buds, but richer</rdfs:comment>
+        <hasAroma rdf:resource="#Bitter"/>
+        <hasConsistency rdf:resource="#Medium"/>
+        <commonMethodOfExtraction rdf:resource="#MiddleNote"/>
+        <hasConsistency rdf:resource="#SlightlyOily"/>
+        <hasAroma rdf:resource="#Spicy"/>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasAroma rdf:resource="#Warming"/>
+        <hasAroma rdf:resource="#Woody"/>
+        <containsCompound rdf:resource="#caryophyllene"/>
+        <containsCompound rdf:resource="#eugenol"/>
+        <containsCompound rdf:resource="#eugenylAcetate"/>
+        <containsCompound rdf:resource="#isocaryophyllene"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Earthy -->
+
+    <AromaDescriptor rdf:about="#Earthy"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#EucalyptusOil -->
+
+    <EssentialOil rdf:about="#EucalyptusOil">
+        <rdfs:comment
+            >fresh, medicinal, woody, earthy</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#FennelOil -->
+
+    <EssentialOil rdf:about="#FennelOil">
+        <rdfs:comment
+            >sweet, somewhat spicy, licorice-like (Anise) aroma</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#MediumToStrongAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopToMiddleNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#FirNeedleOil -->
+
+    <EssentialOil rdf:about="#FirNeedleOil">
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasConsistency rdf:resource="#Oily"/>
+        <hasOffering rdf:resource="#PEOFirNeedleRussian"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <containsCompound rdf:resource="#a-pinene"/>
+        <containsCompound rdf:resource="#borneol"/>
+        <containsCompound rdf:resource="#careen"/>
+        <containsCompound rdf:resource="#limonene"/>
+        <containsCompound rdf:resource="#myrcene"/>
+        <containsCompound rdf:resource="#phellandrene"/>
+        <containsCompound rdf:resource="#piperitone"/>
+        <containsCompound rdf:resource="#santene"/>
+        <containsCompound rdf:resource="#terpinen-r-olAcetate"/>
+        <containsCompound rdf:resource="#terpinolene"/>
+        <containsCompound rdf:resource="#tricylene"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Fresh -->
+
+    <AromaDescriptor rdf:about="#Fresh"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#GingerOil -->
+
+    <EssentialOil rdf:about="#GingerOil">
+        <containsCompound rdf:resource="#1,b-cineole"/>
+        <strengthOfInitialAroma rdf:resource="#MediumToStrongAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleToBaseNote"/>
+        <hasOffering rdf:resource="#PEOGinger"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <containsCompound rdf:resource="#a-pinene"/>
+        <containsCompound rdf:resource="#b-bisabolene"/>
+        <containsCompound rdf:resource="#b-pinene"/>
+        <containsCompound rdf:resource="#borneol"/>
+        <containsCompound rdf:resource="#camphene"/>
+        <containsCompound rdf:resource="#geranial"/>
+        <containsCompound rdf:resource="#geraniol"/>
+        <containsCompound rdf:resource="#linalool"/>
+        <containsCompound rdf:resource="#nerol"/>
+        <containsCompound rdf:resource="#y-terpineol"/>
+        <containsCompound rdf:resource="#zingiberene"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Herbaceous -->
+
+    <AromaDescriptor rdf:about="#Herbaceous"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#JasmineOil -->
+
+    <EssentialOil rdf:about="#JasmineOil">
+        <rdfs:comment
+            >warm, floral, exotic</rdfs:comment>
+        <hasConsistency rdf:resource="#Medium"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#JuniperBerryOil -->
+
+    <EssentialOil rdf:about="#JuniperBerryOil">
+        <rdfs:comment
+            >crisp, earthy, sweet, herbaceous, with almost a hidden fruity note</rdfs:comment>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <strengthOfInitialAroma rdf:resource="#MildToMediumAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#LemongrassOil -->
+
+    <EssentialOil rdf:about="#LemongrassOil">
+        <hasOffering rdf:resource="#PEOLemongrass"/>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#LimeOil -->
+
+    <EssentialOil rdf:about="#LimeOil">
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasOffering rdf:resource="#PEOLime"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MandarinOil -->
+
+    <EssentialOil rdf:about="#MandarinOil">
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasOffering rdf:resource="#PEOMandarinRed"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Medium -->
+
+    <Consistency rdf:about="#Medium">
+        <hasOffering rdf:resource="#PEOSandalwood"/>
+        <thickerThan rdf:resource="#ThinToMedium"/>
+    </Consistency>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MediumAroma -->
+
+    <AromaStrength rdf:about="#MediumAroma">
+        <strongerThan rdf:resource="#MildToMediumAroma"/>
+    </AromaStrength>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MediumToStrongAroma -->
+
+    <AromaStrength rdf:about="#MediumToStrongAroma">
+        <strongerThan rdf:resource="#MediumAroma"/>
+    </AromaStrength>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MediumToThick -->
+
+    <Consistency rdf:about="#MediumToThick">
+        <thickerThan rdf:resource="#Medium"/>
+    </Consistency>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MelissaOil -->
+
+    <EssentialOil rdf:about="#MelissaOil">
+        <rdfs:comment
+            >fresh, lemony, herbaceous</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopToMiddleNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MiddleNote -->
+
+    <PerfumeryNote rdf:about="#MiddleNote"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MiddleToBaseNote -->
+
+    <PerfumeryNote rdf:about="#MiddleToBaseNote"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#MildToMediumAroma -->
+
+    <AromaStrength rdf:about="#MildToMediumAroma"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#NutmegOil -->
+
+    <EssentialOil rdf:about="#NutmegOil">
+        <rdfs:comment
+            >rich, spicy, sweet, woody. Similar to the cooking spice, but richer and more fragrant</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#MediumToStrongAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasOffering rdf:resource="#PEONutmeg"/>
+        <hasAroma rdf:resource="#Rich"/>
+        <hasAroma rdf:resource="#Spicy"/>
+        <hasAroma rdf:resource="#Sweet"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasAroma rdf:resource="#Woody"/>
+        <containsCompound rdf:resource="#a-terpenene"/>
+        <containsCompound rdf:resource="#camphene"/>
+        <containsCompound rdf:resource="#cineole"/>
+        <containsCompound rdf:resource="#limonene"/>
+        <containsCompound rdf:resource="#myristicin"/>
+        <containsCompound rdf:resource="#pinene"/>
+        <containsCompound rdf:resource="#sabinene"/>
+        <containsCompound rdf:resource="#terpinen-4-ol"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Oily -->
+
+    <Consistency rdf:about="#Oily">
+        <oilierThan rdf:resource="#SlightlyOily"/>
+    </Consistency>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOBasilSweet -->
+
+    <ProductOffering rdf:about="#PEOBasilSweet">
+        <priceInDollars>6.75</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOCardamom -->
+
+    <ProductOffering rdf:about="#PEOCardamom">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>22.84</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOCedarWood -->
+
+    <ProductOffering rdf:about="#PEOCedarWood">
+        <priceInDollars>9.13</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOCinnamonLeaf -->
+
+    <ProductOffering rdf:about="#PEOCinnamonLeaf">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>8.60</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOFirNeedleRussian -->
+
+    <ProductOffering rdf:about="#PEOFirNeedleRussian">
+        <priceInDollars>9.43</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOGinger -->
+
+    <ProductOffering rdf:about="#PEOGinger">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>9.66</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOLemongrass -->
+
+    <ProductOffering rdf:about="#PEOLemongrass">
+        <priceInDollars>8.72</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOLime -->
+
+    <ProductOffering rdf:about="#PEOLime">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>4.72</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOMandarinRed -->
+
+    <ProductOffering rdf:about="#PEOMandarinRed">
+        <priceInDollars>11.66</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEONutmeg -->
+
+    <ProductOffering rdf:about="#PEONutmeg">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>8.32</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOOrangeSweet -->
+
+    <ProductOffering rdf:about="#PEOOrangeSweet">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>4.25</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOPatchouli -->
+
+    <ProductOffering rdf:about="#PEOPatchouli">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>16.81</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOPeppermint -->
+
+    <ProductOffering rdf:about="#PEOPeppermint">
+        <priceInDollars>8.72</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOSandalwood -->
+
+    <ProductOffering rdf:about="#PEOSandalwood">
+        <priceInDollars>38.09</priceInDollars>
+        <volumeInMillileters>5</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOVetiver -->
+
+    <ProductOffering rdf:about="#PEOVetiver">
+        <priceInDollars>11.66</priceInDollars>
+        <volumeInMillileters>15</volumeInMillileters>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PEOWintergreen -->
+
+    <ProductOffering rdf:about="#PEOWintergreen">
+        <volumeInMillileters>15</volumeInMillileters>
+        <priceInDollars>8.72</priceInDollars>
+    </ProductOffering>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PatchouliOil -->
+
+    <EssentialOil rdf:about="#PatchouliOil">
+        <rdfs:comment
+            >rich, earthy, woody aroma with a nearly hidden fruity note</rdfs:comment>
+        <hasPerfumeryNote rdf:resource="#BaseNote"/>
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasConsistency rdf:resource="#MediumToThick"/>
+        <hasOffering rdf:resource="#PEOPatchouli"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PeppermintOil -->
+
+    <EssentialOil rdf:about="#PeppermintOil">
+        <rdfs:comment
+            >minty, reminiscent of peppermint candies, but more concentrated.  More fragrant than spearmint</rdfs:comment>
+        <hasOffering rdf:resource="#PEOPeppermint"/>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Peppery -->
+
+    <AromaDescriptor rdf:about="#Peppery"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PetitgrainOil -->
+
+    <EssentialOil rdf:about="#PetitgrainOil">
+        <rdfs:comment
+            >fresh, floral, citrusy, lighter in fragrance than neroli and slightly woody</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#PumpkinPieSpices -->
+
+    <OilCollection rdf:about="#PumpkinPieSpices">
+        <containsOil rdf:resource="#CinnamonOil"/>
+        <containsOil rdf:resource="#CloveBudOil"/>
+        <containsOil rdf:resource="#GingerOil"/>
+        <containsOil rdf:resource="#NutmegOil"/>
+    </OilCollection>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Rich -->
+
+    <AromaDescriptor rdf:about="#Rich"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#RosemaryOil -->
+
+    <EssentialOil rdf:about="#RosemaryOil">
+        <rdfs:comment
+            >fresh, herbaceous, sweet, slightly medicinal</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#MediumToStrongAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasConsistency rdf:resource="#Thin"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#SandalwoodOil -->
+
+    <EssentialOil rdf:about="#SandalwoodOil">
+        <rdfs:comment
+            >rich, sweet, fragrant yet delicate, woody, floral</rdfs:comment>
+        <hasPerfumeryNote rdf:resource="#BaseNote"/>
+        <strengthOfInitialAroma rdf:resource="#Medium"/>
+        <hasConsistency rdf:resource="#MediumToThick"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#SlightlyOily -->
+
+    <Consistency rdf:about="#SlightlyOily"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#SolventExtraction -->
+
+    <MethodOfExtraction rdf:about="#SolventExtraction"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Spicy -->
+
+    <AromaDescriptor rdf:about="#Spicy"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#StrongAroma -->
+
+    <AromaStrength rdf:about="#StrongAroma">
+        <strongerThan rdf:resource="#MediumToStrongAroma"/>
+    </AromaStrength>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Sweet -->
+
+    <AromaDescriptor rdf:about="#Sweet"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#SweetOrangeOil -->
+
+    <EssentialOil rdf:about="#SweetOrangeOil">
+        <strengthOfInitialAroma rdf:resource="#MediumToStrongAroma"/>
+        <hasOffering rdf:resource="#PEOOrangeSweet"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#TangerineOil -->
+
+    <EssentialOil rdf:about="#TangerineOil">
+        <rdfs:comment
+            >fresh, sweet, citrusy, similar to the brighter aroma of tangerine peels (as compared to orange peels), but more concentrated</rdfs:comment>
+        <strengthOfInitialAroma rdf:resource="#Medium"/>
+        <hasConsistency rdf:resource="#Thin"/>
+        <hasPerfumeryNote rdf:resource="#TopNote"/>
+        <containsCompound rdf:resource="#a-pinene"/>
+        <containsCompound rdf:resource="#carvone"/>
+        <containsCompound rdf:resource="#citronellal"/>
+        <containsCompound rdf:resource="#geraniol"/>
+        <containsCompound rdf:resource="#geranylAcetate"/>
+        <containsCompound rdf:resource="#limonene"/>
+        <containsCompound rdf:resource="#linalool"/>
+        <containsCompound rdf:resource="#myrcene"/>
+        <containsCompound rdf:resource="#neral"/>
+        <containsCompound rdf:resource="#nerylAcetate"/>
+        <containsCompound rdf:resource="#thymol"/>
+        <containsCompound rdf:resource="#y-terpinene"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#TeaTreeOil -->
+
+    <EssentialOil rdf:about="#TeaTreeOil">
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasConsistency rdf:resource="#Thin"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Thick -->
+
+    <Consistency rdf:about="#Thick">
+        <thickerThan rdf:resource="#MediumToThick"/>
+    </Consistency>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Thin -->
+
+    <Consistency rdf:about="#Thin"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ThinToMedium -->
+
+    <Consistency rdf:about="#ThinToMedium">
+        <thickerThan rdf:resource="#Thin"/>
+    </Consistency>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#ThymeOil -->
+
+    <EssentialOil rdf:about="#ThymeOil">
+        <rdfs:comment
+            >fresh, medicinal, herbaceous</rdfs:comment>
+        <hasConsistency rdf:resource="#Medium"/>
+        <strengthOfInitialAroma rdf:resource="#MediumToStrongAroma"/>
+        <hasPerfumeryNote rdf:resource="#MiddleNote"/>
+        <hasConsistency rdf:resource="#SlightlyOily"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#TopNote -->
+
+    <PerfumeryNote rdf:about="#TopNote"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#TopToMiddleNote -->
+
+    <PerfumeryNote rdf:about="#TopToMiddleNote"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#VeryThick -->
+
+    <Consistency rdf:about="#VeryThick">
+        <thickerThan rdf:resource="#Thick"/>
+    </Consistency>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#VetiverOil -->
+
+    <EssentialOil rdf:about="#VetiverOil">
+        <rdfs:comment
+            >woody, earthy, herbaceous, spicy almost smoky</rdfs:comment>
+        <hasPerfumeryNote rdf:resource="#BaseNote"/>
+        <hasAroma rdf:resource="#Earthy"/>
+        <hasAroma rdf:resource="#Herbaceous"/>
+        <hasOffering rdf:resource="#PEOVetiver"/>
+        <hasAroma rdf:resource="#Spicy"/>
+        <strengthOfInitialAroma rdf:resource="#StrongAroma"/>
+        <hasConsistency rdf:resource="#Thick"/>
+        <hasAroma rdf:resource="#Woody"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#VirginianCedarWoodOil -->
+
+    <EssentialOil rdf:about="#VirginianCedarWoodOil">
+        <rdfs:comment
+            >fresh, woody, balsamic. It strongly resembles the aroma of cedar chests and closets.</rdfs:comment>
+        <hasAroma rdf:resource="#Balsamic"/>
+        <hasAroma rdf:resource="#Fresh"/>
+        <hasConsistency rdf:resource="#Medium"/>
+        <strengthOfInitialAroma rdf:resource="#MediumAroma"/>
+        <hasConsistency rdf:resource="#Oily"/>
+        <hasOffering rdf:resource="#PEOCedarWood"/>
+        <hasAroma rdf:resource="#Woody"/>
+        <containsCompound rdf:resource="#a-cedrene"/>
+        <containsCompound rdf:resource="#b-cedrene"/>
+        <containsCompound rdf:resource="#cedrol"/>
+        <containsCompound rdf:resource="#otherSesquiterpene"/>
+        <containsCompound rdf:resource="#thujopsene"/>
+        <containsCompound rdf:resource="#widdrol"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Warming -->
+
+    <AromaDescriptor rdf:about="#Warming"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#WintergreenOil -->
+
+    <EssentialOil rdf:about="#WintergreenOil">
+        <hasOffering rdf:resource="#PEOWintergreen"/>
+    </EssentialOil>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Woodsy -->
+
+    <AromaDescriptor rdf:about="#Woodsy"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#Woody -->
+
+    <AromaDescriptor rdf:about="#Woody"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#a-cedrene -->
+
+    <ChemicalCompound rdf:about="#a-cedrene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#a-pinene -->
+
+    <ChemicalCompound rdf:about="#a-pinene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#a-terpenene -->
+
+    <ChemicalCompound rdf:about="#a-terpenene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#b-bisabolene -->
+
+    <ChemicalCompound rdf:about="#b-bisabolene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#b-cedrene -->
+
+    <ChemicalCompound rdf:about="#b-cedrene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#b-pinene -->
+
+    <ChemicalCompound rdf:about="#b-pinene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#benzylBenzoate -->
+
+    <ChemicalCompound rdf:about="#benzylBenzoate"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#borneol -->
+
+    <ChemicalCompound rdf:about="#borneol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#camphene -->
+
+    <ChemicalCompound rdf:about="#camphene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#careen -->
+
+    <ChemicalCompound rdf:about="#careen"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#carvone -->
+
+    <ChemicalCompound rdf:about="#carvone"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#caryophyllene -->
+
+    <ChemicalCompound rdf:about="#caryophyllene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#cedrol -->
+
+    <ChemicalCompound rdf:about="#cedrol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#cineole -->
+
+    <ChemicalCompound rdf:about="#cineole"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#cinnamicAldehyde -->
+
+    <ChemicalCompound rdf:about="#cinnamicAldehyde"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#citronellal -->
+
+    <ChemicalCompound rdf:about="#citronellal"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#eugenol -->
+
+    <ChemicalCompound rdf:about="#eugenol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#eugenylAcetate -->
+
+    <ChemicalCompound rdf:about="#eugenylAcetate"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#geranial -->
+
+    <ChemicalCompound rdf:about="#geranial"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#geraniol -->
+
+    <ChemicalCompound rdf:about="#geraniol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#geranylAcetate -->
+
+    <ChemicalCompound rdf:about="#geranylAcetate"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#isocaryophyllene -->
+
+    <ChemicalCompound rdf:about="#isocaryophyllene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#limonene -->
+
+    <ChemicalCompound rdf:about="#limonene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#linalool -->
+
+    <ChemicalCompound rdf:about="#linalool"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#myrcene -->
+
+    <ChemicalCompound rdf:about="#myrcene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#myristicin -->
+
+    <ChemicalCompound rdf:about="#myristicin"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#neral -->
+
+    <ChemicalCompound rdf:about="#neral"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#nerol -->
+
+    <ChemicalCompound rdf:about="#nerol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#nerylAcetate -->
+
+    <ChemicalCompound rdf:about="#nerylAcetate"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#otherSesquiterpene -->
+
+    <ChemicalCompound rdf:about="#otherSesquiterpene">
+        <rdfs:comment
+            >See entry on Virginian cedar oil</rdfs:comment>
+    </ChemicalCompound>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#phellandrene -->
+
+    <ChemicalCompound rdf:about="#phellandrene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#pinene -->
+
+    <ChemicalCompound rdf:about="#pinene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#piperitone -->
+
+    <ChemicalCompound rdf:about="#piperitone"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#sabinene -->
+
+    <ChemicalCompound rdf:about="#sabinene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#santene -->
+
+    <ChemicalCompound rdf:about="#santene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#terpinen-4-ol -->
+
+    <ChemicalCompound rdf:about="#terpinen-4-ol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#terpinen-r-olAcetate -->
+
+    <ChemicalCompound rdf:about="#terpinen-r-olAcetate"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#terpinolene -->
+
+    <ChemicalCompound rdf:about="#terpinolene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#thujopsene -->
+
+    <ChemicalCompound rdf:about="#thujopsene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#thymol -->
+
+    <ChemicalCompound rdf:about="#thymol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#tricylene -->
+
+    <ChemicalCompound rdf:about="#tricylene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#widdrol -->
+
+    <ChemicalCompound rdf:about="#widdrol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#y-terpinene -->
+
+    <ChemicalCompound rdf:about="#y-terpinene"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#y-terpineol -->
+
+    <ChemicalCompound rdf:about="#y-terpineol"/>
+    
+
+
+    <!-- http://fortytwo.net/2008/12/fragrance#zingiberene -->
+
+    <ChemicalCompound rdf:about="#zingiberene"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.842) http://owlapi.sourceforge.net -->
+
