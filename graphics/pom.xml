@@ -11,8 +11,10 @@
     <description>Miscellaneous graphics modules</description>
 
     <modules>
+	<module>processing</module>
         <module>ripple-logo</module>
-    </modules>
+	<module>sketches</module> 
+   </modules>
 
     <build>
         <directory>${basedir}/target</directory>
