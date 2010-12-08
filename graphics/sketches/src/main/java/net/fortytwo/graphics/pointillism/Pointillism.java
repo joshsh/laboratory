@@ -1,7 +1,7 @@
-package net.fortytwo.graphics.processing.pointillism;
+package net.fortytwo.graphics.pointillism;
 
 /**
- This program explores the perception of a "pointillistic" field of dots in two
+ This program explores the perception of a "pointillist" field of dots in two
  different styles:
  1) messy -- no collision detection. Dots may overlap
  2) neat -- a minimum distance between dots is enforced
@@ -9,10 +9,8 @@ package net.fortytwo.graphics.processing.pointillism;
  with the messy style, the eye seems to linger on individual clumps of dots,
  whereas with the neat style, the eye keeps moving.  The neat style certainly
  results in a more homogeneous appearance.
- Note: Xixi claims that she likes the messy style more.
+ Note: Xixi claims she prefers the messy style.
  */
-
-// TODO: anti-aliasing of dots
 
 import processing.core.PApplet;
 import processing.core.PImage;
