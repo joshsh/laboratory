@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.fortytwo.graphics</groupId>
-    <artifactId>sketches</artifactId>
+    <groupId>com.tinkerpop.blueprints</groupId>
+    <artifactId>blueprints-sail</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
-    <name>Processing sketches</name>
-    <description>miscellaneous Processing sketches</description>
+    <name>Blueprints Sail</name>
+    <description>OpenRDF Sail implementation to turn any Blueprints-enabled graph database into an RDF triple store</description>
 
     <repositories>
         <repository>
@@ -21,15 +21,39 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.processing</groupId>
-            <artifactId>all</artifactId>
-            <version>1.2.1</version>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-sail-api</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tinkerpop</groupId>
+            <artifactId>blueprints</artifactId>
+            <version>0.2.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.fortytwo.sesametools</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0</version>
         </dependency>
 
+        <!-- junit testing dependencies -->
         <dependency>
-            <groupId>org.python</groupId>
-            <artifactId>jython</artifactId>
-            <version>2.5.1</version>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-rio-trig</artifactId>
+            <version>2.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-repository-sail</artifactId>
+            <version>2.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-queryparser-sparql</artifactId>
+            <version>2.3.2</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -63,13 +87,6 @@
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.8</version>
-                <configuration>
-                    <pde>true</pde>
                 </configuration>
             </plugin>
         </plugins>
