@@ -1,7 +1,6 @@
 package com.tinkerpop.blueprints.sail;
 
 import com.tinkerpop.blueprints.pgm.Edge;
-import com.tinkerpop.blueprints.pgm.Index;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -19,7 +18,7 @@ public class IndexingMatcher extends Matcher {
     }
 
     private final String propertyName;
-    private final Index<Edge> edges;
+    private final BlueprintsSail.DataStore store;
 
     /**
      * Create a new indexing matcher based on the given triple pattern.
@@ -28,16 +27,16 @@ public class IndexingMatcher extends Matcher {
      * @param p whether the predicate is specified
      * @param o whether the object is specified
      * @param c whether the context is specified
-     * @param edges the Blueprints edge index for the RDF store
+     * @param store the Blueprints data store
      */
     public IndexingMatcher(final boolean s,
                            final boolean p,
                            final boolean o,
                            final boolean c,
-                           final Index<Edge> edges) {
+                           final BlueprintsSail.DataStore store) {
         super(s, p, o, c);
 
-        this.edges = edges;
+        this.store = store;
 
         StringBuilder sb = new StringBuilder();
         if (c) {
@@ -90,7 +89,7 @@ public class IndexingMatcher extends Matcher {
         //System.out.println("spoc: " + s + " " + p + " " + o + " " + c);
         //System.out.println("\ts: " + subject + ", p: " + predicate + ", o: " + object + ", c: " + context);
 
-        Iterator<Edge> results = edges.get(propertyName, sb.toString().substring(1)).iterator();
+        Iterator<Edge> results = store.edges.get(propertyName, sb.toString().substring(1)).iterator();
 
         for (PartOfSpeechCriterion m : criteria) {
             results = new FilteredIterator<Edge>(results, m);
@@ -158,11 +157,11 @@ public class IndexingMatcher extends Matcher {
                 case CONTEXT:
                     return value.equals(edge.getProperty(BlueprintsSail.CONTEXT_PROP));
                 case OBJECT:
-                    return value.equals(edge.getInVertex().getId());
+                    return value.equals(store.getIdOf(edge.getInVertex()));
                 case PREDICATE:
                     return value.equals(edge.getProperty(BlueprintsSail.PREDICATE_PROP));
                 case SUBJECT:
-                    return value.equals(edge.getOutVertex().getId());
+                    return value.equals(store.getIdOf(edge.getOutVertex()));
                 default:
                     throw new IllegalStateException();
             }
