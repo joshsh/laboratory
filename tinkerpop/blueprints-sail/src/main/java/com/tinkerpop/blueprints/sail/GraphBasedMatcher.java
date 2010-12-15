@@ -1,7 +1,6 @@
 package com.tinkerpop.blueprints.sail;
 
 import com.tinkerpop.blueprints.pgm.Edge;
-import com.tinkerpop.blueprints.pgm.Graph;
 import com.tinkerpop.blueprints.pgm.Vertex;
 
 import java.util.Iterator;
@@ -14,7 +13,7 @@ import java.util.Iterator;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class GraphBasedMatcher extends Matcher {
-    private final Graph graph;
+    private final BlueprintsSail.DataStore store;
 
     /**
      * Create a new graph-based matcher with the given triple pattern.
@@ -23,15 +22,15 @@ public class GraphBasedMatcher extends Matcher {
      * @param p whether the predicate is specified
      * @param o whether the object is specified
      * @param c whether the context is specified
-     * @param graph the Blueprints property graph of the RDF store
+     * @param store the Blueprints data store
      */
     public GraphBasedMatcher(final boolean s,
                              final boolean p,
                              final boolean o,
                              final boolean c,
-                             final Graph graph) {
+                             final BlueprintsSail.DataStore store) {
         super(s, p, o, c);
-        this.graph = graph;
+        this.store = store;
     }
 
     public Iterator<Edge> match(final String subject,
@@ -42,8 +41,8 @@ public class GraphBasedMatcher extends Matcher {
         //System.out.println("+ \ts: " + subject + ", p: " + predicate + ", o: " + object + ", c: " + context);
 
         if (s && o) {
-            Vertex vs = graph.getVertex(subject);
-            Vertex vo = graph.getVertex(object);
+            Vertex vs = store.getVertex(subject);
+            Vertex vo = store.getVertex(object);
 
             if (null == vs || null == vo) {
                 return new EmptyIterator<Edge>();
@@ -53,14 +52,14 @@ public class GraphBasedMatcher extends Matcher {
                 return new FilteredIterator<Edge>(vs.getOutEdges().iterator(),
                         new FilteredIterator.Criterion<Edge>() {
                             public boolean fulfilledBy(final Edge edge) {
-                                return edge.getInVertex().getId().equals(object)
+                                return store.getIdOf(edge.getInVertex()).equals(object)
                                         && (!p || edge.getLabel().equals(predicate))
                                         && (!c || edge.getProperty(BlueprintsSail.CONTEXT_PROP).equals(context));
                             }
                         });
             }
         } else if (s) {
-            Vertex vs = graph.getVertex(subject);
+            Vertex vs = store.getVertex(subject);
             return null == vs
                     ? new EmptyIterator<Edge>()
                     : new FilteredIterator<Edge>(vs.getOutEdges().iterator(),
@@ -71,7 +70,7 @@ public class GraphBasedMatcher extends Matcher {
                         }
                     });
         } else {
-            Vertex vo = graph.getVertex(object);
+            Vertex vo = store.getVertex(object);
             return null == vo
                     ? new EmptyIterator<Edge>()
                     : new FilteredIterator<Edge>(vo.getInEdges().iterator(),

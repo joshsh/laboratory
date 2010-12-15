@@ -61,6 +61,10 @@ public class BlueprintsSail implements Sail {
 
     public static final Pattern INDEX_PATTERN = Pattern.compile("s?p?o?c?");
 
+    // Allow for OrientDB, in which manual vertex IDs are not possible.
+    private static boolean FAKE_VERTEX_IDS = true;
+    private static final String ID = "id";
+ 
     private static final String[][] ALTERNATIVES = {
             {"s", ""},
             {"p", ""},
@@ -81,9 +85,7 @@ public class BlueprintsSail implements Sail {
 
     private static final String NAMESPACES_VERTEX_ID = "urn:com.tinkerpop.blueprints.sail:namespaces";
 
-    private final DataStore dataStore = new DataStore();
-
-    private final Index<Edge> edges;
+    private final DataStore store = new DataStore();
 
     /**
      * Create a new RDF store using the provided Blueprints graph.  Default edge indices will be used.
@@ -107,24 +109,26 @@ public class BlueprintsSail implements Sail {
      */
     public BlueprintsSail(final IndexableGraph graph,
                           final String indexedPatterns) {
-        dataStore.graph = graph;
+        store.graph = graph;
 
         // For now, use the default EDGES and VERTICES indices, which *must exist* in Blueprints and are automatically indexed.
         // Think harder about collision issues (if someone hands a non-empty, non-Sail graph to this constructor) later on.
-        edges = graph.getIndex(Index.EDGES, Edge.class);
+        store.edges = graph.getIndex(Index.EDGES, Edge.class);
 
-        dataStore.namespaces = graph.getVertex(NAMESPACES_VERTEX_ID);
-        if (null == dataStore.namespaces) {
-            dataStore.namespaces = graph.addVertex(NAMESPACES_VERTEX_ID);
+        store.vertices = graph.getIndex(Index.VERTICES, Vertex.class);
+
+        store.namespaces = store.getVertex(NAMESPACES_VERTEX_ID);
+        if (null == store.namespaces) {
+            store.namespaces = store.addVertex(NAMESPACES_VERTEX_ID);
         }
 
-        dataStore.matchers[0] = new TrivialMatcher(graph);
+        store.matchers[0] = new TrivialMatcher(graph);
 
         parseTripleIndices(indexedPatterns);
         assignUnassignedTriplePatterns();
 
-        dataStore.manualTransactions = dataStore.graph instanceof TransactionalGraph
-                && TransactionalGraph.Mode.MANUAL == ((TransactionalGraph) dataStore.graph).getTransactionMode();
+        store.manualTransactions = store.graph instanceof TransactionalGraph
+                && TransactionalGraph.Mode.MANUAL == ((TransactionalGraph) store.graph).getTransactionMode();
 
         //for (int i = 0; i < 16; i++) {
         //    System.out.println("matcher " + i + ": " + indexes.matchers[i]);
@@ -155,11 +159,11 @@ public class BlueprintsSail implements Sail {
     public SailConnection getConnection() throws SailException {
 
 
-        return new BlueprintsSailConnection(dataStore);
+        return new BlueprintsSailConnection(store);
     }
 
     public ValueFactory getValueFactory() {
-        return dataStore.valueFactory;
+        return store.valueFactory;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -180,7 +184,39 @@ public class BlueprintsSail implements Sail {
 
         public boolean manualTransactions;
 
+        public Index<Vertex> vertices;
+        public Index<Edge> edges;
+
         public Vertex namespaces;
+
+        public Vertex getVertex(final String id) {
+            if (FAKE_VERTEX_IDS) {
+                //System.out.println("id = " + id);
+                Iterator<Vertex> i = vertices.get(ID, id).iterator();
+                return i.hasNext() ? i.next() : null;
+            } else {
+                return graph.getVertex(id);
+            }
+        }
+
+        public Vertex addVertex(final String id) {
+            if (FAKE_VERTEX_IDS) {
+                Vertex v = graph.addVertex(null);
+                //vertices.put(ID, id, store.namespaces);
+                v.setProperty(ID, id);
+                return v;
+            } else {
+                return graph.addVertex(id);
+            }
+        }
+
+        public String getIdOf(final Vertex v) {
+            if (FAKE_VERTEX_IDS) {
+                return (String) v.getProperty(ID);
+            } else {
+                return (String) v.getId();
+            }
+        }
     }
 
     private void parseTripleIndices(final String tripleIndexes) {
@@ -212,31 +248,31 @@ public class BlueprintsSail implements Sail {
         // subject and/or object) not already assigned to indexing matchers,
         // with graph-based matchers.
         for (int i = 0; i < 16; i++) {
-            if (null == dataStore.matchers[i]
+            if (null == store.matchers[i]
                     && ((0 != (i & 0x1)) || (0 != (i & 0x4)))) {
-                dataStore.matchers[i] = new GraphBasedMatcher(
+                store.matchers[i] = new GraphBasedMatcher(
                         (0 != (i & 0x1)),
                         (0 != (i & 0x2)),
                         (0 != (i & 0x4)),
                         (0 != (i & 0x8)),
-                        dataStore.graph);
+                        store);
             }
         }
 
         // Now fill in any remaining patterns with alternative indexing matchers.
         Matcher[] n = new Matcher[16];
-        n[0] = dataStore.matchers[0];
+        n[0] = store.matchers[0];
         for (String[] alts : ALTERNATIVES) {
             String p = alts[0];
             int i = indexFor(p);
 
-            Matcher m = dataStore.matchers[i];
+            Matcher m = store.matchers[i];
 
             // if no matcher has been assigned for this pattern
             if (null == m) {
                 // try primary alternatives in the order they are specified
                 for (int j = 1; j < alts.length; j++) {
-                    m = dataStore.matchers[indexFor(alts[j])];
+                    m = store.matchers[indexFor(alts[j])];
                     if (null != m) {
                         break;
                     }
@@ -251,7 +287,7 @@ public class BlueprintsSail implements Sail {
             n[i] = m;
         }
 
-        System.arraycopy(n, 0, dataStore.matchers, 0, 16);
+        System.arraycopy(n, 0, store.matchers, 0, 16);
     }
 
     private int indexFor(final boolean s,
@@ -322,9 +358,9 @@ public class BlueprintsSail implements Sail {
         }
 
         int index = indexFor(s, p, o, c);
-        IndexingMatcher m = new IndexingMatcher(s, p, o, c, edges);
-        dataStore.matchers[index] = m;
-        dataStore.indexers.add(m);
+        IndexingMatcher m = new IndexingMatcher(s, p, o, c, store);
+        store.matchers[index] = m;
+        store.indexers.add(m);
     }
 
     public static void debugEdge(final Edge e) {
