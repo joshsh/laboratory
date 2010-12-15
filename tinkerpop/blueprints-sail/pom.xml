@@ -8,10 +8,20 @@
     <artifactId>blueprints-sail</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
-    <name>Blueprints Sail</name>
-    <description>OpenRDF Sail implementation to turn any Blueprints-enabled graph database into an RDF triple store</description>
+    <name>BlueprintsSail</name>
+    <description>OpenRDF Sail implementation to turn any Blueprints-enabled graph database into an RDF triple store
+    </description>
 
     <repositories>
+        <repository>
+            <id>tinkerpop-repository</id>
+            <name>TinkerPop Maven2 Repository</name>
+            <url>http://tinkerpop.com/maven2</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
         <repository>
             <id>fortytwo</id>
             <name>fortytwo.net Maven repository</name>
