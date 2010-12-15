@@ -20,8 +20,9 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
- * An RDF storage interface for any Blueprints- (that is, IndexableGraph-) enabled graph database.  It models
- * RDF graphs as property graphs, using a configurable set of indices to boost query reactivity.
+ * An RDF storage interface for any graph database with a Blueprints IndexableGraph implementation.  It models
+ * RDF graphs as property graphs which can be easily traversed and manipulated with other Blueprints-compatible tools.
+ * At the same time, it can be used with OpenRDF-based tools to power a SPARQL endpoint or an RDF reasoner.
  * <p/>
  * RDF resources are stored as vertices, RDF statements as edges using the Blueprints default (automatic) indices.
  * Namespaces are stored at a special vertex with the id "urn:com.tinkerpop.blueprints.sail:namespaces".
@@ -29,18 +30,17 @@ import java.util.regex.Pattern;
  * This Sail is as transactional as the underlying graph database: if the provided Graph implements TransactionalGraph
  * and is in manual transaction mode, then the SailConnection's commit and rollback methods will be used correspondingly.
  * <p/>
- * Statement indexing works as follows.  By default, edge properties for the "p", "c" and "pc" triple patterns are created and indexed.
- * That is to say that a getStatements or removeStatements call in which only the statement predicate and/or context is
- * specified will default to an
- * edge lookup based on those values.  By default, a getStatements call with a specified subject
- * or object will result in an index lookup for the subject and object vertices; adjacent edges will then be used to complete the
- * query.  Any other triple patterns which are supplied to the BlueprintsSail constructor are treated as special;
- * an additional property is added to each edge, which will be used in fast lookups for queries corresponding to that pattern.
- * For example, if a "so" pattern is supplied, each new edge will receive an "so" property value in addition to the usual
- * "p" (predicate) and "c" (context) values.  A subsequent call such
- * as getStatements(john, null, jane) will trigger index-based match on "so = [john][jane]" and in some cases will finish
- * sooner than the
- * corresponding graph-based match, which picks either john or jane as a starting point and filters on adjacent edges.
+ * Retrieval of RDF statements from the store involves both "index-based" and "graph-based" matching, as follows.
+ * For each new statement edge which is added to the store, "p" (predicate), "c" (context), and "pc" (predicate and context)
+ * property values are added and indexed.  These allow the statement to be quickly retrieved in a query where only the
+ * predicate and/or context is specified.  However, BlueprintsSail will additionally index on any triple pattern which
+ * is supplied to the constructor, boosting query reactivity at the expense of additional storage overhead.
+ * For example, if a "so" pattern is supplied, each new statement edge will also receive an "so" property value which stores the
+ * combination of subject and object of the statement.  A subsequent call such as <code>getStatements(john, null, jane)</code> will
+ * match both values simultaneously.  This may succeed more quickly than the corresponding graph-based match, which picks
+ * either the john or jane vertex as a starting point and filters on adjacent edges.  Graph-based matches are used for
+ * all of the triple patterns s,o,sp,so,sc,po,oc,spo,spc,soc,poc,spoc which have not been explicitly flagged for
+ * index-based matching.
  *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
@@ -105,7 +105,7 @@ public class BlueprintsSail implements Sail {
      *
      * @param graph           the storage layer.  If the provided graph implements TransactionalGraph and is in manual transaction
      *                        mode, the this Sail will also be transactional.
-     * @param indexedPatterns any subset of s,p,o,c,sp,so,sc,po,pc,oc,spo,spc,soc,poc,spoc.  Only p,c are required,
+     * @param indexedPatterns a comma-delimited list of triple patterns for index-based statement matching.  Only p,c are required,
      *                        while the default patterns are p,c,pc.
      */
     public BlueprintsSail(final IndexableGraph graph,
