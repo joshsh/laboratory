@@ -7,7 +7,7 @@ import com.tinkerpop.blueprints.pgm.Vertex;
 import java.util.Iterator;
 
 /**
- * A Matcher which uses the vertex-edge structure of the graph to retrieve statements.  It does not require an edge index of any kind,
+ * A matcher which uses the vertex-edge structure of the graph to retrieve statements.  It does not require an edge index of any kind,
  * but it can only be applied to triple patterns in which the subject or object is specified
  * (which includes all patterns apart from "p", "c", and "pc").
  *
