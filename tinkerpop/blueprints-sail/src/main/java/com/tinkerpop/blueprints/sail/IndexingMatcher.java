@@ -76,10 +76,10 @@ public class IndexingMatcher extends Matcher {
         }
 
         System.out.println("spoc: " + s + " " + p + " " + o + " " + c);
-        System.out.println("\tsubject: " + subject + ", predicate: " + predicate + ", object: " + object + ", context: " + context);
+        System.out.println("\ts: " + subject + ", p: " + predicate + ", o: " + object + ", c: " + context);
 
         {
-            Iterator<Edge> results = edges.get(propertyName, sb.toString()).iterator();
+            Iterator<Edge> results = edges.get(propertyName, sb.toString().substring(1)).iterator();
             int count = 0;
             while (results.hasNext()) {
                 results.next();
@@ -88,7 +88,7 @@ public class IndexingMatcher extends Matcher {
             System.out.println("\t" + count + " results for property " + propertyName + ", value: '" + sb.toString() + "'.");
         }
 
-        Iterator<Edge> results = edges.get(propertyName, sb.toString()).iterator();
+        Iterator<Edge> results = edges.get(propertyName, sb.toString().substring(1)).iterator();
 
         for (PartOfSpeechCriterion m : criteria) {
             results = new FilteredIterator<Edge>(results, m);
@@ -121,7 +121,7 @@ public class IndexingMatcher extends Matcher {
         }
 
         //edges.put(propertyName, sb.toString(), edge);
-        edge.setProperty(propertyName, sb.toString());
+        edge.setProperty(propertyName, sb.toString().substring(1));
     }
 
     // TODO: unindexStatement

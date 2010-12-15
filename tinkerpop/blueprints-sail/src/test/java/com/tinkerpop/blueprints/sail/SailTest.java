@@ -89,7 +89,9 @@ public abstract class SailTest extends TestCase {
                 "http://example.org/test/S_POG#c");
         URI uriD = sail.getValueFactory().createURI(
                 "http://example.org/test/S_POG#d");
+        System.out.println("1#####################################");
         int before, after;
+
         // default context, different S,P,O
         sc.removeStatements(uriA, null, null);
         sc.commit();
@@ -97,8 +99,11 @@ public abstract class SailTest extends TestCase {
         sc.addStatement(uriA, uriB, uriC);
         sc.commit();
         after = countStatements(sc.getStatements(uriA, null, null, includeInferred));
+        System.out.println("1.5#####################################");
         assertEquals(0, before);
         assertEquals(1, after);
+        System.out.println("2#####################################");
+
         // one specific context, different S,P,O
         sc.removeStatements(uriA, null, null, uriD);
         sc.commit();
@@ -108,6 +113,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, null, null, includeInferred, uriD));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // one specific context, same S,P,O,G
         sc.removeStatements(uriA, null, null, uriA);
         sc.commit();
@@ -117,6 +123,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, null, null, includeInferred, uriA));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // default context, same S,P,O
         sc.removeStatements(uriA, null, null);
         sc.commit();
@@ -126,6 +133,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, null, null, includeInferred));
         assertEquals(0, before);
         assertEquals(1, after);
+
         sc.close();
     }
 
@@ -135,6 +143,7 @@ public abstract class SailTest extends TestCase {
         URI uriA = sail.getValueFactory().createURI(
                 "http://example.org/test/SP_OG");
         int before, after;
+
         // Add statement to the implicit null context.
         // sc.removeStatements(null, null, null, uriA);
         before = countStatements(sc.getStatements(uriA, uriA, null, false));
@@ -143,6 +152,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, uriA, null, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         sc.close();
     }
 
@@ -156,6 +166,7 @@ public abstract class SailTest extends TestCase {
         Literal stringLitA = sail.getValueFactory().createLiteral(
                 "arbitrary string literal 8765", XMLSchema.STRING);
         int before, after;
+
         // Add statement to a specific context.
         sc.removeStatements(null, null, uriA, uriA);
         sc.commit();
@@ -165,6 +176,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, null, uriA, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // Add plain literal statement to the default context.
         sc.removeStatements(null, null, plainLitA);
         sc.commit();
@@ -175,6 +187,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, null, plainLitA, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // Add string-typed literal statement to the default context.
         sc.removeStatements(null, null, plainLitA);
         sc.commit();
@@ -186,6 +199,7 @@ public abstract class SailTest extends TestCase {
                 false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         sc.close();
     }
 
@@ -196,15 +210,16 @@ public abstract class SailTest extends TestCase {
                 "http://example.org/test/PO_SG#a");
         URI uriB = sail.getValueFactory().createURI(
                 "http://example.org/test/PO_SG#b");
-        URI marko = sail.getValueFactory().createURI(
-                "http://knowledgereefsystems.com/thing/q");
+        URI foo = sail.getValueFactory().createURI(
+                "http://example.org/ns#foo");
         URI firstName = sail.getValueFactory().createURI(
-                "http://knowledgereefsystems.com/2007/11/core#firstName");
+                "http://example.org/ns#firstName");
         Literal plainLitA = sail.getValueFactory().createLiteral(
                 "arbitrary plain literal 8765675");
-        Literal markoName = sail.getValueFactory().createLiteral("Marko",
+        Literal fooLabel = sail.getValueFactory().createLiteral("foo",
                 XMLSchema.STRING);
         int before, after;
+
         // Add statement to the implicit null context.
         sc.removeStatements(null, null, null, uriA);
         sc.commit();
@@ -214,6 +229,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, uriA, uriA, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // Add plain literal statement to the default context.
         sc.removeStatements(null, null, plainLitA);
         sc.commit();
@@ -226,20 +242,22 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, uriA, plainLitA, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // Add string-typed literal statement to the default context.
-        sc.removeStatements(null, null, markoName);
+        sc.removeStatements(null, null, fooLabel);
         sc.commit();
-        before = countStatements(sc.getStatements(null, firstName, markoName,
+        before = countStatements(sc.getStatements(null, firstName, fooLabel,
                 false));
-        sc.addStatement(marko, firstName, markoName);
+        sc.addStatement(foo, firstName, fooLabel);
         sc.commit();
-        after = countStatements(sc.getStatements(null, firstName, markoName,
+        after = countStatements(sc.getStatements(null, firstName, fooLabel,
                 false));
         assertEquals(0, before);
         assertEquals(1, after);
         assertEquals(
-                marko,
-                toSet(sc.getStatements(null, firstName, markoName, false)).iterator().next().getSubject());
+                foo,
+                toSet(sc.getStatements(null, firstName, fooLabel, false)).iterator().next().getSubject());
+
         sc.close();
     }
 
@@ -256,6 +274,7 @@ public abstract class SailTest extends TestCase {
         URI uriD = sail.getValueFactory().createURI(
                 "http://example.org/test/S_POG#d");
         int before, after;
+
         // default context, different S,P,O
         sc.removeStatements(uriA, null, null);
         sc.commit();
@@ -285,6 +304,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, uriB, uriC, includeInferred, uriD));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // one specific context, same S,P,O,G
         sc.removeStatements(uriA, null, null, uriA);
         sc.commit();
@@ -306,15 +326,16 @@ public abstract class SailTest extends TestCase {
                 "http://example.org/test/P_SOG#b");
         URI uriC = sail.getValueFactory().createURI(
                 "http://example.org/test/P_SOG#c");
-        URI marko = sail.getValueFactory().createURI(
-                "http://knowledgereefsystems.com/thing/q");
+        URI foo = sail.getValueFactory().createURI(
+                "http://example.org/ns#foo");
         URI firstName = sail.getValueFactory().createURI(
-                "http://knowledgereefsystems.com/2007/11/core#firstName");
+                "http://example.org/ns#firstName");
         Literal plainLitA = sail.getValueFactory().createLiteral(
                 "arbitrary plain literal 238445");
-        Literal markoName = sail.getValueFactory().createLiteral("Marko",
+        Literal fooLabel = sail.getValueFactory().createLiteral("foo",
                 XMLSchema.STRING);
         int before, after;
+
         // Add statement to the implicit null context.
         sc.removeStatements(null, uriA, null);
         sc.commit();
@@ -324,6 +345,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, uriA, null, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // Add plain literal statement to the default context.
         sc.removeStatements(null, uriA, null);
         sc.commit();
@@ -335,19 +357,21 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, uriA, null, false));
         assertEquals(0, before);
         assertEquals(1, after);
+
         // Add string-typed literal statement to the default context.
         sc.removeStatements(null, firstName, null);
         sc.commit();
         before = countStatements(sc.getStatements(null, firstName, null,
                 false));
-        sc.addStatement(marko, firstName, markoName);
+        sc.addStatement(foo, firstName, fooLabel);
         sc.commit();
         after = countStatements(sc.getStatements(null, firstName, null, false));
         assertEquals(0, before);
         assertEquals(1, after);
         assertEquals(
-                marko,
+                foo,
                 toSet(sc.getStatements(null, firstName, null, false)).iterator().next().getSubject());
+
         // Add statement to a non-null context.
         sc.removeStatements(null, uriA, null);
         sc.commit();
@@ -386,31 +410,37 @@ public abstract class SailTest extends TestCase {
         Resource[] contexts = {uriA, null};
         sc.addStatement(uriA, uriA, uriA, contexts);
         sc.commit();
+
         // Get statements from all contexts.
         count = countStatements(sc.getStatements(uriA, null, null, includeInferred));
         assertEquals(2, count);
+
         // Get statements from a specific named context.
         count = countStatements(sc.getStatements(null, null, null, includeInferred, uriA));
         assertEquals(1, count);
+
         // Get statements from the null context.
         Resource[] c = {null};
         count = countStatements(sc.getStatements(null, null, null, includeInferred, c));
         //assertTrue(count > 0);
         assertEquals(1, count);
         int countLast = count;
+
         // Get statements from more than one context.
         count = countStatements(sc.getStatements(null, null, null, includeInferred, contexts));
         assertEquals(1 + countLast, count);
+
         // Test inference
         // TODO: inference not supported right now
         // URI instance1 = sail.getValueFactory().createURI(
-        // "urn:org.neo4j.rdf.sail.test/instance1");
+        // "urn:com.tinkerpop.blueprints.sail.test/instance1");
         // count = countStatements(
         // sc.getStatements(instance1, RDF.TYPE, null, false));
         // assertEquals(1, count);
         // count = countStatements(
         // sc.getStatements(instance1, RDF.TYPE, null, true));
         // assertEquals(2, count);
+
         sc.close();
     }
 
@@ -479,6 +509,7 @@ public abstract class SailTest extends TestCase {
         sc.commit();
         count = countStatements(sc.getStatements(uriA, null, null, includeInferred, contexts));
         assertEquals(0, count);
+
         sc.close();
     }
 
@@ -575,6 +606,7 @@ public abstract class SailTest extends TestCase {
     public void testCreateLiteralsThroughValueFactory() throws Exception {
         Literal l;
         ValueFactory vf = sail.getValueFactory();
+
         l = vf.createLiteral("a plain literal");
         assertNotNull(l);
         assertNull(l.getLanguage());
@@ -585,6 +617,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("de", l.getLanguage());
         assertEquals("auf Deutsch, bitte", l.getLabel());
         assertNull(l.getDatatype());
+
         // Test data-typed createLiteral methods
         l = vf.createLiteral("foo", XMLSchema.STRING);
         assertNotNull(l);
@@ -636,16 +669,16 @@ public abstract class SailTest extends TestCase {
         XMLGregorianCalendar calendar;
         ValueFactory vf = sail.getValueFactory();
         SailConnection sc = sail.getConnection();
+
         // Get an actual plain literal from the triple store.
-        URI ford = vf.createURI("urn:org.neo4j.rdf.sail.test/ford");
+        URI ford = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/ford");
         l = (Literal) toSet(sc.getStatements(ford, RDFS.COMMENT, null, false)).iterator().next().getObject();
         assertNotNull(l);
         assertNull(l.getLanguage());
         assertEquals("he really knows where his towel is", l.getLabel());
         assertNull(l.getDatatype());
-        URI thor = vf.createURI("urn:org.neo4j.rdf.sail.test/thor");
-        // FIXME: restore this test when support for language tags has been
-        // added
+        URI thor = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/thor");
+
         // Get an actual language-tagged literal from the triple store.
         URI foafName = vf.createURI("http://xmlns.com/foaf/0.1/name");
         Iterator<Statement> iter = toSet(
@@ -664,6 +697,7 @@ public abstract class SailTest extends TestCase {
             // }
         }
         assertTrue(found);
+
         // Get an actual data-typed literal from the triple-store.
         URI msnChatID = vf.createURI("http://xmlns.com/foaf/0.1/msnChatID");
         l = (Literal) toSet(sc.getStatements(thor, msnChatID, null, false)).iterator().next().getObject();
@@ -671,18 +705,19 @@ public abstract class SailTest extends TestCase {
         assertNull(l.getLanguage());
         assertEquals("Thorster123", l.getLabel());
         assertEquals(XMLSchema.STRING, l.getDatatype());
+
         // Test Literal.xxxValue() methods for Literals read from the triple
         // store
         URI valueUri, hasValueUri;
-        hasValueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/hasValue");
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/stringValue");
+        hasValueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/hasValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/stringValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
         assertNull(l.getLanguage());
         assertEquals("foo", l.getLabel());
         assertEquals(XMLSchema.STRING, l.getDatatype());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/byteValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/byteValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -690,7 +725,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("99", l.getLabel());
         assertEquals(XMLSchema.BYTE, l.getDatatype());
         assertEquals((byte) 'c', l.byteValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/booleanValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/booleanValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -698,7 +733,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("false", l.getLabel());
         assertEquals(XMLSchema.BOOLEAN, l.getDatatype());
         assertEquals(false, l.booleanValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/intValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/intValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -706,7 +741,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("42", l.getLabel());
         assertEquals(XMLSchema.INT, l.getDatatype());
         assertEquals(42, l.intValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/shortValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/shortValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -714,7 +749,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("42", l.getLabel());
         assertEquals(XMLSchema.SHORT, l.getDatatype());
         assertEquals((short) 42, l.shortValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/longValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/longValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -722,7 +757,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("42", l.getLabel());
         assertEquals(XMLSchema.LONG, l.getDatatype());
         assertEquals(42l, l.longValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/floatValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/floatValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -730,7 +765,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("3.1415926", l.getLabel());
         assertEquals(XMLSchema.FLOAT, l.getDatatype());
         assertEquals((float) 3.1415926, l.floatValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/doubleValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/doubleValue");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
         assertNotNull(l);
@@ -738,7 +773,7 @@ public abstract class SailTest extends TestCase {
         assertEquals("3.1415926", l.getLabel());
         assertEquals(XMLSchema.DOUBLE, l.getDatatype());
         assertEquals(3.1415926, l.doubleValue());
-        valueUri = vf.createURI("urn:org.neo4j.rdf.sail.test/dateTimeValue");
+        valueUri = vf.createURI("urn:com.tinkerpop.blueprints.sail.test/dateTimeValue");
         calendar = XMLDatatypeUtil.parseCalendar("2002-10-10T12:00:00-05:00");
         l = (Literal) toSet(
                 sc.getStatements(valueUri, hasValueUri, null, false)).iterator().next().getObject();
@@ -773,7 +808,7 @@ public abstract class SailTest extends TestCase {
     @Test
     public void testEvaluate() throws Exception {
         Set<String> languages;
-        URI thorUri = sail.getValueFactory().createURI("urn:org.neo4j.rdf.sail.test/thor");
+        URI thorUri = sail.getValueFactory().createURI("urn:com.tinkerpop.blueprints.sail.test/thor");
 
         SailConnection sc = sail.getConnection();
         URI uriA = sail.getValueFactory().createURI("http://example.org/uriA");
@@ -806,7 +841,7 @@ public abstract class SailTest extends TestCase {
 
         // s p ?o SELECT using a namespace prefix
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-                + "SELECT ?z WHERE { <urn:org.neo4j.rdf.sail.test/thor> foaf:name ?z }";
+                + "SELECT ?z WHERE { <urn:com.tinkerpop.blueprints.sail.test/thor> foaf:name ?z }";
         query = parser.parseQuery(queryStr, baseURI);
         results = sc.evaluate(query.getTupleExpr(), query.getDataset(), bindings, false);
         count = 0;
@@ -828,7 +863,7 @@ public abstract class SailTest extends TestCase {
         queryStr = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
                 + "SELECT ?s WHERE { ?s rdfs:comment \"he really knows where his towel is\" }";
         URI fordUri = sail.getValueFactory().createURI(
-                "urn:org.neo4j.rdf.sail.test/ford");
+                "urn:com.tinkerpop.blueprints.sail.test/ford");
         query = parser.parseQuery(queryStr, baseURI);
         results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
                 bindings, false);
@@ -859,6 +894,7 @@ public abstract class SailTest extends TestCase {
         }
         results.close();
         assertTrue(count > 0);
+
         // The language tag is necessary
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
                 + "SELECT ?s WHERE { ?s foaf:name \"Thor\" }";
@@ -891,6 +927,7 @@ public abstract class SailTest extends TestCase {
         }
         results.close();
         assertTrue(count > 0);
+
         // The data type is necessary
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
@@ -910,7 +947,7 @@ public abstract class SailTest extends TestCase {
         // TODO: commented out languages for now
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
                 + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-                + "SELECT ?p WHERE { <urn:org.neo4j.rdf.sail.test/thor> ?p \"Thor\"@en }";
+                + "SELECT ?p WHERE { <urn:com.tinkerpop.blueprints.sail.test/thor> ?p \"Thor\"@en }";
         query = parser.parseQuery(queryStr, baseURI);
         URI foafNameUri = sail.getValueFactory().createURI(
                 "http://xmlns.com/foaf/0.1/name");
@@ -926,11 +963,12 @@ public abstract class SailTest extends TestCase {
         }
         results.close();
         assertTrue(count > 0);
+
         // context-specific SELECT
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
                 + "SELECT ?z\n"
-                + "FROM <urn:org.neo4j.rdf.sail.test/ctx1>\n"
-                + "WHERE { <urn:org.neo4j.rdf.sail.test/thor> foaf:name ?z }";
+                + "FROM <urn:com.tinkerpop.blueprints.sail.test/ctx1>\n"
+                + "WHERE { <urn:com.tinkerpop.blueprints.sail.test/thor> foaf:name ?z }";
         query = parser.parseQuery(queryStr, baseURI);
         results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
                 bindings, false);
@@ -951,7 +989,7 @@ public abstract class SailTest extends TestCase {
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
                 + "SELECT ?z\n"
                 + "FROM <http://example.org/emptycontext>\n"
-                + "WHERE { <urn:org.neo4j.rdf.sail.test/thor> foaf:name ?z }";
+                + "WHERE { <urn:com.tinkerpop.blueprints.sail.test/thor> foaf:name ?z }";
         query = parser.parseQuery(queryStr, baseURI);
         results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
                 bindings, false);
@@ -968,7 +1006,7 @@ public abstract class SailTest extends TestCase {
         // queryStr =
         // "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
         // + "SELECT ?o\n"
-        // + "WHERE { <urn:org.neo4j.rdf.sail.test/instance1> rdf:type ?o }";
+        // + "WHERE { <urn:com.tinkerpop.blueprints.sail.test/instance1> rdf:type ?o }";
         // query = parser.parseQuery(queryStr, baseURI);
         // results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
         // bindings, false);
@@ -977,7 +1015,7 @@ public abstract class SailTest extends TestCase {
         // count++;
         // BindingSet set = results.next();
         // URI o = (URI) set.getValue("o");
-        // assertEquals("urn:org.neo4j.rdf.sail.test/classB", o.toString());
+        // assertEquals("urn:com.tinkerpop.blueprints.sail.test/classB", o.toString());
         // }
         // results.close();
         // assertEquals(1, count);
@@ -990,9 +1028,9 @@ public abstract class SailTest extends TestCase {
         // BindingSet set = results.next();
         // URI o = (URI) set.getValue("o");
         // String s = o.toString();
-        // if (s.equals("urn:org.neo4j.rdf.sail.test/classA")) {
+        // if (s.equals("urn:com.tinkerpop.blueprints.sail.test/classA")) {
         // foundA = true;
-        // } else if (s.equals("urn:org.neo4j.rdf.sail.test/classB")) {
+        // } else if (s.equals("urn:com.tinkerpop.blueprints.sail.test/classB")) {
         // foundB = true;
         // }
         // }
@@ -1000,6 +1038,7 @@ public abstract class SailTest extends TestCase {
         // assertEquals(2, count);
         // assertTrue(foundA);
         // assertTrue(foundB);
+
         sc.close();
     }
 
@@ -1144,24 +1183,30 @@ public abstract class SailTest extends TestCase {
         String emptyPrefix = "";
         String name = "http://example.org/foo";
         String otherName = "http://example.org/bar";
+
         sc.removeNamespace(prefix);
         sc.removeNamespace(emptyPrefix);
         sc.commit();
+
         // Namespace initially absent?
         assertNull(sc.getNamespace(prefix));
         assertNull(sc.getNamespace(emptyPrefix));
+
         // Can we set the namespace?
         sc.setNamespace(prefix, name);
         sc.commit();
         assertEquals(sc.getNamespace(prefix), name);
+
         // Can we reset the namespace?
         sc.setNamespace(prefix, otherName);
         sc.commit();
         assertEquals(sc.getNamespace(prefix), otherName);
+
         // Can we use an empty namespace prefix?
         sc.setNamespace(emptyPrefix, name);
         sc.commit();
         assertEquals(sc.getNamespace(emptyPrefix), name);
+
         sc.close();
     }
 
@@ -1171,14 +1216,17 @@ public abstract class SailTest extends TestCase {
         String prefix = "foo";
         String emptyPrefix = "";
         String name = "http://example.org/foo";
+
         // Set namespace initially.
         sc.setNamespace(prefix, name);
         sc.commit();
         assertEquals(sc.getNamespace(prefix), name);
+
         // Remove the namespace and make sure it's gone.
         sc.removeNamespace(prefix);
         sc.commit();
         assertNull(sc.getNamespace(prefix));
+
         // Same thing for the default namespace.
         sc.setNamespace(emptyPrefix, name);
         sc.commit();
@@ -1186,6 +1234,7 @@ public abstract class SailTest extends TestCase {
         sc.removeNamespace(emptyPrefix);
         sc.commit();
         assertNull(sc.getNamespace(emptyPrefix));
+
         sc.close();
     }
 

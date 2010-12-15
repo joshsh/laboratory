@@ -182,9 +182,9 @@ public class BlueprintsSailConnection implements SailConnection {
 
             //Vertex head = indexes.graph.addVertex(null);
             //Vertex tail = indexes.graph.addVertex(null);
-            Vertex head = getOrCreateVertex(o);
-            Vertex tail = getOrCreateVertex(s);
-            Edge edge = indexes.graph.addEdge(null, head, tail, p);
+            Vertex out = getOrCreateVertex(s);
+            Vertex in = getOrCreateVertex(o);
+            Edge edge = indexes.graph.addEdge(null, out, in, p);
             //edge.setProperty(BlueprintsSail.SUBJECT_PROP, s);
             //edge.setProperty(BlueprintsSail.PREDICATE_PROP, p);
             //edge.setProperty(BlueprintsSail.OBJECT_PROP, o);
@@ -276,7 +276,6 @@ public class BlueprintsSailConnection implements SailConnection {
         }
     }
 
-    // TODO: beware of concurrent modification exceptions
     private void deleteEdgesInIterator(final Iterator<Edge> i) {
         while (i.hasNext()) {
             Edge e = i.next();
@@ -344,20 +343,20 @@ public class BlueprintsSailConnection implements SailConnection {
         }
 
         public void close() throws SailException {
-            //To change body of implemented methods use File | Settings | File Templates.
+            // Do nothing.
         }
 
         public boolean hasNext() throws SailException {
             return iterator.hasNext();
         }
 
-        // FIXME: handle null context case
         public Statement next() throws SailException {
             Edge e = iterator.next();
-            Resource subject = (Resource) toSesame(((String) e.getProperty(BlueprintsSail.SUBJECT_PROP)).substring(1));
-            URI predicate = (URI) toSesame(((String) e.getProperty(BlueprintsSail.PREDICATE_PROP)).substring(1));
-            Value object = toSesame(((String) e.getProperty(BlueprintsSail.OBJECT_PROP)).substring(1));
-            Resource context = (Resource) toSesame(((String) e.getProperty(BlueprintsSail.CONTEXT_PROP)).substring(1));
+            
+            Resource subject = (Resource) toSesame((String) e.getOutVertex().getId());
+            URI predicate = (URI) toSesame(((String) e.getProperty(BlueprintsSail.PREDICATE_PROP)));
+            Value object = toSesame((String) e.getInVertex().getId());
+            Resource context = (Resource) toSesame(((String) e.getProperty(BlueprintsSail.CONTEXT_PROP)));
 
             return indexes.valueFactory.createStatement(subject, predicate, object, context);
         }
@@ -374,17 +373,17 @@ public class BlueprintsSailConnection implements SailConnection {
 
         switch (s.charAt(0)) {
             case BlueprintsSail.URI_PREFIX:
-                return indexes.valueFactory.createURI(s.substring(1));
+                return indexes.valueFactory.createURI(s.substring(2));
             case BlueprintsSail.BLANK_NODE_PREFIX:
-                return indexes.valueFactory.createBNode(s.substring(1));
+                return indexes.valueFactory.createBNode(s.substring(2));
             case BlueprintsSail.PLAIN_LITERAL_PREFIX:
-                return indexes.valueFactory.createLiteral(s.substring(1));
+                return indexes.valueFactory.createLiteral(s.substring(2));
             case BlueprintsSail.TYPED_LITERAL_PREFIX:
-                i = s.indexOf(BlueprintsSail.SEPARATOR);
-                return indexes.valueFactory.createLiteral(s.substring(i + 1), indexes.valueFactory.createURI(s.substring(1, i)));
+                i = s.indexOf(BlueprintsSail.SEPARATOR, 2);
+                return indexes.valueFactory.createLiteral(s.substring(i + 1), indexes.valueFactory.createURI(s.substring(2, i)));
             case BlueprintsSail.LANGUAGE_TAG_LITERAL_PREFIX:
-                i = s.indexOf(BlueprintsSail.SEPARATOR);
-                return indexes.valueFactory.createLiteral(s.substring(i + 1), s.substring(1, i));
+                i = s.indexOf(BlueprintsSail.SEPARATOR, 2);
+                return indexes.valueFactory.createLiteral(s.substring(i + 1), s.substring(2, i));
             case BlueprintsSail.NULL_CONTEXT_PREFIX:
                 return null;
             default:
@@ -413,11 +412,11 @@ public class BlueprintsSailConnection implements SailConnection {
     }
 
     private String uriToNative(final URI value) {
-        return BlueprintsSail.URI_PREFIX + value.toString();
+        return BlueprintsSail.URI_PREFIX + BlueprintsSail.SEPARATOR + value.toString();
     }
 
     private String bnodeToNative(final BNode value) {
-        return BlueprintsSail.BLANK_NODE_PREFIX + value.getID();
+        return BlueprintsSail.BLANK_NODE_PREFIX + BlueprintsSail.SEPARATOR + value.getID();
     }
 
     private String literalToNative(final Literal literal) {
@@ -427,14 +426,17 @@ public class BlueprintsSailConnection implements SailConnection {
             String language = literal.getLanguage();
 
             if (null == language) {
-                return BlueprintsSail.PLAIN_LITERAL_PREFIX + literal.getLabel();
+                return BlueprintsSail.PLAIN_LITERAL_PREFIX
+                        + BlueprintsSail.SEPARATOR + literal.getLabel();
             } else {
-                return BlueprintsSail.LANGUAGE_TAG_LITERAL_PREFIX + language
+                return BlueprintsSail.LANGUAGE_TAG_LITERAL_PREFIX
+                        + BlueprintsSail.SEPARATOR + language
                         + BlueprintsSail.SEPARATOR + literal.getLabel();
             }
         } else {
             // FIXME
-            return "" + BlueprintsSail.TYPED_LITERAL_PREFIX + datatype
+            return "" + BlueprintsSail.TYPED_LITERAL_PREFIX
+                    + BlueprintsSail.SEPARATOR + datatype
                     + BlueprintsSail.SEPARATOR + literal.getLabel();
         }
     }
