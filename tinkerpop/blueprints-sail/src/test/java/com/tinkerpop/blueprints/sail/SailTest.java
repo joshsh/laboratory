@@ -89,7 +89,6 @@ public abstract class SailTest extends TestCase {
                 "http://example.org/test/S_POG#c");
         URI uriD = sail.getValueFactory().createURI(
                 "http://example.org/test/S_POG#d");
-        System.out.println("1#####################################");
         int before, after;
 
         // default context, different S,P,O
@@ -99,10 +98,8 @@ public abstract class SailTest extends TestCase {
         sc.addStatement(uriA, uriB, uriC);
         sc.commit();
         after = countStatements(sc.getStatements(uriA, null, null, includeInferred));
-        System.out.println("1.5#####################################");
         assertEquals(0, before);
         assertEquals(1, after);
-        System.out.println("2#####################################");
 
         // one specific context, different S,P,O
         sc.removeStatements(uriA, null, null, uriD);
@@ -403,7 +400,6 @@ public abstract class SailTest extends TestCase {
         URI uriA = sail.getValueFactory().createURI("http://example.org/uriA");
         boolean includeInferred = false;
         int count;
-        System.out.println("##########################################");
         sc.clear();
         //sc.removeStatements(uriA, uriA, uriA);
         sc.commit();

@@ -28,21 +28,23 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
+ * A stateful connection to a BlueprintsSail RDF store interface.
+ *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class BlueprintsSailConnection implements SailConnection {
     private static final Resource[] NULL_CONTEXT_ARRAY = {null};
     private static final String NULL_CONTEXT_NATIVE = "" + BlueprintsSail.NULL_CONTEXT_PREFIX;
 
-    private final BlueprintsSail.Indexes indexes;
+    private final BlueprintsSail.DataStore dataStore;
 
     private boolean open;
 
-    public BlueprintsSailConnection(final BlueprintsSail.Indexes indexes) {
-        this.indexes = indexes;
+    public BlueprintsSailConnection(final BlueprintsSail.DataStore dataStore) {
+        this.dataStore = dataStore;
 
-        if (indexes.manualTransactions) {
-            ((TransactionalGraph) indexes.graph).startTransaction();
+        if (dataStore.manualTransactions) {
+            ((TransactionalGraph) dataStore.graph).startTransaction();
         }
 
         open = true;
@@ -56,8 +58,8 @@ public class BlueprintsSailConnection implements SailConnection {
         open = false;
 
         // Roll back any uncommitted operations.
-        if (indexes.manualTransactions) {
-            ((TransactionalGraph) indexes.graph).stopTransaction(TransactionalGraph.Conclusion.FAILURE);
+        if (dataStore.manualTransactions) {
+            ((TransactionalGraph) dataStore.graph).stopTransaction(TransactionalGraph.Conclusion.FAILURE);
         }
     }
 
@@ -67,7 +69,7 @@ public class BlueprintsSailConnection implements SailConnection {
                                                                                        final boolean includeInferred) throws SailException {
         try {
             TripleSource tripleSource = new SailConnectionTripleSource(this,
-                    indexes.valueFactory, includeInferred);
+                    dataStore.valueFactory, includeInferred);
             EvaluationStrategyImpl strategy = new EvaluationStrategyImpl(
                     tripleSource, dataset);
             return strategy.evaluate(query, bindings);
@@ -112,7 +114,7 @@ public class BlueprintsSailConnection implements SailConnection {
         }
 
         if (0 == contexts.length) {
-            return new EdgeIteration(indexes.matchers[index].match(s, p, o, null));
+            return new EdgeIteration(dataStore.matchers[index].match(s, p, o, null));
         } else {
             Collection<CloseableIteration<Statement, SailException>> iterations
                     = new LinkedList<CloseableIteration<Statement, SailException>>();
@@ -122,7 +124,7 @@ public class BlueprintsSailConnection implements SailConnection {
                 index |= 0x8;
                 c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
 
-                Matcher m = indexes.matchers[index];
+                Matcher m = dataStore.matchers[index];
                 iterations.add(
                         new EdgeIteration(m.match(s, p, o, c)));
             }
@@ -133,13 +135,13 @@ public class BlueprintsSailConnection implements SailConnection {
 
     public long size(final Resource... contexts) throws SailException {
         if (0 == contexts.length) {
-            return countIterator(indexes.matchers[0x0].match(null, null, null, null));
+            return countIterator(dataStore.matchers[0x0].match(null, null, null, null));
         } else {
             int count = 0;
 
             for (Resource context : contexts) {
                 String c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
-                count += countIterator(indexes.matchers[0x8].match(null, null, null, c));
+                count += countIterator(dataStore.matchers[0x8].match(null, null, null, c));
             }
 
             return count;
@@ -156,16 +158,16 @@ public class BlueprintsSailConnection implements SailConnection {
     }
 
     public void commit() throws SailException {
-        if (indexes.manualTransactions) {
-            ((TransactionalGraph) indexes.graph).stopTransaction(TransactionalGraph.Conclusion.SUCCESS);
-            ((TransactionalGraph) indexes.graph).startTransaction();
+        if (dataStore.manualTransactions) {
+            ((TransactionalGraph) dataStore.graph).stopTransaction(TransactionalGraph.Conclusion.SUCCESS);
+            ((TransactionalGraph) dataStore.graph).startTransaction();
         }
     }
 
     public void rollback() throws SailException {
-        if (indexes.manualTransactions) {
-            ((TransactionalGraph) indexes.graph).stopTransaction(TransactionalGraph.Conclusion.FAILURE);
-            ((TransactionalGraph) indexes.graph).startTransaction();
+        if (dataStore.manualTransactions) {
+            ((TransactionalGraph) dataStore.graph).stopTransaction(TransactionalGraph.Conclusion.FAILURE);
+            ((TransactionalGraph) dataStore.graph).startTransaction();
         }
     }
 
@@ -180,31 +182,25 @@ public class BlueprintsSailConnection implements SailConnection {
             String o = valueToNative(object);
             String c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
 
-            //Vertex head = indexes.graph.addVertex(null);
-            //Vertex tail = indexes.graph.addVertex(null);
             Vertex out = getOrCreateVertex(s);
             Vertex in = getOrCreateVertex(o);
-            Edge edge = indexes.graph.addEdge(null, out, in, p);
-            //edge.setProperty(BlueprintsSail.SUBJECT_PROP, s);
-            //edge.setProperty(BlueprintsSail.PREDICATE_PROP, p);
-            //edge.setProperty(BlueprintsSail.OBJECT_PROP, o);
-            //edge.setProperty(BlueprintsSail.CONTEXT_PROP, c);
+            Edge edge = dataStore.graph.addEdge(null, out, in, p);
 
-            for (IndexingMatcher m : indexes.indexers) {
+            for (IndexingMatcher m : dataStore.indexers) {
                 //System.out.println("\t\tindexing with: " + m);
                 m.indexStatement(edge, s, p, o, c);
             }
 
-            System.out.println("added (s: " + s + ", p: " + p + ", o: " + o + ", c: " + c + ")");
-            System.out.print("\t--> ");
-            BlueprintsSail.debugEdge(edge);
+            //System.out.println("added (s: " + s + ", p: " + p + ", o: " + o + ", c: " + c + ")");
+            //System.out.print("\t--> ");
+            //BlueprintsSail.debugEdge(edge);
         }
     }
 
     private Vertex getOrCreateVertex(final String id) {
-        Vertex v = indexes.graph.getVertex(id);
+        Vertex v = dataStore.graph.getVertex(id);
         if (null == v) {
-            v = indexes.graph.addVertex(id);
+            v = dataStore.graph.addVertex(id);
         }
         return v;
     }
@@ -241,7 +237,7 @@ public class BlueprintsSailConnection implements SailConnection {
         }
 
         if (0 == contexts.length) {
-            Iterator<Edge> i = indexes.matchers[index].match(s, p, o, null);
+            Iterator<Edge> i = dataStore.matchers[index].match(s, p, o, null);
             while (i.hasNext()) {
                 edgesToRemove.add(i.next());
             }
@@ -251,8 +247,8 @@ public class BlueprintsSailConnection implements SailConnection {
                 index |= 0x8;
                 c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
 
-                System.out.println("matcher: " + indexes.matchers[index]);
-                Iterator<Edge> i = indexes.matchers[index].match(s, p, o, c);
+                //System.out.println("matcher: " + indexes.matchers[index]);
+                Iterator<Edge> i = dataStore.matchers[index].match(s, p, o, c);
                 while (i.hasNext()) {
                     edgesToRemove.add(i.next());
                 }
@@ -260,18 +256,18 @@ public class BlueprintsSailConnection implements SailConnection {
         }
 
         for (Edge e : edgesToRemove) {
-            System.out.println("removing this edge: " + e);
-            indexes.graph.removeEdge(e);
+            //System.out.println("removing this edge: " + e);
+            dataStore.graph.removeEdge(e);
         }
     }
 
     public void clear(final Resource... contexts) throws SailException {
         if (0 == contexts.length) {
-            deleteEdgesInIterator(indexes.matchers[0x0].match(null, null, null, null));
+            deleteEdgesInIterator(dataStore.matchers[0x0].match(null, null, null, null));
         } else {
             for (Resource context : contexts) {
                 String c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
-                deleteEdgesInIterator(indexes.matchers[0x8].match(null, null, null, c));
+                deleteEdgesInIterator(dataStore.matchers[0x8].match(null, null, null, c));
             }
         }
     }
@@ -282,18 +278,18 @@ public class BlueprintsSailConnection implements SailConnection {
             i.remove();
             Vertex h = e.getInVertex();
             Vertex t = e.getOutVertex();
-            indexes.graph.removeEdge(e);
+            dataStore.graph.removeEdge(e);
             if (!h.getInEdges().iterator().hasNext() && !h.getOutEdges().iterator().hasNext()) {
-                indexes.graph.removeVertex(h);
+                dataStore.graph.removeVertex(h);
             }
             if (!t.getOutEdges().iterator().hasNext() && !t.getInEdges().iterator().hasNext()) {
-                indexes.graph.removeVertex(t);
+                dataStore.graph.removeVertex(t);
             }
         }
     }
 
     public CloseableIteration<? extends Namespace, SailException> getNamespaces() throws SailException {
-        final Iterator<String> prefixes = indexes.namespaces.getPropertyKeys().iterator();
+        final Iterator<String> prefixes = dataStore.namespaces.getPropertyKeys().iterator();
 
         return new CloseableIteration<Namespace, SailException>() {
             public void close() throws SailException {
@@ -306,7 +302,7 @@ public class BlueprintsSailConnection implements SailConnection {
 
             public Namespace next() throws SailException {
                 String prefix = prefixes.next();
-                String uri = (String) indexes.namespaces.getProperty(prefix);
+                String uri = (String) dataStore.namespaces.getProperty(prefix);
                 return new NamespaceImpl(prefix, uri);
             }
 
@@ -317,16 +313,16 @@ public class BlueprintsSailConnection implements SailConnection {
     }
 
     public String getNamespace(final String prefix) throws SailException {
-        return (String) indexes.namespaces.getProperty(prefix);
+        return (String) dataStore.namespaces.getProperty(prefix);
     }
 
     public void setNamespace(final String prefix,
                              final String uri) throws SailException {
-        indexes.namespaces.setProperty(prefix, uri);
+        dataStore.namespaces.setProperty(prefix, uri);
     }
 
     public void removeNamespace(final String prefix) throws SailException {
-        indexes.namespaces.removeProperty(prefix);
+        dataStore.namespaces.removeProperty(prefix);
     }
 
     public void clearNamespaces() throws SailException {
@@ -358,7 +354,7 @@ public class BlueprintsSailConnection implements SailConnection {
             Value object = toSesame((String) e.getInVertex().getId());
             Resource context = (Resource) toSesame(((String) e.getProperty(BlueprintsSail.CONTEXT_PROP)));
 
-            return indexes.valueFactory.createStatement(subject, predicate, object, context);
+            return dataStore.valueFactory.createStatement(subject, predicate, object, context);
         }
 
         public void remove() throws SailException {
@@ -373,17 +369,17 @@ public class BlueprintsSailConnection implements SailConnection {
 
         switch (s.charAt(0)) {
             case BlueprintsSail.URI_PREFIX:
-                return indexes.valueFactory.createURI(s.substring(2));
+                return dataStore.valueFactory.createURI(s.substring(2));
             case BlueprintsSail.BLANK_NODE_PREFIX:
-                return indexes.valueFactory.createBNode(s.substring(2));
+                return dataStore.valueFactory.createBNode(s.substring(2));
             case BlueprintsSail.PLAIN_LITERAL_PREFIX:
-                return indexes.valueFactory.createLiteral(s.substring(2));
+                return dataStore.valueFactory.createLiteral(s.substring(2));
             case BlueprintsSail.TYPED_LITERAL_PREFIX:
                 i = s.indexOf(BlueprintsSail.SEPARATOR, 2);
-                return indexes.valueFactory.createLiteral(s.substring(i + 1), indexes.valueFactory.createURI(s.substring(2, i)));
+                return dataStore.valueFactory.createLiteral(s.substring(i + 1), dataStore.valueFactory.createURI(s.substring(2, i)));
             case BlueprintsSail.LANGUAGE_TAG_LITERAL_PREFIX:
                 i = s.indexOf(BlueprintsSail.SEPARATOR, 2);
-                return indexes.valueFactory.createLiteral(s.substring(i + 1), s.substring(2, i));
+                return dataStore.valueFactory.createLiteral(s.substring(i + 1), s.substring(2, i));
             case BlueprintsSail.NULL_CONTEXT_PREFIX:
                 return null;
             default:
