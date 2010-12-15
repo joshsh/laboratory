@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 /**
  * An RDF storage interface for any graph database with a Blueprints IndexableGraph implementation.  It models
  * RDF graphs as property graphs which can be easily traversed and manipulated with other Blueprints-compatible tools.
- * At the same time, it can be used with OpenRDF-based tools to power a SPARQL endpoint or an RDF reasoner.
+ * At the same time, it can be used with OpenRDF-based tools to power a SPARQL endpoint, an RDF reasoner, etc.
  * <p/>
  * RDF resources are stored as vertices, RDF statements as edges using the Blueprints default (automatic) indices.
  * Namespaces are stored at a special vertex with the id "urn:com.tinkerpop.blueprints.sail:namespaces".
@@ -47,11 +47,8 @@ import java.util.regex.Pattern;
 public class BlueprintsSail implements Sail {
     public static final String SEPARATOR = " ";
 
-    // FIXME: temporary
     public static final String
-            SUBJECT_PROP = "s",
             PREDICATE_PROP = "p",
-            OBJECT_PROP = "o",
             CONTEXT_PROP = "c";
 
     public static final char
