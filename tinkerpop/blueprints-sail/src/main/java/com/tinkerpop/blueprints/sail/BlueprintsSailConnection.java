@@ -172,7 +172,6 @@ public class BlueprintsSailConnection implements SailConnection {
     }
 
     // TODO: avoid duplicate statements
-    // TODO: handle null-context case
     public void addStatement(final Resource subject,
                              final URI predicate,
                              final Value object,
@@ -183,10 +182,11 @@ public class BlueprintsSailConnection implements SailConnection {
             String o = valueToNative(object);
             String c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
 
-            // FIXME
-            Vertex head = indexes.graph.addVertex(null);
-            Vertex tail = indexes.graph.addVertex(null);
-            Edge edge = indexes.graph.addEdge(null, head, tail, "mylabel");
+            //Vertex head = indexes.graph.addVertex(null);
+            //Vertex tail = indexes.graph.addVertex(null);
+            Vertex head = getOrCreateVertex(o);
+            Vertex tail = getOrCreateVertex(s);
+            Edge edge = indexes.graph.addEdge(null, head, tail, p);
             //edge.setProperty(BlueprintsSail.SUBJECT_PROP, s);
             //edge.setProperty(BlueprintsSail.PREDICATE_PROP, p);
             //edge.setProperty(BlueprintsSail.OBJECT_PROP, o);
@@ -201,6 +201,14 @@ public class BlueprintsSailConnection implements SailConnection {
             System.out.print("\t--> ");
             PartOfSpeechCriterion.debugEdge(edge);
         }
+    }
+
+    private Vertex getOrCreateVertex(final String id) {
+        Vertex v = indexes.graph.getVertex(id);
+        if (null == v) {
+            v = indexes.graph.addVertex(id);
+        }
+        return v;
     }
 
     public void removeStatements(final Resource subject,
@@ -278,10 +286,10 @@ public class BlueprintsSailConnection implements SailConnection {
             Vertex h = e.getInVertex();
             Vertex t = e.getOutVertex();
             indexes.graph.removeEdge(e);
-            if (!h.getInEdges().iterator().hasNext()) {
+            if (!h.getInEdges().iterator().hasNext() && !h.getOutEdges().iterator().hasNext()) {
                 indexes.graph.removeVertex(h);
             }
-            if (!t.getOutEdges().iterator().hasNext()) {
+            if (!t.getOutEdges().iterator().hasNext() && !t.getInEdges().iterator().hasNext()) {
                 indexes.graph.removeVertex(t);
             }
         }
