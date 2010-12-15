@@ -3,9 +3,7 @@ package com.tinkerpop.blueprints.sail;
 import com.tinkerpop.blueprints.pgm.Edge;
 
 /**
- * User: josh
- * Date: Dec 13, 2010
- * Time: 2:13:34 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class PartOfSpeechCriterion implements FilteredIterator.Criterion<Edge> {
     public enum PartOfSpeech {

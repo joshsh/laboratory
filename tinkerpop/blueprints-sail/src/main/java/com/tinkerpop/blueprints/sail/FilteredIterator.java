@@ -3,9 +3,7 @@ package com.tinkerpop.blueprints.sail;
 import java.util.Iterator;
 
 /**
- * User: josh
- * Date: Dec 13, 2010
- * Time: 1:45:49 AM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 class FilteredIterator<T> implements Iterator<T> {
     private final Iterator<T> baseIterator;

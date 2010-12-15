@@ -4,8 +4,7 @@ import com.tinkerpop.blueprints.pgm.impls.tg.TinkerGraph;
 import org.openrdf.sail.Sail;
 
 /**
- * Date: Dec 13, 2010
- * Time: 6:35:50 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class BlueprintsSailTest extends SailTest {
     public void testIndexPatterns() throws Exception {

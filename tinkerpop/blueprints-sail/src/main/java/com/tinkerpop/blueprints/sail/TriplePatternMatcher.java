@@ -9,10 +9,8 @@ import java.util.List;
 
 /**
  * Note: not appropriate for the "all wildcards" case
- * <p/>
- * User: josh
- * Date: Dec 13, 2010
- * Time: 2:11:35 PM
+ *
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 class TriplePatternMatcher {
     private final String propertyName;
