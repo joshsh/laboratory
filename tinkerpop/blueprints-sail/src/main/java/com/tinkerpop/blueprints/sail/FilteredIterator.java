@@ -3,6 +3,8 @@ package com.tinkerpop.blueprints.sail;
 import java.util.Iterator;
 
 /**
+ * An Iterator which constrains results based on a specified criterion.
+ *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 class FilteredIterator<T> implements Iterator<T> {
@@ -10,6 +12,12 @@ class FilteredIterator<T> implements Iterator<T> {
     private final Criterion<T> criterion;
     private T cur;
 
+    /**
+     * Create a new iterator which is constrained by the given criterion.
+     *
+     * @param baseIterator a lower-level iterator of untested values
+     * @param criterion only values which pass this criterion will be accessible through the iterator
+     */
     public FilteredIterator(final Iterator<T> baseIterator,
                             final Criterion<T> criterion) {
         this.baseIterator = baseIterator;
@@ -34,7 +42,7 @@ class FilteredIterator<T> implements Iterator<T> {
     private void advanceToNext() {
         while (baseIterator.hasNext()) {
             cur = baseIterator.next();
-            if (criterion.passes(cur)) {
+            if (criterion.fulfilledBy(cur)) {
                 return;
             }
         }
@@ -43,6 +51,6 @@ class FilteredIterator<T> implements Iterator<T> {
     }
 
     public interface Criterion<T> {
-        boolean passes(T t);
+        boolean fulfilledBy(T t);
     }
 }

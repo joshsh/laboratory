@@ -8,21 +8,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * A Matcher which uses Blueprints indexing features to both to index and retrieve statements.  Indexing matchers can be
+ * applied to any triple pattern.
+ *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class IndexingMatcher extends Matcher {
-    public enum PartOfSpeech {
+    private enum PartOfSpeech {
         SUBJECT, PREDICATE, OBJECT, CONTEXT
     }
 
     private final String propertyName;
     private final Index<Edge> edges;
 
-    public IndexingMatcher(final Index<Edge> edges,
-                           final boolean s,
+    /**
+     * Create a new indexing matcher based on the given triple pattern.
+     * 
+     * @param s whether the subject is specified
+     * @param p whether the predicate is specified
+     * @param o whether the object is specified
+     * @param c whether the context is specified
+     * @param edges the Blueprints edge index for the RDF store
+     */
+    public IndexingMatcher(final boolean s,
                            final boolean p,
                            final boolean o,
-                           final boolean c) {
+                           final boolean c,
+                           final Index<Edge> edges) {
         super(s, p, o, c);
 
         this.edges = edges;
@@ -75,18 +87,8 @@ public class IndexingMatcher extends Matcher {
             criteria.add(new PartOfSpeechCriterion(PartOfSpeech.OBJECT, object));
         }
 
-        System.out.println("spoc: " + s + " " + p + " " + o + " " + c);
-        System.out.println("\ts: " + subject + ", p: " + predicate + ", o: " + object + ", c: " + context);
-
-        {
-            Iterator<Edge> results = edges.get(propertyName, sb.toString().substring(1)).iterator();
-            int count = 0;
-            while (results.hasNext()) {
-                results.next();
-                count++;
-            }
-            System.out.println("\t" + count + " results for property " + propertyName + ", value: '" + sb.toString() + "'.");
-        }
+        //System.out.println("spoc: " + s + " " + p + " " + o + " " + c);
+        //System.out.println("\ts: " + subject + ", p: " + predicate + ", o: " + object + ", c: " + context);
 
         Iterator<Edge> results = edges.get(propertyName, sb.toString().substring(1)).iterator();
 
@@ -97,7 +99,18 @@ public class IndexingMatcher extends Matcher {
         return results;
     }
 
-    public void indexStatement(final Edge edge,
+    /**
+     * Index a statement using this Matcher's triple pattern.  The subject, predicate, object and context values
+     * are provided for efficiency only, and should agree with the corresponding values associated with the graph
+     * structure of the edge.
+     *
+     * @param statement the edge to index as an RDF statement
+     * @param subject   the subject of the statement
+     * @param predicate the predicate of the statement
+     * @param object    the object of the statement
+     * @param context   the context of the statement
+     */
+    public void indexStatement(final Edge statement,
                                final String subject,
                                final String predicate,
                                final String object,
@@ -121,7 +134,7 @@ public class IndexingMatcher extends Matcher {
         }
 
         //edges.put(propertyName, sb.toString(), edge);
-        edge.setProperty(propertyName, sb.toString().substring(1));
+        statement.setProperty(propertyName, sb.toString().substring(1));
     }
 
     // TODO: unindexStatement
@@ -137,9 +150,9 @@ public class IndexingMatcher extends Matcher {
             this.value = value;
         }
 
-        public boolean passes(final Edge edge) {
+        public boolean fulfilledBy(final Edge edge) {
             BlueprintsSail.debugEdge(edge);
-            System.out.println("pos: " + partOfSpeech + ", value: " + value);
+            //System.out.println("pos: " + partOfSpeech + ", value: " + value);
 
             switch (partOfSpeech) {
                 case CONTEXT:
