@@ -8,26 +8,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Note: not appropriate for the "all wildcards" case
- *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
-class TriplePatternMatcher {
+public class IndexingMatcher extends Matcher {
+    public enum PartOfSpeech {
+        SUBJECT, PREDICATE, OBJECT, CONTEXT
+    }
+
     private final String propertyName;
-    private final boolean s, p, o, c;
     private final Index<Edge> edges;
 
-    public TriplePatternMatcher(final Index<Edge> edges,
-                                final boolean s,
-                                final boolean p,
-                                final boolean o,
-                                final boolean c) {
-        this.edges = edges;
+    public IndexingMatcher(final Index<Edge> edges,
+                           final boolean s,
+                           final boolean p,
+                           final boolean o,
+                           final boolean c) {
+        super(s, p, o, c);
 
-        this.s = s;
-        this.p = p;
-        this.o = o;
-        this.c = c;
+        this.edges = edges;
 
         StringBuilder sb = new StringBuilder();
         if (c) {
@@ -57,24 +55,24 @@ class TriplePatternMatcher {
         if (c) {
             sb.append(BlueprintsSail.SEPARATOR).append(context);
         } else if (null != context) {
-            criteria.add(new PartOfSpeechCriterion(PartOfSpeechCriterion.PartOfSpeech.CONTEXT, context));
+            criteria.add(new PartOfSpeechCriterion(PartOfSpeech.CONTEXT, context));
         }
         if (s) {
             sb.append(BlueprintsSail.SEPARATOR).append(subject);
         } else if (null != subject) {
-            criteria.add(new PartOfSpeechCriterion(PartOfSpeechCriterion.PartOfSpeech.SUBJECT, subject));
+            criteria.add(new PartOfSpeechCriterion(PartOfSpeech.SUBJECT, subject));
         }
 
         if (p) {
             sb.append(BlueprintsSail.SEPARATOR).append(predicate);
         } else if (null != predicate) {
-            criteria.add(new PartOfSpeechCriterion(PartOfSpeechCriterion.PartOfSpeech.PREDICATE, predicate));
+            criteria.add(new PartOfSpeechCriterion(PartOfSpeech.PREDICATE, predicate));
         }
 
         if (o) {
             sb.append(BlueprintsSail.SEPARATOR).append(object);
         } else if (null != object) {
-            criteria.add(new PartOfSpeechCriterion(PartOfSpeechCriterion.PartOfSpeech.OBJECT, object));
+            criteria.add(new PartOfSpeechCriterion(PartOfSpeech.OBJECT, object));
         }
 
         System.out.println("spoc: " + s + " " + p + " " + o + " " + c);
@@ -128,21 +126,33 @@ class TriplePatternMatcher {
 
     // TODO: unindexStatement
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder("matcher[");
-        if (s) {
-            sb.append("s");
+    private class PartOfSpeechCriterion implements FilteredIterator.Criterion<Edge> {
+        private final PartOfSpeech partOfSpeech;
+        private final String value;
+
+        public PartOfSpeechCriterion(
+                final PartOfSpeech partOfSpeech,
+                final String value) {
+            this.partOfSpeech = partOfSpeech;
+            this.value = value;
         }
-        if (p) {
-            sb.append("p");
+
+        public boolean passes(final Edge edge) {
+            BlueprintsSail.debugEdge(edge);
+            System.out.println("pos: " + partOfSpeech + ", value: " + value);
+
+            switch (partOfSpeech) {
+                case CONTEXT:
+                    return value.equals(edge.getProperty(BlueprintsSail.CONTEXT_PROP));
+                case OBJECT:
+                    return value.equals(edge.getProperty(BlueprintsSail.OBJECT_PROP));
+                case PREDICATE:
+                    return value.equals(edge.getProperty(BlueprintsSail.PREDICATE_PROP));
+                case SUBJECT:
+                    return value.equals(edge.getProperty(BlueprintsSail.SUBJECT_PROP));
+                default:
+                    throw new IllegalStateException();
+            }
         }
-        if (o) {
-            sb.append("o");
-        }
-        if (c) {
-            sb.append("c");
-        }
-        sb.append("]");
-        return sb.toString();
     }
 }

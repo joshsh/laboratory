@@ -31,7 +31,7 @@ public class BlueprintsSailTest extends SailTest {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    protected void deleteEntireNodeSpace() throws Exception {
+    protected void clear() throws Exception {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
