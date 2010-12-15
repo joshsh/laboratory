@@ -19,9 +19,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
- * User: josh
- * Date: Dec 11, 2010
- * Time: 12:59:54 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class BlueprintsSail implements Sail {
     public static final String SEPARATOR = " ";

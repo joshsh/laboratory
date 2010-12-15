@@ -28,9 +28,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * User: josh
- * Date: Dec 11, 2010
- * Time: 1:00:12 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class BlueprintsSailConnection implements SailConnection {
     private static final Resource[] NULL_CONTEXT_ARRAY = {null};

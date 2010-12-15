@@ -35,6 +35,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * @author Joshua Shinavier (http://fortytwo.net)
+ */
 public abstract class SailTest extends TestCase {
     private Sail sail = null;
 
@@ -45,12 +48,7 @@ public abstract class SailTest extends TestCase {
         sail.initialize();
         Repository repo = new SailRepository(sail);
         RepositoryConnection rc = repo.getConnection();
-        rc.add(SailTest.class.getResource("sailTest.trig"), "",
-                RDFFormat.TRIG);
-        // rc.add( BaseSailTest.class.getResource( "fulltextTest.trig" ), "",
-        // RDFFormat.TRIG );
-        // rc.add( BaseSailTest.class.getResource( "docs.trig" ), "",
-        // RDFFormat.TRIG );
+        rc.add(SailTest.class.getResource("sailTest.trig"), "", RDFFormat.TRIG);
         rc.commit();
         rc.close();
     }
@@ -267,8 +265,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, uriB, uriC, includeInferred));
         assertEquals(0, before);
         assertEquals(1, after);
-        // TODO: this should pass
-        /*
+
         // default context, same S,P,O
         sc.removeStatements(uriA, null, null);
         sc.commit();
@@ -278,7 +275,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(uriA, uriA, uriA, includeInferred));
         assertEquals(0, before);
         assertEquals(1, after);
-        //*/
+
         // one specific context, different S,P,O
         sc.removeStatements(uriA, null, null, uriD);
         sc.commit();
@@ -360,7 +357,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, uriA, null, false));
         assertEquals(0, before);
         assertEquals(1, after);
-        /*
+
         sc.removeStatements(null, uriA, null);
         sc.commit();
         before = countStatements(sc.getStatements(null, uriA, null, false));
@@ -372,7 +369,7 @@ public abstract class SailTest extends TestCase {
         after = countStatements(sc.getStatements(null, uriA, null, false));
         assertEquals(0, before);
         assertEquals(3, after);
-        */
+
         sc.close();
     }
 
@@ -776,6 +773,8 @@ public abstract class SailTest extends TestCase {
     @Test
     public void testEvaluate() throws Exception {
         Set<String> languages;
+        URI thorUri = sail.getValueFactory().createURI("urn:org.neo4j.rdf.sail.test/thor");
+
         SailConnection sc = sail.getConnection();
         URI uriA = sail.getValueFactory().createURI("http://example.org/uriA");
         sc.addStatement(uriA, uriA, uriA);
@@ -804,9 +803,8 @@ public abstract class SailTest extends TestCase {
         }
         results.close();
         assertTrue(count > 0);
+
         // s p ?o SELECT using a namespace prefix
-        // TODO: commented out languages for now
-        /*
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
                 + "SELECT ?z WHERE { <urn:org.neo4j.rdf.sail.test/thor> foaf:name ?z }";
         query = parser.parseQuery(queryStr, baseURI);
@@ -824,7 +822,8 @@ public abstract class SailTest extends TestCase {
         assertTrue(count > 0);
         assertEquals(2, languages.size());
         assertTrue(languages.contains("en"));
-        assertTrue(languages.contains("is"));   */
+        assertTrue(languages.contains("is"));
+
         // ?s p o SELECT using a plain literal value with no language tag
         queryStr = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
                 + "SELECT ?s WHERE { ?s rdfs:comment \"he really knows where his towel is\" }";
@@ -843,73 +842,70 @@ public abstract class SailTest extends TestCase {
         }
         results.close();
         assertTrue(count > 0);
+
         // ?s p o SELECT using a language-specific literal value
-        // TODO: commented out data type <-> non-data type literal equivalence
-        // problems
-        // queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-        // + "SELECT ?s WHERE { ?s foaf:name \"Thor\"@en }";
-        // URI thorUri =
-        // sail.getValueFactory().createURI("urn:org.neo4j.rdf.sail.test/thor");
-        // query = parser.parseQuery(queryStr, baseURI);
-        // results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
-        // bindings, false);
-        // count = 0;
-        // while (results.hasNext()) {
-        // count++;
-        // BindingSet set = results.next();
-        // URI s = (URI) set.getValue("s");
-        // assertNotNull(s);
-        // assertEquals(s, thorUri);
-        // }
-        // results.close();
-        // assertTrue(count > 0);
-        // // The language tag is necessary
-        // queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-        // + "SELECT ?s WHERE { ?s foaf:name \"Thor\" }";
-        // query = parser.parseQuery(queryStr, baseURI);
-        // results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
-        // bindings, false);
-        // count = 0;
-        // while (results.hasNext()) {
-        // count++;
-        // results.next();
-        // }
-        // results.close();
-        // assertEquals(0, count);
+        queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
+                + "SELECT ?s WHERE { ?s foaf:name \"Thor\"@en }";
+        query = parser.parseQuery(queryStr, baseURI);
+        results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
+                bindings, false);
+        count = 0;
+        while (results.hasNext()) {
+            count++;
+            BindingSet set = results.next();
+            URI s = (URI) set.getValue("s");
+            assertNotNull(s);
+            assertEquals(s, thorUri);
+        }
+        results.close();
+        assertTrue(count > 0);
+        // The language tag is necessary
+        queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
+                + "SELECT ?s WHERE { ?s foaf:name \"Thor\" }";
+        query = parser.parseQuery(queryStr, baseURI);
+        results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
+                bindings, false);
+        count = 0;
+        while (results.hasNext()) {
+            count++;
+            results.next();
+        }
+        results.close();
+        assertEquals(0, count);
+
         // ?s p o SELECT using a typed literal value
-        // TODO: commented out data type <-> non-data type literal equivalence
-        // problems
-        // queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-        // + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-        // +
-        // "SELECT ?s WHERE { ?s foaf:msnChatID \"Thorster123\"^^xsd:string }";
-        // query = parser.parseQuery(queryStr, baseURI);
-        // results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
-        // bindings, false);
-        // count = 0;
-        // while (results.hasNext()) {
-        // count++;
-        // BindingSet set = results.next();
-        // URI s = (URI) set.getValue("s");
-        // assertNotNull(s);
-        // assertEquals(s, thorUri);
-        // }
-        // results.close();
-        // assertTrue(count > 0);
-        // // The data type is necessary
-        // queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
-        // + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-        // + "SELECT ?s WHERE { ?s foaf:msnChatID \"Thorster123\" }";
-        // query = parser.parseQuery(queryStr, baseURI);
-        // results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
-        // bindings, false);
-        // count = 0;
-        // while (results.hasNext()) {
-        // count++;
-        // results.next();
-        // }
-        // results.close();
-        // assertEquals(0, count);
+        queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
+                +
+                "SELECT ?s WHERE { ?s foaf:msnChatID \"Thorster123\"^^xsd:string }";
+        query = parser.parseQuery(queryStr, baseURI);
+        results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
+                bindings, false);
+        count = 0;
+        while (results.hasNext()) {
+            count++;
+            BindingSet set = results.next();
+            URI s = (URI) set.getValue("s");
+            assertNotNull(s);
+            assertEquals(s, thorUri);
+        }
+        results.close();
+        assertTrue(count > 0);
+        // The data type is necessary
+        queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
+                + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
+                + "SELECT ?s WHERE { ?s foaf:msnChatID \"Thorster123\" }";
+        query = parser.parseQuery(queryStr, baseURI);
+        results = sc.evaluate(query.getTupleExpr(), query.getDataset(),
+                bindings, false);
+        count = 0;
+        while (results.hasNext()) {
+            count++;
+            results.next();
+        }
+        results.close();
+        assertEquals(0, count);
+
         // s ?p o SELECT
         // TODO: commented out languages for now
         queryStr = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
@@ -966,6 +962,7 @@ public abstract class SailTest extends TestCase {
         }
         results.close();
         assertEquals(0, count);
+
         // s p o? select without and with inferencing
         // TODO commented out waiting for inferencing
         // queryStr =

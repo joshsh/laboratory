@@ -7,10 +7,8 @@ import com.tinkerpop.blueprints.pgm.Index;
 import java.util.Iterator;
 
 /**
- * User: josh
-* Date: Dec 14, 2010
-* Time: 6:20:30 PM
-*/
+ * @author Joshua Shinavier (http://fortytwo.net)
+ */
 public class TrivialTriplePatternMatcher extends TriplePatternMatcher {
     private final Graph graph;
 
