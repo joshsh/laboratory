@@ -14,6 +14,7 @@ import org.openrdf.sail.SailException;
 import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -32,12 +33,12 @@ public class BlueprintsSail implements Sail {
             CONTEXT_PROP = "c";
 
     public static final char
-            URI_PREFIX = 'u',
-            BLANK_NODE_PREFIX = 'b',
-            PLAIN_LITERAL_PREFIX = 'p',
-            TYPED_LITERAL_PREFIX = 't',
-            LANGUAGE_TAG_LITERAL_PREFIX = 'l',
-            NULL_CONTEXT_PREFIX = 'n';
+            URI_PREFIX = 'U',
+            BLANK_NODE_PREFIX = 'B',
+            PLAIN_LITERAL_PREFIX = 'P',
+            TYPED_LITERAL_PREFIX = 'T',
+            LANGUAGE_TAG_LITERAL_PREFIX = 'L',
+            NULL_CONTEXT_PREFIX = 'N';
 
     public static final Pattern INDEX_PATTERN = Pattern.compile("s?p?o?c?");
 
@@ -61,7 +62,6 @@ public class BlueprintsSail implements Sail {
 
     /*
         s,o,sp,so,sc,po,oc,spo,spc,soc,poc,spoc
-
         p,c,pc
      */
 
@@ -72,9 +72,14 @@ public class BlueprintsSail implements Sail {
     private final Index<Edge> edges;
 
     public BlueprintsSail(final IndexableGraph graph) {
+        //this(graph, "p,c,pc");
         this(graph, "s,p,o,c,sp,so,sc,po,pc,oc,spo,spc,soc,poc,spoc");
     }
 
+    /**
+     * @param graph
+     * @param tripleIndexes any subset of s,p,o,c,sp,so,sc,po,pc,oc,spo,spc,soc,poc,spoc
+     */
     public BlueprintsSail(final IndexableGraph graph,
                           final String tripleIndexes) {
         indexes.graph = graph;
@@ -175,9 +180,23 @@ public class BlueprintsSail implements Sail {
     }
 
     private void assignUnassignedTriplePatterns() {
+        // As a first pass, fill in all suitable patterns (those containing
+        // subject and/or object) not already assigned to indexing matchers,
+        // with graph-based matchers.
+        for (int i = 0; i < 16; i++) {
+            if (null == indexes.matchers[i]
+                    && ((0 != (i & 0x1)) || (0 != (i & 0x4)))) {
+                indexes.matchers[i] = new GraphBasedMatcher(indexes.graph,
+                        (0 != (i & 0x1)),
+                        (0 != (i & 0x2)),
+                        (0 != (i & 0x4)),
+                        (0 != (i & 0x8)));
+            }
+        }
+
+        // Now fill in any remaining patterns with alternative indexing matchers.
         Matcher[] n = new Matcher[16];
         n[0] = indexes.matchers[0];
-
         for (String[] alts : ALTERNATIVES) {
             String p = alts[0];
             int i = indexFor(p);
@@ -278,11 +297,31 @@ public class BlueprintsSail implements Sail {
         indexes.matchers[index] = m;
         indexes.indexers.add(m);
     }
-               
-    public static void debugEdge(final Edge edge) {
-        System.out.println("edge " + edge + ":");
-        for (String key : edge.getPropertyKeys()) {
-            System.out.println("\t" + key + ":\t'" + edge.getProperty(key) + "'");
+
+    public static void debugEdge(final Edge e) {
+        System.out.println("edge " + e + ":");
+        for (String key : e.getPropertyKeys()) {
+            System.out.println("\t" + key + ":\t'" + e.getProperty(key) + "'");
+        }
+        System.out.println("\t[in vertex]: " + e.getInVertex());
+        System.out.println("\t[out vertex]: " + e.getOutVertex());
+    }
+
+    public static void debugVertex(final Vertex v) {
+        System.out.println("vertex " + v + ":");
+        for (String key : v.getPropertyKeys()) {
+            System.out.println("\t" + key + ":\t'" + v.getProperty(key) + "'");
+        }
+        Iterator<Edge> i;
+        i = v.getInEdges().iterator();
+        System.out.println("\t[in edges]:");
+        while (i.hasNext()) {
+            System.out.println("\t\t" + i.next());
+        }
+        i = v.getOutEdges().iterator();
+        System.out.println("\t[out edges]:");
+        while (i.hasNext()) {
+            System.out.println("\t\t" + i.next());
         }
     }
 }

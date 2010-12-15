@@ -22,7 +22,9 @@ class FilteredIterator<T> implements Iterator<T> {
     }
 
     public T next() {
-        return cur;
+        T t = cur;
+        advanceToNext();
+        return t;
     }
 
     public void remove() {
