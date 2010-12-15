@@ -21,8 +21,7 @@ import java.util.regex.Pattern;
 
 /**
  * An RDF storage interface for any Blueprints- (that is, IndexableGraph-) enabled graph database.  It models
- * RDF graphs as property graphs, using a configurable set of indices to boost query reactivity.  The graphs created
- * by this Sail can just as easily serve fast graph traversal applications as they can a SPARQL endpoint.
+ * RDF graphs as property graphs, using a configurable set of indices to boost query reactivity.
  * <p/>
  * RDF resources are stored as vertices, RDF statements as edges using the Blueprints default (automatic) indices.
  * Namespaces are stored at a special vertex with the id "urn:com.tinkerpop.blueprints.sail:namespaces".
@@ -30,12 +29,18 @@ import java.util.regex.Pattern;
  * This Sail is as transactional as the underlying graph database: if the provided Graph implements TransactionalGraph
  * and is in manual transaction mode, then the SailConnection's commit and rollback methods will be used correspondingly.
  * <p/>
- * Edge indexing functions as follows.  By default, edge indices for "p", "c" and "pc" triple patterns are created.
- * That is to say that a getStatements or removeStatements call in which only the statement predicate and/or context will default to an
- * edge lookup based on the predicate and/or context values.  By default, a getStatements call with a concrete subject
- * or object will result in a vertex lookup for subject and object; adjacent edges will then be used to complete the
- * query.  Any other triple patterns which are supplied to the BlueprintsSail constructor will be treated as special;
- * an additional property will be added to each edge and used in fast lookups for queries corresponding to that pattern.
+ * Statement indexing works as follows.  By default, edge properties for the "p", "c" and "pc" triple patterns are created and indexed.
+ * That is to say that a getStatements or removeStatements call in which only the statement predicate and/or context is
+ * specified will default to an
+ * edge lookup based on those values.  By default, a getStatements call with a specified subject
+ * or object will result in an index lookup for the subject and object vertices; adjacent edges will then be used to complete the
+ * query.  Any other triple patterns which are supplied to the BlueprintsSail constructor are treated as special;
+ * an additional property is added to each edge, which will be used in fast lookups for queries corresponding to that pattern.
+ * For example, if a "so" pattern is supplied, each new edge will receive an "so" property value in addition to the usual
+ * "p" (predicate) and "c" (context) values.  A subsequent call such
+ * as getStatements(john, null, jane) will trigger index-based match on "so = [john][jane]" and in some cases will finish
+ * sooner than the
+ * corresponding graph-based match, which picks either john or jane as a starting point and filters on adjacent edges.
  *
  * @author Joshua Shinavier (http://fortytwo.net)
  */

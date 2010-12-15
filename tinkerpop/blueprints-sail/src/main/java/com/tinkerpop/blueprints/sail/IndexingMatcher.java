@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * A Matcher which uses Blueprints indexing features to both to index and retrieve statements.  Indexing matchers can be
- * applied to any triple pattern.
+ * A matcher which uses Blueprints indexing functionality to both to index and retrieve statements.  Indexing matchers
+ * can be created for any triple pattern.
  *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
