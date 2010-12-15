@@ -60,11 +60,11 @@ public abstract class SailTest extends TestCase {
     @After
     public final void tearDown() throws Exception {
         tearDownSail();
-        deleteEntireNodeSpace();
+        clear();
         after();
     }
 
-    protected abstract void deleteEntireNodeSpace() throws Exception;
+    protected abstract void clear() throws Exception;
 
     protected Sail sail() {
         return this.sail;

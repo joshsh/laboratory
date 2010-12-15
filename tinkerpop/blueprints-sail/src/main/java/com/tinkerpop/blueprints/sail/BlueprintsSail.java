@@ -59,6 +59,12 @@ public class BlueprintsSail implements Sail {
             {"spoc", "spo", "soc", "spc", "poc"},
     };
 
+    /*
+        s,o,sp,so,sc,po,oc,spo,spc,soc,poc,spoc
+
+        p,c,pc
+     */
+
     private static final String NAMESPACES_VERTEX_ID = "urn:com.tinkerpop.blueprints.sail:namespaces";
 
     private final Indexes indexes = new Indexes();
@@ -82,7 +88,7 @@ public class BlueprintsSail implements Sail {
             indexes.namespaces = graph.addVertex(NAMESPACES_VERTEX_ID);
         }
 
-        indexes.matchers[0] = new TrivialTriplePatternMatcher(edges, graph);
+        indexes.matchers[0] = new TrivialMatcher(graph);
 
         parseTripleIndices(tripleIndexes);
         assignUnassignedTriplePatterns();
@@ -134,10 +140,10 @@ public class BlueprintsSail implements Sail {
         // We don't need a special ValueFactory implementation.
         public final ValueFactory valueFactory = new ValueFactoryImpl();
 
-        public final Collection<TriplePatternMatcher> indexingMatchers = new LinkedList<TriplePatternMatcher>();
+        public final Collection<IndexingMatcher> indexers = new LinkedList<IndexingMatcher>();
 
         // A triple pattern matcher for each spoc combination
-        public final TriplePatternMatcher[] matchers = new TriplePatternMatcher[16];
+        public final Matcher[] matchers = new Matcher[16];
 
         public boolean manualTransactions;
 
@@ -155,25 +161,28 @@ public class BlueprintsSail implements Sail {
         if (0 == a.length) {
             throw new IllegalArgumentException("index list, if supplied, must be non-empty");
         }
-
         for (String s : a) {
             u.add(s.trim());
         }
 
+        // These two patterns are required for efficient operation.
+        u.add("p");
+        u.add("c");
+
         for (String s : u) {
-            createMatcher(s);
+            createIndexingMatcher(s);
         }
     }
 
     private void assignUnassignedTriplePatterns() {
-        TriplePatternMatcher[] n = new TriplePatternMatcher[16];
+        Matcher[] n = new Matcher[16];
         n[0] = indexes.matchers[0];
 
         for (String[] alts : ALTERNATIVES) {
             String p = alts[0];
             int i = indexFor(p);
 
-            TriplePatternMatcher m = indexes.matchers[i];
+            Matcher m = indexes.matchers[i];
 
             // if no matcher has been assigned for this pattern
             if (null == m) {
@@ -243,7 +252,7 @@ public class BlueprintsSail implements Sail {
         return indexFor(s, p, o, c);
     }
 
-    private void createMatcher(final String pattern) {
+    private void createIndexingMatcher(final String pattern) {
         boolean s = false, p = false, o = false, c = false;
         for (byte ch : pattern.getBytes()) {
             switch (ch) {
@@ -265,11 +274,15 @@ public class BlueprintsSail implements Sail {
         }
 
         int index = indexFor(s, p, o, c);
-        TriplePatternMatcher m = new TriplePatternMatcher(edges, s, p, o, c);
+        IndexingMatcher m = new IndexingMatcher(edges, s, p, o, c);
         indexes.matchers[index] = m;
-
-        //if (pattern.length() > 1) {
-            indexes.indexingMatchers.add(m);
-        //}
+        indexes.indexers.add(m);
+    }
+               
+    public static void debugEdge(final Edge edge) {
+        System.out.println("edge " + edge + ":");
+        for (String key : edge.getPropertyKeys()) {
+            System.out.println("\t" + key + ":\t'" + edge.getProperty(key) + "'");
+        }
     }
 }

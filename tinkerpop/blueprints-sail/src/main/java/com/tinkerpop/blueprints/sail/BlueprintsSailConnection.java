@@ -122,7 +122,7 @@ public class BlueprintsSailConnection implements SailConnection {
                 index |= 0x8;
                 c = null == context ? NULL_CONTEXT_NATIVE : resourceToNative(context);
 
-                TriplePatternMatcher m = indexes.matchers[index];
+                Matcher m = indexes.matchers[index];
                 iterations.add(
                         new EdgeIteration(m.match(s, p, o, c)));
             }
@@ -190,14 +190,14 @@ public class BlueprintsSailConnection implements SailConnection {
             //edge.setProperty(BlueprintsSail.OBJECT_PROP, o);
             //edge.setProperty(BlueprintsSail.CONTEXT_PROP, c);
 
-            for (TriplePatternMatcher m : indexes.indexingMatchers) {
+            for (IndexingMatcher m : indexes.indexers) {
                 //System.out.println("\t\tindexing with: " + m);
                 m.indexStatement(edge, s, p, o, c);
             }
 
             System.out.println("added (s: " + s + ", p: " + p + ", o: " + o + ", c: " + c + ")");
             System.out.print("\t--> ");
-            PartOfSpeechCriterion.debugEdge(edge);
+            BlueprintsSail.debugEdge(edge);
         }
     }
 
