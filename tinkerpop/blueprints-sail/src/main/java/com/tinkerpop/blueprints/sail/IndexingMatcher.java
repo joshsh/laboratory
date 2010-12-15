@@ -158,11 +158,11 @@ public class IndexingMatcher extends Matcher {
                 case CONTEXT:
                     return value.equals(edge.getProperty(BlueprintsSail.CONTEXT_PROP));
                 case OBJECT:
-                    return value.equals(edge.getProperty(BlueprintsSail.OBJECT_PROP));
+                    return value.equals(edge.getInVertex().getId());
                 case PREDICATE:
                     return value.equals(edge.getProperty(BlueprintsSail.PREDICATE_PROP));
                 case SUBJECT:
-                    return value.equals(edge.getProperty(BlueprintsSail.SUBJECT_PROP));
+                    return value.equals(edge.getOutVertex().getId());
                 default:
                     throw new IllegalStateException();
             }
