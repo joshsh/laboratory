@@ -91,7 +91,7 @@ public class BlueprintsSail implements Sail {
      * Create a new RDF store using the provided Blueprints graph.  Default edge indices will be used.
      *
      * @param graph the storage layer.  If the provided graph implements TransactionalGraph and is in manual transaction
-     *              mode, the this Sail will also be transactional.
+     *              mode, then this Sail will also be transactional.
      */
     public BlueprintsSail(final IndexableGraph graph) {
         this(graph, "p,c,pc");
@@ -103,7 +103,7 @@ public class BlueprintsSail implements Sail {
      * triple patterns (potentially speeding up certain queries, while increasing storage overhead).
      *
      * @param graph           the storage layer.  If the provided graph implements TransactionalGraph and is in manual transaction
-     *                        mode, the this Sail will also be transactional.
+     *                        mode, then this Sail will also be transactional.
      * @param indexedPatterns a comma-delimited list of triple patterns for index-based statement matching.  Only p,c are required,
      *                        while the default patterns are p,c,pc.
      */
