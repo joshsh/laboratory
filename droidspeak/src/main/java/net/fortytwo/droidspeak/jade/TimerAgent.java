@@ -10,6 +10,8 @@ import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
+import java.util.Iterator;
+
 /**
  * User: josh
  * Date: Dec 28, 2010
@@ -24,6 +26,14 @@ public class TimerAgent extends Agent {
         System.out.println("# timer");
         this.addBehaviour(new TimeRoundTrip(1000));
         template = MessageTemplate.MatchConversationId(convo);
+    }
+
+    protected void setup() {
+        System.out.println("timer service is available here:");
+        Iterator i = this.getAID().getAllAddresses();
+        while (i.hasNext()) {
+            System.out.println("\t" + i.next());
+        }
     }
 
     private class TimeRoundTrip extends Behaviour {
@@ -46,6 +56,10 @@ public class TimerAgent extends Agent {
 
         public void action() {
             if (-1 == count) {
+                // TODO: temporary
+                sendDictationMessage();
+
+
                 DFAgentDescription template = new DFAgentDescription();
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("message-echoing");
@@ -90,6 +104,25 @@ public class TimerAgent extends Agent {
 
         public boolean done() {
             return isDone;
+        }
+    }
+
+    private void sendDictationMessage() {
+        try {
+            AID dictation = new AID();
+            dictation.setName("dictation@droidspeak");
+            dictation.addAddresses("http://127.0.0.1:54542/acc");
+            ACLMessage m = new ACLMessage(ACLMessage.INFORM);
+            m.setSender(getAID());
+            m.setLanguage("English");
+            m.setContent("0123456789");
+            m.addReceiver(dictation);
+            
+            send(m);
+
+            System.out.println("message sent!");
+        } catch (Throwable t) {
+            t.printStackTrace(System.err);
         }
     }
 }
