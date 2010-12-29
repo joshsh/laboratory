@@ -8,6 +8,8 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 
+import java.util.Iterator;
+
 /**
  * User: josh
  * Date: Dec 28, 2010
@@ -32,20 +34,21 @@ public class EchoAgent extends Agent {
         } catch (FIPAException fe) {
             fe.printStackTrace();
         }
+
+        System.out.println("echo service is available here:");
+        Iterator i =  this.getAID().getAllAddresses();
+        while (i.hasNext()) {
+            System.out.println("\t" + i.next());
+        }
     }
 
     protected void takeDown() {
-        // Deregister from the yellow pages
         try {
             DFService.deregister(this);
         }
         catch (FIPAException fe) {
             fe.printStackTrace();
         }
-        // Close the GUI
-        //myGui.dispose();
-        // Printout a dismissal message
-        System.out.println("Seller-agent " + getAID().getName() + " terminating.");
     }
 
     private class Echo extends CyclicBehaviour {
