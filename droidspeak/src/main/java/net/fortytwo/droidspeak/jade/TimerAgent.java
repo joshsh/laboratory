@@ -19,13 +19,19 @@ import java.util.Iterator;
  */
 public class TimerAgent extends Agent {
     //private final AID echo = new AID("echo", AID.ISLOCALNAME);
+    private final AID echo;
+
     private final MessageTemplate template;
     private final String convo = "timerConvo";
 
     public TimerAgent() {
         System.out.println("# timer");
-        this.addBehaviour(new TimeRoundTrip(1000));
+        this.addBehaviour(new TimeRoundTrip(1));
         template = MessageTemplate.MatchConversationId(convo);
+
+        echo = new AID();
+        echo.setName("echo@droidspeak");
+        echo.addAddresses("http://fortytwo.net:7778/acc");
     }
 
     protected void setup() {
@@ -59,21 +65,24 @@ public class TimerAgent extends Agent {
                 // TODO: temporary
                 sendDictationMessage();
 
-
-                DFAgentDescription template = new DFAgentDescription();
-                ServiceDescription sd = new ServiceDescription();
-                sd.setType("message-echoing");
-                template.addServices(sd);
-                try {
-                    DFAgentDescription[] result = DFService.search(myAgent, template);
-                    if (0 == result.length) {
-                        System.err.println("no candidate recipients found!");
-                    } else {
-                        AID recipient = result[0].getName();
-                        message.addReceiver(recipient);
+                if (null == echo) {
+                    DFAgentDescription template = new DFAgentDescription();
+                    ServiceDescription sd = new ServiceDescription();
+                    sd.setType("message-echoing");
+                    template.addServices(sd);
+                    try {
+                        DFAgentDescription[] result = DFService.search(myAgent, template);
+                        if (0 == result.length) {
+                            System.err.println("no candidate recipients found!");
+                        } else {
+                            AID recipient = result[0].getName();
+                            message.addReceiver(recipient);
+                        }
+                    } catch (FIPAException fe) {
+                        fe.printStackTrace();
                     }
-                } catch (FIPAException fe) {
-                    fe.printStackTrace();
+                } else {
+                    message.addReceiver(echo);
                 }
 
                 count++;
@@ -86,7 +95,7 @@ public class TimerAgent extends Agent {
 
                 if (null != r) {
                     count++;
-                    //System.out.println("# received " + count);
+                    System.out.println("# received " + count);
                     if (total == count) {
                         long duration = System.currentTimeMillis() - startTime;
                         System.out.println("" + total + " message round-trips in " + duration + "ms ("
@@ -111,13 +120,14 @@ public class TimerAgent extends Agent {
         try {
             AID dictation = new AID();
             dictation.setName("dictation@droidspeak");
-            dictation.addAddresses("http://127.0.0.1:54542/acc");
+//            dictation.addAddresses("http://127.0.0.1:54542/acc");
+            dictation.addAddresses("http://fortytwo.net:7778/acc");
             ACLMessage m = new ACLMessage(ACLMessage.INFORM);
             m.setSender(getAID());
             m.setLanguage("English");
             m.setContent("0123456789");
             m.addReceiver(dictation);
-            
+
             send(m);
 
             System.out.println("message sent!");
