@@ -9,3 +9,9 @@ java -cp target/droidspeak-*-full.jar jade.Boot -name droidspeak -port 1331 -age
 
 
 
+java -cp target/droidspeak-*-full.jar net.fortytwo.droidspeak.jade -name droidspeak -agents "timer:net.fortytwo.droidspeak.jade.TimerAgent;echo:net.fortytwo.droidspeak.jade.EchoAgent;dictation:net.fortytwo.droidspeak.jade.DictationAgent"
+
+
+
+sudo iptables -I INPUT -p tcp -m tcp --dport 7778 -j ACCEPT
+
