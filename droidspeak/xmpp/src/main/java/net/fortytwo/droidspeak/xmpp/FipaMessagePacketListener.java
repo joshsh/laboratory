@@ -54,49 +54,47 @@ import jade.domain.FIPAAgentManagement.Envelope;
 import jade.mtp.MTPException;
 import jade.mtp.InChannel.Dispatcher;
 
-public class MessageListener implements PacketListener {
-    private XMPPConnection _con;
-    private Dispatcher _disp;
+public class FipaMessagePacketListener implements PacketListener {
+    private final XMPPConnection connection;
+    private final Dispatcher dispatcher;
 
-    public MessageListener(XMPPConnection con, Dispatcher disp) {
-        _con = con;
-        _disp = disp;
+    public FipaMessagePacketListener(XMPPConnection connection, Dispatcher dispatcher) {
+        this.connection = connection;
+        this.dispatcher = dispatcher;
     }
 
     public void finalize() {
-        stop();
+        connection.removePacketListener(this);
     }
 
     public void start() {
         PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
-        _con.addPacketListener(this, filter);
-    }
-
-    public void stop() {
-        _con.removePacketListener(this);
+        connection.addPacketListener(this, filter);
     }
 
     public void processPacket(Packet packet) {
+        System.out.println("processing packet: " + XmppPlay.prettyPrint(packet));
+
         Envelope env;
         Message msg = (Message) packet;
         String payload = msg.getBody();
-//		System.out.println(msg.getFrom() + ": " + body);
+
         try {
-            //org.apache.xerces.parsers.SAXParser
-            XMLCodec parser = new XMLCodec("org.apache.crimson.parser.XMLReaderImpl");
+            XMLCodec parser = new XMLCodec("org.apache.xerces.parsers.SAXParser");
             PacketExtension ext = msg.getExtension(FipaEnvelopePacketExtension.ELEMENT_NAME, FipaEnvelopePacketExtension.NAMESPACE);
             if (ext == null) {
-                throw new MTPException("Message do not contains a Envelope!");
+                throw new MTPException("Message does not contain an Envelope!");
             }
             FipaEnvelopePacketExtension fipaext = (FipaEnvelopePacketExtension) ext;
 
             StringReader sr = new StringReader(fipaext.getEnvelope());
             env = parser.parse(sr);
-            synchronized (_disp) {
-                _disp.dispatchMessage(env, payload.getBytes());
-//				System.out.println("mensage enviado!");
+            synchronized (dispatcher) {
+                dispatcher.dispatchMessage(env, payload.getBytes());
+				System.out.println("mensage enviado!");
             }
         } catch (MTPException e) {
+            e.printStackTrace(System.err);
         }
     }
 
