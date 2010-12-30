@@ -1,4 +1,4 @@
-package net.fortytwo.droidspeak;
+package net.fortytwo.droidspeak.xmpp;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.PacketListener;
@@ -72,7 +72,7 @@ public class XmppPlay {
         }
     }
 
-    private static String prettyPrint(final Packet packet) {
+    public static String prettyPrint(final Packet packet) {
         StringBuilder sb = new StringBuilder("packet ").append(packet.getPacketID()).append(":\n");
         sb.append("\tfrom: ").append(packet.getFrom()).append("\n");
         sb.append("\tto: " ).append(packet.getTo()).append("\n");

@@ -49,7 +49,7 @@ public class MyBoot {
 
         boolean container = false, backupmain = false, gui = false, nomtp = false;
         String platformName = null, conf = null;
-        String mtps = "jade.mtp.xmpp.MessageTransportProtocol";//null;//"1331:java.lang.String";
+        String mtps = "net.fortytwo.droidspeak.xmpp.XmppMessageTransportProtocol";//null;//"1331:java.lang.String";
         Map<String, String> otherProperties = new HashMap<String, String>();
 
         if (container) {
