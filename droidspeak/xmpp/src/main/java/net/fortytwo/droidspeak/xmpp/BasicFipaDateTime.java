@@ -34,7 +34,7 @@
  * @version 1.0
  */
 
-package jade.mtp.xmpp;
+package net.fortytwo.droidspeak.xmpp;
 
 import java.util.*;
 //import java.text.*;

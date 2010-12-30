@@ -37,7 +37,7 @@ Boston, MA  02111-1307, USA.
  * @version 0.1
  */
 
-package jade.mtp.xmpp;
+package net.fortytwo.droidspeak.xmpp;
 
 import jade.util.leap.List;
 
@@ -71,7 +71,7 @@ public class MessageTransportProtocol implements MTP {
 			connection = new XMPPConnection(servername);
 			connection.login(username, passwd, "acc");
 			
-			Presence p = new Presence(Presence.Type.AVAILABLE);
+			Presence p = new Presence(Presence.Type.available);
 			connection.sendPacket(p);
 		}
 		catch (XMPPException e){
@@ -82,7 +82,7 @@ public class MessageTransportProtocol implements MTP {
 
 	private void logout()
 	{
-		connection.close();
+		connection.disconnect();
 	}
 	
 	
@@ -145,7 +145,7 @@ public class MessageTransportProtocol implements MTP {
 		String passwd = p.getParameter(PREFIX + "passwd", null); 
 		
 		login(server, username, passwd);
-		ProviderManager.addExtensionProvider(FipaEnvelopePacketExtension.ELEMENT_NAME, FipaEnvelopePacketExtension.NAMESPACE, new FipaEnvelopePacketExtensionProvider());
+		ProviderManager.getInstance().addExtensionProvider(FipaEnvelopePacketExtension.ELEMENT_NAME, FipaEnvelopePacketExtension.NAMESPACE, new FipaEnvelopePacketExtensionProvider());
 		MessageListener list = new MessageListener(connection, disp);
 		list.start();
 		
@@ -210,7 +210,7 @@ public class MessageTransportProtocol implements MTP {
 		XMPPAddress jid = new XMPPAddress(addr);
 		msg.setTo(jid.getJID());
 		msg.setBody(new String(payload));
-		msg.setType(Message.Type.NORMAL);
+		msg.setType(Message.Type.normal);
 		msg.addExtension(ext);
 		connection.sendPacket(msg);
 //		System.out.println("Send: " + msg.toXML());

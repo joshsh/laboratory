@@ -39,7 +39,7 @@ Boston, MA  02111-1307, USA.
 
 
 
-package jade.mtp.xmpp;
+package net.fortytwo.droidspeak.xmpp;
 
 import java.io.StringReader;
 
@@ -68,7 +68,7 @@ public class MessageListener implements PacketListener {
 	}
 	
 	public void start(){
-		PacketFilter filter = new MessageTypeFilter(Message.Type.NORMAL);
+		PacketFilter filter = new MessageTypeFilter(Message.Type.normal);
 		_con.addPacketListener(this, filter);		
 	}
 	
