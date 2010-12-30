@@ -37,7 +37,7 @@ Boston, MA  02111-1307, USA.
  * @version 0.1
  */
  
-package jade.mtp.xmpp;
+package net.fortytwo.droidspeak.xmpp;
 
 import org.jivesoftware.smack.packet.PacketExtension;
 import org.jivesoftware.smack.provider.PacketExtensionProvider;

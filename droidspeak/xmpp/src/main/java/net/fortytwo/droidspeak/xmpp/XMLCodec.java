@@ -44,7 +44,7 @@ Boston, MA  02111-1307, USA.
  */
 
 
-package jade.mtp.xmpp;
+package net.fortytwo.droidspeak.xmpp;
 
 import java.io.*;
 //import java.net.*;

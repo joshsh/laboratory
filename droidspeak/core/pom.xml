@@ -22,16 +22,10 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.tilab.jade</groupId>
-            <artifactId>jade-xmpp</artifactId>
-            <version>x.x</version>
+            <groupId>net.fortytwo.droidspeak</groupId>
+            <artifactId>droidspeak-xmpp</artifactId>
+            <version>0.1</version>
         </dependency>
-        <dependency>
-            <groupId>jivesoftware</groupId>
-            <artifactId>smackx</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
         <!--<dependency>
             <groupId>com.tilab.jade</groupId>
             <artifactId>jade</artifactId>

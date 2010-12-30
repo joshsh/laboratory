@@ -21,9 +21,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.fortytwo.droidspeak</groupId>
-            <artifactId>droidspeak-core</artifactId>
-            <version>0.1</version>
+            <groupId>com.tilab.jade</groupId>
+            <artifactId>jade</artifactId>
+            <version>x.x</version>
+        </dependency>
+        <dependency>
+            <groupId>jivesoftware</groupId>
+            <artifactId>smack</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jivesoftware</groupId>
+            <artifactId>smackx</artifactId>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -35,10 +45,7 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
         <directory>target</directory>
-        <outputDirectory>target/classes</outputDirectory>
-        <testOutputDirectory>target/test-classes</testOutputDirectory>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <resources>
             <resource>
