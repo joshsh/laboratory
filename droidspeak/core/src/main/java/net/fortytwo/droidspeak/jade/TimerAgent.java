@@ -13,6 +13,9 @@ import jade.lang.acl.MessageTemplate;
 import java.util.Iterator;
 
 /**
+ * Preliminary results:
+ *     XMPP China <--> US:  540.62 ms/trip (for 100 round-trips)
+ *
  * User: josh
  * Date: Dec 28, 2010
  * Time: 10:02:49 PM
@@ -26,7 +29,7 @@ public class TimerAgent extends Agent {
 
     public TimerAgent() {
         System.out.println("# timer");
-        this.addBehaviour(new TimeRoundTrip(1));
+        this.addBehaviour(new TimeRoundTrip(100));
         template = MessageTemplate.MatchConversationId(convo);
 
         echo = new AID();
@@ -96,7 +99,7 @@ public class TimerAgent extends Agent {
 
                 if (null != r) {
                     count++;
-                    System.out.println("# received " + count);
+                    //System.out.println("# received " + count);
                     if (total == count) {
                         long duration = System.currentTimeMillis() - startTime;
                         System.out.println("" + total + " message round-trips in " + duration + "ms ("
