@@ -42,6 +42,7 @@ package net.fortytwo.droidspeak.xmpp;
 
 import java.io.StringReader;
 
+import jade.util.WrapperException;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.filter.MessageTypeFilter;
@@ -58,13 +59,24 @@ public class FipaMessagePacketListener implements PacketListener {
     private final XMPPConnection connection;
     private final Dispatcher dispatcher;
 
-    public FipaMessagePacketListener(XMPPConnection connection, Dispatcher dispatcher) {
+    private final XMLCodec parser;
+
+    public FipaMessagePacketListener(XMPPConnection connection, Dispatcher dispatcher) throws MTPException {
         this.connection = connection;
         this.dispatcher = dispatcher;
+
+        try {
+            parser = new XMLCodec("org.apache.xerces.parsers.SAXParser");
+        } catch (NewMtpException e) {
+            // TODO: this is ridiculous.  Why can't MTPException accept a 'cause' Throwable?
+            e.printStackTrace(System.err);
+            throw new MTPException(e.toString());
+        }
     }
 
-    public void finalize() {
+    public void finalize() throws Throwable {
         connection.removePacketListener(this);
+        super.finalize();
     }
 
     public void start() {
@@ -73,14 +85,13 @@ public class FipaMessagePacketListener implements PacketListener {
     }
 
     public void processPacket(Packet packet) {
-        System.out.println("processing packet: " + XmppPlay.prettyPrint(packet));
+        //System.out.println("processing packet: " + XmppPlay.prettyPrint(packet));
 
         Envelope env;
         Message msg = (Message) packet;
         String payload = msg.getBody();
 
         try {
-            XMLCodec parser = new XMLCodec("org.apache.xerces.parsers.SAXParser");
             PacketExtension ext = msg.getExtension(FipaEnvelopePacketExtension.ELEMENT_NAME, FipaEnvelopePacketExtension.NAMESPACE);
             if (ext == null) {
                 throw new MTPException("Message does not contain an Envelope!");
@@ -91,7 +102,7 @@ public class FipaMessagePacketListener implements PacketListener {
             env = parser.parse(sr);
             synchronized (dispatcher) {
                 dispatcher.dispatchMessage(env, payload.getBytes());
-				System.out.println("mensage enviado!");
+				//System.out.println("mensage enviado!");
             }
         } catch (MTPException e) {
             e.printStackTrace(System.err);

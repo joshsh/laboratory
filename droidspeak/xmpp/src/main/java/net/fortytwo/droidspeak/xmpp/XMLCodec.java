@@ -130,14 +130,18 @@ public class XMLCodec extends DefaultHandler {
      *
      * @param parserClass the SAX parser class to use
      */
-    public XMLCodec(String parserClass) throws MTPException {
+    public XMLCodec(String parserClass) throws NewMtpException {
         try {
             parser = (XMLReader) Class.forName(parserClass).newInstance();
-            parser.setContentHandler(this);
-            parser.setErrorHandler(this);
-        } catch (Exception e) {
-            throw new MTPException(e.toString());
+        } catch (InstantiationException e) {
+            throw new NewMtpException(e);
+        } catch (IllegalAccessException e) {
+            throw new NewMtpException(e);
+        } catch (ClassNotFoundException e) {
+            throw new NewMtpException(e);
         }
+        parser.setContentHandler(this);
+        parser.setErrorHandler(this);
     }
 
     // ***************************************************
