@@ -49,7 +49,7 @@ public class MyBoot {
 
         boolean container = false, backupmain = false, gui = false, nomtp = false;
         String platformName = null, conf = null;
-        String mtps = null;//"1331:java.lang.String";
+        String mtps = "jade.mtp.xmpp.MessageTransportProtocol";//null;//"1331:java.lang.String";
         Map<String, String> otherProperties = new HashMap<String, String>();
 
         if (container) {
@@ -114,7 +114,7 @@ public class MyBoot {
             sb.append(a.nickname).append(":").append(a.clazz.getName());
         }
 
-        System.out.println("sb: " + sb.toString());
+        System.out.println("agents: " + sb.toString());
         return sb.toString();
     }
 
