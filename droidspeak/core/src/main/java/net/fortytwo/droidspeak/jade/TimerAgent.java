@@ -30,8 +30,9 @@ public class TimerAgent extends Agent {
         template = MessageTemplate.MatchConversationId(convo);
 
         echo = new AID();
-        echo.setName("echo@droidspeak");
-        echo.addAddresses("http://fortytwo.net:7778/acc");
+        echo.setName("echo@droidspeak1");
+        //echo.addAddresses("http://fortytwo.net:7778/acc");
+        echo.addAddresses("xmpp://patabot.1@fortytwo.net/acc");
     }
 
     protected void setup() {
@@ -56,7 +57,7 @@ public class TimerAgent extends Agent {
             message.setSender(getAID());
             //message.addReceiver(echo);
             message.setLanguage("English");
-            message.setContent("0123456789");
+            message.setContent("timer test");
             message.setConversationId(convo);
         }
 
@@ -119,18 +120,19 @@ public class TimerAgent extends Agent {
     private void sendDictationMessage() {
         try {
             AID dictation = new AID();
-            dictation.setName("dictation@droidspeak");
+            dictation.setName("dictation@droidspeak1");
 //            dictation.addAddresses("http://127.0.0.1:54542/acc");
-            dictation.addAddresses("http://fortytwo.net:7778/acc");
+            //dictation.addAddresses("http://fortytwo.net:7778/acc");
+            dictation.addAddresses("xmpp://patabot.1@fortytwo.net/acc");
             ACLMessage m = new ACLMessage(ACLMessage.INFORM);
             m.setSender(getAID());
             m.setLanguage("English");
-            m.setContent("0123456789");
+            m.setContent("dictation test");
             m.addReceiver(dictation);
 
             send(m);
 
-            System.out.println("message sent!");
+            System.out.println("dictation test message queued");
         } catch (Throwable t) {
             t.printStackTrace(System.err);
         }

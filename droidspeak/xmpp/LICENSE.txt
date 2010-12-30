@@ -1,0 +1,1 @@
+This module is based on the JADE XMPP add-on.  Proper attribution will be added if/when Droidspeak becomes a 'real' project.
