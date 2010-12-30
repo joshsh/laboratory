@@ -66,6 +66,7 @@ public class XmppMessageTransportProtocol implements MTP {
     private void login(String servername, String username, String passwd) throws MTPException {
         try {
             connection = new XMPPConnection(servername);
+            connection.connect();
             connection.login(username, passwd, "acc");
 
             Presence p = new Presence(Presence.Type.available);
