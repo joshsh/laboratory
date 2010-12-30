@@ -13,6 +13,7 @@
     <modules>
 	<module>core</module>
 	<module>android</module>   
+	<module>xmpp</module>
  </modules>
 
     <build>
