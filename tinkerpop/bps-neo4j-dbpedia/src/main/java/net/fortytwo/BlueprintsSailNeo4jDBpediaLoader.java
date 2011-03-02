@@ -48,6 +48,9 @@ public class BlueprintsSailNeo4jDBpediaLoader {
                     GZIPInputStream is = new GZIPInputStream(new FileInputStream(f));
                     try {
                         rc.add(is, "", RDFFormat.NTRIPLES);
+                    } catch (Throwable t) {
+                        // Attempt to recover.
+                        t.printStackTrace(System.err);
                     } finally {
                         is.close();
                     }
