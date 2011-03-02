@@ -42,6 +42,9 @@ public class BlueprintsSailNeo4jDBpediaLoader {
             RepositoryConnection rc = repo.getConnection();
             rc.setAutoCommit(false);
             try {
+                rc.clear();
+                rc.commit();
+
                 File dir = new File(SOURCE);
                 for (File f : dir.listFiles()) {
                     System.out.println("loading file: " + f);
