@@ -40,7 +40,8 @@ public class BlueprintsSailNeo4jDBpediaLoader {
         try {
             Repository repo = new SailRepository(sail);
             RepositoryConnection rc = repo.getConnection();
-            rc.setAutoCommit(false);
+//            rc.setAutoCommit(false);
+            rc.setAutoCommit(true);
             try {
                 rc.clear();
                 rc.commit();
