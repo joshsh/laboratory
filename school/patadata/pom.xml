@@ -25,8 +25,13 @@
             <url>http://fortytwo.net/maven2</url>
         </repository>
         <repository>
-            <id>neo4j-public-repository</id>
-            <url>http://m2.neo4j.org</url>
+            <id>tinkerpop-repository</id>
+            <name>TinkerPop Maven2 Repository</name>
+            <url>http://tinkerpop.com/maven2</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
         <repository>
             <id>aduna-repo</id>
@@ -42,9 +47,14 @@
             <version>0.7-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-rdf-sail</artifactId>
-            <version>0.6-SNAPSHOT</version>
+            <groupId>com.tinkerpop.blueprints</groupId>
+            <artifactId>blueprints-graph-sail</artifactId>
+            <version>0.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tinkerpop.blueprints</groupId>
+            <artifactId>blueprints-neo4j-graph</artifactId>
+            <version>0.9-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
