@@ -1,16 +1,16 @@
 package edu.rpi.tw.patadata;
 
-import edu.rpi.tw.patadata.ranking.WeightedVector;
-import edu.rpi.tw.patadata.ranking.WeightedVectorApproximation;
+import net.fortytwo.flow.rdf.ranking.HandlerException;
+import net.fortytwo.flow.rdf.ranking.Ranking;
+import net.fortytwo.flow.rdf.ranking.WeightedVector;
+import net.fortytwo.flow.rdf.ranking.WeightedVectorApproximation;
 import org.openrdf.model.Resource;
 import org.openrdf.sail.SailConnection;
 
 /**
- * User: josh
- * Date: Apr 19, 2010
- * Time: 7:10:39 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class BogoPageRankVector implements WeightedVectorApproximation<Resource, PataException> {
+public class BogoPageRankVector implements WeightedVectorApproximation<Resource, HandlerException> {
     private static final int CYCLES_PER_SEED = 100;
     
     private final WeightedVector<Resource> result;
@@ -25,7 +25,7 @@ public class BogoPageRankVector implements WeightedVectorApproximation<Resource,
         return result.normalizedAsDist();
     }
 
-    public int compute(int cycles) throws PataException {
+    public int compute(int cycles) throws HandlerException {
         System.out.println("pagerank: " + cycles + " cycles");
         int s = cycles / CYCLES_PER_SEED;
         if (0 == s) {
@@ -34,7 +34,7 @@ public class BogoPageRankVector implements WeightedVectorApproximation<Resource,
 
         Resource[] seeds = new Resource[s];
         for (int i = 0; i < seeds.length; i++) {
-            seeds[i] = TraverserTools.randomResource(sailConnection);
+            seeds[i] = Ranking.randomResource(sailConnection);
         }
 
         DBPediaSpreadVector p = new DBPediaSpreadVector(result, sailConnection, seeds);

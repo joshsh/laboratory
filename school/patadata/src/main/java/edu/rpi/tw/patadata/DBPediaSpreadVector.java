@@ -1,22 +1,24 @@
 package edu.rpi.tw.patadata;
 
+import edu.rpi.tw.patadata.vocab.DBPediaProperties;
+import net.fortytwo.flow.rdf.ranking.Handler;
+import net.fortytwo.flow.rdf.ranking.HandlerException;
+import net.fortytwo.flow.rdf.ranking.KeepResourcesFilter;
+import net.fortytwo.flow.rdf.ranking.Ranking;
+import net.fortytwo.flow.rdf.ranking.WeightedVector;
+import net.fortytwo.flow.rdf.ranking.WeightedVectorApproximation;
 import org.openrdf.model.Resource;
 import org.openrdf.model.URI;
 import org.openrdf.sail.SailConnection;
-import edu.rpi.tw.patadata.ranking.WeightedVector;
-import edu.rpi.tw.patadata.ranking.WeightedVectorApproximation;
-import edu.rpi.tw.patadata.vocab.DBPediaProperties;
 
-import java.util.Queue;
-import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
- * User: josh
- * Date: Apr 19, 2010
- * Time: 3:01:08 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class DBPediaSpreadVector implements WeightedVectorApproximation<Resource, PataException> {
+public class DBPediaSpreadVector implements WeightedVectorApproximation<Resource, HandlerException> {
 //    private static final double DECAY = 0.1;
     private static final double DECAY = 0.85;
 
@@ -78,7 +80,7 @@ public class DBPediaSpreadVector implements WeightedVectorApproximation<Resource
         return normed;
     }
 
-    public int compute(int cycles) throws PataException {
+    public int compute(int cycles) throws HandlerException {
         System.out.println("dbpedia spreader: " + cycles + " cycles over " + seeds.length + " seeds: " + seeds[0] + "...");
         for (int i = 0; i < cycles; i++) {
             if (0 == curGen.size()) {
@@ -105,30 +107,30 @@ public class DBPediaSpreadVector implements WeightedVectorApproximation<Resource
                             final Resource resource,
                             final double weight,
                             final WeightedVector<Resource> result,
-                            final Queue<Resource> resources) throws PataException {
+                            final Queue<Resource> resources) throws HandlerException {
         if (INVERSE) {
-             Handler<Resource, PataException> h = new Handler<Resource, PataException>() {
-                public boolean handle(final Resource r) throws PataException {
+             Handler<Resource, HandlerException> h = new Handler<Resource, HandlerException>() {
+                public boolean handle(final Resource r) throws HandlerException {
                     result.addWeight(r, weight);
                     resources.offer(r);
                     return true;
                 }
             };
 
-            TraverserTools.traverseBackward(sc,
+            Ranking.traverseBackward(sc,
                     new KeepResourcesFilter(h),
                     resource,
                     RELATED_RESOURCE_PREDICATES);
         } else {
-            Handler<Resource, PataException> h = new Handler<Resource, PataException>() {
-                public boolean handle(final Resource r) throws PataException {
+            Handler<Resource, HandlerException> h = new Handler<Resource, HandlerException>() {
+                public boolean handle(final Resource r) throws HandlerException {
                     result.addWeight(r, weight);
                     resources.offer(r);
                     return true;
                 }
             };
 
-            TraverserTools.traverseForward(sc,
+            Ranking.traverseForward(sc,
                     new KeepResourcesFilter(h),
                     resource,
                     RELATED_RESOURCE_PREDICATES);

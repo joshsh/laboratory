@@ -1,11 +1,15 @@
 package edu.rpi.tw.patadata;
 
-import edu.rpi.tw.patadata.ranking.ApproxIntersection;
-import edu.rpi.tw.patadata.ranking.NormalizedApproxVector;
-import edu.rpi.tw.patadata.ranking.WeightedValue;
-import edu.rpi.tw.patadata.ranking.WeightedVector;
-import edu.rpi.tw.patadata.ranking.WeightedVectorApproximation;
 import info.aduna.iteration.CloseableIteration;
+import net.fortytwo.flow.rdf.ranking.ApproxIntersection;
+import net.fortytwo.flow.rdf.ranking.Handler;
+import net.fortytwo.flow.rdf.ranking.HandlerException;
+import net.fortytwo.flow.rdf.ranking.KeepResourcesFilter;
+import net.fortytwo.flow.rdf.ranking.NormalizedApproxVector;
+import net.fortytwo.flow.rdf.ranking.Ranking;
+import net.fortytwo.flow.rdf.ranking.WeightedValue;
+import net.fortytwo.flow.rdf.ranking.WeightedVector;
+import net.fortytwo.flow.rdf.ranking.WeightedVectorApproximation;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
@@ -28,24 +32,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * User: josh
- * Date: Apr 16, 2010
- * Time: 4:50:03 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class Patadata {
-    private static final URI prometheus = new URIImpl("http://dbpedia.org/resource/Prometheus");
-    private static final URI piano = new URIImpl("http://dbpedia.org/resource/Piano");
-    private static final URI rock = new URIImpl("http://dbpedia.org/resource/Rock_%28geology%29");
-    private static final URI ring = new URIImpl("http://dbpedia.org/resource/Ring");
-    private static final URI mountain = new URIImpl("http://dbpedia.org/resource/Mountain");
-    private static final URI monkey = new URIImpl("http://dbpedia.org/resource/Monkey");
-    private static final URI hamlet = new URIImpl("http://dbpedia.org/resource/Hamlet");
-    private static final URI typewriter = new URIImpl("http://dbpedia.org/resource/Typewriter");
-    private static final URI music = new URIImpl("http://dbpedia.org/resource/Music");
+    private static final String DBR = "http://dbpedia.org/resource/";
+    private static final URI
+            prometheus = new URIImpl(DBR + "Prometheus"),
+            piano = new URIImpl(DBR + "Piano"),
+            rock = new URIImpl(DBR + "Rock_%28geology%29"),
+            ring = new URIImpl(DBR + "Ring"),
+            mountain = new URIImpl(DBR + "Mountain"),
+            monkey = new URIImpl(DBR + "Monkey"),
+            hamlet = new URIImpl(DBR + "Hamlet"),
+            typewriter = new URIImpl(DBR + "Typewriter"),
+            music = new URIImpl(DBR + "Music");
 
     public static final URI
-            ADMIN_GRAPH = new URIImpl("http://example.org/adminGraph"),
-            INDEX = new URIImpl("http://example.org/index");
+            ADMIN_GRAPH = new URIImpl("http://example.org/adminGraph");
 
     private static final String BASE_URI = "http://example.org/bogusBaseURI/";
     private final Sail sail;
@@ -141,7 +144,7 @@ public class Patadata {
             int chunkSize = 10000;
             int count = 0;
             for (Resource subject : subjects) {
-                sc.addStatement(subject, INDEX, new LiteralImpl("" + count), ADMIN_GRAPH);
+                sc.addStatement(subject, Ranking.INDEX, new LiteralImpl("" + count), ADMIN_GRAPH);
                 count++;
                 if (0 == count % chunkSize) {
                     System.out.println("indexed " + count + " resources");
@@ -155,7 +158,7 @@ public class Patadata {
         }
     }
 
-    private void testSyzygySearch() throws SailException, PataException {
+    private void testSyzygySearch() throws SailException, HandlerException {
         Resource r1 = prometheus;
         Resource r2 = piano;
 
@@ -203,7 +206,7 @@ public class Patadata {
         }
     }
 
-    private void testSyzygySearchOld() throws SailException, PataException {
+    private void testSyzygySearchOld() throws SailException, HandlerException {
         Resource r1 = prometheus;
         Resource r2 = piano;
 
@@ -280,12 +283,12 @@ public class Patadata {
         }
     }
 
-    private void testBogoPageRank() throws SailException, PataException {
+    private void testBogoPageRank() throws SailException, HandlerException {
         SailConnection sc = sail.getConnection();
         try {
             for (int i = 0; i < 3; i++) {
                 long before = System.currentTimeMillis();
-                WeightedVectorApproximation<Resource, PataException> v
+                WeightedVectorApproximation<Resource, HandlerException> v
                         = new BogoPageRankVector(sc);
 
                 // 300 not enough
@@ -304,9 +307,9 @@ public class Patadata {
         }
     }
 
-    private WeightedVector<Resource> computeBogoPageRank(final SailConnection sc) throws SailException, PataException {
+    private WeightedVector<Resource> computeBogoPageRank(final SailConnection sc) throws SailException, HandlerException {
         long before = System.currentTimeMillis();
-        WeightedVectorApproximation<Resource, PataException> v
+        WeightedVectorApproximation<Resource, HandlerException> v
                 = new BogoPageRankVector(sc);
 
         v.compute(10000);
@@ -374,40 +377,40 @@ public class Patadata {
 
     private WeightedVector<Resource> findSpreadIntersection(final SailConnection sc,
                                                             final int cycles,
-                                                            final Resource... seeds) throws PataException {
-        WeightedVectorApproximation<Resource, PataException> p = dbpediaSpreadIntersection(sc, seeds);
+                                                            final Resource... seeds) throws HandlerException {
+        WeightedVectorApproximation<Resource, HandlerException> p = dbpediaSpreadIntersection(sc, seeds);
         p.compute(cycles);
         return p.currentResult();
     }
 
-    public static WeightedVectorApproximation<Resource, PataException> dbpediaSpreadIntersection(
+    public static WeightedVectorApproximation<Resource, HandlerException> dbpediaSpreadIntersection(
             final SailConnection sc,
             final Resource... seeds) {
-        WeightedVectorApproximation<Resource, PataException>[] spreadVectors
+        WeightedVectorApproximation<Resource, HandlerException>[] spreadVectors
                 = new WeightedVectorApproximation[seeds.length];
         for (int i = 0; i < seeds.length; i++) {
             spreadVectors[i] = new DBPediaSpreadVector(sc, seeds[i]);
         }
 
-        return new NormalizedApproxVector<Resource, PataException>(
-                new ApproxIntersection<Resource, PataException>(spreadVectors));
+        return new NormalizedApproxVector<Resource, HandlerException>(
+                new ApproxIntersection<Resource, HandlerException>(spreadVectors));
     }
 
-    private void testRandomResources() throws SailException, PataException {
+    private void testRandomResources() throws SailException, HandlerException {
         SailConnection sc = sail.getConnection();
         try {
             for (int i = 0; i < 1; i++) {
                 Resource r = prometheus;
                 System.out.println("random resource: " + r);
 
-                Handler<Resource, PataException> ins = new Handler<Resource, PataException>() {
-                    public boolean handle(Resource resource) throws PataException {
+                Handler<Resource, HandlerException> ins = new Handler<Resource, HandlerException>() {
+                    public boolean handle(Resource resource) throws HandlerException {
                         System.out.println("\t" + resource);
                         return true;
                     }
                 };
 
-                TraverserTools.traverseForward(sc, new KeepResourcesFilter(ins),
+                Ranking.traverseForward(sc, new KeepResourcesFilter(ins),
                         r, DBPediaSpreadVector.RELATED_RESOURCE_PREDICATES);
             }
 
@@ -443,7 +446,7 @@ public class Patadata {
 
     public WeightedVector<Resource> spread(final SailConnection sc,
                                            final int flops,
-                                           final Resource... seeds) throws PataException {
+                                           final Resource... seeds) throws HandlerException {
         DBPediaSpreadVector spreader = new DBPediaSpreadVector(sc, seeds);
         spreader.compute(flops);
 
