@@ -11,6 +11,13 @@
     <name>Patadata</name>
     <description>The 'pataphysical search engine</description>
 
+    <parent>
+        <groupId>net.fortytwo.laboratory</groupId>
+        <artifactId>school</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
     <repositories>
         <repository>
             <id>fortytwo</id>
