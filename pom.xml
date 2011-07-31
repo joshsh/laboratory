@@ -12,6 +12,7 @@
     <description>A collection of small or experimental projects</description>
 
     <modules>
+	<module>qrcodes</module>
         <module>school</module>
     </modules>
 
