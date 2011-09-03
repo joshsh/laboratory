@@ -14,7 +14,7 @@
 
 #include <sys/mman.h>
 
-const size_t size=256;
+const size_t size=400;
 #define nvoxels (size*size*size)
 
 static char* voxels;

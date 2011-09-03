@@ -9,7 +9,7 @@
 
 #include <math.h>
 
-const unsigned int size=256;
+const unsigned int size=400;
 #define RANGE 1.2
 const double xlow=-RANGE;
 const double xhigh=RANGE;
@@ -18,8 +18,8 @@ const double yhigh=RANGE;
 const double zlow=-RANGE;
 const double zhigh=RANGE;
 
-const unsigned int maxit=80;
-const double mandpow=8.0;
+const unsigned int maxit=6;
+const double mandpow=6.0;
 
 double valInRange(double low, double high, unsigned int size, unsigned int off)
 {
