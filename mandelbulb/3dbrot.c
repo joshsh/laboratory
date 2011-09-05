@@ -4,12 +4,15 @@
 
   This spits out a voxel array on stdout, 1 byte per voxel (255 if > iteration limit
   else 0).
+	  
+  "Hollowing" code (c) 2011 by Joshua Shinavier
  */
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <math.h>
 
-const unsigned int size=400;
+#define SIZE 200
 #define RANGE 1.2
 const double xlow=-RANGE;
 const double xhigh=RANGE;
@@ -20,6 +23,12 @@ const double zhigh=RANGE;
 
 const unsigned int maxit=6;
 const double mandpow=6.0;
+
+//#define HOLLOW
+#define THICKNESS 0.05
+
+unsigned char voxels[SIZE][SIZE][SIZE];
+unsigned char buffer[SIZE][SIZE][SIZE];
 
 double valInRange(double low, double high, unsigned int size, unsigned int off)
 {
@@ -33,7 +42,7 @@ unsigned int doPoint(double cx, double cy, double cz)
   double r,theta,phi;
   unsigned int i;
 
-  for(i=0,x=0.0,y=0.0,z=0.0;(i<maxit) && (x*x+y*y+z*z) < 2.0;i++)
+  for(i=0,x=0.0,y=0.0,z=0.0;(i<maxit) && (x*x+y*y+z*z) < RANGE;i++)
   {
     double rpow;
 
@@ -55,21 +64,108 @@ unsigned int doPoint(double cx, double cy, double cz)
   return i;
 }
 
-int main()
-{
-  unsigned int x,y,z;
+unsigned int min(unsigned int a, unsigned int b) {
+    return a > b ? b : a;
+}
 
-  for(z=0;z<size;z++) {
-    double fz=valInRange(zlow, zhigh, size, z);
-    fprintf(stderr,"fz=%lf\n", fz);
-    for(y=0;y<size;y++) {
-      double fy=valInRange(ylow, yhigh, size, y);
-      for(x=0;x<size;x++) {
-        double fx=valInRange(xlow, xhigh, size, x);
-        unsigned int val=doPoint(fx,fy,fz);
-        putchar((val>=(maxit-1))?255:0);
+unsigned int max(unsigned int a, unsigned int b) {
+    return a > b ? a : b;
+}
+
+void makeHollow() {
+  unsigned int x, y, z, xn, yn, zn, radius = THICKNESS * SIZE / (RANGE * 2);
+  fprintf(stderr, "hollowing out center of bulb\n");
+  fprintf(stderr, "radius = %d\n", radius);
+  
+  for (z = 0; z < SIZE; z++) {
+    for (y = 0; y < SIZE; y++) {
+      for (x = 0; x < SIZE; x++) {
+        buffer[z][y][x] = 0;
       }
     }
   }
+
+  for (z = 0; z < SIZE; z++) {
+    fprintf(stderr, "z = %d\n", z);
+    for (y = 0; y < SIZE; y++) {
+      for (x = 0; x < SIZE; x++) {
+        if (!voxels[z][y][x]) {
+          for (zn = max(0, z - radius); zn < min(SIZE, z + radius); zn++) {
+            for (yn = max(0, y - radius); yn < min(SIZE, y + radius); yn++) {
+              for (xn = max(0, x - radius); xn < min(SIZE, x + radius); xn++) {
+                buffer[zn][yn][xn] = 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  for (z = 0; z < SIZE; z++) {
+    for (y = 0; y < SIZE; y++) {
+      for (x = 0; x < SIZE; x++) {
+	if (voxels[z][y][x]) {
+          voxels[z][y][x] = buffer[z][y][x];
+	}
+      }
+    }
+  }
+}
+
+int main()
+{
+  unsigned int x,y,z,b,volume;
+  unsigned int minx, miny, minz, maxx, maxy, maxz;
+  double scale = 2 * RANGE / SIZE;
+  
+  for(z=0;z<SIZE;z++) {
+    double fz=valInRange(zlow, zhigh, SIZE, z);
+    fprintf(stderr,"fz=%lf\n", fz);
+    for(y=0;y<SIZE;y++) {
+      double fy=valInRange(ylow, yhigh, SIZE, y);
+      for(x=0;x<SIZE;x++) {
+        double fx=valInRange(xlow, xhigh, SIZE, x);
+        unsigned int val=doPoint(fx,fy,fz);
+	voxels[z][y][x] = (val >= (maxit - 1)) ? 1 : 0;
+      }
+    }
+  }
+  
+#ifdef HOLLOW
+  makeHollow();
+#endif
+  
+  fprintf(stderr, "writing voxel array\n");
+  volume = 0;
+  for (z = 0; z < SIZE; z++) {
+    for (y = 0; y < SIZE; y++) {
+      for (x = 0; x < SIZE; x++) {
+        b = voxels[z][y][x];
+        putchar(b ? 255 : 0);
+        if (b) {
+          volume++;
+	  minx = min(x, minx);
+	  maxx = max(x, maxx);
+	  miny = min(y, miny);
+	  maxy = max(y, maxy);
+	  minz = min(z, minz);
+	  maxz = max(z, maxz);
+	}
+      }
+    }
+  }
+  fprintf(stderr, "volume: %f (%d voxels)\n",
+    (volume * scale * scale * scale),
+    volume);
+  fprintf(stderr, "z,y,x dimensions: %f, %f, %f (%d, %d, %d voxels)\n",
+    (maxz - minz) * scale,
+    (maxy - miny) * scale,
+    (maxx - minx) * scale,
+    maxz - minz,
+    maxy - miny,
+    maxx - minx);
+    
+  exit(0);
 }
 
