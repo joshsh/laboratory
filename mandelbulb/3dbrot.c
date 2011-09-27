@@ -12,7 +12,7 @@
 
 #include <math.h>
 
-#define SIZE 200
+#define SIZE 444
 #define RANGE 1.2
 const double xlow=-RANGE;
 const double xhigh=RANGE;
@@ -24,11 +24,14 @@ const double zhigh=RANGE;
 const unsigned int maxit=6;
 const double mandpow=6.0;
 
-//#define HOLLOW
-#define THICKNESS 0.05
-
 unsigned char voxels[SIZE][SIZE][SIZE];
+
+#define HOLLOW
+
+#ifdef HOLLOW
+#define THICKNESS 0.075
 unsigned char buffer[SIZE][SIZE][SIZE];
+#endif
 
 double valInRange(double low, double high, unsigned int size, unsigned int off)
 {
@@ -72,6 +75,20 @@ unsigned int max(unsigned int a, unsigned int b) {
     return a > b ? a : b;
 }
 
+#ifdef HOLLOW
+int isBoundaryPoint(int z, int y, int x) {
+  return
+    !voxels[z][y][x]
+    && z > 0 && y > 0 && x > 0 && z < SIZE - 1 && y < SIZE - 1 && x < SIZE - 1
+    && (voxels[z-1][y][x]
+    || voxels[z+1][y][x]
+    || voxels[z][y-1][x]
+    || voxels[z][y+1][x]
+    || voxels[z][y][x-1]
+    || voxels[z][y][x+1]
+    );
+}
+
 void makeHollow() {
   unsigned int x, y, z, xn, yn, zn, radius = THICKNESS * SIZE / (RANGE * 2);
   fprintf(stderr, "hollowing out center of bulb\n");
@@ -89,7 +106,7 @@ void makeHollow() {
     fprintf(stderr, "z = %d\n", z);
     for (y = 0; y < SIZE; y++) {
       for (x = 0; x < SIZE; x++) {
-        if (!voxels[z][y][x]) {
+        if (isBoundaryPoint(z, y, x)) {
           for (zn = max(0, z - radius); zn < min(SIZE, z + radius); zn++) {
             for (yn = max(0, y - radius); yn < min(SIZE, y + radius); yn++) {
               for (xn = max(0, x - radius); xn < min(SIZE, x + radius); xn++) {
@@ -112,6 +129,7 @@ void makeHollow() {
     }
   }
 }
+#endif
 
 int main()
 {
