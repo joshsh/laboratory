@@ -1,0 +1,49 @@
+
+
+
+time sesamize dump -o nquads ~/demos/twitlogic/core/data twitlogic-dump.nq
+
+
+
+time sesamize dump -o nquads ~/demos/twitlogic/twitlogic-core/data twitlogic-dump.nq
+
+
+
+old dump:
+12920019 twitlogic-dump.nq
+new dump:
+1529985 twitlogic-dump-new.nq
+combined dump
+14450004 twitlogic-dump-combined.nq
+
+
+
+
+scp -p 2002 twitlogic-dump-new.nq.gz josh@flux.franz.com:/data/tmp
+scp -P 2002 twitlogic-dump-new.nq.gz josh@flux.franz.com:/data/tmp
+
+
+
+
+
+################################################################################
+# emacs
+
+esc-x flux
+esc-x load-ag422
+
+
+################################################################################
+# create the store
+
+(in-package :db.agraph.user)  
+(enable-!-reader)  
+(enable-print-decoded t)
+(create-triple-store "rdfagents-www2012" :catalog "testing" :port 10042)
+
+
+################################################################################
+# import tweets
+
+
+
