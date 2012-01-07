@@ -71,58 +71,51 @@ public class MarkupGenerator {
         //System.out.println("" + datasetsByUri.values().size() + " datasets");
 
         StringBuilder sb = new StringBuilder();
-        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-                "<?xml-stylesheet href=\"http://www.w3.org/StyleSheets/TR/W3C-REC.css\" type=\"text/css\"?>\n" +
-                "<!DOCTYPE html\n" +
-                "        PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n" +
-                "        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n" +
-                "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n")
-                .append("<head>\n" +
-                        "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
-                        "    <title>schema.org dataset extension example</title>\n" +
-                        //"    <link rel=\"stylesheet\" type=\"text/css\" href=\"schemaorg.css\" media=\"screen, projection\"/>\n" +
-                        "</head>\n")
-                .append("<body>\n");
+        sb.append("<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
+                "    <title>schema.org dataset extension example</title>\n" +
+                "</head>\n" +
+                "<body>\n");
         for (Dataset d : datasetsByUri.values()) {
             //System.out.println("uri: " + d.getUri());
-
-            sb.append("<div itemscope itemtype=\"http://schema.org/Dataset\">\n" + "    <a href=\"" + d.getHomepage() + "\"><span itemprop=\"name\">\n" + "        <b>")
-                    .append(d.getTitle()).append("</b>\n" + "    </span></a>\n" + "\n");
+            sb.append("<div itemscope=\"itemscope\" itemtype=\"http://schema.org/Dataset\">\n    <a href=\"")
+                    .append(htmlEscape(d.getHomepage()))
+                    .append("\"><span itemprop=\"name\">\n" + "        <b>")
+                    .append(htmlEscape(d.getTitle()))
+                    .append("</b>\n" + "    </span></a>\n" + "\n");
             sb.append("    <div><meta itemprop=\"url\" content=\"")
-                    .append(d.getHomepage())
-                    .append("\"/>\n" + "    <meta itemprop=\"description\">")
-                    .append(d.getDescription())
-                    .append("</meta></div>\n" + "\n");
+                    .append(htmlEscape(d.getHomepage()))
+                    .append("\"/>\n" + "    <meta itemprop=\"description\" content=\"")
+                    .append(htmlEscape(d.getDescription()))
+                    .append("\"></div>\n" + "\n");     // TODO
             if (null != d.getCountry()) {
                 String label = d.getCountry();
                 if (label.startsWith("http://dbpedia.org/resource/")) {
                     label = label.substring(label.lastIndexOf("/") + 1).replaceAll("_", " ");
                 }
                 sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
-                        .append(d.getCountry())
-                        .append("\"><span itemprop=\"spatialScope\">\n" + "        <span itemscope itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
-                        .append(label)
+                        .append(htmlEscape(d.getCountry()))
+                        .append("\"><span itemprop=\"spatialScope\">\n" + "        <span itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
+                        .append(htmlEscape(label))
                         .append("</span>\n" + "        </span>\n" + "    </span></a></div>\n" + "\n");
             }
             if (null != d.getAgencyTitle()) {
-                sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\">\n" + "        <span itemscope itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
-                        .append(d.getAgencyTitle())
+                sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\">\n" + "        <span itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
+                        .append(htmlEscape(d.getAgencyTitle()))
                         .append("</span>\n" + "        </span>\n" + "    </span></div>\n" + "\n");
             }
-            if (d.getSubjects().size() > 0) {
-                boolean first = true;
+            int size = d.getSubjects().size();
+            if (size > 0) {
                 sb.append("    <i>Categories:</i>\n");
                 int count = 0;
                 for (String subject : d.getSubjects()) {
                     sb.append("    <span itemprop=\"category\">\n" + "        ");
-                    if (first) {
-                        first = false;
-                    } else {
-                        sb.append(", ");
-                    }
-                    sb.append("<span itemscope itemtype=\"http://schema.org/Text\">")
-                            .append(subject)
-                            .append("</span>\n" + "    </span>\n");
+                    sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
+                            .append(htmlEscape(subject))
+                            .append("</span>\n" + "    </span>")
+                            .append(count < size - 1 ? ",\n" : "\n");
                     count++;
                     //if (count >= 5) {
                     //    break;
@@ -141,12 +134,19 @@ public class MarkupGenerator {
 
         sb.append("</body></html>");
 
-        OutputStream out = new FileOutputStream(new File("/Users/josh/tmp/results.html"));
+        OutputStream out = new FileOutputStream(new File("data/results.html"));
         try {
             out.write(sb.toString().getBytes("UTF-8"));
         } finally {
             out.close();
         }
+    }
+
+    private static String htmlEscape(String s) {
+        // TODO
+        return s
+                .replaceAll("&", "&amp;")
+                .replaceAll("\"", "&quot;");
     }
 
     private static class Dataset {
