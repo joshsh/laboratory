@@ -87,9 +87,16 @@ public class MarkupGenerator {
                     .append("</b>\n" + "    </span></a>\n" + "\n");
             sb.append("    <div><meta itemprop=\"url\" content=\"")
                     .append(htmlEscape(d.getHomepage()))
+                    .append("\"/>\n" + "    <span itemprop=\"description\">")
+                    .append(htmlEscape(d.getDescription()))
+                    .append("</span></div>\n" + "\n");     // TODO
+/*
+            sb.append("    <div><meta itemprop=\"url\" content=\"")
+                    .append(htmlEscape(d.getHomepage()))
                     .append("\"/>\n" + "    <meta itemprop=\"description\" content=\"")
                     .append(htmlEscape(d.getDescription()))
                     .append("\"></div>\n" + "\n");     // TODO
+                    */
             if (null != d.getCountry()) {
                 String label = d.getCountry();
                 if (label.startsWith("http://dbpedia.org/resource/")) {
@@ -97,33 +104,33 @@ public class MarkupGenerator {
                 }
                 sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
                         .append(htmlEscape(d.getCountry()))
-                        .append("\"><span itemprop=\"spatialScope\">\n" + "        <span itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
+                        .append("\"><span itemprop=\"spatialScope\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
                         .append(htmlEscape(label))
-                        .append("</span>\n" + "        </span>\n" + "    </span></a></div>\n" + "\n");
+                        .append("</span>\n" + "        </span>\n" + "    </a></div>\n" + "\n");
             }
             if (null != d.getAgencyTitle()) {
-                sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\">\n" + "        <span itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
+                sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
                         .append(htmlEscape(d.getAgencyTitle()))
-                        .append("</span>\n" + "        </span>\n" + "    </span></div>\n" + "\n");
+                        .append("</span>\n" + "        </span>\n" + "    </div>\n" + "\n");
             }
             int size = d.getSubjects().size();
             if (size > 0) {
                 sb.append("    <i>Categories:</i>\n");
                 int count = 0;
                 for (String subject : d.getSubjects()) {
-                    sb.append("    <span itemprop=\"category\">\n" + "        ");
+                    sb.append("    <span itemprop=\"category\">");
                     sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
                             .append(htmlEscape(subject))
-                            .append("</span>\n" + "    </span>")
+                            .append("</span></span>")
                             .append(count < size - 1 ? ",\n" : "\n");
                     count++;
                     //if (count >= 5) {
                     //    break;
                     //}
                 }
-                sb.append("\n");
             }
-            sb.append("</div><br/>");
+            sb.append("</div>\n" +
+                    "<br/>\n\n");
         }
 
         /*
