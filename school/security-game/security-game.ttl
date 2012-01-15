@@ -1,0 +1,209 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://tw.rpi.edu/2011/security-game##> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://tw.rpi.edu/2011/security-game#> .
+
+<http://tw.rpi.edu/2011/security-game#> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://tw.rpi.edu/2011/security-game#threatEvent
+
+<http://tw.rpi.edu/2011/security-game#threatEvent> rdf:type owl:ObjectProperty ;
+                                                   
+                                                   rdfs:comment "The association of a threat with a given event.  The event defines the time span of the threat." ;
+                                                   
+                                                   rdfs:range <http://tw.rpi.edu/2011/security-game#Event> ;
+                                                   
+                                                   rdfs:domain <http://tw.rpi.edu/2011/security-game#Threat> .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#threatTarget
+
+<http://tw.rpi.edu/2011/security-game#threatTarget> rdf:type owl:ObjectProperty ;
+                                                    
+                                                    rdfs:comment "The target affected by a given threat" .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://tw.rpi.edu/2011/security-game#availableResources
+
+<http://tw.rpi.edu/2011/security-game#availableResources> rdf:type owl:DatatypeProperty ;
+                                                          
+                                                          rdfs:comment "The amount of security resources available at the present time" ;
+                                                          
+                                                          rdfs:domain <http://tw.rpi.edu/2011/security-game#World> ;
+                                                          
+                                                          rdfs:range xsd:integer .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#endTime
+
+<http://tw.rpi.edu/2011/security-game#endTime> rdf:type owl:DatatypeProperty ;
+                                               
+                                               rdfs:comment "The end time of an event" ;
+                                               
+                                               rdfs:domain <http://tw.rpi.edu/2011/security-game#Event> ;
+                                               
+                                               rdfs:range xsd:dateTime .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#potentialCasualties
+
+<http://tw.rpi.edu/2011/security-game#potentialCasualties> rdf:type owl:DatatypeProperty ;
+                                                           
+                                                           rdfs:comment "A numeric value for the potential casualties of an attack on a given target" ;
+                                                           
+                                                           rdfs:domain <http://tw.rpi.edu/2011/security-game#Target> ;
+                                                           
+                                                           rdfs:range xsd:integer .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#startTime
+
+<http://tw.rpi.edu/2011/security-game#startTime> rdf:type owl:DatatypeProperty ;
+                                                 
+                                                 rdfs:comment "The start time of an event" ;
+                                                 
+                                                 rdfs:domain <http://tw.rpi.edu/2011/security-game#Event> ;
+                                                 
+                                                 rdfs:range xsd:dateTime .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#threatLevel
+
+<http://tw.rpi.edu/2011/security-game#threatLevel> rdf:type owl:DatatypeProperty ;
+                                                   
+                                                   rdfs:comment "The perceived likelihood of an attack arising from a given threat" ;
+                                                   
+                                                   rdfs:domain <http://tw.rpi.edu/2011/security-game#Threat> ;
+                                                   
+                                                   rdfs:range xsd:float .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://tw.rpi.edu/2011/security-game#Event
+
+<http://tw.rpi.edu/2011/security-game#Event> rdf:type owl:Class ;
+                                             
+                                             rdfs:label "Event" ;
+                                             
+                                             rdfs:comment "A temporally-bounded occurrence affecting target susceptibility" .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#Hospital
+
+<http://tw.rpi.edu/2011/security-game#Hospital> rdf:type owl:Class ;
+                                                
+                                                rdfs:label "Hospital" ;
+                                                
+                                                rdfs:subClassOf <http://tw.rpi.edu/2011/security-game#Target> ;
+                                                
+                                                rdfs:comment "A hospital which may be the target of an attack" .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#School
+
+<http://tw.rpi.edu/2011/security-game#School> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "School" ;
+                                              
+                                              rdfs:subClassOf <http://tw.rpi.edu/2011/security-game#Target> ;
+                                              
+                                              rdfs:comment "A school which may be the target of an attack" .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#Subway
+
+<http://tw.rpi.edu/2011/security-game#Subway> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "Subway" ;
+                                              
+                                              rdfs:subClassOf <http://tw.rpi.edu/2011/security-game#Target> ;
+                                              
+                                              rdfs:comment "A subway which may be the target of an attack" .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#Target
+
+<http://tw.rpi.edu/2011/security-game#Target> rdf:type owl:Class ;
+                                              
+                                              rdfs:comment "A place which may be the target of an attack" .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#Threat
+
+<http://tw.rpi.edu/2011/security-game#Threat> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "Threat" ;
+                                              
+                                              rdfs:comment "A threat on a given target, with a given probability, during a given event" .
+
+
+
+###  http://tw.rpi.edu/2011/security-game#World
+
+<http://tw.rpi.edu/2011/security-game#World> rdf:type owl:Class ;
+                                             
+                                             rdfs:label "World" .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net
+

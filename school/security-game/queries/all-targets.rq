@@ -1,0 +1,11 @@
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX game: <http://tw.rpi.edu/2011/security-game#>
+SELECT ?id ?type ?name ?casualties WHERE {
+    ?target rdf:type ?t .
+    ?type rdfs:label ?type .
+    ?target dc:identifier ?id .
+    ?target foaf:name ?name .
+    ?target game:potentialCasualties ?casualties .
+}

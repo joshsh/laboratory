@@ -1,0 +1,5 @@
+PREFIX game: <http://tw.rpi.edu/2011/security-game#>
+SELECT ?resources WHERE {
+    ?world a game:World .
+    ?world game:availableResources ?resources .
+}

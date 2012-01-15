@@ -1,0 +1,37 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix game: <http://tw.rpi.edu/2011/security-game#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/game#> .
+
+:School1 a game:School;
+	dc:identifier "school1";
+	foaf:name "School #1";
+	game:potentialCasualties "8095"^^xsd:integer.
+	
+:School2 a game:School;
+	dc:identifier "school2";
+	foaf:name "School #2";
+	game:potentialCasualties "2415"^^xsd:integer.
+
+:School3 a game:School;
+	dc:identifier "school3";
+	foaf:name "School #3";
+	game:potentialCasualties "9580"^^xsd:integer.
+
+:School4 a game:School;
+	dc:identifier "school4";
+	foaf:name "School #4";
+	game:potentialCasualties "9827"^^xsd:integer.
+
+:School5 a game:School;
+	dc:identifier "school5";
+	foaf:name "School #5";
+	game:potentialCasualties "3756"^^xsd:integer.
+
+:World1 a game:World;
+	game:availableResources "550178"^^xsd:integer.
