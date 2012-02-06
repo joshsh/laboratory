@@ -37,28 +37,33 @@
 	game:availableResources "550178"^^xsd:integer.
 	
 :Event1 a game:Event;
-	dc:identifier "Event #1";
+	dc:identifier "event1";
+	foaf:name "Event #1";
 	game:startTime "2012-02-06T09:00:00-05:00"^^xsd:dateTime;
 	game:endTime "2012-02-06T17:00:00-05:00"^^xsd:dateTime.
 	
 :Event2 a game:Event;
-	dc:identifier "Event #2";
+	dc:identifier "event2";
+	foaf:name "Event #2";
 	game:startTime "2012-08-12T00:00:00-05:00"^^xsd:dateTime;
 	game:endTime "2012-08-13T00:00:00-05:00"^^xsd:dateTime.
 	
 :Event3 a game:Event;
-	dc:identifier "Event #3";
+	dc:identifier "event3";
+	foaf:name "Event #3";
 	game:startTime "2012-10-31T18:00:00-05:00"^^xsd:dateTime;
 	game:endTime "2012-10-31T21:00:00-05:00"^^xsd:dateTime.
 
 :Threat1 a game:Threat;
-	dc:identifier "Threat #1";
+	dc:identifier "threat1";
+	foaf:name "Threat #1";
 	game:threatTarget :School2;
 	game:threatEvent :Event1;
 	game:threatLevel "0.01"^^xsd:float.
 	
 :Threat2 a game:Threat;
-	dc:identifier "Threat #2";
+	dc:identifier "threat2";
+	foaf:name "Threat #2";
 	game:threatTarget :School5;
 	game:threatEvent :Event3;
 	game:threatLevel "0.045"^^xsd:float.
