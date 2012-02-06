@@ -2,15 +2,15 @@ PREFIX dc: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX game: <http://tw.rpi.edu/2011/security-game#>
-SELECT ?threat-id ?target-id ?event-id ?start ?end ?probability WHERE {
+SELECT ?threatId ?targetId ?eventId ?start ?end ?probability WHERE {
     ?threat game:threatTarget ?target .
     ?threat game:threatEvent ?event .
     ?threat rdf:type game:Threat .
     #?target rdf:type game:Target .
     ?event rdf:type game:Event .
-    ?threat dc:identifier ?threat-id .
-    ?target dc:identifier ?target-id .
-    ?event dc:identifier ?event-id .
+    ?threat dc:identifier ?threatId .
+    ?target dc:identifier ?targetId .
+    ?event dc:identifier ?eventId .
     ?event game:startTime ?start .
     ?event game:endTime ?end .
     ?threat game:threatLevel ?probability .
