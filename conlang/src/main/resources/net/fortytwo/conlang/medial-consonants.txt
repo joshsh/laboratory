@@ -1,0 +1,400 @@
+b   3
+bc
+bd  1
+bf
+bg  1
+bh
+bj
+bk
+bl  1
+bm  1
+bn  1
+b?
+bp
+br  1
+bs
+bt
+bv  1
+bw  1
+by  1
+bz
+c   1
+cb
+cd
+cf  1
+cg
+ch
+cj
+ck  1
+cl  1
+cm  1
+cn  1
+c?
+cp  1
+cr  1
+cs
+ct  1
+cv
+cw  1
+cy  1
+cz
+d   3
+db  1
+dc
+df
+dg  1
+dh
+dj
+dk
+dl  2
+dm
+dn  2
+d?
+dp
+dr  1
+ds
+dt
+dv  1
+dw  1
+dy  1
+dz  1
+f   1
+fb
+fc  1
+fd
+fg
+fh
+fj
+fk  1
+fl  1
+fm
+fn  1
+f?
+fp
+fr  1
+fs
+ft  3
+fv
+fw  1
+fy  1
+fz
+g   3
+gb  1
+gc
+gd  1
+gf
+gh
+gj
+gk
+gl  1
+gm  1
+gn  1
+g?
+gp
+gr  1
+gs
+gt
+gv  1
+gw  1
+gy  1
+gz  1
+h
+hb
+hc
+hd
+hf
+hg
+hj
+hk
+hl
+hm
+hn
+h?
+hp
+hr
+hs
+ht
+hv
+hw
+hy
+hz
+j
+jb
+jc
+jd
+jf
+jg
+jh
+jk
+jl
+jm
+jn
+j?
+jp
+jr
+js
+jt
+jv
+jw
+jy
+jz
+k   3
+kb
+kc  1
+kd
+kf  1
+kg
+kh
+kj
+kl  1
+km  1
+kn  1
+k?
+kp
+kr  1
+ks  1
+kt  1
+kv  1
+kw  1
+ky  1
+kz
+l   3
+lb  3
+lc  2
+ld  3
+lf  2
+lg  3
+lh
+lj
+lk  3
+lm  3
+ln  3
+l?
+lp  3
+lr
+ls  2
+lt  3
+lv  3
+lw
+ly  3
+lz
+m   3
+mb  3
+mc
+md  2
+mf  2
+mg
+mh
+mj
+mk  1
+ml  1
+mn  3
+m?
+mp  3
+mr  1
+ms  2
+mt  1
+mv  3
+mw  1
+my  1
+mz  2
+n   3
+nb
+nc
+nd  3
+nf  2
+ng
+nh
+nj
+nk
+nl  1
+nm  1
+n?
+np
+nr
+ns  2
+nt  3
+nv  2
+nw  1
+ny  2
+nz  2
+?   3
+?b
+?c
+?d
+?f
+?g  3
+?h
+?j
+?k  3
+?l
+?m
+?n
+?p
+?r
+?s
+?t
+?v
+?w  3
+?y  3
+?z
+p   3
+pb
+pc
+pd
+pf  1
+pg
+ph
+pj
+pk  1
+pl  1
+pm
+pn  1
+p?
+pr  1
+ps  1
+pt  1
+pv
+pw  1
+py  1
+pz
+r   3
+rb  3
+rc  1
+rd  3
+rf  1
+rg  3
+rh
+rj
+rk  3
+rl
+rm  3
+rn  3
+r?
+rp  2
+rs  2
+rt  3
+rv  3
+rw  2
+ry  3
+rz  2
+s
+sb
+sc
+sd
+sf
+sg
+sh
+sj
+sk  3
+sl
+sm
+sn
+s?
+sp  3
+sr
+st  3
+sv
+sw
+sy
+sz
+t
+tb
+tc  1
+td
+tf
+tg
+th
+tj
+tk  1
+tl  1
+tm  1
+tn  1
+t?
+tp
+tr  1
+ts  1
+tv  1
+tw  1
+ty  1
+tz
+v   3
+vb
+vc
+vd
+vf
+vg
+vh
+vj
+vk
+vl  1
+vm  1
+vn  1
+v?
+vp
+vr  2
+vs
+vt
+vw
+vy  1
+vz
+w   3
+wb  3
+wc  3
+wd  3
+wf  3
+wg  3
+wh
+wj  3
+wk  3
+wl  3
+wm  3
+wn  3
+w?  3
+wp  3
+wr  3
+ws  3
+wt  3
+wv  3
+wy  3
+wz  3
+y   3
+yb  3
+yc  3
+yd  3
+yf  3
+yg  3
+yh
+yj  3
+yk  3
+yl  3
+ym  3
+yn  3
+y?  3
+yp  3
+yr  3
+ys  3
+yt  3
+yv  3
+yw  3
+yz  3
+z   3
+zb  1
+zc
+zd  1
+zf
+zg  1
+zh
+zj
+zk
+zl  1
+zm  1
+zn  1
+z?
+zp
+zr  1
+zs
+zt
+zv  1
+zw  1
+zy  1
