@@ -50,7 +50,11 @@
 
 <http://tw.rpi.edu/2011/security-game#threatTarget> rdf:type owl:ObjectProperty ;
                                                     
-                                                    rdfs:comment "The target affected by a given threat" .
+                                                    rdfs:comment "The target affected by a given threat" ;
+                                                    
+                                                    rdfs:range <http://tw.rpi.edu/2011/security-game#Target> ;
+                                                    
+                                                    rdfs:domain <http://tw.rpi.edu/2011/security-game#Threat> .
 
 
 
