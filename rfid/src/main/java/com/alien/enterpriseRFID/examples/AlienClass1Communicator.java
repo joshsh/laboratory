@@ -75,7 +75,9 @@ public static final void main(String args[]){
   try {
     new AlienClass1Communicator();
   } catch(Exception e) {
+
     System.out.println("Error: " + e.toString());
+      e.printStackTrace();
   }
 }
 

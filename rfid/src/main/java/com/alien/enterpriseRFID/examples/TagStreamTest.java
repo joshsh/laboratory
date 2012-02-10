@@ -37,6 +37,7 @@ package com.alien.enterpriseRFID.examples;
 import com.alien.enterpriseRFID.reader.*;
 import com.alien.enterpriseRFID.tags.*;
 import com.alien.enterpriseRFID.notify.*;
+import net.fortytwo.laboratory.rfid.NetworkDiscoverer;
 
 import java.net.InetAddress;
 
@@ -75,7 +76,10 @@ public TagStreamTest() throws Exception {
   System.out.println("Message Listener has Started");
 
   // Instantiate a new reader object, and open a connection to it on COM1
-  AlienClass1Reader reader = new AlienClass1Reader("COM1");
+    NetworkDiscoverer d = new NetworkDiscoverer(); AlienClass1Reader reader = d.getReader(); System.out.println("got reader: " + reader);
+    System.out.println("already open: " + reader.isOpen());
+    //AlienClass1Reader reader = new AlienClass1Reader("192.168.252.3", 23);
+//    AlienClass1Reader reader = new AlienClass1Reader("COM1");
   reader.open();
   System.out.println("Configuring Reader");
 
