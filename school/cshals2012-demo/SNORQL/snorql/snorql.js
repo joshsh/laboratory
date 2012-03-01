@@ -10,7 +10,7 @@ String.prototype.startsWith = function(str) {
 
 function Snorql() {
     // modify this._endpoint to point to your SPARQL endpoint
-this._endpoint = "http://localhost:8000/sparql-endpoint";    
+this._endpoint = "http://services.fortytwo.net/linked-data/sparql-endpoint";    
 //this._endpoint = document.location.href.match(/^([^?]*)snorql\//)[1] + 'sparql';
     // modify these to your likeing
     this._poweredByLink = 'https://github.com/joshsh/ripple/wiki/LinkedDataSail';
@@ -32,7 +32,7 @@ this._endpoint = "http://localhost:8000/sparql-endpoint";
         var match = document.location.href.match(/\?(.*)/);
         var queryString = match ? match[1] : '';
         if (!queryString) {
-            document.getElementById('querytext').value = 'SELECT DISTINCT * WHERE {\n  ?s ?p ?o\n}\nLIMIT 10';
+            document.getElementById('querytext').value = 'SELECT DISTINCT * WHERE {\n  <http://www4.wiwiss.fu-berlin.de/dailymed/resource/drugs/1> ?p ?o\n}';
             this._updateGraph(null, false);
             return;
         }

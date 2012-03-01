@@ -32,7 +32,7 @@ public class CSHALSDemo {
     }
 
     private CSHALSDemo() throws SailException, RippleException {
-        Sail cache = new NativeStore(new File("/tmp/cshals-demo/nativestore"));
+        Sail cache = new NativeStore(new File("/home/ubuntu/demos/linked-data/data"));
         cache.initialize();
         sail = new LinkedDataSail(cache);
         sail.initialize();
@@ -42,10 +42,10 @@ public class CSHALSDemo {
         LinkedDataServer server = new LinkedDataServer(
                 sail,
                 "http://example.org",
-                "http://localhost:8000",
+                "http://fortytwo.net:8000",
                 8000);
 
-        final String staticContentDir = "/Users/josh/projects/notmine/semantic-web/SNORQL/snorql";
+        final String staticContentDir = "/home/ubuntu/projects/fortytwo/laboratory/school/cshals2012-demo/SNORQL/snorql";
         /*
         Application fileApp = new Application() {
             public Restlet createInboundRoot() {
