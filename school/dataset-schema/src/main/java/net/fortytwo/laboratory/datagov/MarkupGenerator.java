@@ -18,7 +18,19 @@ import java.util.Set;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class MarkupGenerator {
-    public static void main(final String[] args) throws Exception {
+    private enum MarkupFormat {Microdata, RDFa}
+
+    public static void main(final String[] args) {
+        try {
+            //generateDocument(MarkupFormat.Microdata);
+            generateDocument(MarkupFormat.RDFa);
+        } catch (Throwable t) {
+            t.printStackTrace(System.err);
+            System.exit(1);
+        }
+    }
+
+    private static void generateDocument(final MarkupFormat format) throws Exception {
         JSONObject o;
 
         File f = new File("data/dataset-metadata.json");
@@ -71,25 +83,27 @@ public class MarkupGenerator {
         //System.out.println("" + datasetsByUri.values().size() + " datasets");
 
         StringBuilder sb = new StringBuilder();
-        sb.append("<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
-                "    <title>schema.org dataset extension example</title>\n" +
-                "</head>\n" +
-                "<body>\n");
-        for (Dataset d : datasetsByUri.values()) {
-            //System.out.println("uri: " + d.getUri());
-            sb.append("<div itemscope=\"itemscope\" itemtype=\"http://schema.org/Dataset\">\n    <a href=\"")
-                    .append(htmlEscape(d.getHomepage()))
-                    .append("\"><span itemprop=\"name\">\n" + "        <b>")
-                    .append(htmlEscape(d.getTitle()))
-                    .append("</b>\n" + "    </span></a>\n" + "\n");
-            sb.append("    <div><meta itemprop=\"url\" content=\"")
-                    .append(htmlEscape(d.getHomepage()))
-                    .append("\"/>\n" + "    <span itemprop=\"description\">")
-                    .append(htmlEscape(d.getDescription()))
-                    .append("</span></div>\n" + "\n");     // TODO
+
+        if (format == MarkupFormat.Microdata) {
+            sb.append("<!DOCTYPE html>\n" +
+                    "<html lang=\"en\">\n" +
+                    "<head>\n" +
+                    "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
+                    "    <title>schema.org dataset extension example</title>\n" +
+                    "</head>\n" +
+                    "<body>\n");
+            for (Dataset d : datasetsByUri.values()) {
+                //System.out.println("uri: " + d.getUri());
+                sb.append("<div itemscope=\"itemscope\" itemtype=\"http://schema.org/Dataset\">\n    <a href=\"")
+                        .append(htmlEscape(d.getHomepage()))
+                        .append("\"><span itemprop=\"name\">\n" + "        <b>")
+                        .append(htmlEscape(d.getTitle()))
+                        .append("</b>\n" + "    </span></a>\n" + "\n");
+                sb.append("    <div><meta itemprop=\"url\" content=\"")
+                        .append(htmlEscape(d.getHomepage()))
+                        .append("\"/>\n" + "    <span itemprop=\"description\">")
+                        .append(htmlEscape(d.getDescription()))
+                        .append("</span></div>\n" + "\n");     // TODO
 /*
             sb.append("    <div><meta itemprop=\"url\" content=\"")
                     .append(htmlEscape(d.getHomepage()))
@@ -97,40 +111,113 @@ public class MarkupGenerator {
                     .append(htmlEscape(d.getDescription()))
                     .append("\"></div>\n" + "\n");     // TODO
                     */
-            if (null != d.getCountry()) {
-                String label = d.getCountry();
-                if (label.startsWith("http://dbpedia.org/resource/")) {
-                    label = label.substring(label.lastIndexOf("/") + 1).replaceAll("_", " ");
+                if (null != d.getCountry()) {
+                    String label = d.getCountry();
+                    if (label.startsWith("http://dbpedia.org/resource/")) {
+                        label = label.substring(label.lastIndexOf("/") + 1).replaceAll("_", " ");
+                    }
+                    sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
+                            .append(htmlEscape(d.getCountry()))
+                            .append("\"><span itemprop=\"spatialScope\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
+                            .append(htmlEscape(label))
+                            .append("</span>\n" + "        </span>\n" + "    </a></div>\n" + "\n");
                 }
-                sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
-                        .append(htmlEscape(d.getCountry()))
-                        .append("\"><span itemprop=\"spatialScope\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
-                        .append(htmlEscape(label))
-                        .append("</span>\n" + "        </span>\n" + "    </a></div>\n" + "\n");
-            }
-            if (null != d.getAgencyTitle()) {
-                sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
-                        .append(htmlEscape(d.getAgencyTitle()))
-                        .append("</span>\n" + "        </span>\n" + "    </div>\n" + "\n");
-            }
-            int size = d.getSubjects().size();
-            if (size > 0) {
-                sb.append("    <i>Categories:</i>\n");
-                int count = 0;
-                for (String subject : d.getSubjects()) {
-                    sb.append("    <span itemprop=\"category\">");
-                    sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
-                            .append(htmlEscape(subject))
-                            .append("</span></span>")
-                            .append(count < size - 1 ? ",\n" : "\n");
-                    count++;
-                    //if (count >= 5) {
-                    //    break;
-                    //}
+                if (null != d.getAgencyTitle()) {
+                    sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
+                            .append(htmlEscape(d.getAgencyTitle()))
+                            .append("</span>\n" + "        </span>\n" + "    </div>\n" + "\n");
                 }
+                int size = d.getSubjects().size();
+                if (size > 0) {
+                    sb.append("    <i>Categories:</i>\n");
+                    int count = 0;
+                    for (String subject : d.getSubjects()) {
+                        sb.append("    <span itemprop=\"category\">");
+                        sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
+                                .append(htmlEscape(subject))
+                                .append("</span></span>")
+                                .append(count < size - 1 ? ",\n" : "\n");
+                        count++;
+                        //if (count >= 5) {
+                        //    break;
+                        //}
+                    }
+                }
+                sb.append("</div>\n" +
+                        "<br/>\n\n");
             }
-            sb.append("</div>\n" +
-                    "<br/>\n\n");
+            sb.append("</body></html>");
+        } else if (format == MarkupFormat.RDFa) {
+            sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML+RDFa 1.0//EN\"\n" +
+                    "        \"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd\">\n" +
+                    "<html xmlns=\"http://www.w3.org/1999/xhtml\"\n" +
+                    "      xmlns:foaf=\"http://xmlns.com/foaf/0.1/\"\n" +
+                    "      version=\"XHTML+RDFa 1.0\" xml:lang=\"en\">\n" +
+                    "<head>\n" +
+                    "    <title>dataset extension RDFa example</title>\n" +
+                    "    <base href=\"http://tw.rpi.edu/dataset/\"/>\n" +
+                    "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>\n" +
+                    "    <link rel=\"foaf:primaryTopic\" href=\"http://fortytwo.net/foaf#josh\"/>\n" +
+                    "</head>\n" +
+                    "<body>\n");
+            for (Dataset d : datasetsByUri.values()) {
+
+                // TODO: datatype
+
+                // TODO: don't conflate URI with homepage
+                //System.out.println("uri: " + d.getUri());
+                sb.append("<div about=\"" + htmlEscape(d.getHomepage()) + "\">\n"
+                        + "<a href=\"")
+                        .append(htmlEscape(d.getHomepage()))
+                        .append("\"><span itemprop=\"name\">\n" + "        <b>")
+                        .append(htmlEscape(d.getTitle()))
+                        .append("</b>\n" + "    </span></a>\n" + "\n");
+                sb.append("    <div><meta itemprop=\"url\" content=\"")
+                        .append(htmlEscape(d.getHomepage()))
+                        .append("\"/>\n" + "    <span itemprop=\"description\">")
+                        .append(htmlEscape(d.getDescription()))
+                        .append("</span></div>\n" + "\n");     // TODO
+
+                if (null != d.getCountry()) {
+                    String label = d.getCountry();
+                    if (label.startsWith("http://dbpedia.org/resource/")) {
+                        label = label.substring(label.lastIndexOf("/") + 1).replaceAll("_", " ");
+                    }
+                    sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
+                            .append(htmlEscape(d.getCountry()))
+                            .append("\"><span itemprop=\"spatialScope\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
+                            .append(htmlEscape(label))
+                            .append("</span>\n" + "        </span>\n" + "    </a></div>\n" + "\n");
+                }
+                if (null != d.getAgencyTitle()) {
+                    sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
+                            .append(htmlEscape(d.getAgencyTitle()))
+                            .append("</span>\n" + "        </span>\n" + "    </div>\n" + "\n");
+                }
+                int size = d.getSubjects().size();
+                if (size > 0) {
+                    sb.append("    <i>Categories:</i>\n");
+                    int count = 0;
+                    for (String subject : d.getSubjects()) {
+                        sb.append("    <span itemprop=\"category\">");
+                        sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
+                                .append(htmlEscape(subject))
+                                .append("</span></span>")
+                                .append(count < size - 1 ? ",\n" : "\n");
+                        count++;
+                        //if (count >= 5) {
+                        //    break;
+                        //}
+                    }
+                }
+                sb.append("</div>\n" +
+                        "<br/>\n\n");
+
+
+            }
+
+            sb.append("</body></html>");
         }
 
         /*
@@ -139,7 +226,6 @@ public class MarkupGenerator {
                 "    </a>\n");
         */
 
-        sb.append("</body></html>");
 
         OutputStream out = new FileOutputStream(new File("data/results.html"));
         try {
