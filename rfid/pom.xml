@@ -61,6 +61,12 @@
             <artifactId>comm</artifactId>
             <version>mit</version>
         </dependency>
+        <dependency>
+            <groupId>gnu.io</groupId>
+            <artifactId>rxtx</artifactId>
+            <!--<version>2.0</version>-->
+            <version>2.1-r2</version>
+        </dependency>
         <!--<dependency>
             <groupId>javax.comm</groupId>
             <artifactId>comm</artifactId>
