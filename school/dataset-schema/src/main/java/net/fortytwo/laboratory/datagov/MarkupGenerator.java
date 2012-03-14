@@ -152,6 +152,9 @@ public class MarkupGenerator {
                     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML+RDFa 1.0//EN\"\n" +
                     "        \"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd\">\n" +
                     "<html xmlns=\"http://www.w3.org/1999/xhtml\"\n" +
+                    "      xmlns:adms=\"http://vocab.deri.ie/adms#\"\n" +
+                    "      xmlns:dcat=\"http://vocab.deri.ie/dcat#\"\n" +
+                    "      xmlns:dcterms=\"http://purl.org/dc/terms/\"\n" +
                     "      xmlns:foaf=\"http://xmlns.com/foaf/0.1/\"\n" +
                     "      version=\"XHTML+RDFa 1.0\" xml:lang=\"en\">\n" +
                     "<head>\n" +
@@ -160,50 +163,64 @@ public class MarkupGenerator {
                     "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>\n" +
                     "    <link rel=\"foaf:primaryTopic\" href=\"http://fortytwo.net/foaf#josh\"/>\n" +
                     "</head>\n" +
-                    "<body>\n");
+                    "<body>\n");  // no "about"
             for (Dataset d : datasetsByUri.values()) {
-
-                // TODO: datatype
-
-                // TODO: don't conflate URI with homepage
-                //System.out.println("uri: " + d.getUri());
-                sb.append("<div about=\"" + htmlEscape(d.getHomepage()) + "\">\n"
-                        + "<a href=\"")
+                System.out.println("uri: " + d.getUri());
+                sb.append("    <div about=\"" + htmlEscape(d.getUri()) + "\" typeof=\"dcat:Dataset\">\n")
+                        .append("        <div><b><a href=\"")
                         .append(htmlEscape(d.getHomepage()))
-                        .append("\"><span itemprop=\"name\">\n" + "        <b>")
+                        .append("\"><span about=\"")
+                        .append(htmlEscape(d.getUri()))
+                        .append("\"><span property=\"dcterms:title\">\n")
                         .append(htmlEscape(d.getTitle()))
-                        .append("</b>\n" + "    </span></a>\n" + "\n");
-                sb.append("    <div><meta itemprop=\"url\" content=\"")
-                        .append(htmlEscape(d.getHomepage()))
-                        .append("\"/>\n" + "    <span itemprop=\"description\">")
+                        .append("\n        </span></span></a></b></div>\n");
+
+                // TODO: URL (homepage)
+
+                sb.append("        <div property=\"dcterms:description\">\n")
                         .append(htmlEscape(d.getDescription()))
-                        .append("</span></div>\n" + "\n");     // TODO
+                        .append("\n        </div>\n");
 
                 if (null != d.getCountry()) {
                     String label = d.getCountry();
                     if (label.startsWith("http://dbpedia.org/resource/")) {
                         label = label.substring(label.lastIndexOf("/") + 1).replaceAll("_", " ");
                     }
-                    sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
+                    sb.append("        <div rel=\"dcterms:spatial\" resource=\"")
                             .append(htmlEscape(d.getCountry()))
-                            .append("\"><span itemprop=\"spatialScope\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
+                            .append("\"><i>Country:</i>\n")
+                            .append("            <a href=\"")
+                            .append(htmlEscape(d.getCountry()))
+                            .append("\">\n")
+                            .append("                <span about=\"")
+                            .append(htmlEscape(d.getCountry()))
+                            .append("\" typeof=\"adms:Country\">\n")
+                            .append("                    <span property=\"dcterms:title\">")
                             .append(htmlEscape(label))
-                            .append("</span>\n" + "        </span>\n" + "    </a></div>\n" + "\n");
+                            .append("</span>\n")
+                            .append("                </span>\n")
+                            .append("            </a>\n")
+                            .append("        </div>\n");
                 }
+
                 if (null != d.getAgencyTitle()) {
-                    sb.append("    <div><i>Publisher:</i>\n" + "    <span itemprop=\"publisher\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Organization\">\n" + "            <span itemprop=\"name\">")
+                    sb.append("        <div rel=\"dcterms:publisher\"><i>Publisher:</i>\n")
+                            .append("            <span typeof=\"foaf:Organization\">\n")
+                            .append("                <span property=\"dcterms:title\">")
                             .append(htmlEscape(d.getAgencyTitle()))
-                            .append("</span>\n" + "        </span>\n" + "    </div>\n" + "\n");
+                            .append("</span>\n")
+                            .append("            </span>\n")
+                            .append("        </div>\n");
                 }
+
                 int size = d.getSubjects().size();
                 if (size > 0) {
-                    sb.append("    <i>Categories:</i>\n");
+                    sb.append("        <i>Categories:</i>\n");
                     int count = 0;
                     for (String subject : d.getSubjects()) {
-                        sb.append("    <span itemprop=\"category\">");
-                        sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
+                        sb.append("        <span property=\"dcat:keyword\">")
                                 .append(htmlEscape(subject))
-                                .append("</span></span>")
+                                .append("</span>")
                                 .append(count < size - 1 ? ",\n" : "\n");
                         count++;
                         //if (count >= 5) {
@@ -211,10 +228,8 @@ public class MarkupGenerator {
                         //}
                     }
                 }
-                sb.append("</div>\n" +
-                        "<br/>\n\n");
-
-
+                sb.append("    </div>\n")
+                        .append("    <br/>\n\n");
             }
 
             sb.append("</body></html>");
