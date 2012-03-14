@@ -118,7 +118,7 @@ public class MarkupGenerator {
                     }
                     sb.append("    <div><i>Country:</i>\n" + "    <a href=\"")
                             .append(htmlEscape(d.getCountry()))
-                            .append("\"><span itemprop=\"spatialScope\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
+                            .append("\"><span itemprop=\"spatial\" itemscope=\"itemscope\" itemtype=\"http://schema.org/Country\">\n" + "            <span itemprop=\"name\">")
                             .append(htmlEscape(label))
                             .append("</span>\n" + "        </span>\n" + "    </a></div>\n" + "\n");
                 }
@@ -132,7 +132,7 @@ public class MarkupGenerator {
                     sb.append("    <i>Categories:</i>\n");
                     int count = 0;
                     for (String subject : d.getSubjects()) {
-                        sb.append("    <span itemprop=\"category\">");
+                        sb.append("    <span itemprop=\"keyword\">");
                         sb.append("<span itemscope=\"itemscope\" itemtype=\"http://schema.org/Text\">")
                                 .append(htmlEscape(subject))
                                 .append("</span></span>")
