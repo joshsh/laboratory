@@ -22,8 +22,8 @@ public class MarkupGenerator {
 
     public static void main(final String[] args) {
         try {
-            //generateDocument(MarkupFormat.Microdata);
-            generateDocument(MarkupFormat.RDFa);
+            generateDocument(MarkupFormat.Microdata);
+            //generateDocument(MarkupFormat.RDFa);
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
@@ -94,7 +94,9 @@ public class MarkupGenerator {
                     "<body>\n");
             for (Dataset d : datasetsByUri.values()) {
                 //System.out.println("uri: " + d.getUri());
-                sb.append("<div itemscope=\"itemscope\" itemtype=\"http://schema.org/Dataset\">\n    <a href=\"")
+                sb.append("<div itemscope=\"itemscope\"" +
+                        " itemid=\"" + d.getUri() + "\"" +
+                        " itemtype=\"http://schema.org/Dataset\">\n    <a href=\"")
                         .append(htmlEscape(d.getHomepage()))
                         .append("\"><span itemprop=\"name\">\n" + "        <b>")
                         .append(htmlEscape(d.getTitle()))
