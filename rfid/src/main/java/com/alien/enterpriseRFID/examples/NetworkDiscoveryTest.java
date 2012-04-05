@@ -81,6 +81,9 @@ public class NetworkDiscoveryTest implements DiscoveryListener {
             System.out.println("\treader: " + r);
             //System.exit(0);
             System.out.println("\tis open: " + r.isOpen());
+            r.setUsername("alien");
+            r.setPassword("password");
+
             r.open();
             System.out.println("\tgetting tag list");
             Tag[] tags = r.getTagList();
@@ -107,6 +110,9 @@ public class NetworkDiscoveryTest implements DiscoveryListener {
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+        
+        System.out.println("nothing left to do.  Exiting");
+        System.exit(0);
     }
 
     /**
