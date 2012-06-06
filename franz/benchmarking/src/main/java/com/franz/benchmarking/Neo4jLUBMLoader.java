@@ -10,6 +10,8 @@ import org.openrdf.rio.RDFFormat;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Joshua Shinavier (http://fortytwo.net)
@@ -25,9 +27,17 @@ public class Neo4jLUBMLoader {
     }
 
     private static void performLoad() throws Exception {
-        Neo4jGraph g = new Neo4jGraph("neo4j-lubm");
-        g.setMaxBufferSize(1000);
+        Runtime r = Runtime.getRuntime();
+
+        Map<String, String> config = new HashMap<String, String>();
+        config.put("neostore.nodestore.db.mapped_memory", "10M");
+        config.put("string_block_size", "60");
+        config.put("array_block_size", "300");
+
+        Neo4jGraph g = new Neo4jGraph("neo4j-lubm", config);
         try {
+            g.setMaxBufferSize(1000);
+
             GraphSail sail = new GraphSail(g);
             sail.enforceUniqueStatements(false);
             sail.useVolatileStatements(false);
@@ -43,9 +53,14 @@ public class Neo4jLUBMLoader {
                     rc.commit();
 
                     File lubmDir = new File("/net/foray/x/gwking/sources/lubm-1000-0.nt");
+                    //File lubmDir = new File("/tmp/neo4j-rdf");
                     if (lubmDir.isDirectory()) {
                         for (File f : lubmDir.listFiles()) {
-                            System.out.println("" + System.currentTimeMillis() + "\tloading " + f);
+                            System.out.println("" + System.currentTimeMillis()
+                                    + "\t" + (r.totalMemory() - r.freeMemory())
+                                    + "\t" + r.freeMemory()
+                                    + "\t" + r.totalMemory()
+                                    + "\t" + f);
 
                             InputStream in = new FileInputStream(f);
                             try {
