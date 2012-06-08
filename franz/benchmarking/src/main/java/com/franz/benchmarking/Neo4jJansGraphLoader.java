@@ -38,7 +38,8 @@ public class Neo4jJansGraphLoader {
         config.put("string_block_size", "60");
         config.put("array_block_size", "300");
 
-        Neo4jGraph g = new Neo4jGraph("/tmp/neo4j/jans-graph", config);
+//        Neo4jGraph g = new Neo4jGraph("/tmp/neo4j-jans-graph", config);
+        Neo4jGraph g = new Neo4jGraph("/disk1/josh/neo4j-jans-graph", config);
         try {
             g.setMaxBufferSize(1000);
             long start = System.currentTimeMillis();
@@ -69,8 +70,15 @@ public class Neo4jJansGraphLoader {
     private static Random RANDOM = new Random();
 
     private static Vertex randomVertex(final Graph g) {
-        int a = RANDOM.nextInt(TOTAL_NODES);
-        return g.getVertex(a);
+        while (true) {
+            int id = RANDOM.nextInt(TOTAL_NODES);
+            Vertex v = g.getVertex(id);
+            if (null == v) {
+                System.err.println("null vertex for id " + id);
+            } else {
+                return v;
+            }
+        }
     }
 
     private static Edge createRandomEdge(final Graph g) {
