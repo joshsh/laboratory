@@ -31,6 +31,7 @@
     <properties>
         <junit.version>4.5</junit.version>
         <ripple.version>0.8-SNAPSHOT</ripple.version>
+        <myotherbrain.version>0.2-SNAPSHOT</myotherbrain.version>
     </properties>
 
     <dependencies>
@@ -44,6 +45,13 @@
             <artifactId>ripple-core</artifactId>
             <version>${ripple.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.fortytwo.myotherbrain</groupId>
+            <artifactId>speech</artifactId>
+            <version>${myotherbrain.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

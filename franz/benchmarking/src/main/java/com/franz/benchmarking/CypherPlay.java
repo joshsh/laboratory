@@ -40,6 +40,7 @@ public class CypherPlay {
         Neo4jGraph g = new Neo4jGraph("neo4j-lubm");
         try {
             GraphDatabaseService service = g.getRawGraph();
+            ExecutionEngine engine = new ExecutionEngine(service);
 
             GraphSail sail = new GraphSail(g);
             sail.initialize();
@@ -65,8 +66,6 @@ public class CypherPlay {
             System.out.println("## during ##");
             printMemoryInfo();
 
-            ExecutionEngine engine = new ExecutionEngine(service);
-
 //            String q = "start n=node(2) return n, n.kind";
             //String q = "START marko=node(2)\n" +
             //        "MATCH marko-[:`http://tinkerpop.com#knows`]->fof\n" +
@@ -90,12 +89,13 @@ public class CypherPlay {
         }
     }
 
-    private static void printMemoryInfo() {
-        Runtime r = Runtime.getRuntime();
+    private static final Runtime RUNTIME = Runtime.getRuntime();
+
+    public static void printMemoryInfo() {
         System.out.println("memory info:");
-        System.out.println("\tmax:\t" + r.maxMemory());
-        System.out.println("\ttotal:\t" + r.totalMemory());
-        System.out.println("\tfree:\t" + r.freeMemory());
-        System.out.println("\tused:\t" + (r.totalMemory() - r.freeMemory()));
+        System.out.println("\tmax:\t" + RUNTIME.maxMemory());
+        System.out.println("\ttotal:\t" + RUNTIME.totalMemory());
+        System.out.println("\tfree:\t" + RUNTIME.freeMemory());
+        System.out.println("\tused:\t" + (RUNTIME.totalMemory() - RUNTIME.freeMemory()));
     }
 }
