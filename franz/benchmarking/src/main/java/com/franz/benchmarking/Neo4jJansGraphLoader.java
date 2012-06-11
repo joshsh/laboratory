@@ -15,8 +15,8 @@ import java.util.Random;
 public class Neo4jJansGraphLoader {
     private static final String NODE_URI_PREFIX = "http://franz.com/node-";
 
-    private static final int TOTAL_NODES = 10000000;
-    private static final int TOTAL_STATEMENTS = 100000000;
+    public static final int TOTAL_NODES = 10000000;
+    public static final int TOTAL_EDGES = 100000000;
     private static final String[] PREDICATES = {"pred-0", "pred-1", "pred-2", "pred-3", "pred-4", "pred-5", "pred-6", "pred-7", "pred-8", "pred-9"};
 
     public static void main(final String[] args) {
@@ -30,16 +30,19 @@ public class Neo4jJansGraphLoader {
         }
     }
 
-    private static void performLoad() throws Exception {
-        Runtime r = Runtime.getRuntime();
-
+    public static Neo4jGraph getOrCreateNeo4jGraph() {
         Map<String, String> config = new HashMap<String, String>();
         config.put("neostore.nodestore.db.mapped_memory", "10M");
         config.put("string_block_size", "60");
         config.put("array_block_size", "300");
 
+        return new Neo4jGraph("/disk1/josh/neo4j-jans-graph", config);
+    }
+
+    /* On blade3, node creation took around 50s, while edge creation took around 96612s (27 hours) */
+    private static void performLoad() throws Exception {
 //        Neo4jGraph g = new Neo4jGraph("/tmp/neo4j-jans-graph", config);
-        Neo4jGraph g = new Neo4jGraph("/disk1/josh/neo4j-jans-graph", config);
+        Neo4jGraph g = getOrCreateNeo4jGraph();
         try {
             g.setMaxBufferSize(1000);
             long start = System.currentTimeMillis();
@@ -54,7 +57,7 @@ public class Neo4jJansGraphLoader {
             }
 
             start = System.currentTimeMillis();
-            for (int j = 0; j < TOTAL_STATEMENTS; j++) {
+            for (int j = 0; j < TOTAL_EDGES; j++) {
                 createRandomEdge(g);
 
                 if (0 == j % 1000000) {
@@ -69,7 +72,7 @@ public class Neo4jJansGraphLoader {
 
     private static Random RANDOM = new Random();
 
-    private static Vertex randomVertex(final Graph g) {
+    public static Vertex getRandomVertex(final Graph g) {
         while (true) {
             int id = RANDOM.nextInt(TOTAL_NODES);
             Vertex v = g.getVertex(id);
@@ -82,8 +85,8 @@ public class Neo4jJansGraphLoader {
     }
 
     private static Edge createRandomEdge(final Graph g) {
-        Vertex head = randomVertex(g);
-        Vertex tail = randomVertex(g);
+        Vertex head = getRandomVertex(g);
+        Vertex tail = getRandomVertex(g);
 
         return g.addEdge(null, tail, head, PREDICATES[RANDOM.nextInt(10)]);
     }

@@ -5,11 +5,17 @@ import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;
 import net.fortytwo.flow.NullSink;
 import net.fortytwo.flow.Sink;
+import net.fortytwo.myotherbrain.speech.Speaker;
 import net.fortytwo.ripple.RippleException;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,6 +29,7 @@ public class P5Gestures {
     private int PORT = 1331;
 
     private Map<String, Command> commands = new HashMap<String, Command>();
+    private Map<String, Command> abbreviations = new HashMap<String, Command>();
 
     private Sink<OSCMessage> nullSink = new NullSink<OSCMessage>();
     private Sink<OSCMessage> debugSink = new DebugSink();
@@ -30,6 +37,8 @@ public class P5Gestures {
 
     private P5Vector lastSample;
     private Map<String, P5Vector> namedSamples = new HashMap<String, P5Vector>();
+
+    private final Speaker speaker = new Speaker();
 
     public static void main(final String[] args) throws Exception {
         P5Gestures g = new P5Gestures();
@@ -42,15 +51,19 @@ public class P5Gestures {
         messageSink.setDownstreamSink(nullSink);
 
         registerCommand(new ClassifyCommand());
-        registerCommand(new DebugCommand());
+        registerCommand(new LogCommand());
         registerCommand(new DefineCommand());
+        registerCommand(new ExportCommand());
+        registerCommand(new ImportCommand());
         registerCommand(new PrintCommand());
+        registerCommand(new RealtimeCommand());
         registerCommand(new SampleCommand());
         registerCommand(new UndefineCommand());
     }
 
     private void registerCommand(final Command command) {
         commands.put(command.getName(), command);
+        abbreviations.put(command.getName().substring(0, 1), command);
     }
 
     private void startListener() {
@@ -89,7 +102,7 @@ public class P5Gestures {
 
         List<String> commandNames = new LinkedList<String>();
         commandNames.addAll(commands.keySet());
-        commandNames.add("exit");
+        commandNames.add("quit");
         Collections.sort(commandNames);
         StringBuilder sb = new StringBuilder("commands: ");
         boolean first = true;
@@ -115,12 +128,16 @@ public class P5Gestures {
 
             String name = tokens[0];
 
-            if (name.equals("exit")) {
+            if (name.equals("quit")) {
                 System.out.println("exiting");
                 break;
             }
 
             Command c = commands.get(name);
+
+            if (null == c) {
+                c = abbreviations.get(name);
+            }
 
             if (null == c) {
                 System.out.println("unknown command: " + name);
@@ -205,11 +222,11 @@ public class P5Gestures {
         }
     }
 
-    private class DebugCommand extends Command {
+    private class LogCommand extends Command {
         protected void execute() throws CommandException {
             messageSink.setDownstreamSink(debugSink);
 
-            System.out.println("Displaying OSC messages... press ENTER to stop");
+            System.out.println("Logging OSC messages... press ENTER to stop");
             waitForEnter();
 
             messageSink.setDownstreamSink(nullSink);
@@ -222,7 +239,7 @@ public class P5Gestures {
         }
 
         public String getName() {
-            return "debug";
+            return "log";
         }
     }
 
@@ -268,6 +285,122 @@ public class P5Gestures {
         }
     }
 
+    private class RealtimeCommand extends Command {
+
+        protected void execute() throws CommandException {
+            messageSink.setDownstreamSink(new RealtimeSink());
+
+            System.out.println("Sampling and displaying best matches in real time... press ENTER to stop");
+            waitForEnter();
+
+            messageSink.setDownstreamSink(nullSink);
+            System.out.println("\tdone");
+        }
+
+        protected int arity() {
+            return 0;
+        }
+
+        public String getName() {
+            return "realtime";
+        }
+    }
+
+    private class ExportCommand extends Command {
+        protected void execute() throws CommandException {
+            String fileName = getArgument(0);
+
+            List<String> names = new LinkedList<String>();
+            names.addAll(namedSamples.keySet());
+            Collections.sort(names);
+
+            StringBuilder sb = new StringBuilder();
+            for (String name : names) {
+                sb.append(name);
+                P5Vector v = namedSamples.get(name);
+                for (int i = 0; i < v.components.length; i++) {
+                    sb.append("\t").append(v.components[i]);
+                }
+                sb.append("\n");
+            }
+
+            try {
+                OutputStream out = new FileOutputStream(new File(fileName));
+                try {
+                    out.write(sb.toString().getBytes());
+                } finally {
+                    out.close();
+                }
+            } catch (IOException e) {
+                throw new CommandException("file I/O error: " + e.getMessage());
+            }
+
+            System.out.println("exported " + namedSamples.size() + " symbols to file " + fileName);
+        }
+
+        protected int arity() {
+            return 1;
+        }
+
+        public String getName() {
+            return "export";
+        }
+    }
+
+    private class ImportCommand extends Command {
+        protected void execute() throws CommandException {
+            int count = 0;
+
+            String fileName = getArgument(0);
+
+            try {
+                InputStream in = new FileInputStream(new File(fileName));
+                BufferedReader r = new BufferedReader(new InputStreamReader(in));
+
+                String line;
+                while (null != (line = r.readLine())) {
+                    line = line.trim();
+
+                    if (0 == line.length()) {
+                        continue;
+                    }
+
+                    count++;
+                    String[] parts = line.trim().split(" ");
+                    if (parts.length < 2) {
+                        throw new CommandException("empty on line: " + line);
+                    }
+
+                    String name = parts[0];
+                    //System.out.println("defining " + name);
+                    double[] c = new double[parts.length - 1];
+                    for (int i = 1; i < parts.length; i++) {
+                        try {
+                            c[i - 1] = Double.valueOf(parts[i]);
+                        } catch (NumberFormatException e) {
+                            throw new CommandException("invalid number on line: " + line);
+                        }
+                    }
+
+                    P5Vector v = new P5Vector(c);
+                    namedSamples.put(name, v);
+                }
+            } catch (IOException e) {
+                throw new CommandException("file I/O error: " + e.getMessage());
+            }
+
+            System.out.println("imported " + count + " symbols from file " + fileName);
+        }
+
+        protected int arity() {
+            return 1;
+        }
+
+        public String getName() {
+            return "import";
+        }
+    }
+
     private class UndefineCommand extends Command {
         protected void execute() throws CommandException {
             String name = getArgument(0);
@@ -285,24 +418,32 @@ public class P5Gestures {
         }
     }
 
+    private String classify(final P5Vector vector) throws CommandException {
+        if (0 == namedSamples.size()) {
+            throw new CommandException("no vectors have been defined yet");
+        }
+
+        String best = null;
+        double min = -1;
+
+        for (Map.Entry<String, P5Vector> e : namedSamples.entrySet()) {
+            double dist = vector.distanceFrom(e.getValue());
+
+            if (min < 0 || dist < min) {
+                best = e.getKey();
+                min = dist;
+            }
+        }
+
+        return best;
+    }
+
     private class ClassifyCommand extends Command {
         protected void execute() throws CommandException {
             if (null == lastSample) {
                 throw new CommandException("you have not yet taken a sample");
-            } else if (0 == namedSamples.size()) {
-                throw new CommandException("no vectors have been defined yet");
             } else {
-                String best = null;
-                double min = -1;
-
-                for (Map.Entry<String, P5Vector> e : namedSamples.entrySet()) {
-                    double dist = lastSample.distanceFrom(e.getValue());
-
-                    if (min < 0 || dist < min) {
-                        best = e.getKey();
-                        min = dist;
-                    }
-                }
+                String best = classify(lastSample);
 
                 System.out.println("closest match is '" + best + "'");
             }
@@ -381,6 +522,40 @@ public class P5Gestures {
         }
     }
 
+    private class RealtimeSink implements Sink<OSCMessage> {
+        private P5Vector vector = new P5Vector(5);
+        private String lastMatch = "";
+        private String lastSpoken = "";
+        private long lastChange = System.currentTimeMillis();
+
+        public void put(final OSCMessage message) throws RippleException {
+            int i = 0;
+            for (Object a : message.getArguments()) {
+                vector.components[i] = new Double(a.toString());
+                i++;
+            }
+
+            try {
+                String current = classify(vector);
+                System.out.println("current best match: " + current);
+
+                long now = System.currentTimeMillis();
+
+                if (!current.equals(lastMatch)) {
+                    lastMatch = current;
+                    lastChange = now;
+                }
+
+                if (!current.equals(lastSpoken) && now > 1000 + lastChange) {
+                    speaker.speak(current);
+                    lastSpoken = current;
+                }
+            } catch (CommandException e) {
+                System.out.println("error: " + e.getMessage());
+            }
+        }
+    }
+
     private class SampleSink implements Sink<OSCMessage> {
         private final P5Vector sum = new P5Vector(5);
         private int count = 0;
@@ -388,7 +563,7 @@ public class P5Gestures {
         public void put(OSCMessage message) throws RippleException {
             int i = 0;
             for (Object a : message.getArguments()) {
-                sum.components[i] += new Integer(a.toString());
+                sum.components[i] += new Double(a.toString());
                 i++;
             }
             count++;
