@@ -1,0 +1,9 @@
+PREFIX ub: <http://lubm.franz.com#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX u0d0: <http://www.Department0.University0.edu/> 
+#SELECT DISTINCT ?X
+SELECT ?X
+WHERE {
+?X ub:subOrganizationOf <http://www.University0.edu> . 
+?X rdf:type ub:ResearchGroup . 
+}

@@ -1,0 +1,13 @@
+PREFIX ub: <http://lubm.franz.com#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX u0d0: <http://www.Department0.University0.edu/> 
+#SELECT DISTINCT ?X ?Y ?Z
+SELECT ?X ?Y ?Z
+WHERE {
+?Y rdf:type ub:Faculty . 
+?Y ub:teacherOf ?Z . 
+?X ub:advisor ?Y . 
+?X ub:takesCourse ?Z . 
+?X rdf:type ub:Student . 
+?Z rdf:type ub:Course . 
+}
