@@ -6,14 +6,20 @@ import org.neo4j.cypher.ExecutionEngine;
 import org.neo4j.cypher.ExecutionResult;
 import org.neo4j.graphdb.GraphDatabaseService;
 
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class Neo4jJansGraphCypherBenchmark {
-    private static final int ITERATIONS = 10;
+    private static final int ITERATIONS = 10000;
 
     private static final String QUERY_TEMPLATE = "START x=node(X_ID)\n" +
-            "RETURN x";
+//            "MATCH x-[?:p]->y, y-[?:q]->z\n" +
+            "MATCH x-[:`REL`]->y, y-[:`REL`]->z, z-[:`REL`]->a, a-[:`REL`]->x\n" +
+            "WHERE (a != y)\n" +
+            "RETURN x, y, z, a";
 
     /*
    (time
@@ -38,13 +44,26 @@ public class Neo4jJansGraphCypherBenchmark {
                 Vertex x = Neo4jJansGraphLoader.getRandomVertex(g);
                 Object xId = x.getId();
 
-                String query = QUERY_TEMPLATE.replace("X_ID", xId.toString());
+                for (String type : Neo4jJansGraphLoader.PREDICATES) {
+                    String query = QUERY_TEMPLATE
+                            .replace("X_ID", xId.toString())
+                            .replace("REL", type);
 
-                ExecutionResult result = engine.execute(query);
+                    ExecutionResult result = engine.execute(query);
 
-                System.out.println("result: " + result.dumpToString());
+                    Iterator<Map<String, Object>> iter = result.javaIterator();
+                    if (iter.hasNext()) {
+                        StringBuilder sb = new StringBuilder();
+                        for (Map.Entry<String, Object> e : iter.next().entrySet()) {
+                            sb.append(" ").append(e.getKey()).append(":").append(e.getValue());
+                        }
+                        System.out.println("result: " + sb);
+                    }
+                }
 
-                CypherPlay.printMemoryInfo();
+                if (0 == i % 1000) {
+                    CypherPlay.printMemoryInfo();
+                }
             }
         } finally {
             g.shutdown();
