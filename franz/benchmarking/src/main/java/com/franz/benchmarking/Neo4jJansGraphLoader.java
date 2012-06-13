@@ -17,7 +17,7 @@ public class Neo4jJansGraphLoader {
 
     public static final int TOTAL_NODES = 10000000;
     public static final int TOTAL_EDGES = 100000000;
-    private static final String[] PREDICATES = {"pred-0", "pred-1", "pred-2", "pred-3", "pred-4", "pred-5", "pred-6", "pred-7", "pred-8", "pred-9"};
+    public static final String[] PREDICATES = {"pred-0", "pred-1", "pred-2", "pred-3", "pred-4", "pred-5", "pred-6", "pred-7", "pred-8", "pred-9"};
 
     public static void main(final String[] args) {
         RANDOM.setSeed(System.currentTimeMillis());
