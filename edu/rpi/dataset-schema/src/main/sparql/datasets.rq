@@ -1,0 +1,22 @@
+PREFIX dgtwc: <http://data-gov.tw.rpi.edu/2009/data-gov-twc.rdf#>
+PREFIX conv: <http://purl.org/twc/vocab/conversion/>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT DISTINCT ?s ?title ?homepage ?country ?subject ?desc ?agency ?aglabel ?contributor ?c ?cid WHERE {
+    ?s a conv:CatalogedDataset .
+    ?s <http://purl.org/dc/terms/title> ?title .
+    ?s <http://xmlns.com/foaf/0.1/homepage> ?homepage .
+    ?s <http://purl.org/dc/terms/subject> ?subject .
+    ?s <http://purl.org/dc/terms/description> ?desc .
+    ?s dgtwc:catalog_country ?country .
+    OPTIONAL {
+        ?s dgtwc:agency ?agency .
+        ?agency rdfs:label ?aglabel .
+    }
+    OPTIONAL {
+        ?s <http://purl.org/dc/terms/contributor> ?contributor .
+    }
+    ?s void:inDataset ?c .
+    ?c dcterms:identifier ?cid .
+}
+LIMIT 1000
