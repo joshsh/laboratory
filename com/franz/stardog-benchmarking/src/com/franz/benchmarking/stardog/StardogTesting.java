@@ -1,4 +1,4 @@
-package net.fortytwo.laboratory.stardogtesting;
+package com.franz.benchmarking.stardog;
 
 import com.clarkparsia.stardog.api.Connection;
 import com.clarkparsia.stardog.api.ConnectionConfiguration;
