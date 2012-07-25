@@ -1,12 +1,12 @@
 package edu.rpi.twc.sesamestream;
 
+import edu.rpi.twc.sesamestream.util.QueryEngineAdder;
 import info.aduna.io.IOUtil;
-import edu.rpi.twc.sesamestream.util.StatementListBuilder;
-import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.parser.ParsedQuery;
 import org.openrdf.query.parser.QueryParser;
 import org.openrdf.query.parser.sparql.SPARQLParser;
+import org.openrdf.rio.RDFHandler;
 import org.openrdf.rio.RDFParser;
 import org.openrdf.rio.ntriples.NTriplesParser;
 
@@ -57,7 +57,9 @@ public class TestRunner {
         for (String f : dataFiles) {
             System.out.println("adding data file " + f);
 
-            StatementListBuilder h = new StatementListBuilder();
+            //StatementListBuilder h = new StatementListBuilder();
+            RDFHandler h = new QueryEngineAdder(engine);
+
 
             InputStream in = new FileInputStream(new File(f));
             try {
@@ -68,9 +70,9 @@ public class TestRunner {
                 in.close();
             }
 
-            for (Statement s : h.getStatements()) {
-                engine.addStatement(s);
-            }
+            //for (Statement s : h.getStatements()) {
+            //    engine.addStatement(s);
+            //}
         }
     }
 

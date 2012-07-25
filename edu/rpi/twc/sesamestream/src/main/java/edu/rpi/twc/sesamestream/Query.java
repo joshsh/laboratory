@@ -96,7 +96,7 @@ public class Query {
         for (QueryModelNode n : l) {
             if (n instanceof Join) {
                 Join j = (Join) n;
-                if (j.hasSubSelect()) {
+                if (j.hasSubSelectInRightArg()) {
                     throw new IncompatibleQueryException();
                 }
 

@@ -29,11 +29,15 @@ import java.util.Set;
  *         10) a statement will never match more than one triple pattern, per query, at a time
  */
 public class QueryEngine {
+    private static final boolean COMPACT_LOG_FORMAT = true;
+
     private final Map<TriplePattern, Collection<PartialSolution>> index;
 
     // TODO: this is a bit of a hack, and a waste of space
     private final Map<TriplePattern, TriplePattern> uniquePatterns;
     private final TriplePatternDeduplicator deduplicator;
+
+    private boolean logHasChanged = false;
 
     private final Counter
             countQueries = new Counter(),
@@ -298,15 +302,19 @@ public class QueryEngine {
 
     private void logEntry() {
         if (SesameStream.PERFORMANCE_METRICS) {
-            System.out.println("LOG\t" + System.currentTimeMillis()
-                    + "," + countQueries.getCount()
-                    + "," + countStatements.getCount()
-                    + "," + countTriplePatterns.getCount()
-                    + "," + countIntermediateResults.getCount()
-                    + "," + countSolutions.getCount()
-                    + "," + countIndexTriplePatternOps.getCount()
-                    + "," + countBindingOps.getCount()
-                    + "," + countReplaceOps.getCount());
+            if (!COMPACT_LOG_FORMAT || logHasChanged) {
+                System.out.println("LOG\t" + System.currentTimeMillis()
+                        + "," + countQueries.getCount()
+                        + "," + countStatements.getCount()
+                        + "," + countTriplePatterns.getCount()
+                        + "," + countIntermediateResults.getCount()
+                        + "," + countSolutions.getCount()
+                        + "," + countIndexTriplePatternOps.getCount()
+                        + "," + countBindingOps.getCount()
+                        + "," + countReplaceOps.getCount());
+
+                logHasChanged = false;
+            }
         }
     }
 
@@ -342,11 +350,12 @@ public class QueryEngine {
         }
     }
 
-    private static class Counter {
+    private class Counter {
         private long count = 0;
 
         public void increment() {
             count++;
+            logHasChanged = true;
         }
 
         public void reset() {

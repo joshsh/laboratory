@@ -1,0 +1,3 @@
+./testrunner.sh data/dbpedia-preview-queries.txt data/dbpedia-preview-data.txt  > /tmp/result
+cat /tmp/result|grep LOG > /tmp/log
+cat /tmp/log|grep "^LOG" | sed 's/LOG.//' > /tmp/querylog.csv

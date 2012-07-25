@@ -15,7 +15,7 @@ fi
 DIR=`dirname $0`
 
 # Launch the application
-$JAVA $JAVA_OPTIONS -cp $DIR/target/classes:$DIR/"target/dependency/*" net.fortytwo.laboratory.sesamestream.TestRunner $*
+$JAVA $JAVA_OPTIONS -cp $DIR/target/classes:$DIR/"target/dependency/*" edu.rpi.twc.sesamestream.TestRunner $*
 
 # Return the program's exit code
 exit $?
