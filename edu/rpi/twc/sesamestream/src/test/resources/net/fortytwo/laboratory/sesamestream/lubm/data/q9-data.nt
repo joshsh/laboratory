@@ -1,6 +1,0 @@
-<http://example.org/stuff/personY> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://lubm.franz.com#Faculty> .
-<http://example.org/stuff/personY> <http://lubm.franz.com#teacherOf> <http://example.org/stuff/courseZ> .
-<http://example.org/stuff/personX> <http://lubm.franz.com#advisor> <http://example.org/stuff/personY> .
-<http://example.org/stuff/personX> <http://lubm.franz.com#takesCourse> <http://example.org/stuff/courseZ> .
-<http://example.org/stuff/personX> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://lubm.franz.com#Student> .
-<http://example.org/stuff/courseZ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://lubm.franz.com#Course> .

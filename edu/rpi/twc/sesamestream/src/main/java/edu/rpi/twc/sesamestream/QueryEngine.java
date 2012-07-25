@@ -1,4 +1,4 @@
-package net.fortytwo.laboratory.sesamestream;
+package edu.rpi.twc.sesamestream;
 
 import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;

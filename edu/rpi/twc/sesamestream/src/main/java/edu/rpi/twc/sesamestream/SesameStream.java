@@ -1,4 +1,4 @@
-package net.fortytwo.laboratory.sesamestream;
+package edu.rpi.twc.sesamestream;
 
 /**
  * @author Joshua Shinavier (http://fortytwo.net)

@@ -1,4 +1,4 @@
-package net.fortytwo.laboratory.sesamestream;
+package edu.rpi.twc.sesamestream;
 
 import java.util.Collection;
 import java.util.Set;

@@ -1,7 +1,7 @@
-package net.fortytwo.laboratory.sesamestream;
+package edu.rpi.twc.sesamestream;
 
 import info.aduna.io.IOUtil;
-import net.fortytwo.laboratory.sesamestream.util.StatementListBuilder;
+import edu.rpi.twc.sesamestream.util.StatementListBuilder;
 import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.parser.ParsedQuery;

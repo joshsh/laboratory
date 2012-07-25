@@ -1,8 +1,11 @@
-package net.fortytwo.laboratory.sesamestream;
+package edu.rpi.twc.sesamestream;
 
+import edu.rpi.twc.sesamestream.BindingSetHandler;
+import edu.rpi.twc.sesamestream.QueryEngine;
+import edu.rpi.twc.sesamestream.SesameStream;
 import info.aduna.io.IOUtil;
 import info.aduna.iteration.CloseableIteration;
-import net.fortytwo.laboratory.sesamestream.util.StatementListBuilder;
+import edu.rpi.twc.sesamestream.util.StatementListBuilder;
 import net.fortytwo.sesametools.nquads.NQuadsParser;
 import org.junit.After;
 import org.junit.Before;

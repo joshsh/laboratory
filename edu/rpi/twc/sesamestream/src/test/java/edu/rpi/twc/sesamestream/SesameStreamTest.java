@@ -1,5 +1,8 @@
-package net.fortytwo.laboratory.sesamestream;
+package edu.rpi.twc.sesamestream;
 
+import edu.rpi.twc.sesamestream.BindingSetHandler;
+import edu.rpi.twc.sesamestream.QueryEngine;
+import edu.rpi.twc.sesamestream.SesameStream;
 import info.aduna.io.IOUtil;
 import org.junit.Test;
 import org.openrdf.query.BindingSet;

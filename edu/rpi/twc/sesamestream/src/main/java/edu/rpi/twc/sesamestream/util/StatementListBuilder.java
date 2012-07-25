@@ -1,4 +1,4 @@
-package net.fortytwo.laboratory.sesamestream.util;
+package edu.rpi.twc.sesamestream.util;
 
 import org.openrdf.model.Statement;
 import org.openrdf.rio.RDFHandler;
