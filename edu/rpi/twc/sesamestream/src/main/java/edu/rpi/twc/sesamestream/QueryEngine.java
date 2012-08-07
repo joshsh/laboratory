@@ -76,7 +76,7 @@ public class QueryEngine {
     }
 
     private void addIntermediateResult(final PartialSolution q) {
-        increment(countIntermediateResults);
+        increment(countIntermediateResults, true);
         //System.out.println("intermediate result:\t" + q);
 
         for (TriplePattern tp : q.getPatterns()) {
@@ -94,7 +94,7 @@ public class QueryEngine {
      */
     public void addQuery(final TupleExpr t,
                          final BindingSetHandler h) throws Query.IncompatibleQueryException {
-        increment(countQueries);
+        increment(countQueries, true);
         //System.out.println("query:\t" + t);
 
         Query q = new Query(t, deduplicator);
@@ -117,7 +117,7 @@ public class QueryEngine {
      * @param s the statement to add
      */
     public void addStatement(final Statement s) {
-        increment(countStatements);
+        increment(countStatements, false);
         //System.out.println("statement:\t" + s);
 
         // TODO: temporary fix for ConcurrentModificationExceptions
@@ -145,7 +145,7 @@ public class QueryEngine {
     private VarList applyTo(final TriplePattern p,
                             final Statement s,
                             VarList l) {
-        increment(countBindingOps);
+        increment(countBindingOps, false);
 
         if (!p.getSubject().hasValue()) {
             l = new VarList(p.getSubject().getName(), s.getSubject(), l);
@@ -170,12 +170,12 @@ public class QueryEngine {
 
     private void indexTriplePattern(final TriplePattern p,
                                     final PartialSolution q) {
-        increment(countIndexTriplePatternOps);
+        increment(countIndexTriplePatternOps, false);
 
         //System.out.println("binding...\t" + p + " -- " + q);
         Collection<PartialSolution> queries = index.get(p);
         if (null == queries) {
-            increment(countTriplePatterns);
+            increment(countTriplePatterns, true);
             //System.out.println("triple pattern:\t" + p);
 
             queries = new LinkedList<PartialSolution>();
@@ -256,7 +256,7 @@ public class QueryEngine {
     // TODO: currently not efficient
     private TriplePattern replace(final TriplePattern p,
                                   final VarList bindings) {
-        increment(countReplaceOps);
+        increment(countReplaceOps, false);
 
         Var newSubject = p.getSubject();
         Var newPredicate = p.getPredicate();
@@ -288,9 +288,13 @@ public class QueryEngine {
                 : null;
     }
 
-    private void increment(final Counter counter) {
+    private void increment(final Counter counter,
+                           final boolean logChange) {
         if (SesameStream.PERFORMANCE_METRICS) {
             counter.increment();
+            if (logChange) {
+                logHasChanged = true;
+            }
         }
     }
 
@@ -336,7 +340,7 @@ public class QueryEngine {
 
     private void handleSolution(final BindingSetHandler handler,
                                 final BindingSet solution) {
-        increment(countSolutions);
+        increment(countSolutions, true);
         //System.out.println("SOLUTION:\t" + QueryEngine.toString(solution));
 
         handler.handle(solution);
@@ -355,7 +359,6 @@ public class QueryEngine {
 
         public void increment() {
             count++;
-            logHasChanged = true;
         }
 
         public void reset() {
