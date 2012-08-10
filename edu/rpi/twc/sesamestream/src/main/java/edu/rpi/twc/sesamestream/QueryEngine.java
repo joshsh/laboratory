@@ -6,7 +6,6 @@ import org.openrdf.query.algebra.TupleExpr;
 import org.openrdf.query.algebra.Var;
 import org.openrdf.query.impl.MapBindingSet;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -32,13 +31,22 @@ import java.util.Set;
 public class QueryEngine {
     private static final boolean COMPACT_LOG_FORMAT = true;
 
-    private final Map<TriplePattern, Collection<PartialSolution>> oldIndex;
+    //private final Map<TriplePattern, Collection<PartialSolution>> oldIndex;
+    private final TripleIndex index;
 
     private final List<PartialSolution> intermediateResultBuffer = new LinkedList<PartialSolution>();
 
     // TODO: this is a bit of a hack, and a waste of space
     private final Map<TriplePattern, TriplePattern> uniquePatterns;
     private final TriplePatternDeduplicator deduplicator;
+
+    private final SolutionBinder binder = new SolutionBinder() {
+        public void bind(final PartialSolution ps,
+                         final TriplePattern p,
+                         final VarList l) {
+            bindSolution(ps, p, l);
+        }
+    };
 
     private boolean logHasChanged = false;
 
@@ -53,7 +61,8 @@ public class QueryEngine {
             countReplaceOps = new Counter();
 
     public QueryEngine() {
-        oldIndex = new HashMap<TriplePattern, Collection<PartialSolution>>();
+        index = new TripleIndex();
+        //oldIndex = new HashMap<TriplePattern, Collection<PartialSolution>>();
         uniquePatterns = new HashMap<TriplePattern, TriplePattern>();
         deduplicator = new TriplePatternDeduplicator();
         clear();
@@ -63,7 +72,8 @@ public class QueryEngine {
      * Removes all queries, statements, and intermediate results.
      */
     public void clear() {
-        oldIndex.clear();
+        // TODO: index.clear()
+        //oldIndex.clear();
         uniquePatterns.clear();
 
         countQueries.reset();
@@ -118,6 +128,15 @@ public class QueryEngine {
         logEntry();
     }
 
+    private VarList toVarList(final Statement s) {
+        VarList l = VarList.NIL;
+
+        l = new VarList(null, s.getObject(), l);
+        l = new VarList(null, s.getPredicate(), l);
+        l = new VarList(null, s.getSubject(), l);
+        return l;
+    }
+
     /**
      * Adds a new statement to this query engine.
      * Depending on the queries registered with this engine,
@@ -131,6 +150,9 @@ public class QueryEngine {
         increment(countStatements, false);
         //System.out.println("statement:\t" + s);
 
+        index.match(toVarList(s), s, binder);
+
+        /*
         // TODO: replace this linear search with something more efficient
         for (TriplePattern p : oldIndex.keySet()) {
             VarList l = applyTo(p, s);
@@ -142,41 +164,18 @@ public class QueryEngine {
                 }
             }
         }
+        */
 
         flushIntermediateResults();
 
         logEntry();
     }
 
-    /**
-     * @param s
-     * @return an augmented list of variable bindings if this triple pattern matches the statement,
-     *         otherwise the provided list of bindings (which may be null)
-     */
-    private VarList applyTo(final TriplePattern p,
-                            final Statement s) {
+    private VarList toVarList(TriplePattern p) {
         VarList l = VarList.NIL;
-
-        increment(countBindingOps, false);
-
-        if (!p.getSubject().hasValue()) {
-            l = new VarList(p.getSubject().getName(), s.getSubject(), l);
-        } else if (!p.getSubject().getValue().equals(s.getSubject())) {
-            return null;
-        }
-
-        if (!p.getPredicate().hasValue()) {
-            l = new VarList(p.getPredicate().getName(), s.getPredicate(), l);
-        } else if (!p.getPredicate().getValue().equals(s.getPredicate())) {
-            return null;
-        }
-
-        if (!p.getObject().hasValue()) {
-            l = new VarList(p.getObject().getName(), s.getObject(), l);
-        } else if (!p.getObject().getValue().equals(s.getObject())) {
-            return null;
-        }
-
+        l = new VarList(p.getObject().getName(), p.getObject().getValue(), l);
+        l = new VarList(p.getPredicate().getName(), p.getPredicate().getValue(), l);
+        l = new VarList(p.getSubject().getName(), p.getSubject().getValue(), l);
         return l;
     }
 
@@ -185,6 +184,11 @@ public class QueryEngine {
         increment(countIndexTriplePatternOps, false);
 
         //System.out.println("binding...\t" + p + " -- " + q);
+
+        VarList l = toVarList(p);
+        index.index(l, q);
+
+        /*
         Collection<PartialSolution> queries = oldIndex.get(p);
         if (null == queries) {
             increment(countTriplePatterns, true);
@@ -202,9 +206,10 @@ public class QueryEngine {
         //for (TriplePattern t : index.keySet()) {
         //    System.out.println("\t" + index.get(t).size() + " -- " + t);
         //}
+        */
     }
 
-    public void bind(final PartialSolution r,
+    public void bindSolution(final PartialSolution r,
                      final TriplePattern satisfiedPattern,
                      final VarList newBindings) {
         //System.out.println("triple pattern satisfied: " + satisfiedPattern + " with bindings " + newBindings);
@@ -326,6 +331,7 @@ public class QueryEngine {
         }
     }
 
+    /*
     private static String toString(final BindingSet b) {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
@@ -340,7 +346,7 @@ public class QueryEngine {
         }
 
         return sb.toString();
-    }
+    }*/
 
     private void handleSolution(final BindingSetHandler handler,
                                 final BindingSet solution) {
@@ -354,7 +360,12 @@ public class QueryEngine {
     public class TriplePatternDeduplicator {
         public TriplePattern deduplicate(final TriplePattern t) {
             TriplePattern t2 = uniquePatterns.get(t);
-            return null == t2 ? t : t2;
+            if (null == t2) {
+                increment(countTriplePatterns, true);
+                return t;
+            } else {
+                return t2;
+            }
         }
     }
 
