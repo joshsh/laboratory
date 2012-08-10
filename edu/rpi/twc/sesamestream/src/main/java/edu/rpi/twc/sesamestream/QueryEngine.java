@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,7 +32,9 @@ import java.util.Set;
 public class QueryEngine {
     private static final boolean COMPACT_LOG_FORMAT = true;
 
-    private final Map<TriplePattern, Collection<PartialSolution>> index;
+    private final Map<TriplePattern, Collection<PartialSolution>> oldIndex;
+
+    private final List<PartialSolution> intermediateResultBuffer = new LinkedList<PartialSolution>();
 
     // TODO: this is a bit of a hack, and a waste of space
     private final Map<TriplePattern, TriplePattern> uniquePatterns;
@@ -50,7 +53,7 @@ public class QueryEngine {
             countReplaceOps = new Counter();
 
     public QueryEngine() {
-        index = new HashMap<TriplePattern, Collection<PartialSolution>>();
+        oldIndex = new HashMap<TriplePattern, Collection<PartialSolution>>();
         uniquePatterns = new HashMap<TriplePattern, TriplePattern>();
         deduplicator = new TriplePatternDeduplicator();
         clear();
@@ -60,7 +63,7 @@ public class QueryEngine {
      * Removes all queries, statements, and intermediate results.
      */
     public void clear() {
-        index.clear();
+        oldIndex.clear();
         uniquePatterns.clear();
 
         countQueries.reset();
@@ -79,9 +82,16 @@ public class QueryEngine {
         increment(countIntermediateResults, true);
         //System.out.println("intermediate result:\t" + q);
 
-        for (TriplePattern tp : q.getPatterns()) {
-            indexTriplePattern(tp, q);
+        intermediateResultBuffer.add(q);
+    }
+
+    private void flushIntermediateResults() {
+        for (PartialSolution q : intermediateResultBuffer) {
+            for (TriplePattern tp : q.getPatterns()) {
+                indexTriplePattern(tp, q);
+            }
         }
+        intermediateResultBuffer.clear();
     }
 
     /**
@@ -103,6 +113,7 @@ public class QueryEngine {
 
         PartialSolution query = new PartialSolution(s);
         addIntermediateResult(query);
+        flushIntermediateResults();
 
         logEntry();
     }
@@ -120,31 +131,32 @@ public class QueryEngine {
         increment(countStatements, false);
         //System.out.println("statement:\t" + s);
 
-        // TODO: temporary fix for ConcurrentModificationExceptions
-        Collection<TriplePattern> buffer = new LinkedList<TriplePattern>();
-        buffer.addAll(index.keySet());
-
         // TODO: replace this linear search with something more efficient
-        for (TriplePattern p : buffer) {
-            VarList l = applyTo(p, s, VarList.NIL);
+        for (TriplePattern p : oldIndex.keySet()) {
+            VarList l = applyTo(p, s);
 
             if (null != l) {
-                handleTriplePatternMatch(p, l);
+                for (PartialSolution q : oldIndex.get(p)) {
+                    //System.out.println("handling match " + bindings + " of " + p + " in " + q);
+                    bind(q, p, l);
+                }
             }
         }
+
+        flushIntermediateResults();
 
         logEntry();
     }
 
     /**
      * @param s
-     * @param l
      * @return an augmented list of variable bindings if this triple pattern matches the statement,
      *         otherwise the provided list of bindings (which may be null)
      */
     private VarList applyTo(final TriplePattern p,
-                            final Statement s,
-                            VarList l) {
+                            final Statement s) {
+        VarList l = VarList.NIL;
+
         increment(countBindingOps, false);
 
         if (!p.getSubject().hasValue()) {
@@ -173,13 +185,13 @@ public class QueryEngine {
         increment(countIndexTriplePatternOps, false);
 
         //System.out.println("binding...\t" + p + " -- " + q);
-        Collection<PartialSolution> queries = index.get(p);
+        Collection<PartialSolution> queries = oldIndex.get(p);
         if (null == queries) {
             increment(countTriplePatterns, true);
             //System.out.println("triple pattern:\t" + p);
 
             queries = new LinkedList<PartialSolution>();
-            index.put(p, queries);
+            oldIndex.put(p, queries);
 
             // This is necessarily a unique triple pattern
             uniquePatterns.put(p, p);
@@ -190,14 +202,6 @@ public class QueryEngine {
         //for (TriplePattern t : index.keySet()) {
         //    System.out.println("\t" + index.get(t).size() + " -- " + t);
         //}
-    }
-
-    private void handleTriplePatternMatch(final TriplePattern p,
-                                          final VarList bindings) {
-        for (PartialSolution q : index.get(p)) {
-            //System.out.println("handling match " + bindings + " of " + p + " in " + q);
-            bind(q, p, bindings);
-        }
     }
 
     public void bind(final PartialSolution r,
@@ -354,7 +358,7 @@ public class QueryEngine {
         }
     }
 
-    private class Counter {
+    private static class Counter {
         private long count = 0;
 
         public void increment() {

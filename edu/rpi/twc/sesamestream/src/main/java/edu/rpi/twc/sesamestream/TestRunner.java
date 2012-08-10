@@ -1,7 +1,9 @@
 package edu.rpi.twc.sesamestream;
 
+import edu.rpi.twc.sesamestream.util.ErrorTolerantValueFactory;
 import edu.rpi.twc.sesamestream.util.QueryEngineAdder;
 import info.aduna.io.IOUtil;
+import org.openrdf.model.impl.ValueFactoryImpl;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.MalformedQueryException;
 import org.openrdf.query.parser.ParsedQuery;
@@ -83,6 +85,9 @@ public class TestRunner {
             InputStream in = new FileInputStream(new File(f));
             try {
                 RDFParser p = new NTriplesParser();
+                p.setValueFactory(new ErrorTolerantValueFactory(new ValueFactoryImpl()));
+                p.setStopAtFirstError(false);
+                p.setVerifyData(false);
                 p.setRDFHandler(h);
                 try {
                     p.parse(in, baseUri);
