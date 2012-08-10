@@ -44,6 +44,8 @@ public class QueryEngine {
         public void bind(final PartialSolution ps,
                          final TriplePattern p,
                          final VarList l) {
+            increment(countBindingOps, false);
+
             bindSolution(ps, p, l);
         }
     };
