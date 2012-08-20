@@ -17,6 +17,10 @@ int height = 500;
 int border = 50;
 int padding = 10;
 
+int pointsPerGame = 20;
+int correctAnswers;
+int incorrectAnswers;
+
 class Cell {
   int i;
   int j;
@@ -131,6 +135,11 @@ class Runner implements Runnable {
 Matrix matrix;
 Cell targetCell = null;
 
+void newGame() {
+  correctAnswers = 0;
+  incorrectAnswers = 0;
+}
+
 void setup() {
   colorMode(HSB, 100);
   background(100);
@@ -156,7 +165,18 @@ void setup() {
 void draw() {
   //line(150, 25, mouseX, mouseY);
 }
-     
+  
+void updateScore(boolean isCorrect) {
+  if (isCorrect) {
+             correctAnswers++;
+  } else {
+    incorrectAnswers++;
+  }
+  
+      int percentCorrect = (100 * correctAnswers) / (correctAnswers + incorrectAnswers);
+       System.out.println("" + correctAnswers + "/" + (correctAnswers + incorrectAnswers) + " (" + percentCorrect + "%)"); 
+}
+
  void mousePressed() {
    /*
    print("(");
@@ -167,24 +187,27 @@ void draw() {
    
    Cell c = matrix.cellAt(mouseX, mouseY);
    if (null != c) {
+     /*
      print("(");
      print(c.i);
      print(", ");
      print(c.j);
-     println(")"); 
- 
+     println(")"); */
+   
      if (null != targetCell) {
        if (c.equals(targetCell)) {
-         println("correct!");
+         updateScore(true);
+         //println("correct!");
          //yes.trigger();
          correct.trigger();
        } else {
-         println("wrong!");
+         updateScore(false);
+         //println("wrong!");
          //no.trigger();
          sorry.trigger();
          targetCell = null;
          return;
-       }  
+       }       
      }
      
      targetCell = matrix.randomCell();
@@ -195,7 +218,7 @@ void draw() {
      }
      
      matrix.draw(targetCell);
- 
+   
      clicked.trigger();   
    }
  }
