@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.fortytwo.laboratory</groupId>
     <artifactId>maven-template</artifactId>
-    <version>0.1</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>...</name>
     <description>...</description>
@@ -30,11 +30,10 @@
 
     <properties>
         <junit.version>4.5</junit.version>
-        <sesame.version>2.6.4</sesame.version>
+        <sesame.version>2.6.9</sesame.version>
         <sesametools.version>1.6</sesametools.version>
         <ripple.version>0.8-SNAPSHOT</ripple.version>
-        <blueprints.version>1.2</blueprints.version>
-        <gremlin.version>1.5</gremlin.version>
+        <tinkerpop.version>2.1.0</tinkerpop.version>
     </properties>
 
     <dependencies>
