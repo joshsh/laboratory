@@ -30,11 +30,8 @@
 
     <properties>
         <junit.version>4.5</junit.version>
-        <sesame.version>2.6.8</sesame.version>
-        <sesametools.version>1.6</sesametools.version>
-        <ripple.version>0.8-SNAPSHOT</ripple.version>
-        <blueprints.version>1.2</blueprints.version>
-        <gremlin.version>1.5</gremlin.version>
+        <sesame.version>2.6.9</sesame.version>
+        <sesametools.version>1.7-SNAPSHOT</sesametools.version>
     </properties>
 
     <dependencies>
@@ -52,7 +49,7 @@
         <dependency>
             <groupId>net.fortytwo.sesametools</groupId>
             <artifactId>nquads</artifactId>
-            <version>1.6</version>
+            <version>${sesametools.version}</version>
         </dependency>
         <!--<dependency>
             <groupId>org.apache.commons</groupId>
