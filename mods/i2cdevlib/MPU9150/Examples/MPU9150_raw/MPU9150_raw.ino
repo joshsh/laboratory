@@ -1,4 +1,4 @@
-// I2C device class (I2Cdev) demonstration Arduino sketch for MPU6050 class
+// I2C device class (I2Cdev) demonstration Arduino sketch for MPU9150 class
 // 10/7/2011 by Jeff Rowberg <jeff@rowberg.net>
 // Updates should (hopefully) always be available at https://github.com/jrowberg/i2cdevlib
 //
@@ -33,16 +33,16 @@ THE SOFTWARE.
 // is used in I2Cdev.h
 #include "Wire.h"
 
-// I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
+// I2Cdev and MPU9150 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
 #include "I2Cdev.h"
-#include "MPU6050.h"
+#include "MPU9150.h"
 
 // class default I2C address is 0x68
 // specific I2C addresses may be passed as a parameter here
 // AD0 low = 0x68 (default for InvenSense evaluation board)
 // AD0 high = 0x69
-MPU6050 accelgyro;
+MPU9150 accelgyro;
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
@@ -65,7 +65,7 @@ void setup() {
 
     // verify connection
     Serial.println("Testing device connections...");
-    Serial.println(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
+    Serial.println(accelgyro.testConnection() ? "MPU9150 connection successful" : "MPU9150 connection failed");
 
     // configure Arduino LED for
     pinMode(LED_PIN, OUTPUT);
