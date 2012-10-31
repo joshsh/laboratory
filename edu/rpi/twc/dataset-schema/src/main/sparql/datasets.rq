@@ -19,4 +19,4 @@ SELECT DISTINCT ?s ?title ?homepage ?country ?subject ?desc ?agency ?aglabel ?co
     ?s void:inDataset ?c .
     ?c dcterms:identifier ?cid .
 }
-LIMIT 1000
+#LIMIT 1000
