@@ -1,18 +1,18 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix : <http://data.gov/2012/dataset##> .
+@prefix : <http://vocab.data.gov/core#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://data.gov/2012/dataset#> .
+@base <http://vocab.data.gov/core> .
 
-<http://data.gov/2012/dataset#> rdf:type owl:Ontology ;
-                                
-                                rdfs:label "data.gov dataset ontology" ;
-                                
-                                rdfs:comment "An ontology of data.gov dataset metadata" ;
-                                
-                                owl:imports <http://www.w3.org/ns/dcat> .
+<http://vocab.data.gov/core> rdf:type owl:Ontology ;
+                             
+                             rdfs:label "data.gov dataset ontology" ;
+                             
+                             rdfs:comment "An ontology of data.gov dataset metadata" ;
+                             
+                             owl:imports <http://www.w3.org/ns/dcat> .
 
 
 #################################################################
@@ -40,9 +40,9 @@
 #################################################################
 
 
-###  http://data.gov/2012/dataset#agencyDataSeries
+###  http://vocab.data.gov/core#agencyDataSeries
 
-<http://data.gov/2012/dataset#agencyDataSeries> rdf:type owl:ObjectProperty ;
+<http://vocab.data.gov/core#agencyDataSeries> rdf:type owl:ObjectProperty ;
                                                 
                                                 rdfs:comment "the high level repository in which this dataset or tool resides at the agency" ;
                                                 
@@ -50,9 +50,9 @@
 
 
 
-###  http://data.gov/2012/dataset#agencyProgram
+###  http://vocab.data.gov/core#agencyProgram
 
-<http://data.gov/2012/dataset#agencyProgram> rdf:type owl:ObjectProperty ;
+<http://vocab.data.gov/core#agencyProgram> rdf:type owl:ObjectProperty ;
                                              
                                              rdfs:comment "the program that is responsible for this dataset" ;
                                              
@@ -60,21 +60,21 @@
 
 
 
-###  http://data.gov/2012/dataset#dataCategoryDesignation
+###  http://vocab.data.gov/core#dataCategoryDesignation
 
-<http://data.gov/2012/dataset#dataCategoryDesignation> rdf:type owl:ObjectProperty ;
+<http://vocab.data.gov/core#dataCategoryDesignation> rdf:type owl:ObjectProperty ;
                                                        
                                                        rdfs:comment "The type of dataset (i.e., administrative, statistical, geospatial, surveillance or research).  Please choose the category that best fits the dataset, understanding that there is some potential for overlap among these categories." ;
                                                        
-                                                       rdfs:range <http://data.gov/2012/dataset#DataCategory> ;
+                                                       rdfs:range <http://vocab.data.gov/core#DataCategory> ;
                                                        
                                                        rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
 
 
 
-###  http://data.gov/2012/dataset#dataCollectionInstrument
+###  http://vocab.data.gov/core#dataCollectionInstrument
 
-<http://data.gov/2012/dataset#dataCollectionInstrument> rdf:type owl:ObjectProperty ;
+<http://vocab.data.gov/core#dataCollectionInstrument> rdf:type owl:ObjectProperty ;
                                                         
                                                         rdfs:comment "the data collection instrument for a listed mode" ;
                                                         
@@ -91,9 +91,9 @@
 #################################################################
 
 
-###  http://data.gov/2012/dataset#bibliographicCitation
+###  http://vocab.data.gov/core#bibliographicCitation
 
-<http://data.gov/2012/dataset#bibliographicCitation> rdf:type owl:DatatypeProperty ;
+<http://vocab.data.gov/core#bibliographicCitation> rdf:type owl:DatatypeProperty ;
                                                      
                                                      rdfs:comment "This field may be used when others make reference to the data, as in a bibliographic citation or source reference.  If the agency does not have a standard reference for this dataset, simply provide the URL for the dataset ." ;
                                                      
@@ -103,9 +103,9 @@
 
 
 
-###  http://data.gov/2012/dataset#collectionFrequency
+###  http://vocab.data.gov/core#collectionFrequency
 
-<http://data.gov/2012/dataset#collectionFrequency> rdf:type owl:DatatypeProperty ;
+<http://vocab.data.gov/core#collectionFrequency> rdf:type owl:DatatypeProperty ;
                                                    
                                                    rdfs:comment "frequency of data collection (one-time, annual, hourly, etc.)" ;
                                                    
@@ -113,9 +113,9 @@
 
 
 
-###  http://data.gov/2012/dataset#collectionMode
+###  http://vocab.data.gov/core#collectionMode
 
-<http://data.gov/2012/dataset#collectionMode> rdf:type owl:DatatypeProperty ;
+<http://vocab.data.gov/core#collectionMode> rdf:type owl:DatatypeProperty ;
                                               
                                               rdfs:comment "data collection mode (e.g., phone/paper, phone/computer, person/paper, person/computer, web, fax, type of monitor, other)" ;
                                               
@@ -123,9 +123,9 @@
 
 
 
-###  http://data.gov/2012/dataset#unitOfAnalysis
+###  http://vocab.data.gov/core#unitOfAnalysis
 
-<http://data.gov/2012/dataset#unitOfAnalysis> rdf:type owl:DatatypeProperty ;
+<http://vocab.data.gov/core#unitOfAnalysis> rdf:type owl:DatatypeProperty ;
                                               
                                               rdfs:comment "the unit of analysis is the major entity that you are analyzing in your study (e.g., person, household, forest, county, establishment)" ;
                                               
@@ -133,9 +133,9 @@
 
 
 
-###  http://data.gov/2012/dataset#useRequiresLicenseAgreement
+###  http://vocab.data.gov/core#useRequiresLicenseAgreement
 
-<http://data.gov/2012/dataset#useRequiresLicenseAgreement> rdf:type owl:DatatypeProperty ;
+<http://vocab.data.gov/core#useRequiresLicenseAgreement> rdf:type owl:DatatypeProperty ;
                                                            
                                                            rdfs:comment "This is a required field to ensure that license agreements are not bypassed during the one-click download interface on the website." ;
                                                            
@@ -145,9 +145,9 @@
 
 
 
-###  http://data.gov/2012/dataset#userGeneratedID
+###  http://vocab.data.gov/core#userGeneratedID
 
-<http://data.gov/2012/dataset#userGeneratedID> rdf:type owl:DatatypeProperty ;
+<http://vocab.data.gov/core#userGeneratedID> rdf:type owl:DatatypeProperty ;
                                                
                                                rdfs:comment "This field may be used by the agency to track the submissions on their internal systems.  The field is optional as it will not typically be used by the Datagov and will not be published on the catalog." ;
                                                
@@ -164,9 +164,9 @@
 #################################################################
 
 
-###  http://data.gov/2012/dataset#DataCategory
+###  http://vocab.data.gov/core#DataCategory
 
-<http://data.gov/2012/dataset#DataCategory> rdf:type owl:Class ;
+<http://vocab.data.gov/core#DataCategory> rdf:type owl:Class ;
                                             
                                             rdfs:comment "high-level categories for datasets.  A given dataset may fall into more than one category." .
 
@@ -181,45 +181,45 @@
 #################################################################
 
 
-###  http://data.gov/2012/dataset#Administrative
+###  http://vocab.data.gov/core#Administrative
 
-<http://data.gov/2012/dataset#Administrative> rdf:type <http://data.gov/2012/dataset#DataCategory> ,
+<http://vocab.data.gov/core#Administrative> rdf:type <http://vocab.data.gov/core#DataCategory> ,
                                                        owl:NamedIndividual ;
                                               
                                               rdfs:comment "'administrative' data category" .
 
 
 
-###  http://data.gov/2012/dataset#Geospatial
+###  http://vocab.data.gov/core#Geospatial
 
-<http://data.gov/2012/dataset#Geospatial> rdf:type <http://data.gov/2012/dataset#DataCategory> ,
+<http://vocab.data.gov/core#Geospatial> rdf:type <http://vocab.data.gov/core#DataCategory> ,
                                                    owl:NamedIndividual ;
                                           
                                           rdfs:comment "'geospatial' data category" .
 
 
 
-###  http://data.gov/2012/dataset#Research
+###  http://vocab.data.gov/core#Research
 
-<http://data.gov/2012/dataset#Research> rdf:type <http://data.gov/2012/dataset#DataCategory> ,
+<http://vocab.data.gov/core#Research> rdf:type <http://vocab.data.gov/core#DataCategory> ,
                                                  owl:NamedIndividual ;
                                         
                                         rdfs:comment "'research' data category" .
 
 
 
-###  http://data.gov/2012/dataset#Statistical
+###  http://vocab.data.gov/core#Statistical
 
-<http://data.gov/2012/dataset#Statistical> rdf:type <http://data.gov/2012/dataset#DataCategory> ,
+<http://vocab.data.gov/core#Statistical> rdf:type <http://vocab.data.gov/core#DataCategory> ,
                                                     owl:NamedIndividual ;
                                            
                                            rdfs:comment "'statistical' data category" .
 
 
 
-###  http://data.gov/2012/dataset#Surveillance
+###  http://vocab.data.gov/core#Surveillance
 
-<http://data.gov/2012/dataset#Surveillance> rdf:type <http://data.gov/2012/dataset#DataCategory> ,
+<http://vocab.data.gov/core#Surveillance> rdf:type <http://vocab.data.gov/core#DataCategory> ,
                                                      owl:NamedIndividual ;
                                             
                                             rdfs:comment "'surveillance' data category" .
