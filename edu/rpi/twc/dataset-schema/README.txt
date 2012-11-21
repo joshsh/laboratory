@@ -4,7 +4,7 @@ xsltproc ../src/main/xslt/sparql-xml-to-csv.xslt results.xml > results.csv
 
 
 
-curl -H "Accept: application/sparql-results+json" --data-urlencode query@../datasets.rq http://flux.franz.com/catalogs/testing/repositories/iogds > results.json
+curl -H "Accept: application/sparql-results+json" --data-urlencode query@src/main/sparql/datasets.rq http://flux.franz.com/catalogs/testing/repositories/iogds > results.json
 
 
 xsltproc ../src/main/xslt/sparql-xml-to-csv.xslt results-partial.xml > results.csv

@@ -36,68 +36,54 @@
 #################################################################
 
 
-###  http://tw.rpi.edu/schemas/dataset.ttl#containsDataset
+###  http://tw.rpi.edu/schemas/dataset.ttl#catalog
 
-:containsDataset rdf:type owl:InverseFunctionalProperty ,
-                          owl:ObjectProperty ;
-                 
-                 rdfs:comment "A dataset contained in a data catalog."@en ;
-                 
-                 rdfs:domain :DataCatalog ;
-                 
-                 rdfs:range :Dataset ;
-                 
-                 owl:inverseOf :inCatalog .
+:catalog rdf:type owl:FunctionalProperty ,
+                  owl:ObjectProperty ;
+         
+         rdfs:comment "the data catalog which contains a dataset"@en ;
+         
+         rdfs:range :DataCatalog ;
+         
+         rdfs:domain :Dataset .
 
 
 
-###  http://tw.rpi.edu/schemas/dataset.ttl#data
+###  http://tw.rpi.edu/schemas/dataset.ttl#dataset
 
-:data rdf:type owl:ObjectProperty ;
-      
-      rdfs:comment "A downloadable form of this dataset, at a specific location, in a specific format."@en ;
-      
-      rdfs:range :DataObject ;
-      
-      rdfs:domain :Dataset .
-
-
-
-###  http://tw.rpi.edu/schemas/dataset.ttl#inCatalog
-
-:inCatalog rdf:type owl:FunctionalProperty ,
-                    owl:ObjectProperty ;
-           
-           rdfs:comment "The data catalog which contains a dataset."@en ;
-           
-           rdfs:range :DataCatalog ;
-           
-           rdfs:domain :Dataset .
+:dataset rdf:type owl:InverseFunctionalProperty ,
+                  owl:ObjectProperty ;
+         
+         rdfs:comment "a dataset contained in a data catalog"@en ;
+         
+         rdfs:domain :DataCatalog ;
+         
+         rdfs:range :Dataset .
 
 
 
-###  http://tw.rpi.edu/schemas/dataset.ttl#spatialScope
+###  http://tw.rpi.edu/schemas/dataset.ttl#distribution
 
-:spatialScope rdf:type owl:FunctionalProperty ,
-                       owl:ObjectProperty ;
+:distribution rdf:type owl:ObjectProperty ;
               
-              rdfs:comment "The range of spatial applicability of a dataset, e.g. for a dataset of New York weather, the state of New York."@en ;
+              rdfs:comment "a downloadable form of this dataset, at a specific location, in a specific format"@en ;
               
-              rdfs:range <http://schema.org/Place> ;
+              rdfs:range :DataDownload ;
               
               rdfs:domain :Dataset .
 
 
 
-###  http://tw.rpi.edu/schemas/dataset.ttl#topic
+###  http://tw.rpi.edu/schemas/dataset.ttl#spatial
 
-:topic rdf:type owl:ObjectProperty ;
-       
-       rdfs:comment "A topic of interest described in a dataset."@en ;
-       
-       rdfs:range <http://schema.org/Thing> ;
-       
-       rdfs:domain :Dataset .
+:spatial rdf:type owl:FunctionalProperty ,
+                  owl:ObjectProperty ;
+         
+         rdfs:comment "the range of spatial applicability of a dataset, e.g. for a dataset of New York weather, the state of New York"@en ;
+         
+         rdfs:range <http://schema.org/Place> ;
+         
+         rdfs:domain :Dataset .
 
 
 
@@ -110,15 +96,23 @@
 #################################################################
 
 
-###  http://tw.rpi.edu/schemas/dataset.ttl#category
+###  http://tw.rpi.edu/schemas/dataset.ttl#keyword
 
-:category rdf:type owl:DatatypeProperty ;
+:keyword rdf:type owl:DatatypeProperty ;
+         
+         rdfs:domain :Dataset ;
+         
+         rdfs:range rdfs:Literal .
+
+
+
+###  http://tw.rpi.edu/schemas/dataset.ttl#temporal
+
+:temporal rdf:type owl:DatatypeProperty ;
           
-          rdfs:comment "A category describing a dataset."@en ;
+          rdfs:comment "the range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format)"@en ;
           
-          rdfs:domain :Dataset ;
-          
-          rdfs:range rdfs:Literal .
+          rdfs:domain :Dataset .
 
 
 
@@ -137,17 +131,17 @@
              
              rdfs:subClassOf <http://schema.org/CreativeWork> ;
              
-             rdfs:comment "A collection of datasets."@en .
+             rdfs:comment "a collection of datasets"@en .
 
 
 
-###  http://tw.rpi.edu/schemas/dataset.ttl#DataObject
+###  http://tw.rpi.edu/schemas/dataset.ttl#DataDownload
 
-:DataObject rdf:type owl:Class ;
-            
-            rdfs:subClassOf <http://schema.org/MediaObject> ;
-            
-            rdfs:comment "A dataset in downloadable form."@en .
+:DataDownload rdf:type owl:Class ;
+              
+              rdfs:subClassOf <http://schema.org/MediaObject> ;
+              
+              rdfs:comment "a dataset in downloadable form"@en .
 
 
 
@@ -157,7 +151,7 @@
          
          rdfs:subClassOf <http://schema.org/CreativeWork> ;
          
-         rdfs:comment "A structured body of information describing some topic(s) of interest."@en .
+         rdfs:comment "a body of structured information describing some topic(s) of interest"@en .
 
 
 
