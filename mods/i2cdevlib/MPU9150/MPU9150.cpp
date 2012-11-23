@@ -1716,9 +1716,55 @@ bool MPU9150::getIntDataReadyStatus() {
  * @see MPU9150_RA_ACCEL_XOUT_H
  */
 void MPU9150::getMotion9(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int16_t* gy, int16_t* gz, int16_t* mx, int16_t* my, int16_t* mz) {
-    getMotion6(ax, ay, az, gx, gy, gz);
-    // TODO: magnetometer integration
+    I2Cdev::readBytes(devAddr, MPU9150_RA_ACCEL_XOUT_H, 14+24, buffer);
+    *ax = (((int16_t)buffer[0]) << 8) | buffer[1];
+    *ay = (((int16_t)buffer[2]) << 8) | buffer[3];
+    *az = (((int16_t)buffer[4]) << 8) | buffer[5];
+    *gx = (((int16_t)buffer[8]) << 8) | buffer[9];
+    *gy = (((int16_t)buffer[10]) << 8) | buffer[11];
+    *gz = (((int16_t)buffer[12]) << 8) | buffer[13];
+    *mx = (((int16_t)buffer[14]) << 8) | buffer[15];
+    *my = (((int16_t)buffer[16]) << 8) | buffer[17];
+    *mz = (((int16_t)buffer[18]) << 8) | buffer[19];
+
+    //*
+    //I2Cdev::readBytes(devAddr, MPU9150_RA_EXT_SENS_DATA_00, 24, buffer);
+
+    for (int i = 14; i < 14+24; i += 2) {
+       int v = (((int16_t) buffer[i]) << 8) | buffer[i+1];
+       Serial.print("_");
+       Serial.print(v);
+       Serial.print("\t");
+       }
+//*/
+		  /*
+#define MPU9150_RA_EXT_SENS_DATA_00 0x49
+#define MPU9150_RA_EXT_SENS_DATA_01 0x4A
+#define MPU9150_RA_EXT_SENS_DATA_02 0x4B
+#define MPU9150_RA_EXT_SENS_DATA_03 0x4C
+#define MPU9150_RA_EXT_SENS_DATA_04 0x4D
+#define MPU9150_RA_EXT_SENS_DATA_05 0x4E
+#define MPU9150_RA_EXT_SENS_DATA_06 0x4F
+#define MPU9150_RA_EXT_SENS_DATA_07 0x50
+#define MPU9150_RA_EXT_SENS_DATA_08 0x51
+#define MPU9150_RA_EXT_SENS_DATA_09 0x52
+#define MPU9150_RA_EXT_SENS_DATA_10 0x53
+#define MPU9150_RA_EXT_SENS_DATA_11 0x54
+#define MPU9150_RA_EXT_SENS_DATA_12 0x55
+#define MPU9150_RA_EXT_SENS_DATA_13 0x56
+#define MPU9150_RA_EXT_SENS_DATA_14 0x57
+#define MPU9150_RA_EXT_SENS_DATA_15 0x58
+#define MPU9150_RA_EXT_SENS_DATA_16 0x59
+#define MPU9150_RA_EXT_SENS_DATA_17 0x5A
+#define MPU9150_RA_EXT_SENS_DATA_18 0x5B
+#define MPU9150_RA_EXT_SENS_DATA_19 0x5C
+#define MPU9150_RA_EXT_SENS_DATA_20 0x5D
+#define MPU9150_RA_EXT_SENS_DATA_21 0x5E
+#define MPU9150_RA_EXT_SENS_DATA_22 0x5F
+#define MPU9150_RA_EXT_SENS_DATA_23 0x60
+		  */
 }
+
 /** Get raw 6-axis motion sensor readings (accel/gyro).
  * Retrieves all currently available motion sensor values.
  * @param ax 16-bit signed integer container for accelerometer X-axis value
