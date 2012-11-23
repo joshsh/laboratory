@@ -981,7 +981,7 @@ class MPU9150 {
 
     private:
         uint8_t devAddr;
-        uint8_t buffer[14];
+        uint8_t buffer[14+24];
 };
 
 #endif /* _MPU9150_H_ */

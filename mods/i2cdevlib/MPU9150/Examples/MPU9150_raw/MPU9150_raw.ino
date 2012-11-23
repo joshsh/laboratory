@@ -46,6 +46,7 @@ MPU9150 accelgyro;
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
+int16_t mx, my, mz;
 
 #define LED_PIN 13
 bool blinkState = false;
@@ -55,9 +56,7 @@ void setup() {
     Wire.begin();
 
     // initialize serial communication
-    // (38400 chosen because it works as well at 8MHz as it does at 16MHz, but
-    // it's really up to you depending on your project)
-    Serial.begin(38400);
+    Serial.begin(115200);
 
     // initialize device
     Serial.println("Initializing I2C devices...");
@@ -71,9 +70,17 @@ void setup() {
     pinMode(LED_PIN, OUTPUT);
 }
 
+int count = 0;
+
 void loop() {
+  if (count > 1000) {
+    return;
+  }
+  count++;
+  
     // read raw accel/gyro measurements from device
-    accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+    //accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+    accelgyro.getMotion9(&ax, &ay, &az, &gx, &gy, &gz, &mx, &my, &mz);
 
     // these methods (and a few others) are also available
     //accelgyro.getAcceleration(&ax, &ay, &az);
@@ -86,7 +93,11 @@ void loop() {
     Serial.print(az); Serial.print("\t");
     Serial.print(gx); Serial.print("\t");
     Serial.print(gy); Serial.print("\t");
-    Serial.println(gz);
+    Serial.print(gz); Serial.print("\t");
+    //Serial.print(mx); Serial.print("\t");
+    //Serial.print(my); Serial.print("\t");
+    //Serial.print(mz); Serial.print("\t");
+    Serial.println("");
 
     // blink LED to indicate activity
     blinkState = !blinkState;
