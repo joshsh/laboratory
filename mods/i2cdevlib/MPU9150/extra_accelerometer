@@ -1,0 +1,12 @@
+
+t <- read.table(file("/tmp/data"))
+t1 <- t[,10:12]
+t2 <- t[,14:16]
+plot(t1[,1], type="l", col="blue", xlab="sample", ylab="value", main="accelerometer data...")
+lines(t2[,1], col="red")
+
+plot(t1[,2], type="l", col="blue", xlab="sample", ylab="value", main="accelerometer data...")
+lines(t2[,2], col="red")
+
+plot(t1[,3], type="l", col="blue", xlab="sample", ylab="value", main="accelerometer data...")
+lines(t2[,3], col="red")
