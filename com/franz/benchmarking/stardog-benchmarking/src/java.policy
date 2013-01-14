@@ -1,0 +1,8 @@
+grant {
+    permission java.io.FilePermission "/-", "read,write,delete";
+    permission java.util.PropertyPermission "*", "read";
+    permission java.util.PropertyPermission "*", "write";
+    permission java.lang.RuntimePermission "*";
+    permission java.util.logging.LoggingPermission "control";
+    permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+};

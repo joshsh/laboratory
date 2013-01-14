@@ -1,0 +1,231 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://vocab.data.gov/core#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://vocab.data.gov/core> .
+
+<http://vocab.data.gov/core> rdf:type owl:Ontology ;
+                             
+                             rdfs:label "data.gov dataset ontology" ;
+                             
+                             rdfs:comment "An ontology of data.gov dataset metadata" ;
+                             
+                             owl:imports <http://www.w3.org/ns/dcat> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://vocab.data.gov/core#agencyDataSeries
+
+<http://vocab.data.gov/core#agencyDataSeries> rdf:type owl:ObjectProperty ;
+                                                
+                                                rdfs:comment "the high level repository in which this dataset or tool resides at the agency" ;
+                                                
+                                                rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+###  http://vocab.data.gov/core#agencyProgram
+
+<http://vocab.data.gov/core#agencyProgram> rdf:type owl:ObjectProperty ;
+                                             
+                                             rdfs:comment "the program that is responsible for this dataset" ;
+                                             
+                                             rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+###  http://vocab.data.gov/core#dataCategoryDesignation
+
+<http://vocab.data.gov/core#dataCategoryDesignation> rdf:type owl:ObjectProperty ;
+                                                       
+                                                       rdfs:comment "The type of dataset (i.e., administrative, statistical, geospatial, surveillance or research).  Please choose the category that best fits the dataset, understanding that there is some potential for overlap among these categories." ;
+                                                       
+                                                       rdfs:range <http://vocab.data.gov/core#DataCategory> ;
+                                                       
+                                                       rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+###  http://vocab.data.gov/core#dataCollectionInstrument
+
+<http://vocab.data.gov/core#dataCollectionInstrument> rdf:type owl:ObjectProperty ;
+                                                        
+                                                        rdfs:comment "the data collection instrument for a listed mode" ;
+                                                        
+                                                        rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://vocab.data.gov/core#bibliographicCitation
+
+<http://vocab.data.gov/core#bibliographicCitation> rdf:type owl:DatatypeProperty ;
+                                                     
+                                                     rdfs:comment "This field may be used when others make reference to the data, as in a bibliographic citation or source reference.  If the agency does not have a standard reference for this dataset, simply provide the URL for the dataset ." ;
+                                                     
+                                                     rdfs:domain <http://purl.org/dc/dcmitype/Dataset> ;
+                                                     
+                                                     rdfs:range xsd:string .
+
+
+
+###  http://vocab.data.gov/core#collectionFrequency
+
+<http://vocab.data.gov/core#collectionFrequency> rdf:type owl:DatatypeProperty ;
+                                                   
+                                                   rdfs:comment "frequency of data collection (one-time, annual, hourly, etc.)" ;
+                                                   
+                                                   rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+###  http://vocab.data.gov/core#collectionMode
+
+<http://vocab.data.gov/core#collectionMode> rdf:type owl:DatatypeProperty ;
+                                              
+                                              rdfs:comment "data collection mode (e.g., phone/paper, phone/computer, person/paper, person/computer, web, fax, type of monitor, other)" ;
+                                              
+                                              rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+###  http://vocab.data.gov/core#unitOfAnalysis
+
+<http://vocab.data.gov/core#unitOfAnalysis> rdf:type owl:DatatypeProperty ;
+                                              
+                                              rdfs:comment "the unit of analysis is the major entity that you are analyzing in your study (e.g., person, household, forest, county, establishment)" ;
+                                              
+                                              rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+###  http://vocab.data.gov/core#useRequiresLicenseAgreement
+
+<http://vocab.data.gov/core#useRequiresLicenseAgreement> rdf:type owl:DatatypeProperty ;
+                                                           
+                                                           rdfs:comment "This is a required field to ensure that license agreements are not bypassed during the one-click download interface on the website." ;
+                                                           
+                                                           rdfs:domain <http://purl.org/dc/dcmitype/Dataset> ;
+                                                           
+                                                           rdfs:range xsd:boolean .
+
+
+
+###  http://vocab.data.gov/core#userGeneratedID
+
+<http://vocab.data.gov/core#userGeneratedID> rdf:type owl:DatatypeProperty ;
+                                               
+                                               rdfs:comment "This field may be used by the agency to track the submissions on their internal systems.  The field is optional as it will not typically be used by the Datagov and will not be published on the catalog." ;
+                                               
+                                               rdfs:domain <http://purl.org/dc/dcmitype/Dataset> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://vocab.data.gov/core#DataCategory
+
+<http://vocab.data.gov/core#DataCategory> rdf:type owl:Class ;
+                                            
+                                            rdfs:comment "high-level categories for datasets.  A given dataset may fall into more than one category." .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://vocab.data.gov/core#Administrative
+
+<http://vocab.data.gov/core#Administrative> rdf:type <http://vocab.data.gov/core#DataCategory> ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:comment "'administrative' data category" .
+
+
+
+###  http://vocab.data.gov/core#Geospatial
+
+<http://vocab.data.gov/core#Geospatial> rdf:type <http://vocab.data.gov/core#DataCategory> ,
+                                                   owl:NamedIndividual ;
+                                          
+                                          rdfs:comment "'geospatial' data category" .
+
+
+
+###  http://vocab.data.gov/core#Research
+
+<http://vocab.data.gov/core#Research> rdf:type <http://vocab.data.gov/core#DataCategory> ,
+                                                 owl:NamedIndividual ;
+                                        
+                                        rdfs:comment "'research' data category" .
+
+
+
+###  http://vocab.data.gov/core#Statistical
+
+<http://vocab.data.gov/core#Statistical> rdf:type <http://vocab.data.gov/core#DataCategory> ,
+                                                    owl:NamedIndividual ;
+                                           
+                                           rdfs:comment "'statistical' data category" .
+
+
+
+###  http://vocab.data.gov/core#Surveillance
+
+<http://vocab.data.gov/core#Surveillance> rdf:type <http://vocab.data.gov/core#DataCategory> ,
+                                                     owl:NamedIndividual ;
+                                            
+                                            rdfs:comment "'surveillance' data category" .
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net
+

@@ -1,0 +1,8 @@
+<http://vocab.data.gov/core#DataCategory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://schema.org/Dataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://schema.org/Dataset> <http://www.w3.org/2002/07/owl#equivalentClass> <http://www.w3.org/ns/dcat#Dataset> .
+<http://schema.org/DataCatalog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://schema.org/DataCatalog> <http://www.w3.org/2002/07/owl#equivalentClass> <http://www.w3.org/ns/dcat#Catalog> .
+<http://schema.org/DataDownload> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://schema.org/DataDownload> <http://www.w3.org/2002/07/owl#equivalentClass> <http://www.w3.org/ns/dcat#Download> .
+
