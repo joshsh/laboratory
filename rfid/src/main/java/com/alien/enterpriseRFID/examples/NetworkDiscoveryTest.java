@@ -73,10 +73,13 @@ public class NetworkDiscoveryTest implements DiscoveryListener {
      * @param discoveryItem details of the newly-discovered reader
      */
     public void readerAdded(DiscoveryItem discoveryItem) {
+        SecurityManager sec = System.getSecurityManager();
+
         System.out.println("Reader Added:\n" + discoveryItem.toString());
         try {
             AlienClass1Reader r = discoveryItem.getReader();
             System.out.println("\treader: " + r);
+            //System.exit(0);
             System.out.println("\tis open: " + r.isOpen());
             r.open();
             System.out.println("\tgetting tag list");
