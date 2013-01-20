@@ -1,11 +1,8 @@
 package edu.rpi.twc.sesamestream;
 
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
-import edu.rpi.twc.sesamestream.SesameStream;
+import edu.rpi.twc.sesamestream.util.StatementListBuilder;
 import info.aduna.io.IOUtil;
 import info.aduna.iteration.CloseableIteration;
-import edu.rpi.twc.sesamestream.util.StatementListBuilder;
 import net.fortytwo.sesametools.nquads.NQuadsParser;
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +17,7 @@ import org.openrdf.query.parser.ParsedQuery;
 import org.openrdf.query.parser.QueryParser;
 import org.openrdf.query.parser.sparql.SPARQLParser;
 import org.openrdf.rio.RDFParser;
+import org.openrdf.rio.turtle.TurtleParser;
 import org.openrdf.sail.Sail;
 import org.openrdf.sail.SailConnection;
 import org.openrdf.sail.memory.MemoryStore;
@@ -101,6 +99,20 @@ public class QueryEngineTest {
                 loadQuery("simple-join-out.rq"));
     }
 
+    @Test
+    public void testMultipleJoins() throws Exception {
+        compareAnswers(
+                loadData("example.nq"),
+                loadQuery("multiple-join-1.rq"));
+    }
+
+    @Test
+    public void testTmp() throws Exception {
+        compareAnswers(
+                loadData("universe.ttl"),
+                loadQuery("universe-joins-1.rq"));
+    }
+
     private TupleExpr loadQuery(final String fileName) throws Exception {
         InputStream in = SesameStream.class.getResourceAsStream(fileName);
         String query = IOUtil.readString(in);
@@ -112,7 +124,15 @@ public class QueryEngineTest {
     }
 
     private List<Statement> loadData(final String fileName) throws Exception {
-        RDFParser p = new NQuadsParser();
+        RDFParser p;
+        if (fileName.endsWith("nq")) {
+            p = new NQuadsParser();
+        } else if (fileName.endsWith("ttl")) {
+            p = new TurtleParser();
+        } else {
+            throw new IllegalStateException("unsupported file extension");
+        }
+
         StatementListBuilder c = new StatementListBuilder();
         p.setRDFHandler(c);
 

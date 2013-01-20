@@ -24,7 +24,7 @@ public class TripleIndex {
     public void index(final VarList list,
                       final PartialSolution ps) {
         if (list.isNil()) {
-            //System.out.println("indexing nil list to " + ps);
+            System.out.println("indexing nil list to " + ps);
             if (null == partialSolutions) {
                 partialSolutions = new LinkedList<PartialSolution>();
             }
@@ -33,14 +33,14 @@ public class TripleIndex {
             Value v = list.getValue();
 
             if (null == v) {
-                //System.out.println("indexing null from list " + list + " to " + ps);
+                System.out.println("indexing null from list " + list + " to " + ps);
                 if (null == unboundVariableTripleIndex) {
                     unboundVariableTripleIndex = new TripleIndex();
                 }
 
                 unboundVariableTripleIndex.index(list.getNext(), ps);
             } else {
-                //System.out.println("indexing value " + v + " from list " + list + " to " + ps);
+                System.out.println("indexing value " + v + " from list " + list + " to " + ps);
 
                 if (null == boundVariableIndices) {
                     boundVariableIndices = new HashMap<Value, TripleIndex>();
@@ -62,7 +62,7 @@ public class TripleIndex {
                       final Statement st,
                       final SolutionBinder handler) {
         if (list.isNil()) {
-            //System.out.println("matching nil list for statement " + st);
+            System.out.println("matching nil list for statement " + st);
             if (null != partialSolutions) {
                 VarList bindings = VarList.NIL;
 
@@ -85,19 +85,19 @@ public class TripleIndex {
                 }
             }
         } else {
-            //System.out.println("matching non-nil list " + list + " for statement: " + st);
+            System.out.println("matching non-nil list " + list + " for statement: " + st);
             if (null != boundVariableIndices) {
-                //System.out.println("we have bound variable indices");
+                System.out.println("we have bound variable indices");
                 TripleIndex child = boundVariableIndices.get(list.getValue());
 
                 if (null != child) {
-                    //System.out.println("child found");
+                    System.out.println("child found");
                     child.match(list.getNext(), st, handler);
                 }
             }
 
             if (null != unboundVariableTripleIndex) {
-                //System.out.println("we have unbound variable indices");
+                System.out.println("we have unbound variable indices");
                 unboundVariableTripleIndex.match(list.getNext(), st, handler);
             }
         }

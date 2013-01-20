@@ -51,6 +51,12 @@
             <artifactId>nquads</artifactId>
             <version>${sesametools.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-rio-turtle</artifactId>
+            <version>${sesame.version}</version>
+            <scope>test</scope>
+        </dependency>
         <!--<dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>

@@ -333,7 +333,7 @@ public class QueryEngine {
         }
     }
 
-    /*
+    //*
     private static String toString(final BindingSet b) {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
@@ -348,12 +348,12 @@ public class QueryEngine {
         }
 
         return sb.toString();
-    }*/
+    }//*/
 
     private void handleSolution(final BindingSetHandler handler,
                                 final BindingSet solution) {
         increment(countSolutions, true);
-        //System.out.println("SOLUTION:\t" + QueryEngine.toString(solution));
+        System.out.println("SOLUTION:\t" + QueryEngine.toString(solution));
 
         handler.handle(solution);
     }
