@@ -19,7 +19,7 @@
 
 <http://example.org/thor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/God> <http://example.org/graph1> .
 <http://example.org/thor> <http://xmlns.com/foaf/0.1/name> "Thor"@en <http://example.org/graph1> .
-<http://example.org/thor> <http://xmlns.com/foaf/0.1/name> "?\uFFFDr"@is <http://example.org/graph1> .
+<http://example.org/thor> <http://xmlns.com/foaf/0.1/name> "\u00DE\u00F3r"@is <http://example.org/graph1> .
 <http://example.org/thor> <http://xmlns.com/foaf/0.1/msnChatID> "Thorster123"^^<http://www.w3.org/2001/XMLSchema#string> <http://example.org/graph1> .
 
 <http://example.org/stringValue> <http://example.org/hasValue> "foo"^^<http://www.w3.org/2001/XMLSchema#string> <http://example.org/graph1> .
