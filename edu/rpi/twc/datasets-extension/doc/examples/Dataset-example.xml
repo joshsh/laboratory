@@ -1,0 +1,81 @@
+<div itemscope itemtype="http://schema.org/Dataset">
+    <span itemprop="name">
+        <b>Africa: Conflicts Without Borders 2009</b>
+    </span>
+
+    <meta itemprop="url" content="http://data-gov.tw.rpi.edu/vocab/Dataset_1200"/>
+    <meta itemprop="url">A dataset about violent conflicts in Africa</meta>
+
+    Categories:
+    <span itemprop="category">
+        <span itemscope itemtype="http://schema.org/Text">war</span>,
+    </span>
+    <span itemprop="category">
+        <span itemscope itemtype="http://schema.org/Text">africa</span>,
+    </span>
+    <span itemprop="category">
+        <span itemscope itemtype="http://schema.org/Text">world events</span>,
+    </span>
+
+    Spatial:
+    <span itemprop="spatialScope">
+        <div itemscope itemtype="http://schema.org/CivicStructure">
+            <span itemprop="name">Africa</span>
+        </div>
+    </span>
+
+    Dump:
+    <span itemprop="data">
+        <div itemscope itemtype="http://schema.org/DataObject">
+            <span itemprop="name">
+                <b>Africa: Conflicts Without Borders 2009 (N-Triples)</b>
+            </span>
+
+            <meta itemprop="encodingFormat" content="text/plain"/>
+            <meta itemprop="contentURL" content="http://data-gov.tw.rpi.edu/raw/1200/data-1200.nt.gz"/>
+
+            <span class="description">
+                <meta itemprop="inLanguage" content="en"/>
+                <meta itemprop="datePublished" content="2011-08-12">August 12, 2011</meta>
+                <span itemprop="description">compressed N-Triples dump</span>
+                <span itemprop="contentSize" content="13.9">13.97MB</span>
+            </span>
+        </div>
+    </span>
+
+    Catalog:
+    <span itemprop="inCatalog">
+        <div itemscope itemtype="http://schema.org/DataCatalog">
+            <span itemprop="name">
+                <b>TWC Data.gov Catalog</b>
+            </span>
+
+            <meta itemprop="url" content="http://iw.rpi.edu/wiki/Data.gov_Catalog_-_Complete"/>
+
+            Publisher:
+            <span itemprop="publisher">
+                <div itemscope itemtype="http://schema.org/Organization">
+
+                    <span itemprop="name">Tetherless World Constellation</span>
+
+                    Contact Details:
+                    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        Address:
+                        <span itemprop="streetAddress">110 8th Street</span>
+                        <span itemprop="postalCode">12180</span>
+
+                        <span itemprop="addressLocality">Troy, NY USA</span>
+                        ,
+                    </div>
+                    Tel:<span itemprop="telephone">(518)276-4384</span>,
+                    Fax:<span itemprop="faxNumber">(518)276-4464</span>,
+                    E-mail:
+                    <span itemprop="email">westp(at)rpi.edu</span>
+
+                </div>
+            </span>
+
+        </div>
+    </span>
+
+</div>

@@ -1,0 +1,21 @@
+,ISO 19115,schema.org,DCAT
+,Abstract describing the dataset ,sdo:description,dcterms:description
+,Additional extent information for the dataset ,,
+,Dataset character set ,,
+,Dataset language ,sdo:inLanguage,dcterms:language
+,Dataset reference date ,sdo:datePublished,dcterms:issued
+,Dataset responsible party ,sdo:publisher,dcterms:publisher
+,Dataset title ,sdo:name,dc:title
+,Dataset topic category ,sdo:about,dcat:theme
+,Distribution format ,sdo:encodingFormat,dcterms:format
+,Geographic location of the dataset ,ds:spatial,dcterms:spatial
+,Lineage ,,
+,Metadata character set ,,
+,Metadata date stamp ,,
+,Metadata file identifier ,,
+,Metadata language ,,
+,Metadata point of contact ,,
+,Metadata standard name ,,
+,Metadata standard version ,,
+,On-line resource ,ds:distribution,dcat:distribution
+,Reference system ,,

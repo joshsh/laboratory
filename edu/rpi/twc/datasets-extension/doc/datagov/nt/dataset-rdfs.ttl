@@ -1,0 +1,93 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://vocab.data.gov/core#>
+    a <http://www.w3.org/2002/07/owl#Ontology> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "An ontology of data.gov dataset metadata" ;
+    <http://www.w3.org/2000/01/rdf-schema#label> "data.gov dataset ontology" .
+
+<http://vocab.data.gov/core#agencyDataSeries>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "the high level repository in which this dataset or tool resides at the agency" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#agencyProgram>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "the program that is responsible for this dataset" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#catalog>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "the catalog containing this dataset" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> ;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/ns/dcat#Catalog> .
+
+<http://vocab.data.gov/core#dataCategoryDesignation>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> """The type of dataset (i.e., administrative, statistical,
+geospatial, surveillance or research).  Please choose the category that
+best fits the dataset, understanding that there is some potential for
+overlap among these categories.""" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> ;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://data.gov/2012/dataset#DataCategory> .
+
+<http://vocab.data.gov/core#dataCollectionInstrument>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "the data collection instrument for a listed mode" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#bibliographicCitation>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "This field may be used when others make reference to the data, as in a bibliographic citation or source reference.  If the agency does not have a standard reference for this dataset, simply provide the URL for the dataset ." ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> ;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+
+<http://vocab.data.gov/core#collectionFrequency>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "frequency of data collection (one-time, annual, hourly, etc.)" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#collectionMode>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "data collection mode (e.g., phone/paper, phone/computer, person/paper, person/computer, web, fax, type of monitor, other)" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#unitOfAnalysis>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "the unit of analysis is the major entity that you are analyzing in your study (e.g., person, household, forest, county, establishment)" ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#useRequiresLicenseAgreement>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "This is a required field to ensure that license agreements are not bypassed during the one-click download interface on the website." ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> ;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#boolean> .
+
+<http://vocab.data.gov/core#userGeneratedID>
+    a rdf:Property ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "This field may be used by the agency to track the submissions on their internal systems.  The field is optional as it will not typically be used by the Datagov and will not be published on the catalog." ;
+    <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+
+<http://vocab.data.gov/core#DataCategory>
+    a <http://www.w3.org/2000/01/rdf-schema#Class> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "high-level categories for datasets.  A given dataset may fall into more than one category." .
+
+<http://vocab.data.gov/core#Administrative>
+    a <http://data.gov/2012/dataset#DataCategory> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "'administrative' data category" .
+
+<http://vocab.data.gov/core#Geospatial>
+    a <http://data.gov/2012/dataset#DataCategory> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "'geospatial' data category" .
+
+<http://vocab.data.gov/core#Research>
+    a <http://data.gov/2012/dataset#DataCategory> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "'research' data category" .
+
+<http://vocab.data.gov/core#Statistical>
+    a <http://data.gov/2012/dataset#DataCategory> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "'statistical' data category" .
+
+<http://vocab.data.gov/core#Surveillance>
+    a <http://data.gov/2012/dataset#DataCategory> ;
+    <http://www.w3.org/2000/01/rdf-schema#comment> "'surveillance' data category" .
+

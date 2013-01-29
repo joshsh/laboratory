@@ -1,0 +1,58 @@
+
+(in-package :db.agraph.user)  
+(enable-!-reader)  
+(enable-print-decoded t)
+(open-triple-store "iswc2010" :catalog "demos" :port 10042)
+
+
+(defun time-sparql (query count)
+  (let ((start-time (get-internal-real-time)))
+    (loop for i from 1 to count do
+      (sparql::run-sparql query :output-stream nil))   ;; rdf-format?
+  (let ((duration (- (get-internal-real-time) start-time)))
+    (format t "~&~a queries in ~a ms (~a ms per query)" count duration (/ duration (* 1.0 count))))))
+
+
+
+(time-sparql "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10" 100)
+(time-sparql "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10" 1000)
+
+
+;; 2.927 ms per query
+(time-sparql "
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sioct: <http://rdfs.org/sioc/types#>
+SELECT ?s ?p ?o WHERE {
+?s rdf:type sioct:MicroblogPost .
+?s ?p ?o .
+} LIMIT 10
+" 1000)
+
+
+;; 16.37 ms per query
+(time-sparql "
+PREFIX dbprop: <http://dbpedia.org/property/>
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?tweet ?createdAt ?text ?screenName ?profileImage ?place ?placeName WHERE {
+?tweet geo:location ?place .
+?place owl:sameAs ?dbplace .
+?dbplace skos:subject <http://dbpedia.org/resource/Category:University_towns_in_the_United_States> .
+?dbplace dbprop:populationTotal ?pop .
+FILTER(?pop < 50000) .
+?tweet dc:created ?createdAt .
+?tweet sioc:content ?text .
+?tweet sioc:has_creator ?account .
+?account sioc:id ?screenName .
+?account sioc:account_of ?agent .
+OPTIONAL { ?agent foaf:depiction ?profileImage . } .
+OPTIONAL { ?tweet geo:location ?place . ?place dc:title ?placeName . } . #FILTER(?createdAt > \"2010-10-29T01:25:17Z\"^^xsd:dateTime) .
+}
+ORDER BY DESC(?createdAt)
+LIMIT 15
+" 100)
