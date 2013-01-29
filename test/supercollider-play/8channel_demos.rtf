@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf290
+{\fonttbl\f0\fnil\fcharset0 Monaco;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f1\fs24 \cf0 original by Batuhan Bozkurt\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f1\fs24 \cf0 x = play \{\
+	f = LocalIn.ar(8).tanh;\
+	k = Latch.kr(f[0].abs,Impulse.kr(1/4));\
+	LocalOut.ar(f + CombC.ar(Blip.ar([1,2,4,8],100*k+50,0.9),1,k*0.3,50*f));\
+	f\
+\}//44.1kHz\
+\
+\
+original by 
+\f0\fs18 Nathaniel Virgo\
+
+\f1\fs24 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs18 \cf0 \{LocalOut.ar(a=CombN.ar(BPF.ar(LocalIn.ar(8)*7.5+Saw.ar([32,33,34,35],0.2),2**LFNoise0.kr(4/3,4)*300,0.1).distort,2,2,40));a\}.play\
+\
+\
+\
+Micromoog\
+\
+play\{VarSaw.ar((Hasher.ar(Latch.ar(SinOsc.ar((1..4)!2),Impulse.ar([5/128,5,5/16,5/4,5/8,5/64,5/2,5/32])))*300+300).round(60),0,LFNoise2.ar(2,1/3,1/2))/5\}//#supercollider\
+\
+\
+Nathaniel Virgo's thunderstorm\
+\
+play\{\
+    p = PinkNoise.ar(1!2);\
+    BRF.ar(p + Blip.ar(p+2,400), 150, 2, 0.1)\
+        + LPF.ar(FreeVerb2.ar(*LPF.ar(p + 0.2 * Dust.ar(0.1), 60)++[1,1,0.2,1e4]).tanh, 2000)\
+\}\
+\
+\
+\
+\
+\
+\
+SynthDef("help-Pan2", \{ Out.ar(0, Pan2.ar(PinkNoise.ar(0.4), FSinOsc.kr(2), 0.3)) \}).play;\
+\
+\{ HenonC.ar(MouseX.kr(20, SampleRate.ir)) * 0.2 \}.play(s);\
+\
+(\
+SynthDef("help-Pan4", \{ \
+	Out.ar(0, Pan4.ar(PinkNoise.ar, FSinOsc.kr(2), FSinOsc.kr(1.2), 0.3)) \
+\}).play;\
+)\
+\
+\
+\{ CuspL.ar(MouseX.kr(20, SampleRate.ir), 1.0, 1.99) * 0.3 \}.play(s);}
