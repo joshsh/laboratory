@@ -8,8 +8,8 @@
     <artifactId>dataset-schema</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
-    <name>...</name>
-    <description>...</description>
+    <name>Datasets Extension</name>
+    <description>schema.org Datasets extension draft</description>
 
     <repositories>
         <repository>

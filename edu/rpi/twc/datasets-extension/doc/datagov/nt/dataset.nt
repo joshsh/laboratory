@@ -1,0 +1,59 @@
+<http://data.gov/2012/dataset#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://data.gov/2012/dataset#> <http://www.w3.org/2000/01/rdf-schema#label> "data.gov dataset ontology" .
+<http://data.gov/2012/dataset#> <http://www.w3.org/2000/01/rdf-schema#comment> "An ontology of data.gov dataset metadata" .
+<http://data.gov/2012/dataset#> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/ns/dcat> .
+<http://data.gov/2012/dataset#agencyDataSeries> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://data.gov/2012/dataset#agencyDataSeries> <http://www.w3.org/2000/01/rdf-schema#comment> "the high level repository in which this dataset or tool resides at the agency" .
+<http://data.gov/2012/dataset#agencyDataSeries> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#agencyProgram> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://data.gov/2012/dataset#agencyProgram> <http://www.w3.org/2000/01/rdf-schema#comment> "the program that is responsible for this dataset" .
+<http://data.gov/2012/dataset#agencyProgram> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#catalog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://data.gov/2012/dataset#catalog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://data.gov/2012/dataset#catalog> <http://www.w3.org/2000/01/rdf-schema#comment> "the catalog containing this dataset" .
+<http://data.gov/2012/dataset#catalog> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#catalog> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/ns/dcat#Catalog> .
+<http://data.gov/2012/dataset#dataCategoryDesignation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://data.gov/2012/dataset#dataCategoryDesignation> <http://www.w3.org/2000/01/rdf-schema#comment> "The type of dataset (i.e., administrative, statistical,\ngeospatial, surveillance or research).  Please choose the category that\nbest fits the dataset, understanding that there is some potential for\noverlap among these categories." .
+<http://data.gov/2012/dataset#dataCategoryDesignation> <http://www.w3.org/2000/01/rdf-schema#range> <http://data.gov/2012/dataset#DataCategory> .
+<http://data.gov/2012/dataset#dataCategoryDesignation> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#dataCollectionInstrument> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://data.gov/2012/dataset#dataCollectionInstrument> <http://www.w3.org/2000/01/rdf-schema#comment> "the data collection instrument for a listed mode" .
+<http://data.gov/2012/dataset#dataCollectionInstrument> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#bibliographicCitation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://data.gov/2012/dataset#bibliographicCitation> <http://www.w3.org/2000/01/rdf-schema#comment> "This field may be used when others make reference to the data, as in a bibliographic citation or source reference.  If the agency does not have a standard reference for this dataset, simply provide the URL for the dataset ." .
+<http://data.gov/2012/dataset#bibliographicCitation> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#bibliographicCitation> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<http://data.gov/2012/dataset#collectionFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://data.gov/2012/dataset#collectionFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "frequency of data collection (one-time, annual, hourly, etc.)" .
+<http://data.gov/2012/dataset#collectionFrequency> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#collectionMode> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://data.gov/2012/dataset#collectionMode> <http://www.w3.org/2000/01/rdf-schema#comment> "data collection mode (e.g., phone/paper, phone/computer, person/paper, person/computer, web, fax, type of monitor, other)" .
+<http://data.gov/2012/dataset#collectionMode> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#unitOfAnalysis> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://data.gov/2012/dataset#unitOfAnalysis> <http://www.w3.org/2000/01/rdf-schema#comment> "the unit of analysis is the major entity that you are analyzing in your study (e.g., person, household, forest, county, establishment)" .
+<http://data.gov/2012/dataset#unitOfAnalysis> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#useRequiresLicenseAgreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://data.gov/2012/dataset#useRequiresLicenseAgreement> <http://www.w3.org/2000/01/rdf-schema#comment> "This is a required field to ensure that license agreements are not bypassed during the one-click download interface on the website." .
+<http://data.gov/2012/dataset#useRequiresLicenseAgreement> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#useRequiresLicenseAgreement> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#boolean> .
+<http://data.gov/2012/dataset#userGeneratedID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://data.gov/2012/dataset#userGeneratedID> <http://www.w3.org/2000/01/rdf-schema#comment> "This field may be used by the agency to track the submissions on their internal systems.  The field is optional as it will not typically be used by the Datagov and will not be published on the catalog." .
+<http://data.gov/2012/dataset#userGeneratedID> <http://www.w3.org/2000/01/rdf-schema#domain> <http://purl.org/dc/dcmitype/Dataset> .
+<http://data.gov/2012/dataset#DataCategory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://data.gov/2012/dataset#DataCategory> <http://www.w3.org/2000/01/rdf-schema#comment> "high-level categories for datasets.  A given dataset may fall into more than one category." .
+<http://data.gov/2012/dataset#Administrative> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.gov/2012/dataset#DataCategory> .
+<http://data.gov/2012/dataset#Administrative> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://data.gov/2012/dataset#Administrative> <http://www.w3.org/2000/01/rdf-schema#comment> "'administrative' data category" .
+<http://data.gov/2012/dataset#Geospatial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.gov/2012/dataset#DataCategory> .
+<http://data.gov/2012/dataset#Geospatial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://data.gov/2012/dataset#Geospatial> <http://www.w3.org/2000/01/rdf-schema#comment> "'geospatial' data category" .
+<http://data.gov/2012/dataset#Research> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.gov/2012/dataset#DataCategory> .
+<http://data.gov/2012/dataset#Research> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://data.gov/2012/dataset#Research> <http://www.w3.org/2000/01/rdf-schema#comment> "'research' data category" .
+<http://data.gov/2012/dataset#Statistical> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.gov/2012/dataset#DataCategory> .
+<http://data.gov/2012/dataset#Statistical> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://data.gov/2012/dataset#Statistical> <http://www.w3.org/2000/01/rdf-schema#comment> "'statistical' data category" .
+<http://data.gov/2012/dataset#Surveillance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.gov/2012/dataset#DataCategory> .
+<http://data.gov/2012/dataset#Surveillance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://data.gov/2012/dataset#Surveillance> <http://www.w3.org/2000/01/rdf-schema#comment> "'surveillance' data category" .
