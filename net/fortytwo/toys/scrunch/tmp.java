@@ -52,7 +52,7 @@
 
 import java.io.*;
 
-public class scrunch {
+public class Scrunch {
 
   public static void main(String []args) {
 
