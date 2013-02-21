@@ -1,0 +1,1 @@
+( ap-description  :name "192.168.1.105:1099/JADE" :ap-services (set ( ap-service  :name fipa.mts.mtp.xmpp :type fipa.mts.mtp.xmpp :addresses (sequence xmpp://patabot.1@fortytwo.net/acc))))

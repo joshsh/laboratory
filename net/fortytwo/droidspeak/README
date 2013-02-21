@@ -1,0 +1,39 @@
+
+java -cp target/droidspeak-*-full.jar net.fortytwo.droidspeak.jade.MyBoot config/xmpptest.properties
+
+
+########################################
+# simple stuff
+
+java -cp target/droidspeak-*-full.jar jade.Boot -agents mine:net.fortytwo.droidspeak.jade.MyFirstAgent
+
+java -cp target/droidspeak-*-full.jar jade.Boot -agents "foo:net.fortytwo.droidspeak.jade.agents.FooAgent;bar:net.fortytwo.droidspeak.jade.agents.BarAgent"
+
+java -cp target/droidspeak-*-full.jar jade.Boot -name droidspeak -host localhost -port 1331 -agents "timer:net.fortytwo.droidspeak.jade.TimerAgent;echo:net.fortytwo.droidspeak.jade.agents.EchoAgent;dictation:net.fortytwo.droidspeak.jade.agents.DictationAgent"
+
+
+########################################
+# XMPP MTP
+
+# echo over XMPP
+java -cp target/droidspeak-*-full.jar jade.Boot -name droidspeak -host localhost -port 1331 -mtp net.fortytwo.droidspeak.xmpp.XmppMessageTransportProtocol -agents "timer:net.fortytwo.droidspeak.jade.TimerAgent;echo:net.fortytwo.droidspeak.jade.agents.EchoAgent;dictation:net.fortytwo.droidspeak.jade.agents.DictationAgent"
+
+# myboot over XMPP
+java -cp target/droidspeak-*-full.jar net.fortytwo.droidspeak.jade.MyBoot -agents "timer:net.fortytwo.droidspeak.jade.TimerAgent;echo:net.fortytwo.droidspeak.jade.agents.EchoAgent;dictation:net.fortytwo.droidspeak.jade.agents.DictationAgent"
+
+
+########################################
+# latency test
+
+java -cp target/droidspeak-*-full.jar net.fortytwo.droidspeak.jade.MyBoot -name droidspeak -host localhost -agents "timer:net.fortytwo.droidspeak.jade.TimerAgent;echo:net.fortytwo.droidspeak.jade.agents.EchoAgent;dictation:net.fortytwo.droidspeak.jade.agents.DictationAgent"
+
+
+
+sudo iptables -I INPUT -p tcp -m tcp --dport 7778 -j ACCEPT
+
+
+
+########################################
+# Notes
+
+*  apparently, Agents can't be inner classes in JADE (even if they are public inner classes), as they need to be instantiated by class name
