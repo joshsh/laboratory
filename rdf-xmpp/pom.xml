@@ -5,10 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.fortytwo</groupId>
-    <artifactId>sesamestream</artifactId>
-    <version>0.1</version>
+    <artifactId>rdf-xmpp</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>SesameStream</name>
+    <name>RDF-XMPP</name>
     <description>RDF dataflow over XMPP</description>
 
     <repositories>
