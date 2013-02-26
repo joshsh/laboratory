@@ -1,0 +1,18 @@
+PREFIX swc: <http://data.semanticweb.org/ns/swc/ontology#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?tag
+FROM <http://twitlogic.fortytwo.net/mashup/twitlogic-full-owl.rdf>
+FROM <http://data.semanticweb.org/conference/iswc/2009/complete>
+WHERE 
+{
+{
+  <http://data.semanticweb.org/conference/iswc/2009> swc:isSuperEventOf ?e .
+  ?tag owl:sameAs ?e .
+} UNION
+{
+  <http://data.semanticweb.org/conference/iswc/2009>  owl:sameAs ?tag .
+}
+filter(regex(str(?tag),"http://twitlogic.fortytwo.net/resource/hashtag/"))
+}
+

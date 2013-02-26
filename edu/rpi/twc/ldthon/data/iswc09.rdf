@@ -1,0 +1,335 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5205373847.xml">
+  <dc:title><![CDATA[For the bots, #iswc09 (= #iswc2009).]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5205373847</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T17:05:46Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/antijosh"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5202891082.xml">
+  <dc:title><![CDATA[IBM Watson: compared DBpedia entries with freebase entries to determine probability of given meanings of words... #ISWC09]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5202891082</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T15:22:19Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/Joab_Jackson"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200826134.xml">
+  <dc:title><![CDATA[RT @erichoffer: RT @bsletten: I am really regretting not being at #iswc09 [ #iswc2009 ]   Boy, do I wish I too was there!]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200826134</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:53:18Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/erichoffer"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200771432.xml">
+  <dc:title><![CDATA[Hayes: RDFs need to be augmented with &quot;surfaces&quot; which will allow assertions of first order logic. #ISWC09]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200771432</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:50:48Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/Joab_Jackson"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200767186.xml">
+  <dc:title><![CDATA[RT @bsletten: I am really regretting not being at #iswc09.   Boy, do I wish I too was there!]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200767186</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:50:36Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/erichoffer"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200451397.xml">
+  <dc:title><![CDATA[@paoladm  #iswc09 most folks twitting at #iswc2009 not #iswc09]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200451397</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:36:05Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <mentioned rdf:resource="http://twitter.com/paoladm"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5182066607.xml">
+  <dc:title><![CDATA[@jordanhatcher #iswc09  re . open data commens sounds a bit flakey still but good start, (KMA :-)]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5182066607</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T20:33:27Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/paoladm"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <mentioned rdf:resource="http://twitter.com/jordanhatcher"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5181289087.xml">
+  <dc:title><![CDATA[Meena's  keynote UGC analysis at http://sdow.semanticweb.org/2009/ #sdow #iswc09  http://bit.ly/1gZ4YE]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5181289087</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T19:58:48Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/amit_p"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=sdow"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <url_raw rdf:resource="http://sdow.semanticweb.org/2009/"/>
+  <dc:subject><![CDATA[sdow]]></dc:subject>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/sdow"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5179171947.xml">
+  <dc:title><![CDATA[@dret  #iswc09 #iswc2009 several presentations about doing  twit to SW -problem is not building an app, it's getting twitter API to do it]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5179171947</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T18:22:32Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <mentioned rdf:resource="http://twitter.com/dret"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5177949734.xml">
+  <dc:title><![CDATA[@jahendler @baojie the official tag is in the conference proceedings it's #iswc2009 not #iswc09 nor #iswc]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5177949734</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T17:26:12Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/RinkeHoekstra"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc"/>
+  <mentioned rdf:resource="http://twitter.com/jahendler"/>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5177305459.xml">
+  <dc:title><![CDATA[How to consume Linked Open Data, tutorial at #iswc09,  http://bit.ly/3zhbaL]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5177305459</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:57:16Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/carlosruizmoren"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <url_raw rdf:resource="http://bit.ly/3zhbaL"/>
+  <url rdf:resource="http://www.consuminglinkeddata.org/"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176722014.xml">
+  <dc:title><![CDATA[@dret would need date qualification to make it work @edsu i want a twitter SPARQL endpoint that knows that #iswc09 RDF:InstanceOf #iswc&quot;]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176722014</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:31:10Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/gluejar"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc"/>
+  <mentioned rdf:resource="http://twitter.com/dret"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176331238.xml">
+  <dc:title><![CDATA[@edsu i want a twitter SPARQL endpoint that knows that &quot; #iswc09 owl:sameAs #iswc2009 &quot; and &quot; #iswc09 RDF:InstanceOf #iswc&quot;]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176331238</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:13:53Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/dret"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc"/>
+  <mentioned rdf:resource="http://twitter.com/edsu"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176089366.xml">
+  <dc:title><![CDATA[@jahendler what about including a little &quot;#iswc09 owl:sameAs #iswc2009&quot; in each tweet? semantic tweeting, the latest trend!]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176089366</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:03:13Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/dret"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <mentioned rdf:resource="http://twitter.com/jahendler"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5175982334.xml">
+  <dc:title><![CDATA[@jahendler #iswc09 &lt;owl:sameAs&gt; #iswc2009? :)]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5175982334</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T15:58:39Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/bsletten"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <mentioned rdf:resource="http://twitter.com/jahendler"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5175973869.xml">
+  <dc:title><![CDATA[@jahendler  I have proposed to @joshsh to support  #iswc09 = #iswc2009 in his twitter extension]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5175973869</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T15:58:16Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <mentioned rdf:resource="http://twitter.com/jahendler"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5175900035.xml">
+  <dc:title><![CDATA[#iswc09 #iswc2009 seems to be two tags being used - hope at the opening tomorrow the chairs will tell us which to use]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5175900035</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T15:55:01Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5175662911.xml">
+  <dc:title><![CDATA[#iswc09 - panel coming in &quot;Semantic for rest of us&quot; workshop - Leigh Dodds, Ivan Herman, Kendall Clark and Ora Lassila - should be fun]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5175662911</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T15:44:44Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5168872125.xml">
+  <dc:title><![CDATA[Diaporamas et matériaux du tutoriel sur l'exploitation des données du Linked Data, http://www.consuminglinkeddata.org/ #iswc09]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5168872125</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T08:48:29Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lespetitescases"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <url_raw rdf:resource="http://www.consuminglinkeddata.org/"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5155583538.xml">
+  <dc:title><![CDATA[#iswc09 poking into linked data
+Licensing legal/social]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5155583538</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T20:55:05Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5154895238.xml">
+  <dc:title><![CDATA[#iswc09 made it to Westfield's see y'all soon]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5154895238</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T20:24:09Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5152189578.xml">
+  <dc:title><![CDATA[#SDOW2009 #ISWC09  #ISWC2009 Evan Patton talking on the mobile wine agent pairing wine with the social semantic web]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5152189578</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T18:16:29Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/dlmcguinness"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SDOW2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SDOW2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/sdow2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5151956463.xml">
+  <dc:title><![CDATA[Heading off to #iswc09, gonna be a busy week...]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5151956463</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T18:05:23Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jahendler"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149526671.xml">
+  <dc:title><![CDATA[RT @taswegian #SWPM2009 #ISWC09 #ISWC2009, Zednik et al. science provenance with PML, data and domain ontologies]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149526671</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T16:06:22Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/shangz"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149362311.xml">
+  <dc:title><![CDATA[#SWPM2009 #ISWC09 #ISWC2009, Zednik et al. science provenance with PML, data and domain ontologies]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149362311</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T15:58:36Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/taswegian"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149010758.xml">
+  <dc:title><![CDATA[I am really regretting not being at #iswc09. Seems to be tons of excitement and great content.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149010758</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T15:40:43Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/bsletten"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc09"/>
+  <dc:subject><![CDATA[iswc09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146755963.xml">
+  <dc:title><![CDATA[timberners_lee &quot;Collaborative Construction of Structured Knowledge&quot; workshop at #ISWC #ISWC09 but diff. choice]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146755963</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:34:06Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/JBezivin"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <dc:subject><![CDATA[ISWC]]></dc:subject>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+</rdf:Description>
+</rdf:RDF>

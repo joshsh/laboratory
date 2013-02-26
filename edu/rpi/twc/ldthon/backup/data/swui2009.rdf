@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5199992824.xml">
+  <dc:title><![CDATA[I used #swui09 (= #swui2009), hopefully twitlogic can capture it. #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5199992824</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:14:06Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:subject><![CDATA[swui2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5189566963.xml">
+  <dc:title><![CDATA[Linking #swui2009 (same as http://data.semanticweb.org/workshop/swui/2009 ) into SW Dog Food.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5189566963</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T01:39:19Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui2009"/>
+  <url_raw rdf:resource="http://data.semanticweb.org/workshop/swui/2009"/>
+  <dc:subject><![CDATA[swui2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5189533420.xml">
+  <dc:title><![CDATA[Linking #swui2009 (same as http://bit.ly/Ai1CK into SW Dog Food.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5189533420</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T01:37:56Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui2009"/>
+  <url_raw rdf:resource="http://bit.ly/Ai1CK"/>
+  <url rdf:resource="http://data.semanticweb.org/workshop/swui/2009)"/>
+  <dc:subject><![CDATA[swui2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui2009"/>
+</rdf:Description>
+</rdf:RDF>

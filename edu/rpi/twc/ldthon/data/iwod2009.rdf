@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5205398981.xml">
+  <dc:title><![CDATA[For the bots, #iwod2009 (= #iwod09).]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5205398981</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T17:06:49Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod09"/>
+  <dc:subject><![CDATA[iwod2009]]></dc:subject>
+  <dc:subject><![CDATA[iwod09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5189574407.xml">
+  <dc:title><![CDATA[Linking #iwod2009 (same as http://data.semanticweb.org/workshop/iwod/2009 ) into SW Dog Food.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5189574407</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T01:39:38Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod2009"/>
+  <url_raw rdf:resource="http://data.semanticweb.org/workshop/iwod/2009"/>
+  <dc:subject><![CDATA[iwod2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5179511675.xml">
+  <dc:title><![CDATA[Fouad Zablith presents a promising approach to enrich knowledge bases based on semantic relevance measures #iwod2009 #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5179511675</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T18:38:16Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/pieterdl"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[iwod2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+</rdf:RDF>

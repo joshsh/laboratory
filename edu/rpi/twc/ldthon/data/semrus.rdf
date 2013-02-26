@@ -1,0 +1,156 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5205546227.xml">
+  <dc:title><![CDATA[For the bots, #semrus2009 (same as #semrus).]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5205546227</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T17:13:08Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=semrus2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=semrus"/>
+  <dc:subject><![CDATA[semrus2009]]></dc:subject>
+  <dc:subject><![CDATA[semrus]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200103265.xml">
+  <dc:title><![CDATA[#SemRUs2009 (= #SemRUs) testing #twitlogic]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200103265</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:19:23Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=twitlogic"/>
+  <dc:subject><![CDATA[SemRUs2009]]></dc:subject>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[twitlogic]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/twitlogic"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176770138.xml">
+  <dc:title><![CDATA[RT @baojie: #SemRUs @ivan_herman: in a W3C group, when everybody is unhappy, my job is done -- we reached a compromise. good point :) #is…]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176770138</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:33:17Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/DazzleFeeds"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=is"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[is]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/is"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176583228.xml">
+  <dc:title><![CDATA[#SemRUs @ivan_herman: in a W3C group, when everybody is unhappy, my job is done -- we reached a compromise. good point :) #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176583228</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:24:59Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176401181.xml">
+  <dc:title><![CDATA[at #SemRUs Ora Lassila: user interface is where we lost. Can't agree any more. #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176401181</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:16:56Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176187786.xml">
+  <dc:title><![CDATA[at #SemRUs, @jahendler is showing his two towers again - opens a panel debating between the Sw and the sW. http://bit.ly/3LgLNX #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176187786</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:07:30Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <url_raw rdf:resource="http://bit.ly/3LgLNX"/>
+  <url rdf:resource="http://tw.rpi.edu/wiki/Fellowship_of_the_(Semantic)_Web:_The_Two_Towers"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5174152596.xml">
+  <dc:title><![CDATA[RT @fraenkyd: listened to Denny's (@vrandezo) presentation about our paper http://bit.ly/2xYuHy #SemRUs  #iswc2009 *GO GUYS!*]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5174152596</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T14:37:45Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/FEZ_DE"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <url_raw rdf:resource="http://bit.ly/2xYuHy"/>
+  <url rdf:resource="http://sunsite.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-521/paper4.pdf"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5173901861.xml">
+  <dc:title><![CDATA[listened to Denny's (@vrandezo) presentation about our paper http://bit.ly/2xYuHy #SemRUs  #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5173901861</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T14:26:18Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/fraenkyd"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <url_raw rdf:resource="http://bit.ly/2xYuHy"/>
+  <url rdf:resource="http://sunsite.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-521/paper4.pdf"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5173744130.xml">
+  <dc:title><![CDATA[at #SemRUs Cui Tao on LexRDF. Nice to see Mayo Clinic people again, other than at semantic wiki events.  http://bit.ly/FQDb2 #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5173744130</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T14:18:59Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <url_raw rdf:resource="http://bit.ly/FQDb2"/>
+  <url rdf:resource="http://sunsite.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-521/paper2.pdf"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5173736895.xml">
+  <dc:title><![CDATA[RT @baojie at #SemRUs Denny (@vrandezo) presents a normalized XML syntax for rdf http://bit.ly/2xYuHy #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5173736895</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T14:18:38Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/vrandezo"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <url_raw rdf:resource="http://bit.ly/2xYuHy"/>
+  <url rdf:resource="http://sunsite.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-521/paper4.pdf"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5173688707.xml">
+  <dc:title><![CDATA[at #SemRUs Denny (@vrandezo) presents a normalized XML syntax for rdf http://bit.ly/2xYuHy #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5173688707</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T14:16:19Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <url_raw rdf:resource="http://bit.ly/2xYuHy"/>
+  <url rdf:resource="http://sunsite.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-521/paper4.pdf"/>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+</rdf:RDF>

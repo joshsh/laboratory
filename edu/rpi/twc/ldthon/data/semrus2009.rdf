@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5205546227.xml">
+  <dc:title><![CDATA[For the bots, #semrus2009 (same as #semrus).]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5205546227</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T17:13:08Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=semrus2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=semrus"/>
+  <dc:subject><![CDATA[semrus2009]]></dc:subject>
+  <dc:subject><![CDATA[semrus]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200129472.xml">
+  <dc:title><![CDATA[@twit_logic #semrus2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200129472</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:20:38Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/antijosh"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=semrus2009"/>
+  <mentioned rdf:resource="http://twitter.com/twit_logic"/>
+  <dc:subject><![CDATA[semrus2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200103265.xml">
+  <dc:title><![CDATA[#SemRUs2009 (= #SemRUs) testing #twitlogic]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200103265</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:19:23Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/baojie"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SemRUs"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=twitlogic"/>
+  <dc:subject><![CDATA[SemRUs2009]]></dc:subject>
+  <dc:subject><![CDATA[SemRUs]]></dc:subject>
+  <dc:subject><![CDATA[twitlogic]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/twitlogic"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5189620334.xml">
+  <dc:title><![CDATA[Linking #semrus2009 (same as http://data.semanticweb.org/workshop/semrus/2009 ) into SW Dog Food.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5189620334</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T01:41:28Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=semrus2009"/>
+  <url_raw rdf:resource="http://data.semanticweb.org/workshop/semrus/2009"/>
+  <dc:subject><![CDATA[semrus2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/semrus2009"/>
+</rdf:Description>
+</rdf:RDF>

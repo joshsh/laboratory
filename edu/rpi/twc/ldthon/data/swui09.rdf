@@ -1,0 +1,219 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5200720351.xml">
+  <dc:title><![CDATA[RT @lidingpku: #swui09: expert want to see concrete cases where semantic web add value, but this is not merely a SWUI problem]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5200720351</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:48:29Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/paul_houle"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5199992824.xml">
+  <dc:title><![CDATA[I used #swui09 (= #swui2009), hopefully twitlogic can capture it. #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5199992824</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T13:14:06Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:subject><![CDATA[swui2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5196815126.xml">
+  <dc:title><![CDATA[#swui09 in #iswc2009 need more attention. User interaction covers a lot of issues including social web, scalability, ontology  mapping,...]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5196815126</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T09:30:28Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5156747696.xml">
+  <dc:title><![CDATA[#swui09 new ideas: semantic web challenge in fact is a good place where we see SWUI demos.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5156747696</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T21:49:50Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5156596389.xml">
+  <dc:title><![CDATA[#swui09 new ideas: scientific visualization vs. generate data visualization &lt;=&gt; semantic intensive vs. link intensive]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5156596389</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T21:42:29Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5156308200.xml">
+  <dc:title><![CDATA[#swui09 new ideas: swui for developers, semantic web powered user interaction design, reuse, and user contribution]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5156308200</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T21:28:47Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5156245416.xml">
+  <dc:title><![CDATA[#swui09: expert want to see concrete cases where semantic web add value, but this is not merely a SWUI problem]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5156245416</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T21:25:45Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5156199031.xml">
+  <dc:title><![CDATA[#swui09 new ideas: semantics from the web and back to the web - get web developers using the power of the semantic web without learning rdf]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5156199031</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T21:23:34Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5155787093.xml">
+  <dc:title><![CDATA[#swui09 new ideas: semantic data exploration - faceted, auto-completion, linking, freebase parallax, constrained field]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5155787093</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T21:04:25Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149923081.xml">
+  <dc:title><![CDATA[RT @lidingpku #swui09 semantic web app made &quot;more&quot;: open/extensible system (data, arch,...); exploratory; semantics; but UI needs &quot;less&quot;]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149923081</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T16:26:26Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/shangz"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149811737.xml">
+  <dc:title><![CDATA[#swui09 semantic web app made &quot;more&quot;:  open/extensible system (data, arch,...); exploratory; semantics; but UI needs &quot;less&quot;]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149811737</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T16:20:46Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149796862.xml">
+  <dc:title><![CDATA[characteristics of sw apps: loose/open structures, exploratory, extensible, use of semantics #swui09]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149796862</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T16:20:02Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/shangz"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149638872.xml">
+  <dc:title><![CDATA[#swui09 RDF is good for data organization, but maybe too much for normal users.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149638872</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T16:12:04Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149329599.xml">
+  <dc:title><![CDATA[#swui09  the UI problem is to make it (i)  meaningful; (ii) understandable; (iii) accessible; (iv) consumable, - don't get me lost!]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149329599</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T15:57:00Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149254330.xml">
+  <dc:title><![CDATA[#swui09 @ericmiller graphics are good for hide/abstract information. from UI design, color, distance, weight means different in diff context]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149254330</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T15:53:12Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5148767550.xml">
+  <dc:title><![CDATA[#swui09  how do we match data model and users' model? we can't just show an RDF graph to people, even object or relation model is hard]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5148767550</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T15:28:26Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5147172103.xml">
+  <dc:title><![CDATA[#swui09 users classification novice developer expert ...]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5147172103</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T14:00:19Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146981237.xml">
+  <dc:title><![CDATA[#swui09 owllik ontotext speed of ui with better structure and multiple format]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146981237</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:48:29Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146886686.xml">
+  <dc:title><![CDATA[#swui09  how user can be attracted by semantic technologies]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146886686</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:42:30Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146742640.xml">
+  <dc:title><![CDATA[#swui09 @danielschwabe hypermedia infrastrucure for explore sw #hci separate ui from data]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146742640</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:33:16Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=hci"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:subject><![CDATA[hci]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/hci"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146692292.xml">
+  <dc:title><![CDATA[#swui09 social web and gene ontology]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146692292</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:30:07Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146660804.xml">
+  <dc:title><![CDATA[#swui09 (@ericmiller usecase healthcare government data]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146660804</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:28:00Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/lidingpku"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swui09"/>
+  <dc:subject><![CDATA[swui09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swui09"/>
+</rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5189615208.xml">
+  <dc:title><![CDATA[Linking #swese2009 (same as http://data.semanticweb.org/workshop/swese/2009 ) into SW Dog Food.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5189615208</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T01:41:16Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <url_raw rdf:resource="http://data.semanticweb.org/workshop/swese/2009"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5183804053.xml">
+  <dc:title><![CDATA[&quot;Implementing Semantic Web apps:reference architecture and challenges&quot; slides http://tr.im/D8l6  best paper award! #swese2009 (via @metaman)]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5183804053</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T21:47:19Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/kurtjx"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <url_raw rdf:resource="http://tr.im/D8l6"/>
+  <url rdf:resource="http://www.slideshare.net/metaman/implementing-semantic-web-applications-reference-architecture-and-challenges"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5182779665.xml">
+  <dc:title><![CDATA[So pleased for good news for 2 of my new colleagues! RT @cygri Congrats @metaman @sheilak on best paper award at #swese2009! #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5182779665</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T21:04:12Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/jschneider"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5182603901.xml">
+  <dc:title><![CDATA[RT @rabschi: Congrats @metaman @sheilak on best paper award at #swese2009! #iswc2009 (via @cygri) Congrats! [Well done!!]]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5182603901</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T20:56:48Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/johnbreslin"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5181923576.xml">
+  <dc:title><![CDATA[Congrats @metaman @sheilak on best paper award at #swese2009! #iswc2009 (via @cygri) Congrats!]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5181923576</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T20:27:14Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/rabschi"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5181054722.xml">
+  <dc:title><![CDATA[Congrats @metaman @sheilak on best paper award at #swese2009! :) (via @cygri)]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5181054722</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T19:48:01Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/CaptSolo"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5180662603.xml">
+  <dc:title><![CDATA[&quot;Implementing Semantic Web applications:reference architecture and challenges&quot; slides http://tr.im/D8l6 we won best paper award! #swese2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5180662603</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T19:30:31Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/metaman"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <url_raw rdf:resource="http://tr.im/D8l6"/>
+  <url rdf:resource="http://www.slideshare.net/metaman/implementing-semantic-web-applications-reference-architecture-and-challenges"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5180606077.xml">
+  <dc:title><![CDATA[@cygri thanks man! finally people start to appreciate my ideas :) wouldnt have been posible without my collaborators! #swese2009! #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5180606077</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T19:28:00Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/metaman"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <mentioned rdf:resource="http://twitter.com/cygri"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5179833961.xml">
+  <dc:title><![CDATA[Congrats @metaman @sheilak on best paper award at #swese2009! #iswc2009]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5179833961</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T18:53:02Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/cygri"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swese2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <dc:subject><![CDATA[swese2009]]></dc:subject>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swese2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5189611886.xml">
+  <dc:title><![CDATA[Linking #swpm2009 (same as http://data.semanticweb.org/workshop/swpm/2009 ) into SW Dog Food.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5189611886</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T01:41:08Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=swpm2009"/>
+  <url_raw rdf:resource="http://data.semanticweb.org/workshop/swpm/2009"/>
+  <dc:subject><![CDATA[swpm2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5151714349.xml">
+  <dc:title><![CDATA[LSIG+KARMA+S-OGSA for provenance, #SWPM2009 #ISWC2009, Beth Plale]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5151714349</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T17:53:55Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/taswegian"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149526671.xml">
+  <dc:title><![CDATA[RT @taswegian #SWPM2009 #ISWC09 #ISWC2009, Zednik et al. science provenance with PML, data and domain ontologies]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149526671</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T16:06:22Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/shangz"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5149362311.xml">
+  <dc:title><![CDATA[#SWPM2009 #ISWC09 #ISWC2009, Zednik et al. science provenance with PML, data and domain ontologies]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5149362311</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T15:58:36Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/taswegian"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC09"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC09]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc09"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5147146406.xml">
+  <dc:title><![CDATA[#SWPM2009 #ISWC2009 Carole Goble's keynote is great! - excellent presentation of challenges and trends.]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5147146406</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:58:47Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/dlmcguinness"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5146422558.xml">
+  <dc:title><![CDATA[#SWPM2009 #ISWC2009 Carole G keynote]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5146422558</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-25T13:12:12Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/taswegian"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=SWPM2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=ISWC2009"/>
+  <dc:subject><![CDATA[SWPM2009]]></dc:subject>
+  <dc:subject><![CDATA[ISWC2009]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/swpm2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+</rdf:Description>
+</rdf:RDF>

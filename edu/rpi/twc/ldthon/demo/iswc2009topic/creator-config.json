@@ -1,0 +1,32 @@
+{
+    "title" : "Top ISWC 2009 topics (by number of twitterers tweeting)",
+    "description" : "This demo was created by Josh Shinavier and <a href='http://www.cs.rpi.edu/~dingl'>Li Ding</a>.  We derive the demo using <a href='http://tw.rpi.edu/2009/ldthon/demo/iswc2009event/creator-sparql.php'>this SPSARQL query</a>",
+    "url_query" : "http://tw.rpi.edu/2009/ldthon/demo/iswc2009topic/creator-sparql.php",
+    "url_demo" : "http://tw.rpi.edu/2009/ldthon/demo/iswc2009topic/demo-creator.php",
+    "url_wiki" : "http://tw.rpi.edu/portal/Linking_Open_Conference_Tweets",
+    "tab_style": "height:550px",
+    "show_header" : "false",
+    "packages":
+            [
+                {
+                    "package": "Table",
+                    "style":"height:520px",
+                    "params":"{height:500, 'allowHtml': true}"
+                },
+                {
+                    "package": "BarChart",
+                    "style":"height:520px",
+                    "params":"{height:500}"
+                },
+                {
+                    "package": "ColumnChart",
+                    "style":"height:520px",
+                    "params":"{height:500}"
+                },
+                {
+                    "package": "PieChart",
+                    "style":"height:520px",
+                    "params":"{height:500, pieMinimalAngle: 1, pieJoinAngle: 5, is3D: true}"
+                }
+            ]
+}

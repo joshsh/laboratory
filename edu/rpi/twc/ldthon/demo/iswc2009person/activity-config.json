@@ -1,0 +1,32 @@
+{
+    "title" : "Top ISWC 2009 twitterers (by number of ISWC-related tweets)",
+    "description" : "This demo is part of the <a href=\"http://tw.rpi.edu/portal/Linking_Open_Conference_Tweets\">Linking Open Conference Tweets</a> mashup by Joshua Shinavier, <a href='http://www.cs.rpi.edu/~dingl'>Li Ding</a>, and Zhenning Shangguan.  We derive this visualization using <a href='http://tw.rpi.edu/2009/ldthon/demo/iswc2009event/creator-sparql.php'>this SPARQL query</a>",
+    "url_query" : "http://tw.rpi.edu/2009/ldthon/demo/iswc2009person/activity-sparql.php",
+    "url_demo" : "http://tw.rpi.edu/2009/ldthon/demo/iswc2009person/demo-activity.php",
+    "url_wiki" : "http://tw.rpi.edu/portal/Linking_Open_Conference_Tweets",
+    "tab_style": "height:550px",
+    "show_header" : "false",
+    "packages":
+            [
+                {
+                    "package": "Table",
+                    "style":"height:520px",
+                    "params":"{height:500, 'allowHtml': true}"
+                },
+                {
+                    "package": "BarChart",
+                    "style":"height:520px",
+                    "params":"{height:500}"
+                },
+                {
+                    "package": "ColumnChart",
+                    "style":"height:520px",
+                    "params":"{height:500}"
+                },
+                {
+                    "package": "PieChart",
+                    "style":"height:520px",
+                    "params":"{height:500, pieMinimalAngle: 1, pieJoinAngle: 5, is3D: true}"
+                }
+            ]
+}

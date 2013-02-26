@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns = "http://data-gov.tw.rpi.edu/vocab/p/" 
+  xmlns:foaf = "http://xmlns.com/foaf/0.1/" 
+  xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#" 
+  xmlns:dc = "http://purl.org/dc/elements/1.1/" 
+  xmlns:rss = "http://purl.org/rss/1.0/" 
+>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5205398981.xml">
+  <dc:title><![CDATA[For the bots, #iwod2009 (= #iwod09).]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5205398981</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-27T17:06:49Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/twit_logic"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod09"/>
+  <dc:subject><![CDATA[iwod2009]]></dc:subject>
+  <dc:subject><![CDATA[iwod09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5185380421.xml">
+  <dc:title><![CDATA[#iwod09 just finished. great discussions there, hope there will be follow-ups]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5185380421</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T22:52:05Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/mdaquin"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod09"/>
+  <dc:subject><![CDATA[iwod09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod09"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://twitter.com/statuses/show/5176496429.xml">
+  <dc:title><![CDATA[Back online! Feeling sleepy at #iswc2009. Rather stay awake for #iwod09 this afternoon]]></dc:title>
+  <dc:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5176496429</dc:identifier>
+  <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-10-26T16:21:06Z</dc:created>
+  <dc:creator rdf:resource="http://twitter.com/mdaquin"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iswc2009"/>
+  <rdfs:seeAlso rdf:resource="http://tw.rpi.edu/ws/twitter4rdf.php?hashtag=iwod09"/>
+  <dc:subject><![CDATA[iswc2009]]></dc:subject>
+  <dc:subject><![CDATA[iwod09]]></dc:subject>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iswc2009"/>
+  <dc:relation rdf:resource="http://twitlogic.fortytwo.net/resource/hashtag/iwod09"/>
+</rdf:Description>
+</rdf:RDF>
