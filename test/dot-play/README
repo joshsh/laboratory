@@ -1,0 +1,9 @@
+dot -Tjpg -o apply_tree.jpg apply_tree.dot
+
+dot -Tpng -o apply_tree.png apply_tree.dot
+
+
+
+
+
+dot -Tpng -o out.png dot.dot
