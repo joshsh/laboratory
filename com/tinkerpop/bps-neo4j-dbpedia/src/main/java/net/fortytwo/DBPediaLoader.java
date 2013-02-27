@@ -1,8 +1,7 @@
 package net.fortytwo;
 
-import com.tinkerpop.blueprints.pgm.TransactionalGraph;
-import com.tinkerpop.blueprints.pgm.impls.neo4j.Neo4jGraph;
-import com.tinkerpop.blueprints.pgm.oupls.sail.GraphSail;
+import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
+import com.tinkerpop.blueprints.oupls.sail.GraphSail;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.sail.SailRepository;
@@ -14,17 +13,15 @@ import java.io.FileInputStream;
 import java.util.zip.GZIPInputStream;
 
 /**
- * User: josh
- * Date: 3/2/11
- * Time: 10:51 PM
+ * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class BlueprintsSailNeo4jDBpediaLoader {
+public class DBPediaLoader {
     private static final String SOURCE = "/data/datasets/dbpedia/necessary/";
     private static final String DEST = "/data/tmp/bps-neo4j-dbpedia";
 
     public static void main(final String[] args) {
         try {
-            new BlueprintsSailNeo4jDBpediaLoader().load();
+            new DBPediaLoader().load();
         } catch (Throwable e) {
             e.printStackTrace(System.err);
             System.exit(1);
@@ -33,7 +30,6 @@ public class BlueprintsSailNeo4jDBpediaLoader {
 
     private void load() throws Exception {
         Neo4jGraph g = new Neo4jGraph(DEST);
-        g.setTransactionMode(TransactionalGraph.Mode.MANUAL);
 
         Sail sail = new GraphSail(g);
         sail.initialize();

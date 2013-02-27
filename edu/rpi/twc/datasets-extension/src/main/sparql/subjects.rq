@@ -1,0 +1,12 @@
+PREFIX dgtwc: <http://data-gov.tw.rpi.edu/2009/data-gov-twc.rdf#>
+PREFIX conv: <http://purl.org/twc/vocab/conversion/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX void: <http://rdfs.org/ns/void#>
+SELECT DISTINCT ?dataset ?subject WHERE {
+    ?dataset a conv:CatalogedDataset .
+    ?dataset void:inDataset ?catalog .
+    ?catalog dcterms:identifier ?catalog_id .
+    ?dataset dcterms:subject ?subject .
+    #?dataset dgtwc:catalog_country <http://dbpedia.org/resource/United_States> .
+}
+#LIMIT 100
