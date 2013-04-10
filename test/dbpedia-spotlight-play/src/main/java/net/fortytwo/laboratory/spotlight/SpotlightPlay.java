@@ -12,7 +12,8 @@ import org.dbpedia.spotlight.spot.Spotter;
  */
 public class SpotlightPlay {
     public static void main(final String[] args) throws Exception {
-        String textStr = "Observations with NASA's Chandra X-ray Observatory have provided the first X-ray evidence of a supernova shock wave breaking through a cocoon of gas";
+        String textStr = "Observations with NASA's Chandra X-ray Observatory have provided the first X-ray evidence of a supernova shock wave breaking through a cocoon of gas\n" +
+                "and here is another line of text with some more entities like George Washington and the United States";
         //Text text = new Text(textStr);
         SpotlightConfiguration conf = new SpotlightConfiguration("/tmp/spotlight.props");
         SpotlightFactory factory = new SpotlightFactory(conf);

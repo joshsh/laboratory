@@ -24,14 +24,14 @@ import java.util.Set;
 public class Query {
     private final Set<String> bindingNames;
     private final Map<String, String> extendedBindingNames;
-    private final Set<TriplePattern> triplePatterns;
+    private final Set<TriplePattern> graphPattern;
 
     public Query(final TupleExpr e,
                  final QueryEngine.TriplePatternDeduplicator deduplicator) throws IncompatibleQueryException {
         bindingNames = new HashSet<String>();
         extendedBindingNames = new HashMap<String, String>();
 
-        triplePatterns = new HashSet<TriplePattern>();
+        graphPattern = new HashSet<TriplePattern>();
 
         List<QueryModelNode> l = visit(e);
         if (l.size() != 1) {
@@ -44,12 +44,12 @@ public class Query {
 
         // TODO: eliminate redundant patterns
         for (StatementPattern pat : findStatementPatterns(p)) {
-            triplePatterns.add(deduplicator.deduplicate(new TriplePattern(pat)));
+            graphPattern.add(deduplicator.deduplicate(new TriplePattern(pat)));
         }
     }
 
-    public Set<TriplePattern> getTriplePatterns() {
-        return triplePatterns;
+    public Set<TriplePattern> getGraphPattern() {
+        return graphPattern;
     }
 
     public Map<String, String> getExtendedBindingNames() {

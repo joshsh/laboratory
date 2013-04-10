@@ -67,7 +67,7 @@ public class TripleIndex {
                 VarList bindings = VarList.NIL;
 
                 for (PartialSolution ps : partialSolutions) {
-                    for (TriplePattern p : ps.getPatterns()) {
+                    for (TriplePattern p : ps.getGraphPattern()) {
                         if (!p.getSubject().hasValue()) {
                             bindings = new VarList(p.getSubject().getName(), st.getSubject(), bindings);
                         }

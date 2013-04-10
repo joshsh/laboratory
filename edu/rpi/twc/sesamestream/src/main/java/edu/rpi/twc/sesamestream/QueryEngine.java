@@ -99,7 +99,7 @@ public class QueryEngine {
 
     private void flushIntermediateResults() {
         for (PartialSolution q : intermediateResultBuffer) {
-            for (TriplePattern tp : q.getPatterns()) {
+            for (TriplePattern tp : q.getGraphPattern()) {
                 indexTriplePattern(tp, q);
             }
         }
@@ -215,7 +215,7 @@ public class QueryEngine {
                      final TriplePattern satisfiedPattern,
                      final VarList newBindings) {
         //System.out.println("triple pattern satisfied: " + satisfiedPattern + " with bindings " + newBindings);
-        if (1 == r.getPatterns().size()) {
+        if (1 == r.getGraphPattern().size()) {
             //System.out.println("producing solution: " + newBindings);
             produceSolution(r, r.getBindings().prepend(newBindings));
         } else {
@@ -224,7 +224,7 @@ public class QueryEngine {
 
             VarList nextBindings = r.getBindings().prepend(newBindings);
 
-            for (TriplePattern t : r.getPatterns()) {
+            for (TriplePattern t : r.getGraphPattern()) {
                 // Note: comparison with == is appropriate here thanks to deduplication of triple patterns
                 if (t != satisfiedPattern) {
                     TriplePattern p = replace(t, newBindings);

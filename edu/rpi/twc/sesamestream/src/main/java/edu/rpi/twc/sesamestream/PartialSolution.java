@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * An intermediate result in the answering of a continuous query.
  * It contains zero or more already-completed bindings of variables to values
- * as well as one or more still-to-be-matched RDF triple patterns.
+ * as well as a basic graph pattern (BGP) of one or more still-to-be-matched triple patterns.
  *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
@@ -14,7 +14,7 @@ public class PartialSolution {
 
     private final Subscription subscription;
 
-    private final Collection<TriplePattern> patterns;
+    private final Collection<TriplePattern> graphPattern;
 
     private final VarList bindings;
 
@@ -30,21 +30,21 @@ public class PartialSolution {
         bindings = VarList.NIL;
 
         // TODO: make this immutable, for performance sake
-        patterns = subscription.getQuery().getTriplePatterns();
+        graphPattern = subscription.getQuery().getGraphPattern();
     }
 
     /**
      * Constructs an partial solution with the specified bindings and triple patterns.
      *
      * @param subscription an object containing the query and the handler for query results
-     * @param patterns the still-to-be-matched RDF triple patterns
+     * @param graphPattern the still-to-be-matched RDF triple patterns
      * @param bindings the already-completed bindings of variables to values
      */
     public PartialSolution(final Subscription subscription,
-                           final Set<TriplePattern> patterns,
+                           final Set<TriplePattern> graphPattern,
                            final VarList bindings) {
         this.subscription = subscription;
-        this.patterns = patterns;
+        this.graphPattern = graphPattern;
         this.bindings = bindings;
     }
 
@@ -58,8 +58,8 @@ public class PartialSolution {
     /**
      * @return the still-to-be-matched RDF triple patterns of this partial solution
      */
-    public Collection<TriplePattern> getPatterns() {
-        return patterns;
+    public Collection<TriplePattern> getGraphPattern() {
+        return graphPattern;
     }
 
     public Subscription getSubscription() {
@@ -71,7 +71,7 @@ public class PartialSolution {
         sb.append("PartialSolution(").append(bindings).append(", {");
 
         boolean first = true;
-        for (TriplePattern t : patterns) {
+        for (TriplePattern t : graphPattern) {
             if (first) {
                 first = false;
             } else {

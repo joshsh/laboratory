@@ -138,6 +138,7 @@ public class MarkupGenerator {
                 "<head>\n" +
                 "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
                 "    <title>schema.org dataset extension example</title>\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" >\n" +
                 "</head>\n" +
                 "<body>\n");
         sb.append("<h1>All catalogs</h1>\n<ol>\n");
@@ -170,6 +171,7 @@ public class MarkupGenerator {
                 "    <title>dataset extension RDFa example</title>\n" +
                 "    <base href=\"http://tw.rpi.edu/dataset/\"/>\n" +
                 "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" >\n" +
                 "</head>\n" +
                 "<body>\n");
 
@@ -181,27 +183,21 @@ public class MarkupGenerator {
 
         System.out.println("catalog URI: " + c.getUri());
         if (0 < c.getDatasets().size()) {
-            ps.println("    <div><i>Datasets in this catalog:</i>");
-            boolean first = true;
+            ps.println("    <div><i>Datasets in this catalog:</i><ul>");
             for (String did : c.getDatasets()) {
                 System.out.println("\tdataset URI: " + did); System.out.flush();
                 Dataset d = datasetsByUri.get(did);
                 String duri = datasetUri(d);
 
-                if (first) {
-                    first = false;
-                } else {
-                    ps.print(",");
-                }
-                ps.println("    <span rel=\"dataset\" resource=\"" + duri + "\">");
+                ps.println("    <li><span rel=\"dataset\" resource=\"" + duri + "\">");
                 ps.println("        <a href=\"" + duri + "\">");
                 ps.println("            <span about=\"" + duri + "\" typeof=\"DataSet\">");
                 ps.println("                <span property=\"name\">" + htmlEscape(d.getTitle()) + "</span>");
                 ps.println("            </span>");
                 ps.println("        </a>");
-                ps.println("    </span>");
+                ps.println("    </span></li>");
             }
-            ps.println("    </div>");
+            ps.println("    </ul></div>");
             ps.println("");
         }
         ps.println("</div>");
@@ -218,6 +214,7 @@ public class MarkupGenerator {
                 "<head>\n" +
                 "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
                 "    <title>schema.org dataset extension example</title>\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" >\n" +
                 "</head>\n" +
                 "<body>\n");
         sb.append("<h1>Datasets in " + htmlEscape(c.getTitle()) + "</h1>\n<br/>\n");
@@ -292,7 +289,8 @@ public class MarkupGenerator {
                 "<head>\n" +
                 "    <title>dataset extension RDFa example</title>\n" +
                 "    <base href=\"http://tw.rpi.edu/dataset/\"/>\n" +
-                "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>\n" +
+                "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" >\n\n" +
                 "</head>\n" +
                 "<body>\n");
 

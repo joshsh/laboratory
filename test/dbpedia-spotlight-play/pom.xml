@@ -24,6 +24,17 @@
             <artifactId>core</artifactId>
             <version>0.6</version>
         </dependency>
+        <!-- note: I don't know if the two dependencies below are necessary.  Adding them to avoid a configuration exception -->
+        <dependency>
+            <groupId>org.dbpedia.spotlight</groupId>
+            <artifactId>index</artifactId>
+            <version>0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dbpedia.spotlight</groupId>
+            <artifactId>eval</artifactId>
+            <version>0.6</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
