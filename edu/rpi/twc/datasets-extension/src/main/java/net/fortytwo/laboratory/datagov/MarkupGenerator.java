@@ -60,7 +60,8 @@ public class MarkupGenerator {
             String c = b.getJSONObject("catalog").getString("value");
             String cid = b.getJSONObject("catalog_id").getString("value");
             String title = b.getJSONObject("title").getString("value");
-            String homepage = b.getJSONObject("homepage").getString("value");
+            JSONObject h = b.optJSONObject("homepage");
+            String homepage = null == h ? null : h.getString("value");
             String country = b.getJSONObject("country").getString("value");
             String desc = b.getJSONObject("desc").getString("value");
             JSONObject a = b.optJSONObject("agency");
