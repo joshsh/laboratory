@@ -1,4 +1,0 @@
-export JAVA_OPTIONS="-Xms10G -Xmx10G"
-
-./testrunner.sh data/dbpedia-preview-queries.txt data/dbpedia-preview-data.txt | tee /tmp/log
-cat /tmp/log|grep "^LOG" | sed 's/LOG.//' > /tmp/querylog.csv
