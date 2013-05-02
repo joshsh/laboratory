@@ -1,6 +1,6 @@
 package net.fortytwo.laboratory.datagov;
 
-import org.apache.commons.io.IOUtils;
+import au.com.bytecode.opencsv.CSVReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -103,23 +104,13 @@ public class MarkupGenerator {
             }
         }
 
-        JSONObject subjects;
         f = new File("/tmp/datasets/results/subjects.json");
-        is = new FileInputStream(f);
-        try {
-            subjects = new JSONObject(toString(is));
-        } finally {
-            is.close();
-        }
+        CSVReader reader = new CSVReader(new FileReader(f));
+        String[] nextLine;
+        while ((nextLine = reader.readNext()) != null) {
+            String s = nextLine[0];
+            String subject = nextLine[1];
 
-        //System.out.println("o: " + o);
-        results = subjects.getJSONObject("results").getJSONArray("bindings");
-        System.out.println("# of subject associations = " + results.length());
-        for (int i = 0; i < results.length(); i++) {
-            JSONObject b = results.getJSONObject(i);
-
-            String s = b.getJSONObject("dataset").getString("value");
-            String subject = b.getJSONObject("subject").getString("value");
             Dataset d = datasetsByUri.get(s);
             if (null != d) {
                 d.getSubjects().add(subject);
@@ -190,7 +181,8 @@ public class MarkupGenerator {
         if (0 < c.getDatasets().size()) {
             ps.println("    <div><i>Datasets in this catalog:</i><ul>");
             for (String did : c.getDatasets()) {
-                System.out.println("\tdataset URI: " + did); System.out.flush();
+                System.out.println("\tdataset URI: " + did);
+                System.out.flush();
                 Dataset d = datasetsByUri.get(did);
                 String duri = datasetUri(d);
 
@@ -518,7 +510,7 @@ public class MarkupGenerator {
             if (format == MarkupFormat.Microdata) {
                 generateDatasetPageWithMicrodata(d, out);
             } else if (format == MarkupFormat.RDFa) {
-                generateDatasetPageWithRDFa(d, c,  ps);
+                generateDatasetPageWithRDFa(d, c, ps);
             }
         } finally {
             out.close();
@@ -673,8 +665,8 @@ public class MarkupGenerator {
         StringBuilder sb = new StringBuilder();
 
         String read;
-	int line = 0;
-	try {
+        int line = 0;
+        try {
             while ((read = br.readLine()) != null) {
                 line++;
                 sb.append(read);

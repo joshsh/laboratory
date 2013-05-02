@@ -19,12 +19,12 @@
     </repositories>
 
     <dependencies>
-        <dependency>
+        <!-- note: I don't know if all three of the dependencies below are necessary.  Adding them to avoid a configuration exception -->
+        <!--<dependency>
             <groupId>org.dbpedia.spotlight</groupId>
             <artifactId>core</artifactId>
             <version>0.6</version>
         </dependency>
-        <!-- note: I don't know if the two dependencies below are necessary.  Adding them to avoid a configuration exception -->
         <dependency>
             <groupId>org.dbpedia.spotlight</groupId>
             <artifactId>index</artifactId>
@@ -34,6 +34,11 @@
             <groupId>org.dbpedia.spotlight</groupId>
             <artifactId>eval</artifactId>
             <version>0.6</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3-beta1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -64,6 +69,19 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
