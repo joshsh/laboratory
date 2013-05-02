@@ -4,11 +4,13 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.security.MessageDigest;
@@ -22,7 +24,9 @@ import java.util.Set;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class MarkupGenerator {
-    private static final String PREFIX = "http://fortytwo.net/tmp/datasets/markup/";
+    private static final String PREFIX = "http://logd.tw.rpi.edu/demo/datasets/";
+//    private static final String PREFIX = "http://flux.franz.com/tmp/datasets/";
+//    private static final String PREFIX = "http://fortytwo.net/tmp/datasets/markup/";
 //    private static final String PREFIX = "file:///tmp/datasets/markup/";
 
     private static final String MARKUP_DIR = "/tmp/datasets/markup/";
@@ -43,7 +47,7 @@ public class MarkupGenerator {
         File f = new File("/tmp/datasets/results/datasets.json");
         InputStream is = new FileInputStream(f);
         try {
-            metadata = new JSONObject(IOUtils.toString(is));
+            metadata = new JSONObject(toString(is));
         } finally {
             is.close();
         }
@@ -60,7 +64,8 @@ public class MarkupGenerator {
             String c = b.getJSONObject("catalog").getString("value");
             String cid = b.getJSONObject("catalog_id").getString("value");
             String title = b.getJSONObject("title").getString("value");
-            String homepage = b.getJSONObject("homepage").getString("value");
+            JSONObject h = b.optJSONObject("homepage");
+            String homepage = null == h ? null : h.getString("value");
             String country = b.getJSONObject("country").getString("value");
             String desc = b.getJSONObject("desc").getString("value");
             JSONObject a = b.optJSONObject("agency");
@@ -102,7 +107,7 @@ public class MarkupGenerator {
         f = new File("/tmp/datasets/results/subjects.json");
         is = new FileInputStream(f);
         try {
-            subjects = new JSONObject(IOUtils.toString(is));
+            subjects = new JSONObject(toString(is));
         } finally {
             is.close();
         }
@@ -659,5 +664,25 @@ public class MarkupGenerator {
             t.printStackTrace(System.err);
             System.exit(1);
         }
+    }
+
+
+    private static String toString(final InputStream in) throws IOException {
+        InputStreamReader is = new InputStreamReader(in);
+        BufferedReader br = new BufferedReader(is);
+        StringBuilder sb = new StringBuilder();
+
+        String read;
+	int line = 0;
+	try {
+            while ((read = br.readLine()) != null) {
+                line++;
+                sb.append(read);
+            }
+        } catch (Exception e) {
+            throw new IOException("line " + line + ": " + e.getMessage());
+        }
+
+        return sb.toString();
     }
 }
