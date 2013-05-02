@@ -104,18 +104,22 @@ public class MarkupGenerator {
             }
         }
 
-        f = new File("/tmp/datasets/results/subjects.json");
+        f = new File("/tmp/datasets/results/subjects.csv");
         CSVReader reader = new CSVReader(new FileReader(f));
         String[] nextLine;
+        int subjectCount = 0;
         while ((nextLine = reader.readNext()) != null) {
-            String s = nextLine[0];
+            //if (nextLine.length > 0) {
+            String s = nextLine[0];  //System.out.println("s = " + s); System.out.flush();
             String subject = nextLine[1];
-
+            subjectCount++;
             Dataset d = datasetsByUri.get(s);
             if (null != d) {
                 d.getSubjects().add(subject);
             }
+            //}
         }
+        System.out.println("" + subjectCount + " subjects");
 
         //System.out.println("" + datasetsByUri.values().size() + " datasets");
 
