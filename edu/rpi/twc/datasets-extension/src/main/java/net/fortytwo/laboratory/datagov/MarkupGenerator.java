@@ -136,9 +136,9 @@ public class MarkupGenerator {
         sb.append("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n" +
-                "    <title>schema.org dataset extension example</title>\n" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" >\n" +
+                "    <title>schema.org Datasets extension linked RDFa demo</title>\n" +
+                "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"/>\n" +
                 "</head>\n" +
                 "<body>\n");
         sb.append("<h1>All catalogs</h1>\n<ol>\n");
@@ -168,10 +168,10 @@ public class MarkupGenerator {
 
         ps.println("<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
                 "<head>\n" +
-                "    <title>dataset extension RDFa example</title>\n" +
+                "    <title>schema.org Datasets extension linked RDFa demo</title>\n" +
                 "    <base href=\"http://tw.rpi.edu/dataset/\"/>\n" +
                 "    <meta property=\"dc:creator\" content=\"Joshua Shinavier\"/>\n" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" >\n" +
+                "    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"/>\n" +
                 "</head>\n" +
                 "<body>\n");
 
