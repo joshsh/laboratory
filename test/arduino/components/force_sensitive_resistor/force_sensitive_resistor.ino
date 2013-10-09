@@ -4,9 +4,16 @@
  * The component is said by Adafruit to have a resistance which ranges from
  * infinity down to around 250 ohm (at 22 pounds pressure).
  *
+ * Connect the one of the sensor's leads to GND and the other to A0.
+ * Also connect A0 to +5V through a resistor.
+ *
  * Using a 10,000 ohm pullup resistor, the sensor reads:
  *     ~904 when unpressed (same as that of an infinite resistor)
  *     ~150 when pressed hard between thumb and forefinger
+ *
+ * With a 1MOhm pullup resistor, the sensor reads:
+ *     1023 unpressed
+ *     0 with a somewhat firm press
  */
 
 const int analogInputPin0 = 0;

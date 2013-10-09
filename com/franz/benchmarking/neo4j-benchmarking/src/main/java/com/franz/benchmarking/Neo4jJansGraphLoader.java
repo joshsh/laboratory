@@ -1,9 +1,9 @@
 package com.franz.benchmarking;
 
-import com.tinkerpop.blueprints.pgm.Edge;
-import com.tinkerpop.blueprints.pgm.Graph;
-import com.tinkerpop.blueprints.pgm.Vertex;
-import com.tinkerpop.blueprints.pgm.impls.neo4j.Neo4jGraph;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +44,7 @@ public class Neo4jJansGraphLoader {
 //        Neo4jGraph g = new Neo4jGraph("/tmp/neo4j-jans-graph", config);
         Neo4jGraph g = getOrCreateNeo4jGraph();
         try {
-            g.setMaxBufferSize(1000);
+            //g.setMaxBufferSize(1000);
             long start = System.currentTimeMillis();
 
             for (int i = 0; i < TOTAL_NODES; i++) {

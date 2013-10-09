@@ -1,10 +1,11 @@
 package com.franz.benchmarking;
 
-import com.tinkerpop.blueprints.pgm.Vertex;
-import com.tinkerpop.blueprints.pgm.impls.neo4j.Neo4jGraph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
 import org.neo4j.cypher.ExecutionEngine;
 import org.neo4j.cypher.ExecutionResult;
 import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.kernel.impl.util.StringLogger;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class Neo4jJansGraphCypherBenchmark {
         Neo4jGraph g = Neo4jJansGraphLoader.getOrCreateNeo4jGraph();
         try {
             GraphDatabaseService service = g.getRawGraph();
-            ExecutionEngine engine = new ExecutionEngine(service);
+            ExecutionEngine engine = new ExecutionEngine(service, StringLogger.SYSTEM);
 
             for (int i = 0; i < ITERATIONS; i++) {
                 Vertex x = Neo4jJansGraphLoader.getRandomVertex(g);

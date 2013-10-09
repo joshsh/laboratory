@@ -1,0 +1,5 @@
+
+g = new Neo4jGraph("/tmp/neo-sp2bench")
+ig = new IdGraph(g, true, false);
+
+ig.v("http://localhost/publications/journals/Journal3/1967").outE

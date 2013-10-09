@@ -33,7 +33,7 @@
         <sesametools.version>1.7</sesametools.version>
         <ripple.version>1.0</ripple.version>
         <tinkerpop.version>2.4.0-SNAPSHOT</tinkerpop.version>
-        <titan.version>0.3.0</titan.version>
+        <titan.version>0.3.1</titan.version>
         <junit.version>4.11</junit.version>
     </properties>
 

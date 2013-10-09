@@ -1,7 +1,7 @@
 package com.franz.benchmarking;
 
-import com.tinkerpop.blueprints.pgm.impls.neo4j.Neo4jGraph;
-import com.tinkerpop.blueprints.pgm.oupls.sail.GraphSail;
+import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
+import com.tinkerpop.blueprints.oupls.sail.GraphSail;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.sail.SailRepository;
@@ -36,7 +36,7 @@ public class Neo4jLUBMLoader {
 
         Neo4jGraph g = new Neo4jGraph("neo4j-lubm", config);
         try {
-            g.setMaxBufferSize(1000);
+            //g.setMaxBufferSize(1000);
 
             GraphSail sail = new GraphSail(g);
             sail.enforceUniqueStatements(false);

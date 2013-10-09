@@ -1,12 +1,13 @@
 package com.franz.benchmarking;
 
-import com.tinkerpop.blueprints.pgm.impls.neo4j.Neo4jGraph;
-import com.tinkerpop.blueprints.pgm.oupls.sail.GraphSail;
+import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
+import com.tinkerpop.blueprints.oupls.sail.GraphSail;
 import info.aduna.iteration.CloseableIteration;
 import org.neo4j.cypher.ExecutionEngine;
 import org.neo4j.cypher.ExecutionResult;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
+import org.neo4j.kernel.impl.util.StringLogger;
 import org.openrdf.model.Statement;
 import org.openrdf.model.impl.URIImpl;
 import org.openrdf.sail.SailConnection;
@@ -40,7 +41,7 @@ public class CypherPlay {
         Neo4jGraph g = new Neo4jGraph("neo4j-lubm");
         try {
             GraphDatabaseService service = g.getRawGraph();
-            ExecutionEngine engine = new ExecutionEngine(service);
+            ExecutionEngine engine = new ExecutionEngine(service, StringLogger.SYSTEM);
 
             GraphSail sail = new GraphSail(g);
             sail.initialize();

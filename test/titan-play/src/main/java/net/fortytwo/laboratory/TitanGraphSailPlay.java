@@ -18,18 +18,18 @@ public class TitanGraphSailPlay {
     public static void main(final String[] args) throws Exception {
         Configuration conf = new BaseConfiguration();
 
-        //conf.setProperty("storage.backend", "cassandra");
-        //conf.setProperty("storage.hostname", "127.0.0.1");
+        conf.setProperty("storage.backend", "cassandra");
+        conf.setProperty("storage.hostname", "127.0.0.1");
 
         //conf.setProperty("storage.directory", "/tmp/titan2");
         //conf.setProperty("storage.backend", "berkeleyje");
 
-        conf.setProperty("storage.backend","hbase");
+        //conf.setProperty("storage.backend","hbase");
 
         TitanGraph g = TitanFactory.open(conf);
         try {
-//            GraphSail sail = new GraphSail(g);
-            GraphSail sail = new GraphSail(g, "");
+            GraphSail sail = new GraphSail(g);
+//            GraphSail sail = new GraphSail(g, "");
             sail.initialize();
             try {
                 SailConnection sc = sail.getConnection();
