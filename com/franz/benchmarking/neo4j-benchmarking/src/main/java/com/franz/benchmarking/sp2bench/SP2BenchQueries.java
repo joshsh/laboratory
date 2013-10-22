@@ -26,11 +26,30 @@ WHERE {
         GraphDatabaseFactory factory = new GraphDatabaseFactory();
         GraphDatabaseService g = factory.newEmbeddedDatabase("/tmp/neo-sp2bench");
         try {
-            // Q1
-            String query = "START journal=node(*)" +
+            // Return the year of publication of Journal 1 (1940).
+            String q1 = "START journal=node(*)\n" +
                     "MATCH journal-[:`rdf:type`]->bj, journal-[:`dc:title`]->title, journal-[:`dcterms:issued`]->year\n" +
                     "WHERE bj.__id = 'bench:Journal' AND title.__id = '\"Journal 1 (1940)\"'\n" +
-                    "RETURN journal.__id, year.__id";
+                    "RETURN year.__id";
+
+            // Extract all inproceedings with properties
+            // dc:creator, bench:booktitle, dc:title, swrc:pages, dcterms:partOf, rdfs:seeAlso, foaf:homepage
+            // dcterms:issued, and optionally bench:abstract, including these properties, ordered by year.
+            String q2 = "START inproc=node(*)\n" +
+                    "MATCH inproc-[:`rdf:type`]->bip," +
+                        " inproc-[:`dc:creator`]->author," +
+                        " inproc-[:`bench:booktitle`]->booktitle," +
+                        " inproc-[:`dc:title`]->title," +
+                        " inproc-[:`dcterms:partOf`]->proc," +
+                        " inproc-[:`rdfs:seeAlso`]->ee," +
+                        " inproc-[:`swrc:pages`]->page," +
+                        " inproc-[:`foaf:homepage`]->url," +
+                        " inproc-[:`dcterms:issued`]->yr," +
+                        " inproc-[?:`bench:abstract`]->abstract\n" +
+                    "WHERE bip.__id = 'bench:Inproceedings'\n" +
+                    "RETURN inproc.__id, author.__id, booktitle.__id, title.__id, proc.__id, ee.__id, page.__id, url.__id, yr.__id, abstract.__id";
+
+            String query = q2;
 
             ExecutionEngine engine = new ExecutionEngine(g, StringLogger.SYSTEM);
             Transaction tx = g.beginTx();
