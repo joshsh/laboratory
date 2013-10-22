@@ -37,19 +37,51 @@ WHERE {
             // dcterms:issued, and optionally bench:abstract, including these properties, ordered by year.
             String q2 = "START inproc=node(*)\n" +
                     "MATCH inproc-[:`rdf:type`]->bip," +
-                        " inproc-[:`dc:creator`]->author," +
-                        " inproc-[:`bench:booktitle`]->booktitle," +
-                        " inproc-[:`dc:title`]->title," +
-                        " inproc-[:`dcterms:partOf`]->proc," +
-                        " inproc-[:`rdfs:seeAlso`]->ee," +
-                        " inproc-[:`swrc:pages`]->page," +
-                        " inproc-[:`foaf:homepage`]->url," +
-                        " inproc-[:`dcterms:issued`]->yr," +
-                        " inproc-[?:`bench:abstract`]->abstract\n" +
+                    " inproc-[:`dc:creator`]->author," +
+                    " inproc-[:`bench:booktitle`]->booktitle," +
+                    " inproc-[:`dc:title`]->title," +
+                    " inproc-[:`dcterms:partOf`]->proc," +
+                    " inproc-[:`rdfs:seeAlso`]->ee," +
+                    " inproc-[:`swrc:pages`]->page," +
+                    " inproc-[:`foaf:homepage`]->url," +
+                    " inproc-[:`dcterms:issued`]->yr," +
+                    " inproc-[?:`bench:abstract`]->abstract\n" +
                     "WHERE bip.__id = 'bench:Inproceedings'\n" +
                     "RETURN inproc.__id, author.__id, booktitle.__id, title.__id, proc.__id, ee.__id, page.__id, url.__id, yr.__id, abstract.__id";
 
-            String query = q2;
+            // (a) Select all articles with property swrc:pages.
+            // Note: this query tests a SPARQL-specific concern (FILTER versus triple pattern)
+            String q3 = "START article=node(*)\n" +
+                    "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:pages`]->value\n" +
+                    "WHERE Art.__id = 'bench:Article'\n" +
+                    "RETURN article.__id";
+
+            // Select all distinct pairs of article author names for authors that have published in the same journal.
+            // TODO: very poor performance (perhaps never terminating)
+            String q4 = "START article1=node(*), article2=node(*)\n" +
+                    "MATCH article1-[:`rdf:type`]->Art," +
+                    " article2-[:`rdf:type`]->Art," +
+                    " article1-[:`dc:creator`]->author1," +
+                    " author1-[:`foaf:name`]->name1," +
+                    " article2-[:`dc:creator`]->author2," +
+                    " author2-[:`foaf:name`]->name2," +
+                    " article1-[:`swrc:journal`]->journal1," +
+                    " article2-[:`swrc:journal`]->journal2\n" +
+                    "WHERE Art.__id = 'bench:Article' AND name1.__id < name2.__id\n" +
+                    "RETURN DISTINCT name1.__id, name2.__id";
+
+            // Return the names of all persons that occur as author of at least one inproceeding and at least one article.
+            // Note: queries q5 and q5a are treated as the same query, as they differ only in FILTER syntax
+            String q5 = "START person=node(*)\n" +
+                    "MATCH article-[:`rdf:type`]->Art," +
+                    " article-[:`dc:creator`]->person," +
+                    " inproc-[:`rdf:type`]->Inproc," +
+                    " inproc-[:`dc:creator`]->person," +
+                    " person-[:`foaf:name`]->name\n" +
+                    "WHERE Art.__id = 'bench:Article' AND Inproc.__id = 'bench:Inproceedings'\n" +
+                    "RETURN DISTINCT person.__id, name.__id";
+
+            String query = q5;
 
             ExecutionEngine engine = new ExecutionEngine(g, StringLogger.SYSTEM);
             Transaction tx = g.beginTx();
@@ -67,7 +99,7 @@ WHERE {
             System.out.print(rows);
             long time3 = System.currentTimeMillis();
 
-            System.out.println("execution time: " + (time2 -time1) + "ms");
+            System.out.println("execution time: " + (time2 - time1) + "ms");
             System.out.println("iteration time: " + (time3 - time2) + "ms");
 
         } finally {
