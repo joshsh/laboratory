@@ -3,3 +3,20 @@ g = new Neo4jGraph("/tmp/neo-sp2bench")
 ig = new IdGraph(g, true, false);
 
 ig.v("http://localhost/publications/journals/Journal3/1967").outE
+
+
+
+
+SP2B_DATA=/home/josh/projects/fortytwo/laboratory/com/franz/benchmarking/neo4j-benchmarking/data/sp2b-5e4.nt
+# this takes only 3s (for 50k statements)
+time ./agload -i ntriples -v -p 10042 -c testing sp2bench $SP2B_DATA | tee /tmp/agload-out.txt
+
+
+
+
+
+
+
+
+
+

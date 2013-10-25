@@ -33,6 +33,7 @@ vim tweets.txt
  */
 public class SpotlightTweetAnnotator {
     private static final String TWEET_FILE = "/tmp/tweets.txt";
+    private static final boolean VERBOSE = true;
 
     public static void main(final String[] args) throws Exception {
         DefaultHttpClient httpclient = new DefaultHttpClient();
@@ -60,8 +61,12 @@ curl http://localhost:2222/rest/annotate \
   --data "support=0"
                  */
 
+                long before = System.currentTimeMillis();
+
                 HttpPost post = new HttpPost("http://localhost:2222/rest/annotate");
+                //HttpPost post = new HttpPost("http://gemini.tw.rpi.edu:2222/rest/annotate");
                 //HttpPost post = new HttpPost("http://spotlight.dbpedia.org/rest/annotate");
+
                 post.setHeader("Accept", "text/xml");
 
                 List<NameValuePair> formparams = new ArrayList<NameValuePair>();
@@ -72,6 +77,7 @@ curl http://localhost:2222/rest/annotate \
                 post.setEntity(requestEntity);
 
                 HttpResponse response = httpclient.execute(post);
+                long after = System.currentTimeMillis();
 
                 try {
                     System.out.println(line);
@@ -103,6 +109,11 @@ curl http://localhost:2222/rest/annotate \
                     EntityUtils.consume(entity);
                 } finally {
                     post.releaseConnection();
+                }
+
+                long allDone = System.currentTimeMillis();
+                if (VERBOSE) {
+                    System.out.println("\tfinished in " + (after - before) + "ms (" + (allDone - before) + "ms incuding output)");
                 }
             }
         }

@@ -7,12 +7,83 @@ import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.kernel.impl.util.StringLogger;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class SP2BenchQueries {
+
+    private static void showQueryResult(final String query,
+                                        final ExecutionEngine engine) {
+        long time1 = System.currentTimeMillis();
+        ExecutionResult result = engine.execute(query);
+        long time2 = System.currentTimeMillis();
+
+        String rows = "";
+        for (Map<String, Object> row : result) {
+            for (Map.Entry<String, Object> column : row.entrySet()) {
+                rows += column.getKey() + ": " + column.getValue() + "; ";
+            }
+            rows += "\n";
+        }
+        System.out.print(rows);
+        long time3 = System.currentTimeMillis();
+
+        System.out.println("execution time: " + (time2 - time1) + "ms");
+        System.out.println("iteration time: " + (time3 - time2) + "ms");
+    }
+
+    private static void timeQuery(final String query,
+                                  final int iters,
+                                  final int sets,
+                                  final ExecutionEngine engine,
+                                  final List<Long> counts,
+                                  final List<Long> times) {
+        for (int j = 0; j < sets; j++) {
+            long time1 = System.currentTimeMillis();
+
+            long count = 0;
+            for (int i = 0; i < iters; i++) {
+                ExecutionResult result = engine.execute(query);
+                for (Map<String, Object> row : result) {
+                    count++;
+                }
+            }
+
+            long time2 = System.currentTimeMillis();
+
+            counts.add(count);
+            times.add(time2 - time1);
+        }
+    }
+
+    private static void printTimedQuery(final String queryName,
+                                        final String query,
+                                        final int iters,
+                                        final int sets,
+                                        final ExecutionEngine engine) {
+        List<Long> counts = new LinkedList<Long>();
+        List<Long> times = new LinkedList<Long>();
+
+        timeQuery(query, iters, sets, engine, counts, times);
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(queryName);
+        sb.append(".neo4j <- c(");
+        boolean first = true;
+        for (long time : times) {
+            if (first) first = false; else sb.append(", ");
+
+            sb.append(time);
+        }
+        sb.append(")");
+
+        System.out.println(sb);
+    }
+
     public static void main(final String[] args) throws Exception {
         /*
 SELECT ?yr
@@ -81,26 +152,12 @@ WHERE {
                     "WHERE Art.__id = 'bench:Article' AND Inproc.__id = 'bench:Inproceedings'\n" +
                     "RETURN DISTINCT person.__id, name.__id";
 
-            String query = q5;
-
             ExecutionEngine engine = new ExecutionEngine(g, StringLogger.SYSTEM);
             Transaction tx = g.beginTx();
-            long time1 = System.currentTimeMillis();
-            ExecutionResult result = engine.execute(query);
-            long time2 = System.currentTimeMillis();
 
-            String rows = "";
-            for (Map<String, Object> row : result) {
-                for (Map.Entry<String, Object> column : row.entrySet()) {
-                    rows += column.getKey() + ": " + column.getValue() + "; ";
-                }
-                rows += "\n";
-            }
-            System.out.print(rows);
-            long time3 = System.currentTimeMillis();
+            //showQueryResult(q1, engine);
 
-            System.out.println("execution time: " + (time2 - time1) + "ms");
-            System.out.println("iteration time: " + (time3 - time2) + "ms");
+            printTimedQuery("q1", q4, 100, 10, engine);
 
         } finally {
             g.shutdown();
