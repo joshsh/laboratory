@@ -49,9 +49,9 @@ public class SP2BenchQueries {
             for (int i = 0; i < iters; i++) {
                 ExecutionResult result = engine.execute(query);
                 // TODO: restore iteration in AG and Neo test loops
-                //for (Map<String, Object> row : result) {
-                //    count++;
-                //}
+                for (Map<String, Object> row : result) {
+                    count++;
+                }
             }
 
             long time2 = System.currentTimeMillis();
@@ -70,8 +70,8 @@ public class SP2BenchQueries {
         List<Long> times = new LinkedList<Long>();
 
         timeQuery(query, iters, sets, engine, counts, times);
-        StringBuilder sb = new StringBuilder();
 
+        StringBuilder sb = new StringBuilder();
         sb.append(queryName);
         sb.append(".neo4j <- c(");
         boolean first = true;
@@ -79,6 +79,19 @@ public class SP2BenchQueries {
             if (first) first = false; else sb.append(", ");
 
             sb.append(time);
+        }
+        sb.append(")");
+
+        System.out.println(sb);
+
+        sb = new StringBuilder();
+        sb.append(queryName);
+        sb.append(".neo4j.count <- c(");
+        first = true;
+        for (long count : counts) {
+            if (first) first = false; else sb.append(", ");
+
+            sb.append(count);
         }
         sb.append(")");
 
@@ -158,7 +171,7 @@ WHERE {
 
             //showQueryResult(q1, engine);
 
-            printTimedQuery("q1", q1, 100, 10, engine);
+            printTimedQuery("q5", q5, 1, 10, engine);
 
         } finally {
             g.shutdown();
