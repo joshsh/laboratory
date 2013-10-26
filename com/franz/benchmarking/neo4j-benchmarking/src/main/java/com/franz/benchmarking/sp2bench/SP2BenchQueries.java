@@ -48,9 +48,10 @@ public class SP2BenchQueries {
             long count = 0;
             for (int i = 0; i < iters; i++) {
                 ExecutionResult result = engine.execute(query);
-                for (Map<String, Object> row : result) {
-                    count++;
-                }
+                // TODO: restore iteration in AG and Neo test loops
+                //for (Map<String, Object> row : result) {
+                //    count++;
+                //}
             }
 
             long time2 = System.currentTimeMillis();
@@ -157,7 +158,7 @@ WHERE {
 
             //showQueryResult(q1, engine);
 
-            printTimedQuery("q1", q4, 100, 10, engine);
+            printTimedQuery("q1", q1, 100, 10, engine);
 
         } finally {
             g.shutdown();

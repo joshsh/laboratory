@@ -49,7 +49,8 @@ public class SP2BenchLoader {
         final Neo4jGraph g = GraphFactory.createNeo4jGraph("/tmp/neo-sp2bench");
         final IdGraph ig = new IdGraph(g, true, false);
 
-        InputStream in = new FileInputStream(new File("/Users/josh/data/shortterm/franz/sp2bench/sp2b-5e4.nt"));
+        //InputStream in = new FileInputStream(new File("/Users/josh/data/shortterm/franz/sp2bench/sp2b-5e4.nt"));
+        InputStream in = new FileInputStream(new File("/tmp/sp2b-5e4.nt"));
         try {
             RDFHandler h = new RDFHandler() {
                 public void startRDF() throws RDFHandlerException {
