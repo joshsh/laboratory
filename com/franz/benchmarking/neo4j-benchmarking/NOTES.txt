@@ -1,10 +1,4 @@
 
-g = new Neo4jGraph("/tmp/neo-sp2bench")
-ig = new IdGraph(g, true, false);
-
-ig.v("http://localhost/publications/journals/Journal3/1967").outE
-
-
 
 
 SP2B_DATA=/home/josh/projects/fortytwo/laboratory/com/franz/benchmarking/neo4j-benchmarking/data/sp2b-5e4.nt
@@ -12,6 +6,18 @@ SP2B_DATA=/home/josh/projects/fortytwo/laboratory/com/franz/benchmarking/neo4j-b
 time ./agload -i ntriples -v -p 10042 -c testing sp2bench $SP2B_DATA | tee /tmp/agload-out.txt
 
 
+
+
+g = new Neo4jGraph("/tmp/neo-sp2bench")
+ig = new IdGraph(g, true, false);
+
+GraphMLWriter.outputGraph(ig, new FileOutputStream("/tmp/sp2bench.xml"))
+
+ig.v("http://localhost/publications/journals/Journal3/1967").outE
+
+
+// SP2Bench query #1
+ig.v("\"Journal 1 (1940)\"").in("dc:title").as("journal").out("rdf:type").filter{it.id.equals("bench:Journal")}.back("journal")
 
 
 
