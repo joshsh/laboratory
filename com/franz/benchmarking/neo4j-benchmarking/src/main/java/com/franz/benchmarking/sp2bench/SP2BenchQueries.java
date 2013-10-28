@@ -134,10 +134,21 @@ WHERE {
                     "WHERE bip.__id = 'bench:Inproceedings'\n" +
                     "RETURN inproc.__id, author.__id, booktitle.__id, title.__id, proc.__id, ee.__id, page.__id, url.__id, yr.__id, abstract.__id";
 
-            // (a) Select all articles with property swrc:pages.
-            // Note: this query tests a SPARQL-specific concern (FILTER versus triple pattern)
-            String q3 = "START article=node(*)\n" +
+            // Select all articles with property swrc:pages.
+            String q3a = "START article=node(*)\n" +
                     "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:pages`]->value\n" +
+                    "WHERE Art.__id = 'bench:Article'\n" +
+                    "RETURN article.__id";
+
+            // Select all articles with property swrc:month.
+            String q3b = "START article=node(*)\n" +
+                    "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:month`]->value\n" +
+                    "WHERE Art.__id = 'bench:Article'\n" +
+                    "RETURN article.__id";
+
+            // Select all articles with property swrc:isbn.
+            String q3c = "START article=node(*)\n" +
+                    "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:isbn`]->value\n" +
                     "WHERE Art.__id = 'bench:Article'\n" +
                     "RETURN article.__id";
 
@@ -171,7 +182,7 @@ WHERE {
 
             //showQueryResult(q1, engine);
 
-            printTimedQuery("q5", q5, 1, 10, engine);
+            printTimedQuery("q3c", q3c, 1, 10, engine);
 
         } finally {
             g.shutdown();
