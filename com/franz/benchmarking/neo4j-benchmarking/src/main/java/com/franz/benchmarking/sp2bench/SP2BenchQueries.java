@@ -113,6 +113,10 @@ public class SP2BenchQueries {
                     "MATCH journal-[:`rdf:type`]->bj, journal-[:`dc:title`]->title, journal-[:`dcterms:issued`]->year\n" +
                     "WHERE bj.__id = 'bench:Journal' AND title.__id = '\"Journal 1 (1940)\"'\n" +
                     "RETURN year.__id";
+            String q1_cypher_cheat = "START title=node:node_auto_index(__id = \"\\\"Journal 1 (1940)\\\"\")\n" +
+                    "MATCH journal-[:`rdf:type`]->bj, journal-[:`dc:title`]->title, journal-[:`dcterms:issued`]->year\n" +
+                    "WHERE bj.__id = 'bench:Journal'\n" +
+                    "RETURN year.__id";
 
             // Extract all inproceedings with properties
             // dc:creator, bench:booktitle, dc:title, swrc:pages, dcterms:partOf, rdfs:seeAlso, foaf:homepage
@@ -129,6 +133,18 @@ public class SP2BenchQueries {
                     " inproc-[:`dcterms:issued`]->yr," +
                     " inproc-[?:`bench:abstract`]->abstract\n" +
                     "WHERE bip.__id = 'bench:Inproceedings'\n" +
+                    "RETURN inproc.__id, author.__id, booktitle.__id, title.__id, proc.__id, ee.__id, page.__id, url.__id, yr.__id, abstract.__id";
+            String q2_cypher_cheat = "START bip=node:node_auto_index(__id = \"bench:Inproceedings\")\n" +
+                    "MATCH inproc-[:`rdf:type`]->bip," +
+                    " inproc-[:`dc:creator`]->author," +
+                    " inproc-[:`bench:booktitle`]->booktitle," +
+                    " inproc-[:`dc:title`]->title," +
+                    " inproc-[:`dcterms:partOf`]->proc," +
+                    " inproc-[:`rdfs:seeAlso`]->ee," +
+                    " inproc-[:`swrc:pages`]->page," +
+                    " inproc-[:`foaf:homepage`]->url," +
+                    " inproc-[:`dcterms:issued`]->yr," +
+                    " inproc-[?:`bench:abstract`]->abstract\n" +
                     "RETURN inproc.__id, author.__id, booktitle.__id, title.__id, proc.__id, ee.__id, page.__id, url.__id, yr.__id, abstract.__id";
 
             // Select all articles with property swrc:pages.
@@ -179,8 +195,12 @@ public class SP2BenchQueries {
 
             //showQueryResult(q1, engine);
 
-            Query q = new CypherQuery("q1.neo", q1_cypher, engine);
+            //Query q = new CypherQuery("q1.neo", q1_cypher, engine);
+            //Query q = new CypherQuery("q1.neo", q1_cypher_cheat, engine);
+
             //Query q = new CypherQuery("q2.neo", q2_cypher, engine);
+            Query q = new CypherQuery("q2.neo", q2_cypher_cheat, engine);
+
             //Query q = new CypherQuery("q3a.neo", q3c_cypher, engine);
             //Query q = new CypherQuery("q3b.neo", q3c_cypher, engine);
             //Query q = new CypherQuery("q3c.neo", q3c_cypher, engine);
@@ -204,7 +224,7 @@ public class SP2BenchQueries {
             IdGraph ig = new IdGraph(g, true, false);
 
             String q1_gremlin_root = "\"Journal 1 (1940)\"";
-            String q1_gremlin = "_().in(\"dc:title\").as(\"journal\").out(\"rdf:type\").filter{it.id.equals(\"bench:Journal\")}.back(\"journal\")";
+            String q1_gremlin = "_().in(\"dc:title\").as(\"journal\").out(\"rdf:type\").filter{it.id.equals(\"bench:Journal\")}.back(\"journal\")out(\"dcterms:issued\")";
 
             Query q = new GremlinQuery("q1.grm", q1_gremlin_root, q1_gremlin, ig);
 

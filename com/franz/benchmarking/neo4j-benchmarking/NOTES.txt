@@ -11,13 +11,29 @@ time ./agload -i ntriples -v -p 10042 -c testing sp2bench $SP2B_DATA | tee /tmp/
 g = new Neo4jGraph("/tmp/neo-sp2bench")
 ig = new IdGraph(g, true, false);
 
+n = g.getRawGraph()
+for (String name : n.index().nodeIndexNames()) { System.out.println("\t" + name);}
+
+// 0
+ix = n.index().forNodes("__id")
+ix.get("__id", "bench:Inproceedings").size()
+
+// 1
+i = n.index().forNodes("node_auto_index")
+i.get("__id", "bench:Inproceedings").size()
+
+// 1
+a = n.index().getNodeAutoIndexer().getAutoIndex()
+a.get("__id", "bench:Inproceedings").size()
+
+
 GraphMLWriter.outputGraph(ig, new FileOutputStream("/tmp/sp2bench.xml"))
 
 ig.v("http://localhost/publications/journals/Journal3/1967").outE
 
 
 // SP2Bench query #1
-ig.v("\"Journal 1 (1940)\"").in("dc:title").as("journal").out("rdf:type").filter{it.id.equals("bench:Journal")}.back("journal")
+ig.v("\"Journal 1 (1940)\"").in("dc:title").as("journal").out("rdf:type").filter{it.id.equals("bench:Journal")}.back("journal")out("dcterms:issued")
 
 
 
