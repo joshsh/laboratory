@@ -49,8 +49,14 @@ public class SP2BenchLoader {
     private boolean verbose;
 
     /*
+    JAVA_OPTIONS="-Xms4G -Xmx4G"
+
     time ./load.sh --source /tmp/sp2b-5e4.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
-    time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-50000.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-1m.txt
+
+    # 9s on flux
+    time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-50000.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
+
+
     time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-1000000.nt --dest /tmp/sp2bench-neo/1m 2>&1 | tee /tmp/sp2bench-load-1m.txt
      */
     public static void main(final String[] args) {
@@ -83,6 +89,8 @@ public class SP2BenchLoader {
         source = cmd.getOptionValue(SOURCE);
         dest = cmd.getOptionValue(DEST);
         verbose = cmd.hasOption(VERBOSE);
+
+        System.out.println("loading data file " + source + " into Neo4j graph at " + dest);
 
         final Map<String, String> namespaces = new HashMap<String, String>();
         namespaces.put("http://localhost/vocabulary/bench/", "bench");
