@@ -190,6 +190,18 @@ public class SP2BenchQueries {
                     "WHERE Art.__id = 'bench:Article' AND Inproc.__id = 'bench:Inproceedings'\n" +
                     "RETURN DISTINCT person.__id, name.__id";
 
+            // Return, for each year, the set of all publications authored by persons that have not published in years before.
+            String q6_cypher = "START class=node(*)\n" +
+                    "MATCH class-[:`rdfs:subClassOf`]->foafDoc," +
+                    " document-[:`rdf:type`]->class," +
+                    " document-[:`dcterms:issued`]->yr," +
+                    " document-[:`dc:creator`]->author," +
+                    " author-[:`foaf:name`]->name\n" +
+                    //...
+                    "WHERE foafDoc.__id = 'foaf:Document\n" +
+                    "RETURN yr.__id, name.__id, document.__id";
+
+
             ExecutionEngine engine = new ExecutionEngine(g, StringLogger.SYSTEM);
             Transaction tx = g.beginTx();
 

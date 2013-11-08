@@ -6,6 +6,11 @@ import com.tinkerpop.blueprints.TransactionalGraph;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.PosixParser;
 import org.openrdf.model.BNode;
 import org.openrdf.model.Literal;
 import org.openrdf.model.Statement;
@@ -33,10 +38,52 @@ public class SP2BenchLoader {
 
     private static final String BASE_URI = "http://example.org/baseURI/";
 
-    private static long count;
-    private static boolean verbose = true;
+    private static final String
+            DEST = "dest",
+            SOURCE = "source",
+            VERBOSE = "verbose";
 
-    public static void main(final String[] args) throws Exception {
+    private static long count;
+
+    private String source, dest;
+    private boolean verbose;
+
+    /*
+    time ./load.sh --source /tmp/sp2b-5e4.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
+    time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-50000.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-1m.txt
+    time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-1000000.nt --dest /tmp/sp2bench-neo/1m 2>&1 | tee /tmp/sp2bench-load-1m.txt
+     */
+    public static void main(final String[] args) {
+        try {
+            new SP2BenchLoader().load(args);
+        } catch (Throwable e) {
+            e.printStackTrace(System.err);
+            System.exit(1);
+        }
+    }
+
+    private void load(final String[] args) throws Exception {
+        Options options = new Options();
+
+        Option destOpt = new Option(DEST, true, "location (file or host) of database to which to load the data");
+        destOpt.setRequired(false);
+        options.addOption(destOpt);
+
+        Option sourceOpt = new Option(SOURCE, true, "path to RDF import file");
+        sourceOpt.setRequired(true);
+        options.addOption(sourceOpt);
+
+        Option verboseOpt = new Option(VERBOSE, false, "whether to print detailed status information");
+        verboseOpt.setRequired(false);
+        options.addOption(verboseOpt);
+
+        CommandLineParser clp = new PosixParser();
+        CommandLine cmd = clp.parse(options, args);
+
+        source = cmd.getOptionValue(SOURCE);
+        dest = cmd.getOptionValue(DEST);
+        verbose = cmd.hasOption(VERBOSE);
+
         final Map<String, String> namespaces = new HashMap<String, String>();
         namespaces.put("http://localhost/vocabulary/bench/", "bench");
         namespaces.put("http://purl.org/dc/elements/1.1/", "dc");
@@ -46,11 +93,11 @@ public class SP2BenchLoader {
         namespaces.put("http://www.w3.org/2000/01/rdf-schema#", "rdfs");
         namespaces.put("http://swrc.ontoware.org/ontology#", "swrc");
 
-        final Neo4jGraph g = GraphFactory.createNeo4jGraph("/tmp/neo-sp2bench");
+        final Neo4jGraph g = GraphFactory.createNeo4jGraph(dest);
         final IdGraph ig = new IdGraph(g, true, false);
 
         //InputStream in = new FileInputStream(new File("/Users/josh/data/shortterm/franz/sp2bench/sp2b-5e4.nt"));
-        InputStream in = new FileInputStream(new File("/tmp/sp2b-5e4.nt"));
+        InputStream in = new FileInputStream(new File(source));
         try {
             RDFHandler h = new RDFHandler() {
                 public void startRDF() throws RDFHandlerException {
@@ -126,7 +173,7 @@ public class SP2BenchLoader {
         }
     }
 
-    private static void incrementCount(final TransactionalGraph g) {
+    private void incrementCount(final TransactionalGraph g) {
         count++;
         if (0 == count % BUFFER_SIZE) {
             g.commit();
@@ -135,5 +182,10 @@ public class SP2BenchLoader {
                 System.out.println("" + System.currentTimeMillis() + "\t" + count);
             }
         }
+    }
+
+    protected static void exitWithError(final String msg) {
+        System.err.println(msg);
+        System.exit(1);
     }
 }

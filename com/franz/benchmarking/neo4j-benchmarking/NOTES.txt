@@ -1,9 +1,13 @@
 
 
 
-SP2B_DATA=/home/josh/projects/fortytwo/laboratory/com/franz/benchmarking/neo4j-benchmarking/data/sp2b-5e4.nt
-# this takes only 3s (for 50k statements)
-time ./agload -i ntriples -v -p 10042 -c testing sp2bench $SP2B_DATA | tee /tmp/agload-out.txt
+SP2B_DATA=/home/josh/data/datasets/sp2bench
+
+# 3s
+time ./agload -i ntriples -v -p 10042 -c testing sp2bench-50k $SP2B_DATA/sp2bench-50000.nt | tee /tmp/agload-out.txt
+
+# 17s
+time ./agload -i ntriples -v -p 10042 -c testing sp2bench-1m $SP2B_DATA/sp2bench-1000000.nt | tee /tmp/agload-out.txt
 
 
 
