@@ -100,7 +100,7 @@ public class SP2BenchQueries {
 
     public static void main(final String[] args) throws Exception {
 
-        String pathToDatabase = "/tmp/sp2bench-neo/50k";
+        String pathToDatabase = "/tmp/sp2bench-neo/1m";
 
         new SP2BenchQueries().evaluateCypher(pathToDatabase);
         //new SP2BenchQueries().evaluateGremlin(pathToDatabase);
@@ -354,7 +354,7 @@ public class SP2BenchQueries {
 
             //showQueryResult(q11_cypher, engine);
 
-            /*
+            //*
             evalQuery(new CypherSelectQuery("q1.cypher", q1_cypher, engine), 1, 10);
             evalQuery(new CypherSelectQuery("q1.cypher.cheat1", q1_cypher_cheat1, engine), 1, 10);
 
@@ -380,9 +380,6 @@ public class SP2BenchQueries {
             //evalQuery(new CypherSelectQuery("q6.cypher", q6_cypher, engine), 1, 10);
             //evalQuery(new CypherSelectQuery("q7.cypher", q7_cypher, engine), 1, 10);
 
-            //*/
-
-            /*
             //evalQuery(new CypherSelectQuery("q8.cypher.part1", q8_cypher_part1, engine), 1, 10);
             //evalQuery(new CypherSelectQuery("q8.cypher.part2", q8_cypher_part2, engine), 1, 10);
             evalQuery(new CypherSelectUnionQuery("q8.cypher.union", q8_cypher_part1, q8_cypher_part2, engine), 1, 10);
@@ -393,14 +390,10 @@ public class SP2BenchQueries {
             evalQuery(new CypherSelectUnionQuery("q9.cypher.union", q9_cypher_part1, q9_cypher_part2, engine), 1, 10);
             evalQuery(new CypherSelectUnionQuery("q9.cypher.cheat.union", q9_cypher_cheat_part1, q9_cypher_cheat_part2, engine), 1, 10);
 
-            //*/
-            /*
-
             evalQuery(new CypherSelectQuery("q10.cypher", q10_cypher, engine), 1, 10);
             evalQuery(new CypherSelectQuery("q10.cypher.cheat", q10_cypher_cheat, engine), 1, 10);
 
             evalQuery(new CypherSelectQuery("q11.cypher", q11_cypher, engine), 1, 10);
-            */
 
             evalQuery(new CypherAskQuery("q12a.cypher", q12a_cypher, engine), 1, 10);
             evalQuery(new CypherAskQuery("q12a.cypher.cheat1", q12a_cypher_cheat1, engine), 1, 10);
