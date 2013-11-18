@@ -13,6 +13,8 @@ import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.kernel.impl.util.StringLogger;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +61,9 @@ public class SP2BenchQueries {
         }
     }
 
-    private static void printTimedQuery(final Query query,
-                                        final int iters,
-                                        final int sets) {
+    private static void evalQuery(final Query query,
+                                  final int iters,
+                                  final int sets) {
         List<Long> counts = new LinkedList<Long>();
         List<Long> times = new LinkedList<Long>();
 
@@ -98,7 +100,7 @@ public class SP2BenchQueries {
 
     public static void main(final String[] args) throws Exception {
 
-        String pathToDatabase = "/tmp/neo-sp2bench";
+        String pathToDatabase = "/tmp/sp2bench-neo/50k";
 
         new SP2BenchQueries().evaluateCypher(pathToDatabase);
         //new SP2BenchQueries().evaluateGremlin(pathToDatabase);
@@ -113,7 +115,7 @@ public class SP2BenchQueries {
                     "MATCH journal-[:`rdf:type`]->bj, journal-[:`dc:title`]->title, journal-[:`dcterms:issued`]->year\n" +
                     "WHERE bj.__id = 'bench:Journal' AND title.__id = '\"Journal 1 (1940)\"'\n" +
                     "RETURN year.__id";
-            String q1_cypher_cheat = "START title=node:node_auto_index(__id = \"\\\"Journal 1 (1940)\\\"\")\n" +
+            String q1_cypher_cheat1 = "START title=node:node_auto_index(__id = \"\\\"Journal 1 (1940)\\\"\")\n" +
                     "MATCH journal-[:`rdf:type`]->bj, journal-[:`dc:title`]->title, journal-[:`dcterms:issued`]->year\n" +
                     "WHERE bj.__id = 'bench:Journal'\n" +
                     "RETURN year.__id";
@@ -152,17 +154,26 @@ public class SP2BenchQueries {
                     "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:pages`]->value\n" +
                     "WHERE Art.__id = 'bench:Article'\n" +
                     "RETURN article.__id";
+            String q3a_cypher_cheat = "START Art=node:node_auto_index(__id = \"bench:Article\")\n" +
+                    "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:pages`]->value\n" +
+                    "RETURN article.__id";
 
             // Select all articles with property swrc:month.
             String q3b_cypher = "START article=node(*)\n" +
                     "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:month`]->value\n" +
                     "WHERE Art.__id = 'bench:Article'\n" +
                     "RETURN article.__id";
+            String q3b_cypher_cheat = "START Art=node:node_auto_index(__id = \"bench:Article\")\n" +
+                    "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:month`]->value\n" +
+                    "RETURN article.__id";
 
             // Select all articles with property swrc:isbn.
             String q3c_cypher = "START article=node(*)\n" +
                     "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:isbn`]->value\n" +
                     "WHERE Art.__id = 'bench:Article'\n" +
+                    "RETURN article.__id";
+            String q3c_cypher_cheat = "START Art=node:node_auto_index(__id = \"bench:Article\")\n" +
+                    "MATCH article-[:`rdf:type`]->Art, article-[:`swrc:isbn`]->value\n" +
                     "RETURN article.__id";
 
             // Select all distinct pairs of article author names for authors that have published in the same journal.
@@ -178,6 +189,17 @@ public class SP2BenchQueries {
                     " article2-[:`swrc:journal`]->journal2\n" +
                     "WHERE Art.__id = 'bench:Article' AND name1.__id < name2.__id\n" +
                     "RETURN DISTINCT name1.__id, name2.__id";
+            String q4_cypher_cheat = "START Art=node:node_auto_index(__id = \"bench:Article\")\n" +
+                    "MATCH article1-[:`rdf:type`]->Art," +
+                    " article2-[:`rdf:type`]->Art," +
+                    " article1-[:`dc:creator`]->author1," +
+                    " author1-[:`foaf:name`]->name1," +
+                    " article2-[:`dc:creator`]->author2," +
+                    " author2-[:`foaf:name`]->name2," +
+                    " article1-[:`swrc:journal`]->journal1," +
+                    " article2-[:`swrc:journal`]->journal2\n" +
+                    "WHERE name1.__id < name2.__id\n" +
+                    "RETURN DISTINCT name1.__id, name2.__id";
 
             // Return the names of all persons that occur as author of at least one inproceeding and at least one article.
             // Note: queries q5 and q5a are treated as the same query, as they differ only in FILTER syntax
@@ -189,37 +211,206 @@ public class SP2BenchQueries {
                     " person-[:`foaf:name`]->name\n" +
                     "WHERE Art.__id = 'bench:Article' AND Inproc.__id = 'bench:Inproceedings'\n" +
                     "RETURN DISTINCT person.__id, name.__id";
+            String q5_cypher_cheat1 = "START Art=node:node_auto_index(__id = \"bench:Article\")\n" +
+                    "MATCH article-[:`rdf:type`]->Art," +
+                    " article-[:`dc:creator`]->person," +
+                    " inproc-[:`rdf:type`]->Inproc," +
+                    " inproc-[:`dc:creator`]->person," +
+                    " person-[:`foaf:name`]->name\n" +
+                    "WHERE Inproc.__id = 'bench:Inproceedings'\n" +
+                    "RETURN DISTINCT person.__id, name.__id";
 
+            /*
             // Return, for each year, the set of all publications authored by persons that have not published in years before.
             String q6_cypher = "START class=node(*)\n" +
-                    "MATCH class-[:`rdfs:subClassOf`]->foafDoc," +
+                    "MATCH class-[:`rdfs:subClassOf`]->Doc," +
                     " document-[:`rdf:type`]->class," +
                     " document-[:`dcterms:issued`]->yr," +
                     " document-[:`dc:creator`]->author," +
                     " author-[:`foaf:name`]->name\n" +
-                    //...
-                    "WHERE foafDoc.__id = 'foaf:Document\n" +
+                    "WHERE Doc.__id = 'foaf:Document' AND author.__id = author2.__id AND yr2.__id < yr.__id " +
+                    " AND NOT(class2-[:`rdfs:subClassOf`]->Doc," +
+                    " document2-[:`rdf:type`]->class2," +
+                    " document2-[:`dcterms:issued`]->yr2," +
+                    " document2-[:`dc:creator`]->author2)\n" +
                     "RETURN yr.__id, name.__id, document.__id";
+            String q6_cypher_cheat = "";
 
+            String q7_cypher = "START class=node(*)\n" +
+                    "MATCH class-[:`rdfs:subClassOf`]->Doc," +
+                    " doc-[:`rdf:type`]->class,\n" +
+                    " doc-[:`dc:title`]->title,\n" +
+                    " bag2-[member2]->doc,\n" +
+                    " doc2-[:`dcterms:references`]->bag2,\n" +
+                    //optional...
+                    " bag3-[member3]->doc,\n" +
+                    //...
+                    "WHERE Doc.__id = 'foaf:Document'\n" +
+                    "RETURN DISTINCT title.__id";
+            String q7_cypher_cheat = "";
+            */
+
+            String q8_cypher_part1 = "START erdoes=node(*)\n" +
+                    "MATCH erdoes-[:`rdf:type`]->Person," +
+                    " erdoes-[:`foaf:name`]->paulname," +
+                    " document-[:`dc:creator`]->erdoes," +
+                    " document-[:`dc:creator`]->author," +
+                    " document2-[:`dc:creator`]->author," +
+                    " document2-[:`dc:creator`]->author2," +
+                    " author2-[:`foaf:name`]->name\n" +
+                    "WHERE Person.__id = 'foaf:Person' AND paulname.__id = \"\\\"Paul Erdoes\\\"\"" + // note: xsd:string datatype constraint is ignored
+                    " AND author <> erdoes AND document2 <> document AND author2 <> erdoes AND author2 <> author\n" +
+                    "RETURN DISTINCT name.__id";
+            String q8_cypher_part2 = "START erdoes=node(*)\n" +
+                    "MATCH erdoes-[:`rdf:type`]->Person," +
+                    " erdoes-[:`foaf:name`]->paulname," +
+                    " document-[:`dc:creator`]->erdoes," +
+                    " document-[:`dc:creator`]->author," +
+                    " author-[:`foaf:name`]->name\n" +
+                    "WHERE Person.__id = 'foaf:Person' AND paulname.__id = \"\\\"Paul Erdoes\\\"\"" + // note: xsd:string datatype constraint is ignored
+                    " AND author <> erdoes\n" +
+                    "RETURN DISTINCT name.__id";
+            String q8_cypher_cheat1_part1 = "START paulname=node:node_auto_index(__id = \"\\\"Paul Erdoes\\\"\")\n" +
+                    "MATCH erdoes-[:`rdf:type`]->Person," +
+                    " erdoes-[:`foaf:name`]->paulname," +
+                    " document-[:`dc:creator`]->erdoes," +
+                    " document-[:`dc:creator`]->author," +
+                    " document2-[:`dc:creator`]->author," +
+                    " document2-[:`dc:creator`]->author2," +
+                    " author2-[:`foaf:name`]->name\n" +
+                    "WHERE Person.__id = 'foaf:Person'" +
+                    " AND author <> erdoes AND document2 <> document AND author2 <> erdoes AND author2 <> author\n" +
+                    "RETURN DISTINCT name.__id";
+            String q8_cypher_cheat1_part2 = "START paulname=node:node_auto_index(__id = \"\\\"Paul Erdoes\\\"\")\n" +
+                    "MATCH erdoes-[:`rdf:type`]->Person," +
+                    " erdoes-[:`foaf:name`]->paulname," +
+                    " document-[:`dc:creator`]->erdoes," +
+                    " document-[:`dc:creator`]->author," +
+                    " author-[:`foaf:name`]->name\n" +
+                    "WHERE Person.__id = 'foaf:Person'" +
+                    " AND author <> erdoes\n" +
+                    "RETURN DISTINCT name.__id";
+
+            String q9_cypher_part1 = "START person=node(*)\n" +
+                    "MATCH person-[:`rdf:type`]->Person,\n" +
+                    " subject-[predicate]->person\n" +
+                    "WHERE Person.__id = 'foaf:Person'\n" +
+                    "RETURN DISTINCT predicate";
+            String q9_cypher_part2 = "START person=node(*)\n" +
+                    "MATCH person-[:`rdf:type`]->Person,\n" +
+                    " person-[predicate]->object\n" +
+                    "WHERE Person.__id = 'foaf:Person'\n" +
+                    "RETURN DISTINCT predicate";
+            String q9_cypher_cheat_part1 = "START Person=node:node_auto_index(__id = \"foaf:Person\")\n" +
+                    "MATCH person-[:`rdf:type`]->Person,\n" +
+                    " subject-[predicate]->person\n" +
+                    "RETURN DISTINCT predicate";
+            String q9_cypher_cheat_part2 = "START Person=node:node_auto_index(__id = \"foaf:Person\")\n" +
+                    "MATCH person-[:`rdf:type`]->Person,\n" +
+                    " person-[predicate]->object\n" +
+                    "RETURN DISTINCT predicate";
+
+            // Return all subjects that stand in any relation to Paul Erdoes.
+            // In our scenario, the query might also be formulated as "Return publications and venues in which
+            // Paul Erdoes is involved either as author or as editor".
+            String q10_cypher = "START subject=node(*)\n" +
+                    "MATCH subject-[predicate]->paul\n" +
+                    "WHERE paul.__id = 'person:Paul_Erdoes'\n" +
+                    "RETURN subject.__id, predicate";
+            String q10_cypher_cheat = "START paul=node:node_auto_index(__id = \"person:Paul_Erdoes\")\n" +
+                    "MATCH paul<-[predicate]-subject\n" +
+                    "RETURN subject.__id, predicate";
+
+            // TODO: try a q11 cheat based on an rdfs:seeAlso label lookup?  Can labels be indexed?
+            // Return (up to) 10 electronic edition URLs starting from the 51th publication, in lexicographical order.
+            String q11_cypher = "START publication=node(*)\n" +
+                    "MATCH publication-[:`rdfs:seeAlso`]->ee\n" +
+                    "RETURN ee.__id\n" +
+                    "ORDER BY ee.__id\n" +
+                    "SKIP 50\n" +
+                    "LIMIT 10";
+
+            // (a) Return yes if a person occurs as author of at least one inproceeding and article, no otherwise.
+            // This query is the boolean counterpart of Q5a.
+            String q12a_cypher = q5_cypher;
+            String q12a_cypher_cheat1 = q5_cypher_cheat1;
+
+            String q12b_cypher_part1 = q8_cypher_part1;
+            String q12b_cypher_part2 = q8_cypher_part2;
+            String q12b_cypher_cheat1_part1 = q8_cypher_cheat1_part1;
+            String q12b_cypher_cheat1_part2 = q8_cypher_cheat1_part2;
+
+            String q12c_cypher = "START john=node(*)\n" +
+                    "MATCH john-[:`rdf:type`]->Person\n" +
+                    "WHERE john.__id = 'person:John_Q_Public' AND Person.__id = 'foaf:Person'\n" +
+                    "RETURN john.__id";
+            String q12c_cypher_cheat1 = "START john=node:node_auto_index(__id = \"person:John_Q_Public\")\n" +
+                    "MATCH john-[:`rdf:type`]->Person\n" +
+                    "WHERE Person.__id = 'foaf:Person'\n" +
+                    "RETURN john.__id";
 
             ExecutionEngine engine = new ExecutionEngine(g, StringLogger.SYSTEM);
             Transaction tx = g.beginTx();
 
-            //showQueryResult(q1, engine);
+            //showQueryResult(q11_cypher, engine);
 
-            //Query q = new CypherQuery("q1.neo", q1_cypher, engine);
-            //Query q = new CypherQuery("q1.neo", q1_cypher_cheat, engine);
+            /*
+            evalQuery(new CypherSelectQuery("q1.cypher", q1_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q1.cypher.cheat1", q1_cypher_cheat1, engine), 1, 10);
 
-            //Query q = new CypherQuery("q2.neo", q2_cypher, engine);
-            Query q = new CypherQuery("q2.neo", q2_cypher_cheat, engine);
+            evalQuery(new CypherSelectQuery("q2.cypher", q2_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q2.cypher.cheat", q2_cypher_cheat, engine), 1, 10);
 
-            //Query q = new CypherQuery("q3a.neo", q3c_cypher, engine);
-            //Query q = new CypherQuery("q3b.neo", q3c_cypher, engine);
-            //Query q = new CypherQuery("q3c.neo", q3c_cypher, engine);
-            //Query q = new CypherQuery("q4.neo", q4_cypher, engine);
-            //Query q = new CypherQuery("q5.neo", q5_cypher, engine);
+            evalQuery(new CypherSelectQuery("q3a.cypher", q3a_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q3a.cypher.cheat", q3a_cypher_cheat, engine), 1, 10);
 
-            printTimedQuery(q, 1, 10);
+            evalQuery(new CypherSelectQuery("q3b.cypher", q3b_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q3b.cypher.cheat", q3b_cypher_cheat, engine), 1, 10);
+
+            evalQuery(new CypherSelectQuery("q3c.cypher", q3c_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q3c.cypher.cheat", q3c_cypher_cheat, engine), 1, 10);
+
+            //evalQuery(new CypherSelectQuery("q4.cypher", q4_cypher, engine), 1, 10);
+            //evalQuery(new CypherSelectQuery("q4.cypher.cheat", q4_cypher_cheat, engine), 1, 10);
+
+            evalQuery(new CypherSelectQuery("q5.cypher", q5_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q5.cypher.cheat1", q5_cypher_cheat1, engine), 1, 10);
+
+            // q6 and q7 are inexpressible as Cypher queries
+            //evalQuery(new CypherSelectQuery("q6.cypher", q6_cypher, engine), 1, 10);
+            //evalQuery(new CypherSelectQuery("q7.cypher", q7_cypher, engine), 1, 10);
+
+            //*/
+
+            /*
+            //evalQuery(new CypherSelectQuery("q8.cypher.part1", q8_cypher_part1, engine), 1, 10);
+            //evalQuery(new CypherSelectQuery("q8.cypher.part2", q8_cypher_part2, engine), 1, 10);
+            evalQuery(new CypherSelectUnionQuery("q8.cypher.union", q8_cypher_part1, q8_cypher_part2, engine), 1, 10);
+            //evalQuery(new CypherSelectQuery("q8.cypher.cheat1.part1", q8_cypher_cheat1_part1, engine), 1, 10);
+            //evalQuery(new CypherSelectQuery("q8.cypher.cheat1.part2", q8_cypher_cheat1_part2, engine), 1, 10);
+            evalQuery(new CypherSelectUnionQuery("q8.cypher.cheat1.union", q8_cypher_cheat1_part1, q8_cypher_cheat1_part2, engine), 1, 10);
+
+            evalQuery(new CypherSelectUnionQuery("q9.cypher.union", q9_cypher_part1, q9_cypher_part2, engine), 1, 10);
+            evalQuery(new CypherSelectUnionQuery("q9.cypher.cheat.union", q9_cypher_cheat_part1, q9_cypher_cheat_part2, engine), 1, 10);
+
+            //*/
+            /*
+
+            evalQuery(new CypherSelectQuery("q10.cypher", q10_cypher, engine), 1, 10);
+            evalQuery(new CypherSelectQuery("q10.cypher.cheat", q10_cypher_cheat, engine), 1, 10);
+
+            evalQuery(new CypherSelectQuery("q11.cypher", q11_cypher, engine), 1, 10);
+            */
+
+            evalQuery(new CypherAskQuery("q12a.cypher", q12a_cypher, engine), 1, 10);
+            evalQuery(new CypherAskQuery("q12a.cypher.cheat1", q12a_cypher_cheat1, engine), 1, 10);
+
+            evalQuery(new CypherAskUnionQuery("q12b.cypher.union", q12b_cypher_part1, q12b_cypher_part2, engine), 1, 10);
+            evalQuery(new CypherAskUnionQuery("q12b.cypher.cheat1.union", q12b_cypher_cheat1_part1, q12b_cypher_cheat1_part2, engine), 1, 10);
+
+            evalQuery(new CypherAskQuery("q12c.cypher", q12c_cypher, engine), 1, 10);
+            evalQuery(new CypherAskQuery("q12c.cypher.cheat1", q12c_cypher_cheat1, engine), 1, 10);
+            //*/
         } finally {
             g.shutdown();
         }
@@ -240,12 +431,20 @@ public class SP2BenchQueries {
 
             Query q = new GremlinQuery("q1.grm", q1_gremlin_root, q1_gremlin, ig);
 
-            printTimedQuery(q, 1, 10);
+            evalQuery(q, 1, 10);
         } finally {
             g.shutdown();
         }
     }
 
+    private String getUnionKey(final ExecutionResult result) {
+        List<String> columns = result.columns();
+        if (1 != columns.size()) {
+            throw new IllegalStateException("unexpected number of columns in union query result: " + columns.size());
+        } else {
+            return columns.iterator().next();
+        }
+    }
 
     private abstract class Query {
         private final String name;
@@ -261,20 +460,20 @@ public class SP2BenchQueries {
         public abstract long execute(int iters);
     }
 
-    private class CypherQuery extends Query {
+    private class CypherSelectQuery extends Query {
         private final String queryString;
         private final ExecutionEngine engine;
 
-        public CypherQuery(final String name,
-                           final String queryString,
-                           final ExecutionEngine engine) {
+        public CypherSelectQuery(final String name,
+                                 final String queryString,
+                                 final ExecutionEngine engine) {
             super(name);
             this.engine = engine;
             this.queryString = queryString;
         }
 
         public long execute(final int iters) {
-            // Note: if there are multiple iterations, only the last count is used.  All counts shoud be identical.
+            // Note: if there are multiple iterations, only the last count is used.  All counts should be identical.
             // If for some reason there are no iterations, a count of 0 is used
             long count = 0;
 
@@ -284,6 +483,114 @@ public class SP2BenchQueries {
 
                 for (Map<String, Object> row : result) {
                     count++;
+                }
+            }
+
+            return count;
+        }
+    }
+
+    private class CypherSelectUnionQuery extends Query {
+        private final String queryString1;
+        private final String queryString2;
+        private final ExecutionEngine engine;
+
+        public CypherSelectUnionQuery(final String name,
+                                      final String queryString1,
+                                      final String queryString2,
+                                      final ExecutionEngine engine) {
+            super(name);
+            this.engine = engine;
+            this.queryString1 = queryString1;
+            this.queryString2 = queryString2;
+        }
+
+        public long execute(final int iters) {
+            // Note: if there are multiple iterations, only the last count is used.  All counts should be identical.
+            // If for some reason there are no iterations, a count of 0 is used
+            long count = 0;
+
+            for (int i = 0; i < iters; i++) {
+                Collection<Object> c = new HashSet<Object>();
+
+                ExecutionResult result = engine.execute(queryString1);
+                String unionKey = getUnionKey(result);
+                for (Map<String, Object> row : result) {
+                    c.add(row.get(unionKey));
+                }
+
+                result = engine.execute(queryString2);
+                unionKey = getUnionKey(result);
+                for (Map<String, Object> row : result) {
+                    c.add(row.get(unionKey));
+                }
+
+                count = c.size();
+            }
+
+            return count;
+        }
+    }
+
+    private class CypherAskQuery extends Query {
+        private final String queryString;
+        private final ExecutionEngine engine;
+
+        public CypherAskQuery(final String name,
+                              final String queryString,
+                              final ExecutionEngine engine) {
+            super(name);
+            this.engine = engine;
+            this.queryString = queryString;
+        }
+
+        public long execute(final int iters) {
+            // Note: if there are multiple iterations, only the last count is used.  All counts should be identical.
+            // If for some reason there are no iterations, a count of 0 is used
+            long count = 0;
+
+            for (int i = 0; i < iters; i++) {
+                ExecutionResult result = engine.execute(queryString);
+
+                count = result.iterator().hasNext() ? 1 : 0;
+            }
+
+            return count;
+        }
+    }
+
+    private class CypherAskUnionQuery extends Query {
+        private final String queryString1;
+        private final String queryString2;
+        private final ExecutionEngine engine;
+
+        public CypherAskUnionQuery(final String name,
+                                   final String queryString1,
+                                   final String queryString2,
+                                   final ExecutionEngine engine) {
+            super(name);
+            this.engine = engine;
+            this.queryString1 = queryString1;
+            this.queryString2 = queryString2;
+        }
+
+        public long execute(final int iters) {
+            // Note: if there are multiple iterations, only the last count is used.  All counts should be identical.
+            // If for some reason there are no iterations, a count of 0 is used
+            long count = 0;
+
+            for (int i = 0; i < iters; i++) {
+                count = 0;
+
+                ExecutionResult result = engine.execute(queryString1);
+                if (result.iterator().hasNext()) {
+                    count = 1;
+                    continue;
+                }
+
+                result = engine.execute(queryString2);
+                if (result.iterator().hasNext()) {
+                    count = 1;
                 }
             }
 

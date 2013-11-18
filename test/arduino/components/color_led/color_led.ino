@@ -2,9 +2,10 @@
   Test program for a color LED.
   
   For use with the BL-L515 Round Type, FULL COLOR LED lamp (common anode).
-  Connect G, B, R pins of the LED to (PWM) digital out pins 9, 10, and 11,
+  Connect R, G, B pins of the LED to (PWM) digital out pins 9, 10, and 11,
   respectively, and connect the anode (long pin) to ground through a
   100Ω resistor.
+  The green and blue pins of the LED may be reversed w.r.t. the datasheet.
   Note: this LED is more commonly wired with separate resistors for each of
   the color pins (rather than a single resistor for the anode).
   The one-resistor configuration simpler, although technically it exposes
@@ -14,9 +15,9 @@
 
 #include <stdlib.h>
 
-const int redPin = 11;
-const int greenPin = 9;
-const int bluePin = 10;
+const int redPin = 9;
+const int greenPin = 10;
+const int bluePin = 11;
 
 const unsigned long WHITE = 0xffffff;
 const unsigned long RED = 0xff0000;

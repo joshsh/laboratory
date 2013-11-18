@@ -51,13 +51,15 @@ public class SP2BenchLoader {
     /*
     JAVA_OPTIONS="-Xms4G -Xmx4G"
 
-    time ./load.sh --source /tmp/sp2b-5e4.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
+    time ./load-sp2bench.sh --source /Users/josh/data/shortterm/franz/sp2bench/sp2b-5e4.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
 
-    # 9s on flux
-    time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-50000.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
+    # 18s on flux
+    # 24s on marvin5
+    time ./load-sp2bench.sh --source /home/josh/data/datasets/sp2bench/sp2bench-50000.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
 
-
-    time ./load.sh --source /home/josh/data/datasets/sp2bench/sp2bench-1000000.nt --dest /tmp/sp2bench-neo/1m 2>&1 | tee /tmp/sp2bench-load-1m.txt
+    # 364s on flux
+    # 766s on marvin5
+    time ./load-sp2bench.sh --source /home/josh/data/datasets/sp2bench/sp2bench-1000000.nt --dest /tmp/sp2bench-neo/1m 2>&1 | tee /tmp/sp2bench-load-1m.txt
      */
     public static void main(final String[] args) {
         try {
@@ -104,7 +106,6 @@ public class SP2BenchLoader {
         final Neo4jGraph g = GraphFactory.createNeo4jGraph(dest);
         final IdGraph ig = new IdGraph(g, true, false);
 
-        //InputStream in = new FileInputStream(new File("/Users/josh/data/shortterm/franz/sp2bench/sp2b-5e4.nt"));
         InputStream in = new FileInputStream(new File(source));
         try {
             RDFHandler h = new RDFHandler() {

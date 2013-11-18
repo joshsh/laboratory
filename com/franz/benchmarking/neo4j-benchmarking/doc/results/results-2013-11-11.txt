@@ -1,0 +1,20 @@
+# with 1M-triple data set
+
+q1.ag.count    <- 1
+q2.ag.count    <- 32770
+q3a.ag.count   <- 52676
+q3b.ag.count   <- 379
+q3c.ag.count   <- 0
+q4.ag.count    <- 2586733
+q5a.ag.count   <- 35241
+q5b.ag.count   <- 35241
+q6.ag.count    <- 62795
+q7.ag.count    <- 292
+q8.ag.count    <- 400
+q9.ag.count    <- 4
+q10.ag.count   <- 572
+q11.ag.count   <- 10
+
+q12a.ag.ask  <- true
+q12b.ag.ask  <- true
+q12c.ag.ask  <- false
