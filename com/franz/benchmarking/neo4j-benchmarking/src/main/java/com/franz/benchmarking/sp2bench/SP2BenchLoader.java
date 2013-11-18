@@ -99,6 +99,7 @@ public class SP2BenchLoader {
         namespaces.put("http://purl.org/dc/elements/1.1/", "dc");
         namespaces.put("http://purl.org/dc/terms/", "dcterms");
         namespaces.put("http://xmlns.com/foaf/0.1/", "foaf");
+        namespaces.put("http://localhost/persons/", "person");
         namespaces.put("http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdf");
         namespaces.put("http://www.w3.org/2000/01/rdf-schema#", "rdfs");
         namespaces.put("http://swrc.ontoware.org/ontology#", "swrc");

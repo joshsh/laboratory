@@ -98,6 +98,11 @@ public class SP2BenchQueries {
         System.out.println(sb);
     }
 
+    /*
+        JAVA_OPTIONS="-Xms4G -Xmx4G"
+
+        time ./sp2bench-queries.sh 2>&1 | tee /tmp/sp2bench-query-neo.txt
+     */
     public static void main(final String[] args) throws Exception {
 
         String pathToDatabase = "/tmp/sp2bench-neo/1m";
@@ -295,20 +300,20 @@ public class SP2BenchQueries {
                     "MATCH person-[:`rdf:type`]->Person,\n" +
                     " subject-[predicate]->person\n" +
                     "WHERE Person.__id = 'foaf:Person'\n" +
-                    "RETURN DISTINCT predicate";
+                    "RETURN DISTINCT type(predicate)";
             String q9_cypher_part2 = "START person=node(*)\n" +
                     "MATCH person-[:`rdf:type`]->Person,\n" +
                     " person-[predicate]->object\n" +
                     "WHERE Person.__id = 'foaf:Person'\n" +
-                    "RETURN DISTINCT predicate";
+                    "RETURN DISTINCT type(predicate)";
             String q9_cypher_cheat_part1 = "START Person=node:node_auto_index(__id = \"foaf:Person\")\n" +
                     "MATCH person-[:`rdf:type`]->Person,\n" +
                     " subject-[predicate]->person\n" +
-                    "RETURN DISTINCT predicate";
+                    "RETURN DISTINCT type(predicate)";
             String q9_cypher_cheat_part2 = "START Person=node:node_auto_index(__id = \"foaf:Person\")\n" +
                     "MATCH person-[:`rdf:type`]->Person,\n" +
                     " person-[predicate]->object\n" +
-                    "RETURN DISTINCT predicate";
+                    "RETURN DISTINCT type(predicate)";
 
             // Return all subjects that stand in any relation to Paul Erdoes.
             // In our scenario, the query might also be formulated as "Return publications and venues in which
@@ -380,11 +385,7 @@ public class SP2BenchQueries {
             //evalQuery(new CypherSelectQuery("q6.cypher", q6_cypher, engine), 1, 10);
             //evalQuery(new CypherSelectQuery("q7.cypher", q7_cypher, engine), 1, 10);
 
-            //evalQuery(new CypherSelectQuery("q8.cypher.part1", q8_cypher_part1, engine), 1, 10);
-            //evalQuery(new CypherSelectQuery("q8.cypher.part2", q8_cypher_part2, engine), 1, 10);
             evalQuery(new CypherSelectUnionQuery("q8.cypher.union", q8_cypher_part1, q8_cypher_part2, engine), 1, 10);
-            //evalQuery(new CypherSelectQuery("q8.cypher.cheat1.part1", q8_cypher_cheat1_part1, engine), 1, 10);
-            //evalQuery(new CypherSelectQuery("q8.cypher.cheat1.part2", q8_cypher_cheat1_part2, engine), 1, 10);
             evalQuery(new CypherSelectUnionQuery("q8.cypher.cheat1.union", q8_cypher_cheat1_part1, q8_cypher_cheat1_part2, engine), 1, 10);
 
             evalQuery(new CypherSelectUnionQuery("q9.cypher.union", q9_cypher_part1, q9_cypher_part2, engine), 1, 10);
