@@ -1,14 +1,20 @@
-(require :agraph "/home/josh/opt/_agraph/agraph-4.8-linuxamd64.64-client-lisp/agraph4.fasl")
+;;(require :agraph "/home/josh/opt/_agraph/agraph-4.8-linuxamd64.64-client-lisp/agraph4.fasl")
 
 (in-package :db.agraph.user)
 (enable-!-reader)
 (enable-print-decoded t)
 (setf *default-ag-http-port* 10042)
 
-(open-triple-store "sp2bench-50k" :catalog "testing" :read-only t)
-(open-triple-store "sp2bench-1m" :catalog "testing" :read-only t)
+;; just once
+;;(create-triple-store "sp2bench" :catalog "testing")
 
-(triple-count)
+(open-triple-store "sp2bench" :catalog "testing")
+
+
+;;(open-triple-store "sp2bench-50k" :catalog "testing" :read-only t)
+;;(open-triple-store "sp2bench-1m" :catalog "testing" :read-only t)
+
+;;(triple-count)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -305,7 +311,7 @@
     (let ((query (sparql.parser::parse-sparql query-str)))
         (sparql:run-sparql query)))
 
-(defun time-query (query-str iters iterate)
+(defun time-select-query (query-str iters iterate)
     (let ((query (sparql.parser::parse-sparql query-str)))
         (let ((real1 (get-internal-real-time)))
             (loop for i from 1 to iters do
@@ -314,47 +320,93 @@
         (let ((real2 (get-internal-real-time)))
 		    (- real2 real1)))))
 
-(defun time-query-n (query-str iters sets iterate)
+(defun time-select-query-n (query-str iters sets iterate)
     (setq result ())
     (loop for i from 1 to sets do
-        (let ((tm (time-query query-str iters iterate)))
+        (let ((tm (time-select-query query-str iters iterate)))
             (setq result (cons tm result))))
     (reverse result))
+
+(defun time-ask-query (query-str iters)
+    (let ((query (sparql.parser::parse-sparql query-str)))
+        (let ((real1 (get-internal-real-time)))
+            (loop for i from 1 to iters do
+                (sparql:run-sparql query :results-format :boolean))
+        (let ((real2 (get-internal-real-time)))
+		    (- real2 real1)))))
+
+(defun time-ask-query-n (query-str iters sets)
+    (setq result ())
+    (loop for i from 1 to sets do
+        (let ((tm (time-ask-query query-str iters)))
+            (setq result (cons tm result))))
+    (reverse result))
+
+(defun refresh-store ()
+    (delete-triples)
+    (commit-triple-store)
+    (load-ntriples "/home/josh/data/datasets/sp2bench/sp2bench-1000000.nt")
+    (commit-triple-store)
+    (triple-count))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(count-select-query q1)    ;; 1
-(count-select-query q2)    ;; 965
-(count-select-query q3a)   ;; 3647
-(count-select-query q3b)   ;; 25
-(count-select-query q3c)   ;; 0
-(count-select-query q4)    ;; 104746
-(count-select-query q5a)   ;; 1085
-(count-select-query q5b)   ;; 1085
-(count-select-query q6)    ;;
-(count-select-query q7)    ;;
-(count-select-query q8)    ;;
-(count-select-query q9)    ;;
-(count-select-query q10)   ;;
-(count-select-query q11)   ;;
+(refresh-store)
 
-(evaluate-ask-query q12a)  ;;
-(evaluate-ask-query q12b)  ;;
-(evaluate-ask-query q12c)  ;;
+(count-select-query q1)
+(count-select-query q2)
+(count-select-query q3a)
+(count-select-query q3b)
+(count-select-query q3c)
+(count-select-query q4)
+(count-select-query q5a)
+(count-select-query q5b)
+(count-select-query q6)
+(count-select-query q7)
+(count-select-query q8)
+(count-select-query q9)
+(count-select-query q10)
+(count-select-query q11)
+(evaluate-ask-query q12a)
+(evaluate-ask-query q12b)
+(evaluate-ask-query q12c)
+
+(refresh-store)
+(time-select-query-n q1 1 10 t)
+(refresh-store)
+(time-select-query-n q2 1 10 t)
+(refresh-store)
+(time-select-query-n q3a 1 10 t)
+(refresh-store)
+(time-select-query-n q3b 1 10 t)
+(refresh-store)
+(time-select-query-n q3c 1 10 t)
+(refresh-store)
+(time-select-query-n q4 1 10 t)
+(refresh-store)
+(time-select-query-n q5a 1 10 t)
+(refresh-store)
+(time-select-query-n q5b 1 10 t)
+(refresh-store)
+(time-select-query-n q6 1 10 t)
+(refresh-store)
+(time-select-query-n q7 1 10 t)
+(refresh-store)
+(time-select-query-n q8 1 10 t)
+(refresh-store)
+(time-select-query-n q9 1 10 t)
+(refresh-store)
+(time-select-query-n q10 1 10 t)
+(refresh-store)
+(time-select-query-n q11 1 10 t)
+(refresh-store)
+(time-ask-query-n q12a 1 10)
+(refresh-store)
+(time-ask-query-n q12b 1 10)
+(refresh-store)
+(time-ask-query-n q12c 1 10)
 
 
-(time-query-n q1 100 10 t)
-(time-query-n q2 100 10 t)
-(time-query-n q3a 100 10 t)
-(time-query-n q3b 100 10 t)
-(time-query-n q3c 100 10 t)
-(time-query-n q4 100 10 t)
-(time-query-n q5a 100 10 t)
-(time-query-n q5b 100 10 t)
-
-
-
-(time-query-n q1 100 10 nil)
-
+;; stop here after pasting all of the above and save the buffer with C-x C-s -- this completes the AG test suite
 
