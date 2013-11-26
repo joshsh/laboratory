@@ -51,7 +51,8 @@ public class SP2BenchLoader {
     /*
     JAVA_OPTIONS="-Xms4G -Xmx4G"
 
-    time ./load-sp2bench.sh --source /Users/josh/data/shortterm/franz/sp2bench/sp2b-5e4.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
+    time ./load-sp2bench.sh --source /Users/josh/data/shortterm/franz/sp2bench/sp2bench-50000.nt --dest /tmp/sp2bench-neo/50k 2>&1 | tee /tmp/sp2bench-load-50k.txt
+    time ./load-sp2bench.sh --source /Users/josh/data/shortterm/franz/sp2bench/sp2bench-1000000.nt --dest /tmp/sp2bench-neo/1m 2>&1 | tee /tmp/sp2bench-load-50k.txt
 
     # 18s on flux
     # 24s on marvin5
