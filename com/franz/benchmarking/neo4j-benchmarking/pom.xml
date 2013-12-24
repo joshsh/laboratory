@@ -29,8 +29,8 @@
     </repositories>
 
     <properties>
-        <sesame.version>2.6.5</sesame.version>
-        <sesametools.version>1.6</sesametools.version>
+        <sesame.version>2.6.10</sesame.version>
+        <sesametools.version>1.7</sesametools.version>
         <tinkerpop.version>2.5.0-SNAPSHOT</tinkerpop.version>
         <junit.version>4.5</junit.version>
     </properties>
@@ -59,6 +59,16 @@
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
             <artifactId>sesame-repository-sail</artifactId>
+            <version>${sesame.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-sail-nativerdf</artifactId>
+            <version>${sesame.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-queryparser-sparql</artifactId>
             <version>${sesame.version}</version>
         </dependency>
         <dependency>

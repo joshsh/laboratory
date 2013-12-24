@@ -1,18 +1,33 @@
 package com.franz.benchmarking.sp2bench;
 
+import com.franz.benchmarking.SailFactory;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 import com.tinkerpop.gremlin.groovy.Gremlin;
 import com.tinkerpop.pipes.Pipe;
 import com.tinkerpop.pipes.util.iterators.SingleIterator;
+import info.aduna.io.IOUtil;
+import info.aduna.iteration.CloseableIteration;
 import org.neo4j.cypher.javacompat.ExecutionEngine;
 import org.neo4j.cypher.javacompat.ExecutionResult;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.kernel.impl.util.StringLogger;
+import org.openrdf.query.BindingSet;
+import org.openrdf.query.MalformedQueryException;
+import org.openrdf.query.QueryEvaluationException;
+import org.openrdf.query.QueryLanguage;
+import org.openrdf.query.impl.EmptyBindingSet;
+import org.openrdf.query.parser.ParsedQuery;
+import org.openrdf.query.parser.QueryParserUtil;
+import org.openrdf.sail.Sail;
+import org.openrdf.sail.SailConnection;
+import org.openrdf.sail.SailException;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -397,7 +412,7 @@ public class SP2BenchQueries {
 
         StringBuilder sb = new StringBuilder();
         sb.append(query.getName());
-        sb.append(" <- c(");
+        sb.append(".time <- c(");
         boolean first = true;
         for (long time : times) {
             if (first) first = false;
@@ -427,19 +442,33 @@ public class SP2BenchQueries {
     /*
         JAVA_OPTIONS="-Xms4G -Xmx4G"
 
-        time ./sp2bench-queries.sh /tmp/sp2bench-neo/1m q2.cypher 1 10 2>&1 | tee /tmp/sp2bench-query-neo.txt
-        time ./sp2bench-queries.sh /tmp/sp2bench-neo/1m q3a.cypher 1 10 2>&1 | tee /tmp/sp2bench-query-neo.txt
+        time ./sp2bench-queries.sh neo4j /tmp/sp2bench-neo/1m q2.cypher 1 10 2>&1 | tee /tmp/sp2bench-query-neo.txt
+        time ./sp2bench-queries.sh neo4j /tmp/sp2bench-neo/1m q3a.cypher 1 10 2>&1 | tee /tmp/sp2bench-query-neo.txt
+
+
+        time ./sp2bench-queries.sh graphsail-neo4j /tmp/sp2bench-grahpsail-neo/50k q1 1 10 2>&1 | tee /tmp/sp2bench-query-graphsail-neo4j.txt
+        time ./sp2bench-queries.sh nativestore /tmp/sp2bench-nativestore/50k q1 1 10 2>&1 | tee /tmp/sp2bench-query-nativestore.txt
      */
     public static void main(final String[] args) throws Exception {
         if (args.length > 0) {
-            String pathToDatabase = args[0];
+            int a = 0;
 
-            String queryName = args[1];
+            String type = args[a++];
+            String pathToDatabase = args[a++];
+            String queryName = args[a++];
+            int iterations = Integer.valueOf(args[a++]);
+            int runs = Integer.valueOf(args[a++]);
 
-            int iterations = Integer.valueOf(args[2]);
-            int runs = Integer.valueOf(args[3]);
-
+            String t = type.toLowerCase();
+            if (t.equals("neo4j")) {
             new SP2BenchQueries().evaluateCypher(pathToDatabase, queryName, iterations, runs);
+            } else if (t.equals("graphsail-neo4j")) {
+                new SP2BenchQueries().evaluateSparql(pathToDatabase, type, queryName, iterations, runs);
+            } else if (t.equals("nativestore")) {
+                new SP2BenchQueries().evaluateSparql(pathToDatabase, type, queryName, iterations, runs);
+            } else {
+                throw new IllegalArgumentException("unknown database type: " + type);
+            }
         } else {
             String pathToDatabase = "/tmp/sp2bench-neo/1m";
 
@@ -448,11 +477,38 @@ public class SP2BenchQueries {
         }
     }
 
+    private void evaluateSparql(final String pathToDatabase,
+                                final String dbType,
+                                final String queryName,
+                                final int iterations,
+                                final int runs) throws SailException, IOException, MalformedQueryException {
+        System.out.println("evaluating SPARQL query " + queryName + " against " + dbType + " db at " + pathToDatabase + " " + iterations + " time(s) each in " + runs + " run(s)");
+
+        Sail sail = new SailFactory().createSail(dbType, pathToDatabase);
+        sail.initialize();
+        try {
+            SailConnection sc = sail.getConnection();
+            try {
+                InputStream in = SP2BenchQueries.class.getResourceAsStream(queryName + ".rq");
+                String queryString = IOUtil.readString(in);
+                in.close();
+
+                Query query = new SPARQLQuery(queryName, queryString, sc);
+
+                evalQuery(query, iterations, runs);
+            } finally {
+                sc.close();
+            }
+        } finally {
+            sail.shutDown();
+        }
+    }
+
     private void evaluateCypher(final String pathToDatabase,
                                 final String queryName,
                                 final int iterations,
                                 final int runs) {
-        System.out.println("evaluating query " + queryName + " against db at " + pathToDatabase + " " + iterations + " time(s) each in " + runs + " run(s)");
+        System.out.println("evaluating Cypher query " + queryName + " against db at " + pathToDatabase + " " + iterations + " time(s) each in " + runs + " run(s)");
 
         GraphDatabaseFactory factory = new GraphDatabaseFactory();
         GraphDatabaseService g = factory.newEmbeddedDatabase(pathToDatabase);
@@ -472,7 +528,6 @@ public class SP2BenchQueries {
             g.shutdown();
         }
     }
-
 
     private void evaluateGremlin(final String pathToDatabase) {
         Neo4jGraph g = new Neo4jGraph(pathToDatabase);
@@ -515,6 +570,54 @@ public class SP2BenchQueries {
         }
 
         public abstract long execute(int iters);
+    }
+
+    private class SPARQLQuery extends Query {
+        private final SailConnection sailConnection;
+        private final ParsedQuery query;
+
+        private SPARQLQuery(final String name,
+                            final String queryString,
+                            final SailConnection sailConnection) throws MalformedQueryException {
+            super(name);
+            this.sailConnection = sailConnection;
+
+            // TODO
+            String baseURI = "http://example.org/baseURI";
+
+            query = QueryParserUtil.parseQuery(
+                    QueryLanguage.SPARQL,
+                    queryString,
+                    baseURI);
+        }
+
+        public long execute(int iters) {
+            try {
+                long count = 0;
+
+                for (int i = 0; i < iters; i++) {
+                    CloseableIteration<? extends BindingSet, QueryEvaluationException>
+                            iter = sailConnection.evaluate(query.getTupleExpr(), query.getDataset(), new EmptyBindingSet(), false);
+                    try {
+                        count = 0;
+                        while (iter.hasNext()) {
+                            count++;
+                            iter.next();
+                        }
+                    } finally {
+                        iter.close();
+                    }
+                }
+
+                return count;
+            } catch (QueryEvaluationException e) {
+                e.printStackTrace();
+                return -1;
+            } catch (SailException e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
     }
 
     private class CypherSelectQuery extends Query {
