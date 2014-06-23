@@ -17,23 +17,24 @@ import java.util.Set;
 public class JmxClient {
     public static void main(final String[] args) {
         try {
-            doit();
+            logJmxStats(1000);
         } catch (Exception e) {
             e.printStackTrace(System.err);
             System.exit(1);
         }
     }
 
-    private static void doit() throws Exception {
+    private static void logJmxStats(final long interval) throws Exception {
         Map<String, String[]> env = new HashMap<String, String[]>();
         env.put(JMXConnector.CREDENTIALS, new String[]{"user", "pass"});
+
+        JMXServiceURL address = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://65.50.203.145:1331/jmxrmi");
         //JMXServiceURL address = new JMXServiceURL("service:rmi:///jndi/rmi://localhost:1331/jmxrmi");
-//        JMXServiceURL address = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:1331/myname");
-        JMXServiceURL address = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://192.132.95.160:1331/jmxrmi");
-//        JMXServiceURL address = new JMXServiceURL("service:jmx:rmi://localhost:1331");
+        //JMXServiceURL address = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:1331/myname");
+        //JMXServiceURL address = new JMXServiceURL("service:jmx:rmi://localhost:1331");
+
         JMXConnector connector = JMXConnectorFactory.connect(address, env);
         MBeanServerConnection mbs = connector.getMBeanServerConnection();
-
 
         while (true) {
             //MBeanServer connection = ManagementFactory.getPlatformMBeanServer();
@@ -60,7 +61,7 @@ public class JmxClient {
 
             System.out.println(sb.toString());
 
-            Thread.sleep(1000);
+            Thread.sleep(interval);
         }
 
         /*

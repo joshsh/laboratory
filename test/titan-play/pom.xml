@@ -17,23 +17,14 @@
             <name>fortytwo.net Maven repository</name>
             <url>http://fortytwo.net/maven2</url>
         </repository>
-        <repository>
-            <id>aduna-repo</id>
-            <name>Aduna repository</name>
-            <url>http://repo.aduna-software.org/maven2/releases</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
     </repositories>
 
     <properties>
-        <sesame.version>2.6.10</sesame.version>
-        <sesametools.version>1.7</sesametools.version>
-        <ripple.version>1.0</ripple.version>
-        <tinkerpop.version>2.4.0-SNAPSHOT</tinkerpop.version>
-        <titan.version>0.3.1</titan.version>
+        <sesame.version>2.7.10</sesame.version>
+        <sesametools.version>1.8</sesametools.version>
+        <ripple.version>1.1</ripple.version>
+        <tinkerpop.version>2.5.0</tinkerpop.version>
+        <titan.version>0.4.3</titan.version>
         <junit.version>4.11</junit.version>
     </properties>
 
@@ -64,6 +55,11 @@
             <version>${tinkerpop.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.tinkerpop.blueprints</groupId>
+            <artifactId>blueprints-neo4j2-graph</artifactId>
+            <version>${tinkerpop.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.openrdf.sesame</groupId>
             <artifactId>sesame-queryparser-sparql</artifactId>
             <version>${sesame.version}</version>
@@ -72,6 +68,12 @@
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
             <artifactId>sesame-rio-trig</artifactId>
+            <version>${sesame.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-repository-sail</artifactId>
             <version>${sesame.version}</version>
             <scope>test</scope>
         </dependency>

@@ -17,19 +17,14 @@ import org.openrdf.sail.SailException;
 public class TitanGraphSailPlay {
     public static void main(final String[] args) throws Exception {
         Configuration conf = new BaseConfiguration();
+        String patterns = null;
 
-        conf.setProperty("storage.backend", "cassandra");
-        conf.setProperty("storage.hostname", "127.0.0.1");
+        GraphFactory f = new GraphFactory();
+        TitanGraph g = f.createTitanOnCassandra("127.0.0.1", null);
+        patterns = "p,c,pc,s,sp,op,poc";
 
-        //conf.setProperty("storage.directory", "/tmp/titan2");
-        //conf.setProperty("storage.backend", "berkeleyje");
-
-        //conf.setProperty("storage.backend","hbase");
-
-        TitanGraph g = TitanFactory.open(conf);
         try {
-            GraphSail sail = new GraphSail(g);
-//            GraphSail sail = new GraphSail(g, "");
+            GraphSail sail = null == patterns ? new GraphSail(g) : new GraphSail(g, patterns);
             sail.initialize();
             try {
                 SailConnection sc = sail.getConnection();
