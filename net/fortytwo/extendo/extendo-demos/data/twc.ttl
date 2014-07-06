@@ -1,0 +1,161 @@
+# rapper -i turtle -o rdfxml twc.ttl > twc.rdf
+
+prefix : <http://fortytwo.net/2014/04/twc#>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+:TetherlessWorldConstellation a foaf:Organization ;
+    rdfs:label "Tetherless World Constellation" ;
+    foaf:member
+	:AmarViswanathan,
+	:BassemMakni,
+	:BoliangZhang,
+	:DianYu,
+	:EricAmeres,
+	:EvanPatton,
+	:HanWang,
+	:HaoLi,
+	:HongzhaoHuang,
+	:JamesMichaelis,
+	:JimMcCusker,
+	:JinGuangZheng,
+	:JohnErickson,
+	:JoshuaShinavier,
+	:KatieChastain,
+	:KristineGloria,
+	:MattFerrito,
+	:NidhiRastogi,
+	:QiLi,
+	:SimonEllis,
+	:TimLebo,
+	:TongtaoZhang,
+	:YueLiu .
+
+:JohnErickson a foaf:Person ;
+    foaf:name "John Erickson" ;
+    foaf:interest
+        <http://dbpedia.org/resource/Open_data> ;
+    foaf:currentProject [
+        rdfs:label "TWed Lightning Talks" ] .
+        
+:EvanPatton a foaf:Person ;
+    foaf:name "Evan Patton" ;
+    foaf:currentProject [
+        rdfs:label "Reasoning Performance on Mobile" ] .
+        
+:SimonEllis a foaf:Person ;
+    foaf:name "Simon Ellis" ;
+    foaf:currentProject [
+        rdfs:label "Beyond Jeopardy!: Playing Games with Cognitive Computing" ] .
+     
+:JamesMichaelis a foaf:Person ;
+    foaf:name "James Michaelis" ;
+    foaf:currentProject [
+        rdfs:label "Methods for Evaluation of Provenance Interfaces" ] .
+
+:JoshuaShinavier a foaf:Person ;
+    foaf:name "Joshua Shinavier" ;
+    foaf:interest
+        <http://dbpedia.org/resource/Arduino>,
+        <http://dbpedia.org/resource/Open_data> ;
+    foaf:currentProject [
+        rdfs:label "Semantic Gadgets" ] .
+        
+:TimLebo a foaf:Person ;
+    foaf:name "Tim Lebo" ;
+    foaf:currentProject [
+        rdfs:label "Sustainable Analytics" ] .
+        
+:KristineGloria a foaf:Person ;
+    foaf:name "Kristine Gloria" ;
+    foaf:currentProject [
+        rdfs:label "Exploring privacy trade-offs online" ] .
+
+:AmarViswanathan a foaf:Person ;
+    foaf:name "Amar Viswanathan" ;
+    foaf:currentProject [
+        rdfs:label "Semantic Search and QA on LOD" ] .
+
+:JinGuangZheng a foaf:Person ;
+    foaf:name "Jin Guang Zheng" ;
+    foaf:currentProject [
+        rdfs:label "Semantic similarity applicaitons" ] .
+
+:JimMcCusker a foaf:Person ;
+    foaf:name "Jim McCusker" ;
+    foaf:currentProject [
+        rdfs:label "A Web Framework for Dynamic Consent" ] .
+
+:YueLiu a foaf:Person ;
+    foaf:name "Yue Liu" ;
+    foaf:currentProject [
+        rdfs:label "Experiment on VIVO for industry use" ] .
+
+:KatieChastain a foaf:Person ;
+    foaf:name "Katie Chastain" ;
+    foaf:currentProject [
+        rdfs:label "Jefferson Project" ] .
+
+:TongtaoZhang a foaf:Person ;
+    foaf:name "Tongtao Zhang" ;
+    foaf:currentProject [
+        rdfs:label "Wikification via Semi-Supervised Learning" ] .
+
+:HaoLi a foaf:Person ;
+    foaf:name "Hao Li" ;
+    foaf:currentProject [
+        rdfs:label "Two-Stage Hashing for New Event Detection" ] .
+
+:NidhiRastogi a foaf:Person ;
+    foaf:name "Nidhi Rastogi" ;
+    foaf:currentProject [
+        rdfs:label "Cybersecurity of critical infrastructure" ] .
+
+:HanWang a foaf:Person ;
+    foaf:name "Han Wang" ;
+    foaf:currentProject [
+        rdfs:label "Entity Linking with DBpedia" ] .
+
+:MattFerrito a foaf:Person ;
+    foaf:name "Matt Ferrito" ;
+    foaf:currentProject [
+        rdfs:label "TBD" ] .
+
+:AliNendick a foaf:Person ;
+    foaf:name "Ali Nendick" ;
+    foaf:currentProject [
+        rdfs:label "Overcoming Initial Bias in Category-Based Schemas" ] .
+
+:EricAmeres a foaf:Person ;
+    foaf:name "Eric Ameres" ;
+    foaf:interest
+        <http://dbpedia.org/resource/Arduino> ;
+    foaf:currentProject [
+        rdfs:label "HCC: Simulating mirror neurons" ] .
+
+:BassemMakni a foaf:Person ;
+    foaf:name "Bassem Makni" ;
+    foaf:currentProject [
+        rdfs:label "TBD" ] .
+
+:BoliangZhang a foaf:Person ;
+    foaf:name "Boliang Zhang" ;
+    foaf:currentProject [
+        rdfs:label "Morph Encoding" ] .
+
+:HongzhaoHuang a foaf:Person ;
+    foaf:name "Hongzhao Huang" ;
+    foaf:currentProject [
+        rdfs:label "Tweet Wikification" ] .
+
+:DianYu a foaf:Person ;
+    foaf:name "Dian Yu" ;
+    foaf:currentProject [
+        rdfs:label "slot filling based on truth finding" ] .
+
+:QiLi a foaf:Person ;
+    foaf:name "QiLi" ;
+    foaf:currentProject [
+        rdfs:label "Joint Information Extraction Using a Single Model" ] .
+
