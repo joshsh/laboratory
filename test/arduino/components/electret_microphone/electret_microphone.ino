@@ -38,6 +38,8 @@ void loop()
   }
   Serial.print(minv);
   Serial.print("\t");
-  Serial.println(maxv);
+  Serial.print(maxv);
+  Serial.print("\t");
+  Serial.println(maxv - minv); // volume
   //delay(300);
 }
