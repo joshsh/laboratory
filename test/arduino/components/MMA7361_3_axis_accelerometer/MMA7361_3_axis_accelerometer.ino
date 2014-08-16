@@ -30,18 +30,30 @@ void setup() {
 }
 
 void loop() {
+    
     double dx, dy, dz;
      
     dx = 2 * (analogRead(pinX) - xmid) / xrange;
     dy = 2 * (analogRead(pinY) - ymid) / yrange;
     dz = 2 * (analogRead(pinZ) - zmid) / zrange;
     
-    Serial.print("(ax,ay,az):");
-    Serial.print("\t"); Serial.print(dx);
-    Serial.print("\t"); Serial.print(dy);
-    Serial.print("\t"); Serial.print(dz);
+    Serial.print(micros());
+    Serial.print(","); Serial.print(dx);
+    Serial.print(","); Serial.print(dy);
+    Serial.print(","); Serial.print(dz);
+    Serial.println("");
+    
+    /*
+    int xraw = analogRead(pinX);
+    int yraw = analogRead(pinY);
+    int zraw = analogRead(pinZ);
+    
+    Serial.print(micros());
+    Serial.print(","); Serial.print(xraw);
+    Serial.print(","); Serial.print(yraw);
+    Serial.print(","); Serial.print(zraw);
     Serial.println("");
     
     delay(500);
-    //delay(500); 
+    */
 }
