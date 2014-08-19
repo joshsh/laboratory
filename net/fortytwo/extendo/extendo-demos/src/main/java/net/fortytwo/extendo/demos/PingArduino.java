@@ -26,10 +26,12 @@ public class PingArduino {
     private final int rate;
 
     private static final int
-            OUT_PINGS = 100,
-            IN_PINGS = 100,
-            PINGS_PER_CHUNK = 10;
+            OUT_PINGS = 1000,
+            PINGS_PER_CHUNK = 100;
 
+    private static final byte
+            PING = 'p',
+            REPLY = 'r';
 
     public PingArduino(final String device,
                        final int rate) {
@@ -46,43 +48,68 @@ public class PingArduino {
         try {
             OutputStream out = serialPort.getOutputStream();
             try {
+                exhaustInput(in);
                 sendPings(in, out);
-                receivePings(in, out);
             } finally {
+                System.out.println("closing output");
                 out.close();
             }
         } finally {
+            System.out.println("closing input");
             in.close();
+        }
+    }
+
+    private void exhaustInput(final InputStream in) throws IOException {
+        while (in.available() > 0) {
+            if (-1 == in.read()) break;
         }
     }
 
     private void sendPings(final InputStream in,
                            final OutputStream out) throws IOException {
+        // exhaust initial abnormal replies to pings
+        int count = 0;
+        long startMillis = System.currentTimeMillis();
+        while (true) {
+            out.write(PING);
+            if (in.available() > 0 && REPLY == in.read()) {
+                break;
+            }
+            count++;
+        }
+        long endMillis = System.currentTimeMillis();
+        if (count > 0) {
+            System.out.println("skipped " + count + " abnormal ping replies in " + (endMillis - startMillis) + "ms");
+        }
 
+        startMillis = System.currentTimeMillis();
         int chunks = OUT_PINGS / PINGS_PER_CHUNK;
         double[] latency = new double[chunks];
         for (int i = 0; i < chunks; i++) {
-            long startTime = System.currentTimeMillis();
+            long startNanos = System.nanoTime();
             for (int j = 0; j < PINGS_PER_CHUNK; j++) {
-                out.write('i');
+                out.write(PING);
+                while (0 == in.available());
                 int b = in.read();
-                if ('o' != b) {
+                if (REPLY != b) {
                     throw new IllegalStateException();
                 }
             }
-            long endTime = System.currentTimeMillis();
-            double avTime = (endTime - startTime) / ((double) PINGS_PER_CHUNK);
+            long endNanos = System.nanoTime();
+            double avTime = (endNanos - startNanos) / (((double) PINGS_PER_CHUNK) * 1000000);
             latency[i] = avTime;
         }
+        endMillis = System.currentTimeMillis();
 
         Statistics stat = new Statistics(latency);
-        System.out.println("round-trip min/avg/max/stddev = "
-                + stat.getMin() + "/" + stat.getMean() + "/" + stat.getMax() + "/" + stat.getStdDev() + " ms");
-    }
-
-    private void receivePings(final InputStream in,
-                              final OutputStream out) {
-
+        System.out.format("round-trip min/avg/max/stddev = %.4f/%.4f/%.4f/%.4f ms ("
+                + (chunks * PINGS_PER_CHUNK) + " pings)\n",
+                stat.getMin(),
+                stat.getMean(),
+                stat.getMax(),
+                stat.getStdDev());
+        System.out.println("finished normal pings in " + (endMillis - startMillis) + "ms");
     }
 
     /*
