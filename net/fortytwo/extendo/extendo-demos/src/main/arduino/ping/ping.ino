@@ -1,22 +1,32 @@
+#define LEONARDO_SERIAL
+
+#ifdef LEONARDO_SERIAL
+#define SRL Serial1
+#else
+#define SRL Serial
+#endif
+
 #define EXCEPTION 'x'
-#define PING      'p'
-#define REPLY     'r'
 
 void setup() {
-    Serial.begin(115200);
-    //SLIPSerial.begin(38400);  // works equally well with 8MHz and 16MHz
+    //SRL.begin(57600);
+    SRL.begin(115200);
+    //Serial.begin(38400);  // works equally well with 8MHz and 16MHz
 #if ARDUINO >= 100
-    while (!Serial); // for Arduino Leonardo
+    while (!SRL); // for Arduino Leonardo
 #endif  
+    SRL.flush();
 }
 
 void loop() {
-    if (Serial.available()) {
-        int b = Serial.read();
-        if (PING == b) {
-            Serial.print(REPLY);
+    if (SRL.available()) {
+        int b = SRL.read();
+        if ('a' <= b && 'z' >= b) {
+            // reply by converting a lowercase character to uppercase
+            SRL.write(b - 32);
+            SRL.flush();
         } else {
-            Serial.print(EXCEPTION);
+            SRL.write(EXCEPTION);
         }
     }
 }
