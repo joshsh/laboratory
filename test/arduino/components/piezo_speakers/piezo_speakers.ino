@@ -30,6 +30,7 @@ void loop()
   int i;
   for (int i = 0; i < tuneLength; i++) {
     tone(speakerPin1, tune[i]);
+    Serial.print("playing "); Serial.println(tune[i]);
     delay(time);
   }
 }

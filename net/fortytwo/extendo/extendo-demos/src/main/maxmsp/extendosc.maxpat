@@ -7,7 +7,7 @@
 			"revision" : 4
 		}
 ,
-		"rect" : [ 295.0, 169.0, 778.0, 689.0 ],
+		"rect" : [ 792.0, 155.0, 778.0, 689.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -60,7 +60,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 365.0, 351.0, 32.5, 21.0 ],
+					"patching_rect" : [ 365.0, 351.0, 354.5, 21.0 ],
 					"text" : "..."
 				}
 
@@ -181,7 +181,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 224.0, 164.0, 127.0, 18.0 ],
-					"text" : "OSC-route /ping-reply"
+					"text" : "OSC-route /ping/reply"
 				}
 
 			}
@@ -206,8 +206,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 362.0, 494.0, 32.5, 21.0 ],
-					"text" : "..."
+					"patching_rect" : [ 362.0, 494.0, 357.5, 21.0 ],
+					"text" : "\"OSC message hasError (error type: INVALID_OSC)\""
 				}
 
 			}
@@ -315,7 +315,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 24.0, 340.0, 147.0, 20.0 ],
-					"text" : "udpsend 127.0.0.1 42003"
+					"text" : "udpsend 127.0.0.1 42002"
 				}
 
 			}
@@ -358,7 +358,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 105.0, 17.0, 142.0, 20.0 ],
-					"text" : "udpreceive 42002 cnmat"
+					"text" : "udpreceive 42003 cnmat"
 				}
 
 			}

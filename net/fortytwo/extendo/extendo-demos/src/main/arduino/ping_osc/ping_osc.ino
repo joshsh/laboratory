@@ -25,7 +25,7 @@ void handleOSCBundle(class OSCBundle &bundle) {
 }
 
 void handlePingMessage(class OSCMessage &mIn) {
-    OSCMessage mOut("/exo/test/ping-reply");
+    OSCMessage mOut("/exo/test/ping/reply");
     mOut.add((uint64_t) millis());
     osc.sendOSC(mOut); 
 }
@@ -57,7 +57,7 @@ void loop() {
         //sendReply(bundleIn->size());
         handleOSCBundle(*bundleIn);
         bundleIn->empty();
-        delete bundleIn;    // TODO: possible to bundleIn->empty() instead of deleting?
+        delete bundleIn;
         bundleIn = new OSCBundle();
     }
 }
