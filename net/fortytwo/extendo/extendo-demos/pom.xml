@@ -22,10 +22,10 @@
 
     <properties>
         <extendo.version>1.1-SNAPSHOT</extendo.version>
-        <ripple.version>1.1</ripple.version>
+        <!--<ripple.version>1.1</ripple.version>
         <sesame.version>2.7.10</sesame.version>
         <sesametools.version>1.8</sesametools.version>
-        <tinkerpop.version>2.5.0</tinkerpop.version>
+        <tinkerpop.version>2.5.0</tinkerpop.version>-->
         <junit.version>4.11</junit.version>
     </properties>
 

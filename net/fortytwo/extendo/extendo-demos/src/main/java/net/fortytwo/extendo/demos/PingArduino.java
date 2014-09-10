@@ -17,6 +17,7 @@ import org.apache.commons.cli.PosixParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
 
 /**
  * @author Joshua Shinavier (http://fortytwo.net)
@@ -27,11 +28,9 @@ public class PingArduino {
 
     private static final int
             OUT_PINGS = 1000,
-            PINGS_PER_CHUNK = 100;
+            PINGS_PER_CHUNK = 10;
 
-    private static final byte
-            PING = 'p',
-            REPLY = 'r';
+    private final Random random = new Random();
 
     public PingArduino(final String device,
                        final int rate) {
@@ -39,7 +38,7 @@ public class PingArduino {
         this.rate = rate;
     }
 
-    private void run() throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException {
+    private void run() throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException, InterruptedException {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("arduino-port", 0);
         serialPort.setSerialPortParams(rate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
@@ -51,12 +50,12 @@ public class PingArduino {
                 exhaustInput(in);
                 sendPings(in, out);
             } finally {
-                System.out.println("closing output");
-                out.close();
+                //System.out.println("closing output");
+                //out.close();
             }
         } finally {
-            System.out.println("closing input");
-            in.close();
+            //System.out.println("closing input");
+            //in.close();
         }
     }
 
@@ -67,21 +66,26 @@ public class PingArduino {
     }
 
     private void sendPings(final InputStream in,
-                           final OutputStream out) throws IOException {
-        // exhaust initial abnormal replies to pings
-        int count = 0;
+                           final OutputStream out) throws IOException, InterruptedException {
+
+        // wait for two-way communication (initially, we can only write, and do not receive replies)
+        int inCount = 0, outCount = 0;
         long startMillis = System.currentTimeMillis();
         while (true) {
-            out.write(PING);
-            if (in.available() > 0 && REPLY == in.read()) {
+            out.write('a');
+            outCount++;
+            if (in.available() > 0) {
                 break;
             }
-            count++;
+        }
+        while (in.available() > 0) {
+            inCount++;
+            in.read();
         }
         long endMillis = System.currentTimeMillis();
-        if (count > 0) {
-            System.out.println("skipped " + count + " abnormal ping replies in " + (endMillis - startMillis) + "ms");
-        }
+        System.out.println("wrote " + outCount
+                + " and read " + inCount + " byte(s) to initiate communication in "
+                + (endMillis - startMillis) + "ms");
 
         startMillis = System.currentTimeMillis();
         int chunks = OUT_PINGS / PINGS_PER_CHUNK;
@@ -89,12 +93,20 @@ public class PingArduino {
         for (int i = 0; i < chunks; i++) {
             long startNanos = System.nanoTime();
             for (int j = 0; j < PINGS_PER_CHUNK; j++) {
-                out.write(PING);
-                while (0 == in.available());
-                int b = in.read();
-                if (REPLY != b) {
-                    throw new IllegalStateException();
-                }
+                while (in.available() > 0) in.read();
+                byte outByte = (byte) randomLetter();
+                //System.out.println("out:\t\t'" + (char) outByte + "'\t" + outByte);
+                out.write(outByte);
+                int inByte = -1;
+                do {
+                    inByte = in.read();
+                    //System.out.println("\tin:\t'" + (char) inByte + "'\t" + inByte);
+                } while (in.available() > 0 || outByte - 32 != inByte);
+                /*{
+                    throw new IllegalStateException("expected '" + (char) (outByte - 32)
+                            + "' for '" + (char) outByte
+                            + "', received '" + (char) inByte + "'");
+                }*/
             }
             long endNanos = System.nanoTime();
             double avTime = (endNanos - startNanos) / (((double) PINGS_PER_CHUNK) * 1000000);
@@ -109,7 +121,11 @@ public class PingArduino {
                 stat.getMean(),
                 stat.getMax(),
                 stat.getStdDev());
-        System.out.println("finished normal pings in " + (endMillis - startMillis) + "ms");
+        System.out.println("completed pings in " + (endMillis - startMillis) + "ms");
+    }
+
+    private int randomLetter() {
+        return 'a' + random.nextInt(26);
     }
 
     /*
