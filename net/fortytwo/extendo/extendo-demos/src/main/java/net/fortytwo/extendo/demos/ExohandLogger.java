@@ -17,9 +17,7 @@ import org.apache.commons.cli.PosixParser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 import java.util.logging.Logger;
 
 /**
@@ -32,11 +30,14 @@ public class ExohandLogger {
     private static final int MAX_DATAGRAM_SIZE = 1500;
 
     // character 192: the SLIP protocol's "frame end" byte
-    private static final int SLIP_FRAME_END = 0xc0;
+    private static final int
+            SLIP_END = 0xc0,
+            SLIP_ESC = 0xdb,
+            SLIP_ESC_END = 0xdc,
+            SLIP_ESC_ESC = 0xdd;
 
     private final String device;
     private final int rate;
-    private final Map<String, PrintStream> logFiles = new HashMap<String, PrintStream>();
 
     private final OSCByteArrayToJavaConverter converter;
 
@@ -57,17 +58,40 @@ public class ExohandLogger {
         InputStream in = serialPort.getInputStream();
         try {
             int b;
+
+            while (SLIP_END != (b = in.read())) {
+                if (-1 == b) return;
+            }
+
             int i = 0;
             while (-1 != (b = in.read())) {
-                if (SLIP_FRAME_END == b) {
+                if (SLIP_END == b) {
+                    // the check for i>0 allows for SLIP variants in which packets both begin and end with END
                     if (i > 0) {
                         OSCMessage m = (OSCMessage) converter.convert(buffer, i);
                         System.out.print(m.getAddress());
                         for (Object arg : m.getArguments()) {
-                            System.out.print("\t" + arg);
+                            System.out.print("\t");
+                            if (arg instanceof Date) {
+                                System.out.print(((Date) arg).getTime());
+                            } else {
+                                System.out.print(arg);
+                            }
                         }
+                        System.out.print("\n");
                     }
                     i = 0;
+                } else if (SLIP_ESC == b) {
+                    b = in.read();
+                    if (-1 == b) break;
+
+                    if (SLIP_ESC_END == b) {
+                        buffer[i++] = (byte) SLIP_END;
+                    } else if (SLIP_ESC_ESC == b) {
+                        buffer[i++] = (byte) SLIP_ESC;
+                    } else {
+                        throw new IOException("illegal escape sequence: found byte " + b + " after SLIP_ESC");
+                    }
                 } else {
                     buffer[i++] = (byte) b;
                 }

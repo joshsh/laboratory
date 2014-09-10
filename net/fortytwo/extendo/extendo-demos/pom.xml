@@ -90,6 +90,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- TODO: restore me
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>1.3.1</version>
@@ -109,7 +110,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
