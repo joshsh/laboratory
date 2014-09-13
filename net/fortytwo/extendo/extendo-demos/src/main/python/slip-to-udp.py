@@ -62,31 +62,56 @@ def receive():
             sport.write(serial_out_buffer[i])
         sport.write(chr(192))
 
-thread = Thread(target = receive)
-thread.start()
-
-# Loop while threads are running.
-try :
-    # skip to the end of the current datagram
-    while (1):
+def skip_to_end():
+    while (True):
         b = sport.read()
         if (0 == len(b)):
             continue
-        elif (192 == ord(b)):
+        elif (slip_end == ord(b)):
             break
+
+thread = Thread(target = receive)
+thread.start()
+
+slip_end = 0xc0
+slip_esc = 0xdb
+slip_esc_end = 0xdc
+slip_esc_esc = 0xdd
+
+
+# Loop while threads are running.
+try :
+    skip_to_end()
 
     i = 0
     while (True):
         b = sport.read()
         if (0 == len(b)):
             continue
-        if (192 == ord(b)):
+        ob = ord(b)
+        if (slip_end == ob):
+            # the check for i>0 allows for SLIP variants in which packets both begin and end with END
             if (i > 0):
                 st = "".join(map(chr, serial_in_buffer[0:i]))
                 if (printing):
                     print "serial(" + serial_port + ")->UDP(" + str(udp_out_port) + "): " + str(len(st)) + " bytes"
                 send(st, udp_ip, udp_out_port)
                 i = 0
+        elif (slip_esc == ob):
+            b = sport.read()
+            if (0 == len(b)):
+                break
+            ob = ord(b)
+            if (slip_esc_end == ob):
+                serial_in_buffer[i] = slip_end
+                i = i + 1
+            elif (slip_esc_esc == ob):
+                serial_in_buffer[i] = slip_esc
+                i = i + 1
+            else:
+                #raise Exception("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
+                print "illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC"
+                skip_to_end()
         else:
             serial_in_buffer[i] = b
             i = i + 1
