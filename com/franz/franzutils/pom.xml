@@ -10,14 +10,6 @@
     <packaging>jar</packaging>
     <name>FranzUtils</name>
 
-    <repositories>
-        <repository>
-            <id>aduna-repo</id>
-            <name>Aduna repository</name>
-            <url>http://repo.aduna-software.org/maven2/releases</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
