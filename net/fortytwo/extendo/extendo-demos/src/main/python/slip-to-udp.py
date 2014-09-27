@@ -1,5 +1,5 @@
 # Python script for SLIP (Serial Line Internet Protocol) <--> UDP communication
-# By Joshua Shinavier, 2014-08-29
+# By Joshua Shinavier, 2014
 #     www.fortytwo.net
 # Based on serial_to_udp.py by Alex Olwal, 2012 03 24
 #     www.olwal.com
@@ -21,7 +21,7 @@ def send(msg, ip, port):
 if ( len(sys.argv) == 1 ):
         print "SLIP<-->UDP utility | Joshua Shinavier, 2014, http://fortytwo.net"
         print "Syntax: " + sys.argv[0] + " serial_port udp_ip(= 127.0.0.1) udp_in_port(= 5000) udp_out_port(=5001)"
-        print "Example: " + sys.argv[0] + " COM20 127.0.0.1 5000 5001"
+        print "Example: " + sys.argv[0] + " /dev/tty.usbserial-xxx 127.0.0.1 5000 5001"
         quit()
 
 serial_port = sys.argv[1]
