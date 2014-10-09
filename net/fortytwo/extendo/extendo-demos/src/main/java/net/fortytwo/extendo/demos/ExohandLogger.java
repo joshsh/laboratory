@@ -7,6 +7,7 @@ import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
+import net.fortytwo.extendo.util.SlipStream;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -26,20 +27,11 @@ import java.util.logging.Logger;
 public class ExohandLogger {
     private static final Logger LOGGER = Logger.getLogger(ExohandLogger.class.getName());
 
-    // a somewhat arbitrary limit on the size of OSC-carrying datagrams we expect
-    private static final int MAX_DATAGRAM_SIZE = 1500;
-
-    // character 192: the SLIP protocol's "frame end" byte
-    private static final int
-            SLIP_END = 0xc0,
-            SLIP_ESC = 0xdb,
-            SLIP_ESC_END = 0xdc,
-            SLIP_ESC_ESC = 0xdd;
-
     private final String device;
     private final int rate;
 
     private final OSCByteArrayToJavaConverter converter;
+    private final SlipStream slipStream = new SlipStream();
 
     public ExohandLogger(final String device,
                          final int rate) {
@@ -49,53 +41,28 @@ public class ExohandLogger {
         converter = new OSCByteArrayToJavaConverter();
     }
 
-    public void run() throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException {
+    public void run() throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException, SlipStream.PacketHandlerException {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("exohand-port", 0);
         serialPort.setSerialPortParams(rate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 
-        byte[] buffer = new byte[MAX_DATAGRAM_SIZE];
         InputStream in = serialPort.getInputStream();
         try {
-            int b;
-
-            while (SLIP_END != (b = in.read())) {
-                if (-1 == b) return;
-            }
-
-            int i = 0;
-            while (-1 != (b = in.read())) {
-                if (SLIP_END == b) {
-                    // the check for i>0 allows for SLIP variants in which packets both begin and end with END
-                    if (i > 0) {
-                        OSCMessage m = (OSCMessage) converter.convert(buffer, i);
-                        System.out.print(m.getAddress());
-                        for (Object arg : m.getArguments()) {
-                            System.out.print("\t");
-                            if (arg instanceof Date) {
-                                System.out.print(((Date) arg).getTime());
-                            } else {
-                                System.out.print(arg);
-                            }
+            slipStream.receive(in, new SlipStream.PacketHandler() {
+                public void handle(byte[] buffer, int length) throws Exception {
+                    OSCMessage m = (OSCMessage) converter.convert(buffer, length);
+                    System.out.print(m.getAddress());
+                    for (Object arg : m.getArguments()) {
+                        System.out.print("\t");
+                        if (arg instanceof Date) {
+                            System.out.print(((Date) arg).getTime());
+                        } else {
+                            System.out.print(arg);
                         }
-                        System.out.print("\n");
                     }
-                    i = 0;
-                } else if (SLIP_ESC == b) {
-                    b = in.read();
-                    if (-1 == b) break;
-
-                    if (SLIP_ESC_END == b) {
-                        buffer[i++] = (byte) SLIP_END;
-                    } else if (SLIP_ESC_ESC == b) {
-                        buffer[i++] = (byte) SLIP_ESC;
-                    } else {
-                        throw new IOException("illegal escape sequence: found byte " + b + " after SLIP_ESC");
-                    }
-                } else {
-                    buffer[i++] = (byte) b;
+                    System.out.print("\n");
                 }
-            }
+            });
         } finally {
             in.close();
         }

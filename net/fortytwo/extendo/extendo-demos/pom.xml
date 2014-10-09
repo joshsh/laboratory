@@ -26,6 +26,7 @@
         <sesame.version>2.7.10</sesame.version>
         <sesametools.version>1.8</sesametools.version>
         <tinkerpop.version>2.5.0</tinkerpop.version>-->
+        <jung.version>2.0.1</jung.version>
         <junit.version>4.11</junit.version>
     </properties>
 
@@ -45,6 +46,18 @@
             <artifactId>commons-cli</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-algorithms</artifactId>
+            <version>${jung.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-graph-impl</artifactId>
+            <version>${jung.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
