@@ -6,7 +6,7 @@
  * hold against a piece of cardboard to hear, or
  * stand on edge or suspend from wire to observe visually.
  *
- * The motor is not *felt* to move at timesteps below 75ms or so, but it is *seen*
+ * The motor is not *felt* to move at timesteps below 60ms or so, but it is *seen*
  * to move at as little as 10ms.
  */
 

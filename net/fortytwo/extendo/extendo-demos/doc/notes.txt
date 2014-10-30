@@ -1,0 +1,37 @@
+################################################################################
+# Creating a SLIP OSC connection to Typeatron or Extend-o-Hand via serial
+
+python src/main/python/slip-to-udp.py /dev/tty.usbserial-A602UW1I 127.0.0.1 42002 42003 print
+
+kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
+
+
+################################################################################
+# using the Extend-o-Hand logger
+
+python src/main/python/exohand-logger.py 42003 2>&1 > /tmp/exohand.txt
+
+cat /tmp/exohand.txt | grep default | sed 's/.*default.....[0-9]*..//' | sed 's/.$//' > /tmp/motion.csv
+
+
+################################################################################
+# capturing raw Extend-o-Hand data via serial
+
+cd /tmp
+rm typescript
+script
+
+DEVICE=/dev/tty.usbserial-A9ED9B3J
+screen -S arduino $DEVICE 115200
+
+# C-a k to quit
+
+kill `ps aux|grep " script$" | sed 's/[^ ]* *//' | sed 's/ .*//'`
+
+# remove leading and trailing "stuff"
+vim /tmp/typescript
+
+cat /tmp/typescript | grep "^motion" | sed 's/motion.//' | sed 's/,.*//' | tr '\n' ','
+
+# for "simple" output format
+cat /tmp/typescript | sed 's/[^0-9]$//' > /tmp/data.csv
