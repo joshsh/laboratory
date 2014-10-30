@@ -38,7 +38,10 @@ public class PingArduino {
         this.rate = rate;
     }
 
-    private void run() throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException, InterruptedException {
+    private void run()
+            throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException,
+            IOException, InterruptedException {
+
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("arduino-port", 0);
         serialPort.setSerialPortParams(rate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);

@@ -25,7 +25,6 @@ import java.util.logging.Logger;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class ExohandLogger {
-    private static final Logger LOGGER = Logger.getLogger(ExohandLogger.class.getName());
 
     private final String device;
     private final int rate;
@@ -41,7 +40,10 @@ public class ExohandLogger {
         converter = new OSCByteArrayToJavaConverter();
     }
 
-    public void run() throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException, IOException, SlipStream.PacketHandlerException {
+    public void run()
+            throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException,
+            IOException, SlipStream.PacketHandlerException {
+
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("exohand-port", 0);
         serialPort.setSerialPortParams(rate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);

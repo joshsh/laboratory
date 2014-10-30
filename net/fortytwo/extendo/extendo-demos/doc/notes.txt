@@ -7,7 +7,7 @@ kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
 
 
 ################################################################################
-# using the Extend-o-Hand logger
+# Using the Extend-o-Hand logger
 
 python src/main/python/exohand-logger.py 42003 2>&1 > /tmp/exohand.txt
 
@@ -15,7 +15,7 @@ cat /tmp/exohand.txt | grep default | sed 's/.*default.....[0-9]*..//' | sed 's/
 
 
 ################################################################################
-# capturing raw Extend-o-Hand data via serial
+# Capturing raw Extend-o-Hand data via serial
 
 cd /tmp
 rm typescript
