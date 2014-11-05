@@ -19,9 +19,9 @@ def send(msg, ip, port):
     socket(AF_INET,SOCK_DGRAM).sendto(msg, (ip, port))
 
 if ( len(sys.argv) == 1 ):
-        print "SLIP<-->UDP utility | Joshua Shinavier, 2014, http://fortytwo.net"
-        print "Syntax: " + sys.argv[0] + " serial_port udp_ip(= 127.0.0.1) udp_in_port(= 5000) udp_out_port(=5001)"
-        print "Example: " + sys.argv[0] + " /dev/tty.usbserial-xxx 127.0.0.1 5000 5001"
+        print("SLIP<-->UDP utility | Joshua Shinavier, 2014, http://fortytwo.net")
+        print("Syntax: " + sys.argv[0] + " serial_port udp_ip(= 127.0.0.1) udp_in_port(= 5000) udp_out_port(=5001)")
+        print("Example: " + sys.argv[0] + " /dev/tty.usbserial-xxx 127.0.0.1 5000 5001")
         quit()
 
 serial_port = sys.argv[1]
@@ -43,8 +43,8 @@ if ( len(sys.argv) >= 6):
 else:
 	printing = 0
 
-print "Reading from serial port: " + serial_port
-print "Sending to " + udp_ip + ":" + str(udp_out_port)
+print("Reading from serial port: " + serial_port)
+print("Sending to " + udp_ip + ":" + str(udp_out_port))
 
 udp_out_port = int(udp_out_port)
 
@@ -57,7 +57,7 @@ def receive():
     while (1):
         nbytes, address = in_sock.recvfrom_into(serial_out_buffer)
         if (printing):
-            print "UDP(" + str(udp_in_port) + ")->serial(" + serial_port + "): " + str(nbytes) + " bytes"
+            print("UDP(" + str(udp_in_port) + ")->serial(" + serial_port + "): " + str(nbytes) + " bytes")
         for i in range(0, nbytes):
             sport.write(serial_out_buffer[i])
         sport.write(chr(192))
@@ -94,7 +94,7 @@ try :
             if (i > 0):
                 st = "".join(map(chr, serial_in_buffer[0:i]))
                 if (printing):
-                    print "serial(" + serial_port + ")->UDP(" + str(udp_out_port) + "): " + str(len(st)) + " bytes"
+                    print("serial(" + serial_port + ")->UDP(" + str(udp_out_port) + "): " + str(len(st)) + " bytes")
                 send(st, udp_ip, udp_out_port)
                 i = 0
         elif (slip_esc == ob):
@@ -110,14 +110,14 @@ try :
                 i = i + 1
             else:
                 #raise Exception("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
-                print "illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC"
+                print("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
                 skip_to_end()
         else:
             serial_in_buffer[i] = b
             i = i + 1
 
 except KeyboardInterrupt :
-    print "closing..."
+    print("closing...")
     sport.close()
     thread.join()
-    print "done"
+    print("done")
