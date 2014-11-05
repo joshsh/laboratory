@@ -1,13 +1,17 @@
 package net.fortytwo.extendo.demos;
 
-import com.illposed.osc.OSCMessage;
-import com.illposed.osc.utility.OSCByteArrayToJavaConverter;
 import gnu.io.CommPortIdentifier;
 import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
+import net.fortytwo.extendo.p2p.ExtendoAgent;
+import net.fortytwo.extendo.p2p.osc.OSCDispatcher;
+import net.fortytwo.extendo.p2p.osc.SlipOscControl;
+import net.fortytwo.extendo.typeatron.TypeatronControl;
+import net.fortytwo.extendo.typeatron.ripple.Environment;
 import net.fortytwo.extendo.util.SlipInputStream;
+import net.fortytwo.ripple.RippleException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -18,61 +22,78 @@ import org.apache.commons.cli.PosixParser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
+import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
+ * Serial controller for the Monomanual Typeatron
+ *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class ExohandLogger {
+public class TypeatronSerial {
+
+    private static final Logger logger = Logger.getLogger(TypeatronSerial.class.getName());
 
     private final String device;
     private final int rate;
 
-    private final OSCByteArrayToJavaConverter converter;
-
-    public ExohandLogger(final String device,
-                         final int rate) {
+    public TypeatronSerial(String device, int rate) {
         this.device = device;
         this.rate = rate;
-
-        converter = new OSCByteArrayToJavaConverter();
     }
 
     public void run()
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException,
-            IOException, SlipInputStream.PacketHandlerException {
+            IOException, SlipInputStream.PacketHandlerException, SlipOscControl.DeviceInitializationException {
 
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("exohand-port", 0);
         serialPort.setSerialPortParams(rate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 
-        InputStream in = serialPort.getInputStream();
+        talkToTypeatron(serialPort.getInputStream(), serialPort.getOutputStream());
+    }
+
+    public void talkToTypeatron(final InputStream inputStream,
+                                final OutputStream outputStream) throws SlipOscControl.DeviceInitializationException {
+
+        final OSCDispatcher dispatcher = new OSCDispatcher();
+
+        ExtendoAgent agent = null;
+
+        Environment environment = new Environment() {
+            @Override
+            public void speak(String message) throws RippleException {
+                System.out.println("SPEAK: " + message);
+            }
+
+            @Override
+            public boolean verbose() {
+                return false;
+            }
+        };
+        TypeatronControl typeatron = new TypeatronControl(dispatcher, agent, environment);
+
+        typeatron.connect(outputStream);
+
         try {
-            SlipInputStream slipStream = new SlipInputStream(in);
+            logger.log(Level.INFO, "starting SLIP+OSC listener");
+
+            SlipInputStream slipStream = new SlipInputStream(inputStream);
             slipStream.receive(new SlipInputStream.PacketHandler() {
-                public void handle(byte[] buffer, int length) throws Exception {
-                    OSCMessage m = (OSCMessage) converter.convert(buffer, length);
-                    System.out.print(m.getAddress());
-                    for (Object arg : m.getArguments()) {
-                        System.out.print("\t");
-                        if (arg instanceof Date) {
-                            System.out.print(((Date) arg).getTime());
-                        } else {
-                            System.out.print(arg);
-                        }
-                    }
-                    System.out.print("\n");
+                public void handle(byte[] packet, int length) throws Exception {
+                    dispatcher.receive(packet, length);
                 }
             });
-        } finally {
-            in.close();
+        } catch (Throwable t) {
+            logger.log(Level.SEVERE, "SLIP+OSC listener failed with error", t);
         }
     }
 
     /*
-        Usage example:
-            ./exohand-logger.sh -d /dev/ttyUSB0 -r 115200 > /tmp/exohand.log
-     */
+    Usage example:
+        ./typeatron-serial.sh -d /dev/ttyUSB0 -r 115200
+ */
     public static void main(final String[] args) throws Exception {
         try {
             Options options = new Options();
@@ -101,7 +122,7 @@ public class ExohandLogger {
             String device = cmd.getOptionValue(deviceOpt.getOpt());
             int rate = Integer.valueOf(cmd.getOptionValue(rateOpt.getOpt()));
 
-            new ExohandLogger(device, rate).run();
+            new TypeatronSerial(device, rate).run();
 
         } catch (Throwable t) {
             t.printStackTrace(System.err);
@@ -111,6 +132,6 @@ public class ExohandLogger {
 
     private static void printUsage(final Options options) {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("exohand-logger", options);
+        formatter.printHelp("typeatron-serial", options);
     }
 }
