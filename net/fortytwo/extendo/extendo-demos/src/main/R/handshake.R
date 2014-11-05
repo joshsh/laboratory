@@ -120,6 +120,26 @@ plot(d.a.mag, type="l")
 
 
 ########################################
+# frequency estimation (first pass)
+
+# using hand1 time series from 2014-11-03
+# Only time between apparently corresponding peaks is counted in the below
+# Note that in the accelerometer magnitude time series, peaks appear at twice this frequency
+# (alternating between the up-swing and the down-swing)
+wholes <- c(48,52,38,41,37,44,40,37,42,52,32,39,38,49,31,40,40,42,32,39,61,46,43)
+
+# calculated as (length(times)*1000000)/(times[length(times)]-times[1])
+sampling.frequency <- 252.6819
+
+# I find around 6Hz for handshakes between Xixi and Josh, similar to Melnyk et al.,
+# who find 4Hz overall
+freq.mean <- sampling.frequency/mean(wholes)
+
+freq.low <- sampling.frequency/(mean(wholes)+sd(wholes))
+freq.high <- sampling.frequency/(mean(wholes)-sd(wholes))
+
+
+########################################
 # handshake-specific filtering
 
 diffs <- function(s) {
@@ -157,7 +177,7 @@ bandpass <- function(x, dt, rc.low, rc.high) {
     highpass(y.lp, dt, rc.high)
 }
 
-# I find around 15Hz for handshakes between Xixi and Josh, in contrast to Melnyk et al.,
+# I find roughly 6Hz for handshakes between Xixi and Josh, similar to Melnyk et al.,
 # who find 4Hz overall
 t.low <- (16.3 - 3.5) * dt
 t.high <- (16.3 + 3.5) * dt
