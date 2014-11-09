@@ -6,12 +6,11 @@ import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
+import net.fortytwo.extendo.p2p.SideEffects;
 import net.fortytwo.extendo.p2p.osc.OSCDispatcher;
 import net.fortytwo.extendo.p2p.osc.SlipOscControl;
 import net.fortytwo.extendo.typeatron.TypeatronControl;
-import net.fortytwo.extendo.typeatron.ripple.Environment;
 import net.fortytwo.extendo.util.SlipInputStream;
-import net.fortytwo.ripple.RippleException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -61,10 +60,15 @@ public class TypeatronSerial {
 
         ExtendoAgent agent = null;
 
-        Environment environment = new Environment() {
+        SideEffects environment = new SideEffects() {
             @Override
-            public void speak(String message) throws RippleException {
+            public void speak(String message) {
                 System.out.println("SPEAK: " + message);
+            }
+
+            @Override
+            public void setStatus(String message) {
+                System.out.println("STATUS: " + message);
             }
 
             @Override
@@ -91,9 +95,9 @@ public class TypeatronSerial {
     }
 
     /*
-    Usage example:
-        ./typeatron-serial.sh -d /dev/ttyUSB0 -r 115200
- */
+     * Usage example:
+     *   ./typeatron-serial.sh -d /dev/ttyUSB0 -r 115200
+     */
     public static void main(final String[] args) throws Exception {
         try {
             Options options = new Options();

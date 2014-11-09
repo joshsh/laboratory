@@ -65,43 +65,72 @@ bandpass.3d <- function(df, dt, rc.low, rc.high) {
         z=bandpass(df$z, dt, rc.low, rc.high))
 }
 
-tl.low <- 0.2
-tl.high <- 0.3
-find.peaks <- function(a, expected.period) {
-    # this is a further "trick", in addition to the low-pass filter, to eliminate high-frequency noise.
-    # TODO: experiment a little more with the factor of 8
-    #delay <- expected.period/8
-    peaks <- c()
-    peak.v <- 0
-    peak.i <- 0
-    n <- length(a)
-    high <- FALSE
-    for (i in 1:n) {
-        v <- a[i]
-        if (high) {
-            if (v > tl.low) {
-                if (v > peak.v) {
-                    peak.v <- v
-                    peak.i <- i
-                }
-            #} else if (i - peak.i > delay) {
-            } else {
-                if (peak.v >= tl.high) {
-                    peaks <- c(peaks, peak.i)
-                }
+# minimum peak-to-peak amplitude of features of interest in the signal after band-pass filtering
+min.amp <- 0.1
 
-                peak.v <- 0
-                high <- FALSE
+# expected.period: the number of samples expected for each full cycle, i.e. each pair of peaks
+find.peaks <- function(x, expected.period) {
+    peak.maxgap <- expected.period * 2
+    peaks <- c()
+    prev.x <- 0
+    prev.rising <- TRUE
+    ref.x <- 0
+    ref.i <- 0
+    high <- FALSE
+    last.i <- NULL
+    last.added <- FALSE
+    n <- length(x)
+    for (i in 1:n) {
+        xi <- x[i]
+        rising <- xi >= prev.x
+        prev.x <- xi
+        if (rising) {
+            if (!prev.rising) {
+                # local minimum
+                if (high) {
+                    if (ref.x - xi >= min.amp) {
+                        if (!is.null(last.i) && ref.i - last.i <= peak.maxgap) {
+                            if (!last.added) {
+                                peaks <- c(peaks, last.i)
+                            }
+                            peaks <- c(peaks, ref.i)
+                            last.added <- TRUE
+                        } else {
+                            last.added <- FALSE
+                        }
+
+                        last.i <- ref.i
+
+                        ref.x <- xi
+                        high <- FALSE
+                    }
+                } else if (xi < ref.x) {
+                    ref.x <- xi
+                    #ref.i <- i
+                }
             }
         } else {
-            if (v >= tl.low) {
-                high <- TRUE
+            if (prev.rising) {
+                # local maximum
+                if (high) {
+                    if (xi > ref.x) {
+                        ref.x <- xi
+                        ref.i <- i
+                    }
+                } else {
+                    if (xi - ref.x >= min.amp) {
+                        #peaks <- c(peaks, ref.i)
+                        ref.i <- i
+                        ref.x <- xi
+                        high <- TRUE
+                    }
+                }
             }
         }
+        prev.rising <- rising
     }
 
-    # ignore the first peak; it is an artifact of the band-pass filters
-    peaks[2:length(peaks)]
+    peaks
 }
 
 group.peaks <- function(peaks) {
