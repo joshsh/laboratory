@@ -1,4 +1,8 @@
-#define LEONARDO_SERIAL
+//#define LEONARDO_SERIAL
+#define BLUETOOTH
+
+#define CONN_PIN    A1
+#define RESET_PIN   A2
 
 #ifdef LEONARDO_SERIAL
 #define SRL Serial1
@@ -16,6 +20,26 @@ void setup() {
     while (!SRL); // for Arduino Leonardo
 #endif  
     SRL.flush();
+    
+#ifdef BLUETOOTH
+    pinMode(CONN_PIN,  INPUT);
+    pinMode(RESET_PIN, OUTPUT);
+    digitalWrite(RESET_PIN, LOW);
+    SRL.print("ST,0\r");
+    // Expected response is "AOK"
+    char buf[4];
+    if (read_line(SRL, buf, sizeof(buf), 200) != rl_status::OK ||
+            std::strcmp(buf, "AOK") != 0) {
+        return false;
+    }
+        assert_reset();
+    // Datasheet says a 160us pulse, but that seems inadequate.
+    delay(10);
+    clear_reset();
+
+    // "Set" commands only take effect after reset
+    reset();
+#endif
 }
 
 void loop() {
