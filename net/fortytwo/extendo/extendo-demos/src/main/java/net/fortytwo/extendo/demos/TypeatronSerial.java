@@ -5,11 +5,9 @@ import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
-import net.fortytwo.extendo.p2p.ExtendoAgent;
-import net.fortytwo.extendo.p2p.SideEffects;
-import net.fortytwo.extendo.p2p.osc.OSCDispatcher;
-import net.fortytwo.extendo.p2p.osc.SlipOscControl;
-import net.fortytwo.extendo.typeatron.TypeatronControl;
+import net.fortytwo.extendo.p2p.osc.OscControl;
+import net.fortytwo.extendo.p2p.osc.OscSender;
+import net.fortytwo.extendo.p2p.osc.SlipOscSender;
 import net.fortytwo.extendo.util.SlipInputStream;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -23,28 +21,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Serial controller for the Monomanual Typeatron
  *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class TypeatronSerial {
-
-    private static final Logger logger = Logger.getLogger(TypeatronSerial.class.getName());
+public class TypeatronSerial extends TypeatronControlWrapper {
 
     private final String device;
     private final int rate;
 
-    public TypeatronSerial(String device, int rate) {
+    public TypeatronSerial(String device, int rate) throws OscControl.DeviceInitializationException {
+        super();
+
         this.device = device;
         this.rate = rate;
     }
 
     public void run()
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException,
-            IOException, SlipInputStream.PacketHandlerException, SlipOscControl.DeviceInitializationException {
+            IOException, SlipInputStream.PacketHandlerException, OscControl.DeviceInitializationException {
 
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("exohand-port", 0);
@@ -53,32 +50,13 @@ public class TypeatronSerial {
         talkToTypeatron(serialPort.getInputStream(), serialPort.getOutputStream());
     }
 
-    public void talkToTypeatron(final InputStream inputStream,
-                                final OutputStream outputStream) throws SlipOscControl.DeviceInitializationException {
+    protected void talkToTypeatron(final InputStream inputStream,
+                                   final OutputStream outputStream) throws OscControl.DeviceInitializationException {
 
-        final OSCDispatcher dispatcher = new OSCDispatcher();
 
-        ExtendoAgent agent = null;
 
-        SideEffects environment = new SideEffects() {
-            @Override
-            public void speak(String message) {
-                System.out.println("SPEAK: " + message);
-            }
-
-            @Override
-            public void setStatus(String message) {
-                System.out.println("STATUS: " + message);
-            }
-
-            @Override
-            public boolean verbose() {
-                return false;
-            }
-        };
-        TypeatronControl typeatron = new TypeatronControl(dispatcher, agent, environment);
-
-        typeatron.connect(outputStream);
+        OscSender sender = new SlipOscSender(outputStream);
+        typeatron.connect(sender);
 
         try {
             logger.log(Level.INFO, "starting SLIP+OSC listener");
@@ -86,7 +64,9 @@ public class TypeatronSerial {
             SlipInputStream slipStream = new SlipInputStream(inputStream);
             slipStream.receive(new SlipInputStream.PacketHandler() {
                 public void handle(byte[] packet, int length) throws Exception {
-                    dispatcher.receive(packet, length);
+                    if (!typeatron.getReceiver().receive(packet, length)) {
+                        logger.warning("no handler for packet");
+                    }
                 }
             });
         } catch (Throwable t) {
