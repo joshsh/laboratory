@@ -22,6 +22,7 @@
 
     <properties>
         <extendo.version>1.1-SNAPSHOT</extendo.version>
+        <freetts.version>1.2.1</freetts.version>
         <!--<ripple.version>1.1</ripple.version>
         <sesame.version>2.7.10</sesame.version>
         <sesametools.version>1.8</sesametools.version>
@@ -61,6 +62,48 @@
             <groupId>net.sf.jung</groupId>
             <artifactId>jung-graph-impl</artifactId>
             <version>${jung.version}</version>
+        </dependency>
+
+        <!-- TODO: are all of these FreeTTS dependencies necessary? -->
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-cmu_us_kal</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-en_us</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-cmudict04</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-cmulex</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-cmu_time_awb</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-cmutimelex</artifactId>
+            <version>${freetts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts-jsapi</artifactId>
+            <version>${freetts.version}</version>
         </dependency>
 
         <dependency>

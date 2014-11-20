@@ -3,9 +3,9 @@ package net.fortytwo.extendo.demos;
 import com.illposed.osc.OSCBundle;
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
-import com.illposed.osc.OSCPacket;
 import com.illposed.osc.OSCPortIn;
 import com.illposed.osc.OSCPortOut;
+import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.p2p.osc.OscControl;
 import net.fortytwo.extendo.p2p.osc.OscSender;
 import org.apache.commons.cli.CommandLine;
@@ -16,6 +16,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -63,6 +64,11 @@ public class TypeatronUdp extends TypeatronControlWrapper {
                     logger.log(Level.WARNING, "failed to send OSC bundle", e);
                 }
             }
+
+            @Override
+            public void close() {
+                // no-op
+            }
         };
         typeatron.connect(sender);
 
@@ -88,6 +94,11 @@ public class TypeatronUdp extends TypeatronControlWrapper {
             portOutOpt.setRequired(false);
             options.addOption(portOutOpt);
 
+            Option confOpt = new Option("c", "conf", true, "Extendo configuration file");
+            confOpt.setArgName("CONF");
+            confOpt.setRequired(false);
+            options.addOption(confOpt);
+
             CommandLineParser clp = new PosixParser();
             CommandLine cmd = null;
 
@@ -100,6 +111,11 @@ public class TypeatronUdp extends TypeatronControlWrapper {
 
             int portIn = Integer.valueOf(cmd.getOptionValue(portInOpt.getOpt(), "42003"));
             int portOut = Integer.valueOf(cmd.getOptionValue(portOutOpt.getOpt(), "42002"));
+
+            String conf = cmd.getOptionValue(confOpt.getOpt());
+            if (null != conf) {
+                Extendo.addConfiguration(new File(conf));
+            }
 
             new TypeatronUdp(portIn, portOut).run();
         } catch (Throwable t) {
