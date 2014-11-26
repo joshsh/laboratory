@@ -85,8 +85,7 @@ find.peaks <- function(x, expected.period) {
         rising <- xi >= prev.x
         prev.x <- xi
         if (rising) {
-            if (!prev.rising) {
-                # local minimum
+            if (!prev.rising) { # local minimum
                 if (high) {
                     if (ref.x - xi >= min.amp) {
                         if (!is.null(last.i) && ref.i - last.i <= peak.maxgap) {
@@ -106,12 +105,10 @@ find.peaks <- function(x, expected.period) {
                     }
                 } else if (xi < ref.x) {
                     ref.x <- xi
-                    #ref.i <- i
                 }
             }
         } else {
-            if (prev.rising) {
-                # local maximum
+            if (prev.rising) { # local maximum
                 if (high) {
                     if (xi > ref.x) {
                         ref.x <- xi
@@ -119,7 +116,6 @@ find.peaks <- function(x, expected.period) {
                     }
                 } else {
                     if (xi - ref.x >= min.amp) {
-                        #peaks <- c(peaks, ref.i)
                         ref.i <- i
                         ref.x <- xi
                         high <- TRUE
