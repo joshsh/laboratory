@@ -65,7 +65,7 @@ bandpass.3d <- function(df, dt, rc.low, rc.high) {
         z=bandpass(df$z, dt, rc.low, rc.high))
 }
 
-# minimum peak-to-peak amplitude of features of interest in the signal after band-pass filtering
+# minimum trough-to-peak amplitude of features of interest in the signal after band-pass filtering
 min.amp <- 0.1
 
 # expected.period: the number of samples expected for each full cycle, i.e. each pair of peaks

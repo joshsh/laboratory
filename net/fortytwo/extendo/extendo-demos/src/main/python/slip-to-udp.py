@@ -1,11 +1,13 @@
 # Python script for SLIP (Serial Line Internet Protocol) <--> UDP communication
 # By Joshua Shinavier, 2014
 #     www.fortytwo.net
-# Based on serial_to_udp.py by Alex Olwal, 2012 03 24
+# Modified from serial_to_udp.py by Alex Olwal, 2012 03 24
 #     www.olwal.com
 
 import serial
 import sys
+import time
+import traceback
 
 from socket import *
 from threading import Thread
@@ -48,13 +50,13 @@ print("Sending to " + udp_ip + ":" + str(udp_out_port))
 
 udp_out_port = int(udp_out_port)
 
-sport = serial.Serial( serial_port, baud_rate, timeout=1 )
+stopped = False
 
 def receive():
     serial_out_buffer = array('c', ' '*1500)
     in_sock = socket(AF_INET, SOCK_DGRAM)
     in_sock.bind(("", udp_in_port))
-    while (1):
+    while (not stopped):
         nbytes, address = in_sock.recvfrom_into(serial_out_buffer)
         if (printing):
             print("UDP(" + str(udp_in_port) + ")->serial(" + serial_port + "): " + str(nbytes) + " bytes")
@@ -78,46 +80,61 @@ slip_esc = 0xdb
 slip_esc_end = 0xdc
 slip_esc_esc = 0xdd
 
+sport = None
 
-# Loop while threads are running.
-try :
-    skip_to_end()
+# loop while threads are running.
+while (not stopped):
+    try:
+        sport = serial.Serial( serial_port, baud_rate, timeout=1 )
 
-    i = 0
-    while (True):
-        b = sport.read()
-        if (0 == len(b)):
-            continue
-        ob = ord(b)
-        if (slip_end == ob):
-            # the check for i>0 allows for SLIP variants in which packets both begin and end with END
-            if (i > 0):
-                st = "".join(map(chr, serial_in_buffer[0:i]))
-                if (printing):
-                    print("serial(" + serial_port + ")->UDP(" + str(udp_out_port) + "): " + str(len(st)) + " bytes")
-                send(st, udp_ip, udp_out_port)
-                i = 0
-        elif (slip_esc == ob):
+        skip_to_end()
+
+        i = 0
+        while (True):
             b = sport.read()
             if (0 == len(b)):
-                break
+                continue
             ob = ord(b)
-            if (slip_esc_end == ob):
-                serial_in_buffer[i] = slip_end
-                i = i + 1
-            elif (slip_esc_esc == ob):
-                serial_in_buffer[i] = slip_esc
-                i = i + 1
+            if (slip_end == ob):
+                # the check for i>0 allows for SLIP variants in which packets both begin and end with END
+                if (i > 0):
+                    st = "".join(map(chr, serial_in_buffer[0:i]))
+                    if (printing):
+                        print("serial(" + serial_port + ")->UDP(" + str(udp_out_port) + "): " + str(len(st)) + " bytes")
+                    send(st, udp_ip, udp_out_port)
+                    i = 0
+            elif (slip_esc == ob):
+                b = sport.read()
+                if (0 == len(b)):
+                    break
+                ob = ord(b)
+                if (slip_esc_end == ob):
+                    serial_in_buffer[i] = slip_end
+                    i = i + 1
+                elif (slip_esc_esc == ob):
+                    serial_in_buffer[i] = slip_esc
+                    i = i + 1
+                else:
+                    #raise Exception("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
+                    print("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
+                    skip_to_end()
             else:
-                #raise Exception("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
-                print("illegal escape sequence: found byte " + str(ob) + " after SLIP_ESC")
-                skip_to_end()
-        else:
-            serial_in_buffer[i] = b
-            i = i + 1
+                serial_in_buffer[i] = b
+                i = i + 1
+    except serial.serialutil.SerialException:
+        print("serial error. Will try to re-open connection in 5s")
+        print(traceback.format_exc())
+        sport.close()
+        time.sleep(5)
+    except OSError:
+        print("OS error. Will try to re-open connection in 5s")
+        print(traceback.format_exc())
+        sport.close()
+        time.sleep(5)
 
-except KeyboardInterrupt :
-    print("closing...")
-    sport.close()
-    thread.join()
-    print("done")
+#except KeyboardInterrupt :
+#    print("closing...")
+#    sport.close()
+#    stopped = True
+#    thread.join()
+#    print("done")
