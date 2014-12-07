@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,19 +34,22 @@ public class TypeatronUdp extends TypeatronControlWrapper {
 
     private static final Logger logger = Logger.getLogger(TypeatronUdp.class.getName());
 
+    private final String hostOut;
     private final int portIn, portOut;
 
-    public TypeatronUdp(final int portIn,
+    public TypeatronUdp(final String hostOut,
+                        final int portIn,
                         final int portOut) throws OscControl.DeviceInitializationException {
         super();
 
-        logger.info("connecting to Typeatron via UDP ports " + portIn + " (in) and " + portOut + " (out)");
+        logger.info("connecting to Typeatron " + (null == hostOut ? "" : "at " + hostOut + " ") + "via UDP ports " + portIn + " (in) and " + portOut + " (out)");
 
+        this.hostOut = hostOut;
         this.portIn = portIn;
         this.portOut = portOut;
     }
 
-    public void run() throws SocketException {
+    public void run() throws SocketException, UnknownHostException {
         OSCPortIn pi = new OSCPortIn(portIn);
         pi.addListener("", new OSCListener() {
             @Override
@@ -54,7 +58,9 @@ public class TypeatronUdp extends TypeatronControlWrapper {
             }
         });
 
-        final OSCPortOut po = new OSCPortOut(InetAddress.getLoopbackAddress(), portOut);
+        InetAddress outAddress = null == hostOut || hostOut.equals("localhost") || hostOut.equals("127.0.0.1")
+                ? InetAddress.getLoopbackAddress() : InetAddress.getByName(hostOut);
+        final OSCPortOut po = new OSCPortOut(outAddress, portOut);
         OscSender sender = new OscSender() {
             @Override
             public synchronized void send(OSCBundle bundle) {
@@ -84,6 +90,11 @@ public class TypeatronUdp extends TypeatronControlWrapper {
         try {
             Options options = new Options();
 
+            Option hostOpt = new Option("h", "host", true, "host for outgoing OSC messages (default: 127.0.0.1)");
+            hostOpt.setArgName("HOST");
+            hostOpt.setRequired(false);
+            options.addOption(hostOpt);
+
             Option portInOpt = new Option("i", "portIn", true, "port for incoming OSC messages (default: 42003)");
             portInOpt.setArgName("PORT_IN");
             portInOpt.setRequired(false);
@@ -109,6 +120,7 @@ public class TypeatronUdp extends TypeatronControlWrapper {
                 System.exit(1);
             }
 
+            String hostOut = cmd.getOptionValue(hostOpt.getOpt(), "127.0.0.1");
             int portIn = Integer.valueOf(cmd.getOptionValue(portInOpt.getOpt(), "42003"));
             int portOut = Integer.valueOf(cmd.getOptionValue(portOutOpt.getOpt(), "42002"));
 
@@ -117,7 +129,7 @@ public class TypeatronUdp extends TypeatronControlWrapper {
                 Extendo.addConfiguration(new File(conf));
             }
 
-            new TypeatronUdp(portIn, portOut).run();
+            new TypeatronUdp(hostOut, portIn, portOut).run();
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
