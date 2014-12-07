@@ -57,7 +57,7 @@ public class TypeatronUdp extends TypeatronControlWrapper {
         final OSCPortOut po = new OSCPortOut(InetAddress.getLoopbackAddress(), portOut);
         OscSender sender = new OscSender() {
             @Override
-            public void send(OSCBundle bundle) {
+            public synchronized void send(OSCBundle bundle) {
                 try {
                     po.send(bundle);
                 } catch (IOException e) {

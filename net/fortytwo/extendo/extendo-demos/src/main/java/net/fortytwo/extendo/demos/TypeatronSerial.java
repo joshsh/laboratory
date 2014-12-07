@@ -8,7 +8,8 @@ import gnu.io.UnsupportedCommOperationException;
 import net.fortytwo.extendo.p2p.osc.OscControl;
 import net.fortytwo.extendo.p2p.osc.OscSender;
 import net.fortytwo.extendo.p2p.osc.SlipOscSender;
-import net.fortytwo.extendo.util.SlipInputStream;
+import net.fortytwo.extendo.util.slip.SlipInputStream;
+import net.fortytwo.extendo.util.slip.SlipOutputStream;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -53,9 +54,14 @@ public class TypeatronSerial extends TypeatronControlWrapper {
     protected void talkToTypeatron(final InputStream inputStream,
                                    final OutputStream outputStream) throws OscControl.DeviceInitializationException {
 
-
-
-        OscSender sender = new SlipOscSender(outputStream);
+        // note: using the threaded version of SlipOutputStream, as invalid OSC bundles may otherwise result
+        // when messages originate in multiple threads
+        SlipOutputStream sos = new SlipOutputStream(outputStream, true);
+        // TODO: it is not entirely understood why throttling messages is also necessary
+        // With round-trip latency over RXTX at around 10ms on a particular system, it seems the throttling period
+        // needs to exceed this.
+        sos.setThrottlingPeriod(40);
+        OscSender sender = new SlipOscSender(sos);
         typeatron.connect(sender);
 
         try {

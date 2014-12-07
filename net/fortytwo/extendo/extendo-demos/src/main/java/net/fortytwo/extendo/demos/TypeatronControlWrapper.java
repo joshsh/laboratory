@@ -65,7 +65,7 @@ public class TypeatronControlWrapper {
         try {
             p = runtime.exec("say \"" + StringUtils.escapeString(message) + "\"");
         } catch (IOException e) {
-            typeatron.sendWarningCue();
+            typeatron.sendWarningMessage();
             logger.log(Level.WARNING, "'say' command failed", e);
         }
         if (null != p) {
@@ -73,11 +73,11 @@ public class TypeatronControlWrapper {
             try {
                 exitCode = p.waitFor();
             } catch (InterruptedException e) {
-                typeatron.sendErrorCue();
+                typeatron.sendErrorMessage();
                 logger.log(Level.SEVERE, "interrupted while waiting for 'say' command", e);
             }
             if (0 != exitCode) {
-                typeatron.sendWarningCue();
+                typeatron.sendWarningMessage();
                 logger.warning("'say' command failed with code " + exitCode);
             }
         }

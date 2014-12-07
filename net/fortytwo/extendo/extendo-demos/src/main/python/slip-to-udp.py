@@ -1,7 +1,7 @@
 # Python script for SLIP (Serial Line Internet Protocol) <--> UDP communication
 # By Joshua Shinavier, 2014
 #     www.fortytwo.net
-# Modified from serial_to_udp.py by Alex Olwal, 2012 03 24
+# Originally based on serial_to_udp.py by Alex Olwal, 2012 03 24
 #     www.olwal.com
 
 import serial
@@ -12,6 +12,11 @@ import traceback
 from socket import *
 from threading import Thread
 from array import *
+
+slip_end = 0xc0
+slip_esc = 0xdb
+slip_esc_end = 0xdc
+slip_esc_esc = 0xdd
 
 baud_rate = 115200
 
@@ -61,8 +66,17 @@ def receive():
         if (printing):
             print("UDP(" + str(udp_in_port) + ")->serial(" + serial_port + "): " + str(nbytes) + " bytes")
         for i in range(0, nbytes):
-            sport.write(serial_out_buffer[i])
-        sport.write(chr(192))
+            b = serial_out_buffer[i]
+            ob = ord(b)
+            if (slip_end == ob):
+                sport.write(chr(slip_esc))
+                sport.write(chr(slip_esc_end))
+            elif (slip_esc == ob):
+                sport.write(chr(slip_esc))
+                sport.write(chr(slip_esc_esc))
+            else:
+                sport.write(b)
+        sport.write(chr(slip_end))
 
 def skip_to_end():
     while (True):
@@ -74,11 +88,6 @@ def skip_to_end():
 
 thread = Thread(target = receive)
 thread.start()
-
-slip_end = 0xc0
-slip_esc = 0xdb
-slip_esc_end = 0xdc
-slip_esc_esc = 0xdd
 
 sport = None
 
