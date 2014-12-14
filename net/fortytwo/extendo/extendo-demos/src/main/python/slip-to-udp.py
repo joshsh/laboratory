@@ -20,7 +20,13 @@ slip_esc_esc = 0xdd
 
 baud_rate = 115200
 
-serial_in_buffer = bytearray(1500)
+# the buffer is much larger than any message should be.
+# Otherwise, large messages from serial cause this program to hang and occupy the port
+serial_udp_buffer_size = 15000
+
+udo_serial_buffer_size = 1500
+
+serial_in_buffer = bytearray(serial_udp_buffer_size)
 
 millis = lambda: int(round(time.time() * 1000))
 
@@ -60,7 +66,7 @@ udp_out_port = int(udp_out_port)
 stopped = False
 
 def receive():
-    serial_out_buffer = array('c', ' '*1500)
+    serial_out_buffer = array('c', ' '*udo_serial_buffer_size)
     in_sock = socket(AF_INET, SOCK_DGRAM)
     in_sock.bind(("", udp_in_port))
     while (not stopped):
