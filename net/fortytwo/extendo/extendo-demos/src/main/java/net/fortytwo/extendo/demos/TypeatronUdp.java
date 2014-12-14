@@ -78,6 +78,8 @@ public class TypeatronUdp extends TypeatronControlWrapper {
         };
         typeatron.connect(sender);
 
+        typeatron.setThrottlingPeriod(40);
+
         logger.info("listening for /exo messages");
         pi.startListening();
     }

@@ -28,6 +28,8 @@ udo_serial_buffer_size = 1500
 
 serial_in_buffer = bytearray(serial_udp_buffer_size)
 
+millis = lambda: int(round(time.time() * 1000))
+
 def send(msg, ip, port):
     socket(AF_INET,SOCK_DGRAM).sendto(msg, (ip, port))
 
@@ -84,23 +86,41 @@ def receive():
                 sport.write(b)
         sport.write(chr(slip_end))
 
+thread = Thread(target = receive)
+thread.start()
+
 def skip_to_end():
     while (True):
         b = sport.read()
-        if (0 == len(b)):
+        if 0 == len(b):
             continue
         elif (slip_end == ord(b)):
             break
 
-thread = Thread(target = receive)
-thread.start()
+current_error = None
+
+def begin_error(name):
+    global current_error
+    if (current_error is not None and current_error != name):
+        sys.stdout.write('\n')
+    if (current_error is None or current_error != name):
+        sys.stdout.write(name + " at " + str(millis()))
+    else:
+        sys.stdout.write('.')
+    sys.stdout.flush()
+    current_error = name
+
 
 sport = None
 
 # loop while threads are running.
-while (not stopped):
+while not stopped:
     try:
         sport = serial.Serial( serial_port, baud_rate, timeout=1 )
+        if current_error is not None:
+            sys.stdout.write('\n')
+        print("connected at " + str(millis()))
+        current_error = None
 
         skip_to_end()
 
@@ -137,15 +157,17 @@ while (not stopped):
                 serial_in_buffer[i] = b
                 i = i + 1
     except serial.serialutil.SerialException:
-        print("serial error. Will try to re-open connection in 5s")
-        print(traceback.format_exc())
+        begin_error("serial error")
+        #print(traceback.format_exc())
         sport.close()
-        time.sleep(5)
+        time.sleep(1)
+        serial_error = True
     except OSError:
-        print("OS error. Will try to re-open connection in 5s")
-        print(traceback.format_exc())
-        sport.close()
-        time.sleep(5)
+        begin_error("OS error")
+        #print(traceback.format_exc())
+        #sport.close()
+        time.sleep(1)
+        os_error = True
 
 #except KeyboardInterrupt :
 #    print("closing...")
