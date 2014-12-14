@@ -92,20 +92,22 @@ def skip_to_end():
             break
 
 current_error = None
+sport = None
 
 def begin_error(name):
     global current_error
     if (current_error is not None and current_error != name):
         sys.stdout.write('\n')
     if (current_error is None or current_error != name):
-        sys.stdout.write(name + " at " + str(millis()))
+        sys.stdout.write(str(millis()) + ": " + name)
     else:
         sys.stdout.write('.')
     sys.stdout.flush()
     current_error = name
-
-
-sport = None
+    #print(traceback.format_exc())
+    if sport is not None:
+        sport.close()
+    time.sleep(1)
 
 # loop while threads are running.
 while not stopped:
@@ -113,13 +115,13 @@ while not stopped:
         sport = serial.Serial( serial_port, baud_rate, timeout=1 )
         if current_error is not None:
             sys.stdout.write('\n')
-        print("connected at " + str(millis()))
+        print(str(millis()) + ": connected")
         current_error = None
 
         skip_to_end()
 
         i = 0
-        while (True):
+        while (not stopped):
             b = sport.read()
             if (0 == len(b)):
                 continue
@@ -152,20 +154,12 @@ while not stopped:
                 i = i + 1
     except serial.serialutil.SerialException:
         begin_error("serial error")
-        #print(traceback.format_exc())
-        sport.close()
-        time.sleep(1)
-        serial_error = True
     except OSError:
         begin_error("OS error")
-        #print(traceback.format_exc())
-        #sport.close()
-        time.sleep(1)
-        os_error = True
-
-#except KeyboardInterrupt :
-#    print("closing...")
-#    sport.close()
-#    stopped = True
-#    thread.join()
-#    print("done")
+    except KeyboardInterrupt:
+        print("closing...")
+        if sport is not None:
+            sport.close()
+        stopped = True
+        thread.join()
+        print("done")

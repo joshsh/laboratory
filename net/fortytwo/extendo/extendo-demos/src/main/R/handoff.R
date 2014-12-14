@@ -315,10 +315,14 @@ points3d(take.spikes.ra.vector, col="green", size=10)
 points3d(buildup.peaks.vector, col="red", size=10)
 
 
+########################################
+# duration of a spike -- around 30ms
 
-
-
-
+spi <- 2
+h <- hand2.i1[(hand2.i1.spikes[spi]-5):(hand2.i1.spikes[spi]+5),]
+plot(mag(a.of(h)), type="l")
+# 0.0339344
+6*hand2.dt
 
 
 ########################################
@@ -520,4 +524,3 @@ hand1.i2.bp.peaks <- find.peaks(hand1.i2.bp.mag, ma)
 hand2.i1.bp.peaks <- find.peaks(hand2.i1.bp.mag, ma)
 plot(hand1.i2.bp.mag, type="l"); abline(col="blue", v=hand1.i2.bp.peaks); abline(col="red", v=hand1.i2.spikes);
 plot(hand2.i1.bp.mag, type="l"); abline(col="blue", v=hand2.i1.bp.peaks); abline(col="red", v=hand2.i1.spikes);
-
