@@ -47,11 +47,6 @@ public class TypeatronControlWrapper {
             public void setStatus(String message) {
                 System.out.println("STATUS: " + message);
             }
-
-            @Override
-            public boolean verbose() {
-                return false;
-            }
         };
 
         typeatron = new TypeatronControl(receiver, agent, environment);

@@ -24,7 +24,7 @@ baud_rate = 115200
 # Otherwise, large messages from serial cause this program to hang and occupy the port
 serial_udp_buffer_size = 15000
 
-udo_serial_buffer_size = 1500
+udp_serial_buffer_size = 1500
 
 serial_in_buffer = bytearray(serial_udp_buffer_size)
 
@@ -34,7 +34,7 @@ def send(msg, ip, port):
     socket(AF_INET,SOCK_DGRAM).sendto(msg, (ip, port))
 
 if ( len(sys.argv) == 1 ):
-        print("SLIP<-->UDP utility | Joshua Shinavier, 2014, http://fortytwo.net")
+        print("Serial SLIP <--> UDP utility | Joshua Shinavier, 2014, http://fortytwo.net")
         print("Syntax: " + sys.argv[0] + " serial_port udp_ip(= 127.0.0.1) udp_in_port(= 5000) udp_out_port(=5001)")
         print("Example: " + sys.argv[0] + " /dev/tty.usbserial-xxx 127.0.0.1 5000 5001")
         quit()
@@ -66,7 +66,7 @@ udp_out_port = int(udp_out_port)
 stopped = False
 
 def receive():
-    serial_out_buffer = array('c', ' '*udo_serial_buffer_size)
+    serial_out_buffer = array('c', ' '*udp_serial_buffer_size)
     in_sock = socket(AF_INET, SOCK_DGRAM)
     in_sock.bind(("", udp_in_port))
     while (not stopped):
