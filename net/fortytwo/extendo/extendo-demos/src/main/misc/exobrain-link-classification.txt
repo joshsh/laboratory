@@ -1,0 +1,293 @@
+################################################################################
+# prepare DBpedia data
+
+wget http://data.dws.informatik.uni-mannheim.de/dbpedia/2014/en/skos_categories_en.nt.bz2
+bunzip2 skos_categories_en.nt.bz2
+wget http://data.dws.informatik.uni-mannheim.de/dbpedia/2014/en/article_categories_en.nt.bz2
+bunzip2 article_categories_en.nt.bz2
+
+cat skos_categories_en.nt | grep broader | sed 's/^[^ ]*:/\"/'|sed 's/>.*:/\" \"/'|sed 's/>.*/\"/' | tr ' ' '\t' > skos_categories_en_broader.tsv
+cat article_categories_en.nt | grep subject | sed 's/^[^ ]*\//\"/' | sed 's/>.*:/\" \"/' | sed 's/>.*/\"/' | tr ' ' '\t' > article_categories_en_subject.tsv
+
+
+################################################################################
+# prepare Extend-o-Brain data
+
+# export vertices, then
+cat /tmp/joshkb-vertices.tsv |grep "http://dbpedia.org/resource"|tr '\t' ' '|sed 's/ .* / /'|grep dbpedia|tr ' ' '\t'|sort -n > /tmp/joshkb_dbpedia_links_with_timestamps.tsv
+cat /tmp/joshkb_dbpedia_links_with_timestamps.tsv |sed 's/.*\///' > /tmp/joshkb_dbpedia_links.tsv
+
+
+################################################################################
+# build the articles and categories graph with Gremlin/Neo4j
+
+JAVA_OPTIONS="-Xms2G -Xmx2G"
+bin/gremlin.sh
+
+
+g = new Neo4jGraph("/Users/josh/data/extendo/dbpedia-neo4j")
+ig = new IdGraph(g, true, false)
+
+def getV(Graph g, String id) {
+    v = g.getVertex(id)
+    return null == v ? g.addVertex(id) : v
+}
+
+links = new HashSet<Vertex>()
+input = new FileInputStream("/tmp/joshkb_dbpedia_links.tsv")
+br = new BufferedReader(new InputStreamReader(input))
+count = 0
+while (null != (line = br.readLine())) {
+    name = line.trim()
+    v = getV(ig, "art:" + name)
+    v.setProperty("type", "article")
+    v.setProperty("name", name)
+    links.add(v)
+    if (0 == ++count % 1000) ig.commit()
+}
+ig.commit()
+
+fileName = "/Users/josh/data/extendo/exobrain-links/skos_categories_en_broader.tsv"
+//fileName = "/Users/josh/data/extendo/exobrain-links/skos_categories_en_broader_small.tsv"
+input = new FileInputStream(fileName)
+br = new BufferedReader(new InputStreamReader(input))
+startTime = System.currentTimeMillis()
+count = 0
+while (null != (line = br.readLine())) {
+    a = line.split("\t")
+    cat1 = a[0]
+    cat2 = a[1]
+    cat1Name = cat1.substring(1, cat1.length()-1)
+    cat2Name = cat2.substring(1, cat2.length()-1)
+    cat1V = getV(ig, "cat:" + cat1Name)
+    cat2V = getV(ig, "cat:" + cat2Name)
+    cat1V.setProperty("name", cat1Name);
+    cat2V.setProperty("name", cat2Name);
+    ig.addEdge(cat1V, cat2V, "broader")
+    if (0 == ++count % 1000) ig.commit()
+}
+ig.commit()
+endTime = System.currentTimeMillis()
+System.out.println("read the file in " + (endTime - startTime) + "ms")
+
+fileName = "/Users/josh/data/extendo/exobrain-links/article_categories_en_subject.tsv"
+//fileName = "/Users/josh/data/extendo/exobrain-links/article_categories_en_subject_small.tsv"
+input = new FileInputStream(fileName)
+br = new BufferedReader(new InputStreamReader(input))
+startTime = System.currentTimeMillis()
+count = 0
+while (null != (line = br.readLine())) {
+    a = line.split("\t")
+    art = a[0]
+    artV = ig.getVertex("art:" + art.substring(1, art.length()-1))
+    if (null != artV) {
+        cat = a[1]
+        catName = cat.substring(1, cat.length()-1)
+        catV = getV(ig, "cat:" + catName)
+        catV.setProperty("name", catName)
+        ig.addEdge(artV, catV, "category")
+        if (0 == ++count % 1000) ig.commit()
+    }
+}
+ig.commit()
+endTime = System.currentTimeMillis()
+System.out.println("read the file in " + (endTime - startTime) + "ms")
+
+
+
+
+ig.v("cat:Main_topic_classifications").in("broader")
+
+mainTopics = ig.v("cat:Main_topic_classifications")
+
+links._().out("category").out("broader").groupCount(m).cap.orderMap(T.decr)[0..100]
+
+
+links._().out("category").out("broader").retain([mainTopics]).count()
+links._().out("category").out("broader").out("broader").retain([mainTopics]).count()
+links._().out("category").out("broader").out("broader").out("broader").simplePath().retain([mainTopics]).count()
+links._().out("category").out("broader").out("broader").out("broader").out("broader").simplePath().retain([mainTopics]).count()
+links._().out("category").out("broader").out("broader").out("broader").out("broader").out("broader").simplePath().retain([mainTopics]).count()
+links._().out("category").out("broader").out("broader").out("broader").out("broader").out("broader").out("broader").simplePath().retain([mainTopics]).count()
+
+
+links._().out("category").out("broader").out("broader").out("broader").out("broader").retain([mainTopics]).path()
+
+
+
+28, 539, 4874, 28417, 126854, 489774
+
+
+
+
+m = [:]
+links._().out("category").out("broader").as("cat").out("broader").retain([mainTopics]).back("cat").groupCount(m).cap.orderMap(T.decr)
+links._().out("category").out("broader").out("broader").as("cat").out("broader").simplePath().retain([mainTopics]).back("cat").groupCount(m).cap.orderMap(T.decr)
+links._().out("category").out("broader").out("broader").out("broader").as("cat").out("broader").simplePath().retain([mainTopics]).back("cat").groupCount(m).cap.orderMap(T.decr)
+
+
+# top categories fall off (sort of) exponentially, with Society the highest
+# and Technology a not-so close second
+cat /tmp/groupcounts|sed 's/.*://'|sed 's/\]./ /'|sort -rnk2|sed 's/.* //'|tr '\n' ','
+
+# 6 categories are enough to capture the "main slope",
+# but there is a long and thick tail
+# By 12 categories, we have fallen to 1/4 of max
+n <- c(771,481,410,340,324,273,270,263,242,228,214,202,175,164,163,148,136,130,126,86,86,81,47,46,8)
+plot(n)
+abline(col="blue", h=max(n)/2)
+abline(col="blue", h=c(max(n)/2, max(n)/4))
+
+
+########################################
+# article coverage
+
+mainTopics = ig.v("cat:Main_topic_classifications")
+
+// for all links which can be categorized, anywhere from 0 to 10
+// skos-broader steps are required to link one of the article's categories
+// to one of Wikipedia's 25 (or 22) "major topic classifications"
+linksBySteps = []
+leftover = new HashSet<Vertex>();
+leftover.addAll(links);
+iters = 0
+while (true) {
+    l = []
+    path = leftover._().as("art").out("category").out("broader")
+    for (i = 0; i < iters; i++) {
+        path = path.out("broader")
+    }
+    path.simplePath().retain([mainTopics]).back("art").dedup().fill(l)
+    leftover.removeAll(l)
+    linksBySteps.add(l)
+    System.out.println("" + iters + ": " + l.size());
+    if (0 == l.size()) break;
+    iters++
+}
+
+// 6% of links are unclassifiable
+leftover.size() / (1.0 * links.size())
+
+differences in the DBpedia list from the list on Wikipedia:
+    https://en.wikipedia.org/wiki/Category:Main_topic_classifications
++Business
++Chronology
++Education
++Life
+-Professional Studies
+(none of which are important in my knowledge base)
+
+
+steps <- c(27,392,1544,2126,1007,276,58,12,1,1,4)
+t <- as.table(steps)
+names(t) <- c(0:(length(steps)-1))
+
+pdf("/tmp/steps-to-link-classification.pdf", width=5, height=2)
+par(mar=c(2,5,2,1.5))
+barplot(t, log="y", ylab="total entities")
+dev.off()
+
+
+########################################
+# article to category mapping
+
+def mapArticlesToCategories(articles, mainTopics, iters, map) {
+    path = articles._().as("art").out("category")
+    for (i = 0; i < iters; i++) {
+        path = path.out("broader")
+    }
+    path = path.as("cat").out("broader").simplePath().retain([mainTopics]).sideEffect{
+        v, m ->
+        //System.out.println("here");
+        vals = map.get(m.art);
+        if (null == vals){
+            vals = new HashSet<Vertex>();
+            map.put(m.art, vals);
+        }
+        vals.add(m.cat);
+    }
+}
+
+mainTopics = ig.v("cat:Main_topic_classifications")
+
+// for all links which can be categorized, anywhere from 0 to 10
+// skos-broader steps are required to link one of the article's categories
+// to one of Wikipedia's 25 (or 22) "major topic classifications"
+linksBySteps = []
+leftover = new HashSet<Vertex>();
+leftover.addAll(links);
+iters = 0
+
+// had to manually iterate until map.size() == 0, as this wouldn't properly execute in the loop
+//while (true) {
+    System.out.println("leftover.size = " + leftover.size());
+    map = new HashMap<Vertex, Set<Vertex>>();
+    mapArticlesToCategories(leftover, mainTopics, iters, map);
+    System.out.println("map.size() = " + map.size());
+    leftover.removeAll(map.keySet())
+    linksBySteps.add(map)
+    System.out.println("" + iters + ": " + map.size());
+    iters++
+    map.size()
+//    if (0 == map.size()) break;
+//}
+
+
+count = 0;
+pathLength = 0
+for (m in linksBySteps) {
+    for (a in m.keySet()) {
+        for (c in m.get(a)) {
+            //System.out.println("" + a + " --> " + c);
+            e = ig.addEdge(a, c, "hasMainTopic");
+            e.setProperty("pathLength", pathLength);
+            count++;
+        }
+    }
+    pathLength++;
+}
+System.out.println("added " + count + " hasMainTopic edges (not yet committed)");
+
+ig.commit()
+
+
+########################################
+# output article to category mapping from persistent store
+
+out = new FileOutputStream("/tmp/main-topics.tsv")
+ps = new PrintStream(out)
+ig.E.has("label", "hasMainTopic").sideEffect{
+    ps.println("" + it.getProperty("pathLength") + "\t" + it.outV().name.next() + "\t" + it.inV().name.next());
+}.iterate()
+out.close()
+
+
+################################################################################
+# analysis in R
+
+# in Bash
+cat main-topics.tsv |tr '\t' ' '|sed 's/ / http:\/\/dbpedia.org\/resource\//'|tr ' ' '\t' > /tmp/topics.tsv
+
+data <- read.table(file("/tmp/topics.tsv"), header=FALSE)
+
+# merge with vertices
+df <- merge(v, data, by.x="alias", by.y="V2")
+
+table(df$class)
+
+# top topics: Technology, Concepts, Society, Arts, Culture
+# It's a smooth and gentle exponential-like curve with a long, thick tail.
+# Runner-ups to the top topic are only a little less frequent than the top topic (Technology).
+t <- as.data.frame(table(cats))
+tops <- t[with(t, order(-Freq)),]
+tops
+
+cats <- df$V3
+length(unique(cats))
+
+# note: arts and culture are for some reason the same set
+tech <- subset(df, V3=="Technology")
+conc <- subset(df, V3=="Concepts")
+soc <- subset(df, V3=="Society")
+arts <- subset(df, V3="Arts")
+cult <- subset(df, V3="Culture")

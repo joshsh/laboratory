@@ -1,0 +1,155 @@
+library(tm.plugin.sentiment)
+tm_tag_score <- tm_term_score
+
+v <- read.table(file("/tmp/joshkb-vertices.tsv"), header=TRUE, sep="\t", quote="", comment.char="")
+
+values <- v$value
+corpus <- Corpus(VectorSource(values))
+s <- score(corpus)
+sent_scores <- meta(s)
+df <- data.frame(sent_scores, values)
+df[101:110,]
+
+
+tmp <- data.frame(id=v$id, created=v$created, polarity=sent_scores$polarity)
+tmp2 <- subset(tmp, !is.na(polarity))
+tmp3 <- tmp2[with(tmp2, order(created)),]
+
+# 0.2227789 as of 2015-01-10
+mean(tmp6$polarity)
+# 0.6052748 as of 2015-01-10
+sd(tmp6$polarity)
+
+# predictably unenlightening
+plot(x=tmp3$created, y=tmp3$polarity, type="l")
+
+
+day <- 1000*60*60*24
+start <- min(tmp3$created)
+# note: breaks between days are at an arbitrary point, not at midnight
+tmp4 <- data.frame(tmp3, day=1+floor((tmp3$created-start)/day))
+
+
+#days <- c(min(tmp4$day):max(tmp4$day))
+days <- unique(tmp4$day)
+
+means <- sapply(days, function(d){mean(subset(tmp4, day==d)$polarity)})
+sds <- sapply(days, function(d){sd(subset(tmp4, day==d)$polarity)})
+tmp5 <- data.frame(day=days, mean=means, sd=sds)
+# note: gaps in data are ignored
+plot(tmp5$mean, type="l"); abline(col="gray", h=0)
+
+# inspect specific intervals
+mind <- days[1013]; maxd <- days[1025] # a two-week peak
+mind <- days[1026]; maxd <- days[1026] # a one-day trough
+mind <- days[820]; maxd <- days[955]; # long period of low activity, high variability
+vs <- merge(v, subset(tmp4, day >= mind & day <= maxd), by="id")
+
+t <- ISOdatetime(1970,1,1,0,0,0, tz="GMT") +  vs$created.y/1000
+min(t); max(t)
+
+# overall polarity (= 0.23 as of 2014-11-22)
+mean(tmp2$polarity)
+
+########################################
+# sentiment analysis using inference
+
+v <- read.table(file("/tmp/joshkb-vertices.tsv"), header=TRUE, sep="\t", quote="", comment.char="")
+e <- read.table(file("/tmp/joshkb-edges.tsv"), header=TRUE)
+
+events <- subset(v, class=="dated-event")
+
+# around 2% of atoms are dated-events
+nrow(events) / nrow(v)
+
+m <- merge(events, e, by.x="id", by.y="from")
+tmp <- data.frame(id=m$to)
+events.children <- merge(v, tmp, by="id")
+
+# we are left with 2473 target values, or 3% of the KB, as of 2015-01-09
+targets <- subset(events.children, class != "date")
+
+values <- targets$value
+corpus <- Corpus(VectorSource(values))
+s <- score(corpus)
+sent_scores <- meta(s)
+df <- data.frame(sent_scores, values)
+df[101:110,]
+
+tmp <- data.frame(id=targets$id, created=targets$created, polarity=sent_scores$polarity)
+tmp2 <- subset(tmp, !is.na(polarity))
+tmp3 <- tmp2[with(tmp2, order(created)),]
+
+# 0.111215 as of 2015-01-10
+mean(tmp3$polarity)
+# 0.6438651 as of 2015-01-10
+sd(tmp3$polarity)
+
+# another unenlightening plot (of raw data points)
+plot(0, xlim=c(min(targets$created), max(targets$created)), ylim=c(-1,1))
+points(x=tmp3$created, y=tmp3$polarity)
+
+hour <- 1000*60*60
+
+# find average polarity in each hour for which we have data
+times <- tmp3$created
+tmp <- times %/% hour
+tmp5 <- data.frame(polarity=tmp3$polarity, hour=(tmp - min(tmp)))
+hours <- unique(tmp5$hour)
+tmp6 <- data.frame(hour=hours, polarity=sapply(hours, function(h){mean(subset(tmp5, hour==h)$polarity)}))
+
+# fill in the gaps (missing hours) to create a time series
+tmp7 <- sapply(c(1:max(tmp6$hour)), function(h){which.min(abs(tmp6$hour-h))})
+tmp8 <- tmp6$polarity[tmp7]
+
+# plot the event sentiment time series
+barplot(tmp8)
+
+running.average <- function(x, buflen) {
+    buffer <- x[1:buflen]
+    sum <- sum(buffer)
+    n <- length(x)
+    j <- 0 # index in buffer
+    result <- c()
+    for (i in 1:n) {
+        xi <- x[i]
+        sum <- sum - buffer[j+1] + xi
+        buffer[j+1] <- xi
+        result <- c(result, sum/buflen)
+        j <- (j + 1) %% buflen
+    }
+    result
+}
+
+# two months is a lot of smoothing... but it produces a pretty striking result
+# unforunately, the "filling" has the effect of amplifying regions with less data
+tmp9 <- running.average(tmp8, 24*7*8)
+barplot(tmp9)
+
+
+sparse.series <- sapply(c(1:max(tmp6$hour)), function(h){i <- match(h, tmp6$hour); if (is.na(i)) 0 else tmp6$polarity[i]})
+# it's a spindly-looking thing...
+barplot(sparse.series)
+
+# average over two months again
+# This, together with the events, is the most enlightening graphic.
+tmp10 <- running.average(sparse.series, 24*7*8)
+barplot(tmp10)
+
+# after pasting life events from EoB activity log analysis
+events.hour <- events.day / hour - min(times) / hour
+abline(v=events.hour, col=events.colors)
+
+
+##########
+# using ggplot2
+
+#install.packages("ggplot2")
+library(ggplot2)
+
+t <- ISOdatetime(1970,1,1,0,0,0, tz="GMT") + (times[1]+c(1:max(tmp6$hour))*hour)/1000
+df <- data.frame(hour=c(1:max(tmp6$hour)), date=t, value=tmp10)
+
+pdf("/tmp/log-event-polarity.pdf", width=5, height=2); par(mar=c(2,5,2,1.5))
+ggplot(df, aes(date, value))+geom_ribbon(aes(ymin=0, ymax=value))+xlab("")+ylab("sentiment: polarity")
+dev.off();
