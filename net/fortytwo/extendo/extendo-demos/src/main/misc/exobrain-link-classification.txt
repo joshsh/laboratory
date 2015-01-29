@@ -182,6 +182,9 @@ steps <- c(27,392,1544,2126,1007,276,58,12,1,1,4)
 t <- as.table(steps)
 names(t) <- c(0:(length(steps)-1))
 
+# 2.89 steps on average
+sum((0:(length(steps)-1))*steps)/sum(steps)
+
 pdf("/tmp/steps-to-link-classification.pdf", width=5, height=2)
 par(mar=c(2,5,2,1.5))
 barplot(t, log="y", ylab="total entities")
@@ -213,6 +216,7 @@ mainTopics = ig.v("cat:Main_topic_classifications")
 // for all links which can be categorized, anywhere from 0 to 10
 // skos-broader steps are required to link one of the article's categories
 // to one of Wikipedia's 25 (or 22) "major topic classifications"
+//     See: https://en.wikipedia.org/wiki/Category:Main_topic_classifications
 linksBySteps = []
 leftover = new HashSet<Vertex>();
 leftover.addAll(links);
@@ -278,16 +282,274 @@ table(df$class)
 # top topics: Technology, Concepts, Society, Arts, Culture
 # It's a smooth and gentle exponential-like curve with a long, thick tail.
 # Runner-ups to the top topic are only a little less frequent than the top topic (Technology).
-t <- as.data.frame(table(cats))
+t <- as.data.frame(table(df$V3))
 tops <- t[with(t, order(-Freq)),]
 tops
 
-cats <- df$V3
-length(unique(cats))
+cats <- as.vector(unique(df$V3))
+length(cats)
 
-# note: arts and culture are for some reason the same set
-tech <- subset(df, V3=="Technology")
-conc <- subset(df, V3=="Concepts")
-soc <- subset(df, V3=="Society")
-arts <- subset(df, V3="Arts")
-cult <- subset(df, V3="Culture")
+cat.all <- df
+
+
+########################################
+# convert to time series and apply running average filter
+
+hour <- 1000*60*60
+day <- hour*24
+week <- day*7
+
+running.average <- function(x, buflen) {
+    buffer <- x[1:buflen]
+    sum <- sum(buffer)
+    n <- length(x)
+    j <- 0 # index in buffer
+    result <- c()
+    for (i in 1:n) {
+        xi <- x[i]
+        sum <- sum - buffer[j+1] + xi
+        buffer[j+1] <- xi
+        result <- c(result, sum/buflen)
+        j <- (j + 1) %% buflen
+    }
+    result
+}
+
+to.series.by.nrow <- function(times, step) {
+    mn <- min(v$created)
+    span <- max(v$created) - mn
+    steps <- c(1:(span / step))
+    t <- table(floor((times - mn) / step))
+    df <- merge(data.frame(Var1=steps), as.data.frame(t), by="Var1", all.x=TRUE)
+    sapply(df$Freq, function(f){ if (is.na(f)) 0 else f })
+}
+
+to.series.by.sum <- function(times, values, step) {
+    mn <- min(v$created)
+    span <- max(v$created) - mn
+    steps <- c(1:(span / step))
+    df <- data.frame(time=(times-mn), value=values)
+
+    # note: this is time consuming
+    sapply(steps, function(s){
+            val <- sum(subset(df, time>=step*(s-1) & time < step*s)$value);
+             if (is.nan(val)) {0} else {val}})
+}
+
+to.series.by.mean <- function(times, values, step) {
+    mn <- min(v$created)
+    span <- max(v$created) - mn
+    steps <- c(1:(span / step))
+    df <- data.frame(time=(times-mn), value=values)
+
+    # note: this is time consuming
+    sapply(steps, function(s){
+            val <- mean(subset(df, time>=step*(s-1) & time < step*s)$value);
+             if (is.nan(val)) {0} else {val}})
+}
+
+granularity <- week
+smoothing.interval <- week*2 / granularity
+
+series.total <- to.series.by.nrow(cat.all$created, granularity)
+
+subsets <- NULL
+for (cat in cats) {
+    subsets[[cat]] <- subset(cat.all, V3==cat)
+}
+
+series.abs <- NULL
+for (cat in cats) {
+    series.abs[[cat]] <- sapply(
+        to.series.by.nrow(subsets[[cat]]$created, granularity),
+        function(s){ if (is.na(s)) 0 else s })
+}
+
+series.rel <- NULL
+for (cat in cats) {
+    series.rel[[cat]] <- sapply(
+        to.series.by.nrow(subsets[[cat]]$created, granularity)/series.total,
+        function(s){ if (is.na(s)) 0 else s })
+}
+
+series.total.smooth <- running.average(series.total, smoothing.interval)
+
+series.abs.smooth <- NULL
+for (cat in cats) {
+    series.abs.smooth[[cat]] <- running.average(series.abs[[cat]], smoothing.interval)
+}
+
+series.rel.smooth <- NULL
+for (cat in cats) {
+    series.rel.smooth[[cat]] <- running.average(series.rel[[cat]], smoothing.interval)
+}
+
+barplot(series.total)
+barplot(series.rel[["Technology"]])
+barplot(series.rel.smooth[["Technology"]])
+
+
+########################################
+# plot smoothed time series for top categories
+
+#install.packages("ggplot2")
+library(ggplot2)
+
+df <- data.frame(date=t, v1=tech.smooth, v2=conc.smooth, v3=soc.smooth, v4=arts.smooth, v5=cult.smooth)
+ggplot(df, aes(date, v1, v2, v3, v4, v5)) + geom_line(aes(y=v1), color="blue") + geom_line(aes(y=v2), color="red") + geom_line(aes(y=v3), color="green") + geom_line(aes(y=v4), color="purple") + geom_line(aes(y=v5), color="yellow")
+
+
+########################################
+# correlate categories with sentiment polarity using discrete events plus smoothing
+# note: smoothing is appropriate here because we are using bipolar polarity
+
+nans.to.zero <- function(series) { sapply(series, function(s) { if (is.nan(s)) 0 else s }) }
+
+series.polarity <- to.series.by.mean(polarity.events$created, polarity.events$polarity, granularity)
+series.polarity.smooth <- running.average(series.polarity, smoothing.interval)
+polarity.pos <- subset(polarity.events, polarity > 0)
+polarity.neg <- subset(polarity.events, polarity < 0)
+series.polarity.pos <- to.series.by.sum(polarity.pos$created, polarity.pos$polarity, granularity)
+series.polarity.neg <- to.series.by.sum(polarity.neg$created, polarity.neg$polarity, granularity)
+series.polarity.pos.smooth <- running.average(series.polarity.pos, smoothing.interval)
+series.polarity.neg.smooth <- running.average(series.polarity.neg, smoothing.interval)
+series.polarity.total <- abs(series.polarity.pos) + abs(series.polarity.neg)
+series.polarity.pos.rel <- nans.to.zero(series.polarity.pos / series.polarity.total)
+series.polarity.neg.rel <- nans.to.zero(abs(series.polarity.neg) / series.polarity.total)
+
+barplot(series.polarity.smooth)
+
+# there is, predictably, a strong negative relationship between positive and negative polarity
+# -0.677096167861 (-0.748270886926 to -0.590510863427)
+# predictably, because there tends to more "negative" text when there is also more "positive" text
+cor.test(series.polarity.pos, series.polarity.neg)
+
+# this negative correlation means nothing, as pos/neg.rel have been forced to complement each other
+cor.test(series.polarity.pos.rel, series.polarity.neg.rel)
+
+
+##########
+# completeness of data
+
+# 2% of weekly time steps are empty of links
+nrow(subset(data.frame(x=series.total), x==0)) / length(series.total)
+
+# 20% of weekly time steps have zero mean polarity, but this can arise through a combination of factors
+nrow(subset(data.frame(x=series.polarity), x==0)) / length(series.polarity)
+
+# 12% of weekly time steps are actually devoid of sentiment data with nonzero polarity
+# note that we have excluded those with zero polarity
+sp <- to.series.by.nrow(polarity.events$created, granularity)
+nrow(subset(data.frame(x=sp), x==0)) / length(sp)
+
+
+##########
+# overall relationships
+
+# 0.112160395729 (0.101180272314 to 0.123113197927) with 1-hour granularity, 2-week smoothing
+cor.test(series.polarity.smooth, series.total.smooth)
+
+# possibly misleading, and < 0.05 correlation anyway
+cor.test(series.polarity.smooth, series.total)
+cor.test(series.polarity.pos.smooth, series.total)
+
+# these are misleading; they show arbitrarily strong relationships which don't actually exist,
+# dependent only on the size of the smoothing interval, which "saturates" both series toward the same limit
+cor.test(series.polarity.pos.smooth, series.all.smooth)
+cor.test(series.polarity.neg.smooth, series.all.smooth)
+
+# -0.140591926749 (-0.27919756251515 to 0.00375279116893) with 1-week granularity
+# no relationship between overall polarity and overall number of categorized links
+cor.test(series.polarity, series.total)
+
+# 0.105204289628 (-0.0396663534691 to 0.2457430809216) with 1-week granularity
+# no relationship between overall polarity and overall number of categorized links
+cor.test(series.polarity.pos, series.total)
+
+# -0.245099793739 (-0.376070465374 to -0.104527300362), t = -3.42, df = 183, p-value = 0.0007722
+# with 1-week granularity
+# so there is a weak *negative* relationship between overall number of categorized links and *negative* polarity
+cor.test(series.polarity.neg, series.total)
+
+
+##########
+# per-category relationships
+
+# note: subtracting the mean is not really necessary; it's just to make fools feel safe
+cor.by.category <- function(ref.series, list.of.series) {
+    rs <- ref.series - mean(ref.series)
+    cor <- lapply(cats, function(cat){
+       los <- list.of.series[[cat]]
+       cor.test(ref.series, los - mean(los))})
+    tmp <- data.frame(cat=cats,
+        cor=sapply(1:length(cor), function(i){cor[[i]][["estimate"]]}),
+        from=sapply(1:length(cor), function(i){cor[[i]][["conf.int"]][1]}),
+        to=sapply(1:length(cor), function(i){cor[[i]][["conf.int"]][2]}))
+    tmp[with(tmp, order(-cor)),]
+}
+
+# most categories correlated with overall sentiment, some significantly (see copy/pasted output)
+cor.by.category(series.polarity.smooth, series.rel.smooth)
+
+# all categories correlated with positive sentiment, some significantly (see copy/pasted output)
+cor.by.category(series.polarity.pos.smooth, series.rel.smooth)
+
+# most categories negatively correlated with negative sentiment, some significantly (see copy/pasted output)
+cor.by.category(series.polarity.neg.smooth, series.rel.smooth)
+
+# some categories (Humanities, Technology, Language, People...) almost but do not quite have a significant
+# negative relationship with polarity (with one week granularity)
+cor.by.category(series.polarity, series.abs)
+
+# some categories (Medicine, Life) almost but do not quite have a significant positive relationship with polarity
+# (with one week granularity)
+cor.by.category(series.polarity.pos, series.abs)
+
+# several categories (Science, Concepts, Mathematics, Technology, People) stand out in their negative relationship
+# with negative sentiment (with one week granularity).
+# This reflects the overall negative relationship of linking activity with negative sentiment,
+# but makes it more specific.
+cor.by.category(series.polarity.neg, series.abs)
+
+# some categories have almost-significant positive relationships with positive polarity
+cor.by.category(series.polarity.pos, series.rel)
+cor.by.category(series.polarity.pos.rel, series.rel)
+
+cor.by.category(series.polarity.neg.rel, series.rel)
+
+
+subset.x <- subset(cat.all,
+    V3=="Agriculture" | V3=="Business" | V3=="Concepts" | V3=="Culture"
+    | V3=="Health" | V3=="Life" | V3=="Mathematics" | V3=="Medicine"
+    | V3=="Politics" | V3=="Science" | V3=="Society" )
+subset.x <- subset(cat.all,
+    V3=="Environment"
+    | V3=="History" | V3=="Humanities" | V3=="Language"
+    | V3=="Law" | V3=="Nature" )
+subset.x <- subset(cat.all,
+    V3=="Arts" | V3=="Concepts" | V3=="Culture" | V3=="Geography"
+    | V3=="Health" | V3=="History" | V3=="Humanities" | V3=="Law" | V3=="Life" | V3=="Mathematics" | V3=="Medicine"
+    | V3=="Nature" | V3=="Sports")
+subset.x <- subset(cat.all,
+    V3=="Agriculture" | V3=="Chronology"
+    | V3=="Humans" | V3=="Language" | V3=="Politics"
+    | V3=="Society" | V3=="Technology")
+series.x.rel <- sapply(
+    to.series.by.nrow(subset.x$created, granularity)/series.total,
+    function(s){ if (is.na(s)) 0 else s })
+
+# with Business,Life,Medicine,Society,Health,Science,Concepts,Culture,Agriculture,Mathematics,Politics
+# 0.263156072016 (0.123579174876 0.392522493541), t = 3.69, df = 183, p-value = 0.0002957
+cor.test(series.polarity.pos.rel, series.x.rel)
+
+# with Environment,Law,History,Nature,Humanities,Language
+# -0.207010597048 (-0.3410924277344 -0.0646734787839), t = -2.8624, df = 183, p-value = 0.004695
+cor.test(series.polarity.pos.rel, series.x.rel)
+
+# with Humanities,Nature,Mathematics,Arts,Sports,Medicine,Geography,Concepts,Law,Life,Culture,Health,History
+# 0.265625718245 (0.126193017674 0.394766301030), t = 3.7272, df = 183, p-value = 0.0002579
+cor.test(series.polarity.neg.rel, series.x.rel)
+
+# with Politics,Society,Chronology,Agriculture,Humans,Technology,Language
+# -0.224380721282 (-0.3570899301611 -0.0827921950363), t = -3.1148, df = 183, p-value = 0.002137
+cor.test(series.polarity.neg.rel, series.x.rel)

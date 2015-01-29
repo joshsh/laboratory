@@ -51,6 +51,7 @@ min(t); max(t)
 # overall polarity (= 0.23 as of 2014-11-22)
 mean(tmp2$polarity)
 
+
 ########################################
 # sentiment analysis using inference
 
@@ -69,6 +70,14 @@ events.children <- merge(v, tmp, by="id")
 # we are left with 2473 target values, or 3% of the KB, as of 2015-01-09
 targets <- subset(events.children, class != "date")
 
+
+# exclude all children which are classified or have an alias
+# we are left with 2012 target values, or 3% of the KB, as of 2015-01-14
+targets <- subset(events.children, in.==0 & out==0
+    & 0==sapply(events.children$alias, function(a){ nchar(as.character(a)) }))
+nrow(targets)
+nrow(targets)/nrow(v)
+
 values <- targets$value
 corpus <- Corpus(VectorSource(values))
 s <- score(corpus)
@@ -80,14 +89,17 @@ tmp <- data.frame(id=targets$id, created=targets$created, polarity=sent_scores$p
 tmp2 <- subset(tmp, !is.na(polarity))
 tmp3 <- tmp2[with(tmp2, order(created)),]
 
-# 0.111215 as of 2015-01-10
+# 0.110012116514 as of 2015-01-14
 mean(tmp3$polarity)
-# 0.6438651 as of 2015-01-10
+# 0.647612952523 as of 2015-01-14
 sd(tmp3$polarity)
 
 # another unenlightening plot (of raw data points)
 plot(0, xlim=c(min(targets$created), max(targets$created)), ylim=c(-1,1))
 points(x=tmp3$created, y=tmp3$polarity)
+
+# for integration with link classification
+polarity.events <- tmp3
 
 hour <- 1000*60*60
 
