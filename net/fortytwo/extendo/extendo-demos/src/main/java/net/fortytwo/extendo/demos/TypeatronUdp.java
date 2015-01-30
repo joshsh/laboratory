@@ -59,7 +59,7 @@ public class TypeatronUdp extends TypeatronControlWrapper {
         });
 
         InetAddress outAddress = null == hostOut || hostOut.equals("localhost") || hostOut.equals("127.0.0.1")
-                ? InetAddress.getLoopbackAddress() : InetAddress.getByName(hostOut);
+                ? InetAddress.getLocalHost() : InetAddress.getByName(hostOut);
         final OSCPortOut po = new OSCPortOut(outAddress, portOut);
         OscSender sender = new OscSender() {
             @Override

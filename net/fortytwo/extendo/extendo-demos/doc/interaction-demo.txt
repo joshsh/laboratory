@@ -30,6 +30,9 @@ pins 1 and 3
 python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 127.0.0.1 42202 42002
 
 # MRMBP serial to Marvin5 over HOG
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 192.168.1.147 42202 42002
+
+# MRMBP Bluetooth to Marvin5 over HOG
 python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 192.168.1.147 42202 42002
 
 
@@ -45,4 +48,7 @@ pins 2 and 3
 python ./slip-to-udp.py tty.RN42-C342-SPP 127.0.0.1 42302 42002
 
 # MRMBP serial to Marvin5 over HOG
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.1.147 42302 42002
+
+# MRMBP Bluetooth to Marvin5 over HOG
 python ./slip-to-udp.py tty.RN42-C342-SPP 192.168.1.147 42302 42002
