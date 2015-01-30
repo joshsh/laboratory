@@ -28,8 +28,7 @@ public class TypeatronControlWrapper {
     protected TypeatronControlWrapper() throws OscControl.DeviceInitializationException {
         final OscReceiver receiver = new OscReceiver();
 
-        // TODO: don't hard-code the agent URI
-        ExtendoAgent agent = new ExtendoAgent("http://fortytwo.net/foaf#josh", true);
+        ExtendoAgent agent = new ExtendoAgent(true);
         createVoice();
 
         runtime = Runtime.getRuntime();
