@@ -2,6 +2,7 @@ package net.fortytwo.extendo.demos.scenarios;
 
 import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
+import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
 import net.fortytwo.extendo.rdf.Activities;
 import net.fortytwo.rdfagents.model.Dataset;
@@ -27,7 +28,7 @@ public class DemoParticipant {
         logger.info("sharing attention on " + focus);
 
         Dataset d = Activities.datasetForAttentionActivity(System.currentTimeMillis(), agent.getAgentUri(), focus);
-        agent.getQueryEngine().addStatements(d.getStatements());
+        agent.getQueryEngine().addStatements(Extendo.GESTURE_TTL, d.getStatements());
     }
 
     public DemoParticipant()

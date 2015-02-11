@@ -22,6 +22,8 @@ import static org.junit.Assert.assertEquals;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class ScenariosTest {
+    private static final long TEST_TTL = 0;
+
     private QueryEngineImpl queryEngine = new QueryEngineImpl();
 
     protected ValueFactory vf = new ValueFactoryImpl();
@@ -75,7 +77,7 @@ public class ScenariosTest {
 
         // Arthur points to an object.  One solution.
 
-        queryEngine.addStatements(
+        queryEngine.addStatements(TEST_TTL,
                 Activities.datasetForPointingGesture(now, arthur, book).getStatements());
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
@@ -90,7 +92,7 @@ public class ScenariosTest {
 
         // Arthur points to another object.  One more solution.
 
-        queryEngine.addStatements(
+        queryEngine.addStatements(TEST_TTL,
                 Activities.datasetForPointingGesture(now, arthur, ford).getStatements());
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
@@ -105,7 +107,7 @@ public class ScenariosTest {
 
         // Zaphod points to an object.  A third solution.
 
-        queryEngine.addStatements(
+        queryEngine.addStatements(TEST_TTL,
                 Activities.datasetForPointingGesture(now, zaphod, book).getStatements());
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
