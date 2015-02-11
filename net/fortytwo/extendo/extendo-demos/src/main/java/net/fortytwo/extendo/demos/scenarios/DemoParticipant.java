@@ -4,6 +4,8 @@ import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
 import net.fortytwo.extendo.rdf.Activities;
+import net.fortytwo.extendo.rdf.vocab.ExtendoActivityOntology;
+import net.fortytwo.extendo.rdf.vocab.FOAF;
 import net.fortytwo.rdfagents.model.Dataset;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
@@ -19,7 +21,19 @@ import java.util.logging.Logger;
 public class DemoParticipant {
     private static final Logger logger = Logger.getLogger(DemoParticipant.class.getName());
 
-    private static final String PARTICIPANT_URI = "http://fortytwo.net/josh/things/CybU2QN"; // Arthur Dent
+    // note: participant and owner are ideally the same person, but Arthur doesn't have his own PKB
+    private static final String
+            PARTICIPANT_URI = "http://fortytwo.net/josh/things/CybU2QN", // Arthur Dent
+            PKB_OWNER = "http://fortytwo.net/josh/things/SBZFumn"; // Josh
+
+    private static final String QUERY_FOR_PEOPLE_INDICATED_WHOM_I_KNOW =
+            "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
+                    "PREFIX foaf: <" + FOAF.NAMESPACE + ">\n" +
+                    "SELECT ?actor ?indicated WHERE {\n" +
+                    "?a activity:thingIndicated ?indicated .\n" +
+                    "?a activity:actor ?actor .\n" +
+                    "<ME> foaf:knows ?indicated .\n" +
+                    "}";
 
     private final ExtendoAgent agent;
 
@@ -35,7 +49,10 @@ public class DemoParticipant {
 
         agent = new ExtendoAgent(PARTICIPANT_URI, true);
 
-        agent.getQueryEngine().addQuery(Activities.QUERY_FOR_THINGS_POINTED_TO, new BindingSetHandler() {
+        String query = QUERY_FOR_PEOPLE_INDICATED_WHOM_I_KNOW.replaceAll("<ME>", "<" + PKB_OWNER + ">");
+        //String query = Activities.QUERY_FOR_THINGS_POINTED_TO;
+
+        agent.getQueryEngine().addQuery(query, new BindingSetHandler() {
             @Override
             public void handle(BindingSet bindingSet) {
                 Value actor = bindingSet.getValue("actor");
