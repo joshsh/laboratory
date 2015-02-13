@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class ScenariosTest {
-    private static final long TEST_TTL = 0;
+    private static final int TUPLE_TTL = 0, QUERY_TTL = 0;
 
     private QueryEngineImpl queryEngine = new QueryEngineImpl();
 
@@ -52,7 +52,7 @@ public class ScenariosTest {
             throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException {
 
         final List<BindingSet> results = new LinkedList<BindingSet>();
-        queryEngine.addQuery(query, new BindingSetHandler() {
+        queryEngine.addQuery(QUERY_TTL, query, new BindingSetHandler() {
             @Override
             public void handle(BindingSet b) {
                 results.add(b);
@@ -77,7 +77,7 @@ public class ScenariosTest {
 
         // Arthur points to an object.  One solution.
 
-        queryEngine.addStatements(TEST_TTL,
+        queryEngine.addStatements(TUPLE_TTL,
                 Activities.datasetForPointingGesture(now, arthur, book).getStatements());
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
@@ -92,7 +92,7 @@ public class ScenariosTest {
 
         // Arthur points to another object.  One more solution.
 
-        queryEngine.addStatements(TEST_TTL,
+        queryEngine.addStatements(TUPLE_TTL,
                 Activities.datasetForPointingGesture(now, arthur, ford).getStatements());
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
@@ -107,7 +107,7 @@ public class ScenariosTest {
 
         // Zaphod points to an object.  A third solution.
 
-        queryEngine.addStatements(TEST_TTL,
+        queryEngine.addStatements(TUPLE_TTL,
                 Activities.datasetForPointingGesture(now, zaphod, book).getStatements());
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));

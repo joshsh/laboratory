@@ -20,6 +20,9 @@ import java.util.logging.Logger;
 public class DemoParticipant {
     private static final Logger logger = Logger.getLogger(DemoParticipant.class.getName());
 
+    // for now, queries will not expire, and will not need to be renewed
+    private static final int QUERY_TTL = 0;
+
     private static final String PARTICIPANT_URI = "http://fortytwo.net/josh/things/CybU2QN"; // Arthur Dent
 
     private final ExtendoAgent agent;
@@ -36,7 +39,7 @@ public class DemoParticipant {
 
         agent = new ExtendoAgent(PARTICIPANT_URI, true);
 
-        agent.getQueryEngine().addQuery(Activities.QUERY_FOR_THINGS_POINTED_TO, new BindingSetHandler() {
+        agent.getQueryEngine().addQuery(QUERY_TTL, Activities.QUERY_FOR_THINGS_POINTED_TO, new BindingSetHandler() {
             @Override
             public void handle(BindingSet bindingSet) {
                 Value actor = bindingSet.getValue("actor");
