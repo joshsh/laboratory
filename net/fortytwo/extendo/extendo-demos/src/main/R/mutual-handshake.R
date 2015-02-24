@@ -321,7 +321,7 @@ abline(col="red", v=(s1 + (hand2.peaks-s2)*ratio))
 #low <- 500; high <- 1000
 #low <- 22500; high <- 23000
 low <- 10300; high <- 10700
-plot(x=hand1.peaks, y=hand1.peaks, xlim=c(low,high))
+plot(x=hand1.peaks, y=hand1.peaks, xlim=c(low,high), xlab="", ylab="", main="unpaired handshake peaks")
 abline(v=hand1.peaks)
 abline(col="red", v=(s1 + (hand2.peaks-s2)*ratio))
 

@@ -8,11 +8,14 @@ import net.fortytwo.extendo.rdf.Activities;
 import net.fortytwo.extendo.rdf.vocab.ExtendoActivityOntology;
 import net.fortytwo.extendo.rdf.vocab.FOAF;
 import net.fortytwo.rdfagents.model.Dataset;
+import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 import org.openrdf.query.BindingSet;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +48,7 @@ public class DemoParticipant {
         logger.info("sharing attention on " + focus);
 
         Dataset d = Activities.datasetForAttentionActivity(System.currentTimeMillis(), agent.getAgentUri(), focus);
-        agent.getQueryEngine().addStatements(Extendo.GESTURE_TTL, d.getStatements());
+        agent.getQueryEngine().addStatements(Extendo.GESTURE_TTL, toArray(d));
     }
 
     public DemoParticipant()
@@ -75,6 +78,12 @@ public class DemoParticipant {
                 }
             }
         });
+    }
+
+    private Statement[] toArray(Dataset d) {
+        Collection<Statement> c = d.getStatements();
+        Statement[] a = new Statement[c.size()];
+        return c.toArray(a);
     }
 
     public static void main(final String[] args) throws Exception {

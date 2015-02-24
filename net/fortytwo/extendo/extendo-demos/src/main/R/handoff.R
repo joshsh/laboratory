@@ -507,6 +507,9 @@ hand2.i1.ra.peaks <- find.peaks(hand2.i1.ra.mag, ma)
 plot(hand1.i2.ra.mag, type="l"); abline(col="blue", v=hand1.i2.ra.peaks); abline(col="red", v=hand1.i2.spikes);
 plot(hand2.i1.ra.mag, type="l"); abline(col="blue", v=hand2.i1.ra.peaks); abline(col="red", v=hand2.i1.spikes);
 
+# example of a single handoff
+plot(hand2.i1.ra.mag[530:950], x=(0:(950-530))*hand2.dt, type="l", xlab="time (s)", ylab="hand2 (giving) smoothed");
+abline(col="blue", v=hand2.dt*(hand2.i1.ra.peaks-530)); abline(col="red", v=hand2.dt*(hand2.i1.spikes-530));
 
 # unfortunately, the Arduino Nano's 2KB of memory makes a circular buffer infeasible,
 # so we are limited to the simple band-pass technique.  However, we will use the more accurate frequency estimate.

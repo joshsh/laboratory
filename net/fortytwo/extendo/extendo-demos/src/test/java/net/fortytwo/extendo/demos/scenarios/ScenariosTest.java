@@ -5,14 +5,17 @@ import edu.rpi.twc.sesamestream.QueryEngine;
 import edu.rpi.twc.sesamestream.SesameStream;
 import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
 import net.fortytwo.extendo.rdf.Activities;
+import net.fortytwo.rdfagents.model.Dataset;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.ValueFactoryImpl;
 import org.openrdf.query.BindingSet;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -78,7 +81,7 @@ public class ScenariosTest {
         // Arthur points to an object.  One solution.
 
         queryEngine.addStatements(TUPLE_TTL,
-                Activities.datasetForPointingGesture(now, arthur, book).getStatements());
+                toArray(Activities.datasetForPointingGesture(now, arthur, book)));
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
         assertEquals(6, queryEngine.get(QueryEngineImpl.Quantity.Statements));
@@ -93,7 +96,7 @@ public class ScenariosTest {
         // Arthur points to another object.  One more solution.
 
         queryEngine.addStatements(TUPLE_TTL,
-                Activities.datasetForPointingGesture(now, arthur, ford).getStatements());
+                toArray(Activities.datasetForPointingGesture(now, arthur, ford)));
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
         assertEquals(12, queryEngine.get(QueryEngineImpl.Quantity.Statements));
@@ -108,7 +111,7 @@ public class ScenariosTest {
         // Zaphod points to an object.  A third solution.
 
         queryEngine.addStatements(TUPLE_TTL,
-                Activities.datasetForPointingGesture(now, zaphod, book).getStatements());
+                toArray(Activities.datasetForPointingGesture(now, zaphod, book)));
 
         assertEquals(1, queryEngine.get(QueryEngineImpl.Quantity.Queries));
         assertEquals(18, queryEngine.get(QueryEngineImpl.Quantity.Statements));
@@ -118,4 +121,11 @@ public class ScenariosTest {
         assertEquals(zaphod, thingsPointedToResults.get(0).getValue("actor"));
         assertEquals(book, thingsPointedToResults.get(0).getValue("indicated"));
     }
+
+    private Statement[] toArray(Dataset d) {
+        Collection<Statement> c = d.getStatements();
+        Statement[] a = new Statement[c.size()];
+        return c.toArray(a);
+    }
+
 }

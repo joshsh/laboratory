@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import web
+import web  # sudo easy_install web.py
 
 urls = (
     '/test', 'test',
