@@ -3,13 +3,20 @@ package net.fortytwo.extendo.demos.eval;
 import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
 import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
+import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.rdf.Activities;
 import net.fortytwo.extendo.rdf.vocab.ExtendoActivityOntology;
 import net.fortytwo.extendo.rdf.vocab.FOAF;
 import net.fortytwo.extendo.rdf.vocab.Timeline;
 import net.fortytwo.rdfagents.model.Dataset;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.PosixParser;
 import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
+import org.openrdf.model.Value;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.URIImpl;
 import org.openrdf.model.impl.ValueFactoryImpl;
@@ -22,48 +29,49 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
+ * A simulation of a variable number of people moving between a variable number of rooms, as in a conference center
+ * equipped with Wi-Fi triangulation, occasionally shaking hands with other conference-goers.
+ * A SesameStream continuous SPARQL query engine combines event data from individuals to recognize possible handshakes
+ * and identify relationships between the conference-goers.
+ * The task of event processing is broken up by room to a variable number of worker threads.
+ *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class SesameStreamEvaluation {
+    private static final Logger logger = Extendo.getLogger(SesameStreamEvaluation.class);
 
     private static final String EX = "http://example.org/";
 
     private static final int
             QUERY_TTL = 0,
-            MAX_HALF_HANDSHAKE_TTL = 10,
-            HANDSHAKE_TTL = 5,
-            PRESENCE_TTL = 20;
+            MAX_HALF_HANDSHAKE_TTL = 6,
+            HANDSHAKE_TTL = 3;
 
     private static final int
-            TIME_STEP_MILLISECONDS = 15000,
             AVERAGE_SECONDS_BETWEEN_MOVES = 5 * 60,
             AVERAGE_SECONDS_BETWEEN_HANDSHAKES = 3 * 60;
 
     private static final int
-            MAX_PAPERS = 20,
-            MAX_TOPICS = 5,
-            MAX_PEOPLE_KNOWN = 18 * 2, // use around 8 for 100 total people, 12:200, 18:500, 25:1000 for 50% probability
-            TOTAL_PEOPLE = 500,
-            TOTAL_PLACES = 10;
+            MAX_PAPERS_PER_PERSON = 20,
+            MAX_TOPICS_PER_PAPER = 5;
 
     private static final double
-            PROB_TOPICS_IN_COMMON = 0.8,
-            PROB_MOVE = 1 - Math.pow(0.5,
-                    1.0 / (AVERAGE_SECONDS_BETWEEN_MOVES * 1000.0 / TIME_STEP_MILLISECONDS)),
-            PROB_HANDSHAKE = 1 - Math.pow(0.5,
-                    1.0 / (AVERAGE_SECONDS_BETWEEN_HANDSHAKES * 1000.0 / TIME_STEP_MILLISECONDS));
+            PROB_TOPICS_IN_COMMON = 0.8;
 
-    private Set<String> handshakesInProgress = new HashSet<String>();
+    // a set of handshakes, accessed by multiple threads, for distinguishing actual shakes from false positives
+    private Set<String> handshakesInProgress = newConcurrentSet();
 
     // e.g. 2015-02-22T01:35:10-0500
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
@@ -72,7 +80,7 @@ public class SesameStreamEvaluation {
     private static final String QUERY_FOR_HANDSHAKE_PAIRS
             = "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
             "PREFIX tl: <" + Timeline.NAMESPACE + ">\n" +
-            "SELECT ?actor1 ?actor2 ?place ?time1 ?time2 WHERE {\n" +
+            "SELECT ?actor1 ?actor2 ?room ?time1 ?time2 WHERE {\n" +
             "  ?a1 a activity:BatonGesture .\n" +
             "  ?a1 activity:actor ?actor1 .\n" +
             "  ?a1 activity:recognitionTime ?instant1 .\n" +
@@ -81,8 +89,8 @@ public class SesameStreamEvaluation {
             "  ?a2 activity:actor ?actor2 .\n" +
             "  ?a2 activity:recognitionTime ?instant2 .\n" +
             "  ?instant2 tl:at ?time2 .\n" +
-            "  ?actor1 activity:locatedAt ?place .\n" +
-            "  ?actor2 activity:locatedAt ?place .\n" +
+            "  ?actor1 activity:locatedAt ?room .\n" +
+            "  ?actor2 activity:locatedAt ?room .\n" +
             "  FILTER(?actor1 != ?actor2)\n" +
             "}";
     //*/
@@ -132,11 +140,11 @@ public class SesameStreamEvaluation {
     private final Random random = new Random();
 
     private final Person[] people;
-    private final Place[] places;
+    private final Room[] rooms;
     private final Topic[] topics;
 
-    private final long startTime;
-    private Long timeOfLastPulse, timeOfLastHandshake;
+    private ThreadLocal<Long> timeOfLastPulse = new ThreadLocal<Long>();
+    private ThreadLocal<Long> timeOfLastHandshake = new ThreadLocal<Long>();
 
     private int
             totalMoves,
@@ -147,8 +155,38 @@ public class SesameStreamEvaluation {
             totalReceivedHandshakesWithCommonTopics,
             totalReceivedHandshakesWithCommonKnows;
 
-    public SesameStreamEvaluation()
+    private final Object printMutex = "";
+
+    public SesameStreamEvaluation(final int totalThreads,
+                                  final int totalPeople,
+                                  final int totalRooms,
+                                  final Set<String> queries,
+                                  final int timeLimitSeconds)
             throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException {
+
+        if (totalThreads < 1) {
+            throw new IllegalArgumentException("invalid number of threads: " + totalThreads);
+        }
+
+        if (timeLimitSeconds < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        // these give around 50% probability of a common acquaintance
+        int[] x = new int[]{0, 100, 200, 500, 1000};
+        int[] y = new int[]{0, 8, 12, 18, 25};
+        Integer p = null;
+        for (int i = 0; i < x.length; i++) {
+            if (x[i] == totalPeople) {
+                p = y[i];
+                break;
+            } else if (x[i] > totalPeople) {
+                p = y[i - 1] + (int) (((totalPeople - x[i]) / (1.0 * (x[i] - x[i - 1]))) * (y[i] - y[i - 1]));
+                break;
+            }
+        }
+        int maxPeopleKnown = null == p ? (int) (y[x.length - 1] * totalPeople / (1.0 * x[x.length - 1])) : p;
+
         //SesameStream.setDoPerformanceMetrics(true);
 
         queryEngine = new QueryEngineImpl();
@@ -161,10 +199,16 @@ public class SesameStreamEvaluation {
 
                 long now = System.currentTimeMillis();
                 long time1;
+                Value timeValue = bindingSet.getValue("time1");
+                if (null == timeValue) {
+                    throw new IllegalStateException("no time1 in " + bindingSet);
+                }
                 try {
-                    time1 = DATE_FORMAT.parse(bindingSet.getValue("time1").stringValue()).getTime();
+                    time1 = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
                 } catch (ParseException e) {
-                    throw new IllegalStateException(e);
+                    throw new IllegalStateException("cound not parse as dateTime: " + timeValue.stringValue(), e);
+                } catch (NumberFormatException e) {
+                    throw new IllegalStateException("count not parse as dateTime: " + timeValue.stringValue() + " in solution " + bindingSet, e);
                 }
                 String actor1 = bindingSet.getValue("actor1").stringValue();
                 String actor2 = bindingSet.getValue("actor2").stringValue();
@@ -181,11 +225,7 @@ public class SesameStreamEvaluation {
                 if (handshakesInProgress.remove(key)) {
                     totalReceivedTruePositiveHalfshakePairs++;
 
-                    if (null != timeOfLastPulse) {
-                        long latency = now - timeOfLastPulse;
-                        timeOfLastPulse = null;
-                        System.out.println("pulse latency = " + latency + "ms");
-                    }
+                    findPulseLatency(now);
 
                     System.out.println("handshake pair: " + bindingSet);
                     Person person1 = people[Integer.valueOf(a1)];
@@ -196,53 +236,47 @@ public class SesameStreamEvaluation {
                         throw new IllegalStateException(e);
                     }
                 } else {
-                    System.out.println("no such handshake: " + key + " " + bindingSet);
+                    System.out.println("no such handshake: " + key);
                 }
             }
         });
 
-        /*
-        queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES, new BindingSetHandler() {
-            @Override
-            public void handle(BindingSet bindingSet) {
-                totalReceivedHandshakesWithCommonKnows++;
+        if (queries.contains("friends")) {
+            queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES, new BindingSetHandler() {
+                @Override
+                public void handle(BindingSet bindingSet) {
+                    totalReceivedHandshakesWithCommonKnows++;
 
-                if (null != timeOfLastHandshake) {
-                    long latency = System.currentTimeMillis() - timeOfLastHandshake;
-                    timeOfLastHandshake = null;
-                    System.out.println("handshake latency = " + latency + "ms");
+                    findHandshakeLatency(System.currentTimeMillis());
+
+                    System.out.println("GOT A 'KNOWS' HANDSHAKE: " + bindingSet);
                 }
+            });
+        }
 
-                System.out.println("GOT A 'KNOWS' HANDSHAKE: " + bindingSet);
-            }
-        });
-        //*/
+        if (queries.contains("topics")) {
+            queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS, new BindingSetHandler() {
+                @Override
+                public void handle(BindingSet bindingSet) {
+                    totalReceivedHandshakesWithCommonTopics++;
 
-        queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS, new BindingSetHandler() {
-            @Override
-            public void handle(BindingSet bindingSet) {
-                totalReceivedHandshakesWithCommonTopics++;
+                    findHandshakeLatency(System.currentTimeMillis());
 
-                if (null != timeOfLastHandshake) {
-                    long latency = System.currentTimeMillis() - timeOfLastHandshake;
-                    timeOfLastHandshake = null;
-                    System.out.println("handshake latency = " + latency + "ms");
+                    System.out.println("GOT A 'TOPICS' HANDSHAKE: " + bindingSet);
                 }
+            });
+        }
 
-                System.out.println("GOT A 'TOPICS' HANDSHAKE: " + bindingSet);
-            }
-        });
-
-        double averagePeopleKNown = (1 + MAX_PEOPLE_KNOWN) / 2;
-        double averagePapersPerPerson = (1 + MAX_PAPERS) / 2;
-        double averageTopicsPerPaper = (1 + MAX_TOPICS) / 2;
+        double averagePeopleKnown = (1 + maxPeopleKnown) / 2;
+        double averagePapersPerPerson = (1 + MAX_PAPERS_PER_PERSON) / 2;
+        double averageTopicsPerPaper = (1 + MAX_TOPICS_PER_PAPER) / 2;
         double averageTopicsPerPerson = averagePapersPerPerson * averageTopicsPerPaper;
         int nTopics = (int) (averageTopicsPerPerson
                 / (1 - Math.pow(1 - PROB_TOPICS_IN_COMMON, 1.0 / averageTopicsPerPerson)));
 
-        places = new Place[TOTAL_PLACES];
-        for (int i = 0; i < TOTAL_PLACES; i++) {
-            places[i] = new Place(i);
+        rooms = new Room[totalRooms];
+        for (int i = 0; i < totalRooms; i++) {
+            rooms[i] = new Room(i);
         }
 
         topics = new Topic[nTopics];
@@ -254,20 +288,20 @@ public class SesameStreamEvaluation {
         int totalTopics = 0;
         int totalKnown = 0;
 
-        long now = System.currentTimeMillis();
-        people = new Person[TOTAL_PEOPLE];
-        for (int i = 0; i < TOTAL_PEOPLE; i++) {
-            Person person = new Person(i);
+        long startTime = System.currentTimeMillis();
+        people = new Person[totalPeople];
+        for (int i = 0; i < totalPeople; i++) {
+            Person person = new Person(i, startTime);
             people[i] = person;
 
             // every person has at least one paper and at most MAX_PAPERS
-            int nPersonPapers = 1 + random.nextInt(MAX_PAPERS);
+            int nPersonPapers = 1 + random.nextInt(MAX_PAPERS_PER_PERSON);
             for (int j = 0; j < nPersonPapers; j++) {
                 Paper paper = new Paper(totalPapers++);
                 person.papers.add(paper);
 
                 // each paper has at least one topic and at most MAX_TOPICS
-                int nPaperTopics = 1 + random.nextInt(MAX_TOPICS);
+                int nPaperTopics = 1 + random.nextInt(MAX_TOPICS_PER_PAPER);
                 for (int k = 0; k < nPaperTopics; k++) {
                     Topic topic = topics[random.nextInt(nTopics)];
                     paper.topics.add(topic);
@@ -275,29 +309,31 @@ public class SesameStreamEvaluation {
                 }
             }
 
-            person.moveTo(randomPlace(), now);
+            // initial, uniform distribution of people over rooms
+            person.moveTo(randomRoom(), startTime);
         }
         for (Person person : people) {
-            int nKnown = 1 + random.nextInt(MAX_PEOPLE_KNOWN);
+            int nKnown = 1 + random.nextInt(maxPeopleKnown);
             for (int j = 0; j < nKnown; j++) {
-                Person other = people[random.nextInt(TOTAL_PEOPLE)];
+                Person other = people[random.nextInt(totalPeople)];
                 person.known.add(other);
             }
             totalKnown += nKnown;
         }
 
-        System.out.println("total people: " + TOTAL_PEOPLE);
-        System.out.println("total places: " + TOTAL_PLACES);
+        System.out.println("total people: " + totalPeople);
+        System.out.println("total rooms: " + totalRooms);
         System.out.println("total papers: " + totalPapers);
         System.out.println("total topics: " + nTopics);
+        System.out.println("maximum people known: " + maxPeopleKnown);
         System.out.println("average papers per person (projected): " + averagePapersPerPerson);
-        System.out.println("average papers per person (actual): " + (totalPapers / (1.0 * TOTAL_PEOPLE)));
+        System.out.println("average papers per person (actual): " + (totalPapers / (1.0 * totalPeople)));
         System.out.println("average topics per paper (projected): " + averageTopicsPerPaper);
         System.out.println("average topics per paper (actual): " + (totalTopics / (1.0 * totalPapers)));
         System.out.println("average topics per person (projected): " + averageTopicsPerPerson);
-        System.out.println("average topics per person (actual): " + (totalTopics / (1.0 * TOTAL_PEOPLE)));
-        System.out.println("average people known (projected): " + averagePeopleKNown);
-        System.out.println("average people known (actual): " + (totalKnown / (1.0 * TOTAL_PEOPLE)));
+        System.out.println("average topics per person (actual): " + (totalTopics / (1.0 * totalPeople)));
+        System.out.println("average people known (projected): " + averagePeopleKnown);
+        System.out.println("average people known (actual): " + (totalKnown / (1.0 * totalPeople)));
         System.out.println("probability of topics in common: " + PROB_TOPICS_IN_COMMON);
 
         // add static metadata
@@ -323,68 +359,17 @@ public class SesameStreamEvaluation {
             }
         }
 
-        startTime = System.currentTimeMillis();
-
-        long initialDelay = 0;
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleWithFixedDelay(new Runnable() {
-            public void run() {
-                long now = System.currentTimeMillis();
-                System.out.println("time step " + now);
-                for (Person p : people) {
-                    try {
-                        p.considerMoving(now);
-                        p.considerShakingHands();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                long after = System.currentTimeMillis();
-                if (after - now > TIME_STEP_MILLISECONDS) {
-                    System.err.println("WARNING: processing took longer (" + (after - now)
-                            + "ms) than time step (" + TIME_STEP_MILLISECONDS + "ms)");
-                }
 
-                long time = after - startTime;
-                double movesPerSecond = totalMoves * 1000.0 / time;
-                double halfshakesPerSecond = totalHalfshakes * 1000.0 / time;
-                double shakesPerSecond = totalShakes * 1000.0 / time;
-                double receivedHalfshakesPerSecond = (totalReceivedHalfshakePairs / 2) * 1000.0 / time;
-                double receivedHandshakesWithCommonTopicsPerSecond
-                        = (totalReceivedHandshakesWithCommonTopics / 2) * 1000.0 / time;
-                double receivedHandshakesWithCommonKnowsPerSecond
-                        = (totalReceivedHandshakesWithCommonKnows / 2) * 1000.0 / time;
-                double movePeriod = TOTAL_PEOPLE * time / (totalMoves * 1000.0);
-                double halfshakePeriod = TOTAL_PEOPLE * time / (totalHalfshakes * 1000.0);
-                double shakePeriod = TOTAL_PEOPLE * time / (totalShakes * 1000.0);
-                double receivedHalfshakePeriod = TOTAL_PEOPLE * time / ((totalReceivedHalfshakePairs / 2) * 1000.0);
-                double receivedTruePositiveHalfshakePeriod = TOTAL_PEOPLE * time
-                        / (totalReceivedTruePositiveHalfshakePairs * 1000.0);
-                double receivedHandshakesWithCommonTopicsPeriod = TOTAL_PEOPLE * time
-                        / ((totalReceivedHandshakesWithCommonTopics / 2) * 1000.0);
-                double receivedHandshakesWithCommonKnowsPeriod = TOTAL_PEOPLE * time
-                        / ((totalReceivedHandshakesWithCommonKnows / 2) * 1000.0);
-                System.out.println("average moves per second: " + movesPerSecond);
-                System.out.println("average half-shakes per second: " + halfshakesPerSecond);
-                System.out.println("average shakes per second: " + shakesPerSecond);
-                System.out.println("average received half-shakes per second: " + receivedHalfshakesPerSecond);
-                System.out.println("average received handshakes with common topics per second: "
-                        + receivedHandshakesWithCommonTopicsPerSecond);
-                System.out.println("average received handshakes with common knows per second: "
-                        + receivedHandshakesWithCommonKnowsPerSecond);
-                System.out.println("average time between moves, per person: " + movePeriod);
-                System.out.println("average time between half-shakes, per person: " + halfshakePeriod);
-                System.out.println("average time between shakes, per person: " + shakePeriod);
-                System.out.println("average time between received half-shake pairs, per person: "
-                        + receivedHalfshakePeriod);
-                System.out.println("average time between received true positive half-shake pairs, per person: "
-                        + receivedTruePositiveHalfshakePeriod);
-                System.out.println("average time between handshakes with common topics, per person: "
-                        + receivedHandshakesWithCommonTopicsPeriod);
-                System.out.println("average time between handshakes with common knows, per person: "
-                        + receivedHandshakesWithCommonKnowsPeriod);
-            }
-        }, initialDelay, TIME_STEP_MILLISECONDS, TimeUnit.MILLISECONDS);
+        if (0 < timeLimitSeconds) {
+            service.schedule(new Runnable() {
+                @Override
+                public void run() {
+                    logger.info("quitting simulation after configured time limit of " + timeLimitSeconds + "s");
+                    System.exit(0);
+                }
+            }, timeLimitSeconds, TimeUnit.SECONDS);
+        }
 
         /*
         service.scheduleWithFixedDelay(new Runnable() {
@@ -394,15 +379,148 @@ public class SesameStreamEvaluation {
             }
         }, initialDelay, 60, TimeUnit.SECONDS);
         //*/
+
+        startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < totalThreads; i++) {
+            int fromRoom = i * (totalRooms / totalThreads);
+            int toRoom = i == totalThreads - 1 ? totalRooms - 1 : (i + 1) * (totalRooms / totalThreads) - 1;
+            Simulation sim = new Simulation(i, startTime, totalPeople, fromRoom, toRoom);
+            new Thread(sim).start();
+        }
+    }
+
+    private synchronized void findPulseLatency(final long now) {
+        Long then = timeOfLastPulse.get();
+        if (null != then) {
+            long latency = now - then;
+            System.out.println("pulse latency = " + latency + "ms");
+            timeOfLastPulse.set(null);
+        }
+    }
+
+    private synchronized void findHandshakeLatency(final long now) {
+        Long then = timeOfLastHandshake.get();
+        if (null != then) {
+            long latency = now - then;
+            System.out.println("handshake latency = " + latency + "ms");
+            timeOfLastHandshake.set(null);
+        }
+    }
+
+    private class Simulation implements Runnable {
+        private final int index;
+        private final long startTime;
+        private final int totalPeople;
+        private final int fromRoom, toRoom;
+
+        private Simulation(int index, long startTime, int totalPeople, int fromRoom, int toRoom) {
+            System.out.println("creating simulation #" + index + " [" + fromRoom + ", " + toRoom + "]");
+            this.index = index;
+            this.startTime = startTime;
+            this.totalPeople = totalPeople;
+            this.fromRoom = fromRoom;
+            this.toRoom = toRoom;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("running simulation #" + index);
+            long lastTimeStep = startTime;
+            long lastReport = startTime;
+            try {
+                while (true) {
+                    long now = System.currentTimeMillis();
+                    long elapsed = now - lastTimeStep;
+
+                    // prevent cycles from becoming arbitrarily short and busy
+                    if (elapsed < 1000) {
+                        Thread.sleep(1000 - elapsed);
+                        now = System.currentTimeMillis();
+                        elapsed = now - lastTimeStep;
+                    }
+
+                    lastTimeStep = now;
+
+                    int presenceTtl = 1 + (int) ((elapsed * 1.5) / 1000);
+                    if (presenceTtl > 300) {
+                        throw new IllegalStateException("presence TTL is too large: " + presenceTtl);
+                    }
+
+                    for (int i = fromRoom; i <= toRoom; i++) {
+                        Room room = rooms[i];
+                        for (Person person : room.people) {
+                            try {
+                                person.considerMoving(now, presenceTtl);
+                                person.considerShakingHands(now);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    long after = System.currentTimeMillis();
+                    long time = after - now;
+
+                    synchronized (printMutex) {
+                        System.out.println("#" + index + " cycle from " + now + " to " + after + " took " + time + "ms");
+
+                        /*
+                        // output detailed stats only so often
+                        lastReport = after;
+                        if (after - lastReport >= 5000) {
+                            double movesPerSecond = totalMoves * 1000.0 / time;
+                            double halfshakesPerSecond = totalHalfshakes * 1000.0 / time;
+                            double shakesPerSecond = totalShakes * 1000.0 / time;
+                            double receivedHalfshakesPerSecond = (totalReceivedHalfshakePairs / 2) * 1000.0 / time;
+                            double receivedHandshakesWithCommonTopicsPerSecond
+                                    = (totalReceivedHandshakesWithCommonTopics / 2) * 1000.0 / time;
+                            double receivedHandshakesWithCommonKnowsPerSecond
+                                    = (totalReceivedHandshakesWithCommonKnows / 2) * 1000.0 / time;
+                            double movePeriod = totalPeople * time / (totalMoves * 1000.0);
+                            double halfshakePeriod = totalPeople * time / (totalHalfshakes * 1000.0);
+                            double shakePeriod = totalPeople * time / (totalShakes * 1000.0);
+                            double receivedHalfshakePeriod = totalPeople * time / ((totalReceivedHalfshakePairs / 2) * 1000.0);
+                            double receivedTruePositiveHalfshakePeriod = totalPeople * time
+                                    / (totalReceivedTruePositiveHalfshakePairs * 1000.0);
+                            double receivedHandshakesWithCommonTopicsPeriod = totalPeople * time
+                                    / ((totalReceivedHandshakesWithCommonTopics / 2) * 1000.0);
+                            double receivedHandshakesWithCommonKnowsPeriod = totalPeople * time
+                                    / ((totalReceivedHandshakesWithCommonKnows / 2) * 1000.0);
+
+                            System.out.println("average moves per second: " + movesPerSecond);
+                            System.out.println("average half-shakes per second: " + halfshakesPerSecond);
+                            System.out.println("average shakes per second: " + shakesPerSecond);
+                            System.out.println("average received half-shakes per second: " + receivedHalfshakesPerSecond);
+                            System.out.println("average received handshakes with common topics per second: "
+                                    + receivedHandshakesWithCommonTopicsPerSecond);
+                            System.out.println("average received handshakes with common knows per second: "
+                                    + receivedHandshakesWithCommonKnowsPerSecond);
+                            System.out.println("average seconds between moves, per person: " + movePeriod);
+                            System.out.println("average seconds between half-shakes, per person: " + halfshakePeriod);
+                            System.out.println("average seconds between shakes, per person: " + shakePeriod);
+                            System.out.println("average seconds between received half-shake pairs, per person: "
+                                    + receivedHalfshakePeriod);
+                            System.out.println("average seconds between received true positive half-shake pairs, per person: "
+                                    + receivedTruePositiveHalfshakePeriod);
+                            System.out.println("average seconds between handshakes with common topics, per person: "
+                                    + receivedHandshakesWithCommonTopicsPeriod);
+                            System.out.println("average seconds between handshakes with common knows, per person: "
+                                    + receivedHandshakesWithCommonKnowsPeriod);
+                        }
+                        //*/
+                    }
+                }
+            } catch (Throwable t) {
+                System.err.println("simulation thread died with error");
+                t.printStackTrace(System.err);
+            }
+        }
     }
 
     // star topology minimizes repeat handshakes
-    private Place randomPlace() {
-        return places[random.nextInt(places.length)];
-    }
-
-    public static void main(final String[] args) throws Exception {
-        new SesameStreamEvaluation();
+    private Room randomRoom() {
+        return rooms[random.nextInt(rooms.length)];
     }
 
     private String handshakeKey(final long now, final Person person1, final Person person2) {
@@ -427,7 +545,7 @@ public class SesameStreamEvaluation {
 
         Dataset d = Activities.datasetForHandshakeInteraction(now, person1.uri, person2.uri);
 
-        timeOfLastHandshake = System.currentTimeMillis();
+        timeOfLastHandshake.set(System.currentTimeMillis());
         queryEngine.addStatements(HANDSHAKE_TTL, toArray(d));
     }
 
@@ -447,21 +565,25 @@ public class SesameStreamEvaluation {
         Dataset d1 = Activities.datasetForBatonGesture(now, person1.uri);
         Dataset d2 = Activities.datasetForBatonGesture(now, person2.uri);
 
-        timeOfLastPulse = System.currentTimeMillis();
+        timeOfLastPulse.set(System.currentTimeMillis());
         queryEngine.addStatements(person1.halfHandshakeTtl, toArray(d1));
         queryEngine.addStatements(person2.halfHandshakeTtl, toArray(d2));
     }
 
-    private void presence(final Person person, final Place place) throws IOException {
+    private void presence(final Person person, final Room room, final int ttl) throws IOException {
         Statement st = vf.createStatement(
-                person.uri, vf.createURI(ExtendoActivityOntology.NAMESPACE + "locatedAt"), place.uri);
-        queryEngine.addStatements(PRESENCE_TTL, st);
+                person.uri, vf.createURI(ExtendoActivityOntology.NAMESPACE + "locatedAt"), room.uri);
+        queryEngine.addStatements(ttl, st);
     }
 
     private Statement[] toArray(final Dataset d) {
         Collection<Statement> c = d.getStatements();
         Statement[] a = new Statement[c.size()];
         return c.toArray(a);
+    }
+
+    private <T> Set<T> newConcurrentSet() {
+        return Collections.newSetFromMap(new ConcurrentHashMap<T, Boolean>());
     }
 
     private abstract class Thing {
@@ -496,15 +618,24 @@ public class SesameStreamEvaluation {
         private final Collection<Paper> papers = new LinkedList<Paper>();
         private final Collection<Person> known = new LinkedList<Person>();
 
-        private Long timeOfLastMove;
+        private Long
+                timeOfLastMove,
+                timeOfLastHandshake;
+        private long
+                timeLastConsideredMove,
+                timeLastConsideredHandshake;
 
-        private Place currentPlace;
+        private Room currentRoom;
 
-        private Person(final int id) {
+        private Person(final int id,
+                       final long startTime) {
             super(id);
 
             // note: avoids 0 as a value of TTL
             this.halfHandshakeTtl = 1 + random.nextInt(MAX_HALF_HANDSHAKE_TTL);
+
+            this.timeLastConsideredMove = startTime;
+            this.timeLastConsideredHandshake = startTime;
         }
 
         @Override
@@ -512,39 +643,53 @@ public class SesameStreamEvaluation {
             return "person";
         }
 
-        public void moveTo(final Place place, long now) throws IOException {
-            System.out.println(this + " is moving to " + place
+        public void moveTo(final Room room, long now) throws IOException {
+            System.out.println(this + " is moving to " + room
                     + (null == timeOfLastMove ? "" : (" after " + (now - timeOfLastMove) / 1000) + "s dwell time"));
             timeOfLastMove = now;
 
-            if (null != currentPlace) {
-                currentPlace.people.remove(this);
+            if (null != currentRoom) {
+                currentRoom.people.remove(this);
             }
 
-            currentPlace = place;
-            currentPlace.people.add(this);
+            currentRoom = room;
+            currentRoom.people.add(this);
         }
 
-        public void considerMoving(long now) throws IOException {
-            if (random.nextDouble() < PROB_MOVE) {
-                Place newPlace;
+        public void considerMoving(long now, int ttl) throws IOException {
+            long elapsed = now - timeLastConsideredMove;
+            timeLastConsideredMove = now;
+            double probMove = 1 - Math.pow(0.5,
+                    1.0 / (AVERAGE_SECONDS_BETWEEN_MOVES * 1000.0 / elapsed));
+
+            if (random.nextDouble() < probMove) {
+                Room newRoom;
                 do {
-                    newPlace = randomPlace();
-                } while (newPlace == currentPlace);
+                    newRoom = randomRoom();
+                } while (newRoom == currentRoom);
 
                 totalMoves++;
-                moveTo(randomPlace(), now);
+                moveTo(randomRoom(), now);
             }
 
             // refresh the person's current position, regardless of whether the person moved
-            presence(this, currentPlace);
+            presence(this, currentRoom, ttl);
         }
 
-        public void considerShakingHands() throws IOException {
-            if (random.nextDouble() < PROB_HANDSHAKE) {
-                if (currentPlace.people.size() > 0) {
+        public void considerShakingHands(long now) throws IOException {
+            long elapsed = now - timeLastConsideredHandshake;
+            timeLastConsideredHandshake = now;
+            double probHandshake = 1 - Math.pow(0.5,
+                    1.0 / (AVERAGE_SECONDS_BETWEEN_HANDSHAKES * 1000.0 / elapsed));
+
+            if (random.nextDouble() < probHandshake) {
+                if (currentRoom.people.size() > 0) {
+                    System.out.println(this + " is shaking hands"
+                            + (null == timeOfLastHandshake ? "" : (" after " + (now - timeOfLastHandshake) / 1000) + "s idle time"));
+                    timeOfLastHandshake = now;
+
                     // choose a single person in the newly entered space to shake hands with
-                    Person other = currentPlace.people.iterator().next();
+                    Person other = currentRoom.people.iterator().next();
 
                     halfHandshakes(this, other);
                 }
@@ -552,16 +697,17 @@ public class SesameStreamEvaluation {
         }
     }
 
-    private class Place extends Thing {
-        private final LinkedHashSet<Person> people = new LinkedHashSet<Person>();
+    private class Room extends Thing {
+        // note: needs to be thread-safe so the simulator threads can iterate over people while moves are in progress
+        private final Set<Person> people = newConcurrentSet();
 
-        private Place(final int id) {
+        private Room(final int id) {
             super(id);
         }
 
         @Override
         protected String type() {
-            return "place";
+            return "room";
         }
     }
 
@@ -587,5 +733,72 @@ public class SesameStreamEvaluation {
         protected String type() {
             return "topic";
         }
+    }
+
+    public static void main(final String[] args) throws Exception {
+        //new SesameStreamEvaluation(1000);
+
+        try {
+            Options options = new Options();
+
+            Option threadsOpt = new Option("t", "threads", true, "number of worker threads (default: 4)");
+            threadsOpt.setArgName("THREADS");
+            threadsOpt.setRequired(false);
+            options.addOption(threadsOpt);
+
+            Option peopleOpt = new Option("p", "people", true, "number of people (default: 100)");
+            peopleOpt.setArgName("PEOPLE");
+            peopleOpt.setRequired(false);
+            options.addOption(peopleOpt);
+
+            Option roomsOpt = new Option("r", "rooms", true, "number of rooms (default: 10)");
+            roomsOpt.setArgName("ROOMS");
+            roomsOpt.setRequired(false);
+            options.addOption(roomsOpt);
+
+            Option queriesOpt = new Option("q", "queries", true, "queries (default: topics)");
+            queriesOpt.setArgName("QUERIES");
+            queriesOpt.setRequired(false);
+            options.addOption(queriesOpt);
+
+            Option limitOpt = new Option("l", "limit", true, "time limit in seconds");
+            limitOpt.setArgName("LIMIT");
+            limitOpt.setRequired(false);
+            options.addOption(limitOpt);
+
+            CommandLineParser clp = new PosixParser();
+            CommandLine cmd = null;
+
+            try {
+                cmd = clp.parse(options, args);
+            } catch (org.apache.commons.cli.ParseException e) {
+                printUsageAndExit();
+            }
+
+            int nThreads = Integer.valueOf(cmd.getOptionValue(threadsOpt.getOpt(), "4"));
+            int nPeople = Integer.valueOf(cmd.getOptionValue(peopleOpt.getOpt(), "100"));
+            int nRooms = Integer.valueOf(cmd.getOptionValue(roomsOpt.getOpt(), "8"));
+            String queriesStr = cmd.getOptionValue(queriesOpt.getOpt(), "topics");
+            int timeLimitSeconds = Integer.valueOf(cmd.getOptionValue(limitOpt.getOpt(), "0"));
+
+            Set<String> queries = new HashSet<String>();
+            for (String q : queriesStr.split(";")) {
+                String query = q.trim();
+                if (0 == query.length()) {
+                    printUsageAndExit();
+                }
+                queries.add(query);
+            }
+
+            new SesameStreamEvaluation(nThreads, nPeople, nRooms, queries, timeLimitSeconds);
+        } catch (Throwable t) {
+            t.printStackTrace(System.err);
+            System.exit(1);
+        }
+    }
+
+    private static void printUsageAndExit() {
+        System.err.println("see source for usage");
+        System.exit(1);
     }
 }
