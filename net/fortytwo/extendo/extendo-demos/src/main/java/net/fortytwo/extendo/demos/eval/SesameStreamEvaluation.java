@@ -752,11 +752,13 @@ public class SesameStreamEvaluation {
     }
 
     public static void main(final String[] args) throws Exception {
+        /*
         Set<String> qs = new HashSet<String>();
         qs.add("topics");
         new SesameStreamEvaluation(1, 800, 8, qs, 0);
         if (true) return;
-
+        */
+        
         try {
             Options options = new Options();
 
