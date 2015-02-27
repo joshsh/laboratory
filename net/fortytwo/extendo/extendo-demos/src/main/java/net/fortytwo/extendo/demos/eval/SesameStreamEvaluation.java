@@ -425,7 +425,7 @@ public class SesameStreamEvaluation {
         private final int fromRoom, toRoom;
 
         private Simulation(int index, long startTime, int totalPeople, int fromRoom, int toRoom) {
-            System.out.println("creating simulation #" + index + " [" + fromRoom + ", " + toRoom + "]");
+            logger.info("creating simulation #" + index + " [" + fromRoom + ", " + toRoom + "]");
             this.index = index;
             this.startTime = startTime;
             this.totalPeople = totalPeople;
@@ -435,7 +435,7 @@ public class SesameStreamEvaluation {
 
         @Override
         public void run() {
-            System.out.println("running simulation #" + index);
+            logger.info("running simulation #" + index);
             long lastTimeStep = startTime;
             long lastReport = startTime;
             try {
@@ -457,12 +457,19 @@ public class SesameStreamEvaluation {
                         throw new IllegalStateException("presence TTL is too large: " + presenceTtl);
                     }
 
+                    long moveTime = 0, shakeTime = 0;
                     for (int i = fromRoom; i <= toRoom; i++) {
                         Room room = rooms[i];
                         for (Person person : room.people) {
                             try {
+                                long before = System.currentTimeMillis(), after;
                                 person.considerMoving(now, presenceTtl);
+                                after = System.currentTimeMillis();
+                                moveTime += (after - before);
+                                before = after;
                                 person.considerShakingHands(now);
+                                after = System.currentTimeMillis();
+                                shakeTime += (after - before);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -473,8 +480,8 @@ public class SesameStreamEvaluation {
                     long time = after - now;
 
                     synchronized (printMutex) {
-                        System.out.println("#" + index + " cycle from " + now + " to " + after + " took " + time + "ms");
-
+                        System.out.println("thread #" + index + " cycle from " + now + " to " + after + " took " + time + "ms");
+                        System.out.println("spent at most " + moveTime + "ms on moves and " + shakeTime + "ms on shakes");
                         /*
                         // output detailed stats only so often
                         lastReport = after;
@@ -522,8 +529,7 @@ public class SesameStreamEvaluation {
                     }
                 }
             } catch (Throwable t) {
-                System.err.println("simulation thread died with error");
-                t.printStackTrace(System.err);
+                logger.log(Level.SEVERE, "simulation thread died with error", t);
             }
         }
     }
@@ -746,7 +752,10 @@ public class SesameStreamEvaluation {
     }
 
     public static void main(final String[] args) throws Exception {
-        //new SesameStreamEvaluation(1000);
+        Set<String> qs = new HashSet<String>();
+        qs.add("topics");
+        new SesameStreamEvaluation(1, 800, 8, qs, 0);
+        if (true) return;
 
         try {
             Options options = new Options();
