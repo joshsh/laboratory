@@ -38,6 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -172,6 +173,10 @@ public class SesameStreamEvaluation {
             throw new IllegalArgumentException();
         }
 
+        if (totalRooms < 2) {
+            throw new IllegalArgumentException();
+        }
+
         // these give around 50% probability of a common acquaintance
         int[] x = new int[]{0, 100, 200, 500, 1000};
         int[] y = new int[]{0, 8, 12, 18, 25};
@@ -201,15 +206,20 @@ public class SesameStreamEvaluation {
                 long time1;
                 Value timeValue = bindingSet.getValue("time1");
                 if (null == timeValue) {
-                    throw new IllegalStateException("no time1 in " + bindingSet);
+                    logger.warning("no time1 in " + bindingSet);
+                    return;
                 }
                 try {
                     time1 = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
                 } catch (ParseException e) {
-                    throw new IllegalStateException("cound not parse as dateTime: " + timeValue.stringValue(), e);
+                    logger.log(Level.WARNING, "could not parse as dateTime: " + timeValue.stringValue(), e);
+                    return;
                 } catch (NumberFormatException e) {
-                    throw new IllegalStateException("count not parse as dateTime: " + timeValue.stringValue() + " in solution " + bindingSet, e);
+                    logger.log(Level.WARNING, "count not parse as dateTime: " + timeValue.stringValue()
+                            + " in solution " + bindingSet, e);
+                    return;
                 }
+
                 String actor1 = bindingSet.getValue("actor1").stringValue();
                 String actor2 = bindingSet.getValue("actor2").stringValue();
                 String a1 = actor1.substring(actor1.lastIndexOf("n") + 1);
@@ -660,7 +670,7 @@ public class SesameStreamEvaluation {
             long elapsed = now - timeLastConsideredMove;
             timeLastConsideredMove = now;
             double probMove = 1 - Math.pow(0.5,
-                    1.0 / (AVERAGE_SECONDS_BETWEEN_MOVES * 1000.0 / elapsed));
+                    elapsed / (AVERAGE_SECONDS_BETWEEN_MOVES * 1000.0));
 
             if (random.nextDouble() < probMove) {
                 Room newRoom;
@@ -680,7 +690,7 @@ public class SesameStreamEvaluation {
             long elapsed = now - timeLastConsideredHandshake;
             timeLastConsideredHandshake = now;
             double probHandshake = 1 - Math.pow(0.5,
-                    1.0 / (AVERAGE_SECONDS_BETWEEN_HANDSHAKES * 1000.0 / elapsed));
+                    elapsed / (AVERAGE_SECONDS_BETWEEN_HANDSHAKES * 1000.0));
 
             if (random.nextDouble() < probHandshake) {
                 if (currentRoom.people.size() > 0) {
