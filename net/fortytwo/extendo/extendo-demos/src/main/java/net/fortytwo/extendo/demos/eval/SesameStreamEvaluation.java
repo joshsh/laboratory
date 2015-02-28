@@ -211,12 +211,9 @@ public class SesameStreamEvaluation {
                 }
                 try {
                     time1 = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
-                } catch (ParseException e) {
-                    logger.log(Level.WARNING, "could not parse as dateTime: " + timeValue.stringValue(), e);
-                    return;
-                } catch (NumberFormatException e) {
+                } catch (Throwable t) {
                     logger.log(Level.WARNING, "count not parse as dateTime: " + timeValue.stringValue()
-                            + " in solution " + bindingSet, e);
+                            + " in solution " + bindingSet, t);
                     return;
                 }
 
@@ -463,13 +460,15 @@ public class SesameStreamEvaluation {
                         for (Person person : room.people) {
                             try {
                                 long before = System.currentTimeMillis(), after;
-                                person.considerMoving(now, presenceTtl);
-                                after = System.currentTimeMillis();
-                                moveTime += (after - before);
-                                before = after;
                                 person.considerShakingHands(now);
                                 after = System.currentTimeMillis();
                                 shakeTime += (after - before);
+
+                                // note: move last, as this may put the person under the control of another thread
+                                before = after;
+                                person.considerMoving(now, presenceTtl);
+                                after = System.currentTimeMillis();
+                                moveTime += (after - before);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -758,7 +757,7 @@ public class SesameStreamEvaluation {
         new SesameStreamEvaluation(1, 800, 8, qs, 0);
         if (true) return;
         */
-        
+
         try {
             Options options = new Options();
 
