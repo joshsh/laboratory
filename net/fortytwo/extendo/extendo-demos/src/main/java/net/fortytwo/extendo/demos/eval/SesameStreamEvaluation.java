@@ -684,7 +684,7 @@ public class SesameStreamEvaluation {
                 } while (newRoom == currentRoom);
 
                 totalMoves++;
-                moveTo(randomRoom(), now);
+                moveTo(newRoom, now);
             }
 
             // refresh the person's current position, regardless of whether the person moved
