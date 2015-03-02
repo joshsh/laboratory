@@ -26,7 +26,6 @@ import org.openrdf.query.BindingSet;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
@@ -57,12 +56,12 @@ public class SesameStreamEvaluation {
 
     private static final int
             QUERY_TTL = 0,
-            MAX_HALF_HANDSHAKE_TTL = 6,
+            MAX_HALF_HANDSHAKE_TTL = 5,
             HANDSHAKE_TTL = 3;
 
-    private static final int
-            AVERAGE_SECONDS_BETWEEN_MOVES = 5 * 60,
-            AVERAGE_SECONDS_BETWEEN_HANDSHAKES = 3 * 60;
+    private static final long
+            AVERAGE_MILLISECONDS_BETWEEN_MOVES = 5 * 60 * 1000,
+            AVERAGE_MILLISECONDS_BETWEEN_HANDSHAKES = 3 * 60 * 1000;
 
     private static final int
             MAX_PAPERS_PER_PERSON = 20,
@@ -82,11 +81,11 @@ public class SesameStreamEvaluation {
             = "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
             "PREFIX tl: <" + Timeline.NAMESPACE + ">\n" +
             "SELECT ?actor1 ?actor2 ?room ?time1 ?time2 WHERE {\n" +
-            "  ?a1 a activity:BatonGesture .\n" +
+            "  ?a1 a activity:HandshakePulse .\n" +
             "  ?a1 activity:actor ?actor1 .\n" +
             "  ?a1 activity:recognitionTime ?instant1 .\n" +
             "  ?instant1 tl:at ?time1 .\n" +
-            "  ?a2 a activity:BatonGesture .\n" +
+            "  ?a2 a activity:HandshakePulse .\n" +
             "  ?a2 activity:actor ?actor2 .\n" +
             "  ?a2 activity:recognitionTime ?instant2 .\n" +
             "  ?instant2 tl:at ?time2 .\n" +
@@ -577,8 +576,23 @@ public class SesameStreamEvaluation {
         System.out.println(person1 + " half-shakes with " + person2 + " --> " + handshakesInProgress.size() + " " + key);
 
         // note: the fact that the gestures occur at *exactly* the same moment is unimportant
-        Dataset d1 = Activities.datasetForBatonGesture(now, person1.uri);
-        Dataset d2 = Activities.datasetForBatonGesture(now, person2.uri);
+        Dataset d1 = Activities.datasetForHandshakePulse(now, person1.uri);
+        Dataset d2 = Activities.datasetForHandshakePulse(now, person2.uri);
+
+        /*
+        try {
+            RDFWriter w = Rio.createWriter(RDFFormat.NTRIPLES, System.out);
+            w.startRDF();
+            for (Statement s : d1.getStatements()) {
+                w.handleStatement(s);
+            }
+            w.endRDF();
+        } catch (Throwable t) {
+            logger.severe(t.getMessage());
+            System.exit(1);
+        }
+        System.exit(0);
+        */
 
         timeOfLastPulse.set(System.currentTimeMillis());
         queryEngine.addStatements(person1.halfHandshakeTtl, toArray(d1));
@@ -595,6 +609,11 @@ public class SesameStreamEvaluation {
         Collection<Statement> c = d.getStatements();
         Statement[] a = new Statement[c.size()];
         return c.toArray(a);
+    }
+
+    private boolean doTransition(final long averageDwellTime, final long cycleLength) {
+        double probMove = 1.0 - Math.pow(0.5, cycleLength * Math.sqrt(2) / averageDwellTime);
+        return random.nextDouble() < probMove;
     }
 
     private <T> Set<T> newConcurrentSet() {
@@ -674,10 +693,8 @@ public class SesameStreamEvaluation {
         public void considerMoving(long now, int ttl) throws IOException {
             long elapsed = now - timeLastConsideredMove;
             timeLastConsideredMove = now;
-            double probMove = 1 - Math.pow(0.5,
-                    elapsed / (AVERAGE_SECONDS_BETWEEN_MOVES * 1000.0));
 
-            if (random.nextDouble() < probMove) {
+            if (doTransition(AVERAGE_MILLISECONDS_BETWEEN_MOVES, elapsed)) {
                 Room newRoom;
                 do {
                     newRoom = randomRoom();
@@ -694,10 +711,8 @@ public class SesameStreamEvaluation {
         public void considerShakingHands(long now) throws IOException {
             long elapsed = now - timeLastConsideredHandshake;
             timeLastConsideredHandshake = now;
-            double probHandshake = 1 - Math.pow(0.5,
-                    elapsed / (AVERAGE_SECONDS_BETWEEN_HANDSHAKES * 1000.0));
 
-            if (random.nextDouble() < probHandshake) {
+            if (doTransition(AVERAGE_MILLISECONDS_BETWEEN_HANDSHAKES, elapsed)) {
                 if (currentRoom.people.size() > 0) {
                     System.out.println(this + " is shaking hands"
                             + (null == timeOfLastHandshake ? "" : (" after " + (now - timeOfLastHandshake) / 1000) + "s idle time"));
@@ -754,9 +769,9 @@ public class SesameStreamEvaluation {
         /*
         Set<String> qs = new HashSet<String>();
         qs.add("topics");
-        new SesameStreamEvaluation(1, 800, 8, qs, 0);
+        new SesameStreamEvaluation(1, 400, 8, qs, 0);
         if (true) return;
-        */
+        //*/
 
         try {
             Options options = new Options();
