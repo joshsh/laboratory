@@ -70,6 +70,8 @@ public class SesameStreamEvaluation {
     private static final double
             PROB_TOPICS_IN_COMMON = 0.8;
 
+    private static final long CYCLE_LENGTH_WARN_THRESHOLD = 1000L;
+
     // a set of handshakes, accessed by multiple threads, for distinguishing actual shakes from false positives
     private Set<String> handshakesInProgress = newConcurrentSet();
 
@@ -436,6 +438,7 @@ public class SesameStreamEvaluation {
             long lastReport = startTime;
             try {
                 while (true) {
+                    int totalPeople = 0;
                     long now = System.currentTimeMillis();
                     long elapsed = now - lastTimeStep;
 
@@ -456,22 +459,30 @@ public class SesameStreamEvaluation {
                     long moveTime = 0, shakeTime = 0;
                     for (int i = fromRoom; i <= toRoom; i++) {
                         Room room = rooms[i];
+                        //System.out.println("room #" + i + " has " + room.people.size() + " people");
+                        long before = System.currentTimeMillis(), after;
                         for (Person person : room.people) {
+                            totalPeople++;
                             try {
-                                long before = System.currentTimeMillis(), after;
                                 person.considerShakingHands(now);
-                                after = System.currentTimeMillis();
-                                shakeTime += (after - before);
-
-                                // note: move last, as this may put the person under the control of another thread
-                                before = after;
-                                person.considerMoving(now, presenceTtl);
-                                after = System.currentTimeMillis();
-                                moveTime += (after - before);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
+                        after = System.currentTimeMillis();
+                        shakeTime += (after - before);
+
+                        // note: move last, as this may put the person under the control of another thread
+                        before = after;
+                        for (Person person : room.people) {
+                            try {
+                                person.considerMoving(now, presenceTtl);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        after = System.currentTimeMillis();
+                        moveTime += (after - before);
                     }
 
                     long after = System.currentTimeMillis();
@@ -480,6 +491,10 @@ public class SesameStreamEvaluation {
                     synchronized (printMutex) {
                         System.out.println("thread #" + index + " cycle from " + now + " to " + after + " took " + time + "ms");
                         System.out.println("spent at most " + moveTime + "ms on moves and " + shakeTime + "ms on shakes");
+                        System.out.println("total people in thread #" + index + ": " + totalPeople);
+                        if (time > CYCLE_LENGTH_WARN_THRESHOLD) {
+                            logger.warning("long cycle: " + time + "ms");
+                        }
                         /*
                         // output detailed stats only so often
                         lastReport = after;
