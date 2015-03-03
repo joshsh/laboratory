@@ -148,23 +148,27 @@ public class SesameStreamEvaluation {
     private ThreadLocal<Long> timeOfLastPulse = new ThreadLocal<Long>();
     private ThreadLocal<Long> timeOfLastHandshake = new ThreadLocal<Long>();
 
-    private int
-            totalMoves,
-            totalHalfshakes,
-            totalShakes,
-            totalReceivedHalfshakePairs,
-            totalReceivedTruePositiveHalfshakePairs,
-            totalReceivedHandshakesWithCommonTopics,
-            totalReceivedHandshakesWithCommonKnows;
+    private ThreadLocal<Integer> countOfMoves = new ThreadLocal<Integer>();
+    private ThreadLocal<Integer> countOfPulses = new ThreadLocal<Integer>();
+    private ThreadLocal<Integer> countOfHandshakes = new ThreadLocal<Integer>();
+    private ThreadLocal<Integer> countOfReceivedPulses = new ThreadLocal<Integer>();
+    private ThreadLocal<Integer> countOfTrueReceivedPulses = new ThreadLocal<Integer>();
+    private ThreadLocal<Integer> countOfReceivedHandshakesWithCommonKnows = new ThreadLocal<Integer>();
+    private ThreadLocal<Integer> countOfReceivedHandshakesWithCommonTopics = new ThreadLocal<Integer>();
 
     private final Object printMutex = "";
 
-    public SesameStreamEvaluation(final int totalThreads,
+    private final boolean verbose;
+
+    public SesameStreamEvaluation(final boolean verbose,
+                                  final int totalThreads,
                                   final int totalPeople,
                                   final int totalRooms,
                                   final Set<String> queries,
                                   final int timeLimitSeconds)
             throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException {
+
+        this.verbose = verbose;
 
         if (totalThreads < 1) {
             throw new IllegalArgumentException("invalid number of threads: " + totalThreads);
@@ -201,7 +205,7 @@ public class SesameStreamEvaluation {
         queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_PAIRS, new BindingSetHandler() {
             @Override
             public void handle(BindingSet bindingSet) {
-                totalReceivedHalfshakePairs++;
+                increment(countOfReceivedPulses);
 
                 long now = System.currentTimeMillis();
                 long time1;
@@ -231,11 +235,13 @@ public class SesameStreamEvaluation {
                 String key = "" + time1 + ":" + a1 + ":" + a2;
 
                 if (handshakesInProgress.remove(key)) {
-                    totalReceivedTruePositiveHalfshakePairs++;
+                    increment(countOfTrueReceivedPulses);
 
                     findPulseLatency(now);
 
-                    System.out.println("handshake pair: " + bindingSet);
+                    if (verbose) {
+                        System.out.println("handshake pair: " + bindingSet);
+                    }
                     Person person1 = people[Integer.valueOf(a1)];
                     Person person2 = people[Integer.valueOf(a2)];
                     try {
@@ -243,7 +249,7 @@ public class SesameStreamEvaluation {
                     } catch (IOException e) {
                         throw new IllegalStateException(e);
                     }
-                } else {
+                } else if (verbose) {
                     System.out.println("no such handshake: " + key);
                 }
             }
@@ -253,11 +259,13 @@ public class SesameStreamEvaluation {
             queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES, new BindingSetHandler() {
                 @Override
                 public void handle(BindingSet bindingSet) {
-                    totalReceivedHandshakesWithCommonKnows++;
+                    increment(countOfReceivedHandshakesWithCommonKnows);
 
                     findHandshakeLatency(System.currentTimeMillis());
 
-                    System.out.println("GOT A 'KNOWS' HANDSHAKE: " + bindingSet);
+                    if (verbose) {
+                        System.out.println("GOT A 'KNOWS' HANDSHAKE: " + bindingSet);
+                    }
                 }
             });
         }
@@ -266,11 +274,13 @@ public class SesameStreamEvaluation {
             queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS, new BindingSetHandler() {
                 @Override
                 public void handle(BindingSet bindingSet) {
-                    totalReceivedHandshakesWithCommonTopics++;
+                    increment(countOfReceivedHandshakesWithCommonTopics);
 
                     findHandshakeLatency(System.currentTimeMillis());
 
-                    System.out.println("GOT A 'TOPICS' HANDSHAKE: " + bindingSet);
+                    if (verbose) {
+                        System.out.println("GOT A 'TOPICS' HANDSHAKE: " + bindingSet);
+                    }
                 }
             });
         }
@@ -398,6 +408,16 @@ public class SesameStreamEvaluation {
         }
     }
 
+    private synchronized int getCount(final ThreadLocal<Integer> counter) {
+        Integer i = counter.get();
+        return null == i ? 0 : i;
+    }
+
+    private synchronized void increment(final ThreadLocal<Integer> counter) {
+        Integer i = counter.get();
+        counter.set(null == i ? 1 : i + 1);
+    }
+
     private synchronized void findPulseLatency(final long now) {
         Long then = timeOfLastPulse.get();
         if (null != then) {
@@ -438,7 +458,7 @@ public class SesameStreamEvaluation {
             long lastReport = startTime;
             try {
                 while (true) {
-                    int totalPeople = 0;
+                    //int totalPeople = 0;
                     long now = System.currentTimeMillis();
                     long elapsed = now - lastTimeStep;
 
@@ -462,7 +482,7 @@ public class SesameStreamEvaluation {
                         //System.out.println("room #" + i + " has " + room.people.size() + " people");
                         long before = System.currentTimeMillis(), after;
                         for (Person person : room.people) {
-                            totalPeople++;
+                            //totalPeople++;
                             try {
                                 person.considerShakingHands(now);
                             } catch (IOException e) {
@@ -488,35 +508,45 @@ public class SesameStreamEvaluation {
                     long after = System.currentTimeMillis();
                     long time = after - now;
 
-                    synchronized (printMutex) {
-                        System.out.println("thread #" + index + " cycle from " + now + " to " + after + " took " + time + "ms");
-                        System.out.println("spent at most " + moveTime + "ms on moves and " + shakeTime + "ms on shakes");
-                        System.out.println("total people in thread #" + index + ": " + totalPeople);
-                        if (time > CYCLE_LENGTH_WARN_THRESHOLD) {
-                            logger.warning("long cycle: " + time + "ms");
-                        }
-                        /*
-                        // output detailed stats only so often
+                    // output detailed stats only so often
+                    if (after - lastReport >= 5000) {
                         lastReport = after;
-                        if (after - lastReport >= 5000) {
-                            double movesPerSecond = totalMoves * 1000.0 / time;
-                            double halfshakesPerSecond = totalHalfshakes * 1000.0 / time;
-                            double shakesPerSecond = totalShakes * 1000.0 / time;
-                            double receivedHalfshakesPerSecond = (totalReceivedHalfshakePairs / 2) * 1000.0 / time;
+
+                        synchronized (printMutex) {
+                            System.out.println("thread #" + index + " cycle from " + now + " to " + after + " took " + time + "ms");
+                            System.out.println("spent at most " + moveTime + "ms on moves and " + shakeTime + "ms on shakes");
+                            //System.out.println("total people in thread #" + index + ": " + totalPeople);
+                            if (time > CYCLE_LENGTH_WARN_THRESHOLD) {
+                                logger.warning("long cycle: " + time + "ms");
+                            }
+
+                            System.out.println("moves this cycle: " + countOfMoves.get());
+                            System.out.println("pulses this cycle: " + countOfPulses.get());
+                            System.out.println("received pulses this cycle: " + countOfReceivedPulses.get());
+                            System.out.println("true received pulses this cycle: " + countOfTrueReceivedPulses.get());
+                            System.out.println("handshakes this cycle: " + countOfHandshakes.get());
+                            System.out.println("received common-knows handshakes this cycle: " + countOfReceivedHandshakesWithCommonKnows.get());
+                            System.out.println("received common-topics handshakes this cycle: " + countOfReceivedHandshakesWithCommonTopics.get());
+
+                            /*
+                            double movesPerSecond = countOfMoves.get() * 1000.0 / time;
+                            double halfshakesPerSecond = countOfPulses.get() * 1000.0 / time;
+                            double shakesPerSecond = countOfHandshakes.get() * 1000.0 / time;
+                            double receivedHalfshakesPerSecond = (countOfReceivedPulses.get() / 2) * 1000.0 / time;
                             double receivedHandshakesWithCommonTopicsPerSecond
-                                    = (totalReceivedHandshakesWithCommonTopics / 2) * 1000.0 / time;
+                                    = (countOfReceivedHandshakesWithCommonTopics.get() / 2) * 1000.0 / time;
                             double receivedHandshakesWithCommonKnowsPerSecond
-                                    = (totalReceivedHandshakesWithCommonKnows / 2) * 1000.0 / time;
-                            double movePeriod = totalPeople * time / (totalMoves * 1000.0);
-                            double halfshakePeriod = totalPeople * time / (totalHalfshakes * 1000.0);
-                            double shakePeriod = totalPeople * time / (totalShakes * 1000.0);
-                            double receivedHalfshakePeriod = totalPeople * time / ((totalReceivedHalfshakePairs / 2) * 1000.0);
+                                    = (countOfReceivedHandshakesWithCommonKnows.get() / 2) * 1000.0 / time;
+                            double movePeriod = totalPeople * time / (countOfMoves.get() * 1000.0);
+                            double halfshakePeriod = totalPeople * time / (countOfPulses.get() * 1000.0);
+                            double shakePeriod = totalPeople * time / (countOfHandshakes.get() * 1000.0);
+                            double receivedHalfshakePeriod = totalPeople * time / ((countOfReceivedPulses.get() / 2) * 1000.0);
                             double receivedTruePositiveHalfshakePeriod = totalPeople * time
-                                    / (totalReceivedTruePositiveHalfshakePairs * 1000.0);
+                                    / (countOfTrueReceivedPulses.get() * 1000.0);
                             double receivedHandshakesWithCommonTopicsPeriod = totalPeople * time
-                                    / ((totalReceivedHandshakesWithCommonTopics / 2) * 1000.0);
+                                    / ((countOfReceivedHandshakesWithCommonTopics.get() / 2) * 1000.0);
                             double receivedHandshakesWithCommonKnowsPeriod = totalPeople * time
-                                    / ((totalReceivedHandshakesWithCommonKnows / 2) * 1000.0);
+                                    / ((countOfReceivedHandshakesWithCommonKnows.get() / 2) * 1000.0);
 
                             System.out.println("average moves per second: " + movesPerSecond);
                             System.out.println("average half-shakes per second: " + halfshakesPerSecond);
@@ -537,9 +567,17 @@ public class SesameStreamEvaluation {
                                     + receivedHandshakesWithCommonTopicsPeriod);
                             System.out.println("average seconds between handshakes with common knows, per person: "
                                     + receivedHandshakesWithCommonKnowsPeriod);
+                                    */
                         }
-                        //*/
                     }
+
+                    countOfMoves.set(0);
+                    countOfPulses.set(0);
+                    countOfHandshakes.set(0);
+                    countOfReceivedPulses.set(0);
+                    countOfTrueReceivedPulses.set(0);
+                    countOfReceivedHandshakesWithCommonKnows.set(0);
+                    countOfReceivedHandshakesWithCommonTopics.set(0);
                 }
             } catch (Throwable t) {
                 logger.log(Level.SEVERE, "simulation thread died with error", t);
@@ -566,9 +604,11 @@ public class SesameStreamEvaluation {
     }
 
     private void handshake(final Person person1, final Person person2) throws IOException {
-        totalShakes++;
+        increment(countOfHandshakes);
 
-        System.out.println(person1 + " SHAKES with " + person2);
+        if (verbose) {
+            System.out.println(person1 + " SHAKES with " + person2);
+        }
 
         long now = System.currentTimeMillis();
 
@@ -579,7 +619,7 @@ public class SesameStreamEvaluation {
     }
 
     private void halfHandshakes(final Person person1, final Person person2) throws IOException {
-        totalHalfshakes++;
+        increment(countOfPulses);
 
         long now = System.currentTimeMillis();
 
@@ -588,7 +628,10 @@ public class SesameStreamEvaluation {
             throw new IllegalStateException();
         }
         handshakesInProgress.add(key);
-        System.out.println(person1 + " half-shakes with " + person2 + " --> " + handshakesInProgress.size() + " " + key);
+
+        if (verbose) {
+            System.out.println(person1 + " half-shakes with " + person2 + " --> " + handshakesInProgress.size() + " " + key);
+        }
 
         // note: the fact that the gestures occur at *exactly* the same moment is unimportant
         Dataset d1 = Activities.datasetForHandshakePulse(now, person1.uri);
@@ -693,8 +736,11 @@ public class SesameStreamEvaluation {
         }
 
         public void moveTo(final Room room, long now) throws IOException {
-            System.out.println(this + " is moving to " + room
-                    + (null == timeOfLastMove ? "" : (" after " + (now - timeOfLastMove) / 1000) + "s dwell time"));
+            //if (verbose) {
+                System.out.println(this + " is moving to " + room
+                        + (null == timeOfLastMove ? "" : (" after " + (now - timeOfLastMove) / 1000) + "s dwell time"));
+            //}
+
             timeOfLastMove = now;
 
             if (null != currentRoom) {
@@ -715,7 +761,7 @@ public class SesameStreamEvaluation {
                     newRoom = randomRoom();
                 } while (newRoom == currentRoom);
 
-                totalMoves++;
+                increment(countOfMoves);
                 moveTo(newRoom, now);
             }
 
@@ -729,8 +775,11 @@ public class SesameStreamEvaluation {
 
             if (doTransition(AVERAGE_MILLISECONDS_BETWEEN_HANDSHAKES, elapsed)) {
                 if (currentRoom.people.size() > 0) {
-                    System.out.println(this + " is shaking hands"
-                            + (null == timeOfLastHandshake ? "" : (" after " + (now - timeOfLastHandshake) / 1000) + "s idle time"));
+                    //if (verbose) {
+                        System.out.println(this + " is shaking hands"
+                                + (null == timeOfLastHandshake ? "" : (" after " + (now - timeOfLastHandshake) / 1000) + "s idle time"));
+                    //}
+
                     timeOfLastHandshake = now;
 
                     // choose a single person in the newly entered space to shake hands with
@@ -816,6 +865,10 @@ public class SesameStreamEvaluation {
             limitOpt.setRequired(false);
             options.addOption(limitOpt);
 
+            Option verboseOpt = new Option("v", "verbose", false, "verbose output");
+            verboseOpt.setRequired(false);
+            options.addOption(verboseOpt);
+
             CommandLineParser clp = new PosixParser();
             CommandLine cmd = null;
 
@@ -830,6 +883,7 @@ public class SesameStreamEvaluation {
             int nRooms = Integer.valueOf(cmd.getOptionValue(roomsOpt.getOpt(), "8"));
             String queriesStr = cmd.getOptionValue(queriesOpt.getOpt(), "topics");
             int timeLimitSeconds = Integer.valueOf(cmd.getOptionValue(limitOpt.getOpt(), "0"));
+            boolean verbose = cmd.hasOption(verboseOpt.getOpt());
 
             Set<String> queries = new HashSet<String>();
             for (String q : queriesStr.split(";")) {
@@ -840,7 +894,7 @@ public class SesameStreamEvaluation {
                 queries.add(query);
             }
 
-            new SesameStreamEvaluation(nThreads, nPeople, nRooms, queries, timeLimitSeconds);
+            new SesameStreamEvaluation(verbose, nThreads, nPeople, nRooms, queries, timeLimitSeconds);
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
