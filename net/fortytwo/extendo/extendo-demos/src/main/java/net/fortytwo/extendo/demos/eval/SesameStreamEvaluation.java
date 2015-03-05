@@ -59,10 +59,6 @@ public class SesameStreamEvaluation {
             MAX_HALF_HANDSHAKE_TTL = 5,
             HANDSHAKE_TTL = 3;
 
-    private static final long
-            AVERAGE_MILLISECONDS_BETWEEN_MOVES = 5 * 60 * 1000,
-            AVERAGE_MILLISECONDS_BETWEEN_HANDSHAKES = 3 * 60 * 1000;
-
     private static final int
             MAX_PAPERS_PER_PERSON = 20,
             MAX_TOPICS_PER_PAPER = 5;
@@ -71,6 +67,13 @@ public class SesameStreamEvaluation {
             PROB_TOPICS_IN_COMMON = 0.8;
 
     private static final long CYCLE_LENGTH_WARN_THRESHOLD = 1000L;
+
+
+    private final long
+            averageMillisecondsBetweenMoves,
+            averageMillisecondsBetweenHandshakes;
+
+    private final int presenceTtl;
 
     // a set of handshakes, accessed by multiple threads, for distinguishing actual shakes from false positives
     private Set<String> handshakesInProgress = newConcurrentSet();
@@ -165,6 +168,8 @@ public class SesameStreamEvaluation {
                                   final int totalPeople,
                                   final int totalRooms,
                                   final Set<String> queries,
+                                  final int moveTime,
+                                  final int shakeTIme,
                                   final int timeLimitSeconds)
             throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException {
 
@@ -181,6 +186,11 @@ public class SesameStreamEvaluation {
         if (totalRooms < 2) {
             throw new IllegalArgumentException();
         }
+
+        averageMillisecondsBetweenMoves = moveTime * 1000L;
+        averageMillisecondsBetweenHandshakes = shakeTIme * 1000L;
+
+        presenceTtl = moveTime;
 
         // these give around 50% probability of a common acquaintance
         int[] x = new int[]{0, 100, 200, 500, 1000};
@@ -466,21 +476,28 @@ public class SesameStreamEvaluation {
                     if (elapsed < 1000) {
                         Thread.sleep(1000 - elapsed);
                         now = System.currentTimeMillis();
-                        elapsed = now - lastTimeStep;
                     }
 
                     lastTimeStep = now;
-
-                    int presenceTtl = 1 + (int) ((elapsed * 1.5) / 1000);
-                    if (presenceTtl > 300) {
-                        throw new IllegalStateException("presence TTL is too large: " + presenceTtl);
-                    }
 
                     long moveTime = 0, shakeTime = 0;
                     for (int i = fromRoom; i <= toRoom; i++) {
                         Room room = rooms[i];
                         //System.out.println("room #" + i + " has " + room.people.size() + " people");
+
+                        // note: move first, as this updates presence
                         long before = System.currentTimeMillis(), after;
+                        for (Person person : room.people) {
+                            try {
+                                person.considerMoving(now);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        after = System.currentTimeMillis();
+                        moveTime += (after - before);
+
+                        before = after;
                         for (Person person : room.people) {
                             //totalPeople++;
                             try {
@@ -492,24 +509,14 @@ public class SesameStreamEvaluation {
                         after = System.currentTimeMillis();
                         shakeTime += (after - before);
 
-                        // note: move last, as this may put the person under the control of another thread
-                        before = after;
-                        for (Person person : room.people) {
-                            try {
-                                person.considerMoving(now, presenceTtl);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        after = System.currentTimeMillis();
-                        moveTime += (after - before);
+
                     }
 
                     long after = System.currentTimeMillis();
                     long time = after - now;
 
                     // output detailed stats only so often
-                    if (after - lastReport >= 5000) {
+                    if (after - lastReport >= 5000L) {
                         lastReport = after;
 
                         synchronized (printMutex) {
@@ -625,7 +632,7 @@ public class SesameStreamEvaluation {
 
         String key = handshakeKey(now, person1, person2);
         if (handshakesInProgress.contains(key)) {
-            throw new IllegalStateException();
+            logger.warning("adding duplicate key: " + key);
         }
         handshakesInProgress.add(key);
 
@@ -657,10 +664,10 @@ public class SesameStreamEvaluation {
         queryEngine.addStatements(person2.halfHandshakeTtl, toArray(d2));
     }
 
-    private void presence(final Person person, final Room room, final int ttl) throws IOException {
+    private void presence(final Person person, final Room room) throws IOException {
         Statement st = vf.createStatement(
                 person.uri, vf.createURI(ExtendoActivityOntology.NAMESPACE + "locatedAt"), room.uri);
-        queryEngine.addStatements(ttl, st);
+        queryEngine.addStatements(presenceTtl, st);
     }
 
     private Statement[] toArray(final Dataset d) {
@@ -711,6 +718,7 @@ public class SesameStreamEvaluation {
         private final Collection<Person> known = new LinkedList<Person>();
 
         private Long
+                timeOfLastPresence,
                 timeOfLastMove,
                 timeOfLastHandshake;
         private long
@@ -726,6 +734,7 @@ public class SesameStreamEvaluation {
             // note: avoids 0 as a value of TTL
             this.halfHandshakeTtl = 1 + random.nextInt(MAX_HALF_HANDSHAKE_TTL);
 
+            this.timeOfLastPresence = 0L;
             this.timeLastConsideredMove = startTime;
             this.timeLastConsideredHandshake = startTime;
         }
@@ -737,8 +746,8 @@ public class SesameStreamEvaluation {
 
         public void moveTo(final Room room, long now) throws IOException {
             //if (verbose) {
-                System.out.println(this + " is moving to " + room
-                        + (null == timeOfLastMove ? "" : (" after " + (now - timeOfLastMove) / 1000) + "s dwell time"));
+            System.out.println(this + " is moving to " + room
+                    + (null == timeOfLastMove ? "" : (" after " + (now - timeOfLastMove) / 1000) + "s dwell time"));
             //}
 
             timeOfLastMove = now;
@@ -751,11 +760,12 @@ public class SesameStreamEvaluation {
             currentRoom.people.add(this);
         }
 
-        public void considerMoving(long now, int ttl) throws IOException {
+        public void considerMoving(long now) throws IOException {
             long elapsed = now - timeLastConsideredMove;
             timeLastConsideredMove = now;
 
-            if (doTransition(AVERAGE_MILLISECONDS_BETWEEN_MOVES, elapsed)) {
+            boolean refreshPresence = false;
+            if (doTransition(averageMillisecondsBetweenMoves, elapsed)) {
                 Room newRoom;
                 do {
                     newRoom = randomRoom();
@@ -763,29 +773,41 @@ public class SesameStreamEvaluation {
 
                 increment(countOfMoves);
                 moveTo(newRoom, now);
+                refreshPresence = true;
+            } else if (now - timeOfLastPresence >= averageMillisecondsBetweenMoves) {
+                refreshPresence = true;
             }
 
-            // refresh the person's current position, regardless of whether the person moved
-            presence(this, currentRoom, ttl);
+            // refresh the person's current position when they move or when TTL has expired
+            if (refreshPresence) {
+                timeOfLastPresence = now;
+                presence(this, currentRoom);
+            }
         }
 
         public void considerShakingHands(long now) throws IOException {
             long elapsed = now - timeLastConsideredHandshake;
             timeLastConsideredHandshake = now;
 
-            if (doTransition(AVERAGE_MILLISECONDS_BETWEEN_HANDSHAKES, elapsed)) {
-                if (currentRoom.people.size() > 0) {
-                    //if (verbose) {
+            if (doTransition(averageMillisecondsBetweenHandshakes, elapsed)) {
+                // choose a single person in the newly entered space to shake hands with
+                if (currentRoom.people.size() > 1) {
+                    for (Person other : currentRoom.people) {
+                        // don't shake hands with self
+                        if (other.equals(this)) {
+                            continue;
+                        }
+
+                        //if (verbose) {
                         System.out.println(this + " is shaking hands"
                                 + (null == timeOfLastHandshake ? "" : (" after " + (now - timeOfLastHandshake) / 1000) + "s idle time"));
-                    //}
+                        //}
 
-                    timeOfLastHandshake = now;
+                        timeOfLastHandshake = now;
 
-                    // choose a single person in the newly entered space to shake hands with
-                    Person other = currentRoom.people.iterator().next();
-
-                    halfHandshakes(this, other);
+                        halfHandshakes(this, other);
+                        break;
+                    }
                 }
             }
         }
@@ -865,6 +887,18 @@ public class SesameStreamEvaluation {
             limitOpt.setRequired(false);
             options.addOption(limitOpt);
 
+            Option moveTimeOpt = new Option("m", "interMoveTime", true,
+                    "average time between moves, in seconds (default: 300)");
+            moveTimeOpt.setArgName("INTERMOVETIME");
+            moveTimeOpt.setRequired(false);
+            options.addOption(moveTimeOpt);
+
+            Option shakeTimeOpt = new Option("h", "interHandshakeTime", true,
+                    "average time between handshakes, in seconds (default: 180)");
+            shakeTimeOpt.setArgName("INTERHANDSHAKETIME");
+            shakeTimeOpt.setRequired(false);
+            options.addOption(shakeTimeOpt);
+
             Option verboseOpt = new Option("v", "verbose", false, "verbose output");
             verboseOpt.setRequired(false);
             options.addOption(verboseOpt);
@@ -883,6 +917,8 @@ public class SesameStreamEvaluation {
             int nRooms = Integer.valueOf(cmd.getOptionValue(roomsOpt.getOpt(), "8"));
             String queriesStr = cmd.getOptionValue(queriesOpt.getOpt(), "topics");
             int timeLimitSeconds = Integer.valueOf(cmd.getOptionValue(limitOpt.getOpt(), "0"));
+            int moveTime = Integer.valueOf(cmd.getOptionValue(moveTimeOpt.getOpt(), "300"));
+            int shakeTime = Integer.valueOf(cmd.getOptionValue(shakeTimeOpt.getOpt(), "180"));
             boolean verbose = cmd.hasOption(verboseOpt.getOpt());
 
             Set<String> queries = new HashSet<String>();
@@ -894,7 +930,7 @@ public class SesameStreamEvaluation {
                 queries.add(query);
             }
 
-            new SesameStreamEvaluation(verbose, nThreads, nPeople, nRooms, queries, timeLimitSeconds);
+            new SesameStreamEvaluation(verbose, nThreads, nPeople, nRooms, queries, moveTime, shakeTime, timeLimitSeconds);
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
