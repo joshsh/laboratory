@@ -63,9 +63,6 @@ public class SesameStreamEvaluation {
             MAX_PAPERS_PER_PERSON = 20,
             MAX_TOPICS_PER_PAPER = 5;
 
-    private static final double
-            PROB_TOPICS_IN_COMMON = 0.8;
-
     private static final long CYCLE_LENGTH_WARN_THRESHOLD = 1000L;
 
 
@@ -170,7 +167,8 @@ public class SesameStreamEvaluation {
                                   final Set<String> queries,
                                   final int moveTime,
                                   final int shakeTIme,
-                                  final int timeLimitSeconds)
+                                  final int timeLimitSeconds,
+                                  final double probTopicsInCommon)
             throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException {
 
         this.verbose = verbose;
@@ -184,7 +182,11 @@ public class SesameStreamEvaluation {
         }
 
         if (totalRooms < 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("simulation requires at least two rooms");
+        }
+
+        if (probTopicsInCommon <= 0) {
+            throw new IllegalArgumentException("probability of common topics must be > 0");
         }
 
         averageMillisecondsBetweenMoves = moveTime * 1000L;
@@ -300,7 +302,7 @@ public class SesameStreamEvaluation {
         double averageTopicsPerPaper = (1 + MAX_TOPICS_PER_PAPER) / 2;
         double averageTopicsPerPerson = averagePapersPerPerson * averageTopicsPerPaper;
         int nTopics = (int) (averageTopicsPerPerson
-                / (1 - Math.pow(1 - PROB_TOPICS_IN_COMMON, 1.0 / averageTopicsPerPerson)));
+                / (1 - Math.pow(1 - probTopicsInCommon, 1.0 / averageTopicsPerPerson)));
 
         rooms = new Room[totalRooms];
         for (int i = 0; i < totalRooms; i++) {
@@ -362,7 +364,7 @@ public class SesameStreamEvaluation {
         System.out.println("average topics per person (actual): " + (totalTopics / (1.0 * totalPeople)));
         System.out.println("average people known (projected): " + averagePeopleKnown);
         System.out.println("average people known (actual): " + (totalKnown / (1.0 * totalPeople)));
-        System.out.println("probability of topics in common: " + PROB_TOPICS_IN_COMMON);
+        System.out.println("probability of topics in common: " + probTopicsInCommon);
 
         // add static metadata
         String siocNs = "http://rdfs.org/sioc/ns#";
@@ -899,6 +901,11 @@ public class SesameStreamEvaluation {
             shakeTimeOpt.setRequired(false);
             options.addOption(shakeTimeOpt);
 
+            Option pTopicOpt = new Option("pTopic", true, "probability of common topics (default: 0.8)");
+            pTopicOpt.setArgName("PROBABILITY");
+            pTopicOpt.setRequired(false);
+            options.addOption(pTopicOpt);
+
             Option verboseOpt = new Option("v", "verbose", false, "verbose output");
             verboseOpt.setRequired(false);
             options.addOption(verboseOpt);
@@ -919,6 +926,7 @@ public class SesameStreamEvaluation {
             int timeLimitSeconds = Integer.valueOf(cmd.getOptionValue(limitOpt.getOpt(), "0"));
             int moveTime = Integer.valueOf(cmd.getOptionValue(moveTimeOpt.getOpt(), "300"));
             int shakeTime = Integer.valueOf(cmd.getOptionValue(shakeTimeOpt.getOpt(), "180"));
+            double pTopic = Double.valueOf(cmd.getOptionValue(pTopicOpt.getOpt(), "0.8"));
             boolean verbose = cmd.hasOption(verboseOpt.getOpt());
 
             Set<String> queries = new HashSet<String>();
@@ -930,7 +938,7 @@ public class SesameStreamEvaluation {
                 queries.add(query);
             }
 
-            new SesameStreamEvaluation(verbose, nThreads, nPeople, nRooms, queries, moveTime, shakeTime, timeLimitSeconds);
+            new SesameStreamEvaluation(verbose, nThreads, nPeople, nRooms, queries, moveTime, shakeTime, timeLimitSeconds, pTopic);
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
