@@ -11,6 +11,7 @@ import net.fortytwo.extendo.rdf.vocab.Timeline;
 import net.fortytwo.rdfagents.model.Dataset;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
@@ -64,7 +65,6 @@ public class SesameStreamEvaluation {
             MAX_TOPICS_PER_PAPER = 5;
 
     private static final long CYCLE_LENGTH_WARN_THRESHOLD = 1000L;
-
 
     private final long
             averageMillisecondsBetweenMoves,
@@ -145,8 +145,12 @@ public class SesameStreamEvaluation {
     private final Room[] rooms;
     private final Topic[] topics;
 
-    private ThreadLocal<Long> timeOfLastPulse = new ThreadLocal<Long>();
-    private ThreadLocal<Long> timeOfLastHandshake = new ThreadLocal<Long>();
+    private ThreadLocal<Long>
+            timeOfLastPulse = new ThreadLocal<Long>(),
+            timeOfLastHandshake = new ThreadLocal<Long>(),
+            timeOfPulseTrigger = new ThreadLocal<Long>(),
+            timeOfFriendsHandshakeTrigger = new ThreadLocal<Long>(),
+            timeOfTopicsHandshakeTrigger = new ThreadLocal<Long>();
 
     private ThreadLocal<Integer> countOfMoves = new ThreadLocal<Integer>();
     private ThreadLocal<Integer> countOfPulses = new ThreadLocal<Integer>();
@@ -266,6 +270,7 @@ public class SesameStreamEvaluation {
                 }
             }
         });
+        queries.remove("none");
 
         if (queries.contains("friends")) {
             queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES, new BindingSetHandler() {
@@ -273,13 +278,14 @@ public class SesameStreamEvaluation {
                 public void handle(BindingSet bindingSet) {
                     increment(countOfReceivedHandshakesWithCommonKnows);
 
-                    findHandshakeLatency(System.currentTimeMillis());
+                    findFriendsHandshakeLatency(System.currentTimeMillis());
 
                     if (verbose) {
                         System.out.println("GOT A 'KNOWS' HANDSHAKE: " + bindingSet);
                     }
                 }
             });
+            queries.remove("friends");
         }
 
         if (queries.contains("topics")) {
@@ -288,13 +294,18 @@ public class SesameStreamEvaluation {
                 public void handle(BindingSet bindingSet) {
                     increment(countOfReceivedHandshakesWithCommonTopics);
 
-                    findHandshakeLatency(System.currentTimeMillis());
+                    findTopicsHandshakeLatency(System.currentTimeMillis());
 
                     if (verbose) {
                         System.out.println("GOT A 'TOPICS' HANDSHAKE: " + bindingSet);
                     }
                 }
             });
+            queries.remove("topics");
+        }
+
+        if (queries.size() > 0) {
+            throw new IllegalArgumentException("some or all queries not supported");
         }
 
         double averagePeopleKnown = (1 + maxPeopleKnown) / 2;
@@ -431,20 +442,29 @@ public class SesameStreamEvaluation {
     }
 
     private synchronized void findPulseLatency(final long now) {
-        Long then = timeOfLastPulse.get();
+        Long then = timeOfPulseTrigger.get();
         if (null != then) {
             long latency = now - then;
             System.out.println("pulse latency = " + latency + "ms");
-            timeOfLastPulse.set(null);
+            timeOfPulseTrigger.set(null);
         }
     }
 
-    private synchronized void findHandshakeLatency(final long now) {
-        Long then = timeOfLastHandshake.get();
+    private synchronized void findTopicsHandshakeLatency(final long now) {
+        Long then = timeOfTopicsHandshakeTrigger.get();
         if (null != then) {
             long latency = now - then;
-            System.out.println("handshake latency = " + latency + "ms");
-            timeOfLastHandshake.set(null);
+            System.out.println("topics-handshake latency = " + latency + "ms");
+            timeOfTopicsHandshakeTrigger.set(null);
+        }
+    }
+
+    private synchronized void findFriendsHandshakeLatency(final long now) {
+        Long then = timeOfFriendsHandshakeTrigger.get();
+        if (null != then) {
+            long latency = now - then;
+            System.out.println("friends-handshake latency = " + latency + "ms");
+            timeOfFriendsHandshakeTrigger.set(null);
         }
     }
 
@@ -623,7 +643,10 @@ public class SesameStreamEvaluation {
 
         Dataset d = Activities.datasetForHandshakeInteraction(now, person1.uri, person2.uri);
 
-        timeOfLastHandshake.set(System.currentTimeMillis());
+        timeOfLastHandshake.set(now);
+        timeOfFriendsHandshakeTrigger.set(now);
+        timeOfTopicsHandshakeTrigger.set(now);
+
         queryEngine.addStatements(HANDSHAKE_TTL, toArray(d));
     }
 
@@ -661,7 +684,10 @@ public class SesameStreamEvaluation {
         System.exit(0);
         */
 
-        timeOfLastPulse.set(System.currentTimeMillis());
+        now = System.currentTimeMillis();
+        timeOfLastPulse.set(now);
+        timeOfPulseTrigger.set(now);
+
         queryEngine.addStatements(person1.halfHandshakeTtl, toArray(d1));
         queryEngine.addStatements(person2.halfHandshakeTtl, toArray(d2));
     }
@@ -802,10 +828,8 @@ public class SesameStreamEvaluation {
 
                         //if (verbose) {
                         System.out.println(this + " is shaking hands"
-                                + (null == timeOfLastHandshake ? "" : (" after " + (now - timeOfLastHandshake) / 1000) + "s idle time"));
+                                + (null == timeOfLastPulse.get() ? "" : (" after " + (now - timeOfLastPulse.get()) / 1000) + "s idle time"));
                         //}
-
-                        timeOfLastHandshake = now;
 
                         halfHandshakes(this, other);
                         break;
@@ -885,23 +909,23 @@ public class SesameStreamEvaluation {
             options.addOption(queriesOpt);
 
             Option limitOpt = new Option("l", "limit", true, "time limit in seconds");
-            limitOpt.setArgName("LIMIT");
+            limitOpt.setArgName("SECONDS");
             limitOpt.setRequired(false);
             options.addOption(limitOpt);
 
             Option moveTimeOpt = new Option("m", "interMoveTime", true,
                     "average time between moves, in seconds (default: 300)");
-            moveTimeOpt.setArgName("INTERMOVETIME");
+            moveTimeOpt.setArgName("SECONDS");
             moveTimeOpt.setRequired(false);
             options.addOption(moveTimeOpt);
 
             Option shakeTimeOpt = new Option("h", "interHandshakeTime", true,
                     "average time between handshakes, in seconds (default: 180)");
-            shakeTimeOpt.setArgName("INTERHANDSHAKETIME");
+            shakeTimeOpt.setArgName("SECONDS");
             shakeTimeOpt.setRequired(false);
             options.addOption(shakeTimeOpt);
 
-            Option pTopicOpt = new Option("pTopic", true, "probability of common topics (default: 0.8)");
+            Option pTopicOpt = new Option("", "pTopic", true, "probability of common topics (default: 0.8)");
             pTopicOpt.setArgName("PROBABILITY");
             pTopicOpt.setRequired(false);
             options.addOption(pTopicOpt);
@@ -916,7 +940,7 @@ public class SesameStreamEvaluation {
             try {
                 cmd = clp.parse(options, args);
             } catch (org.apache.commons.cli.ParseException e) {
-                printUsageAndExit();
+                printUsageAndExit(options);
             }
 
             int nThreads = Integer.valueOf(cmd.getOptionValue(threadsOpt.getOpt(), "4"));
@@ -933,7 +957,7 @@ public class SesameStreamEvaluation {
             for (String q : queriesStr.split(";")) {
                 String query = q.trim();
                 if (0 == query.length()) {
-                    printUsageAndExit();
+                    printUsageAndExit(options);
                 }
                 queries.add(query);
             }
@@ -945,8 +969,11 @@ public class SesameStreamEvaluation {
         }
     }
 
-    private static void printUsageAndExit() {
-        System.err.println("see source for usage");
+    private static void printUsageAndExit(final Options options) {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("sesamestream-eval", options);
+        //System.out.println("options: " + options.toString());
+        //System.err.println("see source for usage");
         System.exit(1);
     }
 }
