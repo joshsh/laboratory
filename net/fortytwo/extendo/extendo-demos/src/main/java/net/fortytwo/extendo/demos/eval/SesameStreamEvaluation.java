@@ -57,7 +57,7 @@ public class SesameStreamEvaluation {
 
     private static final int
             QUERY_TTL = 0,
-            MAX_HALF_HANDSHAKE_TTL = 5,
+            MAX_HANDSHAKE_PULSE_TTL = 5,
             HANDSHAKE_TTL = 3;
 
     private static final int
@@ -211,7 +211,9 @@ public class SesameStreamEvaluation {
                 break;
             }
         }
-        int maxPeopleKnown = null == p ? (int) (y[x.length - 1] * totalPeople / (1.0 * x[x.length - 1])) : p;
+        int maxPeopleKnown = null != p
+                ? p
+                : (int) (y[x.length - 1] * totalPeople / (1.0 * x[x.length - 1]));
 
         //SesameStream.setDoPerformanceMetrics(true);
 
@@ -760,7 +762,7 @@ public class SesameStreamEvaluation {
             super(id);
 
             // note: avoids 0 as a value of TTL
-            this.halfHandshakeTtl = 1 + random.nextInt(MAX_HALF_HANDSHAKE_TTL);
+            this.halfHandshakeTtl = 1 + random.nextInt(MAX_HANDSHAKE_PULSE_TTL);
 
             this.timeOfLastPresence = 0L;
             this.timeLastConsideredMove = startTime;
@@ -877,11 +879,22 @@ public class SesameStreamEvaluation {
         }
     }
 
+    /*
+        public SesameStreamEvaluation(final boolean verbose,
+                                  final int totalThreads,
+                                  final int totalPeople,
+                                  final int totalRooms,
+                                  final Set<String> queries,
+                                  final int moveTime,
+                                  final int shakeTIme,
+                                  final int timeLimitSeconds,
+                                  final double probTopicsInCommon)
+     */
     public static void main(final String[] args) throws Exception {
-        /*
+        //*
         Set<String> qs = new HashSet<String>();
         qs.add("topics");
-        new SesameStreamEvaluation(1, 400, 8, qs, 0);
+        new SesameStreamEvaluation(false, 1, 400, 5, qs, 600, 300, 0, 0.5);
         if (true) return;
         //*/
 

@@ -52,3 +52,25 @@ python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.1.147 42302 42002
 
 # MRMBP Bluetooth to Marvin5 over HOG
 python ./slip-to-udp.py tty.RN42-C342-SPP 192.168.1.147 42302 42002
+
+
+######################################
+# high-five demo
+
+1) modify extendo.properties on Marvin, to use the Internet Sharing network, and restart Rexster
+
+vim extendo.properties
+./extendo-rexster.sh
+
+2) give Marvin a wired Ethernet connection and enable Wi-Fi Internet Sharing
+3) modify extendo.prope
+4) connect to Marvin from MRMBP
+5) check that MRMBP can see Extendo Server broadcasting from Marvin
+
+sudo tcpdump -s 0 -A -v -i en1 port 42000
+
+6) upload highfive.ino to both ExoHands, setting an individual context URI for each device
+7) plug both ExoHands into MRMBP and start the slip-to-udp bridges in separate terminals
+
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.2.1 42103 42002
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 192.168.2.1 42103 42002

@@ -94,7 +94,44 @@ endTime = System.currentTimeMillis()
 System.out.println("read the file in " + (endTime - startTime) + "ms")
 
 
+################################################################################
+# annotate each category with nearest-ancestor main topic classification
 
+g = new Neo4jGraph("/Users/josh/data/extendo/dbpedia-neo4j")
+ig = new IdGraph(g, true, false)
+
+mapped = new HashSet<Vertex>();
+buffer = new HashSet<Vertex>();
+map = new HashMap<Vertex, Set<Vertex>>();
+
+ig.v("cat:Main_topic_classifications").in("broader").fill(mapped)
+for (v in mapped) {
+    map.put(v, v);
+}
+for (i = 1; i < 20; i++) {
+    def before = mapped.size()
+
+    buffer.clear();
+    buffer.addAll(mapped);
+    buffer._().as("broad").in("broader").except(mapped).as("narrow").sideEffect{
+        v,m -> map.put(m.narrow, map.get(m.broad))
+    }.fill(mapped)
+
+    def after = mapped.size();
+    System.out.println("" + i + ") " + after);
+    if (after == before) break;
+}
+
+fileName = "/Users/josh/data/extendo/exobrain-links/dbpedia-category-classification.tsv"
+out = new FileOutputStream(new File(fileName));
+ps = new PrintStream(out);
+for (k in map.keySet()) {
+    ps.println("" + k.getId().replace("cat:","") + "\t" + map.get(k).getId().replace("cat:",""));
+}
+out.close();
+
+
+################################################################################
 
 ig.v("cat:Main_topic_classifications").in("broader")
 

@@ -182,11 +182,124 @@ hand2 <- hand2[hand2.from:hand2.to,]
 
 
 ########################################
+# examine individual handshakes
+
+# manually segmented handshake intervals
+hand1.breaks <- c(2000, 3500, 5500, 7500, 9300, 10700, 12000, 13200, 14300, 15400, 16400, 17300, 18300, 19400, 20500, 21500, 23000, 24300, 25700, 27500)
+i <- 1
+ts <- hand1[hand1.breaks[i]:hand1.breaks[i+1],]; plot(mag(data.frame(x=ts$V2,y=ts$V3,z=ts$V4)), type="l")
+# first 5 handshakes manually annotated with grip and release times
+grips <- c(620, 340, 1000, 750, 590)
+releases <- c(1175, 850, 1470, 1230, 1030)
+
+
+# example handshake
+pdf("/tmp/graphic.pdf", width=6.25, height=2.75)
+par(mar=c(4.5,5,2,1.5))
+    from <- 19630; to <- 20300
+    ts <- mag(data.frame(x=hand1$V2,y=hand1$V3,z=hand1$V4))[from:to]/230
+    plot(y=ts, x=(hand1.dt*c(0:(to-from))), type="l", xlab="time (seconds)", ylab="acceleration (g)");
+    abline(col="red", v=hand1.dt*(hand1.peaks-from))
+    abline(col="blue", v=0.4); abline(col="blue", v=2.2)
+    text(0.53,3,"grip"); text(1.44,3,"hold"); text(2.42,3,"release");
+dev.off()
+
+
+# time between largest handshake peak and the retraction peak in three handshakes
+retraction.time <- c(1.464292, 1.187264, 1.385141)
+# 1.345566 seconds
+mean(retraction.time)
+
+
+hand1.first.peaks <- sapply(hand1.groups, function(l){v <- l[[1]]; v[1]})
+hand1.last.peaks <- sapply(hand1.groups, function(l){v <- l[[1]]; v[length(v)]})
+
+
+# the spectral density plot does reveal the characteristic handshake frequency as a low bump,
+# but the center of the peak is perhaps not as precise as that found with the method below.
+series <- mag(hand1.accel.cal)
+catted <- c()
+for (i in 1:length(hand1.first.peaks)) {
+    catted <- c(catted, series[hand1.first.peaks[i]:hand1.last.peaks[i]])
+}
+spectrum(catted)
+abline(col="red", v=freq.mean*hand1.dt)
+
+# as the superposition of many handshakes, the series does not produce any coherent peaks of frequency.
+# However, several features are clearly visible, one of which is the characteristic up-and-down motion centered
+# quite close to the calculated point.
+# There are also lower-frequency features which presumably correspond to the large-scale motions of the hand
+# approaching, gripping, releasing, and swinging back from the other hand.
+s <- spectrum(series)
+s <- spectrum(catted)
+plot(x=s$freq,y=s$spec,type="l",xlim=c(0,0.06))
+abline(col="red", v=freq.mean*hand1.dt); abline(col="purple", v=freq.low*hand1.dt); abline(col="purple", v=freq.high*hand1.dt)
+# the interval full of up-down peaks is very broad.  Taking the top 10 peaks:
+0.0153/hand1.dt
+#[1] 3.799125009
+0.0287/hand1.dt
+#[1] 7.126463251
+
+##########
+# average spectral density
+
+# overall
+spectra <- sapply(c(1:(length(hand1.breaks)-2)), function(i){ spectrum(series[hand1.breaks[i]:hand1.breaks[i+1]]) })
+inc <- max(freq)/125  # set this as high as possible without leaving gaps
+
+# only the shake
+spectra <- sapply(c(1:length(hand1.first.peaks)), function(i){ spectrum(series[hand1.first.peaks[i]:hand1.last.peaks[i]]) })
+inc <- max(freq)/15  # set this as high as possible without leaving gaps
+
+freqs <- c(); for (i in 1:length(spectra[1,])) {freqs <- c(freqs, spectra[,i]$freq)}
+specs <- c(); for (i in 1:length(spectra[1,])) {specs <- c(specs, spectra[,i]$spec)}
+points <- data.frame(freq=freqs, spec=specs, inc=freqs %/% inc)
+points.ord <- points[with(points, order(freq)),]
+plot(x=points.ord$freq, y=points.ord$spec, type="l", xlim=c(0,0.06))
+steps <- 1:max(points.ord$inc)
+means <- sapply(steps, function(i){ mean(subset(points.ord, inc==i)$spec) })
+#plot(x=(steps*inc/hand1.dt), y=means, type="l")
+barplot(means, names.arg=(floor(steps*inc/hand1.dt)), xlim=c(0,50))
+
+##########
+
+# handshake total duration (from grip to release)
+# 1.943155
+mean((rels-grips)*hand1.dt)
+# 0.1727322
+sd((rels-grips)*hand1.dt)
+
+# handshake "shake duration": average interval between the first and last handshake peak
+hand1.width <- hand1.dt * (hand1.last.peaks - hand1.first.peaks)
+# 0.4042633
+mean(hand1.width)
+# 0.1522405
+sd(hand1.width)
+
+# time from grip to first peak
+hand1.grip.time <- hand1.dt * (hand1.first.peaks[1:length(releases)] - hand1.breaks[1:length(releases)] - grips)
+# 0.3158121
+mean(hand1.grip.time)
+# 0.1195611
+sd(hand1.grip.time)
+
+# time from last peak to release
+hand1.hold.time <- hand1.dt * (hand1.breaks[1:length(releases)] + releases - hand1.last.peaks[1:length(releases)])
+# 1.088325
+mean(hand1.hold.time)
+# 0.08455637
+sd(hand1.hold.time)
+
+
+########################################
 # define time series
 
 hand1.sr <- sampling.rate(hand1)
 hand2.sr <- sampling.rate(hand2)
 hand1.sr; hand2.sr
+
+hand1.dt <- 1/hand1.sr$rate.global
+hand2.dt <- 1/hand2.sr$rate.global
 
 hand1.accel <- accel(hand1)
 hand1.gyro <- gyro(hand1)
@@ -265,10 +378,8 @@ rc.low <- 1/(2 * pi * freq.low)
 rc.high <- 1/(2 * pi * freq.high)
 
 # apply a band-pass filter to the components of acceleration (as opposed to the magnitude time series)
-hand1.dt <- 1/hand1.sr$rate.global
 hand1.accel.cal.bp <- bandpass.3d(hand1.accel.cal, hand1.dt, rc.low, rc.high)
 hand1.accel.cal.bp.mag <- mag(hand1.accel.cal.bp)
-hand2.dt <- 1/hand2.sr$rate.global
 hand2.accel.cal.bp <- bandpass.3d(hand2.accel.cal, hand2.dt, rc.low, rc.high)
 hand2.accel.cal.bp.mag <- mag(hand2.accel.cal.bp)
 
