@@ -1,13 +1,12 @@
 package net.fortytwo.extendo.demos;
 
-import com.illposed.osc.OSCBundle;
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;
-import com.illposed.osc.OSCPortOut;
 import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.p2p.osc.OscControl;
 import net.fortytwo.extendo.p2p.osc.OscSender;
+import net.fortytwo.extendo.p2p.osc.UdpOscSender;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -17,12 +16,9 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Date;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -58,24 +54,7 @@ public class TypeatronUdp extends TypeatronControlWrapper {
             }
         });
 
-        InetAddress outAddress = null == hostOut || hostOut.equals("localhost") || hostOut.equals("127.0.0.1")
-                ? InetAddress.getLocalHost() : InetAddress.getByName(hostOut);
-        final OSCPortOut po = new OSCPortOut(outAddress, portOut);
-        OscSender sender = new OscSender() {
-            @Override
-            public synchronized void send(OSCBundle bundle) {
-                try {
-                    po.send(bundle);
-                } catch (IOException e) {
-                    logger.log(Level.WARNING, "failed to send OSC bundle", e);
-                }
-            }
-
-            @Override
-            public void close() {
-                // no-op
-            }
-        };
+        OscSender sender = new UdpOscSender(hostOut, portOut);
         typeatron.connect(sender);
 
         typeatron.setThrottlingPeriod(40);
