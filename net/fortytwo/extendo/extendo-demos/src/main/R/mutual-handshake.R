@@ -182,6 +182,56 @@ hand2 <- hand2[hand2.from:hand2.to,]
 
 
 ########################################
+# define time series
+
+hand1.sr <- sampling.rate(hand1)
+hand2.sr <- sampling.rate(hand2)
+hand1.sr; hand2.sr
+
+hand1.dt <- 1/hand1.sr$rate.global
+hand2.dt <- 1/hand2.sr$rate.global
+
+hand1.accel <- accel(hand1)
+hand1.gyro <- gyro(hand1)
+hand1.magnet <- magnet(hand1)
+hand1.accel.cal <- accel.cal(hand1.accel)
+hand1.accel.mag <- mag(hand1.accel)
+hand1.gyro.mag <- mag(hand1.gyro)
+hand1.magnet.mag <- mag(hand1.magnet)
+hand1.accel.cal.mag <- mag(hand1.accel.cal)
+
+hand2.accel <- accel(hand2)
+hand2.gyro <- gyro(hand2)
+hand2.magnet <- magnet(hand2)
+hand2.accel.cal <- accel.cal(hand2.accel)
+hand2.accel.mag <- mag(hand2.accel)
+hand2.gyro.mag <- mag(hand2.gyro)
+hand2.magnet.mag <- mag(hand2.magnet)
+hand2.accel.cal.mag <- mag(hand2.accel.cal)
+
+
+########################################
+# extremum detection
+
+hand1.peaks <- find.peaks(hand1.accel.cal.bp.mag, 1/(hand1.dt*freq.mean))
+hand2.peaks <- find.peaks(hand2.accel.cal.bp.mag, 1/(hand2.dt*freq.mean))
+
+hand1.groups <- group.peaks(hand1.peaks)
+hand2.groups <- group.peaks(hand2.peaks)
+# note that we exclude some non-shake extrema
+hand1.count <- sapply(2:(length(hand1.groups)-1),function(i){length(hand1.groups[i][[1]][[1]])})
+hand2.count <- sapply(2:(length(hand2.groups)-1),function(i){length(hand2.groups[i][[1]][[1]])})
+# with thresholds of 0.2 and 0.3, we have 4.1 +- 1.8 extrema per handshake
+mean(hand1.count)
+mean(hand2.count)
+sd(hand1.count)
+sd(hand2.count)
+
+hand1.diffs <- collect.diffs(hand1.groups)
+hand2.diffs <- collect.diffs(hand2.groups)
+
+
+########################################
 # examine individual handshakes
 
 # manually segmented handshake intervals
@@ -222,8 +272,20 @@ catted <- c()
 for (i in 1:length(hand1.first.peaks)) {
     catted <- c(catted, series[hand1.first.peaks[i]:hand1.last.peaks[i]])
 }
+hand1.shakes.only <- catted
 spectrum(catted)
 abline(col="red", v=freq.mean*hand1.dt)
+
+# fast Fourier analysis, similarly, shows (perhaps more clearly) a peak around the previously found value.
+# There is a large amount of variability, but the swell of the peak is clearly visible.
+# More data would be helpful for a less ambiguous result.
+p <- fft(hand1.shakes.only)
+p2 <- abs(p)
+plot(p2, type="l", xlim=c(0,250), ylim=c(0,350)); abline(col="red", v=1/(5.4*hand1.dt))
+# With frequency (rather than time) on the x axis, a second, weaker peak at around 7Hz is visible...
+# but again, this appears to be just noise.  The trend is more clearly visible in the previous plot.
+x=c(1:length(hand1.shakes.only))
+plot(x=1/(x*hand1.dt), y=p2/length(x), type="l", xlim=c(0,15), ylim=c(0,0.2))
 
 # as the superposition of many handshakes, the series does not produce any coherent peaks of frequency.
 # However, several features are clearly visible, one of which is the characteristic up-and-down motion centered
@@ -292,33 +354,6 @@ sd(hand1.hold.time)
 
 
 ########################################
-# define time series
-
-hand1.sr <- sampling.rate(hand1)
-hand2.sr <- sampling.rate(hand2)
-hand1.sr; hand2.sr
-
-hand1.dt <- 1/hand1.sr$rate.global
-hand2.dt <- 1/hand2.sr$rate.global
-
-hand1.accel <- accel(hand1)
-hand1.gyro <- gyro(hand1)
-hand1.magnet <- magnet(hand1)
-hand1.accel.cal <- accel.cal(hand1.accel)
-hand1.accel.mag <- mag(hand1.accel)
-hand1.gyro.mag <- mag(hand1.gyro)
-hand1.magnet.mag <- mag(hand1.magnet)
-hand1.accel.cal.mag <- mag(hand1.accel.cal)
-
-hand2.accel <- accel(hand2)
-hand2.gyro <- gyro(hand2)
-hand2.magnet <- magnet(hand2)
-hand2.accel.cal <- accel.cal(hand2.accel)
-hand2.accel.mag <- mag(hand2.accel)
-hand2.gyro.mag <- mag(hand2.gyro)
-hand2.magnet.mag <- mag(hand2.magnet)
-hand2.accel.cal.mag <- mag(hand2.accel.cal)
-
 
 # the below does *not* work for aligning the two time series; calculated sampling rates are not sufficiently accurate
 rate.ratio <- hand1.sr$rate.global/hand2.sr$rate.global
@@ -396,27 +431,6 @@ m <- series
 plot3d(m$x, m$y, m$z, type="l", size=1)
 m <- hand1.accel.cal.bp[hand1.peaks,]
 points3d(col="red", size=5, m$x, m$y, m$z)
-
-
-########################################
-# extremum detection
-
-hand1.peaks <- find.peaks(hand1.accel.cal.bp.mag, 1/(hand1.dt*freq.mean))
-hand2.peaks <- find.peaks(hand2.accel.cal.bp.mag, 1/(hand2.dt*freq.mean))
-
-hand1.groups <- group.peaks(hand1.peaks)
-hand2.groups <- group.peaks(hand2.peaks)
-# note that we exclude some non-shake extrema
-hand1.count <- sapply(2:(length(hand1.groups)-1),function(i){length(hand1.groups[i][[1]][[1]])})
-hand2.count <- sapply(2:(length(hand2.groups)-1),function(i){length(hand2.groups[i][[1]][[1]])})
-# with thresholds of 0.2 and 0.3, we have 4.1 +- 1.8 extrema per handshake
-mean(hand1.count)
-mean(hand2.count)
-sd(hand1.count)
-sd(hand2.count)
-
-hand1.diffs <- collect.diffs(hand1.groups)
-hand2.diffs <- collect.diffs(hand2.groups)
 
 
 ########################################

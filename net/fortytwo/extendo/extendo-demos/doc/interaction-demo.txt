@@ -1,8 +1,17 @@
 System-specific setup for demos of the Extendo wearable computing platform
 
 
+######################################
+# general
+
 cd /Users/josh/projects/fortytwo/laboratory/net/fortytwo/extendo/extendo-demos
+
 kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
+
+# after rebuilding Rexster and deploying the Extendo Server standalone JAR
+cd target/rexster-server-*-standalone/lib
+rm -rf linked-data-sail* ripple* httpclient* httpcore*
+cd -
 
 
 ######################################
@@ -27,6 +36,11 @@ RNBT-1866
 pins 1 and 3
 
 # local serial
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 127.0.0.1 42202 42002
+# for Max/MSP
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 127.0.0.1 42002 42003
+
+# local Bluetooth
 python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 127.0.0.1 42202 42002
 
 # MRMBP serial to Marvin5 over HOG
@@ -44,7 +58,7 @@ BlueSMiRF Silver #1
 RN42-C342
 pins 2 and 3
 
-# local serial
+# local Bluetooth
 python ./slip-to-udp.py tty.RN42-C342-SPP 127.0.0.1 42302 42002
 
 # MRMBP serial to Marvin5 over HOG
@@ -52,6 +66,50 @@ python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.1.147 42302 42002
 
 # MRMBP Bluetooth to Marvin5 over HOG
 python ./slip-to-udp.py tty.RN42-C342-SPP 192.168.1.147 42302 42002
+
+
+######################################
+# conference demos
+
+0) publish latest extend-o-brain.rdf and activity.rdf
+
+rapper -i turtle -o rdfxml ./extendo-rdf/src/main/resources/net/fortytwo/extendo/rdf/activity.ttl > ~/Dropbox/shared/domains/www.fortytwo.net/2015/extendo/activity.rdf
+
+1) give Marvin a wired Ethernet connection and enable Wi-Fi Internet Sharing
+2) modify extendo.properties on Marvin to use the Internet Sharing network, and restart Rexster
+
+vim extendo.properties
+./extendo-rexster.sh
+
+3) connect to Marvin from MRMBP
+4) check that MRMBP can see Extendo Server broadcasting from Marvin
+
+sudo tcpdump -s 0 -A -v -i en1 port 42000
+
+5) upload typeatron.ino to the Typeatron if necessary
+6) upload interactive_gestures.ino to both ExoHands, setting an individual context URI for each device
+7) plug the Typeatron into MRBMP and start slip-to-udp and the Typeatron controller
+
+python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 127.0.0.1 42102 42103
+
+8.1) plug both ExoHands into Marvin and start the slip-to-udp bridges in separate terminals
+
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 127.0.0.1 42203 42002  # 2/small
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 127.0.0.1 42303 42002  # 3/large
+
+8.2) plug both ExoHands into MRBMP and start the slip-to-udp bridges in separate terminals
+
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 192.168.2.1 42203 42002  # 2/small
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.2.1 42303 42002  # 3/large
+
+9) start over if necessary
+
+kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
+
+10) start the demo participants on Marvin5 and Marvin6
+
+./demo-participant.sh -a http://fortytwo.net/josh/things/D4bbQSr -h 192.168.2.3 -p 42203  # 2/small/OH
+./demo-participant.sh -a http://fortytwo.net/josh/things/SBZFumn -h 192.168.2.3 -p 42303  # 3/large/JS
 
 
 ######################################
