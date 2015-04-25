@@ -1,0 +1,11 @@
+# a query for handshake interactions in which I am one of the participants
+
+PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
+
+# note: replace <I> before evaluation
+SELECT ?person WHERE {
+    ?h a activity:Handshake .
+    ?h activity:actor <I> .
+    ?h activity:actor ?person .
+    FILTER(?person != <I>)
+}

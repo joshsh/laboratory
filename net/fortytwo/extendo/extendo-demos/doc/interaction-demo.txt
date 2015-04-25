@@ -106,10 +106,11 @@ python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.2.1 42303 42002  # 3
 
 kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
 
-10) start the demo participants on Marvin5 and Marvin6
+10) start the demo participants on individual machines
 
-./demo-participant.sh -a http://fortytwo.net/josh/things/D4bbQSr -h 192.168.2.3 -p 42203  # 2/small/OH
-./demo-participant.sh -a http://fortytwo.net/josh/things/SBZFumn -h 192.168.2.3 -p 42303  # 3/large/JS
+./demo-participant.sh -a http://fortytwo.net/josh/things/D4bbQSr -m NWX9xIM -r pUVHXAD -h 192.168.2.3 -p 42203  # 2/small/OH
+./demo-participant.sh -a http://fortytwo.net/josh/things/JdGwZ4n -m 5xTl7gQ -r Ob3iqrj -h 192.168.2.3 -p 42303  # 2/small/XL
+./demo-participant.sh -a http://fortytwo.net/josh/things/SBZFumn -m rsHIZzr -h 192.168.2.3 -p 42303  # 3/large/JS
 
 
 ######################################

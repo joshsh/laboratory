@@ -1,0 +1,10 @@
+# a query for handoff interactions in which I am the giver
+
+PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
+
+# note: replace <I> before evaluation
+SELECT ?thing ?taker WHERE {
+    ?h activity:thingGiven ?thing .
+    ?h activity:giver <I> .
+    ?h activity:taker ?taker .
+}

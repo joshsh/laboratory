@@ -260,7 +260,7 @@ public class DemoParticipant {
             peopleOpt.setRequired(false);
             options.addOption(peopleOpt);
 
-            Option thingsOpt = new Option("t", "thingsReceived", true, "id of a list of things received");
+            Option thingsOpt = new Option("r", "thingsReceived", true, "id of a list of things received");
             thingsOpt.setArgName("ID");
             thingsOpt.setRequired(false);
             options.addOption(thingsOpt);

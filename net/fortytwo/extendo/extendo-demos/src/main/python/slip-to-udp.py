@@ -18,8 +18,6 @@ slip_esc = 0xdb
 slip_esc_end = 0xdc
 slip_esc_esc = 0xdd
 
-baud_rate = 115200
-
 # the buffer is much larger than any message should be.
 # Otherwise, large messages from serial cause this program to hang and occupy the port
 serial_udp_buffer_size = 15000
@@ -35,25 +33,30 @@ def send(msg, ip, port):
 
 if ( len(sys.argv) == 1 ):
         print("Serial SLIP <--> UDP utility | Joshua Shinavier, 2014, http://fortytwo.net")
-        print("Syntax: " + sys.argv[0] + " serial_port udp_ip(= 127.0.0.1) udp_in_port(= 5000) udp_out_port(=5001)")
-        print("Example: " + sys.argv[0] + " /dev/tty.usbserial-xxx 127.0.0.1 5000 5001")
+        print("Syntax: " + sys.argv[0] + " serial_port baud_rate(= 115200) udp_ip(= 127.0.0.1) udp_in_port(= 5000) udp_out_port(=5001)")
+        print("Example: " + sys.argv[0] + " /dev/tty.usbserial-xxx 115200 127.0.0.1 5000 5001")
         quit()
 
 serial_port = sys.argv[1]
 
 if ( len(sys.argv) >= 3 ):
-        udp_ip = sys.argv[2]
+    baud_rate = int(sys.argv[2])
+else:
+    baud_rate = 115200
+
+if ( len(sys.argv) >= 4 ):
+        udp_ip = sys.argv[3]
 else:
         udp_ip = "127.0.0.1"
 
-if ( len(sys.argv) >= 5 ):
-        udp_in_port = int(sys.argv[3])
-        udp_out_port = int(sys.argv[4])
+if ( len(sys.argv) >= 6 ):
+        udp_in_port = int(sys.argv[4])
+        udp_out_port = int(sys.argv[5])
 else:
         udp_in_port = 5000
         udp_out_port = 5001
 		
-if ( len(sys.argv) >= 6):
+if ( len(sys.argv) >= 7):
     printing = 1
 else:
 	printing = 0
