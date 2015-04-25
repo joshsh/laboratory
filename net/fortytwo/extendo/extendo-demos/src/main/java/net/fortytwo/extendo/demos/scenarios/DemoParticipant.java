@@ -3,7 +3,6 @@ package net.fortytwo.extendo.demos.scenarios;
 import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
 import net.fortytwo.extendo.Extendo;
-import net.fortytwo.extendo.demos.SerialHelper;
 import net.fortytwo.extendo.hand.ExtendoHandControl;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
 import net.fortytwo.extendo.p2p.osc.OscControl;

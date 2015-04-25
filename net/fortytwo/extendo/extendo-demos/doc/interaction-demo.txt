@@ -19,11 +19,11 @@ cd -
 # use ports 421xx to avoid conflict with Extendo-P2P (420xx)
 
 # serial
-python ./slip-to-udp.py /dev/tty.usbserial-AD022JGJ 127.0.0.1 42102 42103
+python ./slip-to-udp.py /dev/tty.usbserial-AD022JGJ 115200 127.0.0.1 42102 42103
 ./typeatron-udp.sh -i 42103 -o 42102
 
 # Bluetooth
-python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 127.0.0.1 42102 42103
+python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 115200 127.0.0.1 42102 42103
 ./typeatron-udp.sh -i 42103 -o 42102
 
 
@@ -36,18 +36,18 @@ RNBT-1866
 pins 1 and 3
 
 # local serial
-python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 127.0.0.1 42202 42002
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 127.0.0.1 42202 42002
 # for Max/MSP
-python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 127.0.0.1 42002 42003
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 127.0.0.1 42002 42003
 
 # local Bluetooth
-python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 127.0.0.1 42202 42002
+python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 115200 127.0.0.1 42202 42002
 
 # MRMBP serial to Marvin5 over HOG
-python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 192.168.1.147 42202 42002
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 192.168.1.147 42202 42002
 
 # MRMBP Bluetooth to Marvin5 over HOG
-python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 192.168.1.147 42202 42002
+python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 115200 192.168.1.147 42202 42002
 
 
 ######################################
@@ -59,13 +59,13 @@ RN42-C342
 pins 2 and 3
 
 # local Bluetooth
-python ./slip-to-udp.py tty.RN42-C342-SPP 127.0.0.1 42302 42002
+python ./slip-to-udp.py tty.RN42-C342-SPP 115200 127.0.0.1 42302 42002
 
 # MRMBP serial to Marvin5 over HOG
-python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.1.147 42302 42002
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 115200 192.168.1.147 42302 42002
 
 # MRMBP Bluetooth to Marvin5 over HOG
-python ./slip-to-udp.py tty.RN42-C342-SPP 192.168.1.147 42302 42002
+python ./slip-to-udp.py tty.RN42-C342-SPP 115200 192.168.1.147 42302 42002
 
 
 ######################################
@@ -90,17 +90,17 @@ sudo tcpdump -s 0 -A -v -i en1 port 42000
 6) upload interactive_gestures.ino to both ExoHands, setting an individual context URI for each device
 7) plug the Typeatron into MRBMP and start slip-to-udp and the Typeatron controller
 
-python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 127.0.0.1 42102 42103
+python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 115200 127.0.0.1 42102 42103
 
 8.1) plug both ExoHands into Marvin and start the slip-to-udp bridges in separate terminals
 
-python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 127.0.0.1 42203 42002  # 2/small
-python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 127.0.0.1 42303 42002  # 3/large
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 127.0.0.1 42203 42002  # 2/small
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 115200 127.0.0.1 42303 42002  # 3/large
 
 8.2) plug both ExoHands into MRBMP and start the slip-to-udp bridges in separate terminals
 
-python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 192.168.2.1 42203 42002  # 2/small
-python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.2.1 42303 42002  # 3/large
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 192.168.2.1 42203 42002  # 2/small
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 115200 192.168.2.1 42303 42002  # 3/large
 
 9) start over if necessary
 
@@ -130,8 +130,8 @@ sudo tcpdump -s 0 -A -v -i en1 port 42000
 5) upload highfive.ino to both ExoHands, setting an individual context URI for each device
 6) plug both ExoHands into MRMBP and start the slip-to-udp bridges in separate terminals
 
-python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 192.168.2.1 42103 42002
-python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 192.168.2.1 42203 42002
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 115200 192.168.2.1 42103 42002
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 192.168.2.1 42203 42002
 
 7) start over if necessary
 

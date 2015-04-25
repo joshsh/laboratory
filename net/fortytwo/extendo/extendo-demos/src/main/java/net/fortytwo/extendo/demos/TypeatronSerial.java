@@ -21,17 +21,17 @@ import java.io.IOException;
  */
 public class TypeatronSerial extends TypeatronControlWrapper {
 
-    private final SerialHelper serialHelper;
+    private final OscSerialAdapter oscSerialAdapter;
 
     public TypeatronSerial(String device, int rate) throws OscControl.DeviceInitializationException {
         super();
 
-        serialHelper = new SerialHelper(this.typeatron, device, rate);
+        oscSerialAdapter = new OscSerialAdapter(this.typeatron, device, rate);
     }
 
     public void run() throws UnsupportedCommOperationException, IOException, PortInUseException, NoSuchPortException,
             OscControl.DeviceInitializationException {
-        serialHelper.run();
+        oscSerialAdapter.run();
     }
 
     /*
