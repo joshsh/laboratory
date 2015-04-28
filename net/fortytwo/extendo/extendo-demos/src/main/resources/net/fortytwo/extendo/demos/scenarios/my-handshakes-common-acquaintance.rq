@@ -6,9 +6,9 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 # note: replace <I> before evaluation
 SELECT ?person ?acquaintance WHERE {
-    ?h1 a activity:Handshake .
-    ?h1 activity:actor <I> .
-    ?h1 activity:actor ?person .
-    <I> foaf:know ?acquaintance .
-    ?person foaf:know ?acquaintance .
+    ?h a activity:Handshake .
+    ?h activity:actor <I> .
+    ?h activity:actor ?person .
+    <I> foaf:knows ?acquaintance .
+    ?person foaf:knows ?acquaintance .
 }

@@ -3,6 +3,8 @@ package net.fortytwo.extendo.demos.scenarios;
 import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
 import net.fortytwo.extendo.Extendo;
+import net.fortytwo.extendo.demos.TypeatronControlWrapper;
+import net.fortytwo.extendo.demos.TypeatronUdp;
 import net.fortytwo.extendo.hand.ExtendoHandControl;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
 import net.fortytwo.extendo.p2p.osc.OscControl;
@@ -10,6 +12,7 @@ import net.fortytwo.extendo.p2p.osc.OscReceiver;
 import net.fortytwo.extendo.p2p.osc.OscSender;
 import net.fortytwo.extendo.p2p.osc.UdpOscSender;
 import net.fortytwo.extendo.rdf.Activities;
+import net.fortytwo.extendo.typeatron.TypeatronControl;
 import net.fortytwo.rdfagents.model.Dataset;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -239,7 +242,7 @@ public class DemoParticipant {
             */
 
             Option exoHandHostOpt = new Option(
-                    "h", "exoHandHost", true, "host name for Extend-o-Hand (e.g. 127.0.0.1)");
+                    "h", "host", true, "host name for Extend-o-Hand and Typeatron (e.g. 127.0.0.1)");
             exoHandHostOpt.setArgName("HOST");
             exoHandHostOpt.setRequired(true);
             options.addOption(exoHandHostOpt);
@@ -248,6 +251,11 @@ public class DemoParticipant {
             exoHandPortOpt.setArgName("PORT");
             exoHandPortOpt.setRequired(true);
             options.addOption(exoHandPortOpt);
+
+            Option ttPortsOpt = new Option("t", "ttPorts", true, "in/out UDP ports for Typeatron (e.g. 42102,42103)");
+            ttPortsOpt.setArgName("PORT,PORT");
+            ttPortsOpt.setRequired(false);
+            options.addOption(ttPortsOpt);
 
             Option agentUriOpt = new Option("a", "agentUri", true, "URI of the participant");
             agentUriOpt.setArgName("URI");
@@ -276,18 +284,39 @@ public class DemoParticipant {
 
             //String device = cmd.getOptionValue(deviceOpt.getOpt());
             //int rate = Integer.valueOf(cmd.getOptionValue(rateOpt.getOpt(), "115200"));
-            String exoHandHost = cmd.getOptionValue(exoHandHostOpt.getOpt());
+            String host = cmd.getOptionValue(exoHandHostOpt.getOpt());
             int exoHandPort = Integer.valueOf(cmd.getOptionValue(exoHandPortOpt.getOpt()));
             String agentUri = cmd.getOptionValue(agentUriOpt.getOpt(), DEFAULT_AGENT_URI);
             String peopleMetId = cmd.getOptionValue(peopleOpt.getOpt());
             String thingsReceivedId = cmd.getOptionValue(thingsOpt.getOpt());
+
+            String ttPorts = cmd.getOptionValue(ttPortsOpt.getOpt());
+            if (null != ttPorts) {
+                int i = ttPorts.indexOf(",");
+                if (i > 0) {
+                    int portIn = Integer.valueOf(ttPorts.substring(0, i));
+                    int portOut = Integer.valueOf(ttPorts.substring(i+1));
+                    final TypeatronUdp ttControl = new TypeatronUdp(host, portIn, portOut);
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                ttControl.run();
+                            } catch (Throwable t) {
+                                logger.log(Level.SEVERE, "Typeatron thread died with error", t);
+                            }
+                        }
+                    }).start();
+                }
+            }
 
             // note: the Extend-o-Hand sends messages directly to the Gestural Server for the sake of
             // simplicity and low latency, but we send messages from here to Extend-o-Hand.
             OscReceiver receiver = new OscReceiver();
             ExtendoAgent agent = new ExtendoAgent(agentUri, true);
             ExtendoHandControl exoHand = new ExtendoHandControl(receiver, agent);
-            OscSender sender = new UdpOscSender(exoHandHost, exoHandPort);
+            OscSender sender = new UdpOscSender(host, exoHandPort);
             exoHand.connect(sender);
 
             exoHand.sendMulticueMessage(440, 100, 0xff00ff, 500);
