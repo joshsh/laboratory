@@ -290,6 +290,10 @@ public class DemoParticipant {
             String peopleMetId = cmd.getOptionValue(peopleOpt.getOpt());
             String thingsReceivedId = cmd.getOptionValue(thingsOpt.getOpt());
 
+            // for the Typeatron
+            // TODO: let either or both Typeatron and ExoHand read the agent URI from a property
+            Extendo.getConfiguration().setProperty(Extendo.P2P_AGENT_URI, agentUri);
+
             String ttPorts = cmd.getOptionValue(ttPortsOpt.getOpt());
             if (null != ttPorts) {
                 int i = ttPorts.indexOf(",");
