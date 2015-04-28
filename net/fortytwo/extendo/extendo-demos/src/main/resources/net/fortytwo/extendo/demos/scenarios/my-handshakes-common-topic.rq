@@ -3,9 +3,10 @@
 
 PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 # note: replace <I> before evaluation
-SELECT ?person ?topic WHERE {
+SELECT ?person ?topic ?topicLabel WHERE {
     ?h1 a activity:Handshake .
     ?h1 activity:actor <I> .
     ?h1 activity:actor ?person .
@@ -13,4 +14,5 @@ SELECT ?person ?topic WHERE {
     ?paper1 foaf:topic ?topic .
     ?paper2 foaf:maker ?person.
     ?paper2 foaf:topic ?topic .
+    ?topic rdfs:label ?topicLabel .
 }

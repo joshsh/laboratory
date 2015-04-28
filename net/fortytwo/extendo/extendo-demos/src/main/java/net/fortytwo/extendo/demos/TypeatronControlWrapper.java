@@ -51,6 +51,10 @@ public class TypeatronControlWrapper {
         typeatron = new TypeatronControl(receiver, agent, environment);
     }
 
+    public TypeatronControl getTypeatron() {
+        return typeatron;
+    }
+
     private void speakWithFreeTts(final String message) {
         voice.speak(message);
     }

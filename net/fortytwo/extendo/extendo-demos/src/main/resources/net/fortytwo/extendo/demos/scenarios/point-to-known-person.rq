@@ -4,8 +4,9 @@ PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 # note: replace <I> before evaluation
-SELECT ?actor ?indicated WHERE {
+SELECT ?actor ?indicated ?indicatedName WHERE {
     ?a activity:thingIndicated ?indicated .
     ?a activity:actor ?actor .
     <I> foaf:knows ?indicated .
+    ?indicated foaf:name ?indicatedName .
 }
