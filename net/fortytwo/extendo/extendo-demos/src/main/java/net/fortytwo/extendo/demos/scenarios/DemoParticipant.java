@@ -1,11 +1,13 @@
 package net.fortytwo.extendo.demos.scenarios;
 
+import com.illposed.osc.OSCMessage;
 import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
 import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.brain.Filter;
 import net.fortytwo.extendo.brain.Note;
 import net.fortytwo.extendo.brain.NoteQueries;
+import net.fortytwo.extendo.demos.TypeatronUdp;
 import net.fortytwo.extendo.hand.ExtendoHandControl;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
 import net.fortytwo.extendo.p2p.osc.OscControl;
@@ -15,7 +17,6 @@ import net.fortytwo.extendo.p2p.osc.UdpOscSender;
 import net.fortytwo.extendo.rdf.Activities;
 import net.fortytwo.extendo.typeatron.ripple.ExtendoBrainClient;
 import net.fortytwo.rdfagents.model.Dataset;
-import net.fortytwo.ripple.RippleException;
 import net.fortytwo.ripple.StringUtils;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -47,6 +48,9 @@ public class DemoParticipant {
 
     // for now, queries will not expire, and will not need to be renewed
     private static final int QUERY_TTL = 0;
+
+    // multicues should last no longer than the throttling of messages to ExoHand
+    private static final int MULTICUE_LENGTH_MS = 50;
 
     // note: participant and owner are ideally the same person, but Arthur doesn't have his own PKB
     private static final String
@@ -193,8 +197,6 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value person = b.getValue("person");
 
-                        System.out.println("HANDSHAKE...");
-
                         if (person instanceof URI) {
                             addToPeopleMet((URI) person);
                         }
@@ -214,7 +216,7 @@ public class DemoParticipant {
                         Value acquaintanceName = b.getValue("acquaintanceName");
 
                         int toneFrequency = 440;
-                        int toneDurationMs = 50;
+                        int toneDurationMs = MULTICUE_LENGTH_MS;
                         int color = 0xe0ff00;
                         int vibrationDurationMs = 300;
 
@@ -238,7 +240,7 @@ public class DemoParticipant {
                         Value topicLabel = b.getValue("topicLabel");
 
                         int toneFrequency = 262;
-                        int toneDurationMs = 50;
+                        int toneDurationMs = MULTICUE_LENGTH_MS;
                         int color = 0x0000ff;
                         int vibrationDurationMs = 300;
 
@@ -275,7 +277,6 @@ public class DemoParticipant {
         try {
             String command = "say \"" + StringUtils.escapeString(message) + "\"";
             p = runtime.exec(command);
-            System.out.println("command: " + command);
         } catch (IOException e) {
             logger.log(Level.WARNING, "'say' command failed", e);
         }
@@ -437,7 +438,7 @@ public class DemoParticipant {
             Extendo.getConfiguration().setProperty(Extendo.P2P_AGENT_URI, agentUri);
 
             ExtendoAgent agent = null;
-            /*
+            //*
             String ttPorts = cmd.getOptionValue(ttPortsOpt.getOpt());
             if (null != ttPorts) {
                 int i = ttPorts.indexOf(",");
@@ -458,7 +459,7 @@ public class DemoParticipant {
                         }
                     }).start();
                 }
-            }*/
+            }//*/
 
             // note: the Extend-o-Hand sends messages directly to the Gestural Server for the sake of
             // simplicity and low latency, but we send messages from here to Extend-o-Hand.
@@ -467,10 +468,12 @@ public class DemoParticipant {
                 agent = new ExtendoAgent(agentUri, true);
             }
             ExtendoHandControl exoHand = new ExtendoHandControl(receiver, agent);
+            exoHand.setThrottlingPeriod(200);
+            exoHand.throttleAsynchronously(5);
             OscSender sender = new UdpOscSender(host, exoHandPort);
             exoHand.connect(sender);
 
-            exoHand.sendMulticueMessage(440, 100, 0xff00ff, 500);
+            exoHand.sendMulticueMessage(440, MULTICUE_LENGTH_MS, 0xff00ff, 500);
 
             // this simply adds queries
             DemoParticipant p = new DemoParticipant(agent, exoHand, peopleMetId, thingsReceivedId);
