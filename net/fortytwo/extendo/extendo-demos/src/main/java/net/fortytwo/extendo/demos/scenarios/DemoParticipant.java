@@ -1,9 +1,12 @@
 package net.fortytwo.extendo.demos.scenarios;
 
+import com.illposed.osc.OSCMessage;
 import edu.rpi.twc.sesamestream.BindingSetHandler;
 import edu.rpi.twc.sesamestream.QueryEngine;
 import net.fortytwo.extendo.Extendo;
-import net.fortytwo.extendo.demos.TypeatronControlWrapper;
+import net.fortytwo.extendo.brain.Filter;
+import net.fortytwo.extendo.brain.Note;
+import net.fortytwo.extendo.brain.NoteQueries;
 import net.fortytwo.extendo.demos.TypeatronUdp;
 import net.fortytwo.extendo.hand.ExtendoHandControl;
 import net.fortytwo.extendo.p2p.ExtendoAgent;
@@ -12,8 +15,9 @@ import net.fortytwo.extendo.p2p.osc.OscReceiver;
 import net.fortytwo.extendo.p2p.osc.OscSender;
 import net.fortytwo.extendo.p2p.osc.UdpOscSender;
 import net.fortytwo.extendo.rdf.Activities;
-import net.fortytwo.extendo.typeatron.TypeatronControl;
+import net.fortytwo.extendo.typeatron.ripple.ExtendoBrainClient;
 import net.fortytwo.rdfagents.model.Dataset;
+import net.fortytwo.ripple.StringUtils;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -28,7 +32,11 @@ import org.openrdf.model.Value;
 import org.openrdf.query.BindingSet;
 
 import java.io.IOException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Collection;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,6 +49,9 @@ public class DemoParticipant {
     // for now, queries will not expire, and will not need to be renewed
     private static final int QUERY_TTL = 0;
 
+    // multicues should last no longer than the throttling of messages to ExoHand
+    private static final int MULTICUE_LENGTH_MS = 50;
+
     // note: participant and owner are ideally the same person, but Arthur doesn't have his own PKB
     private static final String
             //AGENT_URI = "http://fortytwo.net/josh/things/CybU2QN"; // Arthur Dent
@@ -49,7 +60,17 @@ public class DemoParticipant {
     private final ExtendoAgent agent;
     private final ExtendoHandControl exoHand;
 
+    private final ExtendoBrainClient exoBrainClient;
+
+    private final OscSender notificationSender;
+
     private String listOfPeopleMet, listOfThingsReceived;
+
+    private final Runtime runtime = Runtime.getRuntime();
+
+    private final BlockingQueue<String> messagesToSpeak = new LinkedBlockingQueue<String>(10);
+
+    private final Filter defaultFilter = new Filter();
 
     private String loadQuery(final String name) throws IOException {
         String rawQuery = IOUtils.toString(DemoParticipant.class.getResourceAsStream(name));
@@ -68,7 +89,7 @@ public class DemoParticipant {
                            final String listOfPeopleMet,
                            final String listOfThingsReceived)
             throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException,
-            OscControl.DeviceInitializationException {
+            OscControl.DeviceInitializationException, ExtendoBrainClient.ExtendoBrainClientException {
 
         this.agent = agent;
         this.exoHand = exoHand;
@@ -76,9 +97,16 @@ public class DemoParticipant {
         this.listOfPeopleMet = listOfPeopleMet;
         this.listOfThingsReceived = listOfThingsReceived;
 
-        // TODO: high-five query
+        exoBrainClient = new ExtendoBrainClient();
 
-        // TODO: shake, give, take, and high-five output to Max
+        // TODO: host and port are temporary; they should be configurable
+        try {
+            notificationSender = new UdpOscSender("localhost", 42003);
+        } catch (UnknownHostException e) {
+            throw new IllegalStateException();
+        } catch (SocketException e) {
+            throw new IllegalStateException();
+        }
 
         agent.getQueryEngine().addQuery(
                 QUERY_TTL, loadQuery("point-to-known-person.rq"), new BindingSetHandler() {
@@ -86,6 +114,7 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
+                        Value indicatedName = b.getValue("indicatedName");
 
                         if (indicated instanceof URI) {
                             try {
@@ -100,9 +129,12 @@ public class DemoParticipant {
                         // ...then react with a local cue
                         exoHand.sendAlertMessage();
 
+                        addNotification("you know: " + indicatedName.stringValue());
+
                         // log after reacting
                         logger.log(Level.INFO, agent.getAgentUri()
-                                + "notified that " + actor + " pointed to known person " + indicated);
+                                + "notified that " + actor + " pointed to known person "
+                                + indicated + " (" + indicatedName + ")");
                     }
                 });
 
@@ -113,6 +145,7 @@ public class DemoParticipant {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
                         Value topic = b.getValue("topic");
+                        Value topicLabel = b.getValue("topicLabel");
 
                         // share attention first...
                         if (indicated instanceof URI) {
@@ -128,10 +161,12 @@ public class DemoParticipant {
                         // ...then react with a local cue
                         exoHand.sendAlertMessage();
 
+                        addNotification("you like: " + topicLabel.stringValue());
+
                         // log after reacting
                         logger.log(Level.INFO, agent.getAgentUri()
                                 + "notified that " + actor + " pointed to thing " + indicated
-                                + " with topic of interest " + topic);
+                                + " with topic of interest " + topic + " (" + topicLabel + ")");
                     }
                 });
 
@@ -142,8 +177,12 @@ public class DemoParticipant {
                         Value thing = b.getValue("thing");
                         Value giver = b.getValue("giver");
 
-                        if (null != listOfThingsReceived) {
-                            // TODO
+                        if (thing instanceof URI) {
+                            addToThingsReceived((URI) thing);
+                        }
+
+                        if (giver instanceof URI) {
+                            addToPeopleMet((URI) giver);
                         }
 
                         // log after reacting
@@ -158,10 +197,8 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value person = b.getValue("person");
 
-                        System.out.println("HANDSHAKE...");
-
-                        if (null != listOfPeopleMet) {
-                            // TODO
+                        if (person instanceof URI) {
+                            addToPeopleMet((URI) person);
                         }
 
                         // log after reacting
@@ -176,17 +213,20 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value person = b.getValue("person");
                         Value acquaintance = b.getValue("acquaintance");
+                        Value acquaintanceName = b.getValue("acquaintanceName");
 
                         int toneFrequency = 440;
-                        int toneDurationMs = 50;
+                        int toneDurationMs = MULTICUE_LENGTH_MS;
                         int color = 0xe0ff00;
                         int vibrationDurationMs = 300;
 
                         exoHand.sendMulticueMessage(toneFrequency, toneDurationMs, color, vibrationDurationMs);
 
+                        addNotification("common acquaintance: " + acquaintanceName.stringValue());
+
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
-                                + " notified of common acquaintance " + acquaintance
+                                + " notified of common acquaintance " + acquaintance + " (" + acquaintanceName + ")"
                                 + " via handshake with " + person);
                     }
                 });
@@ -197,26 +237,129 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value person = b.getValue("person");
                         Value topic = b.getValue("topic");
+                        Value topicLabel = b.getValue("topicLabel");
 
                         int toneFrequency = 262;
-                        int toneDurationMs = 50;
+                        int toneDurationMs = MULTICUE_LENGTH_MS;
                         int color = 0x0000ff;
                         int vibrationDurationMs = 300;
 
                         exoHand.sendMulticueMessage(toneFrequency, toneDurationMs, color, vibrationDurationMs);
 
+                        addNotification("common topic: " + topicLabel.stringValue());
+
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
-                                + " notified of common topic " + topic
+                                + " notified of common topic " + topic + " (" + topicLabel + ")"
                                 + " via handshake with " + person);
                     }
                 });
+    }
+
+    public void run() throws InterruptedException {
+        startSpeakerThread();
+
+        // wait until killed
+        Object lock = "";
+        synchronized (lock) {
+            lock.wait();
+        }
+    }
+
+    private void addNotification(final String message) {
+        if (!messagesToSpeak.contains(message)) {
+            messagesToSpeak.offer(message);
+        }
+    }
+
+    private void speakNotification(final String message) {
+        Process p = null;
+        try {
+            String command = "say \"" + StringUtils.escapeString(message) + "\"";
+            p = runtime.exec(command);
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "'say' command failed", e);
+        }
+        if (null != p) {
+            int exitCode = 0;
+            try {
+                exitCode = p.waitFor();
+            } catch (InterruptedException e) {
+                logger.log(Level.SEVERE, "interrupted while waiting for 'say' command", e);
+            }
+            if (0 != exitCode) {
+                logger.warning("'say' command failed with code " + exitCode);
+            }
+        }
     }
 
     private Statement[] toArray(Dataset d) {
         Collection<Statement> c = d.getStatements();
         Statement[] a = new Statement[c.size()];
         return c.toArray(a);
+    }
+
+    private void startSpeakerThread() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        String message = messagesToSpeak.take();
+                        speakNotification(message);
+                    }
+                } catch (Throwable t) {
+                    logger.log(Level.SEVERE, "speaker thread died with error", t);
+                }
+            }
+        }).start();
+    }
+
+    private void addToPeopleMet(final URI personUri) {
+        if (null == this.listOfPeopleMet) {
+            return;
+        }
+
+        String s = personUri.stringValue();
+        int i = s.lastIndexOf('/');
+        if (i <= 0) {
+            return;
+        }
+        String id = s.substring(i+1);
+
+        prepend(listOfPeopleMet, id, defaultFilter);
+    }
+
+    private void addToThingsReceived(final URI thingReceived) {
+        if (null == this.listOfThingsReceived) {
+            return;
+        }
+
+        String s = thingReceived.stringValue();
+        int i = s.lastIndexOf('/');
+        if (i <= 0) {
+            return;
+        }
+        String id = s.substring(i+1);
+
+        prepend(listOfThingsReceived, id, defaultFilter);
+    }
+
+    private void prepend(final String listId,
+                         final String itemId,
+                         final Filter filter) {
+        Note item = new Note();
+        item.setId(itemId);
+
+        Note list = new Note();
+        list.setId(listId);
+        list.addChild(item);
+
+        try {
+            exoBrainClient.update(list, 1, filter, NoteQueries.forwardAddOnlyViewStyle);
+        } catch (ExtendoBrainClient.ExtendoBrainClientException e) {
+            logger.log(Level.SEVERE, "error while adding to list", e);
+        }
     }
 
     private static void printUsage(final Options options) {
@@ -291,9 +434,11 @@ public class DemoParticipant {
             String thingsReceivedId = cmd.getOptionValue(thingsOpt.getOpt());
 
             // for the Typeatron
-            // TODO: let either or both Typeatron and ExoHand read the agent URI from a property
+            // TODO: let either or both Typeatron, ExoHand read the agent URI from a property
             Extendo.getConfiguration().setProperty(Extendo.P2P_AGENT_URI, agentUri);
 
+            ExtendoAgent agent = null;
+            //*
             String ttPorts = cmd.getOptionValue(ttPortsOpt.getOpt());
             if (null != ttPorts) {
                 int i = ttPorts.indexOf(",");
@@ -301,6 +446,7 @@ public class DemoParticipant {
                     int portIn = Integer.valueOf(ttPorts.substring(0, i));
                     int portOut = Integer.valueOf(ttPorts.substring(i+1));
                     final TypeatronUdp ttControl = new TypeatronUdp(host, portIn, portOut);
+                    agent = ttControl.getTypeatron().getAgent();
 
                     new Thread(new Runnable() {
                         @Override
@@ -313,29 +459,27 @@ public class DemoParticipant {
                         }
                     }).start();
                 }
-            }
+            }//*/
 
             // note: the Extend-o-Hand sends messages directly to the Gestural Server for the sake of
             // simplicity and low latency, but we send messages from here to Extend-o-Hand.
             OscReceiver receiver = new OscReceiver();
-            ExtendoAgent agent = new ExtendoAgent(agentUri, true);
+            if (null == agent) {
+                agent = new ExtendoAgent(agentUri, true);
+            }
             ExtendoHandControl exoHand = new ExtendoHandControl(receiver, agent);
+            exoHand.setThrottlingPeriod(200);
+            exoHand.throttleAsynchronously(5);
             OscSender sender = new UdpOscSender(host, exoHandPort);
             exoHand.connect(sender);
 
-            exoHand.sendMulticueMessage(440, 100, 0xff00ff, 500);
+            exoHand.sendMulticueMessage(440, MULTICUE_LENGTH_MS, 0xff00ff, 500);
 
             // this simply adds queries
             DemoParticipant p = new DemoParticipant(agent, exoHand, peopleMetId, thingsReceivedId);
-
+            p.run();
             //SerialHelper serialHelper = new SerialHelper(exoHand, device, rate);
             //serialHelper.run();
-
-            // wait until killed
-            Object lock = "";
-            synchronized (lock) {
-                lock.wait();
-            }
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
