@@ -161,7 +161,7 @@ public class DemoParticipant {
                         // ...then react with a local cue
                         exoHand.sendAlertMessage();
 
-                        addNotification("you like: " + topicLabel.stringValue());
+                        addNotification("this is related to " + topicLabel.stringValue());
 
                         // log after reacting
                         logger.log(Level.INFO, agent.getAgentUri()
@@ -176,6 +176,7 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value thing = b.getValue("thing");
                         Value giver = b.getValue("giver");
+                        Value giverName = b.getValue("giverName");
 
                         if (thing instanceof URI) {
                             addToThingsReceived((URI) thing);
@@ -185,9 +186,11 @@ public class DemoParticipant {
                             addToPeopleMet((URI) giver);
                         }
 
+                        addNotification("handoff from " + giverName.stringValue());
+
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
-                                + " notified of item " + thing + " taken from " + giver);
+                                + " notified of item " + thing + " taken from " + giver + " (" + giverName + ")");
                     }
                 });
 
@@ -254,6 +257,8 @@ public class DemoParticipant {
                                 + " via handshake with " + person);
                     }
                 });
+
+        logger.info("finished adding queries");
     }
 
     public void run() throws InterruptedException {

@@ -15,4 +15,5 @@ SELECT REDUCED ?h ?person ?topic ?topicLabel WHERE {
     ?paper2 foaf:maker ?person.
     ?paper2 foaf:topic ?topic .
     ?topic rdfs:label ?topicLabel .
+    FILTER(?person != <I>)
 }
