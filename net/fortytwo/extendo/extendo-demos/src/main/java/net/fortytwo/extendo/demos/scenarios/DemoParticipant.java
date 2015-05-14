@@ -1,8 +1,7 @@
 package net.fortytwo.extendo.demos.scenarios;
 
-import com.illposed.osc.OSCMessage;
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
+import edu.rpi.twc.rdfstream4j.BindingSetHandler;
+import edu.rpi.twc.rdfstream4j.QueryEngine;
 import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.brain.Filter;
 import net.fortytwo.extendo.brain.Note;

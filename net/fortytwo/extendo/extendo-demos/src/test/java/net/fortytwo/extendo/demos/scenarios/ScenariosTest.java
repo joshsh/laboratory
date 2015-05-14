@@ -1,9 +1,9 @@
 package net.fortytwo.extendo.demos.scenarios;
 
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
-import edu.rpi.twc.sesamestream.SesameStream;
-import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
+import edu.rpi.twc.rdfstream4j.BindingSetHandler;
+import edu.rpi.twc.rdfstream4j.QueryEngine;
+import edu.rpi.twc.rdfstream4j.RDFStream4j;
+import edu.rpi.twc.rdfstream4j.impl.QueryEngineImpl;
 import net.fortytwo.extendo.rdf.Activities;
 import net.fortytwo.rdfagents.model.Dataset;
 import org.junit.After;
@@ -41,7 +41,7 @@ public class ScenariosTest {
 
     @Before
     public void setUp() throws Exception {
-        SesameStream.setDoPerformanceMetrics(true);
+        RDFStream4j.setDoPerformanceMetrics(true);
         now = System.currentTimeMillis();
         queryEngine.clear();
     }

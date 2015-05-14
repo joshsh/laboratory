@@ -9,4 +9,5 @@ SELECT ?actor ?indicated ?indicatedName WHERE {
     ?a activity:actor ?actor .
     <I> foaf:knows ?indicated .
     ?indicated foaf:name ?indicatedName .
+    FILTER(?actor != <I>)
 }
