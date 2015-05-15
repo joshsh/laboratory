@@ -12,4 +12,5 @@ SELECT ?person ?acquaintance ?acquaintanceName WHERE {
     <I> foaf:knows ?acquaintance .
     ?person foaf:knows ?acquaintance .
     ?acquaintance foaf:name ?acquaintanceName .
+    FILTER(?person != <I>)
 }

@@ -11,4 +11,5 @@ SELECT ?actor ?indicated ?topic ?topicLabel WHERE {
     ?indicated foaf:topic ?topic .
     <I> foaf:interest ?topic .
     ?topic rdfs:label ?topicLabel .
+    FILTER(?actor != <I>)
 }

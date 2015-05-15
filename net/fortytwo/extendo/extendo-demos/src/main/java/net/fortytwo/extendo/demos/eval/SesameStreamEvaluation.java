@@ -1,8 +1,8 @@
 package net.fortytwo.extendo.demos.eval;
 
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
-import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
+import edu.rpi.twc.rdfstream4j.BindingSetHandler;
+import edu.rpi.twc.rdfstream4j.QueryEngine;
+import edu.rpi.twc.rdfstream4j.impl.QueryEngineImpl;
 import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.rdf.Activities;
 import net.fortytwo.extendo.rdf.vocab.ExtendoActivityOntology;

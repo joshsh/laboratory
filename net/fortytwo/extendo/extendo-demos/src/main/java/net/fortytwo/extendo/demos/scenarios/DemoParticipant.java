@@ -1,8 +1,7 @@
 package net.fortytwo.extendo.demos.scenarios;
 
-import com.illposed.osc.OSCMessage;
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
+import edu.rpi.twc.rdfstream4j.BindingSetHandler;
+import edu.rpi.twc.rdfstream4j.QueryEngine;
 import net.fortytwo.extendo.Extendo;
 import net.fortytwo.extendo.brain.Filter;
 import net.fortytwo.extendo.brain.Note;
@@ -139,6 +138,36 @@ public class DemoParticipant {
                 });
 
         agent.getQueryEngine().addQuery(
+                QUERY_TTL, loadQuery("point-to-my-group.rq"), new BindingSetHandler() {
+                    @Override
+                    public void handle(BindingSet b) {
+                        Value actor = b.getValue("actor");
+                        Value indicated = b.getValue("indicated");
+                        Value indicatedName = b.getValue("indicatedName");
+
+                        if (indicated instanceof URI) {
+                            try {
+                                shareAttention((URI) indicated);
+                            } catch (IOException e) {
+                                logger.log(Level.WARNING, "failed to share attention", e);
+                            }
+                        } else {
+                            logger.warning("value indicated is not a URI: " + indicated);
+                        }
+
+                        // ...then react with a local cue
+                        exoHand.sendAlertMessage();
+
+                        addNotification("you are a member of: " + indicatedName.stringValue());
+
+                        // log after reacting
+                        logger.log(Level.INFO, agent.getAgentUri()
+                                + "notified that " + actor + " pointed to your group "
+                                + indicated + " (" + indicatedName + ")");
+                    }
+                });
+
+        agent.getQueryEngine().addQuery(
                 QUERY_TTL, loadQuery("point-to-thing-with-topic-of-interest.rq"), new BindingSetHandler() {
                     @Override
                     public void handle(BindingSet b) {
@@ -161,7 +190,7 @@ public class DemoParticipant {
                         // ...then react with a local cue
                         exoHand.sendAlertMessage();
 
-                        addNotification("you like: " + topicLabel.stringValue());
+                        addNotification("this is related to " + topicLabel.stringValue());
 
                         // log after reacting
                         logger.log(Level.INFO, agent.getAgentUri()
@@ -176,6 +205,7 @@ public class DemoParticipant {
                     public void handle(BindingSet b) {
                         Value thing = b.getValue("thing");
                         Value giver = b.getValue("giver");
+                        Value giverName = b.getValue("giverName");
 
                         if (thing instanceof URI) {
                             addToThingsReceived((URI) thing);
@@ -185,9 +215,11 @@ public class DemoParticipant {
                             addToPeopleMet((URI) giver);
                         }
 
+                        addNotification("handoff from " + giverName.stringValue());
+
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
-                                + " notified of item " + thing + " taken from " + giver);
+                                + " notified of item " + thing + " taken from " + giver + " (" + giverName + ")");
                     }
                 });
 
@@ -254,6 +286,8 @@ public class DemoParticipant {
                                 + " via handshake with " + person);
                     }
                 });
+
+        logger.info("finished adding queries");
     }
 
     public void run() throws InterruptedException {
