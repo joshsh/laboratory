@@ -5,8 +5,8 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 # note: replace <I> before evaluation
 SELECT ?actor ?indicated ?indicatedName WHERE {
-    ?a activity:thingIndicated ?indicated .
     ?a activity:actor ?actor .
+    ?a activity:thingIndicated ?indicated .
     <I> foaf:knows ?indicated .
     ?indicated foaf:name ?indicatedName .
 }

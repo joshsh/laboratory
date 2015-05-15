@@ -25,17 +25,20 @@ import java.util.Random;
 public class PingArduino {
     private final String device;
     private final int rate;
+    private final int numberOfPings;
 
     private static final int
-            OUT_PINGS = 1000,
+            DEFAULT_NUMBER_OF_PINGS = 1000,
             PINGS_PER_CHUNK = 10;
 
     private final Random random = new Random();
 
     public PingArduino(final String device,
-                       final int rate) {
+                       final int rate,
+                       final int numberOfPings) {
         this.device = device;
         this.rate = rate;
+        this.numberOfPings = numberOfPings;
     }
 
     private void run()
@@ -45,6 +48,8 @@ public class PingArduino {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(device);
         SerialPort serialPort = (SerialPort) portIdentifier.open("arduino-port", 0);
         serialPort.setSerialPortParams(rate, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+        serialPort.enableReceiveThreshold(1);
+        System.out.println("received threshold enabled: " + serialPort.isReceiveThresholdEnabled());
 
         InputStream in = serialPort.getInputStream();
         try {
@@ -74,9 +79,13 @@ public class PingArduino {
         // wait for two-way communication (initially, we can only write, and do not receive replies)
         int inCount = 0, outCount = 0;
         long startMillis = System.currentTimeMillis();
+        while (in.available() > 0) {
+            in.read();
+        }
         while (true) {
             out.write('a');
             outCount++;
+            Thread.sleep(100);
             if (in.available() > 0) {
                 break;
             }
@@ -89,27 +98,28 @@ public class PingArduino {
         System.out.println("wrote " + outCount
                 + " and read " + inCount + " byte(s) to initiate communication in "
                 + (endMillis - startMillis) + "ms");
+        System.out.flush();
 
         startMillis = System.currentTimeMillis();
-        int chunks = OUT_PINGS / PINGS_PER_CHUNK;
+        int chunks = numberOfPings / PINGS_PER_CHUNK;
         double[] latency = new double[chunks];
         for (int i = 0; i < chunks; i++) {
             long startNanos = System.nanoTime();
             for (int j = 0; j < PINGS_PER_CHUNK; j++) {
-                while (in.available() > 0) in.read();
+                while (in.available() > 0) {
+                    int inByte = in.read();
+                    System.out.println("skip:\t\t'" + (char) inByte + "'\t" + inByte);
+                }
                 byte outByte = (byte) randomLetter();
-                //System.out.println("out:\t\t'" + (char) outByte + "'\t" + outByte);
+                System.out.println("out:\t\t'" + (char) outByte + "'\t" + outByte);
                 out.write(outByte);
-                int inByte = -1;
-                do {
-                    inByte = in.read();
-                    //System.out.println("\tin:\t'" + (char) inByte + "'\t" + inByte);
-                } while (in.available() > 0 || outByte - 32 != inByte);
-                /*{
-                    throw new IllegalStateException("expected '" + (char) (outByte - 32)
-                            + "' for '" + (char) outByte
+                out.flush();
+                int inByte = in.read();
+                if (inByte != outByte) {
+                    throw new IllegalStateException("expected '" + (char) outByte
                             + "', received '" + (char) inByte + "'");
-                }*/
+                }
+                System.out.println("\tin:\t'" + (char) inByte + "'\t" + inByte);
             }
             long endNanos = System.nanoTime();
             double avTime = (endNanos - startNanos) / (((double) PINGS_PER_CHUNK) * 1000000);
@@ -119,7 +129,7 @@ public class PingArduino {
 
         Statistics stat = new Statistics(latency);
         System.out.format("round-trip min/avg/max/stddev = %.4f/%.4f/%.4f/%.4f ms ("
-                + (chunks * PINGS_PER_CHUNK) + " pings)\n",
+                        + (chunks * PINGS_PER_CHUNK) + " pings)\n",
                 stat.getMin(),
                 stat.getMean(),
                 stat.getMax(),
@@ -150,6 +160,12 @@ public class PingArduino {
             rateOpt.setRequired(true);
             options.addOption(rateOpt);
 
+            Option numberOpt = new Option("n", "nPings", true, "number of pings (default: 1000)");
+            numberOpt.setArgName("INTEGER");
+            numberOpt.setType(Integer.class);
+            numberOpt.setRequired(false);
+            options.addOption(numberOpt);
+
             CommandLineParser clp = new PosixParser();
             CommandLine cmd = null;
 
@@ -162,8 +178,9 @@ public class PingArduino {
 
             String device = cmd.getOptionValue(deviceOpt.getOpt());
             int rate = Integer.valueOf(cmd.getOptionValue(rateOpt.getOpt()));
+            int number = Integer.valueOf(cmd.getOptionValue(numberOpt.getOpt(), "" + DEFAULT_NUMBER_OF_PINGS));
 
-            new PingArduino(device, rate).run();
+            new PingArduino(device, rate, number).run();
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);
