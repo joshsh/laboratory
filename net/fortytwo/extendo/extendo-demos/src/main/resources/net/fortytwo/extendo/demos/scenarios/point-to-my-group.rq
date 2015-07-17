@@ -1,6 +1,7 @@
 # a query for groups I belong to which another actor has pointed to
 
 PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
+PREFIX dc: <http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 # note: replace <I> before evaluation
