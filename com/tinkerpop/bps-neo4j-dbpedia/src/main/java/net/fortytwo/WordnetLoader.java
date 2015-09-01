@@ -15,12 +15,15 @@ import org.openrdf.sail.SailException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
 /**
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class WordnetLoader {
+    private static final Logger logger = Logger.getLogger(WordnetLoader.class.getName());
+
     private static final String SOURCE = "/Users/josh/data/shortterm/wordnet-loading/wordnet/rdf";
     private static final String DEST = "/Users/josh/data/shortterm/wordnet-loading/neo4j";
     private static final long BUFFER_SIZE = 1000;
@@ -42,23 +45,31 @@ public class WordnetLoader {
         try {
             SailConnection c = sail.getConnection();
             try {
+                c.begin();
+
                 long startTime = System.currentTimeMillis();
 
                 File dir = new File(SOURCE);
                 for (File f : dir.listFiles()) {
                     long before = System.currentTimeMillis();
-                    System.out.println("loading file: " + f);
+                    logger.info("loading file: " + f);
                     String n = f.getName();
-                    InputStream is;
-                    if (n.endsWith(".ttl.gz")) {
+                    InputStream is = null;
+                    if (n.endsWith(".gz")||n.endsWith(".gzip")) {
                         is = new GZIPInputStream(new FileInputStream(f));
-                    } else if (n.endsWith(".ttl")) {
-                        is = new FileInputStream(f);
-                    } else {
+                        n = n.substring(0, n.lastIndexOf('.'));
+                    }
+
+                    RDFFormat format = RDFFormat.forFileName(n);
+                    if (null == format) {
                         continue;
                     }
 
-                    RDFParser p = Rio.createParser(RDFFormat.TURTLE);
+                    if (null == is) {
+                        is = new FileInputStream(f);
+                    }
+
+                    RDFParser p = Rio.createParser(format);
                     p.setStopAtFirstError(false);
                     p.setRDFHandler(new SailConnectionAdder(c));
 
@@ -72,13 +83,14 @@ public class WordnetLoader {
                     }
 
                     long after = System.currentTimeMillis();
-                    System.out.println("\tfinished in " + (after - before) + "ms");
+                    logger.info("\tfinished in " + (after - before) + "ms");
                 }
 
                 long endTime = System.currentTimeMillis();
-                System.out.println("resulting triple store has " + c.size() + " statements");
-                System.out.println("total load time: " + (endTime - startTime) + "ms");
+                logger.info("resulting triple store has " + c.size() + " statements");
+                logger.info("total load time: " + (endTime - startTime) + "ms");
             } finally {
+                c.rollback();
                 c.close();
             }
         } finally {
@@ -90,7 +102,7 @@ public class WordnetLoader {
         private final SailConnection c;
         private long count = 0;
 
-        private SailConnectionAdder(SailConnection c) {
+        private SailConnectionAdder(SailConnection c) throws SailException {
             this.c = c;
         }
 
@@ -100,6 +112,7 @@ public class WordnetLoader {
         public void endRDF() throws RDFHandlerException {
             try {
                 c.commit();
+                c.begin();
             } catch (SailException e) {
                 throw new RDFHandlerException(e);
             }
@@ -133,6 +146,7 @@ public class WordnetLoader {
             if (0 == count % BUFFER_SIZE) {
                 try {
                     c.commit();
+                    c.begin();
                 } catch (SailException e) {
                     throw new RDFHandlerException(e);
                 }

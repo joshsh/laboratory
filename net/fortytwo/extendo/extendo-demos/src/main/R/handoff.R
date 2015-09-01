@@ -222,6 +222,13 @@ hand1.i2.spikes <- find.spikes(hand1.i2.mag, spikes.min.amp, hand1.spikes.min.pe
 hand2.i1.spikes <- find.spikes(hand2.i1.mag, spikes.min.amp, hand2.spikes.min.period)
 hand2.i2.spikes <- find.spikes(hand2.i2.mag, spikes.min.amp, hand2.spikes.min.period)
 
+# note: these are not yet used
+hand1.i3.spikes <- find.spikes(hand1.i3.mag, spikes.min.amp, hand1.spikes.min.period)
+hand2.i4.spikes <- find.spikes(hand2.i4.mag, spikes.min.amp, hand2.spikes.min.period)
+
+# total spikes: 18
+length(c(hand1.i1.spikes, hand2.i2.spikes, hand1.i3.spikes, hand2.i4.spikes))
+
 plot(hand1.i1.mag, type="l"); abline(col="red", v=hand1.i1.spikes)
 plot(hand1.i2.mag, type="l"); abline(col="red", v=hand1.i2.spikes)
 plot(hand2.i1.mag, type="l"); abline(col="red", v=hand2.i1.spikes)
@@ -313,6 +320,32 @@ dist3d(buildup.peaks.vector, give.spikes.ra.vector)
 plot3d(give.spikes.ra.vector, xlim=c(-1,1), ylim=c(-1,1), zlim=c(-1,1), col="blue", size=10)
 points3d(take.spikes.ra.vector, col="green", size=10)
 points3d(buildup.peaks.vector, col="red", size=10)
+
+
+########################################
+# plot a representative "give" time series, for a figure
+
+require(ggplot2)
+library(reshape)
+
+series <- hand2.i1[3040:3200,]
+
+a <- a.of(series)
+min.amp <- 1.0
+peaks <- find.peaks(mag(a), min.amp)
+p1 <- peaks[1]
+
+df <- data.frame(t=((1:length(mag(a)))-p1)*hand2.dt, a=mag(a), x=a$x, y=a$y, z=a$z)
+df.melted <- melt(df, id="t")
+
+pdf("/tmp/graphic.pdf", width=6.25, height=3)
+par(mar=c(4.5,5,2,1.5))
+ggplot(data = df.melted, aes(x = t, y = value, color = variable)) +
+  geom_line() +
+  scale_color_manual(values=c("black", "#CC6666", "#66CC66", "#9999CC"), labels=c("|a|", expression("a"["x"]), expression("a"["y"]), expression("a"["z"]))) +
+  xlab("time (s)") +
+  ylab("acceleration (g)")
+dev.off()
 
 
 ########################################

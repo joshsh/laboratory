@@ -12,8 +12,8 @@
     <description>test loading of DBPedia (and other datasets) into Neo4j via GraphSail</description>
 
     <properties>
-        <tinkerpop.version>2.3.0-SNAPSHOT</tinkerpop.version>
-        <sesame.version>2.6.10</sesame.version>
+        <tinkerpop.version>2.6.0</tinkerpop.version>
+        <sesame.version>2.7.10</sesame.version>
         <junit.version>4.5</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -38,6 +38,11 @@
         <dependency>
             <groupId>org.openrdf.sesame</groupId>
             <artifactId>sesame-rio-ntriples</artifactId>
+            <version>${sesame.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-rio-rdfxml</artifactId>
             <version>${sesame.version}</version>
         </dependency>
         <dependency>
@@ -86,6 +91,7 @@
         </plugins>
     </build>
 
+    <!--
     <repositories>
         <repository>
             <id>fortytwo</id>
@@ -93,5 +99,6 @@
             <url>http://fortytwo.net/maven2</url>
         </repository>
     </repositories>
+    -->
 
 </project>

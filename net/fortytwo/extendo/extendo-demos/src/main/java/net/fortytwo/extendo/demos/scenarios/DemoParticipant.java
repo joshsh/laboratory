@@ -168,6 +168,37 @@ public class DemoParticipant {
                 });
 
         agent.getQueryEngine().addQuery(
+                QUERY_TTL, loadQuery("point-to-thing-of-interest.rq"), new BindingSetHandler() {
+                    @Override
+                    public void handle(BindingSet b) {
+                        Value actor = b.getValue("actor");
+                        Value indicated = b.getValue("indicated");
+                        Value name = b.getValue("name");
+
+                        // share attention first...
+                        if (indicated instanceof URI) {
+                            try {
+                                shareAttention((URI) indicated);
+                            } catch (IOException e) {
+                                logger.log(Level.WARNING, "failed to share attention", e);
+                            }
+                        } else {
+                            logger.warning("value indicated is not a URI: " + indicated);
+                        }
+
+                        // ...then react with a local cue
+                        exoHand.sendAlertMessage();
+
+                        addNotification("this is related to " + name.stringValue());
+
+                        // log after reacting
+                        logger.log(Level.INFO, agent.getAgentUri()
+                                + "notified that " + actor + " pointed to thing " + indicated
+                                + " (" + name + ")");
+                    }
+                });
+
+        agent.getQueryEngine().addQuery(
                 QUERY_TTL, loadQuery("point-to-thing-with-topic-of-interest.rq"), new BindingSetHandler() {
                     @Override
                     public void handle(BindingSet b) {
@@ -196,6 +227,38 @@ public class DemoParticipant {
                         logger.log(Level.INFO, agent.getAgentUri()
                                 + "notified that " + actor + " pointed to thing " + indicated
                                 + " with topic of interest " + topic + " (" + topicLabel + ")");
+                    }
+                });
+
+        agent.getQueryEngine().addQuery(
+                QUERY_TTL, loadQuery("point-to-thing-with-topic-of-publication.rq"), new BindingSetHandler() {
+                    @Override
+                    public void handle(BindingSet b) {
+                        Value actor = b.getValue("actor");
+                        Value indicated = b.getValue("indicated");
+                        Value topic = b.getValue("topic");
+                        Value topicLabel = b.getValue("topicLabel");
+
+                        // share attention first...
+                        if (indicated instanceof URI) {
+                            try {
+                                shareAttention((URI) indicated);
+                            } catch (IOException e) {
+                                logger.log(Level.WARNING, "failed to share attention", e);
+                            }
+                        } else {
+                            logger.warning("value indicated is not a URI: " + indicated);
+                        }
+
+                        // ...then react with a local cue
+                        exoHand.sendAlertMessage();
+
+                        addNotification("this is related to " + topicLabel.stringValue());
+
+                        // log after reacting
+                        logger.log(Level.INFO, agent.getAgentUri()
+                                + "notified that " + actor + " pointed to thing " + indicated
+                                + " with topic of publication " + topic + " (" + topicLabel + ")");
                     }
                 });
 
