@@ -653,35 +653,9 @@ public class SesameStreamEvaluation {
     }
 
     private String formatSample(String name, List<Long> sample) {
-        double mean = findMean(sample);
-        double sd = findStandardDeviation(sample, mean);
+        double mean = Stats.findMean(sample);
+        double sd = Stats.findStandardDeviation(sample, mean);
         return name + ": mean=" + mean + ", sd=" + sd;
-    }
-
-    private double findMean(List<Long> sample) {
-        if (null == sample || sample.isEmpty()) {
-            return Double.NaN;
-        }
-
-        double sum = 0;
-        for (long l : sample) {
-            sum += l;
-        }
-        return sum / sample.size();
-    }
-
-    private double findStandardDeviation(List<Long> sample, double mean) {
-        if (null == sample || sample.isEmpty()) {
-            return Double.NaN;
-        }
-
-        double sum = 0;
-        for (long l : sample) {
-            double q = l - mean;
-            sum += (q * q);
-        }
-
-        return Math.sqrt(sum/sample.size());
     }
 
     // star topology minimizes repeat handshakes

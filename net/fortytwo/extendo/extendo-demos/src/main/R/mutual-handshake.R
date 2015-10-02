@@ -167,6 +167,7 @@ accel.cal <- function(accel) { data.frame(x=(accel$x/230 - 0.05), y=(accel$y/230
 ########################################
 # load and crop data
 
+# these are stored locally under ~/data/research/extend-o-hand/handshakes/mutual
 hand1 <- read.csv(file("/tmp/hand1.csv"), header=FALSE)
 hand2 <- read.csv(file("/tmp/hand2.csv"), header=FALSE)
 
