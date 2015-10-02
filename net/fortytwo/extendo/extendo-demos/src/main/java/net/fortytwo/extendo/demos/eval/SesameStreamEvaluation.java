@@ -32,6 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -160,9 +161,23 @@ public class SesameStreamEvaluation {
     private ThreadLocal<Integer> countOfReceivedHandshakesWithCommonKnows = new ThreadLocal<Integer>();
     private ThreadLocal<Integer> countOfReceivedHandshakesWithCommonTopics = new ThreadLocal<Integer>();
 
+    private ThreadLocal<List<Long>> pulseLatency = new ThreadLocal<List<Long>>();
+    private ThreadLocal<List<Long>> friendsHandshakeLatency = new ThreadLocal<List<Long>>();
+    private ThreadLocal<List<Long>> topicsHandshakeLatency = new ThreadLocal<List<Long>>();
+
     private final Object printMutex = "";
 
     private final boolean verbose;
+
+    private void addToSample(final ThreadLocal<List<Long>> sample,
+                             final Long time) {
+        List<Long> list = sample.get();
+        if (null == list) {
+            list = new LinkedList<Long>();
+            sample.set(list);
+        }
+        list.add(time);
+    }
 
     public SesameStreamEvaluation(final boolean verbose,
                                   final int totalThreads,
@@ -211,6 +226,10 @@ public class SesameStreamEvaluation {
                 break;
             }
         }
+
+        if (null != p && p <= 0) {
+            throw new IllegalStateException("total people are less than expected...");
+        }
         int maxPeopleKnown = null != p
                 ? p
                 : (int) (y[x.length - 1] * totalPeople / (1.0 * x[x.length - 1]));
@@ -236,7 +255,7 @@ public class SesameStreamEvaluation {
                     time1 = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
                 } catch (Throwable t) {
                     logger.log(Level.WARNING, "count not parse as dateTime: " + timeValue.stringValue()
-                            + " in solution " + bindingSet, t);
+                            + " in solution " + bindingSet);
                     return;
                 }
 
@@ -447,8 +466,9 @@ public class SesameStreamEvaluation {
         Long then = timeOfPulseTrigger.get();
         if (null != then) {
             long latency = now - then;
-            System.out.println("pulse latency = " + latency + "ms");
             timeOfPulseTrigger.set(null);
+            addToSample(pulseLatency, latency);
+            //System.out.println("pulse latency = " + latency + "ms");
         }
     }
 
@@ -456,8 +476,9 @@ public class SesameStreamEvaluation {
         Long then = timeOfTopicsHandshakeTrigger.get();
         if (null != then) {
             long latency = now - then;
-            System.out.println("topics-handshake latency = " + latency + "ms");
             timeOfTopicsHandshakeTrigger.set(null);
+            addToSample(topicsHandshakeLatency, latency);
+            //System.out.println("topics-handshake latency = " + latency + "ms");
         }
     }
 
@@ -465,8 +486,9 @@ public class SesameStreamEvaluation {
         Long then = timeOfFriendsHandshakeTrigger.get();
         if (null != then) {
             long latency = now - then;
-            System.out.println("friends-handshake latency = " + latency + "ms");
             timeOfFriendsHandshakeTrigger.set(null);
+            addToSample(friendsHandshakeLatency, latency);
+            //System.out.println("friends-handshake latency = " + latency + "ms");
         }
     }
 
@@ -490,7 +512,13 @@ public class SesameStreamEvaluation {
             logger.info("running simulation #" + index);
             long lastTimeStep = startTime;
             long lastReport = startTime;
+
+            pulseLatency.set(new LinkedList<Long>());
+            friendsHandshakeLatency.set(new LinkedList<Long>());
+            topicsHandshakeLatency.set(new LinkedList<Long>());
+
             try {
+                // loop until the thread is killed after a pre-configured time limit
                 while (true) {
                     //int totalPeople = 0;
                     long now = System.currentTimeMillis();
@@ -532,8 +560,6 @@ public class SesameStreamEvaluation {
                         }
                         after = System.currentTimeMillis();
                         shakeTime += (after - before);
-
-
                     }
 
                     long after = System.currentTimeMillis();
@@ -558,6 +584,16 @@ public class SesameStreamEvaluation {
                             System.out.println("handshakes this cycle: " + countOfHandshakes.get());
                             System.out.println("received common-knows handshakes this cycle: " + countOfReceivedHandshakesWithCommonKnows.get());
                             System.out.println("received common-topics handshakes this cycle: " + countOfReceivedHandshakesWithCommonTopics.get());
+
+                            // print latency statistics
+                            System.out.println(formatSample("pulses", pulseLatency.get()));
+                            System.out.println(formatSample("'friends' handshakes", friendsHandshakeLatency.get()));
+                            System.out.println(formatSample("'topics' handshakes", topicsHandshakeLatency.get()));
+                            //*
+                            pulseLatency.get().clear();
+                            friendsHandshakeLatency.get().clear();
+                            topicsHandshakeLatency.get().clear();
+                            //*/
 
                             /*
                             double movesPerSecond = countOfMoves.get() * 1000.0 / time;
@@ -614,6 +650,38 @@ public class SesameStreamEvaluation {
                 logger.log(Level.SEVERE, "simulation thread died with error", t);
             }
         }
+    }
+
+    private String formatSample(String name, List<Long> sample) {
+        double mean = findMean(sample);
+        double sd = findStandardDeviation(sample, mean);
+        return name + ": mean=" + mean + ", sd=" + sd;
+    }
+
+    private double findMean(List<Long> sample) {
+        if (null == sample || sample.isEmpty()) {
+            return Double.NaN;
+        }
+
+        double sum = 0;
+        for (long l : sample) {
+            sum += l;
+        }
+        return sum / sample.size();
+    }
+
+    private double findStandardDeviation(List<Long> sample, double mean) {
+        if (null == sample || sample.isEmpty()) {
+            return Double.NaN;
+        }
+
+        double sum = 0;
+        for (long l : sample) {
+            double q = l - mean;
+            sum += (q * q);
+        }
+
+        return Math.sqrt(sum/sample.size());
     }
 
     // star topology minimizes repeat handshakes
@@ -891,7 +959,7 @@ public class SesameStreamEvaluation {
                                   final double probTopicsInCommon)
      */
     public static void main(final String[] args) throws Exception {
-        //*
+        /*
         Set<String> qs = new HashSet<String>();
         qs.add("topics");
         new SesameStreamEvaluation(false, 1, 400, 5, qs, 600, 300, 0, 0.5);
