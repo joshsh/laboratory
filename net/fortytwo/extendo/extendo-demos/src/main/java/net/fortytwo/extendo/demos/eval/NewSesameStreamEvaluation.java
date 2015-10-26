@@ -33,8 +33,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -52,11 +50,7 @@ public class NewSesameStreamEvaluation {
     private static final Logger logger = SemanticSynchrony.getLogger(NewSesameStreamEvaluation.class);
 
     private static final String
-            EX = "http://example.org/",
             DEFAULT_NS = "http://example.org/defaultNs/";
-
-    // e.g. 2015-02-22T01:35:10-0500
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
 
     private static final int HANDSHAKE_TTL = 1; // seconds; 1s is the minimum TTL
 
@@ -213,7 +207,7 @@ public class NewSesameStreamEvaluation {
             return;
         }
         try {
-            timestamp = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
+            timestamp = Activities.TIMESTAMP_FORMAT.parse(timeValue.stringValue()).getTime();
         } catch (Exception t) {
             logger.log(Level.WARNING, "count not parse as dateTime: " + timeValue.stringValue()
                     + " in solution " + bindingSet);
