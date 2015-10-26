@@ -11,17 +11,8 @@
     <name>Extendo Demos</name>
     <description>tests and demos of the Extendo platform</description>
 
-    <!-- for the javax.comm dependency -->
-    <repositories>
-        <repository>
-            <id>fortytwo</id>
-            <name>fortytwo.net Maven repository</name>
-            <url>http://fortytwo.net/maven2</url>
-        </repository>
-    </repositories>
-
     <properties>
-        <extendo.version>1.1-SNAPSHOT</extendo.version>
+        <smsn.version>1.1-SNAPSHOT</smsn.version>
         <freetts.version>1.2.1</freetts.version>
         <!--<ripple.version>1.1</ripple.version>
         <sesame.version>2.7.10</sesame.version>
@@ -33,19 +24,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.fortytwo.extendo</groupId>
+            <groupId>net.fortytwo.smsn</groupId>
             <artifactId>monitron</artifactId>
-            <version>${extendo.version}</version>
+            <version>${smsn.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.fortytwo.extendo</groupId>
+            <groupId>net.fortytwo.smsn</groupId>
             <artifactId>typeatron</artifactId>
-            <version>${extendo.version}</version>
+            <version>${smsn.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.fortytwo.extendo</groupId>
-            <artifactId>extendo-hand</artifactId>
-            <version>${extendo.version}</version>
+            <groupId>net.fortytwo.smsn</groupId>
+            <artifactId>hand</artifactId>
+            <version>${smsn.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.comm</groupId>
@@ -57,6 +48,20 @@
             <artifactId>commons-cli</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <!-- See BLELatency.java -->
+        <dependency>
+            <groupId>net.sf.bluecove</groupId>
+            <artifactId>bluecove</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>com.github.movisens</groupId>
+            <artifactId>SmartGattLib</artifactId>
+            <version>1.7</version>
+        </dependency>
+        -->
 
         <dependency>
             <groupId>net.sf.jung</groupId>
@@ -180,4 +185,17 @@
         </plugins>
     </build>
 
+    <repositories>
+        <!-- for javax.comm -->
+        <repository>
+            <id>fortytwo</id>
+            <name>fortytwo.net Maven repository</name>
+            <url>http://fortytwo.net/maven2</url>
+        </repository>
+        <!-- for SmartGattLib -->
+        <!--<repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>-->
+    </repositories>
 </project>

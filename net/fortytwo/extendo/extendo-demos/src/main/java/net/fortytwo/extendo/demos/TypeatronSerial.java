@@ -3,7 +3,7 @@ package net.fortytwo.extendo.demos;
 import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
 import gnu.io.UnsupportedCommOperationException;
-import net.fortytwo.extendo.p2p.osc.OscControl;
+import net.fortytwo.smsn.p2p.osc.OscControl;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;

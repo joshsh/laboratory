@@ -212,6 +212,24 @@ hand2.accel.cal.mag <- mag(hand2.accel.cal)
 
 
 ########################################
+# band pass filtering
+
+# derived through successive cycles of filtering and frequency detection
+freq.mean <- 5.665298
+freq.low <- 4.737343
+freq.high <- 7.045349
+
+rc.low <- 1/(2 * pi * freq.low)
+rc.high <- 1/(2 * pi * freq.high)
+
+# apply a band-pass filter to the components of acceleration (as opposed to the magnitude time series)
+hand1.accel.cal.bp <- bandpass.3d(hand1.accel.cal, hand1.dt, rc.low, rc.high)
+hand1.accel.cal.bp.mag <- mag(hand1.accel.cal.bp)
+hand2.accel.cal.bp <- bandpass.3d(hand2.accel.cal, hand2.dt, rc.low, rc.high)
+hand2.accel.cal.bp.mag <- mag(hand2.accel.cal.bp)
+
+
+########################################
 # extremum detection
 
 hand1.peaks <- find.peaks(hand1.accel.cal.bp.mag, 1/(hand1.dt*freq.mean))
@@ -245,14 +263,25 @@ releases <- c(1175, 850, 1470, 1230, 1030)
 
 
 # example handshake
-pdf("/tmp/graphic.pdf", width=6.25, height=2.75)
+grp <- 2
+grp2 <- 4
+from <- hand1.breaks[2*grp - 1] + trim
+to <- hand1.breaks[2*grp] - trim
+events1 <- data.frame(Events="Shake", t=(hand1.groups[grp2][[1]][[1]]-from)*hand1.dt)
+events2 <- data.frame(Events="Grip", t=c(grips[grp2]-trim)*hand1.dt)
+events3 <- data.frame(Events="Release", t=c(releases[grp2]-trim)*hand1.dt)
+events <- rbind(events1,events2,events3)
+df <- data.frame(t=hand1.dt*c(0:(to-from)), acceleration=ts)
+
+library(ggplot2)
+pdf("/tmp/graphic.pdf", width=6.25, height=2.25)
 par(mar=c(4.5,5,2,1.5))
-    from <- 19630; to <- 20300
-    ts <- mag(data.frame(x=hand1$V2,y=hand1$V3,z=hand1$V4))[from:to]/230
-    plot(y=ts, x=(hand1.dt*c(0:(to-from))), type="l", xlab="time (seconds)", ylab="acceleration (g)");
-    abline(col="red", v=hand1.dt*(hand1.peaks-from))
-    abline(col="blue", v=0.4); abline(col="blue", v=2.2)
-    text(0.53,3,"grip"); text(1.44,3,"hold"); text(2.42,3,"release");
+  ggplot(data=df, aes(x=t, y=acceleration)) +
+    geom_vline(data=events, aes(xintercept=t,linetype=Events,colour=Events), show_guide = TRUE) +
+    geom_line() +
+    xlab("time (seconds)") +
+    ylab("acceleration (g)") +
+    theme_bw()
 dev.off()
 
 
@@ -403,21 +432,7 @@ lines(x=rate.ratio*c(1:nrow(hand2)), y=hand2.accel.cal.mag + 3, col="red")
 
 
 ########################################
-# band-pass filtering
-
-# derived through successive cycles of filtering and frequency detection
-freq.mean <- 5.665298
-freq.low <- 4.737343
-freq.high <- 7.045349
-
-rc.low <- 1/(2 * pi * freq.low)
-rc.high <- 1/(2 * pi * freq.high)
-
-# apply a band-pass filter to the components of acceleration (as opposed to the magnitude time series)
-hand1.accel.cal.bp <- bandpass.3d(hand1.accel.cal, hand1.dt, rc.low, rc.high)
-hand1.accel.cal.bp.mag <- mag(hand1.accel.cal.bp)
-hand2.accel.cal.bp <- bandpass.3d(hand2.accel.cal, hand2.dt, rc.low, rc.high)
-hand2.accel.cal.bp.mag <- mag(hand2.accel.cal.bp)
+# band-pass filtering: plotting
 
 plot(hand1.accel.cal.bp.mag, type="l")
 abline(col="red", v=hand1.peaks)
@@ -481,6 +496,10 @@ low <- floor(0.056/hand.dt)
 high <- ceiling(0.12/hand.dt)
 abline(col="red", v=c(low,high))
 real.diffs <- subset(data.frame(diff=hand.diffs), diff >= low & diff <= high)$diff
-freq.mean <- 1/(2*hand.dt*mean(real.diffs))
-freq.low <- 1/(2*hand.dt*(mean(real.diffs)+sd(real.diffs)))
-freq.high <- 1/(2*hand.dt*(mean(real.diffs)-sd(real.diffs)))
+freq <- 1/(2*hand.dt*real.diffs)
+# 5.773614 (hand1), 6.299301 (hand2)
+freq.mean <- mean(freq)
+# 1.178395 (hand1), 1.283529 (hand2)
+freq.sd <- sd(freq)
+freq.low <- freq.mean - freq.sd
+freq.high <- freq.mean + freq.sd

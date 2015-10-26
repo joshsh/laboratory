@@ -5,11 +5,11 @@ import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
-import net.fortytwo.extendo.p2p.osc.OscControl;
-import net.fortytwo.extendo.p2p.osc.OscSender;
-import net.fortytwo.extendo.p2p.osc.SlipOscSender;
-import net.fortytwo.extendo.util.slip.SlipInputStream;
-import net.fortytwo.extendo.util.slip.SlipOutputStream;
+import net.fortytwo.smsn.p2p.osc.OscControl;
+import net.fortytwo.smsn.p2p.osc.OscSender;
+import net.fortytwo.smsn.p2p.osc.SlipOscSender;
+import net.fortytwo.smsn.util.slip.SlipInputStream;
+import net.fortytwo.smsn.util.slip.SlipOutputStream;
 
 import java.io.IOException;
 import java.io.InputStream;

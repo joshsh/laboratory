@@ -30,6 +30,18 @@ public class Stats {
             sum += (q * q);
         }
 
-        return Math.sqrt(sum/sample.size());
+        return Math.sqrt(sum / sample.size());
+    }
+
+    public static String toR(List<Long> sample, String name) {
+        boolean first = true;
+        StringBuilder sb = new StringBuilder(name).append(" <- c(");
+        for (long l : sample) {
+            if (first) first = false;
+            else sb.append(", ");
+            sb.append(l);
+        }
+        sb.append(")");
+        return sb.toString();
     }
 }

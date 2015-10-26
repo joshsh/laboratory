@@ -1,20 +1,20 @@
 package net.fortytwo.extendo.demos.scenarios;
 
-import edu.rpi.twc.rdfstream4j.BindingSetHandler;
-import edu.rpi.twc.rdfstream4j.QueryEngine;
-import net.fortytwo.extendo.Extendo;
-import net.fortytwo.extendo.brain.Filter;
-import net.fortytwo.extendo.brain.Note;
-import net.fortytwo.extendo.brain.NoteQueries;
+import edu.rpi.twc.sesamestream.BindingSetHandler;
+import edu.rpi.twc.sesamestream.QueryEngine;
+import net.fortytwo.smsn.SemanticSynchrony;
+import net.fortytwo.smsn.brain.Filter;
+import net.fortytwo.smsn.brain.Note;
+import net.fortytwo.smsn.brain.NoteQueries;
 import net.fortytwo.extendo.demos.TypeatronUdp;
-import net.fortytwo.extendo.hand.ExtendoHandControl;
-import net.fortytwo.extendo.p2p.ExtendoAgent;
-import net.fortytwo.extendo.p2p.osc.OscControl;
-import net.fortytwo.extendo.p2p.osc.OscReceiver;
-import net.fortytwo.extendo.p2p.osc.OscSender;
-import net.fortytwo.extendo.p2p.osc.UdpOscSender;
-import net.fortytwo.extendo.rdf.Activities;
-import net.fortytwo.extendo.typeatron.ripple.ExtendoBrainClient;
+import net.fortytwo.smsn.hand.ExtendoHandControl;
+import net.fortytwo.smsn.p2p.SmSnAgent;
+import net.fortytwo.smsn.p2p.osc.OscControl;
+import net.fortytwo.smsn.p2p.osc.OscReceiver;
+import net.fortytwo.smsn.p2p.osc.OscSender;
+import net.fortytwo.smsn.p2p.osc.UdpOscSender;
+import net.fortytwo.smsn.rdf.Activities;
+import net.fortytwo.smsn.typeatron.ripple.ExtendoBrainClient;
 import net.fortytwo.rdfagents.model.Dataset;
 import net.fortytwo.ripple.StringUtils;
 import org.apache.commons.cli.CommandLine;
@@ -56,7 +56,7 @@ public class DemoParticipant {
             //AGENT_URI = "http://fortytwo.net/josh/things/CybU2QN"; // Arthur Dent
             DEFAULT_AGENT_URI = "http://fortytwo.net/josh/things/SBZFumn"; // Joshua Shinavier
 
-    private final ExtendoAgent agent;
+    private final SmSnAgent agent;
     private final ExtendoHandControl exoHand;
 
     private final ExtendoBrainClient exoBrainClient;
@@ -80,10 +80,10 @@ public class DemoParticipant {
         logger.info("sharing attention on " + focus);
 
         Dataset d = Activities.datasetForAttentionActivity(System.currentTimeMillis(), agent.getAgentUri(), focus);
-        agent.getQueryEngine().addStatements(Extendo.GESTURE_TTL, toArray(d));
+        agent.getQueryEngine().addStatements(SemanticSynchrony.GESTURE_TTL, toArray(d));
     }
 
-    public DemoParticipant(final ExtendoAgent agent,
+    public DemoParticipant(final SmSnAgent agent,
                            final ExtendoHandControl exoHand,
                            final String listOfPeopleMet,
                            final String listOfThingsReceived)
@@ -532,9 +532,9 @@ public class DemoParticipant {
 
             // for the Typeatron
             // TODO: let either or both Typeatron, ExoHand read the agent URI from a property
-            Extendo.getConfiguration().setProperty(Extendo.P2P_AGENT_URI, agentUri);
+            SemanticSynchrony.getConfiguration().setProperty(SemanticSynchrony.P2P_AGENT_URI, agentUri);
 
-            ExtendoAgent agent = null;
+            SmSnAgent agent = null;
             //*
             String ttPorts = cmd.getOptionValue(ttPortsOpt.getOpt());
             if (null != ttPorts) {
@@ -562,7 +562,7 @@ public class DemoParticipant {
             // simplicity and low latency, but we send messages from here to Extend-o-Hand.
             OscReceiver receiver = new OscReceiver();
             if (null == agent) {
-                agent = new ExtendoAgent(agentUri, true);
+                agent = new SmSnAgent(agentUri, true);
             }
             ExtendoHandControl exoHand = new ExtendoHandControl(receiver, agent);
             exoHand.setThrottlingPeriod(200);

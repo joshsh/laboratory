@@ -1,13 +1,13 @@
 package net.fortytwo.extendo.demos.eval;
 
-import edu.rpi.twc.rdfstream4j.BindingSetHandler;
-import edu.rpi.twc.rdfstream4j.QueryEngine;
-import edu.rpi.twc.rdfstream4j.impl.QueryEngineImpl;
-import net.fortytwo.extendo.Extendo;
-import net.fortytwo.extendo.rdf.Activities;
-import net.fortytwo.extendo.rdf.vocab.ExtendoActivityOntology;
-import net.fortytwo.extendo.rdf.vocab.FOAF;
-import net.fortytwo.extendo.rdf.vocab.Timeline;
+import edu.rpi.twc.sesamestream.BindingSetHandler;
+import edu.rpi.twc.sesamestream.QueryEngine;
+import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
+import net.fortytwo.smsn.SemanticSynchrony;
+import net.fortytwo.smsn.rdf.Activities;
+import net.fortytwo.smsn.rdf.vocab.SmSnActivityOntology;
+import net.fortytwo.smsn.rdf.vocab.FOAF;
+import net.fortytwo.smsn.rdf.vocab.Timeline;
 import net.fortytwo.rdfagents.model.Dataset;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -52,7 +52,7 @@ import java.util.logging.Logger;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class SesameStreamEvaluation {
-    private static final Logger logger = Extendo.getLogger(SesameStreamEvaluation.class);
+    private static final Logger logger = SemanticSynchrony.getLogger(SesameStreamEvaluation.class);
 
     private static final String EX = "http://example.org/";
 
@@ -81,7 +81,7 @@ public class SesameStreamEvaluation {
 
     //*
     private static final String QUERY_FOR_HANDSHAKE_PAIRS
-            = "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
+            = "PREFIX activity: <" + SmSnActivityOntology.NAMESPACE + ">\n" +
             "PREFIX tl: <" + Timeline.NAMESPACE + ">\n" +
             "SELECT ?actor1 ?actor2 ?room ?time1 ?time2 WHERE {\n" +
             "  ?a1 a activity:HandshakePulse .\n" +
@@ -99,7 +99,7 @@ public class SesameStreamEvaluation {
     //*/
 
     private static final String QUERY_FOR_HANDSHAKES
-            = "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
+            = "PREFIX activity: <" + SmSnActivityOntology.NAMESPACE + ">\n" +
             "  PREFIX tl: <" + Timeline.NAMESPACE + ">\n" +
             "  SELECT ?actor1 ?actor2 ?time WHERE {\n" +
             "  ?a a activity:Handshake .\n" +
@@ -110,8 +110,8 @@ public class SesameStreamEvaluation {
             "  FILTER(?actor1 != ?actor2)\n" +
             "}";
 
-    private static final String QUERY_FOR_HANDSHAKE_COMMON_TOPICS
-            = "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
+    public static final String QUERY_FOR_HANDSHAKE_COMMON_TOPICS
+            = "PREFIX activity: <" + SmSnActivityOntology.NAMESPACE + ">\n" +
             "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
             "PREFIX sioc: <http://rdfs.org/sioc/ns#>\n" +
             "SELECT ?actor1 ?actor2 ?topic WHERE {\n" +
@@ -125,8 +125,8 @@ public class SesameStreamEvaluation {
             "  FILTER(?actor1 != ?actor2)\n" +
             "}";
 
-    private static final String QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES
-            = "PREFIX activity: <" + ExtendoActivityOntology.NAMESPACE + ">\n" +
+    public static final String QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES
+            = "PREFIX activity: <" + SmSnActivityOntology.NAMESPACE + ">\n" +
             "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
             "SELECT ?actor1 ?actor2 ?person WHERE {\n" +
             "  ?a a activity:Handshake .\n" +
@@ -589,7 +589,10 @@ public class SesameStreamEvaluation {
                             System.out.println(formatSample("pulses", pulseLatency.get()));
                             System.out.println(formatSample("'friends' handshakes", friendsHandshakeLatency.get()));
                             System.out.println(formatSample("'topics' handshakes", topicsHandshakeLatency.get()));
-                            //*
+                            System.out.println(Stats.toR(pulseLatency.get(), "pulses"));
+                            System.out.println(Stats.toR(friendsHandshakeLatency.get(), "friends"));
+                            System.out.println(Stats.toR(topicsHandshakeLatency.get(), "topics"));
+                            /*
                             pulseLatency.get().clear();
                             friendsHandshakeLatency.get().clear();
                             topicsHandshakeLatency.get().clear();
@@ -738,7 +741,7 @@ public class SesameStreamEvaluation {
 
     private void presence(final Person person, final Room room) throws IOException {
         Statement st = vf.createStatement(
-                person.uri, vf.createURI(ExtendoActivityOntology.NAMESPACE + "locatedAt"), room.uri);
+                person.uri, vf.createURI(SmSnActivityOntology.NAMESPACE + "locatedAt"), room.uri);
         queryEngine.addStatements(presenceTtl, st);
     }
 

@@ -2,11 +2,11 @@ package net.fortytwo.extendo.demos;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import net.fortytwo.extendo.p2p.ExtendoAgent;
-import net.fortytwo.extendo.p2p.SideEffects;
-import net.fortytwo.extendo.p2p.osc.OscControl;
-import net.fortytwo.extendo.p2p.osc.OscReceiver;
-import net.fortytwo.extendo.typeatron.TypeatronControl;
+import net.fortytwo.smsn.p2p.SmSnAgent;
+import net.fortytwo.smsn.p2p.SideEffects;
+import net.fortytwo.smsn.p2p.osc.OscControl;
+import net.fortytwo.smsn.p2p.osc.OscReceiver;
+import net.fortytwo.smsn.typeatron.TypeatronControl;
 import net.fortytwo.ripple.StringUtils;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class TypeatronControlWrapper {
     protected TypeatronControlWrapper() throws OscControl.DeviceInitializationException {
         final OscReceiver receiver = new OscReceiver();
 
-        ExtendoAgent agent = new ExtendoAgent(true);
+        SmSnAgent agent = new SmSnAgent(true);
         createVoice();
 
         runtime = Runtime.getRuntime();

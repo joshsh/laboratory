@@ -98,12 +98,6 @@ public class BluetoothLatency {
         System.out.println("mean latency: " + mean);
         System.out.println("standard deviation: " + sd);
 
-        boolean first = true;
-        StringBuilder sb = new StringBuilder();
-        for (long l : sample) {
-            if (first) first = false; else sb.append(", ");
-            sb.append(l);
-        }
-        System.out.println("pings <- c(" + sb + ")");
+        System.out.println(Stats.toR(sample, "pings"));
     }
 }

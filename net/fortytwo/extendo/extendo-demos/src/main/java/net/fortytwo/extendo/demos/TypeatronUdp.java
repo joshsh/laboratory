@@ -3,10 +3,10 @@ package net.fortytwo.extendo.demos;
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;
-import net.fortytwo.extendo.Extendo;
-import net.fortytwo.extendo.p2p.osc.OscControl;
-import net.fortytwo.extendo.p2p.osc.OscSender;
-import net.fortytwo.extendo.p2p.osc.UdpOscSender;
+import net.fortytwo.smsn.SemanticSynchrony;
+import net.fortytwo.smsn.p2p.osc.OscControl;
+import net.fortytwo.smsn.p2p.osc.OscSender;
+import net.fortytwo.smsn.p2p.osc.UdpOscSender;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -107,7 +107,7 @@ public class TypeatronUdp extends TypeatronControlWrapper {
 
             String conf = cmd.getOptionValue(confOpt.getOpt());
             if (null != conf) {
-                Extendo.addConfiguration(new File(conf));
+                SemanticSynchrony.addConfiguration(new File(conf));
             }
 
             new TypeatronUdp(hostOut, portIn, portOut).run();
