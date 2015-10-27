@@ -49,6 +49,8 @@ import java.util.logging.Logger;
 public class NewSesameStreamEvaluation {
     private static final Logger logger = SemanticSynchrony.getLogger(NewSesameStreamEvaluation.class);
 
+    private static final boolean NO_DELAY = true;
+
     private static final String
             DEFAULT_NS = "http://example.org/defaultNs/";
 
@@ -392,29 +394,38 @@ public class NewSesameStreamEvaluation {
             int pid1 = random.nextInt(localPeople.length);
             int pid2 = (pid1 + 1 + random.nextInt(localPeople.length - 1)) % localPeople.length;
 
-            Resource a1 = localPeople[pid1];
-            Resource a2 = localPeople[pid2];
+            Resource actor1 = localPeople[pid1];
+            Resource actor2 = localPeople[pid2];
+
+            // consistent ordering of actors is convenient for analysis
+            if (actor1.stringValue().compareTo(actor2.stringValue()) > 0) {
+                Resource tmp = actor1;
+                actor1 = actor2;
+                actor2 = tmp;
+            }
 
             // note: the logged timestamp is identical to the event timestamp represented in RDF
             System.out.println(now + "\tEVENT\t" + this.id + "\t"
-                    + a1.stringValue() + "\t" + a2.stringValue());
+                    + actor1.stringValue() + "\t" + actor2.stringValue());
 
-            Dataset d = Activities.datasetForHandshakeInteraction(now, a1, a2);
+            Dataset d = Activities.datasetForHandshakeInteraction(now, actor1, actor2);
             queryEngine.addStatements(HANDSHAKE_TTL, toArray(d));
         }
 
         private void waitAndShake() throws InterruptedException, IOException {
-            // use clock time as simulation time
-            long now = System.currentTimeMillis();
+            if (!NO_DELAY) {
+                // use clock time as simulation time
+                long now = System.currentTimeMillis();
 
-            long delay = timeToNextEvent(averageFrequency);
-            long nextEvent = lastEvent + delay;
-            if (lastEvent > 0) {
-                if (nextEvent > now) {
-                    Thread.sleep(nextEvent - now);
-                } else {
-                    // note the ratio of DELAY_TOO_SHORT to EVENT
-                    System.out.println(now + "\tDELAY_TOO_SHORT\t" + this.id + "\t" + delay);
+                long delay = timeToNextEvent(averageFrequency);
+                long nextEvent = lastEvent + delay;
+                if (lastEvent > 0) {
+                    if (nextEvent > now) {
+                        Thread.sleep(nextEvent - now);
+                    } else {
+                        // note the ratio of DELAY_TOO_SHORT to EVENT
+                        System.out.println(now + "\tDELAY_TOO_SHORT\t" + this.id + "\t" + lastEvent + "\t" + delay);
+                    }
                 }
             }
 
