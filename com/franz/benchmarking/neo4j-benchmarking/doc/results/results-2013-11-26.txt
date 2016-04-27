@@ -1,0 +1,168 @@
+Evaluation performed on flux using the 1m-triple SP2Bench data set.
+Default settings were used for AllegroGraph.
+The Java process for the Cypher test runs was given 4GB min and max heap.
+The triple store / database was cleared and reloaded in between each test (set of ten runs for a query).
+
+
+########################################
+# result count
+
+q1.ag.count               <- 1
+q1.cypher.count           <- 1
+q1.cypher_cheat1.count    <- 1
+
+q2.ag.count               <- 32770
+q2.cypher.count           <- 32770
+q2.cypher_cheat.count     <- 32770
+
+q3a.ag.count              <- 52676
+q3a.cypher.count          <- 52676
+q3a.cypher_cheat.count    <- 52676
+
+q3b.ag.count              <- 379
+q3b.cypher.count          <- 379
+q3b.cypher_cheat.count    <- 379
+
+q3c.ag.count              <- 0
+q3c.cypher.count          <- 0
+q3c.cypher_cheat.count    <- 0
+
+q4.ag.count               <- 2586733
+
+q5a.ag.count              <- 35241
+q5b.ag.count              <- 35241
+q5.cypher.count           <- 35241
+q5.cypher_cheat1.count    <- 35241
+
+q6.ag.count               <- 32714
+
+q7.ag.count               <- 292
+
+q8.ag.count               <- 400
+q8.cypher.count           <- 400
+q8.cypher_cheat1.count    <- 400
+
+q9.ag.count               <- 4
+q9.cypher.count           <- 3
+q9.cypher_cheat.count     <- 3
+
+q0.ag.count               <- 572
+q10.cypher.count          <- 572
+q10.cypher_cheat.count    <- 572
+
+q11.ag.count              <- 10
+q11.cypher.count          <- 10
+
+q12a.ag.result            <- TRUE
+q12a.cypher.result        <- TRUE
+q12a.cypher_cheat1.result <- TRUE
+
+q12b.ag.result            <- TRUE
+q12b.cypher.result        <- TRUE
+q12b.cypher_cheat1.result <- TRUE
+
+q12c.ag.result            <- FALSE
+q12c.cypher.result        <- FALSE
+q12c.cypher_cheat1.result <- FALSE
+
+
+########################################
+# query time
+
+q1.ag.time              <- c(8, 4, 4, 4, 4, 3, 3, 3, 3, 3)
+q1.cypher.time          <- c(12222, 3356, 3183, 3191, 3229, 3041, 3144, 3130, 3096, 3110)
+q1.cypher_cheat1.time   <- c(1308, 74, 2, 2, 2, 2, 2, 1, 2, 2)
+
+q2.ag.time              <- c(1770, 1629, 1202, 1187, 2973, 1224, 1226, 1227, 1235, 1231)
+q2.cypher.time          <- c(698252, 1108905, 1105934, 1105999, 1106545, 1106116, 1108140, 1107275, 1107627, 1108960)
+q2.cypher_cheat.time    <- c(28884, 22501, 21811, 21695, 21845, 21684, 21709, 21738, 21765, 21760)
+
+q3a.ag.time             <- c(667, 663, 656, 661, 669, 660, 658, 660, 661, 667)
+q3a.cypher.time         <- c(13970, 2945, 2799, 2759, 2741, 2733, 2772, 2766, 2753, 2720)
+q3a.cypher_cheat.time   <- c(6798, 864, 432, 420, 476, 421, 421, 420, 419, 419)
+
+q3b.ag.time             <- c(145, 125, 125, 126, 125, 125, 125, 125, 125, 125)
+q3b.cypher.time         <- c(10721, 2576, 2070, 2061, 2089, 2108, 2108, 2087, 2085, 2082)
+q3b.cypher_cheat.time   <- c(4655, 482, 170, 144, 172, 126, 118, 123, 117, 116)
+
+q3c.ag.time             <- c(294, 277, 276, 273, 267, 267, 267, 266, 266, 265)
+q3c.cypher.time         <- c(10811, 2518, 2369, 2180, 2181, 2165, 2160, 2160, 2163, 2117)
+q3c.cypher_cheat.time   <- c(4457, 713, 128, 76, 94, 79, 73, 78, 74, 74)
+
+q4.ag.time              <- c(46705, 43377, 42970, 44040, 43133, 42697, 42787, 43151, 42519, 43590)
+
+q5a.ag.time             <- c(13185734, 13039651, 13646659, 13150631, 13631897, 13302430, 13609056, 13665519, 13951266, 13137063)
+q5b.ag.time             <- c(1572, 1515, 1813, 1516, 1518, 1508, 1505, 1514, 1517, 1732)
+q5.cypher.time          <- c(19005, 7791, 7608, 7592, 7632, 7562, 7487, 7607, 7492, 7636)
+q5.cypher_cheat1.time   <- c(17616, 7700, 7513, 7379, 7367, 7330, 7319, 7316, 7315, 7313)
+
+q6.ag.time              <- c(4370475, 4588781, 4335742, 4339885, 4229692, 4280302, 4374001, 4601682, 4881699, 4174204)
+
+q7.ag.time              <- c(3464, 3451, 3760, 3400, 3395, 3389, 3400, 3418, 3407, 3390)
+
+q8.ag.time              <- c(1478, 1717, 1466, 1465, 1462, 1465, 1463, 1465, 1464, 1464)
+q8.cypher.time          <- c(30234, 19795, 19348, 19617, 19265, 19266, 19258, 19209, 19228, 19361)
+q8.cypher_cheat1.time   <- c(4665, 921, 511, 469, 382, 276, 285, 268, 272, 259)
+
+q9.ag.time              <- c(6457, 4373, 4380, 4370, 4360, 4365, 4399, 4480, 4365, 4388)
+q9.cypher.time          <- c(18891, 9777, 9648, 9691, 9619, 9655, 9718, 9601, 9593, 9762)
+q9.cypher_cheat.time    <- c(6280, 1524, 1436, 1396, 1422, 1430, 1389, 1396, 1393, 1426)
+
+q10.ag.time             <- c(63, 8, 7, 7, 8, 8, 8, 8, 7, 8)
+q10.cypher.time         <- c(19130, 4732, 4287, 4296, 4276, 4291, 4285, 4275, 4281, 4276)
+q10.cypher_cheat.time   <- c(1498, 231, 73, 69, 63, 57, 48, 45, 48, 42)
+
+q11.ag.time             <- c(3408, 1446, 1451, 1448, 1448, 1447, 1445, 1449, 1447, 1446)
+q11.cypher.time         <- c(12550, 2442, 2034, 2023, 2052, 2030, 2026, 2012, 2026, 2029)
+
+q12a.ag.time            <- c(2263, 1793, 1788, 1790, 1790, 1793, 1791, 1792, 2027, 1764)
+q12a.cypher.time        <- c(3751, 1375, 996, 1100, 994, 920, 961, 1027, 1102, 1012)
+q12a.cypher_cheat1.time <- c(3053, 287, 144, 94, 110, 47, 45, 23, 22, 22)
+
+q12b.ag.time            <- c(2685, 2674, 2674, 2674, 2673, 2674, 2990, 2738, 2736, 2736)
+q12b.cypher.time        <- c(2260, 360, 111, 56, 45, 45, 37, 29, 27, 22)
+q12b.cypher_cheat1.time <- c(1567, 182, 4, 3, 4, 3, 4, 3, 4, 3)
+
+q12c.ag.time            <- c(0, 0, 1, 0, 0, 1, 0, 0, 1, 0)
+q12c.cypher.time        <- c(9044, 654, 528, 547, 521, 522, 519, 520, 521, 521)
+q12c.cypher_cheat1.time <- c(1112, 133, 0, 1, 0, 0, 1, 0, 1, 0)
+
+
+########################################
+# template
+
+q1.ag.count               <-
+q2.ag.count               <-
+q3a.ag.count              <-
+q3b.ag.count              <-
+q3c.ag.count              <-
+q4.ag.count               <-
+q5a.ag.count              <-
+q5b.ag.count              <-
+q6.ag.count               <-
+q7.ag.count               <-
+q8.ag.count               <-
+q9.ag.count               <-
+q0.ag.count               <-
+q11.ag.count              <-
+q12a.ag.result            <-
+q12b.ag.result            <-
+q12c.ag.result            <-
+
+q1.ag.time              <-
+q2.ag.time              <-
+q3a.ag.time             <-
+q3b.ag.time             <-
+q3c.ag.time             <-
+q4.ag.time              <-
+q5a.ag.time             <-
+q5b.ag.time             <-
+q6.ag.time              <-
+q7.ag.time              <-
+q8.ag.time              <-
+q9.ag.time              <-
+q10.ag.time             <-
+q11.ag.time             <-
+q12a.ag.time            <-
+q12b.ag.time            <-
+q12c.ag.time            <-
