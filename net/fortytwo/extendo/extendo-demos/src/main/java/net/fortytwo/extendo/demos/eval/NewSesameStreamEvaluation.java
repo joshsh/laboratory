@@ -49,7 +49,8 @@ import java.util.logging.Logger;
 public class NewSesameStreamEvaluation {
     private static final Logger logger = SemanticSynchrony.getLogger(NewSesameStreamEvaluation.class);
 
-    private static final boolean NO_DELAY = true;
+    // with no delay, the system quickly becomes overloaded (the cleanup thread can't keep up)
+    private static final boolean NO_DELAY = false;
 
     private static final String
             DEFAULT_NS = "http://example.org/defaultNs/";

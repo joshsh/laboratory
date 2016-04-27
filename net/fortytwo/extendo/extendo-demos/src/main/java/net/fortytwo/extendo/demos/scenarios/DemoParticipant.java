@@ -1,12 +1,12 @@
 package net.fortytwo.extendo.demos.scenarios;
 
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
+import net.fortytwo.extendo.demos.TypeatronUdp;
+import net.fortytwo.rdfagents.model.Dataset;
+import net.fortytwo.ripple.StringUtils;
 import net.fortytwo.smsn.SemanticSynchrony;
 import net.fortytwo.smsn.brain.Filter;
 import net.fortytwo.smsn.brain.Note;
 import net.fortytwo.smsn.brain.NoteQueries;
-import net.fortytwo.extendo.demos.TypeatronUdp;
 import net.fortytwo.smsn.hand.ExtendoHandControl;
 import net.fortytwo.smsn.p2p.SmSnAgent;
 import net.fortytwo.smsn.p2p.osc.OscControl;
@@ -15,8 +15,7 @@ import net.fortytwo.smsn.p2p.osc.OscSender;
 import net.fortytwo.smsn.p2p.osc.UdpOscSender;
 import net.fortytwo.smsn.rdf.Activities;
 import net.fortytwo.smsn.typeatron.ripple.ExtendoBrainClient;
-import net.fortytwo.rdfagents.model.Dataset;
-import net.fortytwo.ripple.StringUtils;
+import net.fortytwo.stream.StreamProcessor;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -80,14 +79,14 @@ public class DemoParticipant {
         logger.info("sharing attention on " + focus);
 
         Dataset d = Activities.datasetForAttentionActivity(System.currentTimeMillis(), agent.getAgentUri(), focus);
-        agent.getQueryEngine().addStatements(SemanticSynchrony.GESTURE_TTL, toArray(d));
+        agent.getQueryEngine().addInputs(SemanticSynchrony.GESTURE_TTL, toArray(d));
     }
 
     public DemoParticipant(final SmSnAgent agent,
                            final ExtendoHandControl exoHand,
                            final String listOfPeopleMet,
                            final String listOfThingsReceived)
-            throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException,
+            throws RDFStreamProcessor.InvalidQueryException, IOException, StreamProcessor.IncompatibleQueryException,
             OscControl.DeviceInitializationException, ExtendoBrainClient.ExtendoBrainClientException {
 
         this.agent = agent;
@@ -267,22 +266,22 @@ public class DemoParticipant {
                     @Override
                     public void handle(BindingSet b) {
                         Value thing = b.getValue("thing");
-                        Value giver = b.getValue("giver");
-                        Value giverName = b.getValue("giverName");
+                        Value other = b.getValue("other");
+                        Value otherName = b.getValue("otherName");
 
                         if (thing instanceof URI) {
                             addToThingsReceived((URI) thing);
                         }
 
-                        if (giver instanceof URI) {
-                            addToPeopleMet((URI) giver);
+                        if (other instanceof URI) {
+                            addToPeopleMet((URI) other);
                         }
 
-                        addNotification("handoff from " + giverName.stringValue());
+                        addNotification("handoff from " + otherName.stringValue());
 
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
-                                + " notified of item " + thing + " taken from " + giver + " (" + giverName + ")");
+                                + " notified of item " + thing + " taken from " + other + " (" + otherName + ")");
                     }
                 });
 
@@ -306,7 +305,7 @@ public class DemoParticipant {
                 QUERY_TTL, loadQuery("my-handshakes-common-acquaintance.rq"), new BindingSetHandler() {
                     @Override
                     public void handle(BindingSet b) {
-                        Value person = b.getValue("person");
+                        Value other = b.getValue("other");
                         Value acquaintance = b.getValue("acquaintance");
                         Value acquaintanceName = b.getValue("acquaintanceName");
 
@@ -322,7 +321,7 @@ public class DemoParticipant {
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
                                 + " notified of common acquaintance " + acquaintance + " (" + acquaintanceName + ")"
-                                + " via handshake with " + person);
+                                + " via handshake with " + other);
                     }
                 });
 
@@ -330,7 +329,7 @@ public class DemoParticipant {
                 QUERY_TTL, loadQuery("my-handshakes-common-topic.rq"), new BindingSetHandler() {
                     @Override
                     public void handle(BindingSet b) {
-                        Value person = b.getValue("person");
+                        Value other = b.getValue("other");
                         Value topic = b.getValue("topic");
                         Value topicLabel = b.getValue("topicLabel");
 
@@ -346,7 +345,7 @@ public class DemoParticipant {
                         // log after reacting
                         logger.log(Level.INFO, "" + agent.getAgentUri()
                                 + " notified of common topic " + topic + " (" + topicLabel + ")"
-                                + " via handshake with " + person);
+                                + " via handshake with " + other);
                     }
                 });
 
@@ -412,6 +411,7 @@ public class DemoParticipant {
         }).start();
     }
 
+    // TODO: this assumes that personUri is in the user's own PKB namespace
     private void addToPeopleMet(final URI personUri) {
         if (null == this.listOfPeopleMet) {
             return;
@@ -422,11 +422,12 @@ public class DemoParticipant {
         if (i <= 0) {
             return;
         }
-        String id = s.substring(i+1);
+        String id = s.substring(i + 1);
 
         prepend(listOfPeopleMet, id, defaultFilter);
     }
 
+    // TODO: this assumes that thingReceived is in the user's own PKB namespace
     private void addToThingsReceived(final URI thingReceived) {
         if (null == this.listOfThingsReceived) {
             return;
@@ -437,7 +438,7 @@ public class DemoParticipant {
         if (i <= 0) {
             return;
         }
-        String id = s.substring(i+1);
+        String id = s.substring(i + 1);
 
         prepend(listOfThingsReceived, id, defaultFilter);
     }
@@ -541,7 +542,7 @@ public class DemoParticipant {
                 int i = ttPorts.indexOf(",");
                 if (i > 0) {
                     int portIn = Integer.valueOf(ttPorts.substring(0, i));
-                    int portOut = Integer.valueOf(ttPorts.substring(i+1));
+                    int portOut = Integer.valueOf(ttPorts.substring(i + 1));
                     final TypeatronUdp ttControl = new TypeatronUdp(host, portIn, portOut);
                     agent = ttControl.getTypeatron().getAgent();
 

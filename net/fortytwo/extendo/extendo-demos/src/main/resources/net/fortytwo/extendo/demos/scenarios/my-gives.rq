@@ -3,8 +3,9 @@
 PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
 
 # note: replace <I> before evaluation
-SELECT ?thing ?taker WHERE {
+SELECT ?thing ?other ?otherName WHERE {
     ?h activity:thingGiven ?thing .
     ?h activity:giver <I> .
-    ?h activity:taker ?taker .
+    ?h activity:taker ?other .
+    ?h foaf:name ?otherName .
 }

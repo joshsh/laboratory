@@ -166,6 +166,7 @@ bandpass.3d <- function(df, dt, rc.low, rc.high) {
 ########################################
 # load and crop data
 
+# see /Users/josh/data/research/extend-o-hand/handoffs
 hand1 <- read.csv(file("/tmp/hand1.csv"), header=FALSE)
 hand2 <- read.csv(file("/tmp/hand2.csv"), header=FALSE)
 
@@ -323,28 +324,51 @@ points3d(buildup.peaks.vector, col="red", size=10)
 
 
 ########################################
-# plot a representative "give" time series, for a figure
+# plot a representative "give" and "take" time series together, for a figure
 
 require(ggplot2)
 library(reshape)
 
-series <- hand2.i1[3040:3200,]
+df.of <- function(series, dt) {
+  a <- a.of(series)
+  p1 <- which.max(mag(a))
+  df <- data.frame(t=((1:length(mag(a)))-p1)*dt, a=mag(a), x=a$x, y=a$y, z=a$z)
+  melt(df, id="t")
+}
 
-a <- a.of(series)
-min.amp <- 1.0
-peaks <- find.peaks(mag(a), min.amp)
-p1 <- peaks[1]
+plot.top <- function(series, dt) {
+  df <- df.of(series, dt)
+  ggplot(data = df, aes(x = t, y = value, color = variable)) +
+    geom_line() +
+    theme_bw() +
+    scale_color_manual(values=c("black", "#CC6666", "#66CC66", "#9999CC"),
+      labels=c("|a|", expression("a"["x"]), expression("a"["y"]), expression("a"["z"]))) +
+    theme(legend.position="top", legend.title=element_blank(),
+      axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank(),
+      plot.margin=unit(c(0,0.5,-0.5,0.5), "cm")) +
+    scale_y_continuous(breaks=seq(ceiling(min(df$value)), floor(max(df$value)), 1)) +
+    ylab("acceleration (g)")
+}
 
-df <- data.frame(t=((1:length(mag(a)))-p1)*hand2.dt, a=mag(a), x=a$x, y=a$y, z=a$z)
-df.melted <- melt(df, id="t")
+plot.bottom <- function(series, dt) {
+  df <- df.of(series, dt)
+  ggplot(data = df, aes(x = t, y = value, color = variable)) +
+    geom_line() +
+    theme_bw() +
+    scale_color_manual(values=c("black", "#CC6666", "#66CC66", "#9999CC")) +
+    theme(legend.position = "none", plot.margin=unit(c(0.5,0.5,0.0,0.5), "cm")) +
+    scale_y_continuous(breaks=seq(ceiling(min(df$value)), floor(max(df$value)), 1)) +
+    xlab("time (seconds)") +
+    ylab("acceleration (g)")
+}
 
-pdf("/tmp/graphic.pdf", width=6.25, height=3)
-par(mar=c(4.5,5,2,1.5))
-ggplot(data = df.melted, aes(x = t, y = value, color = variable)) +
-  geom_line() +
-  scale_color_manual(values=c("black", "#CC6666", "#66CC66", "#9999CC"), labels=c("|a|", expression("a"["x"]), expression("a"["y"]), expression("a"["z"]))) +
-  xlab("time (s)") +
-  ylab("acceleration (g)")
+pdf("/tmp/graphic.pdf", width=6.25, height=5.0)
+par(mar=c(0,0,0,0))
+  # chosen to place the give/take spike at 0 and span the same amount of time on the x axis
+  p1 <- plot.top(hand2.i1[3040:3200,], hand2.dt)
+  p2 <- plot.bottom(hand1.i1[3067:3230,], hand1.dt)
+  grid.arrange(p1,p2,ncol = 1,padding=0)
+  #ggsave(file="/tmp/graphic.pdf", p)
 dev.off()
 
 

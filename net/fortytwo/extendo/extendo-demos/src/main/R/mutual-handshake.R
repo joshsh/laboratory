@@ -168,18 +168,18 @@ accel.cal <- function(accel) { data.frame(x=(accel$x/230 - 0.05), y=(accel$y/230
 # load and crop data
 
 # these are stored locally under ~/data/research/extend-o-hand/handshakes/mutual
-hand1 <- read.csv(file("/tmp/hand1.csv"), header=FALSE)
-hand2 <- read.csv(file("/tmp/hand2.csv"), header=FALSE)
+hand1.raw <- read.csv(file("/tmp/hand1.csv"), header=FALSE)
+hand2.raw <- read.csv(file("/tmp/hand2.csv"), header=FALSE)
 
-plot(mag(data.frame(x=hand1$V2,y=hand1$V3,z=hand1$V4)), type="l")
-plot(mag(data.frame(x=hand2$V2,y=hand2$V3,z=hand2$V4)), type="l")
+plot(mag(data.frame(x=hand1.raw$V2,y=hand1.raw$V3,z=hand1.raw$V4)), type="l")
+plot(mag(data.frame(x=hand2.raw$V2,y=hand2.raw$V3,z=hand2.raw$V4)), type="l")
 
 # crop the data appropriately after viewing it, so as to avoid complicated workarounds
 # for leading and trailing noise
 hand1.from <- 2000; hand1.to <- 28000
 hand2.from <- 33000; hand2.to <- 58000
-hand1 <- hand1[hand1.from:hand1.to,]
-hand2 <- hand2[hand2.from:hand2.to,]
+hand1 <- hand1.raw[hand1.from:hand1.to,]
+hand2 <- hand2.raw[hand2.from:hand2.to,]
 
 
 ########################################
@@ -253,37 +253,59 @@ hand2.diffs <- collect.diffs(hand2.groups)
 ########################################
 # examine individual handshakes
 
+grp <- 3
+grp2 <- grp+1
 # manually segmented handshake intervals
 hand1.breaks <- c(2000, 3500, 5500, 7500, 9300, 10700, 12000, 13200, 14300, 15400, 16400, 17300, 18300, 19400, 20500, 21500, 23000, 24300, 25700, 27500)
-i <- 1
-ts <- hand1[hand1.breaks[i]:hand1.breaks[i+1],]; plot(mag(data.frame(x=ts$V2,y=ts$V3,z=ts$V4)), type="l")
+ts <- hand1[hand1.breaks[grp]:hand1.breaks[grp+1],];
 # first 5 handshakes manually annotated with grip and release times
 grips <- c(620, 340, 1000, 750, 590)
 releases <- c(1175, 850, 1470, 1230, 1030)
+#abline(col="green", v=grips[grp2])
+#abline(col="blue", v=releases[grp2])
 
+
+trim <- 650
 
 # example handshake
-grp <- 2
-grp2 <- 4
-from <- hand1.breaks[2*grp - 1] + trim
-to <- hand1.breaks[2*grp] - trim
+from <- hand1.breaks[grp] + trim
+to <- hand1.breaks[grp+1] - trim
 events1 <- data.frame(Events="Shake", t=(hand1.groups[grp2][[1]][[1]]-from)*hand1.dt)
 events2 <- data.frame(Events="Grip", t=c(grips[grp2]-trim)*hand1.dt)
 events3 <- data.frame(Events="Release", t=c(releases[grp2]-trim)*hand1.dt)
 events <- rbind(events1,events2,events3)
-df <- data.frame(t=hand1.dt*c(0:(to-from)), acceleration=ts)
+#df <- data.frame(t=hand1.dt*c(0:(to-from)), acceleration=ts)
+a <- accel.cal(accel(ts[(trim+1):(nrow(ts)-trim),]))
+df <- data.frame(t=hand1.dt*c(0:(to-from)), a, mag=mag(a))
+
+ma <- mag(a)
+#plot(x=hand1.dt*c(1:nrow(series)), y=mag(accel(series)), type="l");
+plot(x=hand1.dt*c(1:nrow(series)), y=ma, type="l", ylim=c(min(a$x,a$y,a$z,ma), max(a$x,a$y,a$z,ma)))
+lines(x=hand1.dt*c(1:nrow(series)), y=a$x, col="gray")
+lines(x=hand1.dt*c(1:nrow(series)), y=a$y, col="gray")
+lines(x=hand1.dt*c(1:nrow(series)), y=a$z, col="gray")
+abline(col="red", v=events1$t)
+abline(col="green", v=events2$t)
+abline(col="blue", v=events3$t)
 
 library(ggplot2)
+
+sz <- 0.25
+df.m <- melt(df, id="t")
 pdf("/tmp/graphic.pdf", width=6.25, height=2.25)
 par(mar=c(4.5,5,2,1.5))
-  ggplot(data=df, aes(x=t, y=acceleration)) +
+  ggplot(data=df, aes(x=t)) +
+    theme_bw() +
     geom_vline(data=events, aes(xintercept=t,linetype=Events,colour=Events), show_guide = TRUE) +
-    geom_line() +
+    geom_line(aes(y=x), colour="gray", size=sz) +
+    geom_line(aes(y=y), colour="gray", size=sz) +
+    geom_line(aes(y=z), colour="gray", size=sz) +
+    geom_line(aes(y=mag), size=sz) +
+    #geom_line(data=df.m, aes(x=t, y=value, blah=variable), show_guide=FALSE) +
+    #scale_color_manual(values=c("black", "#CC6666", "#66CC66", "#9999CC")) +
     xlab("time (seconds)") +
-    ylab("acceleration (g)") +
-    theme_bw()
+    ylab("acceleration (g)")
 dev.off()
-
 
 # time between largest handshake peak and the retraction peak in three handshakes
 retraction.time <- c(1.464292, 1.187264, 1.385141)
@@ -487,15 +509,16 @@ abline(col="red", v=(hand1.peaks-from+1))
 # frequency estimation
 
 # substitute hand2 to obtain an only slightly different frequency estimate
-hand.diffs <- hand1.diffs
-hand.dt <- hand1.dt
-hand.groups <- hand1.groups
+hand.diffs <- hand2.diffs
+hand.dt <- hand2.dt
+hand.groups <- hand2.groups
 # separate frequency diffs from noise
 hist(hand.diffs, breaks=60)
 low <- floor(0.056/hand.dt)
 high <- ceiling(0.12/hand.dt)
 abline(col="red", v=c(low,high))
 real.diffs <- subset(data.frame(diff=hand.diffs), diff >= low & diff <= high)$diff
+# note: the frequency of peaks in the magnitude is twice the signal frequency, hence the factor of 2
 freq <- 1/(2*hand.dt*real.diffs)
 # 5.773614 (hand1), 6.299301 (hand2)
 freq.mean <- mean(freq)
@@ -503,3 +526,25 @@ freq.mean <- mean(freq)
 freq.sd <- sd(freq)
 freq.low <- freq.mean - freq.sd
 freq.high <- freq.mean + freq.sd
+
+
+##########
+# another means of frequency estimation
+
+shake.frequency <- function(peaks, dt) {
+   s <- peaks
+   diff <- s[2:length(s)]-s[1:(length(s)-1)]
+   1/(2*diff[diff < 100]*dt)
+}
+
+sf1 <- shake.frequency(hand1.peaks, hand1.dt)
+sf2 <- shake.frequency(hand2.peaks, hand2.dt)
+
+# 5.54454381106
+mean(sf1)
+# 1.40995614719
+sd(sf1)
+# 5.71096041385
+mean(sf2)
+# 2.33476709433
+sd(sf2)

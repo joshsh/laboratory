@@ -6,7 +6,7 @@ PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
 SELECT ?person ?focus WHERE {
     # <I> have pointed at ?focus (at any time)
     ?p activity:actor <I> .
-    ?p activity:thingIndicated ?focus .
+    ?p activity:referent ?focus .
 
     # ?person has paid attention to ?focus (at any time)
     ?a activity:actor ?person .

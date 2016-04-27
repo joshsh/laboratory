@@ -4,9 +4,9 @@ PREFIX activity: <http://fortytwo.net/2015/extendo/activity#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 # note: replace <I> before evaluation
-SELECT ?thing ?giver ?giverName WHERE {
+SELECT ?thing ?other ?otherName WHERE {
     ?h activity:thingGiven ?thing .
     ?h activity:taker <I> .
-    ?h activity:giver ?giver .
-    ?giver foaf:name ?giverName .
+    ?h activity:giver ?other .
+    ?other foaf:name ?otherName .
 }
