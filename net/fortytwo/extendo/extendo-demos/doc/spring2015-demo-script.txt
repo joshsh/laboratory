@@ -1,0 +1,106 @@
+TODO:
+!) better visual and auditory cues on common topics handshake
+!) investigate Typeatron rebooting / possible loose connection(s)
+
+[people]
+JS: SBZFumn
+OH: D4bbQSr
+XL: JdGwZ4n
+
+[people met]
+JS: rsHIZzr
+OH: NWX9xIM
+XL: 5xTl7gQ
+
+[things received]
+OH: pUVHXAD
+XL: Ob3iqrj
+
+
+################################################################################
+# day-before preparation for a video
+
+*) charge 9V batteries for EH2 and EH3
+*) charge Typeatron
+*) reserve the space
+*) have camera, lighting, and microphone(s) ready
+
+
+################################################################################
+# general setup
+
+0) publish latest extend-o-brain.rdf and activity.rdf
+
+rapper -i turtle -o rdfxml ./extendo-rdf/src/main/resources/net/fortytwo/extendo/rdf/activity.ttl > ~/Dropbox/shared/domains/www.fortytwo.net/2015/extendo/activity.rdf
+
+# force sync of RDF dump after Web export
+scp -P 2002 /Users/josh/Dropbox/shared/domains/www.fortytwo.net/people/josh/extend-o-brain.rdf josh@fortytwo.net:/home/josh/Dropbox/shared/domains/www.fortytwo.net/people/josh/extend-o-brain.rdf
+
+*) give Marvin a wired Ethernet connection and enable Wi-Fi Internet Sharing
+*) connect to Marvin from MRMBP
+*) modify extendo.properties on Marvin to use the Internet Sharing network
+
+vim extendo.properties
+
+*) after starting Rexster, check that MRMBP or Marvin can see Extendo Server broadcasting from Marvin
+
+sudo tcpdump -s 0 -A -v -i en1 port 42000
+sudo tcpdump -s 0 -A -v -i lo0 port 42000
+
+*) test EH2 (small glove) with extendo-hand-control.maxpat
+
+python ./slip-to-udp.py /dev/tty.usbserial-A602UUWC 115200 127.0.0.1 42002 42003
+
+python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 115200 127.0.0.1 42002 42003
+
+*) test EH3 (large glove) with extendo-hand-control.maxpat
+
+python ./slip-to-udp.py /dev/tty.usbserial-A9ED9B3J 115200 127.0.0.1 42002 42003
+
+python ./slip-to-udp.py /dev/tty.RNBT-31C3-RNI-SPP 115200 127.0.0.1 42002 42003
+
+*) test Typeatron via Bluetooth
+
+python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 115200 127.0.0.1 42002 42003
+
+
+################################################################################
+# Marvin setup, all scenes
+
+# start Max/MSP, open demo-interactions.maxpat, load the clips, enable audio
+
+cd ~/projects/fortytwo/laboratory/net/fortytwo/extendo/extendo-demos/src/main/python
+
+kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
+
+# Typeatron, Bluetooth
+python ./slip-to-udp.py /dev/tty.FireFly-E1E2-SPP 115200 127.0.0.1 42102 42103
+
+# Typeatron, USB
+python ./slip-to-udp.py /dev/tty.usbserial-AD022JGJ 115200 127.0.0.1 42102 42103
+
+# EH2 (small) Bluetooth
+python ./slip-to-udp.py /dev/tty.RNBT-1866-RNI-SPP 115200 127.0.0.1 42203 42002
+
+# EH3 (large) Bluetooth
+python ./slip-to-udp.py /dev/tty.RNBT-31C3-RNI-SPP 115200 127.0.0.1 42303 42002
+
+# restart Rexster
+# note: set REXSTER_HOME appropriately
+screen -S exorex
+./extendo-rexster.sh 2>&1 | tee rexster.out
+
+# JS with Typeatron and EH3 on Marvin
+./demo-participant.sh -a http://fortytwo.net/josh/things/SBZFumn -m rsHIZzr -h 127.0.0.1 -p 42303 -t 42103,42102
+
+
+################################################################################
+# MRMBP setup, all scenes
+
+cd ~/projects/fortytwo/laboratory/net/fortytwo/extendo/extendo-demos
+
+# OH with EH2 on MRMBP
+./demo-participant.sh -a http://fortytwo.net/josh/things/D4bbQSr -m NWX9xIM -r pUVHXAD -h 192.168.2.1 -p 42203
+
+# XL with EH2 on MRMBP
+./demo-participant.sh -a http://fortytwo.net/josh/things/JdGwZ4n -m 5xTl7gQ -r Ob3iqrj -h 192.168.2.1 -p 42203

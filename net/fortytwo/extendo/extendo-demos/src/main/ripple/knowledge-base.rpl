@@ -1,0 +1,32 @@
+rm -rf /tmp/joshkb-private-nativestore
+sesamize import -i nt /tmp/joshkb-private-nativestore /tmp/joshkb.nt
+ripple config/joshkb-private-ns.properties
+
+
+rm -rf /tmp/joshkb-web-nativestore
+sesamize import -i rdf /tmp/joshkb-web-nativestore /Users/josh/Dropbox/shared/domains/www.fortytwo.net/people/josh/extend-o-brain.rdf
+ripple config/joshkb-web-ns.properties
+
+
+rapper -i rdfxml -o ntriples /Users/josh/Dropbox/shared/domains/www.fortytwo.net/people/josh/extend-o-brain.rdf > /tmp/joshkb-web.nt
+rapper -i ntriples -o turtle /tmp/joshkb.nt > /tmp/joshkb.ttl
+
+
+
+@prefix things: <http://fortytwo.net/josh/things/>
+@prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+@list me: things:SBZFumn
+
+:me.
+:me. foaf:birthday.
+:me. foaf:page.
+:me. foaf:knows.
+:me. foaf:interest.
+
+
+# William James
+@list wj: things:DqkQ-MS
+
+:wj.
+:wj. foaf:maker~.

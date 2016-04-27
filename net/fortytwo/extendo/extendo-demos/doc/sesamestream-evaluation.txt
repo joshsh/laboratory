@@ -1,0 +1,1818 @@
+
+
+
+export JAVA_OPTIONS="-Xms8G -Xmx8G"
+for i in 800; do ./sesamestream-evaluation.sh -t 4 -p $i -r 8 -q friends -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-4_p-"$i"_r-8_l-300_64g.txt"; done
+
+
+
+TTL is not a fixed window
+in the sim, presence TTL is 1.5 times the length of the last cycle
+TTL is defined individually for each fact
+
+
+
+export JAVA_OPTIONS="-Xms4G -Xmx4G"
+export JAVA_OPTIONS="-Xms5G -Xmx5G"
+export JAVA_OPTIONS="-Xms7G -Xmx7G"
+export JAVA_OPTIONS="-Xms8G -Xmx8G"
+export JAVA_OPTIONS="-Xms10G -Xmx10G"
+./sesamestream-evaluation.sh -t 1 -p 500 -r 8 2>&1 | tee /tmp/eval.txt
+./sesamestream-evaluation.sh -t 4 -p 500 -r 8 2>&1 | tee /tmp/eval.txt
+
+
+ssh josh@130.211.183.22
+ssh josh@130.211.144.12
+ssh josh@130.211.136.74
+ssh josh@146.148.79.225
+ssh josh@130.211.114.135
+
+
+# EC2
+ssh ubuntu@54.85.81.32
+ssh ubuntu@54.173.80.221
+
+
+########################################
+# variable rooms run
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+time for i in 2 4 8 16 32; do ./sesamestream-evaluation.sh -t 4 -p 400 -r $i -q topics -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-4_p-400_r-"$i"_l-300_64g.txt"; done
+
+
+########################################
+# variable memory run
+
+time for i in 1 2 4 8 16 32 64; do export JAVA_OPTIONS="-Xms"$i"G -Xmx"$i"G" \
+    && ./sesamestream-evaluation.sh -t 4 -p 400 -r 8 -q topics -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-4_p-400_r-8_l-300_"$i"g.txt"; done
+
+
+########################################
+# variable people run
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+for i in 100 200 400 800 1600 3200; do ./sesamestream-evaluation.sh -t 4 -p $i -r 8 -q topics -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-4_p-"$i"_r-8_l-300_64g.txt"; done
+
+
+########################################
+# variable threads run
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 400 -r 16 -q topics -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-800_r-16_l-300_64g.txt"; done
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 800 -r 16 -q topics -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-400_r-16_l-300_64g.txt"; done
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 1600 -r 16 -q topics -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-1600_r-16_l-300_64g.txt"; done
+
+
+########################################
+# pulses only
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+time for i in 100 200 400 800 1600 3200; do ./sesamestream-evaluation.sh -t 4 -p $i -r 8 -q none -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-1_p-"$i"_r-8_l-300_64g.txt"; done
+
+export JAVA_OPTIONS="-Xms32G -Xmx32G"
+time for i in 100 200 400 800 1600; do ./sesamestream-evaluation.sh -t 1 -p $i -r 8 -q none -l 600 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-1_p-"$i"_r-8_l-600_32g.txt"; done
+
+
+########################################
+# pulses only, with multiple threads
+
+export JAVA_OPTIONS="-Xms64G -Xmx64G"
+time for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 3200 -r 16 -q none -l 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-3200_r-16_l-300_64g.txt"; done
+
+# new, with more threads
+
+export JAVA_OPTIONS="-Xms32G -Xmx32G"
+time for i in 1 2 4 8 16 32; do ./sesamestream-evaluation.sh -t $i -p 3200 -r 32 -q none -l 600 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-3200_r-32_l-600_32g.txt"; done
+
+
+
+
+
+
+
+cat /tmp/eval.txt|grep latency|grep pulse|sed 's/.*=.//'|sed 's/ms.*//'|tr '\n' ','|sed 's/^/p <- c\(/'|sed 's/.$/\)/'
+cat /tmp/eval.txt|grep latency|grep handshake|sed 's/.*=.//'|sed 's/ms.*//'|tr '\n' ','|sed 's/^/l <- c\(/'|sed 's/.$/\)/'
+
+mean(m)
+sd(m)
+m <- sapply(1:length(l), function(i){mean(l[1:i])})
+plot(m)
+plot(m, type="l")
+
+
+# watch dwell time approach its average
+m <- sapply(c(1:length(dt)), function(i){mean(dt[1:i])})
+plot(m, type="l")
+
+
+# check for dead worker and TTL cleanup threads
+cat /tmp/eval.txt | grep -i severe
+
+# sanity check dwell time, and idle time between handshakes
+cat /tmp/eval.txt |grep dwell|sed 's/.*after.//'|sed 's/s.*//'|tr '\n' ','|sed 's/^/dt <- c\(/'|sed 's/.$/\)/'
+cat /tmp/eval.txt |grep idle|sed 's/.*after.//'|sed 's/s.*//'|tr '\n' ','|sed 's/^/it <- c\(/'|sed 's/.$/\)/'
+
+
+# number of solutions removed each internal 30s interval.  This immediately
+# assumes a slightly fluctuating plateau value
+cat /tmp/eval.txt |grep -i removed|sed 's/.*and.//'|sed 's/.solutions.*//'|tr '\n' ','|sed 's/^/r <- c\(/'|sed 's/.$/\)/'
+
+# likewise, the total number of solution groups (a temporary output from SesameStream)
+# also holds quite steady, even when the cycle time is increasing exponentially
+cat /tmp/eval.txt |grep -i "removing from"|sed 's/^removing from.//'|sed 's/.solution.*//'|tr '\n' ','|sed 's/^/sg <- c\(/'|sed 's/.$/\)/'
+
+# amount of time consumed by a cycle. It starts very low and then plateaus
+# within a few cycles (e.g. to around 11s for 1000 people, "knows" handshakes)
+# In contrast, I found cycle time rising *exponentially* when simulating
+# "topics" handshakes for 1000 people.  Marvin had no free memory at all.
+cat /tmp/eval.txt |grep took|sed 's/.*took.//'|sed 's/ms//'|tr '\n' ','|sed 's/^/cycle <- c\(/'|sed 's/.$/\)/'
+
+# cycle time is holding steady with 4 threads (as opposed to 1 before concurrency support)
+# on "topics" handshakes with 500 people.  Mean cycle time is only 434.5128ms (for 500/4 people)
+plot(cycle, type="l", ylim=c(0,1.5*mean(cycle))); abline(col="blue", h=mean(cycle)); abline(col="red", h=100)
+
+
+
+given sufficient memory, the critical factor in response time is processor speed
+
+additional processors potentially increase throughput
+
+
+################################################################################
+# Starthinker results
+
+########################################
+# format-results.sh:
+
+#!/bin/bash
+echo "
+fl <- c()
+tl <- c()
+"
+cat /tmp/eval.txt|grep latency|grep pulse|sed 's/[a-z ]*=.//'|sed 's/ms.*//'|tr '\n' ','|sed 's/^/p <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt|grep latency|grep friends-handshake|sed 's/.*=.//'|sed 's/ms.*//'|tr '\n' ','|sed 's/^/fl <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt|grep latency|grep topics-handshake|sed 's/.*=.//'|sed 's/ms.*//'|tr '\n' ','|sed 's/^/tl <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep -i removed|sed 's/.*and.//'|sed 's/.solutions.*//'|tr '\n' ','|sed 's/^/r <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep dwell|sed 's/.*after.//'|sed 's/s.*//'|tr '\n' ','|sed 's/^/dt <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep idle|sed 's/.*after.//'|sed 's/s.*//'|tr '\n' ','|sed 's/^/it <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep took|sed 's/.*took.//'|sed 's/ms//'|tr '\n' ','|sed 's/^/cycle <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep spent|sed 's/spent at most //'|sed 's/ms on moves and /,/'|sed 's/ms.*//'|tr '\n' ','|sed 's/^/spent <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^moves this cycle"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/moves <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^pulses this cycle"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/pulses <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^received pulses this cycle"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/received.pulses <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^true received pulses this cycle"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/true.received.pulses <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^handshakes this cycle"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/handshakes <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^received common-knows"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/received.shakes.knows <- c\(/'|sed 's/.$/\)/'
+echo ""
+cat /tmp/eval.txt |grep "^received common-topics"|sed 's/null/0/'|sed 's/[^0-9]*//'|sed 's/[^0-9].*//'|tr '\n' ','|sed 's/^/received.shakes.topics <- c\(/'|sed 's/.$/\)/'
+echo "
+missed <- (sum(pulses) - sum(true.received.pulses))/sum(pulses);
+i <- 1:(length(spent)/2)
+mean(p)
+mean(fl)
+mean(tl)
+mean(r)
+mean(dt)
+mean(it)
+mean(cycle)
+mean(moves)
+mean(pulses)
+mean(received.pulses)
+missed
+mean(spent[i*2]) / mean(spent[i*2-1])
+"
+
+
+########################################
+# format-series.sh
+
+#!/bin/bash
+
+# first rename the "10" series so it comes last in the list of files (e.g. replace the first "10" with "A", then
+echo "" > /tmp/all-results.txt
+for f in `ls *.txt`; do cp $f /tmp/eval.txt \
+    && ./format-results.sh > /tmp/out.r \
+    && cat /tmp/out.r | r -p | tail -12 | sed 's/.* //' | awk '{printf "%d\t%s\n", NR, $0}' >> /tmp/all-results.txt \
+    && sort -ns /tmp/all-results.txt | tr '\t' '_' > /tmp/all-results-sorted.txt; done
+
+echo ""
+grep "^1_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/p <- c\(/'
+echo ""
+grep "^2_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/fl <- c\(/'
+echo ""
+grep "^3_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/tl <- c\(/'
+echo ""
+grep "^4_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/r <- c\(/'
+echo ""
+grep "^5_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/dt <- c\(/'
+echo ""
+grep "^6_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/it <- c\(/'
+echo ""
+grep "^7_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/cycle <- c\(/'
+echo ""
+grep "^8_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/moves <- c\(/'
+echo ""
+grep "^9_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/pulses <- c\(/'
+echo ""
+grep "^10_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/received.pulses <- c\(/'
+echo ""
+grep "^11_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/missed <- c\(/'
+echo ""
+grep "^12_" /tmp/all-results-sorted.txt | sed 's/.*_//' | tr '\n' ',' | sed 's/,$/\)/' | sed 's/^/spent <- c\(/'
+echo ""
+
+
+
+
+mv q-none_t-2_p-100_r-2_l-600_12g.txt q-none_t-02_p-100_r-2_l-600_12g.txt
+mv q-none_t-3_p-150_r-3_l-600_12g.txt q-none_t-03_p-150_r-3_l-600_12g.txt
+mv q-none_t-4_p-200_r-4_l-600_12g.txt q-none_t-04_p-200_r-4_l-600_12g.txt
+mv q-none_t-5_p-250_r-5_l-600_12g.txt q-none_t-05_p-250_r-5_l-600_12g.txt
+mv q-none_t-6_p-300_r-6_l-600_12g.txt q-none_t-06_p-300_r-6_l-600_12g.txt
+mv q-none_t-7_p-350_r-7_l-600_12g.txt q-none_t-07_p-350_r-7_l-600_12g.txt
+mv q-none_t-8_p-400_r-8_l-600_12g.txt q-none_t-08_p-400_r-8_l-600_12g.txt
+mv q-none_t-9_p-450_r-9_l-600_12g.txt q-none_t-09_p-450_r-9_l-600_12g.txt
+mv q-none_t-A_p-500_r-10_l-600_12g.txt q-none_t-10_p-500_r-10_l-600_12g.txt
+
+mv q-none_t-2_p-200_r-2_l-600_12g.txt q-none_t-02_p-200_r-2_l-600_12g.txt
+mv q-none_t-3_p-300_r-3_l-600_12g.txt q-none_t-03_p-300_r-3_l-600_12g.txt
+mv q-none_t-4_p-400_r-4_l-600_12g.txt q-none_t-04_p-400_r-4_l-600_12g.txt
+mv q-none_t-5_p-500_r-5_l-600_12g.txt q-none_t-05_p-500_r-5_l-600_12g.txt
+mv q-none_t-6_p-600_r-6_l-600_12g.txt q-none_t-06_p-600_r-6_l-600_12g.txt
+mv q-none_t-7_p-700_r-7_l-600_12g.txt q-none_t-07_p-700_r-7_l-600_12g.txt
+mv q-none_t-8_p-800_r-8_l-600_12g.txt q-none_t-08_p-800_r-8_l-600_12g.txt
+mv q-none_t-9_p-900_r-9_l-600_12g.txt q-none_t-09_p-900_r-9_l-600_12g.txt
+mv q-none_t-A_p-1000_r-10_l-600_12g.txt q-none_t-10_p-1000_r-10_l-600_12g.txt
+
+mv q-friends_t-2_p-200_r-2_l-600_12g.txt q-friends_t-02_p-200_r-2_l-600_12g.txt
+mv q-friends_t-3_p-300_r-3_l-600_12g.txt q-friends_t-03_p-300_r-3_l-600_12g.txt
+mv q-friends_t-4_p-400_r-4_l-600_12g.txt q-friends_t-04_p-400_r-4_l-600_12g.txt
+mv q-friends_t-5_p-500_r-5_l-600_12g.txt q-friends_t-05_p-500_r-5_l-600_12g.txt
+mv q-friends_t-6_p-600_r-6_l-600_12g.txt q-friends_t-06_p-600_r-6_l-600_12g.txt
+mv q-friends_t-7_p-700_r-7_l-600_12g.txt q-friends_t-07_p-700_r-7_l-600_12g.txt
+mv q-friends_t-8_p-800_r-8_l-600_12g.txt q-friends_t-08_p-800_r-8_l-600_12g.txt
+mv q-friends_t-9_p-900_r-9_l-600_12g.txt q-friends_t-09_p-900_r-9_l-600_12g.txt
+mv q-friends_t-A_p-1000_r-10_l-600_12g.txt q-friends_t-10_p-1000_r-10_l-600_12g.txt
+
+mv q-friends_t-2_p-400_r-2_l-600_12g.txt q-friends_t-02_p-400_r-2_l-600_12g.txt
+mv q-friends_t-3_p-600_r-3_l-600_12g.txt q-friends_t-03_p-600_r-3_l-600_12g.txt
+mv q-friends_t-4_p-800_r-4_l-600_12g.txt q-friends_t-04_p-800_r-4_l-600_12g.txt
+mv q-friends_t-5_p-1000_r-5_l-600_12g.txt q-friends_t-05_p-1000_r-5_l-600_12g.txt
+mv q-friends_t-6_p-1200_r-6_l-600_12g.txt q-friends_t-06_p-1200_r-6_l-600_12g.txt
+mv q-friends_t-7_p-1400_r-7_l-600_12g.txt q-friends_t-07_p-1400_r-7_l-600_12g.txt
+mv q-friends_t-8_p-1600_r-8_l-600_12g.txt q-friends_t-08_p-1600_r-8_l-600_12g.txt
+mv q-friends_t-9_p-1800_r-9_l-600_12g.txt q-friends_t-09_p-1800_r-9_l-600_12g.txt
+mv q-friends_t-A_p-2000_r-10_l-600_12g.txt q-friends_t-10_p-2000_r-10_l-600_12g.txt
+
+mv q-topics_t-2_p-100_r-2_l-600_12g.txt q-topics_t-02_p-100_r-2_l-600_12g.txt
+mv q-topics_t-3_p-150_r-3_l-600_12g.txt q-topics_t-03_p-150_r-3_l-600_12g.txt
+mv q-topics_t-4_p-200_r-4_l-600_12g.txt q-topics_t-04_p-200_r-4_l-600_12g.txt
+mv q-topics_t-5_p-250_r-5_l-600_12g.txt q-topics_t-05_p-250_r-5_l-600_12g.txt
+mv q-topics_t-6_p-300_r-6_l-600_12g.txt q-topics_t-06_p-300_r-6_l-600_12g.txt
+mv q-topics_t-7_p-350_r-7_l-600_12g.txt q-topics_t-07_p-350_r-7_l-600_12g.txt
+mv q-topics_t-8_p-400_r-8_l-600_12g.txt q-topics_t-08_p-400_r-8_l-600_12g.txt
+mv q-topics_t-9_p-450_r-9_l-600_12g.txt q-topics_t-09_p-450_r-9_l-600_12g.txt
+mv q-topics_t-A_p-500_r-10_l-600_12g.txt q-topics_t-10_p-500_r-10_l-600_12g.txt
+
+mv q-topics_t-2_p-200_r-2_l-600_12g.txt q-topics_t-02_p-200_r-2_l-600_12g.txt
+mv q-topics_t-3_p-300_r-3_l-600_12g.txt q-topics_t-03_p-300_r-3_l-600_12g.txt
+mv q-topics_t-4_p-400_r-4_l-600_12g.txt q-topics_t-04_p-400_r-4_l-600_12g.txt
+mv q-topics_t-5_p-500_r-5_l-600_12g.txt q-topics_t-05_p-500_r-5_l-600_12g.txt
+mv q-topics_t-6_p-600_r-6_l-600_12g.txt q-topics_t-06_p-600_r-6_l-600_12g.txt
+mv q-topics_t-7_p-700_r-7_l-600_12g.txt q-topics_t-07_p-700_r-7_l-600_12g.txt
+mv q-topics_t-8_p-800_r-8_l-600_12g.txt q-topics_t-08_p-800_r-8_l-600_12g.txt
+mv q-topics_t-9_p-900_r-9_l-600_12g.txt q-topics_t-09_p-900_r-9_l-600_12g.txt
+mv q-topics_t-A_p-1000_r-10_l-600_12g.txt q-topics_t-10_p-1000_r-10_l-600_12g.txt
+
+mv q-topics_t-2_p-400_r-2_l-600_12g.txt q-topics_t-02_p-400_r-2_l-600_12g.txt
+mv q-topics_t-3_p-600_r-3_l-600_12g.txt q-topics_t-03_p-600_r-3_l-600_12g.txt
+mv q-topics_t-4_p-800_r-4_l-600_12g.txt q-topics_t-04_p-800_r-4_l-600_12g.txt
+mv q-topics_t-5_p-1000_r-5_l-600_12g.txt q-topics_t-05_p-1000_r-5_l-600_12g.txt
+mv q-topics_t-6_p-1200_r-6_l-600_12g.txt q-topics_t-06_p-1200_r-6_l-600_12g.txt
+mv q-topics_t-7_p-1400_r-7_l-600_12g.txt q-topics_t-07_p-1400_r-7_l-600_12g.txt
+mv q-topics_t-8_p-1600_r-8_l-600_12g.txt q-topics_t-08_p-1600_r-8_l-600_12g.txt
+mv q-topics_t-9_p-1800_r-9_l-600_12g.txt q-topics_t-09_p-1800_r-9_l-600_12g.txt
+mv q-topics_t-A_p-2000_r-10_l-600_12g.txt q-topics_t-10_p-2000_r-10_l-600_12g.txt
+
+mv q-all_t-2_p-100_r-2_l-600_12g.txt q-all_t-02_p-100_r-2_l-600_12g.txt
+mv q-all_t-3_p-150_r-3_l-600_12g.txt q-all_t-03_p-150_r-3_l-600_12g.txt
+mv q-all_t-4_p-200_r-4_l-600_12g.txt q-all_t-04_p-200_r-4_l-600_12g.txt
+mv q-all_t-5_p-250_r-5_l-600_12g.txt q-all_t-05_p-250_r-5_l-600_12g.txt
+mv q-all_t-6_p-300_r-6_l-600_12g.txt q-all_t-06_p-300_r-6_l-600_12g.txt
+mv q-all_t-7_p-350_r-7_l-600_12g.txt q-all_t-07_p-350_r-7_l-600_12g.txt
+mv q-all_t-8_p-400_r-8_l-600_12g.txt q-all_t-08_p-400_r-8_l-600_12g.txt
+mv q-all_t-9_p-450_r-9_l-600_12g.txt q-all_t-09_p-450_r-9_l-600_12g.txt
+mv q-all_t-A_p-500_r-10_l-600_12g.txt q-all_t-10_p-500_r-10_l-600_12g.txt
+
+mv q-all_t-2_p-200_r-2_l-600_12g.txt q-all_t-02_p-200_r-2_l-600_12g.txt
+mv q-all_t-3_p-300_r-3_l-600_12g.txt q-all_t-03_p-300_r-3_l-600_12g.txt
+mv q-all_t-4_p-400_r-4_l-600_12g.txt q-all_t-04_p-400_r-4_l-600_12g.txt
+mv q-all_t-5_p-500_r-5_l-600_12g.txt q-all_t-05_p-500_r-5_l-600_12g.txt
+mv q-all_t-6_p-600_r-6_l-600_12g.txt q-all_t-06_p-600_r-6_l-600_12g.txt
+mv q-all_t-7_p-700_r-7_l-600_12g.txt q-all_t-07_p-700_r-7_l-600_12g.txt
+mv q-all_t-8_p-800_r-8_l-600_12g.txt q-all_t-08_p-800_r-8_l-600_12g.txt
+mv q-all_t-9_p-900_r-9_l-600_12g.txt q-all_t-09_p-900_r-9_l-600_12g.txt
+mv q-all_t-A_p-1000_r-10_l-600_12g.txt q-all_t-10_p-1000_r-10_l-600_12g.txt
+
+
+
+
+
+length(received.shakes.knows[received.shakes.knows > 0]) / length(handshakes[handshakes > 0])
+length(received.shakes.topics[received.shakes.topics > 0]) / length(handshakes[handshakes > 0])
+
+
+# test prediction about number of false positives
+mean(received.pulses / pulses)
+
+
+########################################
+# plot by threads
+
+plot(x=threads, y=p, type="l", xlab="# threads", ylab="pulse latency (ms)", ylim=c(0, max(p)))
+plot(x=threads, y=pulse.latency, type="l", xlab="# threads", ylab="pulse latency --total (ms)", ylim=c(0, max(pulse.latency)))
+plot(x=threads, y=fl, type="l", xlab="# threads", ylab="'friends' handshake latency (ms)", ylim=c(0, max(fl))); abline(col="red", h=1000)
+plot(x=threads, y=friends.latency, type="l", xlab="# threads", ylab="'friends' latency -- total (ms)", ylim=c(0, min(2000,max(friends.latency)))); abline(col="red", h=1000)
+plot(x=threads, y=tl, type="l", xlab="# threads", ylab="'topics' handshake latency (ms)", ylim=c(0, max(tl))); abline(col="red", h=1000)
+plot(x=threads, y=topics.latency, type="l", xlab="# threads", ylab="'topics' latency -- total (ms)", ylim=c(0, min(2000,max(topics.latency)))); abline(col="red", h=1000)
+plot(x=threads, y=r, type="l", xlab="# threads", ylab="solutions removed per TTL cleanup cycle", ylim=c(0, max(r)))
+plot(x=threads, y=dt, type="l", xlab="# threads", ylab="dwell time (s)", ylim=c(0, max(dt)))
+plot(x=threads, y=it, type="l", xlab="# threads", ylab="idle time (s)", ylim=c(0, max(it)))
+plot(x=threads, y=cycle, type="l", xlab="# threads", ylab="cycle time (ms)", ylim=c(0,max(cycle))); abline(col="red", h=1000)
+plot(x=threads, y=spent, type="l", xlab="# threads", ylab="handshake time / move time", ylim=c(0, max(spent)))
+plot(x=threads, y=missed, type="l", xlab="# threads", ylab="proportion of handshakes missed", ylim=c(0, min(1, max(missed))))
+
+plot(x=threads, y=moves/cycle, type="l", xlab="# threads", ylab="moves per cycle", ylim=c(0, max(moves/cycle)))
+
+# this is less useful when the cycle time is high
+plot(x=threads, y=topics.latency, type="l", log="y", col="blue", ylim=c(1, max(topics.latency)),
+    xlab="threads = rooms = hundreds of people",
+    ylab="average latency (ms)")
+lines(x=threads, y=pulse.latency, col="black")
+lines(x=threads, y=friends.latency, col="red")
+
+# this is more useful when the cycle time is low
+plot(x=threads, y=tl, type="l", log="y", col="blue", xlim=c(2,10), ylim=c(1, max(tl)),
+    xlab="threads = rooms = hundreds of people",
+    ylab="average latency (ms)")
+lines(x=threads, y=p, col="black")
+lines(x=threads, y=fl, col="red")
+
+
+########################################
+
+##########
+# single thread, variable people = rooms*100 (speedup/efficiency run)
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9; do ./sesamestream-evaluation.sh -t 1 -p $((i*100)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-1_p-"$((i*100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9; do ./sesamestream-evaluation.sh -t 1 -p $((i*100)) -r $i -q "friends" -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-1_p-"$((i*100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9; do ./sesamestream-evaluation.sh -t 1 -p $((i*100)) -r $i -q "topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-1_p-"$((i*100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9; do ./sesamestream-evaluation.sh -t 1 -p $((i*100)) -r $i -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-1_p-"$((i*100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mv /tmp/series /tmp/series-speedup-calibration
+
+
+##########
+# variable people, five rooms
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+time for i in 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525 550 575 600 625 650 675 700 725 750 775 800 825 850 875 900 925 950 975; do ./sesamestream-evaluation.sh -t 1 -p $i -r 5 -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-1_p-"$i"_r-5_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+time for i in 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525 550 575 600 625 650 675 700 725 750 775 800 825 850 875 900 925 950 975; do ./sesamestream-evaluation.sh -t 1 -p $i -r 5 -q "friends" -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-1_p-"$i"_r-5_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525 550 575 600 625 650 675 700 725 750 775 800 825 850 875 900 925 950 975; do ./sesamestream-evaluation.sh -t 1 -p $i -r 5 -q "topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-1_p-"$i"_r-5_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525 550 575 600 625 650 675 700 725 750 775 800 825 850 875 900 925 950 975; do ./sesamestream-evaluation.sh -t 1 -p $i -r 5 -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-1_p-"$i"_r-5_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mkdir /tmp/results
+mv /tmp/series /tmp/series-variable-people-detail
+date
+
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+time for i in 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525 550 575 600 625 650 675 700 725 750 775 800 825 850 875 900 925 950 975; do ./sesamestream-evaluation.sh -t 1 -p $i -r 5 -q "topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-1_p-"$i"_r-5_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 100 125 150 175 200 225 250 275 300 325 350 375 400 425 450 475 500 525 550 575 600 625 650 675 700 725 750 775 800 825 850 875 900 925 950 975; do ./sesamestream-evaluation.sh -t 1 -p $i -r 5 -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-1_p-"$i"_r-5_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mkdir /tmp/results
+mv /tmp/series /tmp/series-variable-people-detail-redo
+date
+
+
+##########
+# complete 2-to-10 variable threads=rooms=people/100 run
+
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mv /tmp/series /tmp/series-2-to-10
+date
+
+##########
+# 11-to-15 variable threads=rooms=people/100 run
+
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 11 12 13 14 15; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mkdir /tmp/results
+time for i in 11 12 13 14 15; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 11 12 13 14 15; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 11 12 13 14 15; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mv /tmp/series /tmp/series-11-15
+date
+
+##########
+# 50-per-room variable threads=rooms=people/50 run
+
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mv /tmp/series /tmp/series-50-per-room
+date
+
+##########
+# 11-to-20 50-per-room variable threads=rooms=people/50 run
+
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+time for i in 11 12 13 14 15 16 17 18 19 20; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mkdir /tmp/results
+time for i in 11 12 13 14 15 16 17 18 19 20; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 11 12 13 14 15 16 17 18 19 20; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 11 12 13 14 15 16 17 18 19 20; do ./sesamestream-evaluation.sh -t $i -p $((i * 50)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-"$((i * 50))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mv /tmp/series /tmp/series-11-20
+date
+
+##########
+# 200-per-room variable threads=rooms=people/200 run
+
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 200)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-"$((i * 200))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 200)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 200))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 200)) -r $i -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 200))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mkdir /tmp/results
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 200)) -r $i -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-"$i"_p-"$((i * 200))"_r-"$i"_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+mv /tmp/series /tmp/series-200-per-room
+date
+
+##########
+# variable threads, constant people
+
+rm -rf /tmp/series /tmp/results
+mkdir /tmp/series
+mkdir /tmp/results
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p 1000 -r 10 -q "friends;topics" --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-all_t-"$i"_p-1000_r-10_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/all
+time for i in 1 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p 1000 -r 10 -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-1000_r-10_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/pulses
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p 1000 -r 10 -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-1000_r-10_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/friends
+mkdir /tmp/results
+time for i in 1 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p 1000 -r 10 -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-1000_r-10_l-600_12g.txt"; done
+mv /tmp/results /tmp/series/topics
+mv /tmp/series /tmp/series-var-threads-const-people
+date
+
+
+########################################
+# solutions per solution index, 5 rooms, variable people (Marvin)
+
+people <- c(100,200,300,400,500)
+p.groups <- c(2516,5203,10459,12622,13186)
+friends.groups <- c(3548,11347,10349,19632,59929)
+topics.groups <- c(60641,186200,360423,595800,817536)
+
+plot(x=people, y=p.groups, type="l")
+
+mx <- max(p.groups, friends.groups)
+plot(x=people, y=p.groups, type="l", ylim=c(1,mx))
+lines(x=people, y=friends.groups, col="green")
+
+mx <- max(p.groups, friends.groups, topics.groups)
+plot(x=people, y=p.groups, type="l", ylim=c(1,mx))
+lines(x=people, y=friends.groups, col="green")
+lines(x=people, y=topics.groups, col="blue")
+
+* p.groups rises in an odd sort of S-curve
+* topics.groups appears to rise quadratically
+
+
+########################################
+# speedup/efficiency calibration: 1 thread, rooms = people/100 (EC2)
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+##########
+# pulses only
+
+p <- c(5.893827,7.714789,9.68232,9.292634,5.808388,8.649021,9.902208,6.696203)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(109616.2,168667.8,234734.3,354220.5,367967.8,411870.4,474073.4,536528.6)
+dt <- c(226.1514,205.9798,221.2668,232.3326,222.3469,214.9835,213.5037,215.0117)
+it <- c(1.066832,0.638448,0.3983402,0.2090909,0.1012346,0.07106599,0.04229798,0.01669545)
+cycle <- c(37.50926,54.65741,79.29907,140.6667,138.537,160.9065,177.4954,253.2547)
+moves <- c(0.4814815,0.6574074,0.7196262,0.8240741,1.083333,1.327103,1.688073,1.726415)
+pulses <- c(0.75,1.046296,1.411215,2.055556,2.231481,2.691589,2.844037,3.490566)
+received.pulses <- c(9.648148,15.84259,22.24299,48.69444,34.5,43.25234,52.21101,53.48113)
+missed <- c(0,0,0,0,0,0.003472222,0,0)
+spent <- c(1.735314,1.152443,1.142677,4.433476,3.031797,5.797079,2.886099,2.508233)
+
+cycle.none.cal <- cycle
+
+##########
+# "friends"
+
+p <- c(8.266319,10.50161,10.42478,7.086189,7.97623,10.09391,8.816472,10.2417)
+fl <- c(3.409091,3.25,4.069767,5.511111,5.25641,6.50303,5.27907,4.906542)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(93345.32,170794.6,257884.2,334765.6,404669.4,533503.2,566674.4,619157)
+dt <- c(231.4716,223.4503,218.9116,224.1277,214.3409,234.459,231.2586,204.1424)
+it <- c(1.136126,0.5169628,0.3126582,0.1981328,0.09844135,0.06975037,0.0382372,0.02749141)
+cycle <- c(25.42202,54.5,83.41284,94.51852,115.7685,175.8704,209.0093,201.2315)
+moves <- c(0.4036697,0.6111111,0.8715596,0.7407407,1.231481,1.12963,1.383178,1.611111)
+pulses <- c(0.7522936,1.231481,1.394495,1.861111,2.5,2.37037,2.897196,3.111111)
+received.pulses <- c(6.293578,13.81481,21.04587,33.32407,46.25,51.42593,48.90654,49.48148)
+missed <- c(0,0,0,0.004975124,0,0,0.003225806,0.00297619)
+spent <- c(1.042004,2.457697,3.205365,2.408347,3.561109,3.065497,1.955465,3.186477)
+
+cycle.friends.cal <- cycle
+
+##########
+# "topics"
+
+p <- c(23.04847,40.21559,23.64496,28.21915,35.74596,48.41118,39.03445,45.06052)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(31.08629,45.57785,50.38562,98.81343,78.41877,139.9637,190.8436,169.7879)
+r <- c(368616.8,691368.8,898061.4,1272207,1521945,2192699,1893412,1937813)
+dt <- c(219.4563,225.1986,222.2594,230.3943,230.508,233.2416,234.6627,224.9919)
+it <- c(1.081841,0.5398671,0.2788698,0.1365079,-0.01016949,-1.51951,-35.14419,-46.51397)
+cycle <- c(122.8056,327.7944,477.6762,1122.02,1300.17,5178.718,63393.88,67151.75)
+moves <- c(0.3888889,0.5700935,0.6190476,0.71,0.93,5.25641,69.5,70)
+pulses <- c(0.7407407,1.233645,1.52381,2.1,2.73,10.62821,111.875,125.375)
+received.pulses <- c(10.63889,20.80374,30.91429,33.35,49.44,321.9103,3191.5,3562.625)
+missed <- c(0,0,0.00625,0.02857143,0.01098901,0.001206273,0.001117318,0.000997009)
+spent <- c(10.1727,10.20217,2.527641,12.30184,6.33151,24.52382,35.30026,85.46612)
+
+cycle.topics.cal <- cycle
+
+##########
+# all queries
+
+p <- c(20.14815,27.24635,26.52887,38.11052,38.69302,43.4009,40.447,45.94183)
+fl <- c(17.05797,27.08108,28.26154,47.20245,195.5,116.902,142.9558,150.4286)
+tl <- c(14.80992,36.61472,39.25203,79.44125,105.6667,151.0827,171.2555,188.154)
+r <- c(272192.8,614141.5,781804.1,1259638,2022753,2113875,2058902,1851730)
+dt <- c(217.6954,208.1357,221.5022,228.7773,222.9927,210.7183,229.4402,228.931)
+it <- c(1.127321,0.5169628,0.3311518,0.1177094,-0.3151261,-19.43229,-33.11429,-51.29689)
+cycle <- c(88.44954,318.7477,378.4151,961.6373,2472.527,15778.03,51070.1,79715)
+moves <- c(0.3577982,0.4485981,0.7264151,0.9117647,1.32967,13.72727,51.4,81)
+pulses <- c(0.9541284,1.476636,1.40566,1.990196,3.923077,27.45455,93.7,132.8571)
+received.pulses <- c(11.88991,25.29907,27.95283,30.79412,77.92308,668.303,2407.9,3948.429)
+missed <- c(0,0.01265823,0.01342282,0.004926108,0.005602241,0.001103753,0.001067236,0.001075269)
+spent <- c(3.972151,38.75058,1.714672,10.87494,11.7011,43.17741,91.31761,49.0452)
+
+cycle.all.cal <- cycle
+
+########################################
+# complete series of pulses only
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q none -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-none_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+##########
+# first run
+
+p <- c(7.285714,9.63864,14.31282,9.588912,14.26849,15.02426,22.96875,32.80725,35.55383)
+l <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(97205.26,193533,223210.1,283191.4,318240.8,487293.1,479424.1,593976.4,559313.5)
+dt <- c(229.9011,201.7925,224.2839,225.9564,215.9564,217.2711,210.5855,214.2341,230.8262)
+it <- c(131.048,146.2727,148.7494,137.717,146.7085,140.4791,149.1379,144.499,146.3536)
+cycle <- c(17.8296,31.4713,22.26292,26.35125,26.29061,42.96649,44.6018,62.607,61.62837)
+moves <- c(0.206278,0.1933535,0.1865169,0.2114695,0.2041729,0.2048969,0.2069741,0.21,0.1687612)
+pulses <- c(0.3901345,0.3776435,0.3730337,0.3691756,0.3442623,0.4149485,0.3824522,0.406,0.3815081)
+received.pulses <- c(4.632287,9.009063,4.957303,5.899642,4.222057,9.125,5.605174,7.205,5.48474)
+missed <- c(-0.01149425,0,-0.006024096,0,0,0.00310559,-0.002941176,0.004926108,0.004705882)
+spent <- c(1.242527,2.339853,1.331607,1.379673,1.338415,1.734744,1.765765,1.484858,1.624212)
+
+##########
+# second run
+
+p <- c(5.772277,10.15541,12.82302,15.56469,16.76626,27.86527,22.89348,24.21457,31.88197)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(103565.8,181999.1,244133.5,331251.5,439500.9,492530.2,539060.4,558770.9,640674.5)
+dt <- c(226.6048,214.2821,229.4442,225.3577,209.5867,217.3102,225.8202,222.9351,221.6853)
+it <- c(2.589552,2.655932,2.616915,2.629406,2.589109,2.656566,2.636763,2.690827,2.647739)
+cycle <- c(19.39013,29.96119,25.49213,44.55776,38.94925,55.38432,62.60022,60.04409,64.50359)
+moves <- c(0.1300448,0.2029851,0.1752809,0.2093863,0.1820896,0.2043702,0.1791713,0.1903808,0.1867145)
+pulses <- c(0.4394619,0.3791045,0.3910112,0.4223827,0.3477612,0.3933162,0.3863382,0.3937876,0.4066427)
+received.pulses <- c(6.399103,6.032836,6.516854,7.532491,7.374627,7.239075,8.885778,7.022044,6.701975)
+missed <- c(0,0,0,0.004273504,-0.004291845,0.003267974,0.005797101,0.007633588,0.01103753)
+spent <- c(1.903962,1.86199,2.567296,1.611787,1.473086,3.353304,1.588249,2.227447,1.514822)
+
+pulse.latency <- p + cycle/2
+
+##########
+# to 15 threads
+
+threads <- c(2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+
+p <- c(5.772277,10.15541,12.82302,15.56469,16.76626,27.86527,22.89348,24.21457,31.88197,40.57508,38.25833,43.43045,51.00599,59.00295)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(103565.8,181999.1,244133.5,331251.5,439500.9,492530.2,539060.4,558770.9,640674.5,718508.3,783391.5,864754.7,953463.4,940511.8)
+dt <- c(226.6048,214.2821,229.4442,225.3577,209.5867,217.3102,225.8202,222.9351,221.6853,218.5501,223.5471,224.6706,223.1993,216.0631)
+it <- c(2.589552,2.655932,2.616915,2.629406,2.589109,2.656566,2.636763,2.690827,2.647739,2.684455,2.690537,2.646582,2.545995,2.902484)
+cycle <- c(19.39013,29.96119,25.49213,44.55776,38.94925,55.38432,62.60022,60.04409,64.50359,90.96242,113.4324,152.2736,202.1723,153.3862)
+moves <- c(0.1300448,0.2029851,0.1752809,0.2093863,0.1820896,0.2043702,0.1791713,0.1903808,0.1867145,0.1740196,0.1951952,0.2050385,0.1997389,0.1894991)
+pulses <- c(0.4394619,0.3791045,0.3910112,0.4223827,0.3477612,0.3933162,0.3863382,0.3937876,0.4066427,0.3929739,0.3873874,0.4240728,0.4001305,0.3789982)
+received.pulses <- c(6.399103,6.032836,6.516854,7.532491,7.374627,7.239075,8.885778,7.022044,6.701975,7.620098,6.725225,7.562631,6.538512,6.274593)
+missed <- c(0,0,0,0.004273504,-0.004291845,0.003267974,0.005797101,0.007633588,0.01103753,0.01247401,0.01937984,0.02310231,0.03752039,0.03343949)
+spent <- c(1.903962,1.86199,2.567296,1.611787,1.473086,3.353304,1.588249,2.227447,1.514822,2.701732,1.619578,1.609433,1.891311,2.273207)
+
+p.none <- p
+cycle.none <- cycle
+pulse.latency <- p + cycle/2
+
+##########
+
+* pulse latency and cycle time rise linearly with number of threads, well within acceptable ranges
+* solutions removed also rise linearly
+* "efficiency" falls linearly
+
+
+########################################
+# complete series of "friends" shakes
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+##########
+# first run
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(7.689223,8.675453,13.5019,17.61245,15.71393,34.43466,27.12419,31.47921,40.7901)
+fl <- c(7.933333,6.966667,5.208955,13.01948,11.17757,7.8,8.245455,8.319328,24.59538)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(101244.2,177338.2,258080.5,378150.1,379542.9,535946.6,575858.6,676934.6,860746.4)
+dt <- c(228.0523,228.4682,210.0611,219.3209,218.4758,213.2118,214.559,217.1764,226.3121)
+it <- c(143.0791,138.6307,150.7166,142.4142,145.8993,140.6197,142.4514,147.1111,147.266)
+cycle <- c(18.92857,26.18018,25.78378,39.42986,29.37668,57.52497,52.27964,56.043,88.30486)
+moves <- c(0.1607143,0.1801802,0.213964,0.2032374,0.186846,0.1805378,0.2102908,0.187,0.1672662)
+pulses <- c(0.3571429,0.4384384,0.4121622,0.3794964,0.3931241,0.3828425,0.3680089,0.406,0.4334532)
+received.pulses <- c(4.022321,6.042042,7.076577,5.872302,6.053812,7.06402,6.016779,7.18,7.997302)
+missed <- c(0,0.006849315,0,0,0.003802281,0.003344482,0,0.002463054,0.008298755)
+spent <- c(2.356295,1.444756,2.480693,1.525982,2.541719,4.002338,1.529278,1.835754,2.61104)
+
+friends.latency <- fl + cycle/2
+
+##########
+# second run
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(7.124138,9.10424,13.28377,16.95603,19.42,25.23229,30.76889,31.49632,43.69495)
+fl <- c(5.858268,4.780488,6.872727,7.775194,10.03817,7.64539,7.465517,7.917647,18.58357)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(126221.7,162074.5,270886.9,350518.7,465624.2,533561.2,510956.3,617080.3,821137.9)
+dt <- c(204.7961,234.2186,222.9435,207.4218,226.5728,215.6594,224.982,218.507,212.1871)
+it <- c(2.367206,2.772647,2.627792,2.713846,2.624896,2.679328,2.716121,2.704713,2.740375)
+cycle <- c(26.71749,24.26426,36.86292,39.31239,47.71903,51.23244,37.5419,59.84064,83.85869)
+moves <- c(0.1793722,0.2252252,0.2134831,0.1777379,0.2175227,0.1979566,0.1787709,0.185259,0.1845185)
+pulses <- c(0.4618834,0.3693694,0.4044944,0.3842011,0.4380665,0.3780332,0.3765363,0.4043825,0.3735374)
+received.pulses <- c(6.820628,4.642643,6.546067,5.978456,8.282477,7.353768,5.497207,7.178287,5.918992)
+missed <- c(0,0,0.01111111,0.004672897,0,0.01351351,-0.002967359,0,0.009638554)
+spent <- c(2.689164,2.17985,3.082628,1.538961,2.07565,2.231953,2.809184,1.74058,2.769685)
+
+friends.latency <- fl + cycle/2
+
+##########
+# to 15 threads
+
+p <- c(7.124138,9.10424,13.28377,16.95603,19.42,25.23229,30.76889,31.49632,43.69495,51.1972,60.04981,62.67634,74.44465,91.0456)
+fl <- c(5.858268,4.780488,6.872727,7.775194,10.03817,7.64539,7.465517,7.917647,18.58357,29.54882,28.11799,27.89616,46.11485,36.93448)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(126221.7,162074.5,270886.9,350518.7,465624.2,533561.2,510956.3,617080.3,821137.9,994429.9,1099454,1159701,1326169,1537767)
+dt <- c(204.7961,234.2186,222.9435,207.4218,226.5728,215.6594,224.982,218.507,212.1871,220.8231,225.5028,226.1276,228.4793,226.5087)
+it <- c(2.367206,2.772647,2.627792,2.713846,2.624896,2.679328,2.716121,2.704713,2.740375,2.602252,2.707865,2.707047,2.689781,2.67873)
+cycle <- c(26.71749,24.26426,36.86292,39.31239,47.71903,51.23244,37.5419,59.84064,83.85869,130.3738,170.917,165.3145,228.3327,296.4426)
+moves <- c(0.1793722,0.2252252,0.2134831,0.1777379,0.2175227,0.1979566,0.1787709,0.185259,0.1845185,0.1641914,0.2007547,0.1980474,0.1964637,0.1896869)
+pulses <- c(0.4618834,0.3693694,0.4044944,0.3842011,0.4380665,0.3780332,0.3765363,0.4043825,0.3735374,0.4034653,0.4264151,0.3940028,0.4223969,0.3861265)
+received.pulses <- c(6.820628,4.642643,6.546067,5.978456,8.282477,7.353768,5.497207,7.178287,5.918992,7.822607,7.711698,6.300558,6.939096,6.650092)
+missed <- c(0,0,0.01111111,0.004672897,0,0.01351351,-0.002967359,0,0.009638554,0.0204499,0.01946903,0.02654867,0.04341085,0.05405405)
+spent <- c(2.689164,2.17985,3.082628,1.538961,2.07565,2.231953,2.809184,1.74058,2.769685,2.611785,1.852887,3.177507,2.826195,2.645859)
+
+p.friends <- p
+cycle.friends <- cycle
+friends.latency <- fl + cycle/2
+
+##########
+
+* pulse latency still rises linearly, in an acceptable range
+* handshake latency rises more or less linearly and is tiny
+* solutions removed continues to rise linearly
+* cycle time continues to rise linearly and is still well within an acceptable range, even at 10 threads
+
+
+########################################
+# complete series of "topics" shakes
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q topics --pTopic 0.8 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q topics --pTopic 0.5 -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+###########
+# with pTopic=0.8
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(57.35092,85.65034,142.2192,149.4557,164.2826,235.151,294.0758,468.9,662.6595)
+l <- c(46.51399,99.20375,156.891,305.9467,478.0913,766.7475,955.4526,1481.593,2162.949)
+r <- c(442295.7,848918.2,1392211,1918001,3023954,3322813,3411484,3140504,2608144)
+dt <- c(232.7633,241.5788,225.4452,229.18,228.0097,247.0669,251.591,279.2622,306.7351)
+it <- c(138.8835,142.6439,147.6063,145.3875,144.83,157.2018,160.0055,203.645,216.23)
+cycle <- c(91.41256,226.689,547.6675,1183.115,4293.19,11009.31,13912.14,66531.54,163926)
+moves <- c(0.1704036,0.2073171,0.1816038,0.2334004,0.5791855,1.381295,1.890977,8.014925,14.65517)
+pulses <- c(0.3901345,0.4237805,0.509434,0.6418511,1.61991,3.18705,4.06391,13.02985,27.51724)
+received.pulses <- c(4.049327,4.698171,7.587264,7.925553,23.38462,55.42806,62.33459,150.1493,169.6207)
+missed <- c(0,0,0.0462963,0.09404389,0.07821229,0.04514673,0.05457909,0.06872852,0.2330827)
+spent <- c(31.40859,6.524947,11.77775,21.32461,87.22302,38.85244,38.80968,220.3094,614.3057)
+
+* pulse latency rises quadratically or exponentially now, and is outside of our acceptable range (reaching 600ms at 10 threads)
+* handshake latency also rises quadratically or exponentially, reaching 500ms at around 6 threads and 2000ms by 10 threads
+* solutions removed shows a "hilltop" pattern, unlike the straightforward upward curves of the pulse and friends runs,
+  evidently indicating that the cleanup thread is unable to keep up with the activity after 6 threads or so
+* cycle time grows quadratically or exponentially, but gradually until 6 threads, then jumps to 8 threads,
+  then practically goes to infinity at 10 threads
+* "efficiency" drops quadratically or exponentially
+
+###########
+# with pTopic=0.5
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(22.51928,65.33657,94.81463,87.61668,133.4932,110.7169,91.70073,115.9357,127.5953)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(32.58871,73.52561,85.64967,92.89712,121.7361,172.5513,180.8604,254.9157,428.3476)
+r <- c(323299.3,872962.6,1244661,1265348,1743700,2098064,2551821,2975344,3950437)
+dt <- c(217.16,220.5596,225.2025,216.4592,217.9577,227.3505,230.8494,224.5231,236.1087)
+it <- c(2.677835,2.496774,2.446321,2.729645,2.496266,2.4299,2.391114,2.164062,0.2274112)
+cycle <- c(55.68018,170.3054,317.9362,320.2298,639.242,959.9855,1230.035,1840.602,5301.182)
+moves <- c(0.1846847,0.1886228,0.1480638,0.1746324,0.1942675,0.2297688,0.1705729,0.2631579,0.6906355)
+pulses <- c(0.4099099,0.4101796,0.4783599,0.4375,0.4968153,0.5260116,0.5572917,0.7218045,1.680602)
+received.pulses <- c(6.891892,6.841317,7.164009,7.029412,10.8949,8.802023,7.175781,12.91729,36.99498)
+missed <- c(0.01098901,0.02919708,0.03809524,0.04621849,0.09294872,0.1565934,0.2242991,0.1944444,0.1303483)
+spent <- c(4.620282,6.376735,11.53358,5.4147,12.66013,15.12557,9.735695,19.08666,15.29808)
+
+topics.latency <- tl + cycle/2
+
+##########
+# to 15 threads, with pTopic=0.5
+
+threads <- c(2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+
+p <- c(22.51928,65.33657,94.81463,87.61668,133.4932,110.7169,91.70073,115.9357,127.5953,148.8672,284.1866,302.93,439.134,456.2973)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(32.58871,73.52561,85.64967,92.89712,121.7361,172.5513,180.8604,254.9157,428.3476,576.4487,1129.091,1234.06,1875.945,1902.965)
+r <- c(323299.3,872962.6,1244661,1265348,1743700,2098064,2551821,2975344,3950437,3967560,4004416,3849525,3713074,3389629)
+dt <- c(217.16,220.5596,225.2025,216.4592,217.9577,227.3505,230.8494,224.5231,236.1087,227.2417,238.7702,281.0504,274.9312,273.5758)
+it <- c(2.677835,2.496774,2.446321,2.729645,2.496266,2.4299,2.391114,2.164062,0.2274112,0,-28.30497,-53.61872,-72.21413,-77.13471)
+cycle <- c(55.68018,170.3054,317.9362,320.2298,639.242,959.9855,1230.035,1840.602,5301.182,5919.695,30931.84,49687.66,101436.4,88269.31)
+moves <- c(0.1846847,0.1886228,0.1480638,0.1746324,0.1942675,0.2297688,0.1705729,0.2631579,0.6906355,0.7395349,3.961326,5.196721,10.07937,9.056338)
+pulses <- c(0.4099099,0.4101796,0.4783599,0.4375,0.4968153,0.5260116,0.5572917,0.7218045,1.680602,2.006202,7.685083,9.606557,17.39683,14.94366)
+received.pulses <- c(6.891892,6.841317,7.164009,7.029412,10.8949,8.802023,7.175781,12.91729,36.99498,37.27442,149.232,110.2541,121.7302,123.1549)
+missed <- c(0.01098901,0.02919708,0.03809524,0.04621849,0.09294872,0.1565934,0.2242991,0.1944444,0.1303483,0.11051,0.05679367,0.05887372,0.07390511,0.07728558)
+spent <- c(4.620282,6.376735,11.53358,5.4147,12.66013,15.12557,9.735695,19.08666,15.29808,43.87462,53.47495,101.4003,178.5839,103.3529)
+
+p.topics <- p
+cycle.topics <- cycle
+topics.latency <- tl + cycle/2
+
+* r doesn't go "over the hill" until 11 threads; we make it to 10 threads as far as TTL cleanup goes
+* we only make it to 8 threads in terms of below-threshold topics-latency (taking into account cycle time),
+  although in terms of latency w.r.t. individual handshakes, we make it to 11 threads
+
+##########
+
+
+
+########################################
+# complete series with both (all) queries
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 3 4 5 6 7 8 9 10; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q "friends;topics" -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-both_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(33.61478,88.45118,121.0484,136.3492,150.0889,208.3792,282.9289,348.6155,463.3164)
+l <- c(22.22222,100.3539,129.8282,189.1583,505.9989,528.9053,725.2475,1211.784,1287.617)
+r <- c(333609.8,932338.6,1029971,1940823,3106444,3209460,3691567,3424526,3398947)
+dt <- c(235.1932,233.4906,220.8337,214.1732,243.6093,231.5651,252.4838,261.4928,292.7022)
+it <- c(131.4402,132.6667,151.9907,150.3743,145.047,152.3568,171.3329,183.1566,207.1903)
+cycle <- c(61.82589,258.9697,318.6027,1019.65,5794.743,6672.481,13031,52805.98,71790.08)
+moves <- c(0.1875,0.1848485,0.152968,0.2087475,0.7452575,0.9699248,1.694545,6.802469,6.491803)
+pulses <- c(0.3705357,0.4242424,0.4452055,0.6003976,2.04336,2.110276,3.730909,12.46914,12.18033)
+received.pulses <- c(3.464286,4.842424,7.787671,9.039761,53.57995,38.51378,89.46545,246.4444,90.01639)
+missed <- c(0,0.007142857,0.02564103,0.1324503,0.05702918,0.08194774,0.06920078,0.04554455,0.07133244)
+spent <- c(2.473909,14.01388,8.941369,15.5955,56.88935,30.76803,69.50987,138.8948,127.4636)
+
+pulse.latency <- p + cycle/2
+friends.latency <- fl + cycle/2
+topics.latency <- tl + cycle/2
+
+
+##########
+# to 15 threads, with pTopic=0.5
+
+threads <- c(2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+
+p <- c(23.27361,48.06878,77.09352,90.98483,114.6688,104.9058,90.47564,116.0267,131.6015,203.6278,301.5761,326.7938,366.1192,465.1597)
+fl <- c(17.20755,33.44186,36.11765,78.10059,97.1828,107.3415,199.2522,233.6667,311.1788,770.5864,2567.089,1152.367,2000.41,3656.393)
+tl <- c(15.14019,38.65182,56.06684,86.54881,108.1269,173.5248,241.8744,364.6023,406.0095,846.5057,1273.848,1258.476,1364.376,2122.628)
+r <- c(304518.4,572524.6,948340.4,1235606,1670786,2123581,2962783,3491697,3674487,4160498,4504972,4122766,3829734,3422544)
+dt <- c(229.1786,204.429,229.1823,219.1762,227.9795,235.0449,218.9855,222.6957,236.0951,241.935,285.4693,258.423,264.7395,280.6335)
+it <- c(2.512136,2.756184,2.587065,2.59018,2.672791,2.434629,2.164245,1.826682,1.094013,-21.52554,-41.105,-50.61911,-43.08688,-84.8166)
+cycle <- c(49.2287,78.54192,198.39,253.075,483.947,899.4986,1853.863,2863.659,3498.385,22663.4,49089.9,59770.76,47737.44,135262)
+moves <- c(0.161435,0.1856287,0.1564626,0.1700183,0.1853583,0.2044818,0.2436975,0.3470255,0.428769,3.012931,5.261905,6.425743,5.471014,12.06383)
+pulses <- c(0.4080717,0.3413174,0.4421769,0.4296161,0.4330218,0.5434174,0.7661064,1.053824,1.159059,6.00431,10.89683,11.75248,10.28261,21.48936)
+received.pulses <- c(7.798206,5.398204,5.156463,7.819013,5.434579,5.77591,15.58964,18.08924,20.22683,114.2759,145.7698,135.604,112.4203,184.2128)
+missed <- c(0,0.00877193,0.01025641,0.0212766,0.09352518,0.1597938,0.190128,0.1465054,0.1563246,0.04163676,0.05753824,0.06823926,0.06694856,0.09009901)
+spent <- c(3.681023,5.290647,14.33281,6.466264,10.31397,8.831188,34.19148,22.63589,27.90697,39.08346,250.4054,75.33269,156.3875,256.1625)
+
+p.all <- p
+cycle.all <- cycle
+pulse.latency <- p + cycle/2
+friends.latency <- fl + cycle/2
+topics.latency <- tl + cycle/2
+
+* both friends.latency and topics.latency cross the 1s threshold between 7 and 8 threads
+
+
+
+# cycle time
+pdf("/tmp/graphic.pdf", width=6.25, height=3.5)
+par(mar=c(4.5,5,2,1.5))
+    n <- 7
+    mx <- max(cycle.none[1:n], cycle.friends[1:n], cycle.topics[1:n], cycle.all[1:n])
+    plot(x=threads[1:n], y=cycle.all[1:n], type="l", xlab="threads = rooms = people/100", ylab="cycle time (ms)", ylim=c(1, mx))
+    abline(col="gray", lty="dashed", h=c(240,1000))
+    lines(x=threads[1:n], y=cycle.none[1:n], col="red")
+    lines(x=threads[1:n], y=cycle.friends[1:n], col="green")
+    lines(x=threads[1:n], y=cycle.topics[1:n], col="blue")
+    legend("topleft", c("handshakes", "handshakes + 'friends'", "handshakes + 'topics'", "all queries"),
+        lty=1, col=c("red", "green", "blue", "black"), bty='n')
+dev.off()
+
+n <- 7
+speedup.none <- cycle.none.cal[1:n] / cycle.none[1:n]
+speedup.friends <- cycle.friends.cal[1:n] / cycle.friends[1:n]
+speedup.topics <- cycle.topics.cal[1:n] / cycle.topics[1:n]
+speedup.all <- cycle.all.cal[1:n] / cycle.all[1:n]
+eff.none <- cycle.none.cal[1:n] / (threads[1:n] * cycle.none[1:n])
+eff.friends <- cycle.friends.cal[1:n] / (threads[1:n] * cycle.friends[1:n])
+eff.topics <- cycle.topics.cal[1:n] / (threads[1:n] * cycle.topics[1:n])
+eff.all <- cycle.all.cal[1:n] / (threads[1:n] * cycle.all[1:n])
+
+mx <- max(speedup.none, speedup.friends, speedup.topics, speedup.all)
+plot(x=threads[1:n], y=speedup.all[1:n], type="l", xlab="threads = rooms = people/100", ylab="speedup", ylim=c(0, mx))
+lines(x=threads[1:n], y=speedup.none[1:n], col="red")
+lines(x=threads[1:n], y=speedup.friends[1:n], col="green")
+lines(x=threads[1:n], y=speedup.topics[1:n], col="blue")
+legend("topright", c("handshakes", "handshakes + 'friends'", "handshakes + 'topics'", "all queries"),
+    lty=1, col=c("red", "green", "blue", "black"), bty='n')
+
+# this is a good result.  Efficiency is sub-linear, but drops slowly.  It is still between 0.4 and 0.8 at 6 threads.
+pdf("/tmp/graphic.pdf", width=6.25, height=3)
+par(mar=c(4.5,5,2,1.5))
+    plot(x=threads[1:n], y=eff.all[1:n], type="l", xlab="threads = rooms = people/100", ylab="efficiency", ylim=c(0.01, 1))
+    #plot(x=threads[1:n], y=eff.all[1:n], type="l", xlab="threads = rooms = people/100", ylab="efficiency", ylim=c(0, 1))
+    lines(x=threads[1:n], y=eff.none[1:n], col="red")
+    lines(x=threads[1:n], y=eff.friends[1:n], col="green")
+    lines(x=threads[1:n], y=eff.topics[1:n], col="blue")
+    legend("topright", c("handshakes", "handshakes + 'friends'", "handshakes + 'topics'", "all queries"),
+        lty=1, col=c("red", "green", "blue", "black"), bty='n')
+dev.off()
+
+
+
+
+plot(x=threads, y=p, type="l", xlab="# threads", ylab="pulse latency (ms)", ylim=c(0, max(p)))
+plot(x=threads, y=pulse.latency, type="l", xlab="# threads", ylab="pulse latency --total (ms)", ylim=c(0, max(pulse.latency)))
+plot(x=threads, y=fl, type="l", xlab="# threads", ylab="'friends' handshake latency (ms)", ylim=c(0, max(fl))); abline(col="red", h=1000)
+plot(x=threads, y=friends.latency, type="l", xlab="# threads", ylab="'friends' latency -- total (ms)", ylim=c(0, min(2000,max(friends.latency)))); abline(col="red", h=1000)
+plot(x=threads, y=tl, type="l", xlab="# threads", ylab="'topics' handshake latency (ms)", ylim=c(0, max(tl))); abline(col="red", h=1000)
+plot(x=threads, y=topics.latency, type="l", xlab="# threads", ylab="'topics' latency -- total (ms)", ylim=c(0, min(2000,max(topics.latency)))); abline(col="red", h=1000)
+plot(x=threads, y=r, type="l", xlab="# threads", ylab="solutions removed per TTL cleanup cycle", ylim=c(0, max(r)))
+plot(x=threads, y=dt, type="l", xlab="# threads", ylab="dwell time (s)", ylim=c(0, max(dt)))
+plot(x=threads, y=it, type="l", xlab="# threads", ylab="idle time (s)", ylim=c(0, max(it)))
+plot(x=threads, y=cycle, type="l", xlab="# threads", ylab="cycle time (ms)", ylim=c(0,max(cycle))); abline(col="red", h=1000)
+plot(x=threads, y=spent, type="l", xlab="# threads", ylab="handshake time / move time", ylim=c(0, max(spent)))
+plot(x=threads, y=missed, type="l", xlab="# threads", ylab="proportion of handshakes missed", ylim=c(0, min(1, max(missed))))
+
+plot(x=threads, y=moves/cycle, type="l", xlab="# threads", ylab="moves per cycle", ylim=c(0, max(moves/cycle)))
+
+# this is less useful when the cycle time is high
+plot(x=threads, y=topics.latency, type="l", log="y", col="blue", ylim=c(1, max(topics.latency)),
+    xlab="threads = rooms = hundreds of people",
+    ylab="average latency (ms)")
+lines(x=threads, y=pulse.latency, col="black")
+lines(x=threads, y=friends.latency, col="red")
+
+# this is more useful when the cycle time is low
+plot(x=threads, y=tl, type="l", log="y", col="blue", xlim=c(2,10), ylim=c(1, max(tl)),
+    xlab="threads = rooms = hundreds of people",
+    ylab="average latency (ms)")
+lines(x=threads, y=p, col="black")
+lines(x=threads, y=fl, col="red")
+
+
+
+########################################
+# "topics" with only 50 people per room
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(25.32683,42.65568,45.82642,57.51357,57.74864,88.36671,110.8793,67.74886,131.938)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(15.29474,27.50909,29.87958,42.20763,41.41812,48.2929,63.22951,117.5665,153.0467)
+r <- c(111399.6,204352.5,348535.1,436537.7,555945,716735.9,870700.9,824573.3,1431101)
+dt <- c(239.1562,203.0694,213.0219,213.1918,230.278,216.1145,213.8473,235.5402,220.249)
+it <- c(5.394089,6.266667,5.924084,5.930526,6.212341,5.522599,6.014686,5.800683,5.733198)
+cycle <- c(10.38596,18.50581,29.85965,31.46329,34.82533,61.20625,90.23195,68.44031,256.1219)
+moves <- c(0.07017544,0.09593023,0.09649123,0.05944056,0.09315866,0.07,0.07986871,0.08806262,0.08870968)
+pulses <- c(0.1798246,0.1715116,0.1907895,0.2027972,0.1586608,0.175,0.1827133,0.2064579,0.2293907)
+received.pulses <- c(1.210526,1.229651,1.921053,1.667832,1.496361,1.55625,1.479212,1.683953,2.276882)
+missed <- c(0,0,0,0,0.01834862,0.01428571,0.01197605,0.01895735,0.09375)
+spent <- c(35.43077,4.834097,8.435897,11.41172,7.031219,4.772695,7.510164,8.364707,12.00414)
+
+topics.latency <- tl + cycle/2
+
+* nothing to say; it's all within conversational thresholds at 50 people per room
+
+##########
+# "topics" with 50 people per room, up to 20 threads
+
+threads <- c(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+
+p <- c(25.32683,42.65568,45.82642,57.51357,57.74864,88.36671,110.8793,67.74886,131.938,135.8166,185.2489,188.4106,172.569,171.991,199.7916,192.6986,192.6314,211.833,263.1957)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(15.29474,27.50909,29.87958,42.20763,41.41812,48.2929,63.22951,117.5665,153.0467,81.18363,140.3655,158.4119,212.8828,168.8076,282.3894,347.4278,440.6983,524.685,828.2952)
+r <- c(111399.6,204352.5,348535.1,436537.7,555945,716735.9,870700.9,824573.3,1431101,1212388,1808767,1979333,2000955,2098706,2634864,2885362,3182190,3177117,3849870)
+dt <- c(239.1562,203.0694,213.0219,213.1918,230.278,216.1145,213.8473,235.5402,220.249,218.1138,224.6667,222.3902,222.0462,218.7933,223.5374,226.8318,227.2739,231.9597,231.3015)
+it <- c(5.394089,6.266667,5.924084,5.930526,6.212341,5.522599,6.014686,5.800683,5.733198,5.624198,5.418567,5.502694,5.63925,5.417655,5.184671,5.269683,5.296678,5.093938,3.516226)
+cycle <- c(10.38596,18.50581,29.85965,31.46329,34.82533,61.20625,90.23195,68.44031,256.1219,175.1772,391.3645,452.0035,480.9469,562.0025,912.8695,1114.262,1486.988,1792.363,4213.173)
+moves <- c(0.07017544,0.09593023,0.09649123,0.05944056,0.09315866,0.07,0.07986871,0.08806262,0.08870968,0.09142395,0.08958652,0.0878187,0.08655738,0.09484925,0.08887508,0.1027644,0.1261316,0.1454112,0.2898659)
+pulses <- c(0.1798246,0.1715116,0.1907895,0.2027972,0.1586608,0.175,0.1827133,0.2064579,0.2293907,0.2063107,0.2633997,0.2492918,0.2813115,0.2908291,0.3337477,0.3707933,0.4405552,0.4827175,0.8956781)
+received.pulses <- c(1.210526,1.229651,1.921053,1.667832,1.496361,1.55625,1.479212,1.683953,2.276882,1.775081,1.773354,1.865439,1.891148,2.364322,3.050963,3.404447,4.22933,4.479738,7.655738)
+missed <- c(0,0,0,0,0.01834862,0.01428571,0.01197605,0.01895735,0.09375,0.06666667,0.119186,0.1818182,0.1608392,0.1727862,0.2607076,0.273906,0.2739726,0.2753086,0.218802)
+spent <- c(35.43077,4.834097,8.435897,11.41172,7.031219,4.772695,7.510164,8.364707,12.00414,10.85361,36.82159,15.98813,15.13448,27.71059,47.82836,30.93034,23.53215,40.83533,65.50996)
+
+topics.latency <- tl + cycle/2
+
+* pulse and tl latency both remain under 1s even up to 20 threads
+* even topics.latency (including cycle time) doesn't reach 1s until 17 threads
+* r never plateaus / maxes out
+* WARNING: up to 25% of handshakes are missed by the 20 threads mark
+
+##########
+# all queries with 50 people per room, up to 20 threads
+
+threads <- c(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+
+p <- c(25.03429,144,270,378,504,612,79.98,123.3671,111.966,162.4168,185.1865,147.7277,184.8896,179.0681,167.0447,170.6316,179.3355,231.0975,223.2026)
+fl <- c(11.88889,162,288,396,522,630,42.33333,55.56452,64.05369,79,82.38961,59.25926,131.068,125.0839,205.2828,182.7841,304.0153,418.2397,891.4043)
+tl <- c(13.15873,180,306,414,540,648,49.71429,78.08617,126.9645,118.2799,116.4356,123.8482,208.1459,215.8128,272.9108,312.6675,385.0664,507.9111,589.8591)
+r <- c(107920.2,198,324,432,558,666,320099,1249761,1186764,1491445,1445552,1766833,2221491,2335471,2807266,2941416,3297525,3317834,3665844)
+dt <- c(206.7526,216,342,450,576,684,209.5332,216.0358,214.6149,217.264,216.2637,215.4339,218.4854,230.9014,220.7868,220.5918,223.2513,235.8395,227.8235)
+it <- c(6.031915,234,360,468,594,702,5.805128,5.664062,5.716312,5.878817,6.149227,5.743509,5.557471,5.464901,5.3402,5.319428,5.046328,4.948093,4.916066)
+cycle <- c(15.01316,252,378,486,612,720,19.12953,139.8772,129.7575,236.0899,236.6297,360.2238,629.5759,670.2903,1042.121,1118.529,1672.574,1995.605,2355.221)
+moves <- c(0.0745614,270,396,504,630,738,0.09440176,0.07858546,0.07548845,0.1013072,0.08395802,0.1020979,0.1072151,0.09484405,0.1124524,0.1246219,0.157928,0.1730061,0.1861042)
+pulses <- c(0.2017544,288,414,522,648,756,0.1986828,0.2092338,0.2042629,0.2197712,0.2128936,0.2475524,0.2737694,0.2870783,0.3678526,0.3720508,0.4586229,0.5220859,0.5676179)
+received.pulses <- c(1.833333,306,432,540,666,774,1.906696,2.127701,1.758437,1.765523,1.563718,1.75035,1.985165,1.956079,4.006989,3.094979,4.431459,4.796933,5.973325)
+missed <- c(0.08695652,324,450,558,684,792,0.878453,0.06103286,0.07391304,0.08921933,0.1056338,0.1610169,0.2339901,0.2549889,0.2677029,0.2861789,0.3002755,0.2773208,0.2721311)
+spent <- c(2.863431,342,456,574,690,801,7.563636,18.43959,9.117305,8.106388,16.12948,11.84874,29.70543,35.67671,16.22693,31.88269,23.00852,29.6935,42.68145)
+
+pulse.latency <- p + cycle/2
+friends.latency <- fl + cycle/2
+topics.latency <- tl + cycle/2
+
+* we make it to 16 threads in terms of cycle time, 17 threads in terms of topics.latency and friends.latency
+
+
+########################################
+# "friends" with 200 people per room
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(10.97063,14.42808,31.56186,52.29328,43.95529,55.2631,53.75297,69.73937,73.52755)
+fl <- c(20.53933,17.75,17.08824,23.42125,22.32602,43.55455,41.08217,87.89357,94.16307)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(488381.8,760942.5,1028584,1483897,1751690,2123434,2844996,3233764,3607849)
+dt <- c(222.8308,220.1898,217.0037,225.5779,233.4414,223.7772,220.0174,221.3346,222.8379)
+it <- c(1.055058,1.066781,1.065553,1.062762,1.016345,0.8857353,0.6678571,0.4428817,0.0266249)
+cycle <- c(168.9537,228.9666,304.3934,610.4208,752.2705,974.1064,1552.904,2145.763,2799.54)
+moves <- c(0.4351852,0.43769,0.442623,0.4054054,0.4131148,0.441691,0.4662841,0.636129,0.7979798)
+pulses <- c(0.8287037,0.7203647,0.7611241,0.7992278,0.742623,0.9110787,1.064562,1.219355,1.637626)
+received.pulses <- c(31.33333,29.32219,22.53162,27.76448,21.35082,24.67201,39.13773,53.17032,71.90783)
+missed <- c(0,0.004219409,0.02153846,0.02657005,0.03311258,0.0416,0.06603774,0.07936508,0.06630686)
+spent <- c(1.080379,1.079675,1.105011,1.600997,1.732526,1.736071,1.868827,2.217434,2.773913)
+
+* even with "friends" only, we don't make it past 7 threads with 200 people in each room, in terms of cycle time
+* handshake latency remains well within our acceptable range throughout the run, but still much higher than the 100-per-room case
+* TTL cleanup is *not* responsible for the threshold overrun at 7 threads; it keeps on going and so does the simulation, albeit at high latency
+
+
+########################################
+# "topics" with 200 people per room
+
+threads <- c(2,3,4,5,6,7,8,9,10)
+
+p <- c(47.96958,64.97538,58.41055,92.30979,124.8984,209.3972,241.9418,302.7316,418.7901)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(67.44364,131.1424,191.589,354.0764,557.2495,887.0444,1070.94,2383.944,3683.857)
+r <- c(1003888,2126022,3041930,3603530,3976435,3509424,3079807,2576472,2071001)
+dt <- c(222.745,218.741,232.7316,227.5625,248.57,286.0291,272.4751,347.8113,216.6874)
+it <- c(1.041825,0.835,0.1515337,-8.229554,-45.64239,-77.20095,-101.1615,-156.4056,-284.8736)
+cycle <- c(452.1132,1513.864,3011.48,9074.397,53755.57,119419.3,111019.1,339368.8,464506)
+moves <- c(0.3820755,0.3706294,0.7815385,2.410256,12.875,21.51852,14.75,23.625,27)
+pulses <- c(0.8773585,1.108392,1.8,4.995726,23.80357,36.85185,31.5,46.125,56)
+received.pulses <- c(24.4717,30.61189,62.12,222.3974,642.7321,563.7407,402.3333,308.625,290)
+missed <- c(0,0.07255521,0.06495726,0.04191617,0.01650413,0.03015075,0.04497354,0.06233062,0.08928571)
+spent <- c(2.931097,7.095206,6.100729,17.68244,23.27632,43.07702,75.05135,184.6884,214.1487)
+
+* unsurprisingly, this run fails very quickly, with cycle time exceeding 1s with only 3 threads
+* tl reaches 1s at a little over 7 threads
+
+
+########################################
+# local series of "friends" shakes, for comparison with EC2
+
+export JAVA_OPTIONS="-Xms4G -Xmx4G"
+time for i in 2 3 4 5 6 7; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+threads <- c(2,3,4,5,6,7)
+
+p <- c(8.551122,13.25399,15.41488,19.68288,17.89609,28.55547)
+fl <- c(4.147541,3.843137,12.59016,6.669903,7.028037,7.767442)
+tl <- c(NA,NA,NA,NA,NA,NA)
+r <- c(113785.5,165533.8,273667.3,361944.3,365420,464667.6)
+dt <- c(232.4734,220.6498,212.4587,217.1473,222.2424,226.5508)
+it <- c(2.7125,2.616372,2.728192,2.735294,2.93934,2.774709)
+cycle <- c(15.75446,19.6976,20.78571,38.37746,30.43155,39.71739)
+moves <- c(0.1919643,0.245509,0.1473214,0.19678,0.1741071,0.1930946)
+pulses <- c(0.4017857,0.4281437,0.3928571,0.4329159,0.3779762,0.415601)
+received.pulses <- c(6.165179,5.302395,8.267857,8.298748,5.85119,6.175192)
+missed <- c(-0.01111111,0,0,0,0,0)
+spent <- c(2.987571,1.315382,3.12949,2.311516,3.083883,2.13211)
+
+* Marvin6, even though multitasking dozens of user programs, outperforms the EC2 instance by a significant margin.
+  All I have done to increase its performance is to give it a decent amount of memory (4G, 1/3 of what the instance has)
+  and to close two of the biggest CPU hogs on the machine, IDEA and Chrome.  I only tried 7 threads with Marvin6,
+  since it has only 8 cores and one thread is needed for TTL cleanup, but it outperforms the EC2 instance right up to
+  the seventh thread: cycle time is point for point lower, while latency is comparable.
+
+cycle.marvin <- c(15.75446, 19.6976,  20.78571, 38.37746, 30.43155, 39.71739)
+cycle.ec2 <- c(26.71749, 24.26426, 36.86292, 39.31239, 47.71903, 51.23244)
+
+fl.marvin <- c(4.147541, 3.843137, 12.59016, 6.669903, 7.028037, 7.767442)
+fl.ec2 <- c(5.858268, 4.780488, 6.872727, 7.775194, 10.03817, 7.64539)
+
+mean(cycle.marvin)/mean(cycle.ec2)
+[1] 0.7286951
+
+mean(fl.marvin)/mean(fl.ec2)
+[1] 0.9784963
+
+
+########################################
+# both, 100 people per room, 1 room per thread
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 4 8; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q "friends;topics" -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-both_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+threads <- c(2,4,8)
+
+p <- c(44.92929,127.7528,320.9106)
+l <- c(76.47187,172.6908,1231.023)
+r <- c(589118.9,1420372,3451990)
+cycle <- c(165.8018,579.1706,37363.05)
+moves <- c(0.1666667,0.2126168,4.394231)
+pulses <- c(0.4234234,0.5070093,8.442308)
+received.pulses <- c(9.243243,10.35748,96.375)
+missed <- c(0,0.05069124,0.03530752)
+spent <- c(5.730298,6.222967,180.3656)
+
+* FWIW, pulse latency is actually lower than it is without "friends"
+* handshake latency is only slightly higher
+* cycle time is comparable with and without "friends", now higher, now lower
+
+
+########################################
+# friends, 100 people per room, 1 room per thread
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+threads <- c(2,4,8,16)
+
+p <- c(7.843829,11.69952,32.85112,95.33157)
+l <- c(3.923077,6.195652,7.344086,74.49746)
+r <- c(118928.9,302086.3,571844.8,1669696)
+cycle <- c(28.15837,29.72584,60.51121,358.0816)
+moves <- c(0.280543,0.1865169,0.1883408,0.1860058)
+pulses <- c(0.4208145,0.4,0.3923767,0.4134111)
+received.pulses <- c(7.090498,8.182022,6.279148,6.130029)
+missed <- c(0,0,0,0.0832158)
+spent <- c(1.953488,2.105893,1.990691,4.064775)
+
+* pulse latency increases steadily
+* handshake latency increases steadily until t=8, then becomes huge at t=16
+* cycle time increases quadratically (?), becoming huge at t=16
+* efficiency decreases steadily
+
+
+
+########################################
+# topics, 100 people per room, 1 room per thread
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p $((i * 100)) -r $i -q topics -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-"$((i * 100))"_r-"$i"_l-600_12g.txt"; done
+
+threads <- c(2,4,8)
+
+p <- c(54.94949,126.4278,292.8351)
+l <- c(59.23443,210.4991,1013.709)
+r <- c(482741.7,1656325,3490191)
+cycle <- c(110.0402,832.6458,22445.1)
+moves <- c(0.1785714,0.226506,3.053892)
+pulses <- c(0.3571429,0.5975904,6.215569)
+received.pulses <- c(6.035714,8.484337,96.68263)
+missed <- c(0,0.0483871,0.03949904)
+spent <- c(11.22062,12.26123,186.9617)
+
+* 12GB is not enough memory for the 16 threads, 1600 users scenario
+
+
+########################################
+# friends, EC2, by threads, (1600 people in 16 rooms)
+
+# "friends" handshakes by thread with the target of 100 people per room, with compensation for short dwell and idle times
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 1600 -r 16 -q friends -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-friends_t-"$i"_p-1600_r-16_l-600_12g.txt"; done
+
+threads <- c(1,2,4,8,16)
+
+p <- c(14.55291,19.59243,33.78622,33.78622,89.99967)
+l <- c(19.07464,21.31516,43.43318,39.41088,72.46042)
+r <- c(1811601,1596472,1663312,1748738,1875014)
+cycle <- c(1239.908,867.3645,766.9975,626.5483,521.7884)
+moves <- c(3.214286,1.522167,0.7536946,0.4124847,0.2050209)
+pulses <- c(6.22449,2.901478,1.44335,0.8347613,0.447101)
+received.pulses <- c(112.8265,41.34483,22.57882,14.53244,8.529588)
+missed <- c(0.01147541,0.008488964,0.02730375,0.04545455,0.09224599)
+spent <- c(3.191735,2.294139,3.478836,2.429397,2.753344)
+
+* solutions removed stays quite steady
+* cycle time drops quickly at first, then begins to level out.  4 threads will do in a pinch, while 8 threads are better.
+* efficiency drops and levels out along with cycle time
+
+
+########################################
+# topics, EC2, by threads (800 people)
+
+export JAVA_OPTIONS="-Xms12G -Xmx12G"
+time for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 800 -r 16 -q topics -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-800_r-16_l-600_12g.txt"; done
+
+threads <- c(1,2,4,8,16)
+
+p <- c(129.3811,151.0846,211.854,349.1629,452.8092)
+l <- c(484.1346,556.9866,608.1507,1245.461,1431.833)
+r <- c(1129925,2074167,3080836,3482695,3597967)
+dt <- c(274.5566,234.968,237.7914,251.4549,242.006)
+it <- c(275.6949,213.8176,182.1592,177.6366,158.0902)
+cycle <- c(230845,156248.5,68608.74,48888.27,8536.75)
+moves <- c(86,51.5,17.45161,5.469136,5.469136)
+pulses <- c(151,90,32.19355,10.7284,1.533865)
+received.pulses <- c(1714.5,1148.833,408.129,82.7284,13.02258)
+missed <- c(0,0.003703704,0.01402806,0.03912543,0.1402597)
+spent <- c(1288.634,1326.891,601.8546,1379.735,175.9823)
+
+* latency rises linearly with #threads
+* solutions removed rises quickly, then levels off as more threads are added
+* cycle time falls very encouragingly, although we don't quite reach our goal by 16 threads
+
+...
+
+
+########################################
+# topics, GCE, by threads (800 people) -- compare with EC2
+
+# "topics" handshakes by thread, with compensation for short dwell and idle times
+export JAVA_OPTIONS="-Xms40G -Xmx40G"
+time for i in 1 2 4 8 16; do ./sesamestream-evaluation.sh -t $i -p 800 -r 16 -q topics -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-800_r-16_l-600_40g.txt"; done
+
+threads <- c(1,2,4,8,16)
+
+p <- c(175.2267,285.1964,277.9713,554.8524,1076.919)
+l <- c(467.444,854.5728,741.8843,2109.116,3137.586)
+r <- c(960909.9,1270316,1925168,2013529,2011396)
+dt <- c(242.2747,250.9236,254.7708,276.922,281.0603)
+it <- c(253,255.4615,214.0378,214.6633,190.5161)
+cycle <- c(253749,240739.7,159123.2,173243.5,87919)
+moves <- c(78,52.66667,31.27273,15.35,5.177778)
+pulses <- c(157,88.66667,49.27273,25.5,9.177778)
+received.pulses <- c(1702,719.6667,490.2727,117.65,37.93333)
+missed <- c(0,0.0112782,0.02214022,0.1196078,0.4564165)
+spent <- c(22.00526,1455.087,1236,465.0217,1537.54)
+
+
+* GCE latency starts about the same for one thread, but is over twice as high by 16 threads
+* cycle time starts about the same, but GCE cycle time is ten times as high as EC2 cycle time by 16 threads
+* oddly, time spent starts low and gets high for GCE, while it starts high and gets lower for EC2
+* efficiency stays within the same range for EC2, whereas it continually decreases on GCE
+
+* decreasing memory from 40G to 12G (matching EC2) appears to improve latency somewhat in the high thread runs,
+  although it has no effect on cycle time
+
+
+########################################
+# topics, local, by threads (400 people)
+
+# "topics" handshakes by thread, with compensation for short dwell and idle times
+export JAVA_OPTIONS="-Xms4G -Xmx4G"
+time for i in 1 2 3 4; do ./sesamestream-evaluation.sh -t $i -p 400 -r 8 -q topics -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-"$i"_p-400_r-8_l-600_4g.txt"; done
+
+threads <- c(1,2,3,4)
+p <- c(71.02899,95.21227,114.3232,144.9308)
+l <- c(198.0784,156.2684,185.4132,174.2826)
+r <- c(1361526,1345784,1557389,1334387)
+dt <- c(201.8649,216.4333,239.5156,231.3827)
+it <- c(155.4022,151.3912,147.6667,146.7954)
+cycle <- c(9382.958,1230.682,1267.041,768.8293)
+moves <- c(4.6875,0.4494949,0.3150685,0.2019231)
+pulses <- c(10.1875,1.292929,0.9212329,0.5504808)
+received.pulses <- c(127.5833,14.0303,6.630137,3.651442)
+missed <- c(0.01226994,0.05078125,0.08178439,0.07423581)
+spent <- c(459.5133,300.5755,830.4022,295.9647)
+
+plot(x=threads, y=p, type="l", xlab="# threads", ylab="pulse latency (ms)", ylim=c(0, max(p)))
+plot(x=threads, y=l, type="l", xlab="# threads", ylab="handshake latency (ms)", ylim=c(0, max(l)))
+plot(x=threads, y=r, type="l", xlab="# threads", ylab="solutions removed per TTL cleanup cycle", ylim=c(0, max(r)))
+plot(x=threads, y=dt, type="l", xlab="# threads", ylab="dwell time (s)", ylim=c(0, max(dt)))
+plot(x=threads, y=it, type="l", xlab="# threads", ylab="idle time (s)", ylim=c(0, max(it)))
+plot(x=threads, y=cycle, type="l", xlab="# threads", ylab="cycle time (ms)", ylim=c(0,max(cycle)))
+plot(x=threads, y=spent, type="l", xlab="# threads", ylab="handshake time / move time", ylim=c(0, max(spent)))
+
+plot(x=threads, y=moves/cycle, type="l", xlab="# threads", ylab="moves per cycle", ylim=c(0, max(moves/cycle)))
+
+* cycle time fell precipitously from 1 thread to 2 (a good sign), although it didn't fall much from 2 to three or 3 to 4 threads
+* latency is high but acceptable and rises linearly with number of threads
+* things become slightly less efficient with increasing number of threads
+* by far the most time is spent on handshakes
+
+
+########################################
+# topics, local, by people
+
+# "topics" handshakes, with compensation for short dwell and idle times
+export JAVA_OPTIONS="-Xms4G -Xmx4G"
+time for i in 100 200 400 800; do ./sesamestream-evaluation.sh -t 1 -p $i -r 8 -q topics -l 600 -m 600 -h 300 2>&1 | tee /tmp/out.txt \
+    && cp /tmp/out.txt "/tmp/results/q-topics_t-1_p-"$i"_r-8_l-600_4g.txt"; done
+
+people <- c(100, 200, 400, 800)
+p <- c(40.30348,43.85533,58.16015,180.7061)
+l <- c(46.39216,50.04329,110.8742,444.2242)
+r <- c(202963.5,393786.3,1175796,771113.4)
+dt <- c(194.9904,224.1797,217.9634,162.3927)
+it <- c(142.7345,150.7658,148.5698,185)
+cycle <- c(71.88393,110.9817,1174.36,185963)
+moves <- c(0.1696429,0.3119266,0.89,63)
+pulses <- c(0.4642857,0.7706422,1.92,85)
+received.pulses <- c(1.607143,5.284404,22.4,797)
+spent <- c(142.75,154.0897,231.087,299.4249)
+
+
+########################################
+# pulses, local, short TTL
+
+people <- c(100, 200, 400, 800, 1600)
+p <- c(0.6187291,1.232772,1.452918,3.746868,17.43159)
+r <- c(9466.842,33392.74,111576.1,541958.1,814705.2)
+dt <- c(165.0466,168.5806,166.2771,184.1803,188.1694)
+it <- c(129.8304,118.9278,112.6746,123.8326,158.1064)
+cycle <- c(19.82609,95.47368,703.6607,18487.55,65542.57)
+moves <- c(0.4347826,0.7894737,1.580357,43.77419,215.2857)
+pulses <- c(0.626087,1.008772,2.116071,72.80645,327.1429)
+received.pulses <- c(5.2,14.82456,34.05357,2702.516,14325.29)
+spent <- c(0.04926335,0.02990159,0.0130992,0.1132296,0.1481805)
+
+> moves/cycle
+[1] 0.021929821 0.008269019 0.002245908 0.002367766 0.003284670
+
+
+########################################
+# pulses, local, *long* TTL, long move and idle time
+
+people <- c(100, 200, 400, 800, 1600)
+p <- c(2.541063,3.878706,7.511084,11.57393,18.1056)
+r <- c(10135.11,27536.21,124838.7,498384,1682059)
+dt <- c(233.6598,237.7204,230.6152,223.3302,219.0311)
+it <- c(145.0588,159.4213,141.813,141.5681,144.3816)
+cycle <- c(2.016949,5.843478,25.46364,186.1574,3709.566)
+moves <- c(0.1355932,0.3826087,0.5727273,1.157407,7.5)
+pulses <- c(0.3813559,0.5826087, 1.709091,2.898148,15.90789)
+received.pulses <- c(1.338983,2.921739,14.85455,55.37037,726.6579)
+spent <- c(8.52,6.813953,7.510638,5.655081,3.089277)
+
+* we make it to 800 people in 8 rooms, pulses only, in a single thread
+
+
+########################################
+# pulses, local, *long* TTL
+
+people <- c(100, 200, 400, 800, 1600)
+p <- c(2.640449,3.909375,9.250378,7.986998,11.20571)
+r <- c(19931.84,57055.42,246118.8,864832.5,1832999)
+dt <- c(171.2251,172.8109,169.3799,174.8297,120.9591)
+it <- c(109.6926,118.565,120.196,116.6618,95.15254)
+cycle <- c(3.948276,15.74107,51.52727,571.7736,11661.55)
+moves <- c(0.3793103,0.6696429,1.454545,2.90566,36.9)
+pulses <- c(0.5948276,1.428571,2.336364,4.688679,56.7)
+received.pulses <- c(3.051724,10.76786,31.29091,105.4717,3133.2)
+spent <- c(9.155556,7.35545,2.819407,2.054069,2.107882)
+
+> moves/cycle
+[1] 0.096069854 0.042541130 0.028228645 0.005081837 0.003164245
+
+* we pack in several times as many moves per unit time
+* very few pulses are missed
+* pulse latency is just a little higher this way
+* cycle time is much, much shorter
+
+
+
+########################################
+# pulses, 5 rooms, 1 thread, variable people (EC2)
+
+people <- c(100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950)
+
+p <- c(4.225131,6.582192,5.507538,7.175365,7.186007,5.406202,8.561069,5.87961,5.592668,7.143486,5.277778,7.788385,9.642963,10.14256,7.659334,8.427064,8.733029,9.563403)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(14340.22,32989.74,45571.58,76984.37,137584.9,134625.1,201872.9,224124.3,265111.8,401279.4,412181.1,458700.3,571958.4,691959.5,710681.6,789516.8,957573.5,1151067)
+dt <- c(222.85,236.4729,238.5855,208.9394,223.3953,216.8084,221.4217,226.4494,217.6144,222.229,223.6989,227.8419,233.3669,217.7876,235.1984,218.793,212.6762,211.7648)
+it <- c(2.805263,1.639175,1.062972,0.8075314,0.608547,0.4860248,0.3477707,0.2247557,0.2028542,0.139207,0.1120332,0.09156051,0.06957809,0.03391003,0.03333333,0.04342432,-0.002283105,-0.06584582)
+cycle <- c(2.283186,10.9,13.94495,25.85981,47.95327,42.84112,62.84112,67.88785,107.463,152.6542,178.0833,180.7477,257.8505,359.2202,360.0092,405.5607,618.2762,933.6471)
+moves <- c(0.2123894,0.2727273,0.3577982,0.4766355,0.6168224,0.6635514,0.7663551,0.6448598,0.7592593,0.9813084,1.212963,1.299065,1.280374,1.357798,1.376147,1.560748,1.67619,1.892157)
+pulses <- c(0.300885,0.6090909,0.8165138,1,1.084112,1.336449,1.579439,1.616822,1.842593,2.242991,2.37037,2.35514,2.542056,2.642202,3.110092,2.925234,3.066667,3.598039)
+received.pulses <- c(1.380531,4.981818,5.798165,7.981308,20.29907,12.2243,23.40187,18.73832,26.00926,56.43925,39.26852,44.52336,53.95327,71.25688,62.99083,71.16822,79.65714,133.451)
+missed <- c(0,0,0,0,0,0,0,0,0,0,0,0,0.003676471,0,0,0.003194888,0,0)
+spent <- c(2.146341,4.629108,3.634146,2.057459,2.509576,1.96699,2.684384,3.644501,1.608676,1.819437,1.013716,1.214981,1.189335,1.137748,1.202323,1.644102,1.204904,2.158712)
+
+
+########################################
+# pulses only (local?)
+
+people <- c(100, 200, 400, 800, 1600)
+p <- c(1.145215,1.603293,1.943155,7.178571,30.89861)
+r <- c(9886.368,34437.11,109940.2,535617.8,625294.7)
+dt <- c(189.6875,169.6675,179.1627,188.3472,193.9372)
+it <- c(125.7167,114.2729,118.8583,147.3793,161.5284)
+cycle <- c(30.59091,148.4865,810.8761,36471.36,70791.5)
+moves <- c(0.2818182,0.7387387,1.371681,68.64286,217.6667)
+pulses <- c(0.5636364,1.432432,2.300885,111.0714,334.6667)
+received.pulses <- c(5.763636,18.27027,39.76106,7648.857,12193.33)
+spent <- c(0.09324237,0.04707452,0.01961853,0.2172044,0.1267598)
+
+people <- c(100,200,400,800,1600,3200)
+p <- c(1.267857,1.633333,2.176596,3.926535,21.53648,84.58603)
+r <- c(7768.222,17324,80403.33,288745,966062.1,1300060)
+dt <- c(105.6104,119.8582,121.6601,118.9715,126.1531,118.9942)
+it <- c(90.52174,87.79167,79.57971,87.53611,92.4577,114.8333)
+cycle <- c(7.213211,30.31689,218.5911,2742.419,27627.64,62493.08)
+spent <- c(0.07432432,0.03272094,0.01782779,0.01716238,0.1042597,0.03525668)
+
+* pulse latency rises exponentially -- or quadratically -- with number of people
+* removed solutions appear to rise exponentially -- or quadratically -- as well
+* cycle time rises either exponentially -- or quadratically -- or linearly
+* cycle time QUICKLY BECOMES TOO HIGH, namely after 400 people.  THIS is why we can't scale to 800 people.
+* hard to say how handshake time relates to move time
+
+
+########################################
+# pulses with variable threads
+
+threads <- c(1,2,4,8,16)
+p <- c(45.20631,57.22926,54.65614,42.11192,76.2459)
+r <- c(690809.2,966006.8,1315227,1619378,1736921)
+dt <- c(96.50079,103.9645,116.3478,118.7022,122.0084)
+it <- c(132.2947,95.50222,93.48008,96.70523,92.81633)
+cycle <- c(85441,51680.33,43127.45,34926.67,27362.13)
+spent <- c(0.08609956,0.04521321,0.07257654,0.08095671,0.1851939)
+
+plot(x=threads, y=p, type="l", xlab="# threads", ylab="pulse latency (ms)", ylim=c(0, max(p)))
+plot(x=threads, y=r, type="l", xlab="# threads", ylab="solutions removed per TTL cleanup cycle", ylim=c(0, max(r)))
+plot(x=threads, y=dt, type="l", xlab="# threads", ylab="dwell time (s)", ylim=c(0, max(dt)))
+plot(x=threads, y=it, type="l", xlab="# threads", ylab="idle time (s)", ylim=c(0, max(it)))
+plot(x=threads, y=cycle, type="l", xlab="# threads", ylab="cycle time (ms)", ylim=c(0,max(cycle)))
+plot(x=threads, y=spent, type="l", xlab="# threads", ylab="handshake time / move time", ylim=c(0, max(spent)))
+
+speedup <- cycle[1]/cycle
+efficiency <- cycle[1]/(cycle*threads)
+#plot(x=threads, y=speedup, type="l", xlab="# threads", ylab="speedup")
+plot(x=threads, y=efficiency, type="l", xlab="# threads", ylab="speedup", log="y")
+
+
+* I don't know how to interpret the results.  Cycles get shorter, generating more solutions per unit time.
+  Handshake time increases.  Latency increases, if anything.
+
+
+########################################
+variable rooms run
+
+rooms <- c(2,4,8,16,32)
+
+p <- c(111.6984,116.5707,140.904,152.0829,132.9814)
+l <- c(157.4926,237.7403,207.9646,200.5126,243.5749)
+r <- c(1011668,1316765,1641872,1322510,1369529)
+dt <- c(108.9206,125.4925,120.5621,120.9496,120.2816)
+it <- c(104.7683,90.22527,80.55024,78.83333,83.02538)
+cycle <- c(281.8662,2253.534,1034.567,568.8186,585.4048)
+spent <- c(0.4119075,0.4809746,1.754355,2.233113,3.523455)
+
+p <- c(110.068,142.1341,140.5811,171.0425,161.4375)
+l <- c(150.1429,220.9458,252.7948,181.268,244.4689)
+r <- c(991741.1,1532145,1415659,1389563,1376189)
+dt <- c(118.4975,117.6833,124.5594,130.5092,111.1024)
+it <- c(96.79545,89.54144,84.07767,82.54762,76.9375)
+cycle <- c(312.2265,2592.28,780.3434,541.4248,579.5228)
+spent <- c(0.5550767,0.6580984,1.538036,3.158642,2.64836)
+
+plot(x=rooms, y=p, type="l", xlab="# rooms", ylab="pulse latency (ms)", ylim=c(0, max(p)))
+plot(x=rooms, y=l, type="l", xlab="# rooms", ylab="handshake latency (ms)", ylim=c(0, max(l)))
+plot(x=rooms, y=r, type="l", xlab="# rooms", ylab="solutions removed per TTL cleanup cycle", ylim=c(0, max(r)))
+plot(x=rooms, y=dt, type="l", xlab="# rooms", ylab="dwell time (s)", ylim=c(0, max(dt)))
+plot(x=rooms, y=it, type="l", xlab="# rooms", ylab="idle time (s)", ylim=c(0, max(it)))
+plot(x=rooms, y=cycle, type="l", xlab="# rooms", ylab="cycle time (ms)", ylim=c(0,2000))
+plot(x=rooms, y=spent, type="l", xlab="# rooms", ylab="handshake time / move time", ylim=c(0, max(spent)))
+
+* generally, the result is as expected: after we reach four rooms (one room per thread), there is little difference
+  in most quantities as we add additional rooms
+* the one quantity which did appear to change with additional rooms, handshake time vs. move time,
+  exposed a bug in the simulation.  However, it continued to increase after the bug was fixed.
+
+
+########################################
+# variable memory run (topics, 4 threads, 500 people, 8 rooms)
+
+mem <- c(1,2,4,8,16,32,64)
+p <- c(401,95.94801,118.675,90.46756,139.7767,138.57,156.7743)
+l <- c(2449.5,455.2403,268.6474,195.0478,221.2919,230.6327,212.8101)
+r <- c(138748.7,1350288,1776666,1516457,1468605,1311671,1465069)
+dt <- c(30.62963,120.2479,122.5695,119.9549,115.1127,134.1367,127.1802)
+it <- c(24,89.33333,86.08879,79.1407,85.05729,89.87283,81.92611)
+cycle <- c(33315.2,12531.12,1560.797,881.9643,875.5787,908.6912,953.8104)
+spent <- c(12.73256,12.74392,3.006141,2.149477,1.546081,2.115887,2.102921)
+
+plot(x=mem, y=p, type="l", xlab="memory (GB)", ylab="pulse latency (ms)")
+plot(x=mem, y=l, type="l", xlab="memory (GB)", ylab="handshake latency (ms)")
+plot(x=mem, y=r, type="l", xlab="memory (GB)", ylab="solutions removed per TTL cleanup cycle")
+plot(x=mem, y=dt, type="l", xlab="memory (GB)", ylab="dwell time (s)")
+plot(x=mem, y=it, type="l", xlab="memory (GB)", ylab="idle time (s)")
+plot(x=mem, y=cycle, type="l", xlab="memory (GB)", ylab="cycle time (ms)", ylim=c(0,2000))
+plot(x=mem, y=spent, type="l", xlab="memory (GB)", ylab="handshake time / move time")
+
+* these results confirm what was suspected: once we have our 8GB or so of memory,
+  additional memory makes little difference in any of the measured quantities
+* below 8GB, and particularly below 2GB, pulse and handshake latency become very large, as does cycle time.
+  There are also strange effects on dwell time, idle time, and handshake/move time when memory is this low.
+
+
+################################################################################
+# variable people runs
+
+##########
+# pulses, 5 rooms, variable people (EC2)
+
+people <- c(100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975)
+
+p <- c(3.8125,4.176744,3.665505,6.464615,6.611268,6.714286,4.548387,5.361062,6.052365,3.425139,7.276219,4.636849,7.556894,7.372263,6.058072,5.330275,5.812115,10.28996,5.854334,9.525497,9.6379,6.005059,8.445783,7.214019,9.66061,9.649296,7.696787,10.49644,8.092879,13.46687,9.565375,13.06899,15.96395,9.380685,9.42379,10.70061)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(15605.16,17846.78,27001.63,38923.79,44856.05,56656.21,93722.79,102622.5,111932.6,128698.1,158308.2,169404.2,187784.8,209812.8,241294.7,167882.1,322354.2,347549.3,322021.4,452449.9,419446.6,415639.5,506365.2,562407.4,663051.4,688929.7,718083.7,882055.2,803702.7,872737,865476.7,866515.7,1107592,960971.7,1006995,1401304)
+dt <- c(242.3535,227.3923,222.5959,204.9161,233.707,222.719,233.9449,223.6109,238.3227,235.8,216.5873,223.0868,209.4492,223.1095,221.2407,217.2511,224.6274,224.431,228.7593,219.929,225.0319,224.4365,225.4425,213.1964,222.3012,216.3727,221.1,220.2124,217.6768,221.646,227.05,218.8675,223.3345,216.3666,222.1011,209.4028)
+it <- c(2.550725,2.425234,1.678322,1.425926,1.259887,0.9630485,0.6696589,0.6471631,0.5989848,0.4549483,0.4630178,0.381016,0.3552279,0.319123,0.2802326,0.2417465,0.1993834,0.2061538,0.1547406,0.1254325,0.1317898,0.1155143,0.09646302,0.07153502,0.06468023,0.04507042,0.0435365,0.03686934,0.02106568,0.006682868,0.01149425,0.02517986,-0.01891253,-0.01066816,-0.01493306,-0.1867008)
+cycle <- c(3.160714,4.945946,6.666667,9.055046,15.43119,15.62385,28.85981,35.34259,33.33945,40.53271,48.52778,45.47222,56.06422,55.30556,91.62037,68.71028,122.537,121.9245,114.0092,212.4393,187.8148,161.0374,234.2407,238.8131,375.2523,391.5238,379.8972,579.9434,439.0094,430.3056,569.7308,563.9906,688.5566,716.1748,709.9223,1273.51)
+moves <- c(0.2321429,0.2252252,0.2522523,0.2752294,0.440367,0.3761468,0.4205607,0.4166667,0.4678899,0.6261682,0.712963,0.6111111,0.7155963,0.7685185,0.75,0.9439252,0.8981481,1.009434,0.9541284,1.056075,1.092593,1.149533,1.287037,1.224299,1.383178,1.247619,1.401869,1.45283,1.349057,1.490741,1.653846,1.669811,1.59434,1.815534,1.728155,2.295918)
+pulses <- c(0.4107143,0.4414414,0.5045045,0.6513761,0.733945,0.8623853,1.130841,1.148148,1.12844,1.46729,1.194444,1.546296,1.605505,1.472222,1.731481,1.738318,1.972222,1.896226,2.220183,2.317757,2.12963,2.35514,2.425926,2.457944,2.579439,2.961905,2.588785,3.018868,3.301887,2.842593,2.865385,3.113208,3.283019,3.320388,3.563107,4.153061)
+received.pulses <- c(1.875,2.36036,2.531532,4.348624,5.302752,5.137615,9.757009,13.0463,13.90826,20.14953,16.87037,20.13889,18,19.36111,25.47222,32.51402,40.36111,44.43396,34.23853,57.2243,48.62037,37.58879,51.14815,54.85047,71.95327,88.39048,68.82243,123.2358,97.4717,78.68519,65.99038,74.66038,113.6698,85.84466,82.4466,234.6224)
+missed <- c(0,0,0,0,0,0,0,0,0,0.2292994,0,0,0,0,0,0.7580645,0,0,0,0,0,0.003968254,0,0,0.003623188,0.003215434,0,0,0,0.003257329,0.006711409,0,0.002873563,0,0.002724796,0.004914005)
+spent <- c(10.41935,2.786207,3,3.382222,1.595679,4.832192,1.388244,1.707092,3.794195,2.827891,1.328299,3.960606,1.202956,1.647606,3.263249,3.798956,4.406046,2.114217,1.415824,1.997626,1.837717,1.251993,0.8405238,1.649627,2.097192,1.862744,0.9210302,1.635202,1.927098,2.327748,1.43135,1.611752,2.249121,1.089629,2.192543,2.634227)
+
+p.none <- p
+cycle.none <- cycle
+cycle.none.people <- cycle.none
+
+
+##########
+# "friends", 5 rooms, variable people (EC2)
+
+people <- c(100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975)
+
+p <- c(4.262626,3.927419,4.946032,3.956772,4.165746,5.769417,4.678879,4.668561,8.65917,5.38961,7.023529,5.880376,4.346202,10.24693,7.039238,12.30205,8.215909,10.06238,11.25818,12.86019,8.242609,9.874477,10.38462,12.06942,6.816156,6.814652,7.382394,9.138672,13.01973,14.72277,11.06105,8.333137,12.29392,8.251641,10.16997,9.308801)
+fl <- c(0.7948718,0.9393939,1.285714,1,2.032787,1.318182,1.83871,1.972222,2.111111,1.914894,3.46,2.857143,3.169811,2.726027,4.138889,4.759615,4.446809,4.253968,8.136842,6.623932,6.662921,3.518182,4.737864,6.571429,13.22917,8.758242,9.879699,10.14062,14.13986,17.15591,6.380282,11.61864,16.32927,14.97196,19.96891,13.82514)
+tl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+r <- c(18674.78,23276.22,39284.21,38403.26,58670.89,60989.89,85602.37,91399.84,126719.2,145596.8,169914.2,183519.1,197656.3,218372,234535.1,298982.5,326180,352361.9,433181.8,430816.4,397803.6,475319.1,530348.5,612767.5,751506.9,570868.9,695855.3,795822.8,898658.8,1041429,867957.3,944645.9,1157207,1065395,1256091,1160834)
+dt <- c(222.5648,240.8824,216.9684,236.3846,214.4309,233.7323,222.9611,236.152,203.1792,226.0663,219.7443,236.2238,218.9847,227.1181,232.9931,220.4383,224.1768,215.2255,220.712,226.4763,216.915,226.0702,234.7037,226.3691,229.8707,225.1904,220.4461,217.0842,210.2346,214.8718,213.9928,215.4715,222.2084,229.1669,223.4344,224.5241)
+it <- c(2.715736,2.024291,1.519108,1.34104,1.254848,1.055961,0.8660907,0.6888046,0.6152513,0.5447154,0.44919,0.3728129,0.3216958,0.298893,0.2637486,0.2321814,0.1975181,0.1804878,0.1418182,0.1305556,0.1208696,0.1038526,0.1029173,0.06425406,0.03344948,0.06227106,0.04862579,0.03127036,0.02738854,-0.003669725,0.01892552,0.004697592,-0.01114827,-0.009841443,-0.03738318,-0.03501545)
+cycle <- c(4.089286,4.245455,9.541284,9.324324,12.01818,15.98148,31.72222,30.02752,40.32407,47.75926,42.18519,61.57407,54.08411,63.85981,86.23148,107.7407,107.9537,131.1852,172.5321,154.213,122.8113,199.8037,218.7706,288.0741,357.0841,264.8785,338.8692,431.3458,551.8,713.6731,492.3585,509.0755,772.7981,713.0769,876.4369,799.8846)
+moves <- c(0.1875,0.1727273,0.3394495,0.3423423,0.2272727,0.3333333,0.6296296,0.3486239,0.3611111,0.6388889,0.6388889,0.8425926,0.728972,0.8411215,0.6851852,0.9259259,0.9814815,1.138889,0.9174312,1.12963,1.075472,1.056075,1.036697,1.194444,1.495327,1.420561,1.53271,1.626168,1.552381,1.394231,1.754717,1.698113,1.894231,1.548077,1.737864,1.798077)
+pulses <- c(0.4017857,0.5636364,0.6972477,0.6756757,0.7454545,0.8703704,1.037037,1.082569,1.101852,1.277778,1.351852,1.287037,1.700935,1.747664,1.657407,2,1.925926,1.907407,2.311927,2.148148,2.037736,2.336449,2.422018,2.740741,2.514019,2.551402,2.345794,2.934579,2.961905,3.115385,3.179245,3.141509,3.75,3.5,3.427184,3.615385)
+received.pulses <- c(1.964286,3.018182,5.669725,3.873874,6.909091,6.814815,11.37037,10.52294,11.68519,17.75,17.03704,15.83333,21.61682,18.35514,23.25,27.5,30.59259,31.03704,45.52294,38.40741,35.53774,40.63551,48.05505,65.0463,80.23364,46.15888,58.25234,72.71963,83.57143,107,80.29245,78.5,131.7308,90.91346,122.6505,86.06731)
+missed <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.004310345,0,0,0,0.003378378,0,0.003663004,0,0,0,0.00617284,0,0,0.005128205,0.002747253,0.002832861,0)
+spent <- c(16.61538,15.10345,2.754513,3.203252,17.36111,1.709576,4.246554,2.338776,14.17422,7.582363,5.545977,1.321578,2.740789,2.52035,5.540028,1.812666,1.471174,2.720588,2.933487,1.901568,2.056351,2.740857,1.821678,2.96369,1.613406,2.362838,0.8624923,3.017584,1.651503,2.756744,1.44198,0.7064162,2.071426,1.815383,1.900524,1.092071)
+
+p.friends <- p
+fl.friends <- fl
+cycle.friends <- cycle
+cycle.friends.people <- cycle.friends
+
+
+##########
+# "topics", 5 rooms, variable people (EC2)
+
+people <- c(100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975)
+
+p <- c(24.11932,35.168,28.27941,32.49864,40.86146,29.72323,36.36747,31.35189,35.39044,28.10932,56.91298,45.0506,38.98628,33.57615,25.09988,32.22717,41.92254,33.33025,41.89565,52.55013,35.68377,41.02475,45.11391,39.25,39.65821,31.61572,35.77245,45.49271,35.31558,41.39609,41.03906,45.78579,46.62675,41.81067,44.39733,43.65072)
+fl <- c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+tl <- c(15.51613,15.39041,18.82609,24.60452,31.08612,24.39648,29.32243,35.15812,44.24615,45.52303,53.3369,57.82727,52.07163,55.86031,45.89744,65.96328,84.20439,93.26,102.2305,107.5965,73.7955,118.9274,111.0424,143.4544,92.69838,147.7433,163.9374,150.3794,230.7924,115.7702,178.1499,185.9834,141.673,230.5429,223.0803,226.2211)
+r <- c(101323.3,175187.7,202400.7,300770.3,346780.6,393796.3,454576.5,505528.4,597122.8,663749.3,912859.3,1030539,865624.3,1099922,836450.3,1047825,1518591,1561396,1859276,1905681,1587083,2211236,1935137,2162950,1902153,2018789,2039810,2038897,1721540,2307003,1892268,1859784,2061561,1665390,1856268,1783838)
+dt <- c(203.6809,216.8246,218.6643,237.7041,195.3522,226.7033,227.7541,218.2274,212.5655,237.0946,223.8571,211.0129,225.2335,213.6998,216.9565,240.8886,219.8419,223.636,224.7695,222.0173,227.1473,219.4121,234.3844,214.4804,215.4003,221.2822,222.6598,205.1537,229.2768,231.3007,240.995,208.2235,220.346,225.9402,235.7711,237.4297)
+it <- c(3.091429,2.056225,1.841328,1.188525,1.085859,0.7732794,0.78,0.7137177,0.5378289,0.5216693,0.4165478,0.3505976,0.2876712,0.2266824,0.2585366,0.23,0.08424182,0.06740536,-0.1396357,-0.2947826,-0.002477291,-1.832043,-1.121753,-8.46937,-0.3298585,-22.26325,-21.99913,-17.48863,-68.89207,-9.139875,-44.26784,-51.61323,-35.79521,-91.35959,-58.52415,-77.96766)
+cycle <- c(28.06306,43.55856,53.05455,106.7037,126.1009,115.3211,155.2222,232.8505,235.2547,269.4907,415.4151,628.7864,486.4,734.1961,441.5143,655.9135,1351.755,1378.727,1833.928,2296.392,1261.87,5342.256,3110.759,12163.85,2371.839,27948.84,37117.27,9371.5,94803.5,10857.88,66085.12,51745.12,46793.6,113193.8,86422.4,124747.5)
+moves <- c(0.1531532,0.1981982,0.3545455,0.4351852,0.3761468,0.3211009,0.5092593,0.5140187,0.5,0.537037,0.5943396,0.6504854,0.7047619,0.8333333,0.6761905,0.8173077,0.9693878,0.8282828,1.237113,1.608247,0.96,4.935897,2.666667,12.73171,2.075269,27.15789,38.4,9.078947,67.16667,10.76744,60.125,51.875,51.2,78.8,70.8,91.5)
+pulses <- c(0.4144144,0.4954955,0.4909091,0.7962963,0.8440367,0.9449541,1.018519,1.140187,1.226415,1.212963,1.424528,1.640777,1.714286,1.598039,1.704762,1.673077,2.214286,2.292929,2.721649,3.907216,2.34,10.85897,5.954023,22.73171,4.268817,52.26316,71.86667,15.89474,120,23.86047,110,95.75,99.5,150.6,144.8,167.5)
+received.pulses <- c(2,2.702703,3.472727,4.388889,6.229358,9.807339,11.07407,12.13084,10.35849,13.30556,17.73585,20.1068,17.75238,21.70588,21.67619,20.29808,31.41837,34.53535,65.45361,81.72165,37.17,403.2051,165,727.9024,140.7742,1644.368,2525.6,387.2105,3148.333,771.2326,3773,3197.875,3843.5,3546.2,4608,4328.5)
+missed <- c(0,0,0,0,0,0,0.009090909,0.008196721,0.007692308,0.007633588,0,0.00591716,0,0,0,0.01724138,0.00921659,0.008810573,0.01515152,0.01055409,0.01282051,0,0.005791506,0,0.01007557,0.001007049,0.0009276438,0.003311258,0,0.003898635,0,0,0.001005025,0.001328021,0,0)
+spent <- c(6.047511,4.378198,4.32968,3.335591,13.924,76.11656,5.999582,6.839522,3.440349,3.198644,10.72026,4.84258,9.145411,2.53679,5.252057,3.147061,6.275883,24.69038,11.39572,7.915349,10.43205,27.82114,11.27207,21.09846,9.047417,17.86222,16.5789,13.37115,62.02027,20.09279,26.3999,26.06152,12.59686,29.99162,21.6652,27.93534)
+
+p.topics <- p
+tl.topics <- tl
+cycle.topics <- cycle
+cycle.topics.people <- cycle.topics
+
+
+##########
+# all queries, 5 rooms, variable people (EC2)
+
+people <- c(100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975)
+
+p <- c(30.15122,24.82397,30.67376,37.7563,32.88493,27.9907,42.47071,36.00594,31.49768,39.50997,40.38415,27.94605,37.77791,40.20326,52.38661,31.1242,37.42385,36.7699,40.43474,43.23684,42.23422,39.15858,38.95104,42.8831,36.62546,40.67944,36.14406,37.25271,38.56004,37.82884,46.4317,40.77593,42.62487,42.60536,40.36523,47.80906)
+fl <- c(19.92857,9.714286,15.96774,63.78571,24.5119,13.86364,20.02941,25.25,28.17188,24.52941,28.85714,40.19403,59.93976,37.72165,38.14,39.35922,51.46053,77.8046,63.62,75.11504,73.47872,72.9469,86.44118,99.94175,104.875,98.33333,147.5965,160.2653,129.3247,137.549,170.3271,150.0488,135.6064,173.4808,121.4196,273.6452)
+tl <- c(16.95327,15.31481,18.67974,26.01274,24.20122,24.34899,27.74757,28.03646,37.33725,38.82927,46.0856,59.15616,65.94673,51.17647,59.62626,53.69405,75.43341,85.1642,95.37113,103.0162,88.00612,98.46292,112.562,117.4433,157.7557,114.0713,178.7508,202.5632,162.0113,222.5068,174.4454,155.2521,189.6561,200.821,158.9191,201.38)
+r <- c(147989.6,170642.3,216712.1,274348.9,298114.3,313354.5,406509.1,431499.2,589333.9,553650.2,622947.1,921098.8,1058568,896124.6,1176457,1052956,1396606,1575512,1580932,1915332,1657462,1797303,2278585,2312154,2063320,2278549,2035792,1841724,2043372,1943033,1913518,2093130,1913748,1837520,2036847,1928034)
+dt <- c(246.186,227.5,198.3295,229.2333,218.0574,225.9177,216.5938,205.1214,225.2413,218.5314,230.1905,225.5457,215.9263,221.7536,205.7915,218.6214,220.9853,235.7385,220.433,213.7129,220.4194,229.7405,219.5442,228.4486,220.8835,227.1714,228.3371,229.9186,229.6071,240.4991,211.4682,233.5532,258.2534,209.7221,234.7815,231.373)
+it <- c(2.568627,1.857143,1.729537,1.261236,1.175824,0.95338,0.8050314,0.7301587,0.4597523,0.5456053,0.4519084,0.3346509,0.2858837,0.2873275,0.1835853,0.1775401,0.08116232,0.07536232,-0.04312668,-0.3874773,-0.01658375,-0.1608731,-2.193264,-3.292259,-24.29086,-2.174791,-26.0608,-50.60261,-31.54116,-47.24818,-47.57129,-37.97498,-53.47862,-68.61422,-45.96397,-57.64706)
+cycle <- c(39.19643,42.42202,59.60909,68.47273,85.11111,84.50926,125.6972,159.2385,248.6019,217.4722,282.2762,546.1456,565.5755,461.5619,801.1068,703.1863,1158.74,1412.32,1534,2392.489,1549.398,1818.929,5636.986,7550,29008.67,5456.875,32035.82,71093.71,37132.62,77797.71,57430.88,51831.22,79738.83,72025.4,71377.5,87835.2)
+moves <- c(0.125,0.1926606,0.2454545,0.3636364,0.3981481,0.3703704,0.4770642,0.5321101,0.6018519,0.6481481,0.5428571,0.6019417,0.5471698,0.6761905,0.7961165,0.8137255,1.1,0.97,1.060606,1.880435,1.193878,1.285714,5.780822,7.387097,28.88889,5.25,32.47059,59.85714,36.38462,72.42857,55.375,53.88889,64.83333,61.2,74.375,83.6)
+pulses <- c(0.4107143,0.5963303,0.4909091,0.7090909,0.7962963,0.8981481,0.8899083,0.8623853,1.231481,1.194444,1.438095,1.514563,1.660377,1.666667,2.174757,1.980392,2.4,2.34,2.474747,3.858696,2.632653,3.418367,11.27397,15.22581,51.94444,11.79167,58.76471,112.4286,70.92308,123.8571,104.5,97.66667,128.5,109.4,135.5,158.6)
+received.pulses <- c(1.946429,3.321101,3.090909,4.8,5.907407,7.185185,7.678899,9.522936,13.75926,16.50926,14.84762,18.68932,23.39623,21.97143,44.57282,31.60784,42.65,39.1,43.16162,84.28261,43.29592,66.83673,386.1096,463.2097,1445.222,339.5417,1725.941,3247.857,2283.846,4364.571,3638,2833,4312.167,3191.4,5188.5,6699.6)
+missed <- c(0,0,0,0,0,0,0,0,0,0.007751938,0,0,0.005681818,0.005714286,0,0.00990099,0,0.02564103,0.008163265,0.002816901,0.007751938,0.005970149,0.001215067,0,0,0.002355713,0.001001001,0,0.001084599,0,0.001196172,0,0.002594034,0,0,0.001261034)
+spent <- c(4.657216,86.24528,4.61868,6.213602,61.53061,3.059164,3.108246,2.152379,3.096582,7.27007,9.277046,5.112463,6.697869,6.034983,11.17559,3.430204,5.736802,11.32821,3.501467,8.7217,3.380113,5.208812,14.52654,12.3984,32.98789,12.35696,30.78528,29.09531,20.63614,21.83946,22.38272,27.56589,35.28891,21.34038,18.7619,28.20442)
+
+p.all <- p
+fl.all <- fl
+tl.all <- tl
+cycle.all <- cycle
+cycle.all.people <- cycle.all
+
+
+########################################
+# variable people -- plot
+
+
+plot(x=people, y=p, type="l", xlab="# people", ylab="pulse latency (ms)", ylim=c(0, max(p)))
+plot(x=people, y=pulse.latency, type="l", xlab="# people", ylab="pulse latency --total (ms)", ylim=c(0, max(pulse.latency)))
+plot(x=people, y=fl, type="l", xlab="# people", ylab="'friends' handshake latency (ms)", ylim=c(0, max(fl))); abline(col="red", h=1000)
+plot(x=people, y=friends.latency, type="l", xlab="# people", ylab="'friends' latency -- total (ms)", ylim=c(0, min(2000,max(friends.latency)))); abline(col="red", h=1000)
+plot(x=people, y=tl, type="l", xlab="# people", ylab="'topics' handshake latency (ms)", ylim=c(0, max(tl))); abline(col="red", h=1000)
+plot(x=people, y=topics.latency, type="l", xlab="# people", ylab="'topics' latency -- total (ms)", ylim=c(0, min(2000,max(topics.latency)))); abline(col="red", h=1000)
+plot(x=people, y=r, type="l", xlab="# people", ylab="solutions removed per TTL cleanup cycle", ylim=c(0, max(r)))
+plot(x=people, y=dt, type="l", xlab="# people", ylab="dwell time (s)", ylim=c(0, max(dt)))
+plot(x=people, y=it, type="l", xlab="# people", ylab="idle time (s)", ylim=c(0, max(it)))
+plot(x=people, y=cycle, type="l", xlab="# people", ylab="cycle time (ms)", ylim=c(0,max(cycle))); abline(col="red", h=1000)
+plot(x=people, y=spent, type="l", xlab="# people", ylab="handshake time / move time", ylim=c(0, max(spent)))
+plot(x=people, y=missed, type="l", xlab="# people", ylab="proportion of handshakes missed", ylim=c(0, min(1, max(missed))))
+
+# both are measures of efficiency; if overhead did not increase, these would stay constant
+plot(x=people, y=moves/cycle, type="l", xlab="# people", xlim=c(0,max(people)), ylim=c(0,max(moves/cycle)))
+plot(x=people, y=pulses/cycle, type="l", xlab="# people", xlim=c(0,max(people)), ylim=c(0,max(pulses/cycle)))
+
+
+plot(x=people, y=cycle, type="l", xlab="# people", ylab="cycle time (ms)", ylim=c(0,max(cycle))); abline(col="red", h=1000)
+lines(x=people, y=p)
+
+
+# in "all" run, query latencies become almost indistinguishable from each other
+n <- 12
+pulse.latency <- p.all + cycle.all/2
+plot(x=people[1:n], y=pulse.latency[1:n], type="l", xlab="total people in five rooms", ylab="response time (ms)", ylim=c(0,max(pulse.latency[1:n])));
+abline(col="gray", lty="dashed", h=c(240,1000))
+lines(x=people[1:n], y=p.all[1:n], col="red")
+lines(x=people[1:n], y=fl.all[1:n], col="green")
+lines(x=people[1:n], y=tl.all[1:n], col="blue")
+legend("left", c("average response", "handshake pairs", "common acquaintances", "common topics"),
+    lty=1, col=c("black", "red", "green", "blue"), bty='n')
+
+
+
+# pulse latency stays small when "friends" is added, but becomes large when "topics" is added
+n <- length(people)
+maxy <- max(p.none[1:n], p.friends[1:n], p.topics[1:n], p.all[1:n])
+plot(x=people[1:n], y=p.none[1:n]+1, type="l", col="red", xlab="total people in five rooms", ylab="response time (ms)", ylim=c(1,maxy), log="y");
+abline(col="gray", lty="dashed", h=c(240,1000))
+lines(x=people[1:n], y=p.friends[1:n]+1, col="green")
+lines(x=people[1:n], y=p.topics[1:n]+1, col="blue")
+lines(x=people[1:n], y=p.all[1:n]+1, col="black")
+legend("bottomright", c("handshakes", "handshakes + 'friends'", "handshakes + 'topics'", "all queries"),
+    lty=1, col=c("red", "green", "blue", "black"), bty='n')
+
+
+# cycle time
+pdf("/tmp/graphic.pdf", width=6.25, height=4)
+par(mar=c(4.5,5,2,1.5))
+    n <- length(people)
+    maxy <- max(cycle.none[1:n], cycle.friends[1:n], cycle.topics[1:n], cycle.all[1:n])
+    plot(x=people[1:n], y=cycle.none[1:n], type="l", col="red", xlab="total people in five rooms", ylab="cycle time (ms)", ylim=c(1,maxy), log="y");
+    abline(col="gray", lty="dashed", h=c(240,1000))
+    lines(x=people[1:n], y=cycle.friends[1:n], col="green")
+    lines(x=people[1:n], y=cycle.topics[1:n], col="blue")
+    lines(x=people[1:n], y=cycle.all[1:n], col="black")
+    legend("bottomright", c("handshakes", "handshakes + 'friends'", "handshakes + 'topics'", "all queries"),
+        lty=1, col=c("red", "green", "blue", "black"), bty='n')
+dev.off()
+
+
+# pulse and "friends" latency by themselves are tiny.  "topics" latency becomes large
+pdf("/tmp/graphic.pdf", width=6.25, height=4)
+par(mar=c(4.5,5,2,1.5))
+    n <- length(people)
+    maxy <- max(p.none[1:n], fl.friends[1:n], tl.topics[1:n])
+    plot(x=people[1:n], y=p.none[1:n], type="l", col="red", xlab="total people in five rooms", ylab="query response time (ms)", ylim=c(1,maxy), log="y");
+    abline(col="gray", lty="dashed", h=c(240,1000))
+    lines(x=people[1:n], y=fl.friends[1:n], col="green")
+    lines(x=people[1:n], y=tl.topics[1:n], col="blue")
+    legend("bottomright", c("handshakes", "friends in common", "topics in common"),
+        lty=1, col=c("red", "green", "blue", "black"), bty='n')
+dev.off()
