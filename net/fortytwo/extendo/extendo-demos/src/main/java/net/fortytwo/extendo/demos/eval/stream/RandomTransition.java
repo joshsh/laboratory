@@ -1,4 +1,4 @@
-package net.fortytwo.extendo.demos.eval;
+package net.fortytwo.extendo.demos.eval.stream;
 
 import java.util.Random;
 

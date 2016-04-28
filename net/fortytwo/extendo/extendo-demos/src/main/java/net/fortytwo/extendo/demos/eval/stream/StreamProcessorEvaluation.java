@@ -1,14 +1,15 @@
-package net.fortytwo.extendo.demos.eval;
+package net.fortytwo.extendo.demos.eval.stream;
 
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
-import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
+import net.fortytwo.extendo.demos.eval.Stats;
+import net.fortytwo.rdfagents.model.Dataset;
 import net.fortytwo.smsn.SemanticSynchrony;
 import net.fortytwo.smsn.rdf.Activities;
-import net.fortytwo.smsn.rdf.vocab.SmSnActivityOntology;
 import net.fortytwo.smsn.rdf.vocab.FOAF;
+import net.fortytwo.smsn.rdf.vocab.SmSnActivityOntology;
 import net.fortytwo.smsn.rdf.vocab.Timeline;
-import net.fortytwo.rdfagents.model.Dataset;
+import net.fortytwo.stream.StreamProcessor;
+import net.fortytwo.stream.sparql.SparqlStreamProcessor;
+import net.fortytwo.stream.sparql.impl.shj.SHJSparqlStreamProcessor;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -39,6 +40,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,8 +53,8 @@ import java.util.logging.Logger;
  *
  * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class SesameStreamEvaluation {
-    private static final Logger logger = SemanticSynchrony.getLogger(SesameStreamEvaluation.class);
+public class StreamProcessorEvaluation {
+    private static final Logger logger = SemanticSynchrony.getLogger(StreamProcessorEvaluation.class);
 
     private static final String EX = "http://example.org/";
 
@@ -137,7 +139,7 @@ public class SesameStreamEvaluation {
             "  FILTER(?actor1 != ?actor2)\n" +
             "}";
 
-    private final QueryEngine queryEngine;
+    private final SparqlStreamProcessor streamProcessor;
     private final ValueFactory vf;
 
     private final Random random = new Random();
@@ -179,16 +181,16 @@ public class SesameStreamEvaluation {
         list.add(time);
     }
 
-    public SesameStreamEvaluation(final boolean verbose,
-                                  final int totalThreads,
-                                  final int totalPeople,
-                                  final int totalRooms,
-                                  final Set<String> queries,
-                                  final int moveTime,
-                                  final int shakeTIme,
-                                  final int timeLimitSeconds,
-                                  final double probTopicsInCommon)
-            throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException {
+    public StreamProcessorEvaluation(final boolean verbose,
+                                     final int totalThreads,
+                                     final int totalPeople,
+                                     final int totalRooms,
+                                     final Set<String> queries,
+                                     final int moveTime,
+                                     final int shakeTIme,
+                                     final int timeLimitSeconds,
+                                     final double probTopicsInCommon)
+            throws StreamProcessor.InvalidQueryException, IOException, StreamProcessor.IncompatibleQueryException {
 
         this.verbose = verbose;
 
@@ -236,67 +238,69 @@ public class SesameStreamEvaluation {
 
         //SesameStream.setDoPerformanceMetrics(true);
 
-        queryEngine = new QueryEngineImpl();
+        streamProcessor = new SHJSparqlStreamProcessor();
         vf = new ValueFactoryImpl();
 
-        queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_PAIRS, new BindingSetHandler() {
-            @Override
-            public void handle(BindingSet bindingSet) {
-                increment(countOfReceivedPulses);
+        streamProcessor.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_PAIRS,
+                new BiConsumer<BindingSet, Long>() {
+                    @Override
+                    public void accept(BindingSet bindingSet, Long expirationTime) {
+                        increment(countOfReceivedPulses);
 
-                long now = System.currentTimeMillis();
-                long time1;
-                Value timeValue = bindingSet.getValue("time1");
-                if (null == timeValue) {
-                    logger.warning("no time1 in " + bindingSet);
-                    return;
-                }
-                try {
-                    time1 = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
-                } catch (Throwable t) {
-                    logger.log(Level.WARNING, "count not parse as dateTime: " + timeValue.stringValue()
-                            + " in solution " + bindingSet);
-                    return;
-                }
+                        long now = System.currentTimeMillis();
+                        long time1;
+                        Value timeValue = bindingSet.getValue("time1");
+                        if (null == timeValue) {
+                            logger.warning("no time1 in " + bindingSet);
+                            return;
+                        }
+                        try {
+                            time1 = DATE_FORMAT.parse(timeValue.stringValue()).getTime();
+                        } catch (Throwable t) {
+                            logger.log(Level.WARNING, "count not parse as dateTime: " + timeValue.stringValue()
+                                    + " in solution " + bindingSet);
+                            return;
+                        }
 
-                String actor1 = bindingSet.getValue("actor1").stringValue();
-                String actor2 = bindingSet.getValue("actor2").stringValue();
-                String a1 = actor1.substring(actor1.lastIndexOf("n") + 1);
-                String a2 = actor2.substring(actor2.lastIndexOf("n") + 1);
+                        String actor1 = bindingSet.getValue("actor1").stringValue();
+                        String actor2 = bindingSet.getValue("actor2").stringValue();
+                        String a1 = actor1.substring(actor1.lastIndexOf("n") + 1);
+                        String a2 = actor2.substring(actor2.lastIndexOf("n") + 1);
 
-                if (Integer.valueOf(a1).compareTo(Integer.valueOf(a2)) > 0) {
-                    String tmp = a1;
-                    a1 = a2;
-                    a2 = tmp;
-                }
-                String key = "" + time1 + ":" + a1 + ":" + a2;
+                        if (Integer.valueOf(a1).compareTo(Integer.valueOf(a2)) > 0) {
+                            String tmp = a1;
+                            a1 = a2;
+                            a2 = tmp;
+                        }
+                        String key = "" + time1 + ":" + a1 + ":" + a2;
 
-                if (handshakesInProgress.remove(key)) {
-                    increment(countOfTrueReceivedPulses);
+                        if (handshakesInProgress.remove(key)) {
+                            increment(countOfTrueReceivedPulses);
 
-                    findPulseLatency(now);
+                            findPulseLatency(now);
 
-                    if (verbose) {
-                        System.out.println("handshake pair: " + bindingSet);
+                            if (verbose) {
+                                System.out.println("handshake pair: " + bindingSet);
+                            }
+                            Person person1 = people[Integer.valueOf(a1)];
+                            Person person2 = people[Integer.valueOf(a2)];
+                            try {
+                                handshake(person1, person2);
+                            } catch (IOException e) {
+                                throw new IllegalStateException(e);
+                            }
+                        } else if (verbose) {
+                            System.out.println("no such handshake: " + key);
+                        }
                     }
-                    Person person1 = people[Integer.valueOf(a1)];
-                    Person person2 = people[Integer.valueOf(a2)];
-                    try {
-                        handshake(person1, person2);
-                    } catch (IOException e) {
-                        throw new IllegalStateException(e);
-                    }
-                } else if (verbose) {
-                    System.out.println("no such handshake: " + key);
-                }
-            }
-        });
+                });
         queries.remove("none");
 
         if (queries.contains("friends")) {
-            queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES, new BindingSetHandler() {
-                @Override
-                public void handle(BindingSet bindingSet) {
+            streamProcessor.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES,
+                    new BiConsumer<BindingSet, Long>() {
+                        @Override
+                        public void accept(BindingSet bindingSet, Long expirationTime) {
                     increment(countOfReceivedHandshakesWithCommonKnows);
 
                     findFriendsHandshakeLatency(System.currentTimeMillis());
@@ -310,9 +314,10 @@ public class SesameStreamEvaluation {
         }
 
         if (queries.contains("topics")) {
-            queryEngine.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS, new BindingSetHandler() {
-                @Override
-                public void handle(BindingSet bindingSet) {
+            streamProcessor.addQuery(QUERY_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS,
+                    new BiConsumer<BindingSet, Long>() {
+                        @Override
+                        public void accept(BindingSet bindingSet, Long expirationTime) {
                     increment(countOfReceivedHandshakesWithCommonTopics);
 
                     findTopicsHandshakeLatency(System.currentTimeMillis());
@@ -402,14 +407,14 @@ public class SesameStreamEvaluation {
         String siocNs = "http://rdfs.org/sioc/ns#";
         URI siocTopic = vf.createURI(siocNs + "topic");
         for (Person person : people) {
-            queryEngine.addStatements(0, vf.createStatement(person.uri, RDF.TYPE, FOAF.PERSON));
+            streamProcessor.addInputs(0, vf.createStatement(person.uri, RDF.TYPE, FOAF.PERSON));
             for (Paper paper : person.papers) {
-                queryEngine.addStatements(0,
+                streamProcessor.addInputs(0,
                         vf.createStatement(paper.uri, RDF.TYPE, FOAF.DOCUMENT),
                         vf.createStatement(paper.uri, FOAF.MAKER, person.uri));
                 // note: we assume no papers in common
                 for (Topic topic : paper.topics) {
-                    queryEngine.addStatements(0,
+                    streamProcessor.addInputs(0,
                             vf.createStatement(topic.uri, RDF.TYPE, OWL.THING),
                             vf.createStatement(paper.uri, siocTopic, topic.uri));
                 }
@@ -417,7 +422,7 @@ public class SesameStreamEvaluation {
 
             // each person knows at least one other person and at most MAX_PEOPLE_KNOWN
             for (Person other : person.known) {
-                queryEngine.addStatements(0, vf.createStatement(person.uri, FOAF.KNOWS, other.uri));
+                streamProcessor.addInputs(0, vf.createStatement(person.uri, FOAF.KNOWS, other.uri));
             }
         }
 
@@ -694,7 +699,7 @@ public class SesameStreamEvaluation {
         timeOfFriendsHandshakeTrigger.set(now);
         timeOfTopicsHandshakeTrigger.set(now);
 
-        queryEngine.addStatements(HANDSHAKE_TTL, toArray(d));
+        streamProcessor.addInputs(HANDSHAKE_TTL, toArray(d));
     }
 
     private void halfHandshakes(final Person person1, final Person person2) throws IOException {
@@ -735,14 +740,14 @@ public class SesameStreamEvaluation {
         timeOfLastPulse.set(now);
         timeOfPulseTrigger.set(now);
 
-        queryEngine.addStatements(person1.halfHandshakeTtl, toArray(d1));
-        queryEngine.addStatements(person2.halfHandshakeTtl, toArray(d2));
+        streamProcessor.addInputs(person1.halfHandshakeTtl, toArray(d1));
+        streamProcessor.addInputs(person2.halfHandshakeTtl, toArray(d2));
     }
 
     private void presence(final Person person, final Room room) throws IOException {
         Statement st = vf.createStatement(
                 person.uri, vf.createURI(SmSnActivityOntology.NAMESPACE + "locatedAt"), room.uri);
-        queryEngine.addStatements(presenceTtl, st);
+        streamProcessor.addInputs(presenceTtl, st);
     }
 
     private Statement[] toArray(final Dataset d) {
@@ -1020,7 +1025,7 @@ public class SesameStreamEvaluation {
                 queries.add(query);
             }
 
-            new SesameStreamEvaluation(verbose, nThreads, nPeople, nRooms, queries, moveTime, shakeTime, timeLimitSeconds, pTopic);
+            new StreamProcessorEvaluation(verbose, nThreads, nPeople, nRooms, queries, moveTime, shakeTime, timeLimitSeconds, pTopic);
         } catch (Throwable t) {
             t.printStackTrace(System.err);
             System.exit(1);

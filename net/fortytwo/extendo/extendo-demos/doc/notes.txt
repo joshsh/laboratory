@@ -13,3 +13,95 @@ kill `ps aux|grep slip-to-udp|grep -v grep|sed 's/josh *//'|sed 's/ .*//'`
 python src/main/python/exohand-logger.py 42003 2>&1 > /tmp/exohand.txt
 
 cat /tmp/exohand.txt | grep motion | sed 's/.*motion......//' | sed 's/..$//' > /tmp/motion.csv
+
+
+################################################################################
+
+# on Marvin
+cd /Users/josh/projects/fortytwo/laboratory/net/fortytwo/extendo/extendo-demos \
+  && mvn clean install \
+  && cd .. \
+  && tar -czf extendo-demos.tar.gz extendo-demos \
+  && scp extendo-demos.tar.gz josh@eddie.fortytwo.net:/tmp
+
+# on Eddie
+screen -dR monitron
+cd /tmp && rm -rf extendo-demos && tar -xzf extendo-demos.tar.gz && cd extendo-demos
+time ./monitron-logger.sh -d /dev/ttyUSB0 -r 115200 -l /data/monitron 1>&2 | tee monitron.out
+
+
+cat raw.log |grep "^140" > monitron.log
+
+cd /tmp
+wget -O monitron-raw.log http://eddie.fortytwo.net/data/monitron/bosch-bmp085_1_thermometer.log
+wget -O monitron-raw.log http://eddie.fortytwo.net/data/monitron/generic-photoresistor_1.log
+wget -O monitron-raw.log http://eddie.fortytwo.net/data/monitron/maxdetect-rht03_1_thermometer.log
+cat monitron-raw.log | grep "^140" > monitron.log
+
+
+joshsh    http://twitlogic.fortytwo.net/person/twitter/7083182
+Momo...   ???
+xixiluo   http://twitlogic.fortytwo.net/person/twitter/33308444
+
+
+@list people: \
+    <http://twitlogic.fortytwo.net/person/twitter/39816942> \
+    <http://twitlogic.fortytwo.net/person/twitter/17346783> \
+    <http://twitlogic.fortytwo.net/person/twitter/19122108> \
+    <http://twitlogic.fortytwo.net/person/twitter/18003181> \
+    <http://twitlogic.fortytwo.net/person/twitter/34309130> \
+    <http://twitlogic.fortytwo.net/person/twitter/643563> \
+    <http://twitlogic.fortytwo.net/person/twitter/20830884> \
+    <http://twitlogic.fortytwo.net/person/twitter/14731308> \
+    <http://twitlogic.fortytwo.net/person/twitter/47621026> \
+    <http://twitlogic.fortytwo.net/person/twitter/143330796> \
+    <http://twitlogic.fortytwo.net/person/twitter/7083182> \
+    <http://twitlogic.fortytwo.net/person/twitter/26823198> \
+    <http://twitlogic.fortytwo.net/person/twitter/15477931> \
+    <http://twitlogic.fortytwo.net/person/twitter/18604757> \
+    <http://twitlogic.fortytwo.net/person/twitter/19274805> \
+    <http://twitlogic.fortytwo.net/person/twitter/140428623> \
+    <http://twitlogic.fortytwo.net/person/twitter/15336340> \
+    <http://twitlogic.fortytwo.net/person/twitter/8013712> \
+    <http://twitlogic.fortytwo.net/person/twitter/33308444>
+    #<http://twitlogic.fortytwo.net/person/twitter/58557080> \
+
+:people each. foaf:knows.
+
+
+"jahendler" sioc:id~. sioc:has_creator~. distinct. 50 limit. sioc:content.
+
+
+scp -P 2002 josh@fortytwo.net:/home/josh/services/twitlogic/twitlogic-core/website/dump/twitlogic-full.trig.gz .
+gunzip twitlogic-full.trig.gz
+rapper -i trig -o ntriples twitlogic-full.trig  > tl.nt
+cat tl.nt |grep knows|grep foaf|grep -v rdf|grep -v user | sed 's/<[^>]*\///' | sed 's/>.*\//,/' | sed 's/>.*//' > /tmp/foafKnows.csv
+cat /tmp/foafKnows.csv | tr ',' '\t' > /tmp/foafKnows.tsv
+
+sort -un /tmp/graph-undirected > /tmp/foafKnows-undirected.tsv
+
+data <- read.csv(file("/tmp/foafKnows.csv"), header=FALSE)
+
+library(igraph)
+
+g <- read.graph(file("/tmp/foafKnows.tsv"), format="ncol", directed = TRUE, weights = "no", names = "yes")
+
+gu <- read.graph(file("/tmp/foafKnows-undirected.tsv"), format="ncol", directed = FALSE, weights = "no", names = "yes")
+
+
+ranked <- tmp[rev(order(tmp[, "score"])),]
+ranked[1:50,]
+
+
+ranked <- tmp[rev(order(tmp[, "score"])),]
+ranked[1:50,]
+
+
+cms <- spinglass.community(gu, spins=5)
+
+
+########################################
+# tweet annotation
+
+java -jar -Xmx2g dbpedia-spotlight.jar en http://localhost:2222/rest
+

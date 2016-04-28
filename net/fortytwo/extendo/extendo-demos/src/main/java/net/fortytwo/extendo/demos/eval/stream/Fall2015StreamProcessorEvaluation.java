@@ -1,14 +1,14 @@
-package net.fortytwo.extendo.demos.eval;
+package net.fortytwo.extendo.demos.eval.stream;
 
-import edu.rpi.twc.sesamestream.BindingSetHandler;
-import edu.rpi.twc.sesamestream.QueryEngine;
-import edu.rpi.twc.sesamestream.SesameStream;
-import edu.rpi.twc.sesamestream.impl.QueryEngineImpl;
 import net.fortytwo.rdfagents.model.Dataset;
 import net.fortytwo.smsn.SemanticSynchrony;
 import net.fortytwo.smsn.rdf.Activities;
 import net.fortytwo.smsn.rdf.vocab.SmSnActivityOntology;
 import net.fortytwo.smsn.rdf.vocab.Timeline;
+import net.fortytwo.stream.StreamProcessor;
+import net.fortytwo.stream.sparql.SparqlStreamProcessor;
+import net.fortytwo.stream.sparql.impl.caching.CachingSparqlStreamProcessor;
+import net.fortytwo.stream.sparql.impl.shj.SHJSparqlStreamProcessor;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -40,17 +40,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * @author Joshua Shinavier (http://fortytwo.net)
  */
-public class NewSesameStreamEvaluation {
-    private static final Logger logger = SemanticSynchrony.getLogger(NewSesameStreamEvaluation.class);
+public class Fall2015StreamProcessorEvaluation {
+    private static final Logger logger = SemanticSynchrony.getLogger(Fall2015StreamProcessorEvaluation.class);
 
-    // with no delay, the system quickly becomes overloaded (the cleanup thread can't keep up)
-    private static final boolean NO_DELAY = false;
+    private enum ProcessorClass { SHJ, Caching }
 
     private static final String
             DEFAULT_NS = "http://example.org/defaultNs/";
@@ -100,30 +100,47 @@ public class NewSesameStreamEvaluation {
 
     static {
         random = new Random();
-        random.setSeed(System.currentTimeMillis());
+        random.setSeed(getNow());
     }
 
     private final List<Resource> people = new ArrayList<Resource>();
 
-    private final QueryEngineImpl queryEngine;
+    private SparqlStreamProcessor streamProcessor;
     private final List<EvalClient> clients;
 
+    // average time between handshakes for a random individual
+    // With a nonzero inter-event time, we try to simulate reality.
+    // with zero inter-event time, we test the throughput of the system
+    // the original system quickly became overloaded (the cleanup thread couldn't keep up)
     private int averageSecondsBetweenHandshakes;
+
+    private ProcessorClass processorClass;
     private int totalPeople;
     private int totalThreads;
     private int timeLimitSeconds;
     private Set<String> queries;
 
-    public NewSesameStreamEvaluation() {
+    public Fall2015StreamProcessorEvaluation() {
         clients = new LinkedList<EvalClient>();
-        //SesameStream.setDoPerformanceMetrics(true);
-        queryEngine = new QueryEngineImpl();
     }
 
     public void initialize()
-            throws QueryEngine.InvalidQueryException, IOException, QueryEngine.IncompatibleQueryException,
+            throws StreamProcessor.InvalidQueryException, IOException, StreamProcessor.IncompatibleQueryException,
             RDFParseException, RDFHandlerException {
         loadPeople();
+
+        switch (processorClass) {
+            case SHJ:
+                streamProcessor = new SHJSparqlStreamProcessor();
+                break;
+            case Caching:
+                streamProcessor = new CachingSparqlStreamProcessor();
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+
+        //streamProcessor.setDoPerformanceMetrics(true);
 
         int ppt = totalPeople/totalThreads;
         int extra = totalPeople - ppt*totalThreads;
@@ -140,23 +157,23 @@ public class NewSesameStreamEvaluation {
         // first, add queries
         if (queries.contains(FRIENDS)) {
             logger.info("adding 'friends in common' query");
-            queryEngine.addQuery(SesameStream.INFINITE_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES,
-                    new BindingSetHandler() {
+            streamProcessor.addQuery(StreamProcessor.INFINITE_TTL, QUERY_FOR_HANDSHAKE_COMMON_ACQUAINTANCES,
+                    new BiConsumer<BindingSet, Long>() {
                         @Override
-                        public void handle(BindingSet bindingSet) {
-                            Value person = bindingSet.getValue("person");
-                            handleHandshakeResult(bindingSet, FRIENDS, person);
+                        public void accept(BindingSet solution, Long expirationTime) {
+                            Value person = solution.getValue("person");
+                            handleHandshakeResult(solution, FRIENDS, person);
                         }
                     });
         }
         if (queries.contains(TOPICS)) {
             logger.info("adding 'topics in common' query");
-            queryEngine.addQuery(SesameStream.INFINITE_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS,
-                    new BindingSetHandler() {
+            streamProcessor.addQuery(StreamProcessor.INFINITE_TTL, QUERY_FOR_HANDSHAKE_COMMON_TOPICS,
+                    new BiConsumer<BindingSet, Long>() {
                         @Override
-                        public void handle(BindingSet bindingSet) {
-                            Value topic = bindingSet.getValue("topic");
-                            handleHandshakeResult(bindingSet, TOPICS, topic);
+                        public void accept(BindingSet solution, Long expirationTime) {
+                            Value topic = solution.getValue("topic");
+                            handleHandshakeResult(solution, TOPICS, topic);
                         }
                     });
         }
@@ -166,7 +183,7 @@ public class NewSesameStreamEvaluation {
     }
 
     private void loadPeople() throws IOException {
-        File f = new File("/tmp/sp2bench/people.txt");
+        File f = new File("/tmp/stream42/people.txt");
         if (!f.exists()) {
             throw new IllegalStateException();
         }
@@ -191,7 +208,7 @@ public class NewSesameStreamEvaluation {
     // note: this method may be called in a thread other than the one in which the
     // simulation loop is running.
     private void handleHandshakeResult(BindingSet bindingSet, String queryName, Value... otherValues) {
-        long now = System.currentTimeMillis();
+        long now = getNow();
         long timestamp;
 
         Value actor1 = bindingSet.getValue("actor1");
@@ -227,12 +244,12 @@ public class NewSesameStreamEvaluation {
     }
 
     private void addStaticData(int totalPeople) throws IOException, RDFParseException, RDFHandlerException {
-        long before = System.currentTimeMillis();
+        long before = getNow();
 
         RDFParser p = Rio.createParser(RDFFormat.NTRIPLES);
-        p.setRDFHandler(queryEngine.createRDFHandler(0));
+        p.setRDFHandler(streamProcessor.createRDFHandler(0));
 
-        File dir = new File("/tmp/sp2bench/" + totalPeople);
+        File dir = new File("/tmp/stream42/" + totalPeople);
         if (!dir.exists() || !dir.isDirectory()) {
             throw new IllegalStateException();
         }
@@ -249,7 +266,7 @@ public class NewSesameStreamEvaluation {
             }
         }
 
-        long after = System.currentTimeMillis();
+        long after = getNow();
         logger.info("loaded static dataset in " + (after - before) + "ms");
     }
 
@@ -267,7 +284,7 @@ public class NewSesameStreamEvaluation {
     }
 
     public void shutDown() {
-        queryEngine.shutDown();
+        streamProcessor.shutDown();
     }
 
     /**
@@ -285,10 +302,15 @@ public class NewSesameStreamEvaluation {
     }
 
     private static void mainPrivate(final String[] args)
-            throws QueryEngine.IncompatibleQueryException, IOException, QueryEngine.InvalidQueryException,
+            throws StreamProcessor.IncompatibleQueryException, IOException, StreamProcessor.InvalidQueryException,
             InterruptedException, RDFParseException, RDFHandlerException {
 
         Options options = new Options();
+
+        Option classOpt = new Option("c", "class", true, "stream processor class (SHJ/Caching, default: SHJ)");
+        classOpt.setArgName("CLASS");
+        classOpt.setRequired(false);
+        options.addOption(classOpt);
 
         Option threadsOpt = new Option("t", "threads", true, "number of worker threads (default: 1)");
         threadsOpt.setArgName("THREADS");
@@ -329,11 +351,12 @@ public class NewSesameStreamEvaluation {
             printUsageAndExit(options);
         }
 
+        ProcessorClass processorClass = ProcessorClass.valueOf(cmd.getOptionValue(classOpt.getOpt(), "SHJ"));
         int nThreads = Integer.valueOf(cmd.getOptionValue(threadsOpt.getOpt(), "1"));
         int totalPeople = Integer.valueOf(cmd.getOptionValue(peopleOpt.getOpt(), "100"));
         String queriesStr = cmd.getOptionValue(queriesOpt.getOpt(), "friends,topics");
-        int timeLimitSeconds = Integer.valueOf(cmd.getOptionValue(limitOpt.getOpt(), "0"));
-        int shakeTime = Integer.valueOf(cmd.getOptionValue(shakeTimeOpt.getOpt(), "180"));
+        int timeBetweenShakes = Integer.valueOf(cmd.getOptionValue(limitOpt.getOpt(), "0"));
+        int averageSecondsBetweenHandshakes = Integer.valueOf(cmd.getOptionValue(shakeTimeOpt.getOpt(), "180"));
         boolean verbose = cmd.hasOption(verboseOpt.getOpt());
 
         Set<String> queries = new HashSet<String>();
@@ -345,17 +368,18 @@ public class NewSesameStreamEvaluation {
             queries.add(query);
         }
 
-        NewSesameStreamEvaluation eval = new NewSesameStreamEvaluation();
+        Fall2015StreamProcessorEvaluation eval = new Fall2015StreamProcessorEvaluation();
         //eval.peoplePerThread = 100;
         //eval.totalThreads = 1;
         //eval.averageSecondsBetweenHandshakes = 3 * 60;
         //eval.timeLimitSeconds = 5 * 60;
         //eval.queries.add(FRIENDS);
         //eval.queries.add(TOPICS);
+        eval.processorClass = processorClass;
         eval.totalPeople = totalPeople;
         eval.totalThreads = nThreads;
-        eval.averageSecondsBetweenHandshakes = shakeTime;
-        eval.timeLimitSeconds = timeLimitSeconds;
+        eval.averageSecondsBetweenHandshakes = averageSecondsBetweenHandshakes;
+        eval.timeLimitSeconds = timeBetweenShakes;
         eval.queries = queries;
 
         eval.initialize();
@@ -386,7 +410,8 @@ public class NewSesameStreamEvaluation {
             this.id = id;
             this.localPeople = localPeople;
 
-            averageFrequency = localPeople.length / (2.0 * averageSecondsBetweenHandshakes * 1000);
+            averageFrequency = 0 == averageSecondsBetweenHandshakes
+                ? 0 : localPeople.length / (2.0 * averageSecondsBetweenHandshakes * 1000);
         }
 
         private void shake(long now) throws IOException {
@@ -410,13 +435,13 @@ public class NewSesameStreamEvaluation {
                     + actor1.stringValue() + "\t" + actor2.stringValue());
 
             Dataset d = Activities.datasetForHandshakeInteraction(now, actor1, actor2);
-            queryEngine.addStatements(HANDSHAKE_TTL, toArray(d));
+            streamProcessor.addInputs(HANDSHAKE_TTL, toArray(d));
         }
 
         private void waitAndShake() throws InterruptedException, IOException {
-            if (!NO_DELAY) {
+            if (0 != averageFrequency) {
                 // use clock time as simulation time
-                long now = System.currentTimeMillis();
+                long now = getNow();
 
                 long delay = timeToNextEvent(averageFrequency);
                 long nextEvent = lastEvent + delay;
@@ -431,7 +456,7 @@ public class NewSesameStreamEvaluation {
             }
 
             // note: this may not be exactly equal to nextEvent
-            lastEvent = System.currentTimeMillis();
+            lastEvent = getNow();
 
             shake(lastEvent);
         }
@@ -448,10 +473,14 @@ public class NewSesameStreamEvaluation {
         }
 
         public void stop() {
-            long now = System.currentTimeMillis();
+            long now = getNow();
             System.out.println(now + '\t' + id + "\tSTOPPED");
             stopped = true;
         }
+    }
+
+    private static long getNow() {
+        return System.currentTimeMillis();
     }
 
     /*

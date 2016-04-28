@@ -12,9 +12,10 @@ fi
 
 LINK=`readlink $0`
 if [ "$LINK" ]; then
-    DIR=`dirname $LINK`
+    DIR=`dirname ${LINK}`
 else
     DIR=`dirname $0`
 fi
 
-exec $JAVA $JAVA_OPTIONS -cp $DIR/target/classes:$DIR/"target/dependency/*" net.fortytwo.extendo.demos.eval.SesameStreamEvaluation $*
+DIR=${DIR}/../../../..
+exec ${JAVA} ${JAVA_OPTIONS} -cp ${DIR}/target/classes:${DIR}/"target/dependency/*" net.fortytwo.extendo.demos.eval.stream.Fall2015StreamProcessorEvaluation $*

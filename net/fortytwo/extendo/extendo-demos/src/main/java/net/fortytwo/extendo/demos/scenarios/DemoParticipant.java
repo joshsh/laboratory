@@ -35,6 +35,7 @@ import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,14 +80,14 @@ public class DemoParticipant {
         logger.info("sharing attention on " + focus);
 
         Dataset d = Activities.datasetForAttentionActivity(System.currentTimeMillis(), agent.getAgentUri(), focus);
-        agent.getQueryEngine().addInputs(SemanticSynchrony.GESTURE_TTL, toArray(d));
+        agent.getStreamProcessor().addInputs(SemanticSynchrony.GESTURE_TTL, toArray(d));
     }
 
     public DemoParticipant(final SmSnAgent agent,
                            final ExtendoHandControl exoHand,
                            final String listOfPeopleMet,
                            final String listOfThingsReceived)
-            throws RDFStreamProcessor.InvalidQueryException, IOException, StreamProcessor.IncompatibleQueryException,
+            throws StreamProcessor.InvalidQueryException, IOException, StreamProcessor.IncompatibleQueryException,
             OscControl.DeviceInitializationException, ExtendoBrainClient.ExtendoBrainClientException {
 
         this.agent = agent;
@@ -106,10 +107,11 @@ public class DemoParticipant {
             throw new IllegalStateException();
         }
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("point-to-known-person.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("point-to-known-person.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
                         Value indicatedName = b.getValue("indicatedName");
@@ -136,10 +138,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("point-to-my-group.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("point-to-my-group.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
                         Value indicatedName = b.getValue("indicatedName");
@@ -166,10 +169,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("point-to-thing-of-interest.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("point-to-thing-of-interest.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
                         Value name = b.getValue("name");
@@ -197,10 +201,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("point-to-thing-with-topic-of-interest.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("point-to-thing-with-topic-of-interest.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
                         Value topic = b.getValue("topic");
@@ -229,10 +234,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("point-to-thing-with-topic-of-publication.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("point-to-thing-with-topic-of-publication.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value actor = b.getValue("actor");
                         Value indicated = b.getValue("indicated");
                         Value topic = b.getValue("topic");
@@ -261,10 +267,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("my-takes.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("my-takes.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value thing = b.getValue("thing");
                         Value other = b.getValue("other");
                         Value otherName = b.getValue("otherName");
@@ -285,10 +292,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("my-handshakes.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("my-handshakes.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value person = b.getValue("person");
 
                         if (person instanceof URI) {
@@ -301,10 +309,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("my-handshakes-common-acquaintance.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("my-handshakes-common-acquaintance.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value other = b.getValue("other");
                         Value acquaintance = b.getValue("acquaintance");
                         Value acquaintanceName = b.getValue("acquaintanceName");
@@ -325,10 +334,11 @@ public class DemoParticipant {
                     }
                 });
 
-        agent.getQueryEngine().addQuery(
-                QUERY_TTL, loadQuery("my-handshakes-common-topic.rq"), new BindingSetHandler() {
+        agent.getStreamProcessor().addQuery(
+                QUERY_TTL, loadQuery("my-handshakes-common-topic.rq"),
+                new BiConsumer<BindingSet, Long>() {
                     @Override
-                    public void handle(BindingSet b) {
+                    public void accept(BindingSet b, Long expirationTime) {
                         Value other = b.getValue("other");
                         Value topic = b.getValue("topic");
                         Value topicLabel = b.getValue("topicLabel");

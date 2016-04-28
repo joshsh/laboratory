@@ -17,4 +17,5 @@ else
     DIR=`dirname $0`
 fi
 
-exec $JAVA $JAVA_OPTIONS -cp $DIR/target/classes:$DIR/"target/dependency/*" net.fortytwo.extendo.demos.eval.NewSesameStreamEvaluation $*
+DIR=${DIR}/../../../..
+exec $JAVA $JAVA_OPTIONS -cp ${DIR}/target/classes:${DIR}/"target/dependency/*" net.fortytwo.extendo.demos.eval.stream.SesameStreamEvaluation $*

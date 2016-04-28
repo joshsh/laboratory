@@ -103,7 +103,7 @@ public class MonitronLogger {
             ps.print('\t');
             ps.print(((GaussianData) data).getMean());
             ps.print('\t');
-            ps.print(((GaussianData) data).getVariance());
+            ps.print(((GaussianData) data).getStandardDeviation());
         } else {
             LOGGER.warning("data is of unknown type (" + data.getClass() + "): " + data);
         }
