@@ -23,7 +23,7 @@ statements.per.event <- 6
 #queries <- c("Friends", "Topics", "FriendsTopics")
 
 n.people <- 50 * 1:20
-n.threads <- c(1,2,4,8)
+n.threads <- 1:8
 queries <- c("Friends", "Topics", "FriendsTopics")
 
 all.params <- expand.grid(n.people=n.people,n.threads=n.threads,queries=queries)
@@ -105,16 +105,17 @@ to.result.latency <- function(n.results) {
   1000 * statements.per.event * time.limit / n.results
 }
 
+id <- function(x) {x}
 
 statements.by.people <- function(q, t) {
   df <- subset(all.statements, queries==q & n.threads==t)
-  agg <- aggregate(df$n.statements, list(key = df$n.people), sum)
+  agg <- stats::aggregate(df$n.statements, list(key = df$n.people), sum)
   data.frame(key=agg$key, total=agg$x)
 }
 
 results.by.people <- function(q, t) {
   df <- subset(all.results, queries==q & n.threads==t)
-  agg <- aggregate(df$n.results, list(key = df$n.people), sum)
+  agg <- stats::aggregate(df$n.results, list(key = df$n.people), sum)
   data.frame(key=agg$key, total=agg$x)
 }
 
@@ -122,7 +123,7 @@ results.per.query.by.people <- function(q, query.list, t) {
   out <- NULL
   for (q2 in query.list) {
     df <- subset(all.results, query==q2 & queries==q & n.threads==t)
-    agg <- aggregate(df$n.results, list(key = df$n.people), sum)
+    agg <- stats::aggregate(df$n.results, list(key = df$n.people), sum)
     rbind(out, data.frame(query=q2, key=agg$key, total=agg$x)) -> out
   }
   out
@@ -146,6 +147,7 @@ plot.aggregate <- function(func, filter, query, threads, xlab, ylab, main) {
   }
 }
 
+
 # plot rate
 plot.aggregate(statements.by.people, to.rate, "Friends", n.threads, "# people", "# statements / s", NULL)
 plot.aggregate(results.by.people, to.rate, "Friends", n.threads, "# people", "# results / s", NULL)
@@ -153,9 +155,6 @@ plot.aggregate(results.by.people, to.rate, "Friends", n.threads, "# people", "# 
 # plot latency
 plot.aggregate(statements.by.people, to.statement.latency, "Friends", n.threads, "# people", "input latency (ms)", NULL)
 plot.aggregate(results.by.people, to.result.latency, "Friends", n.threads, "# people", "output latency (ms)", NULL)
-
-
-df0 <- results.per.query.by.people("FriendsTopics", c("Friends", "Topics"), t)
 
 
 t <- 4
@@ -169,98 +168,47 @@ df <- results.by.people("FriendsTopics", 1)
 lines(x=df3$key, y=df3$rate, col="purple")
 
 
-
-
-
-
-
 ########################################
-# combine latency results with success probability
+# speedup
 
-###
-# imported from personal-equation.R
-
-pss <- 50
-jnd <- 110
-lag.mean <- 82
-lag.sd <- 24
-bt.mean <- 34
-bt.sd <- 10
-hand.offset <- 40
-# see ~/data/research/thesis/latency/wifi-pings
-wifi <- wifi.pings
-intgr.nat <- function(mu1,sd1,tcep) {
-    dom <- c(-1000:1000)
-    dist1 <- dnorm(dom, mean=mu1, sd=sd1)
-    mx <- max(dist1)
-    nw <- wifi + bt.mean + hand.offset + tcep
-    dist2 <- density(nw, from=min(dom), to=max(dom), n=length(dom))$y
-    # assuming unit increments on x axis
-    sum(dist1/mx*dist2)
-}
-# probability of synchrony, by tcep, based on sampled bias time
-pos.nat <- function(tcep) {
-    intgr.nat(pss,jnd,tcep)
+speedup.matrix <- function(query, func2) {
+  s1 <- func2(query, 1)
+  df <- data.frame(key=s1$key)
+  for (t in n.threads) {
+    sn <- func2(query, t)
+    sup <- data.frame(key=s1$key, speedup=(sn$total/(s1$total * t)))
+    data.frame(df, sup$speedup) -> df
+  }
+  df
 }
 
-###
+s <- speedup.matrix("Friends", statements.by.people)
+colnames(s) <- c("key", as.character(n.threads))
 
+
+##########
+# plot the speedup matrix
+
+library(reshape2)
 library(ggplot2)
-library(gridExtra)
-require(grid)
-
-# see http://people.duke.edu/~csm29/ggplot2/ggplot2.html
-interquartile <- function(x){
-    out <- quantile(x, probs = c(0.25, 0.5, 0.75))
-    names(out) <- c("ymin", "y", "ymax")
-    out
-}
-
-plot.by.query.new <- function(t) {
-  toplot <- subset(events.with.matches, threads==t)
-
-  ggplot(toplot, aes(x=size, y=latency, col = query, group = query))+
-    stat_summary(fun.data = "interquartile", geom = "errorbar", width=20.0)+
-    stat_summary(fun.y = 'median', geom='line', lwd=1.5) +
-    theme_bw() +
-    theme(legend.position="top", legend.title=element_blank(),
-      axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank(),
-      plot.margin=unit(c(0,0.5,0,0.5), "cm")) +
-    ylab(expression(paste("T"[CEP], " (ms)")))
-}
-
-plot.prob.by.query.prepare <- function(t) {
-  tmp <- subset(events.with.matches, threads==t)
-  data.frame(tmp, success=sapply(tmp$latency, pos.nat))
-}
-
-plot.prob.by.query <- function(toplot) {
-  ggplot(toplot, aes(x=size, y=success, col = query, group = query))+
-    stat_summary(fun.data = "interquartile", geom = "errorbar", width=20.0)+
-    stat_summary(fun.y = 'median', geom='line', lwd=1.5) +
-    theme_bw() +
-    theme(legend.position = "none", plot.margin=unit(c(0,0.5,0.5,0.5), "cm")) +
-    #guides(colour = guide_legend(override.aes = list(alpha = 0))) +
-    xlab(expression(paste("n = |G|/100 = ", f %.% 360,"s"))) +
-    ylab(expression("p"[CEP]))
-}
-
-pdf("/tmp/graphic.pdf", width=6.25, height=5.0)
-par(mar=c(0,0,0,0))
-  threads <- 4
-  #toplot <- plot.prob.by.query.prepare(threads)
-  p1 <- plot.by.query.new(threads)
-  p2 <- plot.prob.by.query(toplot)
-  grid.arrange(p1,p2,ncol = 1,padding=0)
-dev.off()
+dat <- matrix(rnorm(100, 3, 1), ncol=10)
+names(dat) <- paste("X", 1:10)
+dat2 <- melt(dat, id.var = "X1")
+ggplot(dat2, aes(as.factor(Var1), Var2, group=Var2)) +
+    geom_tile(aes(fill = value)) +
+    geom_text(aes(fill = dat2$value, label = round(dat2$value, 1))) +
+    scale_fill_gradient(low = "white", high = "red")
 
 
-########################################
-# look only at first responses
 
-# this makes only the slightest difference in response times
-# It is perhaps slightly more noticeable for the "both" runs.
-tmp <- subset(data.frame(events.with.matches, dup=duplicated(events.with.matches$eventtime)), dup==FALSE)
-bk <- events.with.matches
-events.with.matches <- tmp
+mat <- speedup.matrix("Friends", statements.by.people)#[,-1]
+colnames(mat) <- c("key", as.character(n.threads))
+#names(dat) <- paste("X", 1:10)
+mat2 <- melt(mat, id.var = "key")
+ggplot(mat2, aes(as.factor(key), as.factor(variable), group=variable)) +
+    geom_tile(aes(fill = value)) +
+    #geom_text(aes(fill = mat2$value, label = round(mat2$value, 1))) +
+    scale_fill_gradient(low = "white", high = "blue") +
+    xlab("dataset size (??)") +
+    ylab("total threads")
 
