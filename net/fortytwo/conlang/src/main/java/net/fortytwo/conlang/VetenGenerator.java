@@ -14,21 +14,6 @@ import java.util.Random;
  * @author Joshua Shinavier (http://fortytwo.net)
  */
 public class VetenGenerator {
-    private static final List<String> vowels;
-    private static final List<String> consonants;
-    private static final List<String> suffixes;
-    private static final Map<String, Double> medialConsonants;
-
-    static {
-        try {
-            vowels = getLines("vowels.txt");
-            consonants = getLines("consonants.txt");
-            suffixes = getLines("suffixes.txt");
-            medialConsonants = getMap("medial-consonants.txt");
-        } catch (IOException e) {
-            throw new ExceptionInInitializerError(e);
-        }
-    }
 
     private static final Random RANDOM = new Random();
 
@@ -45,77 +30,93 @@ public class VetenGenerator {
     private static void generateWords() throws Exception {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < 50; i++) {
-            if (RANDOM.nextDouble() > 0.4) {
-                sb.append(randomNoun());
-            } else {
-                sb.append(randomParticle());
-            }
+        for (int j = 0; j < 20; j++) {
+            for (int i = 0; i < 30; i++) {
+                if (RANDOM.nextDouble() > 0.4) {
+                    sb.append(randomNoun());
+                } else {
+                    sb.append(randomParticle());
+                }
 
-            sb.append(" ");
+                sb.append(" ");
+            }
+            sb.append("\n");
         }
 
         System.out.println(sb.toString());
     }
 
-    private static String randomNoun() {
+    private static String randomSingleInitialConsonant() {
+        return Phonemes.SINGLE_INITIAL_CONSONANTS.getRandom();
+    }
+
+    private static String randomPairedInitialConsonant() {
+        return Phonemes.PAIRED_INITIAL_CONSONANTS.getRandom();
+    }
+
+    private static String randomInitialConsonant() {
+        return RANDOM.nextDouble() > 0.5
+                ? randomSingleInitialConsonant()
+                : randomPairedInitialConsonant();
+    }
+
+    private static String randomSingleFinalConsonant() {
+        return Phonemes.SINGLE_FINAL_CONSONANTS.getRandom();
+    }
+
+    private static String randomPairedFinalConsonant() {
+        return Phonemes.PAIRED_FINAL_CONSONANTS.getRandom();
+    }
+
+    private static String randomShortVowel() {
+        return Phonemes.SHORT_VOWELS.getRandom();
+    }
+
+    private static String randomLongVowel() {
+        return RANDOM.nextDouble() > 0.5
+                ? Phonemes.LONG_VOWELS.getRandom()
+                : Phonemes.DIPHTHONGS.getRandom();
+    }
+
+    private static String randomNounStem() {
         StringBuilder sb = new StringBuilder();
 
         if (RANDOM.nextDouble() > 0.25) {
-            sb.append(chooseRandom(consonants));
+            sb.append(randomInitialConsonant());
         }
 
-        sb.append(chooseRandom(vowels));
-
-        if (RANDOM.nextDouble() > 0.25) {
-            sb.append(chooseRandom(medialConsonants, 3));
-            sb.append(chooseRandom(suffixes));
+        if (RANDOM.nextDouble() > 0.5) {
+            sb.append(randomShortVowel()).append(randomPairedFinalConsonant());
+        } else {
+            sb.append(randomLongVowel()).append(randomSingleFinalConsonant());
         }
 
         return sb.toString();
+    }
+
+    private static String randomNoun() {
+        return randomNounStem() + (RANDOM.nextDouble() > 0.25
+                ? Phonemes.NOUN_SUFFIXES.getRandom()
+                : Phonemes.VERB_SUFFIXES.getRandom());
     }
 
     private static String randomParticle() {
         StringBuilder sb = new StringBuilder();
 
         if (RANDOM.nextDouble() > 0.25) {
-            sb.append(chooseRandom(consonants));
+            sb.append(randomInitialConsonant());
         }
 
-        sb.append(chooseRandom(vowels));
-
-        if (RANDOM.nextDouble() > 0.25) {
-            sb.append(chooseRandom(consonants));
+        if (RANDOM.nextDouble() > 0.5) {
+            sb.append(randomLongVowel());
+        } else {
+            sb.append(randomShortVowel());
+            if (RANDOM.nextDouble() > 0.5) {
+                sb.append(randomSingleFinalConsonant());
+            }
         }
 
         return sb.toString();
-    }
-
-    private static void generatePairs() throws Exception {
-        for (String f : consonants) {
-            System.out.println(f);
-            for (String s : consonants) {
-                if (!s.equals(f)) {
-                    System.out.println(f + s);
-                }
-            }
-        }
-    }
-
-    private static String chooseRandom(final List<String> options) {
-        return options.get(RANDOM.nextInt(options.size()));
-    }
-
-    private static String chooseRandom(final Map<String, Double> options,
-                                       final double min) {
-        String[] keys = new String[options.size()];
-        options.keySet().toArray(keys);
-        while (true) {
-            String o = keys[RANDOM.nextInt(keys.length)];
-            if (options.get(o) >= min) {
-                return o;
-            }
-        }
     }
 
     private static Map<String, Double> getMap(final String fileName) throws IOException {
