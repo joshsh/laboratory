@@ -11,9 +11,6 @@ import org.restlet.resource.Directory;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class CSHALSDemo {
     private final Sail sail;
 

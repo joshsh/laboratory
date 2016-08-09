@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class PhonemeCollection {
     private static final Random random = new Random();
 

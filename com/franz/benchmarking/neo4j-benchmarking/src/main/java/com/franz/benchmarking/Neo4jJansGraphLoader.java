@@ -9,9 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Neo4jJansGraphLoader {
     private static final String NODE_URI_PREFIX = "http://franz.com/node-";
 

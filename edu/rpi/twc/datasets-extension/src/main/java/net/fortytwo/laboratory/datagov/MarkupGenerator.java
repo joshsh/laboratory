@@ -21,9 +21,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class MarkupGenerator {
     private static final String PREFIX = "http://logd.tw.rpi.edu/demo/datasets/";
 //    private static final String PREFIX = "http://flux.franz.com/tmp/datasets/";

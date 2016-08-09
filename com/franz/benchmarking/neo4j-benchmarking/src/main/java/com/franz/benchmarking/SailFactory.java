@@ -7,9 +7,6 @@ import org.openrdf.sail.nativerdf.NativeStore;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SailFactory {
     public Sail createSail(final String type,
                            final String directory) {

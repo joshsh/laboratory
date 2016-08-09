@@ -4,9 +4,6 @@ import com.tinkerpop.blueprints.impls.neo4j.Neo4jGraph;
 import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class GraphFactory {
     public static TinkerGraph createTinkerGraph() {
         return new TinkerGraph();

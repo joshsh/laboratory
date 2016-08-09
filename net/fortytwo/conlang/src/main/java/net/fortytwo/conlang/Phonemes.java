@@ -1,8 +1,5 @@
 package net.fortytwo.conlang;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Phonemes {
 
     public static final PhonemeCollection SINGLE_INITIAL_CONSONANTS = new PhonemeCollection(

@@ -47,9 +47,6 @@ import java.util.Set;
 
 import static junit.framework.Assert.*;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public abstract class SailTest {
     protected Sail sail = null;
     protected ForwardChainingRDFSInferencer inferencer;

@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class VetenGenerator {
 
     private static final Random RANDOM = new Random();

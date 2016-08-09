@@ -35,9 +35,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SP2BenchQueries {
 
     private final Map<String, String> queryStrings;

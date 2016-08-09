@@ -6,9 +6,6 @@ import com.tinkerpop.blueprints.oupls.sail.SailLoader;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SailLoaderExample {
     public static void main(final String[] args) throws Exception {
         new SailLoaderExample().loadFile();

@@ -11,9 +11,6 @@ import org.openrdf.repository.sail.SailRepositoryConnection;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class BatchLoadingTest {
     @Test
     public void testBatchLoading() throws Exception {

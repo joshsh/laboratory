@@ -7,9 +7,6 @@ import java.io.FileReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class DatasetMetadataDeduplicator {
     public static void main(final String[] args) throws Exception {
         OutputStream out = new FileOutputStream(new File("/tmp/watson-dedup.csv"));

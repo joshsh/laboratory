@@ -9,9 +9,6 @@ import org.openrdf.query.TupleQueryResult;
 
 import java.util.Random;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class StardogTesting {
 
     private static final String NODE_URI_PREFIX = "http://franz.com/node-";

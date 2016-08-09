@@ -15,9 +15,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class DBPediaSpreadVector implements WeightedVectorApproximation<Resource, HandlerException> {
 //    private static final double DECAY = 0.1;
     private static final double DECAY = 0.85;

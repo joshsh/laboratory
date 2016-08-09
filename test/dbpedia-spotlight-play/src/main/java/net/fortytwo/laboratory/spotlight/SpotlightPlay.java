@@ -9,9 +9,6 @@ import org.dbpedia.spotlight.model.SpotlightFactory;
 import org.dbpedia.spotlight.spot.Spotter;
      */
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SpotlightPlay {
     public static void main(final String[] args) throws Exception {
         /*

@@ -28,9 +28,6 @@ import java.net.URL;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public abstract class GraphSailTest extends SailTest {
     protected abstract KeyIndexableGraph createGraph() throws Exception;
 

@@ -5,9 +5,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class TmpForRon {
     private static final MessageDigest SHA1_DIGEST;
 

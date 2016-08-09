@@ -17,9 +17,6 @@ import org.openrdf.repository.Repository;
 import org.openrdf.repository.http.HTTPRepository;
 import org.openrdf.sail.Sail;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Virtuoso2Gremlin {
     static {
         Gremlin.load();

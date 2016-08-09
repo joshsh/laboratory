@@ -28,9 +28,6 @@ vim tweets.txt
 
  */
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SpotlightTweetAnnotator {
     private static final String TWEET_FILE = "/tmp/tweets.txt";
     private static final boolean VERBOSE = true;

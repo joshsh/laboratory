@@ -6,9 +6,6 @@ import net.fortytwo.laboratory.GraphFactory;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class TitanGraphSailTest extends GraphSailTest {
     protected KeyIndexableGraph createGraph() throws Exception {
         GraphFactory f = new GraphFactory();

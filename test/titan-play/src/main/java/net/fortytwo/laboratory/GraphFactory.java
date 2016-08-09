@@ -8,9 +8,6 @@ import org.apache.commons.configuration.Configuration;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class GraphFactory {
     public TinkerGraph createTinkerGraph() {
         return new TinkerGraph();

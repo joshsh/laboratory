@@ -16,9 +16,6 @@ import org.openrdf.sail.SailConnection;
 import org.openrdf.sail.SailException;
 import org.openrdf.sail.inferencer.fc.ForwardChainingRDFSInferencer;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class TinkerGraphSailPlay {
     public static void main(final String[] args) throws Exception {
         inferencePlay();

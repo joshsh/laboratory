@@ -11,9 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class JmxClient {
     public static void main(final String[] args) {
         try {

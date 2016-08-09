@@ -12,9 +12,6 @@ import org.apache.commons.configuration.Configuration;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class TitanSailLoaderExample {
     public static void main(final String[] args) throws Exception {
         new TitanSailLoaderExample().loadFile();

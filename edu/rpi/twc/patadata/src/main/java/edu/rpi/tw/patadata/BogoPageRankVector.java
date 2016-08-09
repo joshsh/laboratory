@@ -7,9 +7,6 @@ import net.fortytwo.flow.rdf.ranking.WeightedVectorApproximation;
 import org.openrdf.model.Resource;
 import org.openrdf.sail.SailConnection;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class BogoPageRankVector implements WeightedVectorApproximation<Resource, HandlerException> {
     private static final int CYCLES_PER_SEED = 100;
     

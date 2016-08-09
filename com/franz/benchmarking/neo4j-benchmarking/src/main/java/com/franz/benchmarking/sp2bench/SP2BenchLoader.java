@@ -37,9 +37,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SP2BenchLoader {
     private static final long BUFFER_SIZE = 1000;
 

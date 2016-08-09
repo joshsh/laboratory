@@ -18,9 +18,6 @@ import org.openrdf.sail.SailException;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class TitanGraphSailPlay {
     public static void main(final String[] args) throws Exception {
         Configuration conf = new BaseConfiguration();

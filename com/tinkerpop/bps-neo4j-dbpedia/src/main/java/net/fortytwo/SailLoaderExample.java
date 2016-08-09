@@ -7,9 +7,6 @@ import org.openrdf.sail.Sail;
 
 import java.io.File;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SailLoaderExample {
     public static void main(final String[] args) throws Exception {
         Neo4jGraph g = new Neo4jGraph("/tmp/wordnet/neo4j");

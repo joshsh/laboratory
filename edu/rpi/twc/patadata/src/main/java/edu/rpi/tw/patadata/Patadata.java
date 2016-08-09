@@ -31,9 +31,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Patadata {
     private static final String DBR = "http://dbpedia.org/resource/";
     private static final URI

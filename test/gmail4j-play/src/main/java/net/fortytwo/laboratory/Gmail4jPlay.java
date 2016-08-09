@@ -17,9 +17,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Gmail4jPlay {
     private static final String
             GMAIL_USERNAME = "gmail.username",

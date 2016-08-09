@@ -10,9 +10,6 @@ import org.neo4j.kernel.impl.util.StringLogger;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Neo4jJansGraphCypherBenchmark {
     private static final int ITERATIONS = 10000;
 

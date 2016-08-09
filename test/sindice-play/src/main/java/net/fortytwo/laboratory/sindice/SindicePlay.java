@@ -16,9 +16,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class SindicePlay {
     private void findOccurrences() throws Exception {
         Sindice sindice = new Sindice();

@@ -13,9 +13,6 @@ import org.openrdf.model.impl.URIImpl;
 import org.openrdf.sail.SailConnection;
 import org.openrdf.sail.SailException;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class CypherPlay {
     public static void main(final String[] args) {
         try {

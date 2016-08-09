@@ -13,9 +13,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Joshua Shinavier (http://fortytwo.net)
- */
 public class Neo4jLUBMLoader {
     public static void main(final String[] args) {
         try {
