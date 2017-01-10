@@ -10,6 +10,7 @@ if ( len(sys.argv) >= 3 ):
     host = sys.argv[1]
     port = int(sys.argv[2])
 else:
+    # if in doubt, use 0.0.0.0
     host = '0.0.0.0'
     port = 8080
 
