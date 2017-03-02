@@ -25,6 +25,8 @@ class MyApplication(web.application):
 class test:
     def GET(self):
         return 'Hello, World!'
+    def POST(self):
+        return "Received: " + web.data()
 
 app = MyApplication(urls, globals())
 

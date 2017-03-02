@@ -26,7 +26,10 @@ write.csv(df, file("/tmp/example.csv"), row.names=FALSE, quote=FALSE)
                 //TextIO.Read.from("file:///tmp/example.csv"));
                 TextIO.Read.from("file:///Users/josh/projects/fortytwo/laboratory/test/beam-play/src/test/resources/net/fortytwo/beam/session-data.csv"));
 
-        lines
+        PCollection<String> first = lines
+                .apply(ParDo.of(new DebugDoFn()));
+
+        PCollection<Object> next = lines
                 .apply(ParDo.of(new ParseEventDoFn()))
                 .apply(Window.into(Sessions.withGapDuration(Duration.millis(10))))
                 .apply(GroupByKey.create())
@@ -35,6 +38,15 @@ write.csv(df, file("/tmp/example.csv"), row.names=FALSE, quote=FALSE)
 
     private Pipeline createPipeline(final String[] args) {
         return Pipeline.create(PipelineOptionsFactory.fromArgs(args).create());
+    }
+
+    private static class DebugDoFn extends DoFn<String, String> {
+        @ProcessElement
+        public void processElement(ProcessContext c) {
+            String line = c.element();
+            System.out.println("got a line: " + line);
+            c.output(line);
+        }
     }
 
     private static class ParseEventDoFn extends DoFn<String, KV<String, Event>> {
