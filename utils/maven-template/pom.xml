@@ -22,9 +22,9 @@
     <properties>
         <smsn.version>1.2</smsn.version>
         <ripple.version>1.5</ripple.version>
-        <sesame.version>4.1.2</sesame.version>
+        <rdf4j.version>2.2.2</rdf4j.version>
         <sesametools.version>1.10</sesametools.version>
-        <tinkerpop.version>3.2.3</tinkerpop.version>
+        <tinkerpop.version>3.2.5</tinkerpop.version>
         <junit.version>4.12</junit.version>
     </properties>
 
