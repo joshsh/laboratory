@@ -1,0 +1,15 @@
+thingNamespace: http://fortytwo.net/josh/things/
+
+services:
+  agentIri: http://fortytwo.net/josh/things/SBZFumn
+  server:
+    host: localhost
+    port: 8182
+    graph: joshkb
+  music:
+    host: 127.0.0.1
+    port: 42903
+
+#net.fortytwo.extendo.baseURI = http://fortytwo.net/people/josh/kb/
+brainstream: 8mlQ1I5
+

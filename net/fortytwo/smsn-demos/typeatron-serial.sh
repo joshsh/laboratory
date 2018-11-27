@@ -17,4 +17,4 @@ else
     DIR=`dirname $0`
 fi
 
-exec $JAVA $JAVA_OPTIONS -cp $DIR/target/classes:$DIR/"target/dependency/*" net.fortytwo.extendo.demos.TypeatronSerial $*
+exec $JAVA $JAVA_OPTIONS -cp $DIR/target/classes:$DIR/"target/dependency/*" net.fortytwo.smsn.demos.TypeatronSerial $*

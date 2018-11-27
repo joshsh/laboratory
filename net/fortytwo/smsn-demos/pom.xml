@@ -12,7 +12,7 @@
     <description>tests and demos of the Semantic Synchrony platform</description>
 
     <properties>
-        <smsn.version>1.1-SNAPSHOT</smsn.version>
+        <smsn.version>1.5-SNAPSHOT</smsn.version>
         <freetts.version>1.2.1</freetts.version>
         <!--<ripple.version>1.1</ripple.version>
         <sesame.version>2.7.10</sesame.version>
