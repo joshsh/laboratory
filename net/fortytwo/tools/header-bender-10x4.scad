@@ -27,6 +27,9 @@ L = max(nrows, ncols, nstacks) * holeSpacing;
 e = shrinkageError;
 D = correct(idealHoleDiameter);
 holeDiameter = (D + e * L) / (1 - e);
+// A smaller hole, allowing less error
+e2 = shrinkageError / 2;
+holeDiameter2 = (D + e2 * L) / (1 - e2);
 
 cornerRadius = holeDiameter / 2;
 // Just small enough that another row of pins can slide in beyond the border
@@ -129,8 +132,7 @@ module blank() {
   //originReference();
 }
 
-module holes(rows, cols, thickness, coneDepth) {
-  r = holeDiameter / 2;
+module holes(r, rows, cols, thickness, coneDepth) {
   r2 = sqrt(2*holeSpacing*holeSpacing) / 2;
   t = thickness + 2 * overflow;
   for (i=[0:(rows-1)]) {
@@ -150,13 +152,13 @@ module holes(rows, cols, thickness, coneDepth) {
 }
 
 module verticalHoles() {
-  holes(nrows, ncols, thickness, 0);
+  holes(holeDiameter / 2, nrows, ncols, thickness, 0);
 }
 
 module horizontalHoles() {
   rotate([90,0,0]) {
     translate([0,0,-height]) {
-      holes(nstacks, ncols, height, 0);
+      holes(holeDiameter2 / 2, nstacks, ncols, height, 0);
     }
   }
 }
@@ -164,7 +166,7 @@ module horizontalHoles() {
 module transverseHoles() {
   rotate([90,0,0]) {
     rotate([0,90,0]) {
-      holes(nstacks, nrows, width, funnelDepth);
+      holes(holeDiameter / 2, nstacks, nrows, width, funnelDepth);
     }
   }
 }
