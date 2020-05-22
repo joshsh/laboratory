@@ -10,7 +10,7 @@ garden shed, and "right" toward the patio area.
 
 All measurements are in centimeters.
 */
-
+           
 apron = 200; // TODO; use the actual boundaries of our plot
 smidge = 3;
 
@@ -29,6 +29,10 @@ backWallOffset = 393+317; // measured in two steps with a measuring tape (refere
 
 balconyCeilingOffset = 31; // distance from the top of the balcony arch to the (non-sloping) ceiling
 balconyRightLimit = centralPostOffset-2.5; // measured with a ruler
+
+bathDoorOffset = 9.5; // distance from the back face of the living room back wall to the moving part (of the door leading from the balcony to the master bath area), measured with a ruler
+bathDoorWidth = 76; // width of the moving part, measured with a tape
+bathDoorHeight = 204; // from the tiled floor to the top of the moving part, measured with a tape
 
 dividerCeilingOffset = 94; // height of the segment of wall dividing the two portions of the sloped ceiling
 
@@ -49,6 +53,11 @@ frontPorchStep1Depth = 13.5; // first step down from the porch is this deep
 frontPorchStep1Length = 153; // from outer surface of middle front wall to edge of 1st step down from front porch
 frontPorchStep2Depth = 27; // second step down from the porch (onto the walkway) is this deep
 
+guestBathroomDoorOffset = 9; // distance, while standing inside of the bathroom, from the front face of the living room back wall to the moving part of the door, measured with a ruler
+guestBathroomDoorWidth = 66; // width of the moving part, measured with a tape
+guestBathroomDoorHeight = 204; // from the floor to the top of the moving part, measured with a tape
+
+kidRoomRightWallOffset = 103; // from 2nd floor origin to right face of kid room right wall, measured with a tape
 kitchenRightWallOffset = 597; // with a measuring tape from the reference datum on the ground floor to the left face of the right outer wall
 
 livingRoomRightCeilingHeight = 263; // distance from the floor to the sloped ceiling on the far right side of the living room
@@ -73,6 +82,17 @@ stairwellOffset = 345; // with a measuring tape; distance from the reference dat
 studyLeftWallOffset = 315+2+2+72; // distance between the right face of the left outer wall and the left face of the left inner wall
 studyRightWallThickness = 12; // measured with a ruler
 
+studyWindowCeilingOffset = 32; // ceiling to interior moulding around the window, measured with a tape
+studyWindowHeight = 97; // outer dimension of the interior moulding around the window, measured with a tape
+studyWindowLeftWallOffset = 74; // from right face of study left wall to outside of interior moulding around the window, with a measuring tape
+studyWindowWidth = 129; // outer dimension of the interior moulding around the window, measured with a tape
+studyArchOffset = 134; // from reference datum Y to back face of study room arch, measured with a tape
+studyDoorLeftOffset = 6.5; // distance from the kids' room right wall to the moving part, measured with a ruler
+studyDoorWidth = 76.5; // dimension of the moving part, measured with a tape
+studyDoorHeight = 205; // from the floor to the top of the moving part, measured with a tape
+
+studyBackWallOffset = 38; // from front face of study room arch to front face of study room back wall, measured with a tape
+
 windowBase = 61;
 windowHeight = 146;
 windowLength = 134;
@@ -94,6 +114,9 @@ livingRoomRightWallThickness = entryFrontWallThickness;
 kitchenRightWallThickness = entryFrontWallThickness;
 studyLeftWallThickness = entryFrontWallThickness;
 studyFrontWallThickness = entryFrontWallThickness;
+studyArchThickness = livingRoomBackWallThickness;
+studyBackWallThickness = livingRoomBackWallThickness;
+kidRoomRightWallThickness = livingRoomBackWallThickness;
 
 // back left corner of the house at exterior ground level
 backLeftX = -studyRightWallThickness-studyLeftWallOffset-studyLeftWallThickness;
@@ -143,6 +166,21 @@ module groundFloor() {
   }
 }
 
+module kidRoomRightWall() {
+  length = backWallOffset+kitchenBackWallThickness+studyArchOffset+studyArchThickness+studyBackWallOffset;
+  translate([-kidRoomRightWallOffset-kidRoomRightWallThickness, 0, firstFloorHeight]) {
+    difference() {
+      translate([0, backLeftY, 0]) {
+        color("white")
+        cube(size=[kidRoomRightWallThickness, length, secondFloorHeight]);
+      }
+      translate([-smidge, livingRoomBackWallThickness+guestBathroomDoorOffset, 0]) {
+        cube(size=[kidRoomRightWallThickness+2*smidge, guestBathroomDoorWidth, guestBathroomDoorHeight]);
+      }
+    }
+  }
+}
+
 module kitchenBackWall() {
   translate([backLeftX, backLeftY, backLeftZ]) {
     color("white")
@@ -170,8 +208,8 @@ module livingRoomBackWall() {
       color("white")
       cube(size=[houseWidth, livingRoomBackWallThickness, wallHeight]);
     }
-    union() {
-      translate([0, -smidge, 0]) {
+    translate([0, -smidge, 0]) {
+      union() {
         // arch under the balcony
         cube(size=[centralPostOffset, livingRoomBackWallThickness + 2*smidge, firstFloorCeilingHeight]);
         // arch above the balcony
@@ -181,6 +219,10 @@ module livingRoomBackWall() {
         // arch connecting the living room and dining room
         translate([centralPostOffset+centralPostWidth, 0, 0]) {
           cube(size=[kitchenRightWallOffset-(centralPostOffset+centralPostWidth), livingRoomBackWallThickness + 2*smidge, firstFloorCeilingHeight]);
+        }
+        // arch leading from the balcony to the study room
+        translate([-kidRoomRightWallOffset, 0, firstFloorHeight]) {
+          cube(size=[kidRoomRightWallOffset-studyRightWallThickness, livingRoomBackWallThickness + 2*smidge, secondFloorHeight+smidge]);
         }
       }
     }
@@ -207,13 +249,19 @@ module livingRoomFrontWall() {
 module livingRoomLeftWall() {
   translate([entryFrontWallWidth-livingRoomLeftWallThickness, livingRoomBackWallThickness, 0]) {
     difference() {
-      translate([0, 0, -groundDip]) {
+      translate([0, -livingRoomBackWallThickness+backLeftY, -groundDip]) {
         color("white")
-        cube(size=[livingRoomLeftWallThickness, entryLength-livingRoomBackWallThickness+entryFrontWallThickness+livingRoomLeftWallLength, wallHeight]);
+        cube(size=[livingRoomLeftWallThickness, -backLeftY+entryLength+entryFrontWallThickness+livingRoomLeftWallLength, wallHeight]);
       }
-      // arch between entry room and living room
       translate([-smidge, 0, 0]) {
-        cube(size=[livingRoomLeftWallThickness + 2*smidge, entryLength-livingRoomBackWallThickness, totalHeight-dividerCeilingOffset]);
+        union() {
+          // arch between entry room and living room
+          cube(size=[livingRoomLeftWallThickness + 2*smidge, entryLength-livingRoomBackWallThickness, totalHeight-dividerCeilingOffset]);
+          // door to master bath area
+          translate([0, -livingRoomBackWallThickness-bathDoorOffset-bathDoorWidth, firstFloorHeight]) {
+            cube(size=[livingRoomLeftWallThickness + 2*smidge, bathDoorWidth, bathDoorHeight]);
+          }
+        }
       }
     }
   }
@@ -233,8 +281,7 @@ module livingRoomSlopedCeiling() {
   angle = atan(dh/dl);
   translate([0, -smidge, totalHeight]) {
     rotate([0,angle,0]) {
-    //rotate([0,15,0]) {
-      color("blue")
+      color("white")
       cube(size=[1000, 600, 500]);
     }
   }
@@ -276,15 +323,35 @@ module secondFloor() {
   }
 }
 
+module studyArch() {
+  translate([-kidRoomRightWallOffset, studyArchOffset, firstFloorHeight]) {
+    difference() {
+      color("white")
+      cube(size=[kidRoomRightWallOffset, studyArchThickness, secondFloorHeight]);
+      translate([studyDoorLeftOffset, -smidge, 0]) {
+        cube(size=[studyDoorWidth, studyArchThickness+2*smidge, studyDoorHeight]);
+      }
+    }
+  }
+}
+
 module studyBackWall() {
-  //color("white")
-  // TODO
+  translate([backLeftX+studyLeftWallThickness, studyArchOffset+studyArchThickness+studyBackWallOffset-studyBackWallThickness, firstFloorHeight]) {
+    color("white")
+    cube(size=[studyLeftWallOffset-kidRoomRightWallOffset, studyBackWallThickness, secondFloorHeight]);
+  }
 }
 
 module studyFrontWall() {
-  translate([-studyRightWallThickness-studyLeftWallOffset-studyLeftWallThickness, studyRightWallLength, firstFloorHeight]) {
-    color("white")
-    cube(size=[studyRightWallThickness+studyLeftWallOffset+studyLeftWallThickness, studyFrontWallThickness, secondFloorHeight]);
+  difference() {
+    translate([-studyRightWallThickness-studyLeftWallOffset-studyLeftWallThickness, studyRightWallLength, firstFloorHeight]) {
+      color("white")
+      cube(size=[studyRightWallThickness+studyLeftWallOffset+studyLeftWallThickness, studyFrontWallThickness, secondFloorHeight]);
+    }
+    // front window of the study
+    translate([backLeftX+studyLeftWallThickness+studyWindowLeftWallOffset, studyRightWallLength-smidge, totalHeight-studyWindowCeilingOffset-studyWindowHeight]) {
+      cube(size=[studyWindowWidth, studyFrontWallThickness + 2*smidge, studyWindowHeight]);
+    }
   }
 }
 
@@ -323,26 +390,31 @@ module studyRightWall() {
 }
 
 module walls() {
- difference() {
- //union() {
-   union() {
-     entryFrontWall();
+  union() {
+    kitchenBackWall();
+    kitchenRightWall();
 
-     kitchenBackWall();
-     kitchenRightWall();
+    difference() {
+      union() {
+        entryFrontWall();
 
-     livingRoomBackWall();
-     livingRoomFrontWall();
-     livingRoomRightWall();
-     livingRoomLeftWall();
+        livingRoomBackWall();
+        livingRoomFrontWall();
+        livingRoomRightWall();
+        livingRoomLeftWall();
+      }
 
-     studyBackWall();
-     studyFrontWall();
-     studyRightWall();
-     studyLeftWall();
-   }
-   livingRoomSlopedCeiling();
- }
+      livingRoomSlopedCeiling();
+    }
+
+    studyArch();
+    studyBackWall();
+    studyFrontWall();
+    studyRightWall();
+    studyLeftWall();
+
+    kidRoomRightWall();
+  }
 }
 
 union() {
