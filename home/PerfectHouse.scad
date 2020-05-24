@@ -22,8 +22,11 @@ roomWidth = 193;
 secondFloorHeight = 243;
 wallThickness = 12;
 
-centralPostOffset = 193; // with measuring tape from reference datum to left face of the cental post, disregarding moulding
-centralPostWidth = 17.5; // with a ruler, in the right-left direction
+airConditionerLeftOffset = 32; // distance from the left surface of the garage left wall to the concrete block on which the AC unit sits. Measured (roughly while carrying a baby) with a tape
+airConditionerFrontOffset = 20; // distance from the back surface of the laundry room back wall to the concrete block on which the AC unit sits. Measured (roughly while carrying a baby) with a tape
+airConditionerLength = 89; // length of the concrete block on which the AC unit sits. Measured with a tape
+airConditionerWidth = 89; // width of the concrete block on which the AC unit sits. Measured with a tape.
+airConditionerHeight = 87; // total height of the AC unit and the concrete block on which it sits. Very imprecise due to the ill-defined ground level around the AC unit, which is buried in wood chips.
 
 backWallOffset = 393+317; // measured in two steps with a measuring tape (reference datum y to start of wooden flooring in master bedroom, and from there to the back wall, ignoring moulding)
 
@@ -33,6 +36,13 @@ balconyRightLimit = centralPostOffset-2.5; // measured with a ruler
 bathDoorOffset = 9.5; // distance from the back face of the living room back wall to the moving part (of the door leading from the balcony to the master bath area), measured with a ruler
 bathDoorWidth = 76; // width of the moving part, measured with a tape
 bathDoorHeight = 204; // from the tiled floor to the top of the moving part, measured with a tape
+
+centralPostOffset = 193; // with measuring tape from reference datum to left face of the cental post, disregarding moulding
+centralPostWidth = 17.5; // with a ruler, in the right-left direction
+
+chimneyBaseWidth = 53; // width of the bottom-most part of the chimney, measured with a tape
+chimneyBaseLength = 148; // length of the bottom-most part of the chimney, measured with a tape
+chimneyBaseHeight = 77; // height of the bottom-most part of the chimney, measured with a tape. This part is roughly box-shaped, whereas the upper parts of the chimney become less regular.
 
 dividerCeilingOffset = 94; // height of the segment of wall dividing the two portions of the sloped ceiling
 
@@ -58,6 +68,13 @@ frontPorchWidth = 194; // sticks out slightly beyond the end of the right front 
 frontPorchStep1Depth = 13.5; // first step down from the porch is this deep
 frontPorchStep1Length = 153; // from outer surface of middle front wall to edge of 1st step down from front porch
 frontPorchStep2Depth = 27; // second step down from the porch (onto the walkway) is this deep
+
+garageLeftWallLength = 233+364+386; // measured (very roughly while carrying a baby) in three segments. Probably not as accurate as I would like.
+garageLeftOffset = 248; // distance from the left face of the study left wall to the left face of the garage left wall, measured (roughly while carrying a baby) with a tape
+garageRightWallOffset = 358; // distance from the front face of the entry front wall to the front face of the garage from wall, measured (roughly while carrying a baby) with a tape
+
+gravelPitBackLeftOffset = 358; // distance from the back left corner of the house, along the X axis defined by the edge of the concrete, to the right edge of the gravel pit. Measured (roughly while carrying a baby) with a tape.
+gravelPitLaundryRoomOffset = 110; // distance from the left face of the garage left wall, at the back left laundry room corner, to the right edge of the gravel pit. Measured with a tape.
 
 guestBathroomDoorOffset = 9; // distance, while standing inside of the bathroom, from the front face of the living room back wall to the moving part of the door, measured with a ruler
 guestBathroomDoorWidth = 66; // width of the moving part, measured with a tape
@@ -174,6 +191,10 @@ studyFrontWallThickness = entryFrontWallThickness;
 studyArchThickness = livingRoomBackWallThickness;
 studyBackWallThickness = livingRoomBackWallThickness;
 kidRoomRightWallThickness = livingRoomBackWallThickness;
+garageRightWallThickness = entryFrontWallThickness;
+garageFrontWallThickness = entryFrontWallThickness;
+garageLeftWallThickness = entryFrontWallThickness;
+laundryRoomBackWallThickness = entryFrontWallThickness;
 
 // back left corner of the house at exterior ground level
 backLeftX = -studyRightWallThickness-studyLeftWallOffset-studyLeftWallThickness;
@@ -187,6 +208,8 @@ houseWidth = studyLeftWallThickness+studyLeftWallOffset+studyRightWallThickness+
 backWallWidth = houseWidth - livingRoomRightWallThickness - livingRoomRightWallOffset + kitchenRightWallThickness;
 backRightX = backLeftX + backWallWidth;
 frontRightX = kitchenRightWallOffset + livingRoomRightWallOffset + livingRoomRightWallThickness;
+frontLeftX = backLeftX - garageLeftOffset;
+frontLeftY = entryLength+entryFrontWallThickness+garageRightWallOffset;
 
 dh = totalHeight+livingRoomFloorDip-livingRoomRightCeilingHeight;
 dl = kitchenRightWallOffset + livingRoomRightWallOffset;
@@ -200,6 +223,24 @@ gardenWallRightOffset = 291; // distance from the back right corner of the house
 gardenWallRightOffsetLength = 496; // distance between the right end of the garden wall and the gardenWallRightOffset point, measured with a tape (and eyeballed, on the X axis)
 x1 = 0; x2 = backRightX - backLeftX; y1 = 291; y2 = 356;
 gardenWallAngle = atan((y2-y1)/(x2-x1));
+
+module airConditioner() {
+  translate([frontLeftX+airConditionerLeftOffset, frontLeftY-garageLeftWallLength-airConditionerFrontOffset-airConditionerLength, backLeftZ]) {
+    color("gray")
+    cube(size=[airConditionerWidth, airConditionerLength, airConditionerHeight]);
+  }
+}
+
+module airplanes() {
+
+}
+
+module chimney() {
+  translate([backLeftX-chimneyBaseWidth, frontLeftY-garageLeftWallLength-chimneyBaseLength, backLeftZ]) {
+    color("brown")
+    cube(size=[chimneyBaseWidth, chimneyBaseLength, chimneyBaseHeight]);
+  }
+}
 
 module entryFrontWall() {
   difference() {
@@ -228,6 +269,28 @@ module frontPorch() {
   }
 }
 
+module garageFrontWall() {
+  width = -frontLeftX;
+  translate([frontLeftX, frontLeftY-garageFrontWallThickness, -groundDip]) {
+    color("white")
+    cube(size=[width, garageFrontWallThickness, firstFloorCeilingHeight+groundDip]);
+  }
+}
+
+module garageLeftWall() {
+  translate([frontLeftX, frontLeftY-garageLeftWallLength, -groundDip]) {
+    color("white")
+    cube(size=[garageLeftWallThickness, garageLeftWallLength, firstFloorCeilingHeight+groundDip]);
+  }
+}
+
+module garageRightWall() {
+  translate([-garageRightWallThickness, entryLength+entryFrontWallThickness, -groundDip]) {
+    color("white")
+    cube(size=[garageRightWallThickness, garageRightWallOffset, firstFloorCeilingHeight+groundDip]);
+  }
+}
+
 module gardenWall() {
   translate([backRightX, backLeftY-gardenWallRightOffset, -patioDip]) {
     rotate([0, 0, gardenWallAngle]) {
@@ -236,6 +299,17 @@ module gardenWall() {
         cube(size=[gardenWallLength, gardenWallThickness, gardenWallHeight]);
       }
     }
+  }
+}
+
+module gravelPit() {
+  translate([backLeftX - gravelPitBackLeftOffset, backLeftY, backLeftZ]) {
+    color("red")
+    cylinder(r=10, h=100);
+  }
+  translate([frontLeftX-gravelPitLaundryRoomOffset, frontLeftY-garageLeftWallLength, backLeftZ]) {
+    color("red")
+    cylinder(r=10, h=100);
   }
 }
 
@@ -322,6 +396,13 @@ module kitchenRightWall() {
         }
       }
     }
+  }
+}
+
+module laundryRoomBackWall() {
+  translate([frontLeftX, frontLeftY-garageLeftWallLength, -groundDip]) {
+    color("white")
+    cube(size=[backLeftX-frontLeftX, laundryRoomBackWallThickness, firstFloorCeilingHeight+groundDip]);
   }
 }
 
@@ -559,6 +640,11 @@ module walls() {
     studyLeftWall();
 
     kidRoomRightWall();
+
+    garageFrontWall();
+    garageLeftWall();
+    garageRightWall();
+    laundryRoomBackWall();
   }
 }
 
@@ -577,4 +663,7 @@ union() {
   firePit();
   innerPlanter();
   gardenWall();
+  chimney();
+  airConditioner();
+  gravelPit();
 }
