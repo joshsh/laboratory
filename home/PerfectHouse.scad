@@ -46,6 +46,7 @@ chimneyBaseHeight = 77; // height of the bottom-most part of the chimney, measur
 
 dividerCeilingOffset = 94; // height of the segment of wall dividing the two portions of the sloped ceiling
 
+// entry area is about 71 square feet
 entryFrontWallThickness = 11; // approximated using a ruler at the front door, disregarding mouldings
 entryFrontWallWidth = 206; // measured above the door
 entryLength = 320; // measured on ground floor, ignoring moulding thickness
@@ -144,6 +145,9 @@ patioDip = 2 + 2*16.5; // with ruler
 patioGateHeight = 185.5; // height of the middle post, measured up from the rock with a tape
 patioGateWidth = 222; // from the house to the first high post, measured with a tape
 patioGateThickness = 8.5; // measured with a ruler. The slight (2 cm) offset of the first post from the edge of the house is ignored; subsequent posts are closer to the imaginary line coming out from the house
+patioGatePostThickness=9; // thickness of a 3.5" post; slight overestimate
+patioGateRightPostHeight=221; // from the patio deck to the top of the post; measured with a tape
+patioGateRightPostOffset=222; // from the rightmost face of the house to the post; measured with a tape
 
 patioWindowWidth = 57; // dimension of the outermost interior window frame, measured with a tape
 patioWindowHeight = 146; // dimension of the outermost interior window frame, measured with a tape
@@ -213,7 +217,7 @@ frontLeftY = entryLength+entryFrontWallThickness+garageRightWallOffset;
 
 dh = totalHeight+livingRoomFloorDip-livingRoomRightCeilingHeight;
 dl = kitchenRightWallOffset + livingRoomRightWallOffset;
-livingRoomRoomAngle = atan(dh/dl);
+livingRoomRoofAngle = atan(dh/dl);
 
 gardenWallLength = 621+503+790; // measured with a tape in three segments. The leftmost end of the wall is covered in ivy and difficult to measure; I assumed it is the same as the beginning of the wooden fence (which, however, is leaning inward)
 gardenWallThickness = 20; // TODO
@@ -232,7 +236,95 @@ module airConditioner() {
 }
 
 module airplanes() {
+  width = 80;
+  height = 80;
+  length = 640;
+  //translate([]) {
+  //}
+  translate([backRightX+350, backLeftY, -patioDip]) {
+    rotate([0, 0, 10]) {
+      color("red")
+      cube(size=[width, length, height]);
+    }
+  }
+  translate([backLeftX-310, backLeftY-320, -patioDip]) {
+    rotate([0, 0, -15]) {
+      color("red")
+      cube(size=[width, length, height]);
+    }
+  }
+}
 
+module awning() {
+  awningAngle = livingRoomRoofAngle / 2;
+  awningVerticalGap = 40;
+  awningThickness = 1;
+  awningWidth = 600;
+  postThickness = 15;
+  postSpacing = -backLeftY / 3;
+
+  cutoffAngle = atan(innerPlanterSlope);
+  cutoffOffset = kitchenRightWallOffset+kitchenRightWallThickness+innerPlanterOffset+50;
+
+  difference() {
+    translate([backRightX, backLeftY, livingRoomRoofVerticalOffset-patioPorchTopStepDip-awningVerticalGap-awningThickness]) {
+      rotate([0, awningAngle, 0]) {
+        union() {
+          // the awning itself
+          color([0.5, 0.5, 1, 0.5])
+          cube(size=[awningWidth, -backLeftY, awningThickness]);
+          // the posts
+          translate([0, 0, -postThickness+2]) {
+            union() {
+              color("white")
+              cube(size=[awningWidth, postThickness, postThickness]);
+              translate([0, postSpacing, 0]) {
+                color("white")
+                cube(size=[awningWidth, postThickness, postThickness]);
+              }
+              translate([0, postSpacing*2, 0]) {
+                color("white")
+                cube(size=[awningWidth, postThickness, postThickness]);
+              }
+              translate([0, postSpacing*3, 0]) {
+                color("white")
+                cube(size=[awningWidth, postThickness, postThickness]);
+              }
+            }
+          }
+        }
+      }
+    }
+    translate([cutoffOffset, 0, -patioDip-smidge]) {
+      rotate([0,0,-90+cutoffAngle]) {
+        translate([-500, 0, 0]) {
+        cube(size=[1500, 500, 700]);
+        }
+      }
+    }
+  }
+
+  translate([cutoffOffset, 0, -patioDip+205]) {
+    rotate([0,0,-90+cutoffAngle]) {
+      translate([-postThickness, 0, 0]) {
+        rotate([0,1.6,0]) {
+          color("white")
+          cube(size=[747, postThickness, postThickness]);
+        }
+      }
+    }
+  }
+}
+
+module people() {
+  translate([backRightX+450, backLeftY-100, -patioDip]) {
+    color("orange")
+    cylinder(r=20, h=183);
+  }
+  translate([frontRightX+100, 150, -patioDip]) {
+    color("orange")
+    cylinder(r=20, h=183);
+  }
 }
 
 module chimney() {
@@ -485,7 +577,7 @@ module livingRoomRightWall() {
 module livingRoomRoof() {
   length = livingRoomRightWallLength + livingRoomRoofBackOverhang + livingRoomRoofFrontOverhang;
   translate([backRightX, -livingRoomRoofBackOverhang, livingRoomRoofVerticalOffset-patioPorchTopStepDip]) {
-    rotate([0, livingRoomRoomAngle, 0]) {
+    rotate([0, livingRoomRoofAngle, 0]) {
       union() {
         color("white")
         cube(size=[livingRoomRoofRightOverhangLength, length, livingRoomRoofTotalThickness]);
@@ -501,7 +593,7 @@ module livingRoomRoof() {
 
 module livingRoomSlopedCeiling() {
   translate([0, -smidge, totalHeight]) {
-    rotate([0, livingRoomRoomAngle, 0]) {
+    rotate([0, livingRoomRoofAngle, 0]) {
       color("white")
       cube(size=[1000, 600, 500]);
     }
@@ -532,6 +624,10 @@ module patioGate() {
   translate([frontRightX, 0, -patioDip]) {
     color("brown")
     cube(size=[patioGateWidth, patioGateThickness, patioGateHeight]);
+    translate([patioGateRightPostOffset, 0, 0]) {
+      color("brown")
+      cube(size=[patioGatePostThickness, patioGatePostThickness, patioGateRightPostHeight]);
+    }
   }
 }
 
@@ -666,4 +762,8 @@ union() {
   chimney();
   airConditioner();
   gravelPit();
+  
+  awning();
+  airplanes();
+  people();
 }
