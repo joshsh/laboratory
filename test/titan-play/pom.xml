@@ -25,7 +25,7 @@
         <ripple.version>1.1</ripple.version>
         <tinkerpop.version>2.5.0</tinkerpop.version>
         <titan.version>0.4.4</titan.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <dependencies>
