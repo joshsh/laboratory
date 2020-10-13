@@ -25,7 +25,7 @@
         <rdf4j.version>2.2.2</rdf4j.version>
         <sesametools.version>1.10</sesametools.version>
         <tinkerpop.version>3.2.5</tinkerpop.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <dependencies>
