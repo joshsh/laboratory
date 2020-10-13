@@ -20,7 +20,7 @@
 
     <properties>
         <beam.version>0.5.0-incubating-SNAPSHOT</beam.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <dependencies>
