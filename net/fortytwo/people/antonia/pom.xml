@@ -25,7 +25,7 @@
         <sesame.version>2.7.10</sesame.version>
         <sesametools.version>1.8</sesametools.version>
         <tinkerpop.version>2.5.0</tinkerpop.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <dependencies>
