@@ -25,7 +25,7 @@
     </repositories>
 
     <properties>
-        <junit.version>4.5</junit.version>
+        <junit.version>4.13.1</junit.version>
         <sesame.version>2.6.4</sesame.version>
         <sesametools.version>1.6</sesametools.version>
         <ripple.version>0.8-SNAPSHOT</ripple.version>
